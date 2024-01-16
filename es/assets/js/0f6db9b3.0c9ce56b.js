@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksdk_mobile_doc=self.webpackChunksdk_mobile_doc||[]).push([[3324],{8842:e=>{e.exports=JSON.parse('{"permalink":"/sdk-mobile-documentation/es/blog/tags/docusaurus","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
