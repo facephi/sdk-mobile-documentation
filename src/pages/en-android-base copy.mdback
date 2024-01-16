@@ -1,0 +1,452 @@
+---
+title: Android Mobile SDK
+---
+
+[1.5.X][EN] Android Mobile SDK
+This document refers to 1.5.X version of the Android Mobile SDK.
+
+1. Introduction
+   SDK Mobile is a set of libraries (Components) that offer a series of functionalities and services, allowing their integration into a Mobile
+   application in a simple and totally scalable way. Certain components must be installed depending on the use case required. Its high
+   level of modularity allows other new components to be added in the future without affecting those already integrated into the project.
+   1.1. Minimum requirements
+   The minimum version of the Android SDK required is as follows:
+   Minimum SDK (minSdk): 23
+   API Version: 34
+   Kotlin: 1.9.10
+   Gradle Android plugin: 8.1.1
+   Kotlin compiler version: 1.5.3
+2. Initial integration
+   This section will explain step by step how to integrate the basic components into an existing project.
+   2.1. Add private gradle repository
+   For security and maintenance reasons, the new SDKMobile components are stored in private repositories that require specific
+   credentials to access them. These credentials must be obtained through the Facephi support team.
+   Once the credentials are obtained, the following code snippet to configure the maven repository must be included in your project's
+   Gradle, or in the settings.gradle file of your project. It is recommended to include it after mavenCentral()
+
+   1 maven {
+   2 Properties props = new Properties()
+   3 def propsFile = new File('local.properties')
+   4 if(propsFile.exists()){
+   5 props.load(new FileInputStream(propsFile))
+   6 }
+   7 name="external"
+   8 url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+   9 credentials {
+   10 username = props["artifactory.user"] ?: System.getenv("USERNAME_ARTIFACTORY")
+   11 password = props["artifactory.token"] ?: System.getenv("TOKEN_ARTIFACTORY")
+   12 }
+   13 }
+   14
+   The credentials (User and Token) must be correctly configured for the project to retrieve the dependencies correctly.
+   There are several ways to configure the repository access credentials:
+   As environment variables with the following name. For example:
+
+1 export USERNAME_ARTIFACTORY=YOUR_CREDENTIALS_USERNAME
+2 export TOKEN_ARTIFACTORY=YOUR_CREDENTIALS_TOKEN
+If the dependencies are not recognized when synchronising, they must be included via environment variables in the file:
+~/.zshrc
+Included in the local.properties file with the following structure:
+1 artifactory.user=YOUR_CREDENTIALS_USERNAME
+2 artifactory.token=YOUR_CREDENTIALS_TOKEN
+
+2.2. Dependencies required for basic integration
+To avoid conflicts and compatibility problems, if you want to install the component in a project containing an old Facephi libraries
+(Widgets) version, these must be removed entirely before installing the SDKMobile components.
+Currently, FacePhi libraries are distributed remotely through different dependency managers. The mandatory dependencies that must
+be installed:
+1 implementation "com.facephi.androidsdk:sdk:$sdk\_version"
+2 implementation "com.facephi.androidsdk:core:$core_version" 3. SDK initialization
+It must be strictly avoided to initialize a controller that is not going to be used
+Each component has a Controller that will allow access to its functionality. Before they can be used, they must be properly initialized.
+The steps to follow in the initialization are as follows:
+
+1. Include the Application object
+2. Decide whether the licence will be included via a String or a remote licensing service (see section 3.1).
+3. Include TrackingController in case you want to connect to the platform.
+   Point 3 is optional and would require using the Tracking component (more information about this module in its documentation).
+   Example without TrackingController:
+   1 SDKController.initSdk(
+   2 sdkApplication = SdkApplication(application),
+   3 license = "LICENSE"
+   4 ) {
+   5 when (it) {
+   6 is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+   7 is SdkResult.Error -> Napier.d(
+   8 "APP: INIT SDK: KO - ${it.error}"
+   9 )
+   10 }
+   11 })
+   12
+   Example with TrackingController:
+   1 SDKController.initSdk(
+   2 sdkApplication = SdkApplication(application),
+   3 license = "LICENSE",
+   4 trackingController = TrackingController()
+   5 ) {
+   6 when (it) {
+
+7 is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+8 is SdkResult.Error -> Napier.d(
+9 "APP: INIT SDK: KO - ${it.error}"
+10 )
+11 }
+12 })
+13
+3.1. Licence injection
+As discussed above, there are currently two ways to inject the licence:
+a. Obtaining the licence through a service
+Through a service that requires a URL and an API-KEY as an identifier. This would avoid problems when manipulating the licence, as
+well as the constant replacement of these licences when a problem arises (malformation or improper modification, expiry of the
+licence...).
+Kotlin:
+1
+2 SDKController.initSdk(
+3 sdkApplication = SdkApplication(application),
+4 environmentLicensingData = EnvironmentLicensingData(
+5 url = "https://...",
+6 apiKey = "...")
+7 ) {
+8 when (it) {
+9 is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+10 is SdkResult.Error -> Napier.d(
+11 "APP: INIT SDK: KO - ${it.error}"
+12 )
+13 }
+14 })
+Java:
+1 SDKController.INSTANCE.initSdk(
+2 new SdkApplication(activity.getApplication()),
+3 new EnvironmentLicensingData(
+4 url = "https://...",
+5 apiKey = "..."),
+6 sdkResult ->
+7 {
+8 if (sdkResult instanceof SdkResult.Success) {
+9 Napier.d("APP: INIT SDK: OK")
+10 } else if (sdkResult instanceof SdkResult.Error) {
+11 Napier.d("APP: INIT SDK: KO - ${it.error}")
+12 }
+13 }
+14 );
+
+b. Injecting the licence as a String
+You can assign the licence directly as a String, as follows:
+Kotlin:
+1
+2 SDKController.initSdk(
+3 sdkApplication = SdkApplication(application),
+4 license = "LICENSE"
+
+5 ) {
+6 when (it) {
+7 is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+8 is SdkResult.Error -> Napier.d(
+9 "APP: INIT SDK: KO - ${it.error}"
+10 )
+11 }
+12 })
+Java:
+1 SDKController.INSTANCE.initSdk(
+2 new SdkApplication(activity.getApplication()),
+3 "LICENSE",
+4 sdkResult ->
+5 {
+6 if (sdkResult instanceof SdkResult.Success) {
+7 Napier.d("APP: INIT SDK: OK")
+8 } else if (sdkResult instanceof SdkResult.Error) {
+9 Napier.d("APP: INIT SDK: KO - ${it.error}")
+10 }
+11 }
+12 );
+13
+
+4. Start a new operation
+   Every time you want to start the flow of a new operation (examples of operations would be onboarding, authentication, videoCall, etc.),
+   it is essential to tell the SDKController that it is going to start, so the SDK will know that the following Component calls (also called
+   Steps) will be part of that operation. This is necessary to track the global information of this operation on the platform in a satisfactory
+   way.
+   When starting a process or flow, always call the newOperation method
+   This method has 3 input parameters:
+1. operationType: Indicates whether an ONBOARDING or AUTHENTICATION 2 process is to be performed.
+1. customerId: Unique user ID if available (controlled at the application level).
+   a. This parameter will be reflected for each operation in the platform.
+1. steps: List of steps of the operation if they have been previously defined.
+   a. This parameter will be reflected for each operation in the platform.
+   There are two ways to perform this operation start, depending on whether the steps that will form the flow of the registration or
+   authentication process are known (in case the components are executed sequentially and always in the same way) or, on the contrary,
+   if the flow is not defined and is unknown (for example, the final customer is the one who decides the order of execution of the
+   components).
+   Known flow (the tracked operation will appear on the platform with all the steps in the list). Example of implementation:
+   Kotlin:
+   1 SDKController.newOperation(
+   2 operationType = OperationType.ONBOARDING,
+   3 customerId = "customer_id",
+   4 steps = listOf(Step.SELPHI_COMPONENT, Step.SELPHID_COMPONENT)
+   5 ){
+   6 when (it) {
+   7 is SdkResult.Success -> {
+   8 Napier.d("APP: NEW OPERATION OK")
+
+9 }
+10 is SdkResult.Error -> {
+11 Napier.d("APP: NEW OPERATION ERROR: ${it.error}")
+12 }
+13 }
+14 }
+Java:
+1 SDKController.INSTANCE.newOperation(
+2 OperationType.ONBOARDING,
+3 "customer_id",
+4 [Step.SELPHI\_COMPONENT, Step.SELPHID\_COMPONENT]
+5 ){
+6 if (sdkResult instanceof SdkResult.Success) {
+7 Napier.d("APP: NEW OPERATION: OK")
+8 } else if (sdkResult instanceof SdkResult.Error) {
+9 Napier.d("APP: NEW OPERATION: KO - ${it.error}")
+10 }
+11 }
+12 );
+Unknown flow (the tracked operation will appear on the platform with ellipses). Example of implementation:
+Kotlin:
+1 SDKController.newOperation(
+2 operationType = OperationType.ONBOARDING,
+3 customerId = "customer_id",
+4 ){
+5 when (it) {
+6 is SdkResult.Success -> {
+7 Napier.d("APP: NEW OPERATION OK")
+8 }
+9 is SdkResult.Error -> {
+10 Napier.d("APP: NEW OPERATION ERROR: ${it.error}")
+11 }
+12 }
+13 }
+Java:
+1 SDKController.INSTANCE.newOperation(
+2 OperationType.ONBOARDING,
+3 "customer_id"
+4 ){
+5 if (sdkResult instanceof SdkResult.Success) {
+6 Napier.d("APP: NEW OPERATION: OK")
+7 } else if (sdkResult instanceof SdkResult.Error) {
+8 Napier.d("APP: NEW OPERATION: KO - ${it.error}")
+9 }
+10 }
+11 );
+
+sdkResult → Contains in data the information of the operation created.
+Once the operation has been created, the SDK components associated with this operation can be executed. Consult the
+specific documentation for each component to find out how to do this.
+4.1 Existing types of operation
+Currently, the following operations exist, during which certain Components (STEPS) are used.
+
+Below is a table showing the relationship between operations and steps:
+Operación (OperationType) Component (Step) Description
+ONBOARDING SELPHI_COMPONENT Facial validation of a selfie
+SELPHID_COMPONENT against a document's face
+Document OCR extraction
+Liveness detection
+AUTHENTICATION SELPHI_COMPONENT Face validation using
+templates
+Liveness detection
+This list will be expanded in future SDK updates as new components and use cases are released.
+
+5. Launch of components
+   Once the new operation has been created (section 4), the different SDK drivers can be launched. To consult this information,
+   access the documentation for each component.
+   Launch example:
+   1 SDKController.launch(
+   2 SelphIDController(SdkData.selphIDConfiguration) {
+   3 when (it) {
+   4 is SdkResult.Error -> Napier.d("SelphID: KO - ${it.error.name}")
+   5 is SdkResult.Success -> {
+   6 Napier.d("SelphID: OK")
+   7 }
+   8 }
+   9 }
+   10 )
+6. Result return
+   The result of each component will be returned through the SDK, keeping always the same structure through the SdkResult class,
+   whose class is a Sealed Class that can have two possible states:
+   SdkResult.Success: Indicates that the operation has finished successfully and inside it has:
+   data: Contains the type of data that is necessary according to the process/component launched.
+   SdkResult.Error
+   error: Contains the type of data that is necessary according to the process/component launched.
+   The documentation for each specific component will provide a breakdown of the different fields this object can return.
+   Example of use:
+   1 when (it) {
+   2 is SdkResult.Success -> {
+   3 Napier.d("Selphi: OK")
+   4 // SelphiResult:
+   5 // it.data.bestImageBmp
+   6 }
+   7
+
+8 is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
+9 } 7. Close session / Logout
+Before the application is destroyed, the SDK session must be closed to notify the platform of its completion. To do this, the following
+line of code is executed:
+1 SDKController.closeSession()
+If a logout is performed, it will not be possible to launch controllers until a new operation is started again. 8. Auxiliary controllers
+This section includes other controllers and auxiliary operations, some of them optional, which may be necessary for the correct
+completion of the flow.
+These fields are necessary for communication with the Facephi service, in the event of any verification and tracking of a
+specific operation.
+8.1 Getting the OperationId
+1 SDKController.launchMethod(
+2 GetOperationIdController {
+3 Napier.d("Operation ID ${it})
+4 }
+5 )
+8.2 Getting the OperationType
+1 SDKController.launchMethod(
+2 GetOperationTypeController {
+3 Napier.d("Operation type ${it})
+4 }
+5 )
+8.3 Getting the SessionId
+1 SDKController.launchMethod(
+2 GetSessionIdController {
+3 Napier.d("Session ID ${it})
+4 }
+5 )
+8.4 Getting the CustomerID
+1 SDKController.launchMethod(
+2 GetCustomerIdController {
+3 Napier.d("Customer ID ${it})
+4 }
+5 )
+8.5 Getting the CustomerID
+
+1 SDKController.launchMethod(
+2 CustomerIdController("CustomerId")
+3 ) 9. Debugging and error-handling options
+Certain options in the SDK allow an increase in the debug logs in order to check that everything is working correctly.
+9.1. Error checking of Tracking connections to the platform
+Once the SDK has started correctly, certain settings can be applied to have more information about possible tracking errors, which can
+be tracked through this driver release:
+1 SDKController.launch(TrackingErrorController {
+2 Napier.d("Tracking Error: ${it.name}")
+3 })
+9.2. Activation of General Debugging Logs
+1 SDKController.enableDebugMode() 10. SDK customization
+This version of the SDK allows some visual characteristics of the components to be modified. The possible changes that can be made
+are listed below.
+It is recommended to add the modifications to both the light and dark (night) themes.
+10.1. Colors, logo and animations
+To change the SDK colours and logo, you would have to include an XML file in the client application (e.g. sdk_styles.xml) changing the
+hex (RGB) value of each primary colour:
+1 xml version="1.0" encoding="utf-8"?
+2
+3
+4 #7636FC
+5 #03DAC5
+6 #FFFFFF
+7 #DD3631
+8
+9 #1D2C4D
+10 #526080
+11 #07A13A
+12 #202C4B
+13 #EA7547
+14 #243760
+15
+16 32dp
+17
+18 @drawable/ic_demo_logo
+19
+20
+21
+22
+
+To modify the logo visible in the different components of the SDK, it is sufficient to include in the file the following line, including the
+name of the logo of the client application:
+1
+2 @drawable/logo_name
+The animations apply styles (mentioned above) according to the five fundamental colours:
+1 sdkPrimaryColor
+2 sdkErrorColor
+3 sdkSuccessColor
+4 sdkNeutralColor
+5 sdkAccentColor
+Changing any of them will affect the animations of the components.
+The Selphi and SelphID components carry their associated resource zip, which is kept outside this feature of the SDK.
+10.2. Texts
+If you want to modify the SDK texts, you would have to include the following XML file in the client application and modify the value of
+each String to the desired one.
+1 xml version="1.0" encoding="utf-8"?
+2
+3
+4 Permission denied
+5 In order to continue, you need to
+6 allow access to the permission needed.
+7 allow access to the camera.
+8 allow access to the microphone.
+9 Retry
+10 Go to settings
+11 Finish the process
+12 Do you want to finish the process?
+13 Finish
+14 Cancel
+15 Finish
+16 An error has occurred with the connection to the video. Please try a
+17 An error has occurred with the connection to the server. Please try
+18 An error has occurred with the system configuration. Please try again
+19 Sorry, the operation has timed out. Please try again later.Connection error
+21 Check your internet connection
+22 Exit
+23 Close process
+24 Show tutorial
+25 Previous page
+26 Next page
+27 Image captured
+28 Retry
+29 Continue
+30 SKIP
+31
+32
+33
+34
+35
+36
+
+10.3. Font
+To modify the font, add the .ttf files to the font folder of the application and rename them as shown in the image:
+10.4. Buttons
+In case you want to change the shape of the SDK buttons, you would have to include this line in the SDK style XML file by changing the
+dp value of the dimen variable:
+1 xml version="1.0" encoding="utf-8"?
+2
+3 5dp
+4
+5 11. FAQ - Frequently Asked Questions
+Question Answer
+When synchronising the project, it does not resolve Check the device connection.
+the dependencies and a 403 appears in the Check if you have correctly configured the
+components. TOKEN and USER of the Facephi repository in
+Gradle.
+Check the version of the embedded components
+Perform Invalidate Cache & Restart
+Try again
+
+If any other problems occur, please contact the support team so that we can help you. 12. Changelog
+Version Changes
+1.5.1 General
+Improvements and bug fixes
+Voice
+Internal library update
+Calibration adjustments
+Return of tokenized audios
+Phingers
+WSQ tracking
+Behaviour
+Internal library update
+Enhancements and fixes
+1.5.0 API 34 (Android 14) supported
+Updated Android Gradle plugins (8.1.1)
+
+Updated version of Kotlin used (1.9.10)
+Video component input data settings
+Improved SdkResult as a sealed class
+Nomenclature of NewOperation input Steps
