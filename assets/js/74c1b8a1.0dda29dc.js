@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksdk_mobile_doc=self.webpackChunksdk_mobile_doc||[]).push([[4312],{5692:e=>{e.exports=JSON.parse('{"permalink":"/sdk-mobile-documentation/blog/tags/hello","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

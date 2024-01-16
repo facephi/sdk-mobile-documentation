@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksdk_mobile_doc=self.webpackChunksdk_mobile_doc||[]).push([[3060],{8597:s=>{s.exports=JSON.parse('{"label":"docusaurus","permalink":"/sdk-mobile-documentation/blog/tags/docusaurus","allTagsPath":"/sdk-mobile-documentation/blog/tags","count":4,"unlisted":false}')}}]);
