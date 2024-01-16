@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][EN] Selphi Component</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605678593.html">[1.5.X][EN] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][EN] Selphi Component
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified by <span class='editor'> José Carlos Martínez</span> on nov 29, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This document refers to the <strong>1.5.X version </strong>of the component</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394363996 {padding: 0px;}
+div.rbtoc1705394363996 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394363996 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394363996'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-0.SDKMobilebaselinerequirements'>0. SDK Mobile baseline requirements</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-1.Introduction'>1. Introduction</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-2.Integrationofthecomponent'>2. Integration of the component</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-2.1.Dependenciesrequiredforintegration'>2.1. Dependencies required for integration</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-3.Startanewoperation'>3. Start a new operation</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-4.Availablecontrollers'>4. Available controllers</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.Componentconfiguration'>5. Component configuration</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.ClassSelphiConfigurationData'>5.1. Class SelphiConfigurationData</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.0.debug'>5.1.0. debug</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.1.resourcesPath'>5.1.1. resourcesPath</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.2.cropPercent'>5.1.2. cropPercent</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.3.showResultAfterCapture'>5.1.3. showResultAfterCapture</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.4.showTutorial'>5.1.4. showTutorial</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.5.livenessMode'>5.1.5. livenessMode</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.6.stabilizationMode'>5.1.6. stabilizationMode</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.7.cameraFlashEnabled'>5.1.7. cameraFlashEnabled</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.8locale'>5.1.8 locale</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.9fullscreen'>5.1.9 fullscreen</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.10.templateRawOptimized'>5.1.10. templateRawOptimized</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.11.qrMode'>5.1.11. qrMode</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.13videoFilename'>5.1.13 videoFilename</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-5.1.14viewsContent'>5.1.14 viewsContent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-6.Componentuse'>6. Component use</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-7.Receiptoftheresult'>7. Receipt of the result</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-7.1.Receiptoferrors'>7.1. Receipt of errors</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-7.2.Receiptofcorrectexecution-data'>7.2. Receipt of correct execution - data</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-7.2.1templateRaw'>7.2.1 templateRaw</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-7.2.2template'>7.2.2 template</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-7.2.3bestImageBmp'>7.2.3 bestImageBmp</a></li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-7.2.4bestImageCroppedBmp'>7.2.4 bestImageCroppedBmp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-10.AdditionalControllers'>10. Additional Controllers</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]SelphiComponent-10.1.RawTemplateController'>10.1. RawTemplateController</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.5.X][EN]SelphiComponent-0.SDKMobilebaselinerequirements">0. SDK Mobile baseline requirements</h2><p><strong>SDK Mobile </strong>is a set of libraries (Components) that offer a series of functionalities and services, allowing their integration into a Mobile application in a simple and fully scalable way. Certain components must be installed depending on the use case required. Its high level of modularity allows other new components to be added in the future without affecting those already integrated into the project.</p><p>For more information on the base configuration, go to the <a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page">Android Mobile SDK</a> section.</p><p> </p><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-1.Introduction">1. Introduction</h2><p>The Component discussed in the current document is called <strong>Selphi Component</strong>. It is responsible for capturing a selfie of the user and then extracting the most important facial features. Its main functionalities are the following:</p><ul><li><p>Internal camera management.</p></li><li><p>Permission management.</p></li><li><p>Assistant in the process of capturing the user's face.</p></li><li><p>Generation of the templates with the facial characteristics and the image of the user's face for the liveness detection process.</p></li></ul><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-2.Integrationofthecomponent">2. Integration of the component</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Before integrating this component, it is recommended to read the documentation related to</p><p><a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a><strong> </strong>and follow the instructions in that document.</p></div></div><p>This section will explain step by step how to integrate the current component into an existing project.</p><h3 id="id-[1.5.X][EN]SelphiComponent-2.1.Dependenciesrequiredforintegration">2.1. Dependencies required for integration</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>To avoid conflicts and compatibility problems, if you want to install the component in a project containing an old Facephi libraries (<em>Widgets</em>) version, these must be removed entirely before installing the <em><strong>SDKMobile </strong></em>components. Currently, FacePhi libraries are distributed remotely through different dependency managers. <strong>Mandatory </strong>dependencies that must be installed beforehand:</p></div></div><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:selphi_component:$sdk_selphi_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-3.Startanewoperation">3. Start a new operation</h2><p>When you want to perform a specific operation, in order to generate the associated information correctly in the platform, the <strong>newOperation </strong>command must first be executed. </p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This command must have been executed <strong>before launch</strong>.</p><p>To learn more about how to start a new operation, it is recommended to consult the <a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a><strong> </strong>documentation, which details and explains what this process consists of.</p></div></div><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-4.Availablecontrollers">4. Available controllers</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6c0e67b8-9eb3-4535-bb57-832f68c0caad" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controller</strong></p></th><th class="confluenceTh"><p><strong>Description</strong></p></th></tr><tr><td class="confluenceTd"><p>SelphiController</p></td><td class="confluenceTd"><p>Facial recognition main controller</p></td></tr><tr><td class="confluenceTd"><p>RawTemplateController</p></td><td class="confluenceTd"><p>Driver to generate a RawTemplate from an image</p></td></tr></tbody></table></div><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-5.Componentconfiguration">5. Component configuration</h2><p>To configure the current component, once it has been initialized, a SelphiConfigurationData object must be created and passed as a parameter to the SDKController when the component is launched.</p><p>The following section will show the fields that are part of this class and what each is used for.</p><h3 id="id-[1.5.X][EN]SelphiComponent-5.1.ClassSelphiConfigurationData">5.1. Class SelphiConfigurationData</h3><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.0.debug">5.1.0. <em>debug</em></h4><p>Activation of the component's debugging mode.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.1.resourcesPath">5.1.1. <em>resourcesPath</em></h4><p>Indicates the name of the resources in zip format. Example: <em>&quot;resources-selphi-2-0.zip&quot;</em>.</p><p>This name will fetch the file from the assets path.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="283" loading="lazy" src="attachments/2606071809/2606071817.png?width=283" data-image-src="attachments/2606071809/2606071817.png" data-height="146" data-width="283" data-unresolved-comment-count="0" data-linked-resource-id="2606071817" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231009-142458.png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2606071809" data-linked-resource-container-version="14" data-media-id="03d289d4-b6f6-4e1e-afc9-0299a6f7e4d1" data-media-type="file"></span><p /><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.2.cropPercent">5.1.2. <em>cropPercent</em></h4><p>Allows you to change the percentage of cropping of the face. The higher the number, the more the rectangle is cropped concerning the face.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.3.showResultAfterCapture">5.1.3. <em>showResultAfterCapture</em></h4><p>Indicates whether or not to display a screen with the captured image after the analysis process. This screen allows the user to repeat the capture process if the image obtained is incorrect.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.4.showTutorial">5.1.4. <em>showTutorial</em></h4><p>Indicates whether the widget activates the tutorial screen. This view intuitively explains how the capture is performed.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.5.livenessMode">5.1.5. livenessMode</h4><p>Sets the liveness mode of the widget. Allowed values are:</p><ul><li><p>LIVENESS_NONE: Indicates that the photodetection mode should not be enabled in the authentication processes.</p></li><li><p>LIVENESS_PASSIVE: Indicates that the passive liveness test is performed in the server, sending the corresponding &quot;BestImage&quot; or &quot;TemplateRaw&quot; for this purpose.</p></li></ul><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.6.stabilizationMode">5.1.6. stabilizationMode</h4><p>Sets a stabilization mode before any authentication process in the widget. This mode forces the widget not to start any process if the user is not facing forward and not moving his head.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.7.cameraFlashEnabled">5.1.7. cameraFlashEnabled</h4><p>Indicates whether the device's camera flash is activated.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.8locale">5.1.8 <em>locale</em></h4><p>Forces the widget to use the language setting indicated by the locale parameter. This parameter accepts a language code (e.g. 'en') and a regional identification code (e.g. 'en_US'). If the widget resource file does not have a locale for the selected 'locale', its configuration will fall back to the default language.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.9fullscreen">5.1.9 <em>fullscreen</em></h4><p>Indicates whether the view will prioritize for full-screen display if the system allows it.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.10.templateRawOptimized">5.1.10. templateRawOptimized</h4><p>Indicates whether the template (templateRaw) generated after the selfie should be optimized or not.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.11.qrMode">5.1.11. qrMode</h4><p>Sets whether or not to activate QR reading before the authentication process.</p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.13videoFilename">5.1.13 <em>videoFilename</em></h4><p>Sets the absolute path to the filename where a video of the capture process will be recorded. The application is responsible for requesting the necessary permissions from the phone if that path requires additional permissions. The widget, by default, will not perform any recording process unless a file path is specified using this method. </p><h4 id="id-[1.5.X][EN]SelphiComponent-5.1.14viewsContent">5.1.14 viewsContent</h4><p>This advanced property allows, through a string in XML format, to configure the widget views.</p><p>Note: This property does not alter the content of the resource file.</p><p /><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-6.Componentuse">6. Component use</h2><p>Once the component has been started and a new operation has been created (<strong>section 3</strong>), the SDK components can be launched. There are two ways to launch the component:</p><ul><li><p><strong>[WITH TRACKING]</strong> This call allows to launch the functionality of the component, but internal events will be tracked to the <em>tracking </em>server:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    SelphiController(SelphiConfigurationData(...)) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;Selphi: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; it.data
+        }
+    }
+)</pre>
+</div></div><ul><li><p><strong>[WITHOUT TRACKING] </strong>This call allows to launch the functionality of the component, but <strong>no event will be tracked</strong> to the <em>tracking </em>server:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    SelphiController(SelphiConfigurationData(...)) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;Selphi: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; it.data
+        }
+    }
+)</pre>
+</div></div><p> </p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The <strong>launch </strong>method must be used by <strong>default</strong>. This method allows <em><strong>tracking </strong></em>if your component is enabled and will not be used when it is disabled (or the component is not installed).</p><p>On the other hand, the <strong>launchMethod </strong>method covers a particular case in which the integrator has tracking installed and activated but, in a certain flow within the application does not want to track information. In this case, this method is used to prevent this information from being sent to the platform.</p></div></div><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-7.Receiptoftheresult">7. Receipt of the result</h2><p>The controllers will return the required information in SdkResult format. -more details in the Android Mobile SDK's <a href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605678593#6.-Result-return" rel="nofollow">6. Result return</a> section-.</p><h3 id="id-[1.5.X][EN]SelphiComponent-7.1.Receiptoferrors">7.1. Receipt of errors</h3><p>On the error side, we will have the SelphiError class.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">    SelphiError.ACTIVITY_RESULT_ERROR 
+    SelphiError.BAD_EXTRACTOR_CONFIGURATION_ERROR 
+    SelphiError.CAMERA_PERMISSION_DENIED 
+    SelphiError.CANCEL_BY_USER 
+    SelphiError.CONTROL_NOT_INITIALIZATED_ERROR 
+    SelphiError.EXTRACTION_LICENSE_ERROR 
+    SelphiError.HARDWARE_ERROR
+    is SelphiError.INITIALIZATION_ERROR -&gt; it.error // More info
+    SelphiError.NO_ERROR 
+    SelphiError.RESOURCES_NOT_FOUND 
+    SelphiError.SETTINGS_PERMISSION_ERROR 
+    SelphiError.TIMEOUT 
+    SelphiError.UNEXPECTED_CAPTURE_ERROR 
+    SelphiError.UNKNOWN_ERROR </pre>
+</div></div><h3 id="id-[1.5.X][EN]SelphiComponent-7.2.Receiptofcorrectexecution-data">7.2. Receipt of correct execution - <em>data</em></h3><p>In the data part, we have the SelphiResult class.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The result returns the images in <strong>Bitmap</strong> format. It is possible to convert the images to <strong>Base64</strong> as follows:</p><p><code>Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)</code></p></div></div><p>The data field is variable and will depend on which component has returned the result. In the case of this component, the fields returned are the following:</p><h4 id="id-[1.5.X][EN]SelphiComponent-7.2.1templateRaw">7.2.1 <em>templateRaw</em></h4><p>Returns the raw template generated after the extraction process. Valid for the AUTHENTICATION process.</p><h4 id="id-[1.5.X][EN]SelphiComponent-7.2.2template">7.2.2 <em>template</em></h4><p>Returns the template that is generated after the extraction process. Valid for the AUTHENTICATION process.</p><h4 id="id-[1.5.X][EN]SelphiComponent-7.2.3bestImageBmp">7.2.3 <em>bestImageBmp</em></h4><p>Returns the best image extracted from the authentication process in SdkImage format. This image is the original size image extracted from the camera. Valid for the liveness process.</p><h4 id="id-[1.5.X][EN]SelphiComponent-7.2.4bestImageCroppedBmp">7.2.4 <em>bestImageCroppedBmp</em></h4><p>Returns a cropped image centred on the user's face in SdkImage format. This image is obtained from the bestImage. This image will be used as the characteristic image of the user who carried out the process as an avatar.</p><hr/><h2 id="id-[1.5.X][EN]SelphiComponent-10.AdditionalControllers">10. Additional Controllers</h2><h3 id="id-[1.5.X][EN]SelphiComponent-10.1.RawTemplateController">10.1. RawTemplateController</h3><p>Controller to generate a RawTemplate from an image (bitmap).</p><p>Example of use:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    RawTemplateController(SdkImage(image)) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;GenerateRaw: KO - ${it.error}&quot;)
+            is SdkResult.Success -&gt; it.data
+        }
+    }
+)</pre>
+</div></div><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2606071809/2606071817.png">image-20231009-142458.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

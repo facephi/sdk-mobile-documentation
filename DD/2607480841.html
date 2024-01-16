@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][ES] Flow Component</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605285492.html">[1.5.X][ES] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][ES] Flow Component
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified by <span class='editor'> Leticia Martín</span> on ene 03, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.5.X</strong> del componente</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394367198 {padding: 0px;}
+div.rbtoc1705394367198 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394367198 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394367198'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]FlowComponent-0.RequisitosbasedeSDKMobile'>0. Requisitos base de SDK Mobile</a></li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-1.Introducción'>1. Introducción</a></li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]FlowComponent-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-3.Iniciarnuevaoperación'>3. Iniciar nueva operación</a></li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-4.Controladoresdisponibles'>4. Controladores disponibles</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]FlowComponent-4.1.Controladoresdecomponentesconflow'>4.1. Controladores de componentes con flow</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-5.InicializacióndelSDKconflow'>5. Inicialización del SDK con flow</a></li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-6.Usodelcomponente'>6. Uso del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]FlowComponent-6.1Lanzamientodeunflujopublicado'>6.1 Lanzamiento de un flujo publicado</a></li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-6.2Lanzamientodeunflujopendientedepublicar'>6.2 Lanzamiento de un flujo pendiente de publicar</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-7.Recepcióndelresultado'>7. Recepción del resultado</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]FlowComponent-7.1.Recepcióndeerrores'>7.1. Recepción de errores</a></li>
+<li><a href='#id-[1.5.X][ES]FlowComponent-7.2.Recepcióndeejecucióncorrecta-data'>7.2. Recepción de ejecución correcta - data</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.5.X][ES]FlowComponent-0.RequisitosbasedeSDKMobile">0. Requisitos base de SDK Mobile</h2><p> </p><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>Para más información sobre la configuración base, vaya a la sección de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page">Android Mobile SDK</a>.</p><p> </p><hr/><h2 id="id-[1.5.X][ES]FlowComponent-1.Introducción">1. Introducción</h2><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento de Flow es un <strong>anexo</strong> al común de <strong>SDK</strong>, ya que esta funcionalidad está contenida en el propio componente de SDK.</p></div></div><p>Flow es una funcionalidad que conecta la sección de <strong>Design Studio</strong> de la <strong>Plataforma</strong> con el SDK y la implementación que realiza el cliente. A través de un identificador de Flow, podrá lanzar un flujo diseñado en la web, que puede contener de 1 a N pasos de los componentes existentes en el SDK.</p><p>Ejemplo: Lanzamiento de <strong>reconocimiento facial</strong> &gt; Lanzamiento de <strong>reconocimiento documentos</strong> &gt; Lanzamiento de <strong>reconocimiento de voz</strong>.</p><hr/><h2 id="id-[1.5.X][ES]FlowComponent-2.Integracióndelcomponente">2. Integración del componente</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a:</p><p><a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a> y seguir las instrucciones indicadas en dicho documento.</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.5.X][ES]FlowComponent-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><p>No es necesaria <strong>ninguna dependencia extra</strong> para utilizar Flow.</p><p>Se <u>deberán añadir las dependencias requeridas de cada componente</u> que se quiera lanzar dentro del Flow. Si se quiere lanzar <strong>reconocimiento facial,</strong> deberá ser <strong>necesario</strong> instalar el <strong>componente de Selphi</strong>, y así sucesivamente con el resto de componentes.</p><hr/><h2 id="id-[1.5.X][ES]FlowComponent-3.Iniciarnuevaoperación">3. Iniciar nueva operación</h2><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Al iniciar el lanzamiento de una operación de Flow, internamente se genera una nueva operación de manera completamente transparente.</p><p><strong><u>No es necesario</u></strong> realizar una nueva operación con anterioridad.</p></div></div><hr/><h2 id="id-[1.5.X][ES]FlowComponent-4.Controladoresdisponibles">4. Controladores disponibles</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6c0e67b8-9eb3-4535-bb57-832f68c0caad" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controlador</strong></p></th><th class="confluenceTh"><p><strong>Descripción</strong></p></th></tr><tr><td class="confluenceTd"><p>FlowController</p></td><td class="confluenceTd"><p>Controlador principal de Flow. Lanzamiento de flujos publicados.</p></td></tr><tr><td class="confluenceTd"><p>FlowPreviewController</p></td><td class="confluenceTd"><p>Controlador para el lanzamiento de flujos pendientes de publicar (pruebas)</p></td></tr></tbody></table></div><h3 id="id-[1.5.X][ES]FlowComponent-4.1.Controladoresdecomponentesconflow">4.1. Controladores de componentes con flow</h3><div class="table-wrap"><table data-table-width="455" data-layout="default" data-local-id="55adf198-6442-475d-a45f-3245726d9195" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controlador</strong></p></th><th class="confluenceTh"><p><strong>Descripción</strong></p></th></tr><tr><td class="confluenceTd"><p>FSelphiController</p></td><td class="confluenceTd"><p>Reconocimiento facial</p></td></tr><tr><td class="confluenceTd"><p>FSelphIDController</p></td><td class="confluenceTd"><p>Reconocimiento documental</p></td></tr><tr><td class="confluenceTd"><p>FVoiceController</p></td><td class="confluenceTd"><p>Captura de voz</p></td></tr><tr><td class="confluenceTd"><p>FPhingersController</p></td><td class="confluenceTd"><p>Captura de huellas</p></td></tr><tr><td class="confluenceTd"><p>FNfcController</p></td><td class="confluenceTd"><p>Lectura de NFC</p></td></tr><tr><td class="confluenceTd"><p>FQrReaderController</p></td><td class="confluenceTd"><p>Lectura de QR</p></td></tr><tr><td class="confluenceTd"><p>FPhacturasReaderController</p></td><td class="confluenceTd"><p>Captura de facturas</p></td></tr><tr><td class="confluenceTd"><p>FVideoIdController</p></td><td class="confluenceTd"><p>Video Identificación</p></td></tr><tr><td class="confluenceTd"><p>FVideoCallController</p></td><td class="confluenceTd"><p>Video Asistencia</p></td></tr></tbody></table></div><h2 id="id-[1.5.X][ES]FlowComponent-5.InicializacióndelSDKconflow">5. Inicialización del SDK con flow</h2><p>La función de inicialización del SDK tiene el parámetro <em>activateFlow</em> para gestionar su activación:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.initSdk(
+     ...,
+      activateFlow = true,
+      ..
+      ) {
+          when (it) {
+              is SdkResult.Success -&gt; Napier.d(&quot;APP: INIT SDK: OK&quot;)
+              is SdkResult.Error -&gt; Napier.d(
+                     &quot;APP: INIT SDK: KO - ${it.error}&quot;
+                    ) 
+           }
+ })</pre>
+</div></div><h2 id="id-[1.5.X][ES]FlowComponent-6.Usodelcomponente">6. Uso del componente</h2><h4 id="id-[1.5.X][ES]FlowComponent-6.1Lanzamientodeunflujopublicado">6.1 Lanzamiento de un flujo publicado</h4><p>Se usará el <em>FlowController</em> para lanzar un flujo que el cliente tiene publicado en la plataforma:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+   FlowController(
+        FlowConfigurationData(
+            id = &quot;flowId&quot;,
+            controllers = listOf(FSelphiController(), FSelphIDController()),
+            customerId = &quot;customerId&quot;,
+            newOperation = true
+        )) { flowResult -&gt;
+        Napier.d(&quot;APP: FLOW STEP KEY ${flowResult.step?.key}&quot;)
+        when (val sdkResult = flowResult.result) {
+             is SdkResult.Error -&gt; {
+                Napier.d(&quot;APP: FLOW ERROR: ${sdkResult.error}&quot;)
+             }
+             is SdkResult.Success -&gt; {
+
+                when (flowResult.step?.key) {
+                    FlowKeys.SELPHI_COMPONENT.name -&gt; {
+                          val result = sdkResult.data.getSelphiResult()
+                     }
+
+                     FlowKeys.SELPHID_COMPONENT.name -&gt; {
+                           val result = sdkResult.data.getSelphIDResult()      
+                     }
+                }
+             }
+        }
+
+        if (flowResult.flowFinish) {
+           Napier.d(&quot;APP: FLOW FINISH&quot;)
+                                
+         }
+    }
+}
+</pre>
+</div></div><h4 id="id-[1.5.X][ES]FlowComponent-6.2Lanzamientodeunflujopendientedepublicar">6.2 Lanzamiento de un flujo pendiente de publicar</h4><p>Se usará el <em>FlowPreviewController</em> para probar un flujo que el cliente tiene pendiente de publicar en la plataforma:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+   FlowPreviewController(
+        FlowConfigurationData(
+            id = &quot;flowId&quot;,
+            controllers = listOf(FSelphiController(), FSelphIDController()),
+            customerId = &quot;customerId&quot;,
+            newOperation = true
+        )) { flowResult -&gt;
+        Napier.d(&quot;APP: FLOW STEP KEY ${flowResult.step?.key}&quot;)
+        when (val sdkResult = flowResult.result) {
+             is SdkResult.Error -&gt; {
+                Napier.d(&quot;APP: FLOW ERROR: ${sdkResult.error}&quot;)
+             }
+             is SdkResult.Success -&gt; {
+
+                when (flowResult.step?.key) {
+                    FlowKeys.SELPHI_COMPONENT.name -&gt; {
+                          val result = sdkResult.data.getSelphiResult()
+                     }
+
+                     FlowKeys.SELPHID_COMPONENT.name -&gt; {
+                           val result = sdkResult.data.getSelphIDResult()      
+                     }
+                }
+             }
+        }
+
+        if (flowResult.flowFinish) {
+           Napier.d(&quot;APP: FLOW FINISH&quot;)
+                                
+         }
+    })
+   </pre>
+</div></div><hr/><h2 id="id-[1.5.X][ES]FlowComponent-7.Recepcióndelresultado">7. Recepción del resultado</h2><p>El resultado del flow tendrá 3 campos:</p><ul><li><p>step: Información del paso del flujo que se ha realizado. Con el valor de “key” se podrá identificar el componente ejecutado en el paso.</p></li><li><p>result: Resultado del paso en formato SdkResult. Más información en la sección de <a href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado" rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.</p></li><li><p>flowFinish: Flag que indicará si ha terminado el proceso</p></li></ul><h3 id="id-[1.5.X][ES]FlowComponent-7.1.Recepcióndeerrores">7.1. Recepción de errores</h3><p>En la parte del error, dentro de <em>SdkResult.Error</em> dispondremos <em><strong>flowResult.step.key</strong></em> para identificar que componente ha fallado y el <em><strong>flowResult.result.error </strong></em>que contiene el error que ha ocurrido.</p><h3 id="id-[1.5.X][ES]FlowComponent-7.2.Recepcióndeejecucióncorrecta-data">7.2. Recepción de ejecución correcta - <em>data</em></h3><p>En la ejecución correcta de un flujo, se lanzarán los componentes correspondientes hasta la finalización del mismo o hasta obtener un error.</p><p>Si el resultado de un paso lanzado es SdkResult.Success, se podrá localizar, por un lado,  la <em>key</em> que identifica al componente y por otro lado el <em>data</em> con el resultado del componente, como es un resultado genérico, dentro del SDK, se ha creado un conversor para cada tipo de resultado. Ej:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">flowResult -&gt;
+        when (val sdkResult = flowResult.result) {
+             is SdkResult.Error -&gt; {
+                Napier.d(&quot;APP: FLOW ERROR: ${sdkResult.error}&quot;)
+             }
+             
+             is SdkResult.Success -&gt; {
+
+                when (flowResult.step?.key) {
+                    FlowKeys.SELPHI_COMPONENT.name -&gt; {
+                          val result = sdkResult.data.getSelphiResult()
+                     }
+
+                     FlowKeys.SELPHID_COMPONENT.name -&gt; {
+                           val result = sdkResult.data.getSelphIDResult()      
+                     }
+                }
+             }
+        }
+    })</pre>
+</div></div><p>Tras comprobar los resultados, deberemos revisar si el flow ha finalizado o aún quedan pasos, para poder gestionar los siguientes pasos fuera del SDK.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">if (flowResult.flowFinish) {
+    Napier.d(&quot;APP: FLOW FINISH&quot;)
+}</pre>
+</div></div><hr/>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

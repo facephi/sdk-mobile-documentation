@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : Migración Android - videoId (1.0.13 -&gt; 1.1.8)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="SDK-Mobile-Android---Migraciones_2614951995.html">SDK Mobile Android - Migraciones</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Migraciones-Android---Componente-VideoId_2614952013.html">Migraciones Android - Componente VideoId</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : Migración Android - videoId (1.0.13 -&gt; 1.1.8)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> José Carlos Martínez</span>, last modified on oct 20, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>A continuación se detallan los cambios para la migración del SDK con el componente de video identificación a la versión <strong>1.1.8</strong>. El resto de código debería mantenerse tal y como está.</p><h2 id="MigraciónAndroid-videoId(1.0.13-&gt;1.1.8)-1.InicializacióndelSDK">1. Inicialización del SDK</h2><h3 id="MigraciónAndroid-videoId(1.0.13-&gt;1.1.8)-Código1.0.13">Código 1.0.13</h3><ul><li><p>En la <strong>versión 1.0.13</strong>, en la fase de inicialización de la SDK se creaba el controlador de <strong>VideoID</strong> al cual se le inyectaba la <em>Activity</em> actual. Este controlador se inyectaba a su vez en el controlador genérico de la SDK (<em><strong>SDKController</strong></em>).</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">private var videoIdController: VideoIdController = VideoIdController()
+
+videoIdController.init(activity)
+
+val sdkController = SDKController()
+sdkController.initVideoIdController(videoIdController)</pre>
+</div></div><h3 id="MigraciónAndroid-videoId(1.0.13-&gt;1.1.8)-Código1.1.8"><strong>Código 1.1.8</strong></h3><ul><li><p>En la <strong>versión 1.1.8</strong>, en cambio, se realizan unos pequeños cambios. Estos son:</p><ul><li><p>Se inyecta el objeto de aplicación (<em><strong>Application</strong></em>) al controlador general (<em><strong>SDKController</strong></em>)</p></li><li><p>Se crea el controlador de <strong>VideoID</strong> y se inyecta en el <em><strong>SDKController</strong></em>.</p></li><li><p><strong>[NUEVO]</strong> Ahora hay un nuevo método de licenciamiento, lo que conlleva inyectar también la licencia como String (esta licencia os la tendrán que generar de nuevo desde <strong>Soporte Facephi</strong>)</p></li></ul></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">val sdkController = SDKController(application)
+sdkController.initVideoIdController(videoIdController)
+sdkController.license = &quot;LICENSE_IN_STRING&quot;</pre>
+</div></div><p /><h2 id="MigraciónAndroid-videoId(1.0.13-&gt;1.1.8)-2.InicializacióndeVideoId">2. Inicialización de VideoId</h2><h3 id="MigraciónAndroid-videoId(1.0.13-&gt;1.1.8)-Código1.0.13.1">Código 1.0.13</h3><ul><li><p>En la <strong>versión 1.0.13</strong>, lo primero es configurar el Controlador de <strong>VideoID</strong> con la información del backend y el <em>operationId</em> previamente generado.</p></li><li><p>Tras configurarlo, se puede lanzar el Controlador y esperar el resultado.</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sdkController.setupVideoId(
+    EnvironmentVideoIdData(
+        socketUrl = &quot;URL SOCKET&quot;,
+        uuid = operationId,
+        apiKey = &quot;API_KEY&quot;
+    )
+)
+sdkController.launchVideoId { sdkResult -&gt;
+    log(
+        &quot;VIDEO_ID RESULT: \n &quot; +
+            &quot;FinishStatus: ${sdkResult.finishStatus}\n &quot; +
+            &quot;ErrorType: ${sdkResult.errorType}\n &quot;
+    )
+}</pre>
+</div></div><h3 id="MigraciónAndroid-videoId(1.0.13-&gt;1.1.8)-Código1.1.8.1"><strong>Código 1.1.8</strong></h3><ul><li><p>En la <strong>versión 1.1.8 </strong>se puede ver que es bastante similar, con la diferencia de que se puede añadir en la configuración el “mode” o flujo del componente (dependiendo de la elección saldrán diferentes peticiones de datos durante el proceso). En este caso concreto debería indicarse el modo <strong>FACE_DOCUMENT_FRONT_BACK</strong>.</p></li><li><p>El lanzamiento del controlador de <strong>VideoID</strong> debería mantenerse como en la versión anterior.</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sdkController.setupVideoId(
+    EnvironmentVideoIdData(
+        uuid = operationId,
+        mode = VideoIdMode.FACE_DOCUMENT_FRONT_BACK,
+        url = &quot;SOCKET_URL&quot;,
+        apiKey = &quot;API_KEY&quot;
+    )
+)
+sdkController.launchVideoId { sdkResult -&gt;
+    log(
+        &quot;VIDEO_ID RESULT: \n &quot; +
+            &quot;FinishStatus: ${sdkResult.finishStatus}\n &quot; +
+            &quot;ErrorType: ${sdkResult.errorType}\n &quot; +
+            &quot;Data: ${sdkResult.data}\n &quot;
+    )
+}</pre>
+</div></div>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][EN] Tracking Component</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605678593.html">[1.5.X][EN] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][EN] Tracking Component
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified by <span class='editor'> José Carlos Martínez</span> on nov 30, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This document refers to version 1.5.X of the component</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394364386 {padding: 0px;}
+div.rbtoc1705394364386 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394364386 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394364386'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-0.SDKMobilebaselinerequirements'>0. SDK Mobile baseline requirements</a></li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-1.Introduction'>1. Introduction</a></li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-2.Integrationofthecomponent'>2. Integration of the component</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-2.1.Dependenciesrequiredforintegration'>2.1. Dependencies required for integration</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-3.Startanewoperation'>3. Start a new operation</a></li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-4.Availablecontrollers'>4. Available controllers</a></li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-5.Componentconfiguration'>5. Component configuration</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-5.1.TrackingControllerconfiguration'>5.1. TrackingController configuration</a></li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-5.2.Errorcontrolsettings'>5.2. Error control settings</a></li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-5.3.ObtainingtheExtraDataforcommunicationwiththePlatform'>5.3. Obtaining the ExtraData for communication with the Platform</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-6.Useofthecomponent'>6. Use of the component</a></li>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-7.Receiptoftheresult'>7. Receipt of the result</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]TrackingComponent-7.1.Receiptoferrors'>7.1. Receipt of errors</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.5.X][EN]TrackingComponent-0.SDKMobilebaselinerequirements">0. SDK Mobile baseline requirements</h2><p> </p><p><strong>SDK Mobile </strong>is a set of libraries (Components) that offer a series of functionalities and services, allowing their integration into a Mobile application in a simple and fully scalable way. Certain components must be installed depending on the use case required. Its high level of modularity allows other new components to be added in the future without affecting those already integrated into the project.</p><p>For more information on the base configuration, go to the <a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page">Android Mobile SDK</a> section.</p><p> </p><hr/><h2 id="id-[1.5.X][EN]TrackingComponent-1.Introduction">1. Introduction</h2><p>The component dealt with in the current document is called <strong>Tracking Component</strong>. It tracks and monitors the information obtained while executing the rest of the <strong>SDKMobile</strong> components, sending it to the <strong>Platform</strong> services. This data can be tracked in real-time on the Platform, while the process is running on the client's device.</p><p>Unlike the rest, this component does not work individually, it works transversally with the rest of the components installed in the <em><strong>SDKMobile</strong></em>. To track the information, it is kept in the background while the SDKMobile process is running.</p><hr/><h2 id="id-[1.5.X][EN]TrackingComponent-2.Integrationofthecomponent">2. Integration of the component</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Before integrating this component, it is recommended to read the documentation related to</p><p><a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a><strong> </strong>and follow the instructions in that document.</p></div></div><p>This section will explain step by step how to integrate the current component into an existing project.</p><h3 id="id-[1.5.X][EN]TrackingComponent-2.1.Dependenciesrequiredforintegration">2.1. Dependencies required for integration</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>To avoid conflicts and compatibility problems, if you want to install the component in a project containing an old Facephi libraries (<em>Widgets</em>) version, these must be removed entirely before installing the <em><strong>SDKMobile </strong></em>components.</p></div></div><p /><ul><li><p>Currently, FacePhi libraries are distributed remotely through different dependency managers. <strong>Mandatory </strong>dependencies that must be installed beforehand:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:tracking_component:$sdk_tracking_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.5.X][EN]TrackingComponent-3.Startanewoperation">3. Start a new operation</h2><p>When you want to perform a specific operation to generate the associated information correctly in the platform, the <strong>newOperation </strong>command must first be executed. </p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This command must have been executed <strong>before launch</strong>.</p><p>To learn more about how to start a new operation, it is recommended to consult the <a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a><strong> </strong>documentation, which details and explains what this process consists of.</p></div></div><hr/><h2 id="id-[1.5.X][EN]TrackingComponent-4.Availablecontrollers">4. Available controllers</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6c0e67b8-9eb3-4535-bb57-832f68c0caad" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controller</strong></p></th><th class="confluenceTh"><p><strong>Description</strong></p></th></tr><tr><td class="confluenceTd"><p>TrackingController</p></td><td class="confluenceTd"><p>Tracking the main controller</p></td></tr><tr><td class="confluenceTd"><p>TrackingErrorController</p></td><td class="confluenceTd"><p>Controller to handle any errors that occur</p></td></tr><tr><td class="confluenceTd"><p>ExtraDataController</p></td><td class="confluenceTd"><p>Driver to get the ExtraData that allows communication from client to server with SelphIDSdk installed.</p></td></tr></tbody></table></div><h2 id="id-[1.5.X][EN]TrackingComponent-5.Componentconfiguration">5. Component configuration</h2><p>To configure the current component, see the initialisation section in <a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a>.</p><h3 id="id-[1.5.X][EN]TrackingComponent-5.1.TrackingControllerconfiguration">5.1. TrackingController configuration</h3><p>This parameter must be included</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.initSdk(
+    ...
+    trackingController = TrackingController(),
+)</pre>
+</div></div><h3 id="id-[1.5.X][EN]TrackingComponent-5.2.Errorcontrolsettings">5.2. Error control settings</h3><p>The callback can be configured to control tracking errors:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+     TrackingErrorController {
+        Napier.d(&quot;Tracking Error: ${it.name}&quot;)
+     }
+)</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>Section 7 </strong>shows the possible error values that exist.</p></div></div><h3 id="id-[1.5.X][EN]TrackingComponent-5.3.ObtainingtheExtraDataforcommunicationwiththePlatform">5.3. Obtaining the ExtraData for communication with the Platform</h3><p>The call to get the extraData needs information on the current operation, forcing it to have <strong>previously performed a newOperation</strong>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    ExtraDataController {
+        when (it) {
+            is SdkResult.Success -&gt; logs.add(&quot;ExtraData: OK&quot;)
+            is SdkResult.Error -&gt; logs.add(
+                &quot;ExtraData: KO - ${it.error.javaClass.simpleName}&quot;
+            )
+        }
+    }
+)</pre>
+</div></div><hr/><h2 id="id-[1.5.X][EN]TrackingComponent-6.Useofthecomponent">6. Use of the component</h2><p>As previously mentioned, once the tracking component has been initialised and configured, launching it will not be necessary, as it will keep running in the background while the rest of the components are running.</p><hr/><h2 id="id-[1.5.X][EN]TrackingComponent-7.Receiptoftheresult">7. Receipt of the result</h2><h3 id="id-[1.5.X][EN]TrackingComponent-7.1.Receiptoferrors">7.1. Receipt of errors</h3><p>In the error part, we will have the TrackingError class.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">INIT_IDS_ERROR,
+LICENSE_ERROR,
+APPLICATION_CONTEXT_ERROR,
+OPERATION_RESULT,
+OPERATION_ID,
+SESSION_ID,
+CUSTOMER_ID,
+STEP_CHANGE,
+ASSET_LINK,
+ASSET_UPLOAD,
+OCR_DATA,
+INIT_OPERATION,
+NO_OPERATION_CREATED_ERROR,
+TOKEN_ERROR,
+NETWORK_CONNECTION,
+SEND_BYTEARRAY</pre>
+</div></div><hr/>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

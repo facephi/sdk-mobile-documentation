@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.3.X] Core Component - Android</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2643165342.html">[Old Versions] Android SDK Mobile</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2522415164.html">[1.3.X] Android</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.3.X] Core Component - Android
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> José Carlos Martínez</span>, last modified on jun 07, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.3.X</strong> del componente</p></div></div><p /><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394367481 {padding: 0px;}
+div.rbtoc1705394367481 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394367481 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394367481'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]CoreComponent-Android-1.Introducción'>1. Introducción</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]CoreComponent-Android-1.1Requisitosmínimos'>1.1 Requisitos mínimos</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]CoreComponent-Android-2.1.Añadirrepositorioprivado'>2.1. Añadir repositorio privado</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-2.2.Dependenciasrequeridasparalaintegración'>2.2. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-3.Inicializacióndelcomponente'>3. Inicialización del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]CoreComponent-Android-3.1Inyeccióndelicencias'>3.1 Inyección de licencias</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]CoreComponent-Android-a.Obteniendolalicenciaatravésdeunservicio'>a. Obteniendo la licencia a través de un servicio</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-b.InyectandolalicenciacomoString'>b. Inyectando la licencia como String</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-4.Iniciarnuevaoperación'>4. Iniciar nueva operación</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]CoreComponent-Android-4.1Tiposdeoperaciónexistentes'>4.1 Tipos de operación existentes</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-5.Retornoderesultado'>5. Retorno de resultado</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-6.ActivacióndelmodoDebug'>6. Activación del modo Debug</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-7.Cierredesesión'>7. Cierre de sesión</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-8.PersonalizacióndelaSDK'>8. Personalización de la SDK</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]CoreComponent-Android-8.1Coloresylogo'>8.1 Colores y logo</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-8.2Textos'>8.2 Textos</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-8.3Fuente'>8.3 Fuente</a></li>
+<li><a href='#id-[1.3.X]CoreComponent-Android-8.4Botones'>8.4 Botones</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.3.X]CoreComponent-Android-1.Introducción">1. Introducción</h2><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>Core Component</strong></em>. Este componente es de <strong>instalación obligatoria</strong>, independientemente del caso de uso, pues contiene <strong>funcionalidad genérica</strong> a toda la sdk, además de permitir el uso de componentes más específicos. Sus principales características son las siguientes:</p><ul><li><p>Permite configurar e inicializar los demás componentes instalados</p></li><li><p>Permite realizar las llamadas a los componentes y obtener los resultados pertinentes</p></li><li><p>Gestión de las licencias</p></li></ul><h3 id="id-[1.3.X]CoreComponent-Android-1.1Requisitosmínimos">1.1 Requisitos mínimos</h3><p>La versión mínima de la SDK de Android requerida es la siguiente:</p><ul><li><p>SDK mínima (minSdk): <strong>23</strong></p></li><li><p>API Version: <strong>33</strong></p></li><li><p>Kotlin: <strong>1.8.0</strong></p></li></ul><hr/><h2 id="id-[1.3.X]CoreComponent-Android-2.Integracióndelcomponente">2. Integración del componente</h2><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.3.X]CoreComponent-Android-2.1.Añadirrepositorioprivado">2.1. Añadir repositorio privado</h3><p>Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la <em><strong>SDKMobile</strong></em> se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del <em>equipo de soporte</em> de <strong>Facephi</strong>.</p><p>Una vez obtenidas las credenciales, se deberá incluir el siguiente fragmento de código para configurar el repositorio maven en el <strong>Gradle</strong> de tu proyecto, o en el fichero <strong>settings.gradle</strong> del mismo. Se recomienda incluirlo tras <em>mavenCentral()</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">maven {
+    Properties props = new Properties()
+    def propsFile = new File(&#39;local.properties&#39;)
+    if(propsFile.exists()){
+        props.load(new FileInputStream(propsFile))
+    }
+    name = &quot;external&quot;
+    url = uri(&quot;https://facephicorp.jfrog.io/artifactory/maven-pro-fphi&quot;)
+    credentials {
+        username = props[&quot;artifactory.user&quot;] ?: System.getenv(&quot;USERNAME_ARTIFACTORY&quot;)
+        password = props[&quot;artifactory.token&quot;] ?: System.getenv(&quot;TOKEN_ARTIFACTORY&quot;)
+    }
+}
+</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para que el proyecto recupere correctamente las dependencias, se deberá tener las credenciales (Usuario y Token) configuradas correctamente</p></div></div><p>Hay varias formas de configurar las credenciales de acceso al repositorio:</p><ul><li><p>Como variables de entorno con el siguiente nombre. Por ejemplo:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">export USERNAME_ARTIFACTORY=TUS_CREDENCIALES_USERNAME
+export TOKEN_ARTIFACTORY=TUS_CREDENCIALES_TOKEN</pre>
+</div></div><p><strong>Si las dependencia no las reconoce al sincronizar</strong>, se deben incluir a través de variables de entorno en el archivo:</p></li></ul><p style="margin-left: 30.0px;"><code>~/.zshrc</code></p><ul><li><p>Incluidos en el fichero <em>local.properties</em> con la siguiente estructura:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">artifactory.user=TUS_CREDENCIALES_USERNAME
+artifactory.token=TUS_CREDENCIALES_TOKEN</pre>
+</div></div><p /></li></ul><h3 id="id-[1.3.X]CoreComponent-Android-2.2.Dependenciasrequeridasparalaintegración">2.2. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (<em>Widgets</em>), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <em><strong>SDKMobile</strong></em>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">timber_version = &#39;5.0.1&#39;
+appcompat_version = &#39;1.6.1&#39;
+core_ktx_version = &#39;1.9.0&#39;
+kotlinx_coroutines_version = &#39;1.6.4&#39;
+kotlin_reflect_version = &#39;1.7.10&#39;
+ktor_version = &#39;1.6.7&#39;
+kotlinx_serialization_json_version = &#39;1.3.3&#39;
+
+// 3rd Parties Dependencies
+implementation &quot;androidx.core:core-ktx:$core_ktx_version&quot;
+implementation &quot;androidx.appcompat:appcompat:$appcompat_version&quot;
+implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version&quot;
+implementation &quot;com.jakewharton.timber:timber:$timber_version&quot;
+implementation &quot;io.ktor:ktor-client-serialization:$ktor_version&quot;
+implementation &quot;org.jetbrains.kotlin:kotlin-reflect:$kotlin_reflect_version&quot;
+implementation &quot;org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_json_version&quot;
+
+// Facephi Dependencies
+implementation &quot;com.facephi.androidsdk:license_checker_component:$versions.license_checker_component&quot;
+implementation &quot;com.facephi.androidsdk:licensing_component:$versions.licensing_component&quot;</pre>
+</div></div><ul><li><p>Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.</p></li></ul><hr/><h2 id="id-[1.3.X]CoreComponent-Android-3.Inicializacióndelcomponente">3. Inicialización del componente</h2><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p>A partir de la versión 1.3.0 <strong>SDKController</strong> se convierte en un <em><strong>Singleton</strong></em>, de ese modo se permite y facilita su uso en cualquier parte del proyecto en el que se vaya a integrar la <strong>SDK Mobile</strong>.</p>
+</div></div><p>Cada uno de los componentes tiene un controlador (<em>Controller</em>) que permitirá acceder a su propia funcionalidad. Antes de poder utilizarse, deberán inicializarse correctamente. <strong>Debe evitarse terminantemente inicializar un controlador que no vaya a usarse</strong>. Los pasos a seguir en la inicialización son:</p><ol start="1"><li><p>Se crea la lista de controladores que se van a utilizar.</p></li><li><p>Se decide si la licencia se incluirá a través de un String o con un servicio de licenciamiento remoto (consultar <strong>apartado 3.1</strong>).</p></li><li><p>Se activa el modo Debug si se quieren depurar los logs internos (IMPORTANTE: Sólo en desarrollo).</p></li><li><p>Si la inicialización devuelve un STATUS_OK el controlador del SDK estará listo para su uso.</p></li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">        val controllers = listOf(
+            Custom1Controller(),
+            Custom2Controller(),
+            Custom3Controller(),
+            ...
+        )
+
+        if (SdkData.LICENSE_ONLINE) {
+            SDKController.initSdk(this, controllers, SdkData.environmentLicensingData) { sdkResult -&gt;
+                if (sdkResult.finishStatus == FinishStatus.STATUS_OK) {
+                    Timber.d(&quot;Licencias obtenidas correctamente.&quot;)
+                    Timber.d(&quot;Licencia: ${sdkResult.data?.length}&quot;)
+                } else {
+                    Timber.d(&quot;Error al obtener la licencia. ${sdkResult.errorType}&quot;)
+                }
+            }
+        } else {
+            SDKController.initSdk(this, controllers, SdkData.LICENSE) { sdkResult -&gt;
+                if (sdkResult.finishStatus == FinishStatus.STATUS_OK) {
+                    Timber.d(&quot;Licencias obtenidas correctamente.&quot;)
+                    Timber.d(&quot;Licencia: ${sdkResult.data?.length}&quot;)
+                } else {
+                    Timber.d(&quot;Error al obtener la licencia. ${sdkResult.errorType}&quot;)
+                }
+            }
+        }
+
+        if (BuildConfig.DEBUG) {
+            SDKController.enableDebugMode()
+        }
+        </pre>
+</div></div><h3 id="id-[1.3.X]CoreComponent-Android-3.1Inyeccióndelicencias">3.1 Inyección de licencias</h3><p> Como se ha comentado previamente, actualmente existen dos formas de inyectar la licencia:</p><h4 id="id-[1.3.X]CoreComponent-Android-a.Obteniendolalicenciaatravésdeunservicio">a. Obteniendo la licencia a través de un servicio</h4><p>A través de un servicio que simplemente requerirá una URL y un API-KEY como identificador. Esto evitaría problemas a la hora de manipular la licencia, así como la constante sustitución de dichas licencias a la hora de surgir algún problema con ella (malformación o modificación indebida, expiración de la licencia…)</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">val environmentLicensingData: EnvironmentLicensingData = EnvironmentLicensingData(
+    url = &quot;https://....&quot;,
+    apiKey = &quot;.....&quot;
+) 
+    
+SDKController.initSdk(this, controllers, environmentLicensingData)
+    
+...</pre>
+</div></div><h4 id="id-[1.3.X]CoreComponent-Android-b.InyectandolalicenciacomoString">b. Inyectando la licencia como String</h4><p>Se puede asignar la licencia directamente como un String, de la siguiente manera:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">String de la licencia si no se va a utilizar un servicio:
+const val LICENSE = &quot;....&quot;
+
+SDKController.initSdk(this, controllers, LICENSE)
+
+...</pre>
+</div></div><p /><hr/><h2 id="id-[1.3.X]CoreComponent-Android-4.Iniciarnuevaoperación">4. Iniciar nueva operación</h2><p>Cada vez que se desee iniciar el flujo de alguna operación nueva (ejemplos de operaciones serían: <em>onboarding, authentication, videoCall</em>,…) es esencial indicarle al <strong>SDKController</strong> que ésta va a comenzar, y así la SDK sabrá que las próximas llamadas de <strong>Componentes</strong> (también llamados <strong>Steps</strong>) formarán parte de dicha operación. Esto es necesario para <em>trackear</em> a la plataforma la información global de esta operación de forma satisfactoria. </p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Al iniciar un proceso o flujo, <strong><u>siempre</u></strong> se deberá realizar la llamada al método <strong>newOperation</strong></p></div></div><p>Este método tiene 3 parámetros de entrada:</p><ol start="1"><li><p><strong>operationType</strong>: Indica si se va a hacer un proceso de ONBOARDING o de AUTHENTICATION</p></li><li><p><strong>customerId</strong>: Id único del usuario si se tiene (controlado a nivel de aplicación)</p></li><li><p><strong>steps</strong>: Lista de pasos de la operación si se han definido previamente</p></li></ol><p>Hay 2 maneras de realizar este inicio de operación, dependiendo de si <strong>se conocen los pasos</strong> que formarán el flujo del proceso de registro o autenticación (en caso de que los componentes se ejecuten de forma secuencial y siempre de la misma forma) o, en caso contrario, de que el flujo <strong>no esté definido</strong> y sea desconocido (por ejemplo, el cliente final es el que decide el orden de ejecución de los componentes).</p><ul><li><p>Flujo <strong>conocido</strong> (aparecerá la operación <em>trackeada</em> en la plataforma con todos los pasos de la lista). Ejemplo de implementación:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.newOperation(
+    operationType = OperationType.ONBOARDING,
+    customerId = &quot;client-mobile-sdk@facephi.com&quot;,
+    steps = listOf(Step.SELPHI, Step.SELPHID, ...)
+) { sdkResult -&gt;
+}</pre>
+</div></div><ul><li><p>Flujo <strong>desconocido</strong> (aparecerá la operación <em>trackeada</em> en la plataforma con puntos suspensivos). Ejemplo de implementación:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.newOperation(
+    operationType = OperationType.ONBOARDING,
+    customerId = &quot;client-mobile-sdk@facephi.com&quot;,
+) { sdkResult -&gt;
+}</pre>
+</div></div><p><code>sdkResult</code> → Contiene en data la información de la operación creada.</p><p> </p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong><u>Una vez creada la operación </u></strong>se podrán ejecutar los componentes de la SDK asociados a esta operación. Consultar la documentación específica de cada componente para saber cómo hacerlo.</p></div></div><h3 id="id-[1.3.X]CoreComponent-Android-4.1Tiposdeoperaciónexistentes">4.1 Tipos de operación existentes</h3><p>En la actualidad, existen las siguientes operaciones, durante las cuales se hacen uso de unos determinados <strong>Componentes (STEPS). </strong>A continuación se muestra una tabla con la relación entre <em>operaciones</em> y <em>steps</em>:</p><div class="table-wrap"><table data-layout="default" data-local-id="32fbe475-2014-4d4d-91f8-be4e77260ea5" class="confluenceTable"><colgroup><col style="width: 226.67px;"/><col style="width: 226.67px;"/><col style="width: 226.67px;"/></colgroup><tbody><tr><th class="confluenceTh"><p style="text-align: center;"><strong>Operación (</strong><em><strong>OperationType</strong></em><strong>)</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Componente (</strong><em><strong>Step</strong></em><strong>)</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Descripción</strong></p></th></tr><tr><td class="confluenceTd"><p>ONBOARDING</p></td><td class="confluenceTd"><ul><li><p>SELPHID</p></li><li><p>SELPHI</p></li></ul></td><td class="confluenceTd"><ul><li><p>Validación facial de un selfie contra la cara de un docuento</p></li><li><p>Extracción del OCR del documento</p></li><li><p>Detección de vivacidad</p></li></ul></td></tr><tr><td class="confluenceTd"><p>AUTHENTICATION</p></td><td class="confluenceTd"><ul><li><p>SELPHI</p></li></ul></td><td class="confluenceTd"><ul><li><p>Validación facial mediante plantillas</p></li><li><p>Detección de vivacidad</p></li></ul></td></tr></tbody></table></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Esta lista se irá ampliando en próximas actualizaciones de la SDK, según vayan apareciendo nuevos componentes y casos de uso.</p></div></div><p /><hr/><h2 id="id-[1.3.X]CoreComponent-Android-5.Retornoderesultado">5. Retorno de resultado</h2><p>El resultado de cada componente será devuelto a través de la SDK manteniendo siempre la misma estructura de 3 campos:</p><ol start="1"><li><p><strong>finishStatus</strong>: Que nos indicará si la operación ha finalizado correctamente. Posibles valores <code>FinishStatus.STATUS_OK</code>, <code>FinishStatus.STATUS_ERROR</code></p></li><li><p><strong>errorType</strong>: Si <em>finishStatus</em> indica que ha habido un error, este campo tendrá la descripción del mismo.</p></li><li><p><strong>data</strong>: Tendrá los datos de respuesta de la función del SDK. Este campo será diferente dependiendo del componente que se haya ejecutado. En la documentación de cada componente específico se desglosarán los diferentes campos que puede devolver este objeto.</p></li></ol><hr/><h2 id="id-[1.3.X]CoreComponent-Android-6.ActivacióndelmodoDebug">6. Activación del modo Debug</h2><p>Para habilitar los logs en <em>debug</em> se deberá incluir el siguiente código:</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p> Esta activación se debe hacer nada más crear el sdkController, <strong>antes</strong> de las inicializaciones de los componentes</p></div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">if (BuildConfig.DEBUG) {
+    SDKController.enableDebugMode()
+}
+</pre>
+</div></div><p /><hr/><h2 id="id-[1.3.X]CoreComponent-Android-7.Cierredesesión">7. Cierre de sesión</h2><p><strong>Antes de que la aplicación se vaya a destruir</strong>, se deberá cerrar la sesión de la SDK para así avisar a la plataforma de su finalización. Para ello, se ejecuta la siguiente línea de código:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.closeSession()</pre>
+</div></div><p /><hr/><h2 id="id-[1.3.X]CoreComponent-Android-8.PersonalizacióndelaSDK">8. Personalización de la SDK</h2><p>Esta versión de la SDK permite modificar algunas características visuales de los componentes. A continuación se indican los posibles cambios que se pueden realizar.</p><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p>Se recomienda agregar las modificaciones tanto en el tema <strong>claro</strong> como <strong>oscuro</strong> (night).</p>
+</div></div><h3 id="id-[1.3.X]CoreComponent-Android-8.1Coloresylogo">8.1 Colores y logo</h3><p>Para cambiar los colores y el logo del SDK habría que incluir un fichero XML en la aplicación del cliente (por ejemplo <em><strong>sdk_styles.xml</strong></em>) cambiando el valor <em>hex</em> (RGB) de cada color principal:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;!-- GENERAL --&gt;
+    &lt;color name=&quot;sdkPrimaryColor&quot;&gt;#FF6200EE&lt;/color&gt;
+    &lt;color name=&quot;sdkPrimaryVariantColor&quot;&gt;#FF3700B3&lt;/color&gt;
+    &lt;color name=&quot;sdkSecondaryColor&quot;&gt;#FF03DAC5&lt;/color&gt;
+    &lt;color name=&quot;sdkTitleTextColor&quot;&gt;#121212&lt;/color&gt;
+    &lt;color name=&quot;sdkBodyTextColor&quot;&gt;#5a6476&lt;/color&gt;
+    &lt;color name=&quot;sdkBackgroundColor&quot;&gt;#f2f2f7&lt;/color&gt;
+    
+  &lt;!-- ..Añadir particulares de cada componente... --&gt;
+  
+  
+&lt;/resources&gt;</pre>
+</div></div><p>Para modificar el <strong>logo</strong> visible en los diferentes componentes del sdk bastará con incluir en el fichero la siguiente línea incluyendo el nombre del logo de la aplicación cliente:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">    &lt;!-- SDK LOGO --&gt;
+    &lt;drawable name=&quot;sdk_logo&quot;&gt;@drawable/nombre_del_logo&lt;/drawable&gt;
+</pre>
+</div></div><p> </p><h3 id="id-[1.3.X]CoreComponent-Android-8.2Textos">8.2 Textos</h3><p>Si se desea modificar los textos de la SDK habría que incluir el siguiente fichero XML en la aplicación del cliente, y modificar el valor de cada <em>String</em> por el deseado.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;!-- GENERAL --&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_title&quot;&gt;Permissions needed&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_question&quot;&gt;Permissions are needed to continue&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_confirm&quot;&gt;Request permissions&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_cancel&quot;&gt;Exit&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_title_settings&quot;&gt;Permissions needed&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_question_settings&quot;&gt;Permissions are needed to continue, go to settings to give the app permissions.&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_confirm_settings&quot;&gt;Open settings&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_cancel_settings&quot;&gt;Exit&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_title&quot;&gt;Finish the process&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_question&quot;&gt;Do you want to finish the process?&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_exit&quot;&gt;Finish&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_cancel&quot;&gt;Cancel&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_finish_exit&quot;&gt;Exit&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_video_error&quot;&gt;An error has occurred with the connection to the video. Please try again.&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_socket_error&quot;&gt;An error has occurred with the connection to the server. Please try again.&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_data_error&quot;&gt;An error has occurred with the system configuration. Please try again.&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_timeout_error&quot;&gt;Sorry, the operation has timed out. Please try again later.&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_finish_retry&quot;&gt;Repeat the process&lt;/string&gt;
+    &lt;string name=&quot;sdk_network_connection_error_title&quot;&gt;Connection error&lt;/string&gt;
+    &lt;string name=&quot;sdk_network_connection_error_desc&quot;&gt;Check your internet connection&lt;/string&gt;
+    &lt;string name=&quot;sdk_network_connection_error_button&quot;&gt;Exit&lt;/string&gt;
+ 
+  &lt;!-- ..Añadir particulares de cada componente... --&gt;
+  
+  
+&lt;/resources&gt;
+</pre>
+</div></div><h3 id="id-[1.3.X]CoreComponent-Android-8.3Fuente">8.3 Fuente</h3><p>Para modificar la fuente, se agregarán los ficheros .ttf a la carpeta <em>font</em> de la aplicación y renombrándolos como aparecen en la imagen:</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2522579334/2530574524.png" data-image-src="attachments/2522579334/2530574524.png" data-height="111" data-width="387" data-unresolved-comment-count="0" data-linked-resource-id="2530574524" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="d886b449-da3f-4670-8f44-19f13fcb3d48.png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2522579334" data-linked-resource-container-version="3" data-media-id="e8b96888-4a0c-40ec-a0ff-1f3ef9c44cb7" data-media-type="file"></span><h3 id="id-[1.3.X]CoreComponent-Android-8.4Botones">8.4 Botones</h3><p>En caso de desear cambiar la forma de los botones del SDK habría que incluir esta línea en el fichero XML de estilos del SDK cambiando el valor <em>dp</em> de la variable <em>dimen</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;dimen name=&quot;sdk_buttons_corner_dimen&quot;&gt;5dp&lt;/dimen&gt;
+&lt;/resources&gt;
+</pre>
+</div></div><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2522579334/2530574524.png">d886b449-da3f-4670-8f44-19f13fcb3d48.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.3.X] VídeoID Component - Android</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2643165342.html">[Old Versions] Android SDK Mobile</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2522415164.html">[1.3.X] Android</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.3.X] VídeoID Component - Android
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> José Carlos Martínez</span>, last modified on jun 07, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.3.X</strong> del componente</p></div></div><p /><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394367916 {padding: 0px;}
+div.rbtoc1705394367916 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394367916 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394367916'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-1.Introducción'>1. Introducción</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-1.1Requisitosmínimos'>1.1 Requisitos mínimos</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-3.Inicializacióndelcomponente'>3. Inicialización del componente</a></li>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-4.Iniciarnuevaoperación'>4. Iniciar nueva operación</a></li>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-5.Usodelcomponente'>5. Uso del componente</a></li>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-6.InformaciónextradelaconexióndeSocket'>6. Información extra de la conexión de Socket</a></li>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-9.Personalizacióndelcomponente'>9. Personalización del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.3.X]VídeoIDComponent-Android-9.1Textos'>9.1 Textos</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.3.X]VídeoIDComponent-Android-1.Introducción">1. Introducción</h2><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>VideoID Component</strong></em>. Éste se encarga de realizar la grabación de un usuario identificándose, mostrando la cara y su documento de identidad.</p><h3 id="id-[1.3.X]VídeoIDComponent-Android-1.1Requisitosmínimos">1.1 Requisitos mínimos</h3><p>La versión mínima de la SDK de Android requerida es la siguiente:</p><ul><li><p>SDK mínima (minSdk): <strong>23</strong></p></li><li><p>API Version: <strong>33</strong></p></li><li><p>Kotlin: <strong>1.8.0</strong></p></li></ul><p /><hr/><h2 id="id-[1.3.X]VídeoIDComponent-Android-2.Integracióndelcomponente">2. Integración del componente</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a <strong><u>Core Component</u></strong> y seguir las instrucciones indicadas en dicho documento.</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.3.X]VídeoIDComponent-Android-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (<em>Widgets</em>), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <em><strong>SDKMobile</strong></em>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">timber_version = &#39;5.0.1&#39;
+core_ktx_version = &#39;1.9.0&#39;
+kotlinx_serialization_json_version = &#39;1.3.3&#39;
+agora_version = &#39;4.2.0&#39;
+okhttp3_version = &#39;4.9.3&#39;
+lottie_version = &#39;5.2.0&#39;
+
+//***********************************
+
+implementation &quot;androidx.core:core-ktx:$core_ktx_version&quot;
+implementation &quot;com.jakewharton.timber:timber:$timber_version&quot;
+implementation &quot;org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_json_version&quot;
+implementation &quot;com.airbnb.android:lottie:$lottie_version&quot;
+implementation &quot;com.squareup.okhttp3:okhttp:$okhttp3_version&quot;
+implementation &quot;io.agora.rtc:full-sdk:$agora_version&quot;
+
+// FACEPHI
+compileOnly &quot;com.facephi.androidsdk:core:$versions.core&quot;
+implementation &quot;com.facephi.androidsdk:sdk_composables:$versions.sdk_composables&quot;
+implementation &quot;com.facephi.androidsdk:license_checker_component:$versions.license_checker_component&quot;</pre>
+</div></div><ul><li><p>Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.</p></li></ul><hr/><h2 id="id-[1.3.X]VídeoIDComponent-Android-3.Inicializacióndelcomponente">3. Inicialización del componente</h2><p>Cada uno de los componentes tiene un controlador (<em>Controller</em>) que permitirá acceder a su propia funcionalidad. Antes de poder utilizarse, cada uno de esos controladores deberá inicializarse correctamente. <strong>Debe evitarse terminantemente inicializar un controlador que no vaya a usarse</strong>. En este caso, los componentes serán los siguientes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SdkController: Controlador general del SDK - Se creará el último ya que debe contener al resto de controladores previamente inicializados. Es obligatorio para TODOS los demás componentes.
+SelphiController: El controlador específico para este componente. </pre>
+</div></div><p>El <strong>SDKController</strong> se encargará de cargar los diferentes controladores del resto de componentes, y coordinará el flujo de todos los componentes que se hayan inicializado. A continuación se muestra cómo se realizaría el proceso de inicialización:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.initSdk(this, listOf(VideoIDController()), license)</pre>
+</div></div><p> </p><hr/><h2 id="id-[1.3.X]VídeoIDComponent-Android-4.Iniciarnuevaoperación">4. Iniciar nueva operación</h2><p>Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando <strong>newOperation</strong>.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este comando debe ejecutarse <strong>siempre</strong>. Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <strong>Core Component</strong>, en el que se detalla y explica en qué consiste este proceso.</p></div></div><p> </p><hr/><h2 id="id-[1.3.X]VídeoIDComponent-Android-5.Usodelcomponente">5. Uso del componente</h2><p> Para su uso se deberá haber añadido la dependencia correspondiente a la aplicación y el controlador asociado en el listado de controladores de la función <code>initSdk</code> (<strong>apartado 3</strong>).</p><ul><li><p>Tras configuarlo se podrá lanzar el componente a través del controlador general:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchVideoId(EnvironmentVideoIdData()) { sdkResult -&gt;
+    Log.d(&quot;SDK_CONTROLLER&quot;,
+        &quot; VIDEO ID RESULT: \n &quot; +
+            &quot;FinishStatus: ${sdkResult.finishStatus}\n &quot; +
+            &quot;ErrorType: ${sdkResult.errorType}\n &quot; +
+            &quot;Data: ${sdkResult.data}\n &quot;    )
+}</pre>
+</div></div><ul><li><p>Si el tracking está activado, pero en esta petición concreta NO se desea trackear información, se puede realizar la llamada de la siguiente manera:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchVideoId(EnvironmentVideoIdData(), false) { sdkResult -&gt;
+    Log.d(&quot;SDK_CONTROLLER&quot;,
+        &quot; VIDEO ID RESULT: \n &quot; +
+            &quot;FinishStatus: ${sdkResult.finishStatus}\n &quot; +
+            &quot;ErrorType: ${sdkResult.errorType}\n &quot; +
+            &quot;Data: ${sdkResult.data}\n &quot;    )
+}</pre>
+</div></div><p>En los datos de configuración (<code>EnvironmentVideoIdData</code>) también se podrán modificar:</p><ul><li><p><strong>time</strong>: Tiempo que se permanecerá en cada pantalla del proceso en ms</p></li><li><p><strong>mode</strong>: Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:</p><ul><li><p>ONLY_FACE</p><ul><li><p>Sólo tienes que mostrar la cara durante el proceso.</p></li></ul></li><li><p>FACE_DOCUMENT_FRONT</p><ul><li><p>Tienes que mostrar la cara y la parte frontal del documento.</p></li></ul></li><li><p>FACE_DOCUMENT_FRONT_BACK</p><ul><li><p>Tienes que mostrar la cara, la parte frontal y el dorso del documento.</p></li></ul></li></ul></li></ul><hr/><h2 id="id-[1.3.X]VídeoIDComponent-Android-6.InformaciónextradelaconexióndeSocket">6. Información extra de la conexión de Socket</h2><p>A continuación se muestra en detalle el flujo de pantallas que forman el proceso, la información que se envía y recibe en cada una de ellas, así como las posibles excepciones que puedan resultar del proceso fallido.</p><div class="table-wrap"><table data-layout="default" data-local-id="2889abb2-badf-4d66-93ef-c39d86435024" class="confluenceTable"><colgroup><col style="width: 340.0px;"/><col style="width: 340.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Pantalla</strong></p></th><th class="confluenceTh"><p><strong>Operaciones y excepciones</strong></p></th></tr><tr><td class="confluenceTd"><p><strong>Pantalla de carga / obtención de credenciales</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2530738177/2530738185.png" data-image-src="attachments/2530738177/2530738185.png" data-height="2136" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="2530738185" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="MicrosoftTeams-image (2).png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2530738177" data-linked-resource-container-version="5" data-media-id="3f1cd659-567e-4dfd-8ee3-240d027e27d3" data-media-type="file"></span><p /></td><td class="confluenceTd"><ul><li><p>Se realiza la conexión con el socket</p></li><li><p>Se envía un mensaje:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">CREDENTIALS_REQUEST</pre>
+</div></div></li><li><p>Se reciben las credenciales como respuesta del socket</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">CREDENTIALS_RESPONSE</pre>
+</div></div><ul><li><p>Una vez se recibe la respuesta se navega a la siguiente pantalla</p></li></ul><p /><p>Excepciones:</p><ul><li><p>Fallo en la conexión a internet</p><ul><li><p>Aparece un Alert que informa del error</p></li></ul></li><li><p>Qué nunca responda el socket con las credenciales</p></li><li><p>Si los permisos son rechazados se informa del error</p></li></ul></td></tr><tr><td class="confluenceTd"><p><strong>Pantalla de inicio de grabación</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="340" loading="lazy" src="attachments/2530738177/2530738191.png?width=340" data-image-src="attachments/2530738177/2530738191.png" data-height="2095" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="2530738191" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="MicrosoftTeams-image (1).png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2530738177" data-linked-resource-container-version="5" data-media-id="6337ccb4-4a70-46f3-8443-1c7f7e3f2b9e" data-media-type="file"></span><p /></td><td class="confluenceTd"><ul><li><p>Se ha realizado correctamente la conexión de vídeo</p></li><li><p>Al pulsar el botón “Iniciar grabación”</p><ul><li><p>Se envía un mensaje al socket </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">WAITING_CONFIRMATION</pre>
+</div></div></li><li><p>Se oculta el botón y las máscaras</p></li><li><p>Se muestra una barra de progreso a la espera de la respuesta del socket</p></li><li><p>Siguiente pantalla</p></li></ul></li></ul><p>Excepciones:</p><ul><li><p>Fallo en la conexión a internet</p><ul><li><p>Se navega a la pantalla final que informa del error</p></li></ul></li><li><p /></li></ul></td></tr><tr><td class="confluenceTd"><p><strong>Vista por pasos</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2530738177/2530738203.png" data-image-src="attachments/2530738177/2530738203.png" data-height="2101" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="2530738203" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="MicrosoftTeams-image (6).png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2530738177" data-linked-resource-container-version="5" data-media-id="ef51f749-ea83-4d92-a6d8-5a8ba6c57599" data-media-type="file"></span><p /></td><td class="confluenceTd"><ul><li><p>El socket debe responder con un mensaje cuando inicie la grabación</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">IDENTIFICATION_STARTED</pre>
+</div></div></li><li><p>Inicia el progressBar con el tiempo definido por el cliente</p></li><li><p>Se inicia el cambio de pasos de la pantalla según el tiempo definido en la configuración del cliente</p></li></ul><p /><p>Excepciones:</p><ul><li><p>Fallo en la conexión a internet</p><ul><li><p>Se navega a la pantalla final que informa del error</p></li></ul></li><li><p>Error de timeout porque el socket no ha contestado nada</p><ul><li><p>Se navega a la pantalla final que informa del error y aparecerá el siguiente LOG:</p></li></ul></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">VIDEO_ID: SOCKET IDENTIFICATION_STARTED TIMEOUT</pre>
+</div></div><p /></td></tr><tr><td class="confluenceTd"><p><strong>Pantalla de progreso (Varios estados)</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="340" loading="lazy" src="attachments/2530738177/2530738188.png?width=340" data-image-src="attachments/2530738177/2530738188.png" data-height="2099" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="2530738188" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="MicrosoftTeams-image.png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2530738177" data-linked-resource-container-version="5" data-media-id="e7453bde-3378-4d75-a99b-02b1a1e0f2f1" data-media-type="file"></span></td><td class="confluenceTd"><ul><li><p>Iniciado el progressbar</p></li><li><p>El usuario deberá seguir las instrucciones indicadas</p></li><li><p>Se termina en la última pantalla de indicar la frase en alto.</p></li></ul><p /><p>Excepciones:</p><ul><li><p>Fallo en la conexión a internet</p><ul><li><p>Se navega a la pantalla final que informa del error</p></li></ul></li><li><p>Rotura de conexión con el socket</p><ul><li><p>Se navega a la pantalla final que informa del error</p></li></ul></li></ul></td></tr><tr><td class="confluenceTd"><p><strong>Pantalla de LISTO</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2530738177/2530738200.png" data-image-src="attachments/2530738177/2530738200.png" data-height="2134" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="2530738200" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="MicrosoftTeams-image (5).png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2530738177" data-linked-resource-container-version="5" data-media-id="11a1df24-54e5-4bcc-81b1-f94b02c0b8c4" data-media-type="file"></span><p /></td><td class="confluenceTd"><ul><li><p>Al pulsar el botón de Continuar</p><ul><li><p>Se navega a la pantalla final</p></li><li><p>Se envía un mensaje de socket </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">STOP</pre>
+</div></div></li><li><p>Se para la ejecución de la cámara (imagen congelada)</p></li><li><p>Se espera la respuesta del socket</p></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">IDENTIFICATION_STOPPED</pre>
+</div></div></li></ul></li></ul><p>Excepciones:</p><ul><li><p>El socket puede devolver un error al enviar el STOP</p></li><li><p>Si el socket no responde se muestra un LOG informando del problema, pero no se muestra error al usuario</p><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">VIDEO_ID: SOCKET STOP TIMEOUT</pre>
+</div></div></li></ul></li></ul></td></tr><tr><td class="confluenceTd"><p><strong>Pantalla de errores</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2530738177/2530738194.png" data-image-src="attachments/2530738177/2530738194.png" data-height="2066" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="2530738194" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="MicrosoftTeams-image (3).png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2530738177" data-linked-resource-container-version="5" data-media-id="9fd1ccf3-3884-4a5c-95c4-d93015b299ac" data-media-type="file"></span></td><td class="confluenceTd"><ul><li><p>Pulsar Repetir Grabación</p><ul><li><p>Se realiza la operativa desde el inicio, incluyendo la solicitud de credenciales</p></li></ul></li><li><p>Pulsar Finalizar</p><ul><li><p>Se realiza el liberado de memoria de toda la parte de vídeo y sockets</p></li><li><p>Se cierra la pantalla de Video</p></li></ul></li></ul></td></tr><tr><td class="confluenceTd"><p><strong>Pantalla final</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2530738177/2530738197.png" data-image-src="attachments/2530738177/2530738197.png" data-height="2115" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="2530738197" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="MicrosoftTeams-image (4).png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2530738177" data-linked-resource-container-version="5" data-media-id="89d815e4-46bf-44a5-8eb8-7388685ac869" data-media-type="file"></span></td><td class="confluenceTd"><ul><li><p>Pulsar Repetir Grabación</p><ul><li><p>Se realiza la operativa desde el inicio, incluyendo la solicitud de credenciales</p></li></ul></li><li><p>Pulsar Finalizar</p><ul><li><p>Se realiza el liberado de memoria de toda la parte de vídeo y sockets</p></li><li><p>Se cierra la pantalla de Video</p></li></ul></li></ul></td></tr></tbody></table></div><p> </p><hr/><h2 id="id-[1.3.X]VídeoIDComponent-Android-9.Personalizacióndelcomponente">9. Personalización del componente</h2><p>Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales se explican en el documento de <strong>Core Component</strong>), este componente en concreto permite la modificación de textos específicos.</p><h3 id="id-[1.3.X]VídeoIDComponent-Android-9.1Textos">9.1 Textos</h3><p>Si se desea modificar los textos de la SDK habría que incluir el siguiente fichero XML en la aplicación del cliente, y modificar el valor de cada <em>String</em> por el deseado.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;!-- VIDEO ID --&gt;
+&lt;string name=&quot;video_id_text_waiting_agent_title&quot;&gt;Video recording&lt;/string&gt;
+&lt;string name=&quot;video_id_text_waiting_agent_title_content_desc&quot;&gt;Video recording&lt;/string&gt;
+&lt;string name=&quot;video_id_exit&quot;&gt;Exit&lt;/string&gt;
+&lt;string name=&quot;video_id_init_message&quot;&gt;Place your face and the front of your document within the frame and start recording&lt;/string&gt;
+&lt;string name=&quot;video_id_init_message_description&quot;&gt;Place your face and the front of your document within the frame and start recording&lt;/string&gt;
+&lt;string name=&quot;video_id_first_message&quot;&gt;Place your face and the front of your document within the frame&lt;/string&gt;
+&lt;string name=&quot;video_id_first_message_description&quot;&gt;Place your face and the front of your document within the frame&lt;/string&gt;
+&lt;string name=&quot;video_id_init_message_face&quot;&gt;Place your face within the frame and start recording&lt;/string&gt;
+&lt;string name=&quot;video_id_init_message_face_description&quot;&gt;Place your face within the frame and start recording&lt;/string&gt;
+&lt;string name=&quot;video_id_second_message&quot;&gt;Now place the back of your document&lt;/string&gt;
+&lt;string name=&quot;video_id_second_message_description&quot;&gt;Now place the back of your document&lt;/string&gt;
+&lt;string name=&quot;video_id_third_message&quot;&gt;Now please say out loud &quot;I (name and surname) accept the terms and conditions&quot;.&lt;/string&gt;
+&lt;string name=&quot;video_id_third_message_description&quot;&gt;Now please say out loud &quot;I (name and surname) accept the terms and conditions&quot;.&lt;/string&gt;
+&lt;string name=&quot;video_id_finish_message&quot;&gt;Video recording finished!&lt;/string&gt;
+&lt;string name=&quot;video_id_finish_message_description&quot;&gt;Video recording finished!&lt;/string&gt;
+&lt;string name=&quot;video_id_error_message&quot;&gt;There has been an error in the process&lt;/string&gt;
+&lt;string name=&quot;video_id_error_message_description&quot;&gt;There has been an error in the process&lt;/string&gt;
+&lt;string name=&quot;video_id_record_init_button&quot;&gt;Start recording&lt;/string&gt;
+&lt;string name=&quot;video_id_ready_button&quot;&gt;Ready&lt;/string&gt;
+&lt;string name=&quot;video_id_document_image_description&quot;&gt;Document Image&lt;/string&gt;
+&lt;string name=&quot;video_id_face_mark_image_description&quot;&gt;Mark to put the face&lt;/string&gt;
+&lt;string name=&quot;video_id_first_message_face&quot;&gt;Place your face within the frame&lt;/string&gt;
+</pre>
+</div></div>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2530738185.png">MicrosoftTeams-image (2).png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2530738188.png">MicrosoftTeams-image.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2530738191.png">MicrosoftTeams-image (1).png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2530738194.png">MicrosoftTeams-image (3).png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2530738197.png">MicrosoftTeams-image (4).png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2530738200.png">MicrosoftTeams-image (5).png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2530738203.png">MicrosoftTeams-image (6).png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2530738177/2531131408.png">d886b449-da3f-4670-8f44-19f13fcb3d48.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

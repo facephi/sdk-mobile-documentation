@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : Phingers Component - Android [ES]</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2643165342.html">[Old Versions] Android SDK Mobile</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : Phingers Component - Android [ES]
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> José Carlos Martínez</span>, last modified on jul 31, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.4.X</strong> del componente</p></div></div><p /><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394377329 {padding: 0px;}
+div.rbtoc1705394377329 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394377329 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394377329'>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-1.Introducción'>1. Introducción</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-1.1Requisitosmínimos'>1.1 Requisitos mínimos</a></li>
+</ul>
+</li>
+<li><a href='#PhingersComponent-Android[ES]-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#PhingersComponent-Android[ES]-3.Iniciarnuevaoperación'>3. Iniciar nueva operación</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.Configuracióndelcomponente'>4. Configuración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-4.1ClassPhingersConfigurationData'>4.1 Class PhingersConfigurationData</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-4.1.1reticleOrientation'>4.1.1 reticleOrientation</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.2extractionTimeout'>4.1.2 extractionTimeout</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.3returnWSQ'>4.1.3 returnWSQ</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.4returnRawImage'>4.1.4 returnRawImage</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.5returnProcessedImage'>4.1.5 returnProcessedImage</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.6returnFingerprintTemplate'>4.1.6 returnFingerprintTemplate</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.7returnFullFrameImage'>4.1.7 returnFullFrameImage</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.8useLiveness'>4.1.8 useLiveness</a></li>
+<li><a href='#PhingersComponent-Android[ES]-4.1.9useFlash'>4.1.9 useFlash</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#PhingersComponent-Android[ES]-5.Usodelcomponente'>5. Uso del componente</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.Recepcióndelresultado.'>6. Recepción del resultado.</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-6.1Contenidodelcampodata'>6.1 Contenido del campo data</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-6.1.1templateRaw'>6.1.1 templateRaw</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.2focusQuality'>6.1.2 focusQuality</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.3fullFrameImage'>6.1.3 fullFrameImage</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.4livenessConfidence'>6.1.4 livenessConfidence</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.5fingersResult'>6.1.5 fingersResult</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-6.1.5.1wsq'>6.1.5.1 wsq</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.5.2fingerprintTemplate'>6.1.5.2 fingerprintTemplate</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.5.3rawFingerprintImage'>6.1.5.3 rawFingerprintImage</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.5.4processedFingerprintImage'>6.1.5.4 processedFingerprintImage</a></li>
+<li><a href='#PhingersComponent-Android[ES]-6.1.5.5nfiqMetrics'>6.1.5.5 nfiqMetrics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#PhingersComponent-Android[ES]-7.Personalizacióndelcomponente'>7. Personalización del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#PhingersComponent-Android[ES]-7.1Textos'>7.1 Textos</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="PhingersComponent-Android[ES]-1.Introducción">1. Introducción</h2><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>Phingers Component</strong></em>. Éste se encarga de realizar la captura de las huellas de los dedos (fingerprints) del usuario y la posterior extracción de las plantillas de las huellas posteriores. Sus principales funcionalidades son las siguientes:</p><ul><li><p>Dos modos de funcionamiento: extracción de los cuatro dedos de la mano (excepto el pulgar), o extracción únicamente del pulgar.</p></li><li><p>Gestión interna de cámara.</p></li><li><p>Gestión de permisos.</p></li><li><p>Detección de vivacidad incorporada.</p></li><li><p>Asistente en los procesos de captura de las huellas.</p></li><li><p>Generación de las plantillas con las características de las huellas, imágenes y puntuaciones.</p></li></ul><h3 id="PhingersComponent-Android[ES]-1.1Requisitosmínimos">1.1 Requisitos mínimos</h3><p>La versión mínima de la SDK de Android requerida es la siguiente:</p><ul><li><p>SDK mínima (minSdk): <strong>23</strong></p></li><li><p>API Version: <strong>33</strong></p></li><li><p>Kotlin: <strong>1.8.0</strong></p></li></ul><hr/><h2 id="PhingersComponent-Android[ES]-2.Integracióndelcomponente">2. Integración del componente</h2><p> </p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a <strong><u>Core Component</u></strong> y seguir las instrucciones indicadas en dicho documento.</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="PhingersComponent-Android[ES]-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (<em>Widgets</em>), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <em><strong>SDKMobile</strong></em>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">timber_version = &#39;5.0.1&#39;
+core_ktx_version = &#39;1.9.0&#39;
+
+//***********************************
+
+implementation &quot;androidx.core:core-ktx:$core_ktx_version&quot;
+implementation &quot;com.jakewharton.timber:timber:$timber_version&quot;
+// FACEPHI
+implementation &quot;com.facephi.phingers.android:phingers-camera:$phingers_version&quot;
+compileOnly &quot;com.facephi.androidsdk:core:$versions.core&quot;
+implementation &quot;com.facephi.androidsdk:sdk_composables:$versions.sdk_composables&quot;</pre>
+</div></div><ul><li><p>Una vez instaladas las dependencias necesarias, se podrá hacer uso de las diferentes funcionalidades del <strong>componente</strong> actual:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:phingers_component:$sdk_phingers_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="PhingersComponent-Android[ES]-3.Iniciarnuevaoperación">3. Iniciar nueva operación</h2><p>Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando <strong>newOperation</strong>.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este comando debe ejecutarse <strong>siempre</strong>. Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <strong>Core Component</strong>, en el que se detalla y explica en qué consiste este proceso.</p></div></div><p> </p><hr/><h2 id="PhingersComponent-Android[ES]-4.Configuracióndelcomponente">4. Configuración del componente</h2><p>Para configurar el componente actual, una vez inicializado, se deberá crear un objeto </p><p><em>PhingersConfigurationData</em> y pasarlo como parámetro al SDKController durante el lanzamiento del componente.</p><p>En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.</p><h3 id="PhingersComponent-Android[ES]-4.1ClassPhingersConfigurationData">4.1 Class PhingersConfigurationData</h3><h4 id="PhingersComponent-Android[ES]-4.1.1reticleOrientation">4.1.1 reticleOrientation</h4><p>Establece el modo de detección de huellas e indica qué dedos se van a detectar durante el proceso. Los valores permitidos son:</p><ul><li><p><strong>LEFT</strong>: Se activa la captura de los <strong>cuatro dedos de la mano izquierda</strong>.</p></li><li><p><strong>RIGHT</strong>: Se activa la captura de los <strong>cuatro dedos de la mano izquierda</strong>.</p></li><li><p><strong>THUMB</strong>: Se activa la captura de <strong>un pulgar</strong>.</p></li></ul><h4 id="PhingersComponent-Android[ES]-4.1.2extractionTimeout">4.1.2 extractionTimeout</h4><p>Establece un modo de estabilización previo a cualquier proceso de autenticación en el widget. Con este modo se obliga al widget a no empezar ningún proceso si el usuario no se encuentra con la cabeza mirando al frente y sin moverla.</p><h4 id="PhingersComponent-Android[ES]-4.1.3returnWSQ">4.1.3 returnWSQ</h4><p>Si se establece a <strong>true</strong> entonces en el resultado de la captura se devolverá, para cada una de las huellas, el dato comprimido mediante <em>Wavelet Scalar Quatization</em> (WSQ). WSQ es un algortimo de compresión en grises, siendo un estándar (NIST) para este tipo de capturas. Orientado a la validación contra las diferentes bases de datos gubernamentales existentes.</p><h4 id="PhingersComponent-Android[ES]-4.1.4returnRawImage">4.1.4 returnRawImage</h4><p>Si se establece a <strong>true</strong> se devolverá en el resultado las imágenes de la misma forma en que se han capturado.</p><h4 id="PhingersComponent-Android[ES]-4.1.5returnProcessedImage">4.1.5 returnProcessedImage</h4><p>Si se establece a <strong>true</strong> se devolverá en el resultado las imágenes de la misma forma en que se han capturado.</p><h4 id="PhingersComponent-Android[ES]-4.1.6returnFingerprintTemplate">4.1.6 returnFingerprintTemplate</h4><p> Especifica si el proceso de captura retornará el template de huellas en el resultado. Es un enumerado del tipo <em><strong>FingerprintTemplateType</strong></em>, y cada valor sería:<em><strong> </strong></em>  </p><ul><li><p><strong>ISO</strong>: Este tipo de plantilla se refiere al estándar <strong>ISO/IEC 19794-4</strong>.</p></li><li><p><strong>INNOVATRICS</strong>: Este tipo de plantilla es una plantilla propietaria compatible con el cambio de escalado, y muy útil para los diferentes procesos de validación.</p></li><li><p><strong>NONE</strong>: Desactivado el retorno del template.</p></li></ul><h4 id="PhingersComponent-Android[ES]-4.1.7returnFullFrameImage">4.1.7 returnFullFrameImage</h4><p>Especifica si se debe devolver la imagen completa de la cámara en la que se han detectado los dedos.</p><h4 id="PhingersComponent-Android[ES]-4.1.8useLiveness">4.1.8 useLiveness</h4><p>Activa o desactiva el detector de vivacidad durante el proceso de captura de huellas. Por defecto se encuentra a <strong>true</strong>.</p><h4 id="PhingersComponent-Android[ES]-4.1.9useFlash">4.1.9 useFlash</h4><p>Activa o desactiva el flash de la cámara durante el proceso de captura de huellas. Por defecto se encuentra a <strong>true</strong>.</p><hr/><h2 id="PhingersComponent-Android[ES]-5.Usodelcomponente">5. Uso del componente</h2><p>Una vez iniciado el componente y creada una nueva operación (<strong>apartado 3</strong>) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:</p><ul><li><p><strong>[CON TRACKING] </strong>Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero <strong>sí se trackearán</strong> los eventos internos al servidor de <em>tracking </em>en el caso de que el componente de tracking esté instalado y activo:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    PhingersController(SdkData.phingersConfiguration) {
+        when (it.finishStatus) {
+            FinishStatus.STATUS_OK -&gt; {
+                //Phingers OK
+            }
+            FinishStatus.STATUS_ERROR -&gt; //Phingers OK: it.errorType.name
+        }
+    }
+)</pre>
+</div></div><p>  </p><ul><li><p><strong>[SIN TRACKING]</strong> Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero <strong>no se trackeará</strong> ningún evento al servidor de <em>tracking </em>en caso de que esté activado el tracking:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    PhingersController(SdkData.phingersConfiguration) {
+        when (it.finishStatus) {
+            FinishStatus.STATUS_OK -&gt; {
+                //Phingers OK
+            }
+            FinishStatus.STATUS_ERROR -&gt; //Phingers OK: it.errorType.name
+        }
+    }
+)</pre>
+</div></div></li></ul><p /><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El método <strong>launch</strong> debe usarse <strong>por defecto</strong>. Este método permite utilizar <em><strong>tracking</strong></em> en caso de estar su componente activado, y no lo usará cuando esté desactivado (o no se encuentre el componente instalado).</p><p>Por el contrario, el método <strong>launchMethod</strong> cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.</p></div></div><p /><hr/><h2 id="PhingersComponent-Android[ES]-6.Recepcióndelresultado.">6. Recepción del resultado.</h2><p>El resultado es un objeto <em>SDKResult</em> que devuelve el SDK tendrá siempre 3 campos:</p><p><em>finishStatus:</em> Que nos indicará si la operación ha finalizado correctamente. Posibles valores:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">FinishStatus.STATUS_OK
+FinishStatus.STATUS_ERROR
+</pre>
+</div></div><p><em>errorType:</em> Si el finishStatus indica que ha habido un error, este campo tendrá la descripción del mismo:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">CANCEL_BY_USER: El usuario ha cancelado la operación
+TIMEOUT: Ha finalizado el tiempo establecido sin que se termine correctamente el proceso.
+COMPONENT_CONTROLLER_ERROR: No se ha inicializado correctamente el controlador. Revisar las funciones de init y setup.
+COMPONENT_CONTROLLER_DATA_ERROR: Los datos de inicio o configuración del controlador no son correctos.
+NETWORK_CONNECTION: Error de conexión a internet
+UNKNOWN_ERROR: Error no gestionado
+ACTIVITY_RESULT_ERROR: Error en el flujo de pantallas interno del controlador.
+LOW_QUALITY: La imagen capturada no tiene la calidad suficiente.
+NFC_ERROR: Error de lectura de NFC
+QR_ERROR: Error de lectura de QR
+NO_ERROR: No se ha producido ningún error
+HARDWARE_ERROR: Error de hardware de los widgets de Selphi/SelphId
+EXTRACTION_LICENSE_ERROR: Error de licenciade los widgets de Selphi/SelphId
+UNEXPECTED_CAPTURE_ERROR: Error durante el proceso de captura de los widgets de Selphi/SelphId
+CONTROL_NOT_INITIALIZATED_ERROR: Error interno de los widgets de Selphi/SelphId
+BAD_EXTRACTOR_CONFIGURATION_ERROR: Error interno de los widgets de Selphi/SelphId
+TOKEN_ERROR: Error en la petición del token para tracking
+PHINGERS_ERROR_CAPTURE: Error de captura de huellas
+LICENSING_ERROR_PACKAGE_NAME: Error de licencia que indica que el package name es incorrecto.
+LICENSING_ERROR_APPID_INVALID: Error de licencia que indica que el APPID es incorrecto.
+LICENSING_ERROR_APIKEY_FORBIDDEN: Error de licencia que indica que el APIKEY es incorrecto.
+LICENSING_ERROR_LICENSE_NOT_FOUND: Error de licencia que indica que no se ha encontrado ninguna licencia.</pre>
+</div></div><p><em>data:</em> Tendrá los datos de respuesta de la función del componente ejecutado. En el <strong>apartado 7.1</strong> se especifican los campos que se incluyen en este componente.</p><h3 id="PhingersComponent-Android[ES]-6.1Contenidodelcampodata">6.1 Contenido del campo <em>data</em></h3><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p>El resultado devuelve las imágenes en formato <strong>Bitmap</strong>, es posible convertir las imágenes a <strong>Base64</strong> de la siguiente manera:</p><p><code>Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)</code></p>
+</div></div><p>El campo <em>data</em> es variable y dependerá de qué componente se ha devuelto el resultado. En el caso de este componente, los campos devueltos son los siguientes:</p><h4 id="PhingersComponent-Android[ES]-6.1.1templateRaw">6.1.1 <em>templateRaw</em></h4><p>Devuelve la plantilla en bruto que se genera después del proceso de extracción. Válida para el proceso de AUTHENTICATION.</p><h4 id="PhingersComponent-Android[ES]-6.1.2focusQuality">6.1.2 <em>focusQuality</em></h4><p>Devuelve la mejor imagen extraída del proceso de autenticación en formato string Base64. Esta imagen es la imagen con el tamaño original extraída de la cámara. Válido para el proceso de <strong>liveness</strong>.</p><h4 id="PhingersComponent-Android[ES]-6.1.3fullFrameImage">6.1.3 <em>fullFrameImage</em></h4><p>Devuelve una imagen recortada centrada en la cara del usuarioen formato string Base64. Esta imagen se obtiene a partir de la <em>bestImage</em>. Ésta es la imagen que se deberá utilizar como imagen característica del usuario que realizó el proceso a modo de <em>avatar</em>.</p><h4 id="PhingersComponent-Android[ES]-6.1.4livenessConfidence">6.1.4 <em>livenessConfidence</em></h4><p>Devuelve la mejor imagen extraída del proceso de autenticación en formato Bitmap. Esta imagen es la imagen con el tamaño original extraída de la cámara. Válido para el proceso de <strong>liveness</strong>.</p><h4 id="PhingersComponent-Android[ES]-6.1.5fingersResult">6.1.5 <em>fingersResult</em></h4><p>Es una lista de objetos <em><strong>FingerResult</strong></em>, que contiene toda la información asociada a cada uno de los dedos capturados.</p><h5 id="PhingersComponent-Android[ES]-6.1.5.1wsq">6.1.5.1 wsq</h5><p>Se devuelve la captura de huella en formato WSQ.</p><h5 id="PhingersComponent-Android[ES]-6.1.5.2fingerprintTemplate">6.1.5.2 fingerprintTemplate</h5><p>Devuelve la plantilla de la huella, usada para posteriores validaciones.</p><h5 id="PhingersComponent-Android[ES]-6.1.5.3rawFingerprintImage">6.1.5.3 rawFingerprintImage</h5><p>Devuelve la imagen de la huella actual en crudo, sin modificar.</p><h5 id="PhingersComponent-Android[ES]-6.1.5.4processedFingerprintImage">6.1.5.4 processedFingerprintImage</h5><p>Devuelve la imagen de la huella procesada.</p><h5 id="PhingersComponent-Android[ES]-6.1.5.5nfiqMetrics">6.1.5.5 nfiqMetrics</h5><p>Son las métricas de la captura. Actualmente se devuelve el siguiente valor:</p><ul><li><p>nfiqMetric: Es un valor entero, entre 1 y 5 (ambos inclusive), que indica la calidad de la captura de huella, siendo 1 el valor que indica la calidad más alta y 5 la peor calidad. Las huellas con este último valor suelen ser descartadas para posteriores validaciones.</p></li></ul><hr/><h2 id="PhingersComponent-Android[ES]-7.Personalizacióndelcomponente">7. Personalización del componente</h2><p>Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales se explican en el documento de <strong>Core Component</strong>), este componente en concreto permite la modificación de textos específicos.</p><h3 id="PhingersComponent-Android[ES]-7.1Textos">7.1 Textos</h3><p>Si se desea modificar los textos de la SDK habría que incluir el siguiente fichero XML en la aplicación del cliente, y modificar el valor de cada <em>String</em> por el deseado.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;!-- PHINGERS --&gt;
+&lt;string name=&quot;phingers_component_left_hand&quot;&gt;Prepare your left hand for the catch&lt;/string&gt;
+&lt;string name=&quot;phingers_component_right_hand&quot;&gt;Prepare your right hand for capture&lt;/string&gt;
+&lt;string name=&quot;phingers_component_action_text&quot;&gt;Take fingerprints&lt;/string&gt;
+&lt;string name=&quot;phingers_component_capture_phingers&quot;&gt;Hold fingers steady&lt;/string&gt;
+&lt;string name=&quot;phingers_component_capture_thumb&quot;&gt;Hold finger steady&lt;/string&gt;
+&lt;string name=&quot;phingers_component_capture_phingers_not_focus&quot;&gt;Move fingers until in focus&lt;/string&gt;
+&lt;string name=&quot;phingers_component_capture_thumb_not_focus&quot;&gt;Move finger until in focus&lt;/string&gt;</pre>
+</div></div><p> </p><hr/>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

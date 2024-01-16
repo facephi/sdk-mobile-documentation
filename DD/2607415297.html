@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][EN] Video Recording Component</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605678593.html">[1.5.X][EN] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][EN] Video Recording Component
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified by <span class='editor'> José Carlos Martínez</span> on nov 29, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This document refers to the <strong>1.5.X version </strong>of the component</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394364944 {padding: 0px;}
+div.rbtoc1705394364944 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394364944 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394364944'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-0.SDKMobilebaselinerequirements'>0. SDK Mobile baseline requirements</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-1.Introduction'>1. Introduction</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-2.Integrationofthecomponent'>2. Integration of the component</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-2.1.Dependenciesrequiredforintegration'>2.1. Dependencies required for integration</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-3.Startnewoperation'>3. Start new operation</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-4.Availablecontrollers'>4. Available controllers</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-5.Componentconfiguration'>5. Component configuration</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-5.1.ClassVideoRecordingConfigurationData'>5.1. Class VideoRecordingConfigurationData</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-5.1.1.url'>5.1.1. url</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-5.1.2.apiKey'>5.1.2. apiKey</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-5.1.3.tenantId'>5.1.3. tenantId</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-6.Componentuse'>6. Component use</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-7.Receiptoftheresult'>7. Receipt of the result</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-7.1.Receiptoferrors'>7.1. Receipt of errors</a></li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-7.1.Receiptofcorrectexecution-data'>7.1. Receipt of correct execution - data</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-10.AdditionalControllers'>10. Additional Controllers</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]VideoRecordingComponent-10.1.StopVideoRecordingController'>10.1. StopVideoRecordingController</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.5.X][EN]VideoRecordingComponent-0.SDKMobilebaselinerequirements">0. SDK Mobile baseline requirements</h2><p><strong>SDK Mobile </strong>is a set of libraries (Components) that offer a series of functionalities and services, allowing their integration into a Mobile application in a simple and fully scalable way. Depending on the use case that is required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.</p><p>For more information on the base configuration, go to the <a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page">Android Mobile SDK</a> section.</p><p> </p><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-1.Introduction">1. Introduction</h2><p>The <em>Component</em> discussed in the current document is called <em><strong>VideoRecording Component</strong></em>. It is responsible for capturing the screen of the device in the background. It is mainly oriented towards the recording of the onboarding process.</p><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-2.Integrationofthecomponent">2. Integration of the component</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Before integrating this component, it is recommended to read the documentation related to:</p><p><a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a><strong> </strong>and follow the instructions in that document.</p></div></div><p>This section will explain step by step how to integrate the current component into an existing project.</p><h3 id="id-[1.5.X][EN]VideoRecordingComponent-2.1.Dependenciesrequiredforintegration">2.1. Dependencies required for integration</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>To avoid conflicts and compatibility problems, in case you want to install the component in a project containing an old version of the Facephi libraries (<em>Widgets</em>), these must be completely removed before installing the <em><strong>SDKMobile </strong></em>components.</p></div></div><ul><li><p>Currently FacePhi libraries are distributed remotely through different dependency managers. <strong>Mandatory </strong>dependencies that must be installed beforehand:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:video_recording_component:$sdk_video_recording_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-3.Startnewoperation">3. Start new operation</h2><p>When you want to perform a specific operation, in order to generate the associated information correctly in the platform, the <strong>newOperation </strong>command must first be executed.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This command must have been executed <strong>prior to launch</strong>.</p><p>To learn more about how to start a new operation, it is recommended to consult the <a href="2605678593.html" data-linked-resource-id="2605678593" data-linked-resource-version="15" data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a><strong> </strong>documentation, which details and explains what this process consists of.</p></div></div><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-4.Availablecontrollers">4. Available controllers</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6c0e67b8-9eb3-4535-bb57-832f68c0caad" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controller</strong></p></th><th class="confluenceTh"><p><strong>Description</strong></p></th></tr><tr><td class="confluenceTd"><p>VideoRecordingController</p></td><td class="confluenceTd"><p>VideoRecording main controller</p></td></tr><tr><td class="confluenceTd"><p>StopVideoRecordingController</p></td><td class="confluenceTd"><p>Controller to stop the video recording.</p></td></tr></tbody></table></div><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-5.Componentconfiguration">5. Component configuration</h2><p>To configure the current component, once it has been initialised, a VideoRecordingConfigurationData object must be created and passed as a parameter to the SDKController when the component is launched.</p><p>The following section will show the fields that are part of this class and what each of them is used for.</p><h3 id="id-[1.5.X][EN]VideoRecordingComponent-5.1.ClassVideoRecordingConfigurationData">5.1. Class VideoRecordingConfigurationData</h3><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The fields included in the configuration, normally <strong>do not need to be reported</strong> as they are filled internally through the licence used.</p><p>These fields are usually reported only when the server is <strong>OnPremise</strong>.</p></div></div><h4 id="id-[1.5.X][EN]VideoRecordingComponent-5.1.1.url">5.1.1. url</h4><p>Path to the video socket</p><h4 id="id-[1.5.X][EN]VideoRecordingComponent-5.1.2.apiKey">5.1.2. apiKey</h4><p>ApiKey needed for connection to the video socket</p><h4 id="id-[1.5.X][EN]VideoRecordingComponent-5.1.3.tenantId">5.1.3. tenantId</h4><p>Tenant identifier referring to the current client, required for the connection to the video service.</p><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-6.Componentuse">6. Component use</h2><p>Once the component has been started and a new operation has been created (<strong>section 3</strong>), the SDK components can be launched. There are two ways to launch the component:</p><ul><li><p><strong>[WITH TRACKING]</strong> This call allows to launch the functionality of the component normally, but internal events will be tracked to the <em>tracking </em>server:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    VideoRecordingController(VideoRecordingConfigurationData()) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;VideoRecording: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; Napier.d(&quot;VideoRecording OK: ${it.data}&quot;)
+        }
+    }
+)</pre>
+</div></div><ul><li><p><strong>[WITHOUT TRACKING] </strong>This call allows to launch the functionality of the component normally, but <strong>no event will be tracked</strong> to the <em>tracking </em>server:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    VideoRecordingController(VideoRecordingConfigurationData()) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;VideoRecording: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; Napier.d(&quot;VideoRecording OK: ${it.data}&quot;)
+        }
+    }
+)</pre>
+</div></div><p> </p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The <strong>launch </strong>method must be used by <strong>default</strong>. This method allows <em><strong>tracking </strong></em>to be used if your component is enabled, and will not use it when it is disabled (or the component is not installed).</p><p>On the other hand, the <strong>launchMethod </strong>method covers a special case, in which the integrator has tracking installed and activated, but in a certain flow within the application does not want to track information. In this case, this method is used to prevent this information from being sent to the platform.</p></div></div><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-7.Receiptoftheresult">7. Receipt of the result</h2><p>The controllers will return the required information in SdkResult format. More information in the Android Mobile SDK's <a href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605678593#6.-Result-return" rel="nofollow">6. Result return</a> section.</p><h3 id="id-[1.5.X][EN]VideoRecordingComponent-7.1.Receiptoferrors">7.1. Receipt of errors</h3><p>On the error side, we will have the <em>VideoRecordingError</em> class.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">val message = when(it.error){
+    VideoRecordingError.CANCEL_BY_USER -&gt; &quot;CANCEL_BY_USER&quot;
+    is VideoRecordingError.INITIALIZATION_ERROR -&gt; 
+        &quot;INITIALIZATION_ERROR: ${(it.error as VideoRecordingError.INITIALIZATION_ERROR).error}&quot;
+    VideoRecordingError.NETWORK_CONNECTION -&gt; &quot;NETWORK_CONNECTION&quot;
+    VideoRecordingError.NO_DATA_ERROR -&gt; &quot;NO_DATA_ERROR&quot;
+    VideoRecordingError.PERMISSION_DENIED -&gt; &quot;PERMISSION_DENIED&quot;
+    VideoRecordingError.TIMEOUT -&gt; &quot;TIMEOUT&quot;
+    VideoRecordingError.UNKNOWN_ERROR -&gt; &quot;UNKNOWN_ERROR&quot;
+    VideoRecordingError.VIDEO_ERROR -&gt; &quot;VIDEO_ERROR&quot;
+}</pre>
+</div></div><h3 id="id-[1.5.X][EN]VideoRecordingComponent-7.1.Receiptofcorrectexecution-data">7.1. <em>Receipt of correct execution - data</em></h3><p>On successful execution, it simply reports that everything went well with the SdkResult.Success.</p><hr/><h2 id="id-[1.5.X][EN]VideoRecordingComponent-10.AdditionalControllers">10. Additional Controllers</h2><h3 id="id-[1.5.X][EN]VideoRecordingComponent-10.1.StopVideoRecordingController">10.1. StopVideoRecordingController</h3><p>This controller allows stopping a recording in progress.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    StopVideoRecordingController {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(
+                &quot;VideoRecording-STOP: KO - ${it.error.javaClass.simpleName}&quot;
+            )
+            is SdkResult.Success -&gt; Napier.d(&quot;VideoRecording-STOP: OK&quot;)
+        }
+    }
+)</pre>
+</div></div><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

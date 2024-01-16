@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][ES] SelphID Component - Android</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605285492.html">[1.5.X][ES] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][ES] SelphID Component - Android
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified on dic 11, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.5.X</strong> del componente</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394365723 {padding: 0px;}
+div.rbtoc1705394365723 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394365723 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394365723'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-0.RequisitosbasedeSDKMobile'>0. Requisitos base de SDK Mobile</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-1.Introducción'>1. Introducción</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-3.Iniciarnuevaoperación'>3. Iniciar nueva operación</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-4.Controladoresdisponibles'>4. Controladores disponibles</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.Configuracióndelcomponente'>5. Configuración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.ClassSelphIDConfigurationData'>5.1. Class SelphIDConfigurationData</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.0.debug'>5.1.0. debug</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.1.resourcesPath'>5.1.1. resourcesPath</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.2.wizardMode'>5.1.2. wizardMode</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.3.showResultAfterCapture'>5.1.3. showResultAfterCapture</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.4.showTutorial'>5.1.4. showTutorial</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.5.tutorialOnly'>5.1.5. tutorialOnly</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.6.scanMode'>5.1.6. scanMode</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.7specificData'>5.1.7 specificData</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.8locale'>5.1.8 locale</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.9fullscreen'>5.1.9 fullscreen</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.9tokenImageQuality'>5.1.9 tokenImageQuality</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.10.documentType'>5.1.10. documentType</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.11documentSide'>5.1.11 documentSide</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.12timeout'>5.1.12 timeout</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.13videoFilename'>5.1.13 videoFilename</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.14DocumentModels'>5.1.14 DocumentModels</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.15generateRawImages'>5.1.15 generateRawImages</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.16tokenPreviousCaptureData'>5.1.16 tokenPreviousCaptureData</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.17translationsContent'>5.1.17 translationsContent</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-5.1.18viewsContent'>5.1.18 viewsContent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-6.Usodelcomponente'>6. Uso del componente</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.Recepcióndelresultado'>7. Recepción del resultado</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.1.Recepcióndeerrores'>7.1. Recepción de errores</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.Recepcióndeejecucióncorrecta-data'>7.2. Recepción de ejecución correcta - data</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.1frontDocument/tokenFrontDocument:'>7.2.1 frontDocument / tokenFrontDocument:</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.2backDocument/tokenBackDocument'>7.2.2 backDocument / tokenBackDocument</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.3faceImage/tokenFaceImage'>7.2.3 faceImage / tokenFaceImage</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.4documentCaptured'>7.2.4 documentCaptured</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.5matchingSidesScore'>7.2.5 matchingSidesScore</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.6PropiedadcaptureProgress'>7.2.6 Propiedad captureProgress</a></li>
+<li><a href='#id-[1.5.X][ES]SelphIDComponent-Android-7.2.7ocrResults'>7.2.7 ocrResults</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-0.RequisitosbasedeSDKMobile">0. Requisitos base de SDK Mobile</h2><p /><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>Para más información sobre la configuración base, vaya a la sección de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page">[1.5.X][ES] Android Mobile SDK</a>.</p><p /><hr/><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-1.Introducción">1. Introducción</h2><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>SelphID Component</strong></em>. Éste se encarga de realizar capturas de documentos y la posterior extracción y análisis de los datos obtenidos de ellos. Sus principales funcionalidad son las siguientes:</p><ul><li><p>Gestión interna de cámaras.</p></li><li><p>Gestión de permisos.</p></li><li><p>Asistente en los procesos de captura de la parte frontal y trasera del documento.</p></li><li><p>Extracción de la información contenida en el documento.</p></li><li><p>Obtención de las imágenes del dorso y reverso del documento, así como otras imagénes incluidas en el documento: cara del usuario, firma del usuario,...</p></li><li><p>Alto nivel de configuración: diferentes países, idiomas, tipos de documentos...</p></li></ul><hr/><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-2.Integracióndelcomponente">2. Integración del componente</h2><p /><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a</p><p><a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a> y seguir las instrucciones indicadas en dicho documento.</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.5.X][ES]SelphIDComponent-Android-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (<em>Widgets</em>), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <em><strong>SDKMobile</strong></em>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:selphid_component:$sdk_selphid_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-3.Iniciarnuevaoperación">3. Iniciar nueva operación</h2><p>Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando <strong>newOperation</strong>. </p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este comando debe haberse ejecutado <strong>anteriormente al lanzamiento del componente</strong>.</p><p>Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de<strong> </strong><a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong>[1.5.X][ES] Android Mobile SDK</strong></a>, en el que se detalla y explica en qué consiste este proceso.</p></div></div><p /><hr/><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-4.Controladoresdisponibles">4. Controladores disponibles</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="54910f00-b80d-4d90-b0b6-ee65c32d712a" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controlador</strong></p></th><th class="confluenceTh"><p><strong>Descripción</strong></p></th></tr><tr><td class="confluenceTd"><p>SelphIDController</p></td><td class="confluenceTd"><p>Controlador principal de reconocimiento de documentos</p></td></tr></tbody></table></div><p /><hr/><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-5.Configuracióndelcomponente">5. Configuración del componente</h2><p>Para configurar el componente actual, una vez inicializado, se deberá crear un objeto <em>SelphIDConfigurationData</em> y pasarlo como parámetro al SDKController durante el lanzamiento del componente.</p><p>En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.</p><h3 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.ClassSelphIDConfigurationData">5.1. Class SelphIDConfigurationData</h3><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.0.debug">5.1.0. <em>debug</em></h4><p>Activación del modo depuración del componente.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.1.resourcesPath">5.1.1. <em>resourcesPath</em></h4><p>Indica el nombre de los recursos en formato zip del componente. Ejemplo: “resources-selphid-2-0.zip“.</p><p>Este nombre irá a buscar el fichero a la ruta de <em>assets</em>.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="289" loading="lazy" src="attachments/2605645906/2605613209.png?width=289" data-image-src="attachments/2605645906/2605613209.png" data-height="145" data-width="289" data-unresolved-comment-count="0" data-linked-resource-id="2605613209" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231009-122638.png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2605645906" data-linked-resource-container-version="10" data-media-id="6ee4c500-398f-4946-ba97-89cb0beef7b5" data-media-type="file"></span><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.2.wizardMode">5.1.2. <em>wizardMode</em></h4><p>Indica si el widget queda configurado para realizar la captura de ambas partes (frontal y trasera) del documento una a continuación de la otra. En este modo el widget solo se lanzaría una vez y al terminar de capturar el front, continuaría seguidamente con el back.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.3.showResultAfterCapture">5.1.3. <em>showResultAfterCapture</em></h4><p>Indica si mostrar o no una pantalla con la imagen capturada del documento después del proceso de análisis. En esta pantalla se le da al usuario la posibilidad de repetir el proceso de captura si la imagen que se obtuvo del documento no fuera correcta.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.4.showTutorial">5.1.4. <em>showTutorial</em></h4><p>Indica si el widget activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.5.tutorialOnly">5.1.5. <em>tutorialOnly</em></h4><p>Indica si el widget se quiere lanzar solo para mostrar el tutorial.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.6.scanMode">5.1.6. <em>scanMode</em></h4><p>Indica el modo de escaneo OCR de los documentos. Dependiendo de la elección, se escanearán y buscarán varios tipos de documentos o uno en concreto. Este modo puede ser de tres tipos:</p><ul><li><p><strong>SelphIDScanMode.MODE_GENERIC</strong>: El modo genérico que permite escanear cualquier tipo de documento independiente del país o el tipo de documento. El resultado de este modo no es tan preciso como los siguientes pero permite escanear varios documentos estándar.</p></li><li><p><strong>SelphIDScanMode.MODE_SEARCH</strong>: El modo de búsqueda permitirá utilizar una whitelist y blacklist, y buscará en los documentos que cumplan dichas condiciones. Estas condiciones se indican en la variable &quot;specificData&quot;. De este modo se permite realizar la búsqueda acotando el número de plantillas, y haciendo que la búsqueda sea mucho más afinada que en el caso genérico.</p></li><li><p><strong>SelphIDScanMode.MODE_SPECIFIC</strong>: Búsqueda de un documento específico. Estas condiciones se indican en la propiedad &quot;specificData&quot; que se muestra en lo sucesivo.</p></li></ul><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.7specificData">5.1.7 <em>specificData</em></h4><p>Esta propiedad permite definir qué documentos se escanearán durante el proceso, en caso de declarar el modo de escaneo (scanMode) a <strong>MODE_SEARCH</strong> o <strong>MODE_SPECIFIC</strong>.</p><p>Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">val selphIDConfiguration = SelphIDConfigurationData(
+    scanMode = SelphIDScanMode.MODE_SEARCH,
+    specificData = &quot;ES|&lt;ALL&gt;&quot;,  // Código ISO de España (ES)
+)</pre>
+</div></div><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.8locale">5.1.8 <em>locale</em></h4><p>Es un string que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:</p><ul><li><p>““ para el de sistema</p></li><li><p>“es” para español.</p></li><li><p>“en” para inglés.</p></li><li><p>“fr” para francés.</p></li></ul><p>En definitiva, dependerá del nombre que aparezca en el fichero <code>strings.xml</code> del lenguaje que se desee seleccionar (<code>strings-es.xml</code>, <code>strings-en.xml</code>, <code>strings-fr.xml</code>).</p><p>En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros <code>strings-xx.xml</code> correspondientes a cada localización que se requiere incorporar en el widget.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.9fullscreen">5.1.9 <em>fullscreen</em></h4><p>Indica si la vista va a tener prioridad para mostrarse en pantalla completa, si el sistema lo permite.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.9tokenImageQuality">5.1.9 <em>tokenImageQuality</em></h4><p>Indica la cantidad de calidad que se quiere recibir en las imágenes tokenizadas. Valor entre 0 y 1.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.10.documentType">5.1.10. <em>documentType</em></h4><p>Los valores permitidos son los siguientes:</p><ul><li><p><strong>SelphIDDocumentType.ID_CARD</strong>: El widget queda configurado para realizar la captura de documentos de identidad.</p></li><li><p><strong>SelphIDDocumentType.PASSPORT</strong>: El widget queda configurado para realizar la captura de pasaportes.</p></li><li><p><strong>SelphIDDocumentType.DRIVERS_LICENSE</strong>: El widget queda configurado para realizar la captura de licencias de conducción.</p></li><li><p><strong>SelphIDDocumentType.FOREIGN_CARD</strong>: El widget queda configurado para realizar la captura de documentos extranjeros.</p></li><li><p><strong>SelphIDDocumentType.CREDIT_CARD</strong>: El widget queda configurado para realizar la captura de tarjetas de crédito.</p></li><li><p><strong>SelphIDDocumentType.CUSTOM</strong>: El widget queda configurado para realizar la captura de otro tipo de documentos que no corresponden a ninguna de las categorías anteriores.</p></li></ul><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.11documentSide">5.1.11 <em>documentSide</em></h4><p>Los valores permitidos son los siguientes:</p><ul><li><p><strong>SelphIDDocumentSide.FRONT</strong>: El widget queda configurado para realizar la captura de la parte frontal del documento.</p></li><li><p><strong>SelphIDDocumentSide.BACK</strong>: El widget queda configurado para realizar la captura de la parte trasera del documento.</p></li></ul><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.12timeout">5.1.12 <em>timeout</em></h4><p>Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:</p><ul><li><p>SelphIDTimeout.SHORT: 15 segundos.</p></li><li><p>SelphIDTimeout.MEDIUM: 20 segundos.</p></li><li><p>SelphIDTimeout.LONG: 25 segundos.</p></li></ul><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.13videoFilename">5.1.13 <em>videoFilename</em></h4><p>Establece la ruta absoluta del nombre del archivo en el que se grabará un video del proceso de captura. La aplicación es la responsable de solicitar los permisos necesarios al teléfono en caso de que esa ruta requiera de permisos adicionales. El widget, por defecto, no realizará ningún proceso de grabación a menos que se especifique una ruta de archivo mediante este método.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.14DocumentModels">5.1.14 <em>DocumentModels</em></h4><p>Esta propiedad permite, mediante una cadena en formato xml, configurar modelado de los documentos que el widget va a tratar de capturar. La definición de este modelado se encentra, por defecto, en un .xml de modelos que se encuentra en el .zip de recursos. Con esta propiedad se permite a una aplicación actualizar, en caliente, los modelados de los documentos.</p><p>Nota: Esta propiedad no altera el contenido del archivo de recursos.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.15generateRawImages">5.1.15 <em>generateRawImages</em></h4><p>Esta propiedad configura el widget para devolver la imagen completa de la cámara que se utilizó para capturar el documento. Estas imágenes se devuelven en las propiedades <code>rawFrontDocument</code> y <code>rawBackDocument</code> del objeto <code>results</code> respectivamente.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.16tokenPreviousCaptureData">5.1.16 tokenPreviousCaptureData</h4><p>Cuando la captura del documento se realiza en 2 llamadas, esta propiedad permite pasar un diccionario con la información de la captura previa. De esta manera el widget puede combinar los resultados de ambas lecturas de una manera inteligente y así devolver la información combinada de ambas capturas. También permite al widget calcular un grado de similitud de los datos de ambas caras.</p><p>En el caso que la captura de ambas caras del documento se realice en una única llamada esto no es necesario ya que el widget internamente hace este proceso.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.17translationsContent">5.1.17 translationsContent</h4><p>Esta propiedad avanzada permite, mediante una cadena en formato xml, configurar la traducción de los literales que se muestran durante el proceso.</p><p>Nota: Esta propiedad no altera el contenido del archivo de recursos.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-5.1.18viewsContent">5.1.18 viewsContent</h4><p>Esta propiedad avanzada permite, mediante una cadena en formato xml, configurar las vistas del widget.</p><p>Nota: Esta propiedad no altera el contenido del archivo de recursos.</p><p>    </p><hr/><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-6.Usodelcomponente">6. Uso del componente</h2><p>Una vez iniciado el componente y creada una nueva operación (<strong>apartado 3</strong>) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:</p><ul><li><p><strong>[CON TRACKING]</strong> Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de <em>tracking</em>:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    SelphIDController(SelphIDConfiguration(..)) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;SelphID: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; it.data
+        }
+    }
+)</pre>
+</div></div><ul><li><p><strong>[SIN TRACKING] </strong>Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero <strong>no se trackeará</strong> ningún evento al servidor de <em>tracking</em>:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    SelphIDController(SelphIDConfiguration(..)) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;SelphID: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; it.data
+        }
+    }
+)</pre>
+</div></div><p> </p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El método <strong>launch</strong> debe usarse <strong>por defecto</strong>. Este método permite utilizar <em><strong>tracking</strong></em> en caso de estar su componente activado, y no lo usará cuando esté desactivado (o no se encuentre el componente instalado).</p><p>Por el contrario, el método <strong>launchMethod</strong> cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.</p></div></div><hr/><h2 id="id-[1.5.X][ES]SelphIDComponent-Android-7.Recepcióndelresultado">7. Recepción del resultado</h2><p>Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de <a href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado" rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.</p><h3 id="id-[1.5.X][ES]SelphIDComponent-Android-7.1.Recepcióndeerrores">7.1. Recepción de errores</h3><p>En la parte del error, dispondremos de la clase SelphIdError.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">
+    SelphIDError.ACTIVITY_RESULT_ERROR 
+    SelphIDError.BAD_EXTRACTOR_CONFIGURATION_ERROR 
+    SelphIDError.CAMERA_PERMISSION_DENIED 
+    SelphIDError.CANCEL_BY_USER 
+    SelphIDError.CONTROL_NOT_INITIALIZATED_ERROR 
+    SelphIDError.EXTRACTION_LICENSE_ERROR 
+    SelphIDError.HARDWARE_ERROR
+    is SelphIDError.INITIALIZATION_ERROR -&gt; it.error // Para más detalles
+    SelphIDError.NO_ERROR
+    SelphIDError.RESOURCES_NOT_FOUND
+    SelphIDError.SETTINGS_PERMISSION_ERROR 
+    is SelphIDError.TIMEOUT 
+    SelphIDError.UNEXPECTED_CAPTURE_ERROR 
+    SelphIDError.UNKNOWN_ERROR 
+</pre>
+</div></div><h3 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.Recepcióndeejecucióncorrecta-data">7.2. Recepción de ejecución correcta - <em>data</em></h3><p>En la parte de <em>data</em>, dispondremos de la clase SelphIdResult.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El resultado devuelve las imágenes en formato <strong>Bitmap</strong>, es posible convertir las imágenes a <strong>Base64</strong> de la siguiente manera:</p><p><code>Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)</code></p></div></div><p>El campo <em>data</em> es variable y dependerá de qué componente se ha devuelto el resultado. En el caso de este componente, los campos devueltos son los siguientes:</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.1frontDocument/tokenFrontDocument:">7.2.1 <em>frontDocument / tokenFrontDocument:</em></h4><p>La imagen frontal del documento procesada, limpiada y recortada por los bordes y su token correspondiente.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.2backDocument/tokenBackDocument">7.2.2 <em>backDocument / tokenBackDocument</em></h4><p>La imagen trasera del documento procesada, limpiada y recortada por los bordes y su token asociado.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.3faceImage/tokenFaceImage">7.2.3 <em>faceImage / tokenFaceImage</em></h4><p>La imagen del rostro que se ha encontrado en el documento, en caso de que exista y su token asociado.</p><p>Válida para el proceso de MATCHING FACIAL.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.4documentCaptured">7.2.4 <em>documentCaptured</em></h4><p>Esta propiedad indica el modelo de documento que se ha capturado cuando se realiza una busqueda en modo SMSearch. De esta forma la aplicación puede conocer qué modelo, de entre todos los permitidos, se ha detectado.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.5matchingSidesScore">7.2.5 <em>matchingSidesScore</em></h4><p>Esta propiedad devuelve un cálculo de la similitud de los datos leídos entre el front y el back del documento. El cálculo se realiza comprobando la similitud entre los campos comunes leídos en ambas caras. El resultado del cálculo será un valor entre 0.0 y 1.0 para el caso de que existan campos comunes en el documento. Cuanto mayor es el valor, más similares son los datos comparados. Si el cálculo devuelve -1.0 es que el documento no contiene campos comunes o aún no se tiene información de las dos caras.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.6PropiedadcaptureProgress">7.2.6 <em>Propiedad captureProgress</em></h4><p>Esta propiedad devuelve el estado en el que se encontraba el proceso de captura cuando el widget terminó. Estos son los posibles valores:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">Front_Detection_None = 0
+Front_Detection_Uncertain = 1
+Front_Detection_Completed = 2
+Front_Document_Analyzed = 3
+Back_Detection_None = 4
+Back_Detection_Uncertain = 5
+Back_Detection_Completed = 6
+Back_Document_Analyzed = 7</pre>
+</div></div><ul><li><p><strong>0</strong>: En la lectura del Front, el widget termino sin poder haber detectado nada. Generalmente cuando no se pone ningún documento.</p></li><li><p><strong>1</strong>: En la lectura del Front, el widget termino habiendo detectado parcialmente un documento. En este caso algunos de los elementos esperados se han conseguido detectar, pero no todos los necesarios.</p></li><li><p><strong>2</strong>: En la lectura del Front, el widget termino habiendo completado la detección de todos los elementos del documento. Si el widget acaba en este estado es porque el análisis de OCR no se ha podido completar con éxito.</p></li><li><p><strong>3</strong>: En la lectura del Front, el widget termino habiendo analizado y extraído todo el OCR del documento. Este es el estado en el que acabaría una lectura correcta del Front de un documento.</p></li></ul><p>Los estados del <strong>4 </strong>al<strong> 7</strong> son exactamente iguales solo que se refieren al resultado del proceso cuando se analiza el back.</p><h4 id="id-[1.5.X][ES]SelphIDComponent-Android-7.2.7ocrResults">7.2.7 <em>ocrResults</em></h4><p>Este diccionario contiene todos los datos detectados en el documento. Las claves de cada campo están codificadas de tal forma que la propia clave contiene información de donde se ha obtenido el valor. Así, por ejemplo, la clave <code>Front/MRZ/DocumentNumber</code> indica el valor del DocumentNumber que se ha leído en el Front del documento y en la región del MRZ. Estas claves dependen del documento capturado y por tanto serán diferentes entre distintos países y modelos de documento. El diccionario también contiene claves con nombres más genéricos y que no llevan información relativa a la ubicación. Estas claves contienen el dato más completo de todos los leídos para dicho campo.</p><p>Estas claves son los siguientes:</p><ul><li><p><strong>FirstName</strong>: El valor asociado a esta clave contiene el nombre del usuario.</p></li><li><p><strong>LastName</strong>: El valor asociado a esta clave contiene los apellidos del usuario.</p></li><li><p><strong>DateOfBirth</strong>: El valor asociado a esta clave contiene la fecha de nacimiento detectada en el documento.</p></li><li><p><strong>Gender</strong>: El valor asociado a esta clave contiene el sexo del usuario detectado en el documento.</p></li><li><p><strong>Nationality</strong>: El valor asociado a esta clave contiene la nacionalidad del usuario detectado en el documento.</p></li><li><p><strong>DocumentNumber</strong>: El valor asociado a esta clave contiene el número de documento.</p></li><li><p><strong>DateOfExpiry</strong>: El valor asociado a esta clave contiene la fecha de expiración del documento.</p></li><li><p><strong>Issuer</strong>: El valor asociado a esta clave contiene el editor del documento.</p></li><li><p><strong>DateofIssue</strong>: El valor asociado a esta clave contiene la fecha de expedición del documento.</p></li><li><p><strong>PlaceOfBirth</strong>: El valor asociado a esta clave contiene el lugar de nacimiento del usuario.</p></li><li><p><strong>Address</strong>: El valor asociado a esta clave contiene la dirección detectada en el documento.</p></li></ul><p>Adicionalmente se añaden claves del propio objeto results para hacer más fácil su búsqueda:</p><ul><li><p><strong>DocumentCaptured</strong>: Valor del modelo de documento que se ha capturado según el .xml de modelos. Corresponde a la propiedad documentCaptured.</p></li><li><p><strong>MatchingSidesScore</strong>: Valor que indica la correspondencia entre las caras leídas del documento. Corresponde a la propiedad matchingSidesScore.</p></li></ul><hr/>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2605645906/2605613209.png">image-20231009-122638.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

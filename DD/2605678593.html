@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][EN] Android Mobile SDK</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][EN] Android Mobile SDK
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified on dic 22, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This document refers to <strong>1.5.X version </strong>of the Android Mobile SDK.</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394363066 {padding: 0px;}
+div.rbtoc1705394363066 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394363066 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394363066'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-1.Introduction'>1. Introduction</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-1.1.Minimumrequirements'>1.1. Minimum requirements</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-2.Initialintegration'>2. Initial integration</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-2.1.Addprivategradlerepository'>2.1. Add private gradle repository</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-2.2.Dependenciesrequiredforbasicintegration'>2.2. Dependencies required for basic integration</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-3.SDKinitialization'>3. SDK initialization</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-3.1.Licenceinjection'>3.1. Licence injection</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-a.Obtainingthelicencethroughaservice'>a. Obtaining the licence through a service</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-b.InjectingthelicenceasaString'>b. Injecting the licence as a String</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-4.Startanewoperation'>4. Start a new operation</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-4.1Existingtypesofoperation'>4.1 Existing types of operation</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-5.Launchofcomponents'>5. Launch of components</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-6.Resultreturn'>6. Result return</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-7.Closesession/Logout'>7. Close session / Logout</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-8.Auxiliarycontrollers'>8. Auxiliary controllers</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-8.1GettingtheOperationId'>8.1 Getting the OperationId</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-8.2GettingtheOperationType'>8.2 Getting the OperationType</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-8.3GettingtheSessionId'>8.3 Getting the SessionId</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-8.4GettingtheCustomerID'>8.4 Getting the CustomerID</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-8.5GettingtheCustomerID'>8.5 Getting the CustomerID</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-9.Debugginganderror-handlingoptions'>9. Debugging and error-handling options</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-9.1.ErrorcheckingofTrackingconnectionstotheplatform'>9.1. Error checking of Tracking connections to the platform</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-9.2.ActivationofGeneralDebuggingLogs'>9.2. Activation of General Debugging Logs</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-10.SDKcustomization'>10. SDK customization</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-10.1.Colors,logoandanimations'>10.1. Colors, logo and animations</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-10.2.Texts'>10.2. Texts</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-10.3.Font'>10.3. Font</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-10.4.Buttons'>10.4. Buttons</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-11.FAQ-FrequentlyAskedQuestions'>11. FAQ - Frequently Asked Questions</a></li>
+<li><a href='#id-[1.5.X][EN]AndroidMobileSDK-12.Changelog'>12. Changelog</a></li>
+</ul>
+</div><h2 id="id-[1.5.X][EN]AndroidMobileSDK-1.Introduction">1. Introduction</h2><p><strong>SDK Mobile</strong> is a set of libraries (<em><strong>Components</strong></em>) that offer a series of functionalities and services, allowing their integration into a Mobile application in a simple and totally scalable way. Certain components must be installed depending on the use case required. Its high level of modularity allows other new components to be added in the future without affecting those already integrated into the project.</p><h2 id="id-[1.5.X][EN]AndroidMobileSDK-1.1.Minimumrequirements">1.1. Minimum requirements</h2><p>The minimum version of the Android SDK required is as follows:</p><ul><li><p>Minimum SDK (minSdk): 23</p></li><li><p>API Version: 34</p></li><li><p>Kotlin: 1.9.10</p></li><li><p>Gradle Android plugin: 8.1.1</p></li><li><p>Kotlin compiler version: 1.5.3</p></li></ul><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-2.Initialintegration">2. Initial integration</h2><p>This section will explain step by step how to integrate the basic components into an existing project.</p><h3 id="id-[1.5.X][EN]AndroidMobileSDK-2.1.Addprivategradlerepository">2.1. Add private gradle repository</h3><p>For security and maintenance reasons, the new <em><strong>SDKMobile</strong></em> components are stored in private repositories that require specific credentials to access them. <u>These credentials</u> must be obtained through the <strong>Facephi</strong> support team.</p><p>Once the credentials are obtained, the following code snippet to configure the maven repository must be included in your project's Gradle, or in the <strong>settings.gradle</strong> file of your project. It is recommended to include it after<em> mavenCentral()</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">maven {
+    Properties props = new Properties()
+    def propsFile = new File(&#39;local.properties&#39;)
+    if(propsFile.exists()){
+        props.load(new FileInputStream(propsFile))
+    }
+    name=&quot;external&quot;
+    url = uri(&quot;https://facephicorp.jfrog.io/artifactory/maven-pro-fphi&quot;)
+    credentials {
+        username = props[&quot;artifactory.user&quot;] ?: System.getenv(&quot;USERNAME_ARTIFACTORY&quot;)
+        password = props[&quot;artifactory.token&quot;] ?: System.getenv(&quot;TOKEN_ARTIFACTORY&quot;)
+    }
+}
+</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The credentials (User and Token) must be correctly configured for the project to retrieve the dependencies correctly.</p></div></div><p>There are several ways to configure the repository access credentials:</p><ul><li><p>As environment variables with the following name. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">export USERNAME_ARTIFACTORY=YOUR_CREDENTIALS_USERNAME
+export TOKEN_ARTIFACTORY=YOUR_CREDENTIALS_TOKEN</pre>
+</div></div><p><strong>If the dependencies are not recognized when synchronising</strong>, they must be included via environment variables in the file:</p></li></ul><p style="margin-left: 30.0px;"><code>~/.zshrc</code></p><ul><li><p>Included in the <em>local.properties</em> file with the following structure:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">artifactory.user=YOUR_CREDENTIALS_USERNAME
+artifactory.token=YOUR_CREDENTIALS_TOKEN</pre>
+</div></div><p /></li></ul><h3 id="id-[1.5.X][EN]AndroidMobileSDK-2.2.Dependenciesrequiredforbasicintegration">2.2. <strong>Dependencies required for basic integration</strong></h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>To avoid conflicts and compatibility problems, if you want to install the component in a project containing an old Facephi libraries (<strong>Widgets</strong>) version, these must be removed entirely before installing the <strong>SDKMobile</strong> components.</p></div></div><p>Currently, FacePhi libraries are distributed remotely through different dependency managers. The <strong>mandatory dependencies </strong>that must be installed:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:sdk:$sdk_version&quot;
+implementation &quot;com.facephi.androidsdk:core:$core_version&quot;</pre>
+</div></div><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-3.SDKinitialization">3. SDK initialization</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>It must be strictly avoided to initialize a controller that is not going to be used</strong></p></div></div><p>Each component has a <em><strong>Controller</strong></em> that will allow access to its functionality. Before they can be used, they must be properly initialized. The steps to follow in the initialization are as follows:</p><ol start="1"><li><p>Include the Application object</p></li><li><p>Decide whether the licence will be included via a <em>String</em> or a <em>remote licensing service</em> (<strong>see section 3.1</strong>).</p></li><li><p>Include <em>TrackingController</em> in case you want to connect to the platform.</p></li></ol><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>Point 3 </strong>is optional and would require using the <strong>Tracking</strong> component (more information about this module in its documentation).</p></div></div><p>Example without <em>TrackingController:</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.initSdk(
+    sdkApplication = SdkApplication(application),
+    license = &quot;LICENSE&quot;
+    ) {
+        when (it) {
+            is SdkResult.Success -&gt; Napier.d(&quot;APP: INIT SDK: OK&quot;)
+            is SdkResult.Error -&gt; Napier.d(
+                    &quot;APP: INIT SDK: KO - ${it.error}&quot;
+                  ) 
+          }
+ })
+          </pre>
+</div></div><p>Example with <em>TrackingController:</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.initSdk(
+    sdkApplication = SdkApplication(application),
+    license = &quot;LICENSE&quot;,
+    trackingController = TrackingController()
+    ) {
+        when (it) {
+            is SdkResult.Success -&gt; Napier.d(&quot;APP: INIT SDK: OK&quot;)
+            is SdkResult.Error -&gt; Napier.d(
+                    &quot;APP: INIT SDK: KO - ${it.error}&quot;
+                  ) 
+          }
+ })
+          </pre>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-3.1.Licenceinjection">3.1. Licence injection</h3><p>As discussed above, there are currently two ways to inject the licence:</p><h4 id="id-[1.5.X][EN]AndroidMobileSDK-a.Obtainingthelicencethroughaservice">a. Obtaining the licence through a service</h4><p>Through a service that requires a URL and an API-KEY as an identifier. This would avoid problems when manipulating the licence, as well as the constant replacement of these licences when a problem arises (malformation or improper modification, expiry of the licence...).</p><p>Kotlin:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">
+SDKController.initSdk(
+      sdkApplication = SdkApplication(application),
+      environmentLicensingData = EnvironmentLicensingData(
+            url = &quot;https://...&quot;,
+            apiKey = &quot;...&quot;)
+      ) {
+        when (it) {
+            is SdkResult.Success -&gt; Napier.d(&quot;APP: INIT SDK: OK&quot;)
+            is SdkResult.Error -&gt; Napier.d(
+                  &quot;APP: INIT SDK: KO - ${it.error}&quot;
+                  ) 
+        }
+ })</pre>
+</div></div><p>Java:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.INSTANCE.initSdk(
+        new SdkApplication(activity.getApplication()),
+        new EnvironmentLicensingData(
+          url = &quot;https://...&quot;,
+          apiKey = &quot;...&quot;),
+        sdkResult -&gt;
+        {
+          if (sdkResult instanceof SdkResult.Success) {
+            Napier.d(&quot;APP: INIT SDK: OK&quot;)
+          } else if (sdkResult instanceof SdkResult.Error) {
+            Napier.d(&quot;APP: INIT SDK: KO - ${it.error}&quot;)
+          }
+        }
+      );</pre>
+</div></div><p /><h4 id="id-[1.5.X][EN]AndroidMobileSDK-b.InjectingthelicenceasaString">b. Injecting the licence as a String</h4><p>You can assign the licence directly as a String, as follows:</p><p>Kotlin:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">
+SDKController.initSdk(
+      sdkApplication = SdkApplication(application),
+      license = &quot;LICENSE&quot;
+      ) {
+        when (it) {
+            is SdkResult.Success -&gt; Napier.d(&quot;APP: INIT SDK: OK&quot;)
+            is SdkResult.Error -&gt; Napier.d(
+                    &quot;APP: INIT SDK: KO - ${it.error}&quot;
+                  ) 
+          }
+ })</pre>
+</div></div><p>Java:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.INSTANCE.initSdk(
+        new SdkApplication(activity.getApplication()),
+        &quot;LICENSE&quot;,
+        sdkResult -&gt;
+        {
+          if (sdkResult instanceof SdkResult.Success) {
+            Napier.d(&quot;APP: INIT SDK: OK&quot;)
+          } else if (sdkResult instanceof SdkResult.Error) {
+            Napier.d(&quot;APP: INIT SDK: KO - ${it.error}&quot;)
+          }
+        }
+      );
+      </pre>
+</div></div><p /><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-4.Startanewoperation">4. Start a new operation</h2><p>Every time you want to start the flow of a new operation (examples of operations would be <em>onboarding, authentication, videoCall</em>, etc.), it is essential to tell the <strong>SDKController</strong> that it is going to start, so the SDK will know that the following <strong>Component</strong> calls (also called <strong>Steps</strong>) will be part of that operation. This is necessary <em>to track</em> the global information of this operation on the platform in a satisfactory way.</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>When starting a process or flow, <strong>always</strong> call the <strong>newOperation</strong> method</p></div></div><p>This method has 3 input parameters:</p><ol start="1"><li><p><strong>operationType</strong>: Indicates whether an ONBOARDING or AUTHENTICATION 2 process is to be performed.</p></li><li><p><strong>customerId</strong>: Unique user ID if available (controlled at the application level).</p><ol start="1"><li><p>This parameter will be reflected for each operation in the platform.</p></li></ol></li><li><p><strong>steps</strong>: List of steps of the operation if they have been previously defined.</p><ol start="1"><li><p>This parameter will be reflected for each operation in the platform.</p></li></ol></li></ol><p>There are two ways to perform this operation start, depending on whether the <strong>steps that will form the flow</strong> of the registration or authentication process are known (in case the components are executed sequentially and always in the same way) or, on the contrary, if the flow <strong>is not defined</strong> and is unknown (for example, the final customer is the one who decides the order of execution of the components).</p><ul><li><p><strong>Known </strong>flow<strong> </strong>(the tracked operation will appear on the platform with all the steps in the list). Example of implementation:</p></li></ul><p style="margin-left: 30.0px;">Kotlin:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.newOperation(
+        operationType = OperationType.ONBOARDING,        
+        customerId = &quot;customer_id&quot;,
+        steps = listOf(Step.SELPHI_COMPONENT, Step.SELPHID_COMPONENT)    
+        ){
+        when (it) {
+                    is SdkResult.Success -&gt; {
+                        Napier.d(&quot;APP: NEW OPERATION OK&quot;)
+                    }
+                    is SdkResult.Error -&gt; {
+                        Napier.d(&quot;APP: NEW OPERATION ERROR: ${it.error}&quot;)
+                    }
+                }
+        }</pre>
+</div></div><p style="margin-left: 30.0px;">Java:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.INSTANCE.newOperation(
+        OperationType.ONBOARDING,        
+        &quot;customer_id&quot;,
+        [Step.SELPHI_COMPONENT, Step.SELPHID_COMPONENT]    
+        ){
+          if (sdkResult instanceof SdkResult.Success) {
+            Napier.d(&quot;APP: NEW OPERATION: OK&quot;)
+          } else if (sdkResult instanceof SdkResult.Error) {
+            Napier.d(&quot;APP: NEW OPERATION: KO - ${it.error}&quot;)
+          }
+        }
+  );</pre>
+</div></div><ul><li><p><strong>Unknown</strong> flow (the tracked operation will appear on the platform with ellipses). Example of implementation:</p></li></ul><p style="margin-left: 30.0px;">Kotlin:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.newOperation(
+        operationType = OperationType.ONBOARDING,        
+        customerId = &quot;customer_id&quot;,    
+        ){
+        when (it) {
+                    is SdkResult.Success -&gt; {
+                        Napier.d(&quot;APP: NEW OPERATION OK&quot;)
+                    }
+                    is SdkResult.Error -&gt; {
+                        Napier.d(&quot;APP: NEW OPERATION ERROR: ${it.error}&quot;)
+                    }
+                }
+        }</pre>
+</div></div><p style="margin-left: 30.0px;">Java:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"> SDKController.INSTANCE.newOperation(
+        OperationType.ONBOARDING,        
+        &quot;customer_id&quot;    
+        ){
+          if (sdkResult instanceof SdkResult.Success) {
+            Napier.d(&quot;APP: NEW OPERATION: OK&quot;)
+          } else if (sdkResult instanceof SdkResult.Error) {
+            Napier.d(&quot;APP: NEW OPERATION: KO - ${it.error}&quot;)
+          }
+        }
+  );</pre>
+</div></div><p /><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p> <code>sdkResult</code> → Contains in data the information of the operation created.</p>
+</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>Once the operation has been created</strong>, the SDK components associated with this operation can be executed. <u>Consult</u> the specific documentation for each <u>component</u> to find out how to do this.</p></div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-4.1Existingtypesofoperation">4.1 Existing types of operation</h3><p>Currently, the following operations exist, during which certain <strong>Components (STEPS)</strong> are used.</p><p>Below is a table showing the relationship between operations and steps:</p><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="32fbe475-2014-4d4d-91f8-be4e77260ea5" class="confluenceTable"><colgroup><col style="width: 254.0px;"/><col style="width: 253.0px;"/><col style="width: 253.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p style="text-align: center;"><strong>Operación (</strong><em><strong>OperationType</strong></em><strong>)</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Component (</strong><em><strong>Step</strong></em><strong>)</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Description</strong></p></th></tr><tr><td class="confluenceTd"><p>ONBOARDING</p></td><td class="confluenceTd"><ul><li><p>SELPHI_COMPONENT</p></li><li><p>SELPHID_COMPONENT</p></li></ul></td><td class="confluenceTd"><ul><li><p>Facial validation of a selfie against a document's face</p></li><li><p>Document OCR extraction</p></li><li><p>Liveness detection</p></li></ul></td></tr><tr><td class="confluenceTd"><p>AUTHENTICATION</p></td><td class="confluenceTd"><ul><li><p>SELPHI_COMPONENT</p></li></ul></td><td class="confluenceTd"><ul><li><p>Face validation using templates</p></li><li><p>Liveness detection</p></li></ul></td></tr></tbody></table></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This list will be expanded in future SDK updates as new components and use cases are released.</p></div></div><p /><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-5.Launchofcomponents">5. Launch of components</h2><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p>Once the <strong>new operation</strong> has been created<strong> (section 4)</strong>, the different SDK drivers can be launched. To consult this information, access the <strong>documentation for each component</strong>.</p>
+</div></div><p>Launch example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    SelphIDController(SdkData.selphIDConfiguration) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;SelphID: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; {
+                Napier.d(&quot;SelphID: OK&quot;)
+            }
+        }
+    }
+)</pre>
+</div></div><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-6.Resultreturn">6. Result return</h2><p>The result of each component will be returned through the SDK, keeping always the same structure through the <em><strong>SdkResult</strong></em> class, whose class is a Sealed Class that can have two possible states:</p><ul><li><p><strong>SdkResult.Success</strong>: Indicates that the operation has finished successfully and inside it has:</p><ul><li><p><em><strong>data: </strong></em>Contains the type of data that is necessary according to the process/component launched.</p></li></ul></li><li><p><strong>SdkResult.Error</strong></p><ul><li><p><em><strong>error:</strong></em> Contains the type of data that is necessary according to the process/component launched.</p></li></ul></li></ul><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p>The documentation for each specific component will provide a breakdown of the different fields this object can return.</p>
+</div></div><p>Example of use:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">when (it) {
+    is SdkResult.Success -&gt; {
+        Napier.d(&quot;Selphi: OK&quot;)
+        // SelphiResult: 
+        // it.data.bestImageBmp
+    }
+
+    is SdkResult.Error -&gt; Napier.d(&quot;Selphi: KO - ${it.error.name}&quot;)
+}</pre>
+</div></div><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-7.Closesession/Logout">7. Close session / Logout</h2><p><strong>Before the application is destroyed</strong>, the SDK session must be closed to notify the platform of its completion. To do this, the following line of code is executed:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.closeSession()</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>If a logout is performed, it will not be possible to launch controllers until a new operation is started again.</p></div></div><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-8.Auxiliarycontrollers">8. Auxiliary controllers</h2><p>This section includes other controllers and auxiliary operations, some of them optional, which may be necessary for the correct completion of the flow.</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>These fields are necessary for communication with the <strong>Facephi</strong> service, in the event of any <strong>verification</strong> and <em>tracking</em> of a specific operation.</p></div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-8.1GettingtheOperationId">8.1 Getting the OperationId</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    GetOperationIdController {
+        Napier.d(&quot;Operation ID ${it})
+    }
+)</pre>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-8.2GettingtheOperationType">8.2 Getting the OperationType</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    GetOperationTypeController {
+        Napier.d(&quot;Operation type ${it})
+    }
+)</pre>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-8.3GettingtheSessionId">8.3 Getting the SessionId</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    GetSessionIdController {
+        Napier.d(&quot;Session ID ${it})
+    }
+)</pre>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-8.4GettingtheCustomerID">8.4 Getting the CustomerID</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    GetCustomerIdController {
+        Napier.d(&quot;Customer ID ${it})
+    }
+)</pre>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-8.5GettingtheCustomerID">8.5 Getting the CustomerID</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    CustomerIdController(&quot;CustomerId&quot;)
+)</pre>
+</div></div><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-9.Debugginganderror-handlingoptions">9. Debugging and error-handling options</h2><p>Certain options in the SDK allow an increase in the debug logs in order to check that everything is working correctly.</p><h3 id="id-[1.5.X][EN]AndroidMobileSDK-9.1.ErrorcheckingofTrackingconnectionstotheplatform">9.1. Error checking of Tracking connections to the platform</h3><p>Once the SDK has started correctly, certain settings can be applied to have more information about possible tracking errors, which can be tracked through this driver release:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(TrackingErrorController {
+    Napier.d(&quot;Tracking Error: ${it.name}&quot;)
+})</pre>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-9.2.ActivationofGeneralDebuggingLogs">9.2. Activation of General Debugging Logs</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.enableDebugMode()</pre>
+</div></div><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-10.SDKcustomization">10. SDK customization</h2><p>This version of the SDK allows some visual characteristics of the components to be modified. The possible changes that can be made are listed below.</p><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p>It is recommended to add the modifications to both the <strong>light</strong> and <strong>dark</strong> (<em>night</em>) themes.</p>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-10.1.Colors,logoandanimations">10.1. <strong>Colors, logo and animations</strong></h3><p>To change the SDK colours and logo, you would have to include an XML file in the client application (e.g. <em><strong>sdk_styles.xml</strong></em>) changing the hex (RGB) value of each primary colour:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;!-- SdkTheme --&gt;
+    &lt;color name=&quot;sdkPrimaryColor&quot;&gt;#7636FC&lt;/color&gt;
+    &lt;color name=&quot;sdkSecondaryColor&quot;&gt;#03DAC5&lt;/color&gt;
+    &lt;color name=&quot;sdkBackgroundColor&quot;&gt;#FFFFFF&lt;/color&gt;
+    &lt;color name=&quot;sdkErrorColor&quot;&gt;#DD3631&lt;/color&gt;
+    &lt;!-- SdkColorsPalette --&gt;
+    &lt;color name=&quot;sdkTitleTextColor&quot;&gt;#1D2C4D&lt;/color&gt;
+    &lt;color name=&quot;sdkBodyTextColor&quot;&gt;#526080&lt;/color&gt;
+    &lt;color name=&quot;sdkSuccessColor&quot;&gt;#07A13A&lt;/color&gt;
+    &lt;color name=&quot;sdkNeutralColor&quot;&gt;#202C4B&lt;/color&gt;
+    &lt;color name=&quot;sdkAccentColor&quot;&gt;#EA7547&lt;/color&gt;
+    &lt;color name=&quot;sdkTopIconsColor&quot;&gt;#243760&lt;/color&gt;
+    &lt;!-- SDK BUTTONS --&gt;
+    &lt;dimen name=&quot;sdk_buttons_corner_dimen&quot;&gt;32dp&lt;/dimen&gt;
+    &lt;!-- SDK LOGO --&gt;
+    &lt;drawable name=&quot;sdk_logo&quot;&gt;@drawable/ic_demo_logo&lt;/drawable&gt;
+    
+  &lt;!-- ..Add particulars of each component... --&gt;
+  
+&lt;/resources&gt;</pre>
+</div></div><p>To modify the logo visible in the different components of the SDK, it is sufficient to include in the file the following line, including the name of the logo of the client application:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;!-- SDK LOGO --&gt;
+&lt;drawable name=&quot;sdk_logo&quot;&gt;@drawable/logo_name&lt;/drawable&gt;</pre>
+</div></div><p>The animations apply styles (mentioned above) according to the five fundamental colours:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sdkPrimaryColor
+sdkErrorColor
+sdkSuccessColor
+sdkNeutralColor
+sdkAccentColor</pre>
+</div></div><p>Changing any of them will affect the animations of the components.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The Selphi and SelphID components carry their associated resource zip, which is kept outside this feature of the SDK.</p></div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-10.2.Texts">10.2. <strong>Texts</strong></h3><p>If you want to modify the SDK texts, you would have to include the following XML file in the client application and modify the value of each <em>String</em> to the desired one.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;!-- GENERAL --&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_title&quot;&gt;Permission denied&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_question&quot;&gt;In order to continue, you need to &lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_question_other&quot;&gt;allow access to the permission needed.&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_question_camera&quot;&gt;allow access to the camera.&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_question_microphone&quot;&gt;allow access to the microphone.&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_confirm&quot;&gt;Retry&lt;/string&gt;
+    &lt;string name=&quot;sdk_permissions_exit_alert_confirm_settings&quot;&gt;Go to settings&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_title&quot;&gt;Finish the process&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_question&quot;&gt;Do you want to finish the process?&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_exit&quot;&gt;Finish&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_alert_cancel&quot;&gt;Cancel&lt;/string&gt;
+    &lt;string name=&quot;sdk_exit_finish_exit&quot;&gt;Finish&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_video_error&quot;&gt;An error has occurred with the connection to the video. Please try again.&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_socket_error&quot;&gt;An error has occurred with the connection to the server. Please try again.&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_data_error&quot;&gt;An error has occurred with the system configuration. Please try again.&lt;/string&gt;
+    &lt;string name=&quot;sdk_text_timeout_error&quot;&gt;Sorry, the operation has timed out. Please try again later.&lt;/string&gt;
+    &lt;string name=&quot;sdk_network_connection_error_title&quot;&gt;Connection error&lt;/string&gt;
+    &lt;string name=&quot;sdk_network_connection_error_desc&quot;&gt;Check your internet connection&lt;/string&gt;
+    &lt;string name=&quot;sdk_network_connection_error_button&quot;&gt;Exit&lt;/string&gt;
+    &lt;string name=&quot;sdk_close&quot;&gt;Close process&lt;/string&gt;
+    &lt;string name=&quot;sdk_info&quot;&gt;Show tutorial&lt;/string&gt;
+    &lt;string name=&quot;sdk_previous_page&quot;&gt;Previous page&lt;/string&gt;
+    &lt;string name=&quot;sdk_next_page&quot;&gt;Next page&lt;/string&gt;
+    &lt;string name=&quot;sdk_image_captured&quot;&gt;Image captured&lt;/string&gt;
+    &lt;string name=&quot;sdk_confirmation_retry&quot;&gt;Retry&lt;/string&gt;
+    &lt;string name=&quot;sdk_confirmation_continue&quot;&gt;Continue&lt;/string&gt;
+    &lt;string name=&quot;sdk_skip&quot;&gt;SKIP&lt;/string&gt;
+ 
+  &lt;!-- ..Add particulars of each component... --&gt;
+  
+  
+&lt;/resources&gt;
+</pre>
+</div></div><h3 id="id-[1.5.X][EN]AndroidMobileSDK-10.3.Font">10.3. <strong>Font</strong></h3><p>To modify the font, add the .ttf files to the font folder of the application and rename them as shown in the image:</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/2605678593/2605678599.png" data-image-src="attachments/2605678593/2605678599.png" data-height="111" data-width="387" data-unresolved-comment-count="0" data-linked-resource-id="2605678599" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="d886b449-da3f-4670-8f44-19f13fcb3d48.png" data-base-url="https://facephicorporative.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="2605678593" data-linked-resource-container-version="15" data-media-id="48338d28-3fb0-46e1-8ac2-0cbff78a1b22" data-media-type="file"></span><h3 id="id-[1.5.X][EN]AndroidMobileSDK-10.4.Buttons">10.4. <strong>Buttons</strong></h3><p>In case you want to change the shape of the SDK buttons, you would have to include this line in the SDK style XML file by changing the <em>dp</em> value of the <em>dimen</em> variable:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;dimen name=&quot;sdk_buttons_corner_dimen&quot;&gt;5dp&lt;/dimen&gt;
+&lt;/resources&gt;
+</pre>
+</div></div><hr/><h2 id="id-[1.5.X][EN]AndroidMobileSDK-11.FAQ-FrequentlyAskedQuestions">11. FAQ - Frequently Asked Questions</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6d76e498-8c25-4cff-91a8-8d96ddb5d79f" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><img class="emoticon emoticon-light-on" data-emoji-id="atlassian-light_bulb_on" data-emoji-shortname=":light_bulb_on:" data-emoji-fallback=":light_bulb_on:" src="images/icons/emoticons/lightbulb_on.png" width="16" height="16" data-emoticon-name="light-on" alt="(bombilla)"/> <strong>Question</strong></p></th><th class="confluenceTh"><p><img class="emoticon emoticon-thumbs-up" data-emoji-id="1f44d" data-emoji-shortname=":thumbsup:" data-emoji-fallback="👍" src="images/icons/emoticons/thumbs_up.png" width="16" height="16" data-emoticon-name="thumbs-up" alt="(pulgar hacia arriba)"/> <strong>Answer</strong></p></th></tr><tr><td class="confluenceTd"><p>When synchronising the project, it does not resolve the dependencies and a 403 appears in the components.</p></td><td class="confluenceTd"><ul><li><p>Check the device connection.</p></li><li><p>Check if you have correctly configured the <strong>TOKEN and USER</strong> of the Facephi repository in Gradle.</p></li><li><p>Check the version of the embedded components</p></li><li><p>Perform <strong>Invalidate Cache &amp; Restart</strong> </p></li><li><p>Try again</p></li></ul></td></tr><tr><td class="confluenceTd"><p /></td><td class="confluenceTd"><p /></td></tr></tbody></table></div><p><img class="emoticon emoticon-blue-star" data-emoji-id="2709" data-emoji-shortname=":envelope:" data-emoji-fallback="✉️" src="images/icons/emoticons/72/2709.png" width="16" height="16" data-emoticon-name="blue-star" alt="(estrella azul)"/> If any other problems occur, please contact the support team so that we can help you.</p><h2 id="id-[1.5.X][EN]AndroidMobileSDK-12.Changelog">12. Changelog</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="462701a6-639a-4469-b9cc-479fa10c3365" class="confluenceTable"><colgroup><col style="width: 113.0px;"/><col style="width: 645.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Version</strong></p></th><th class="confluenceTh"><p><strong>Changes</strong></p></th></tr><tr><td class="confluenceTd"><p>1.5.1</p></td><td class="confluenceTd"><ul><li><p>General</p><ul><li><p>Improvements and bug fixes</p></li></ul></li><li><p>Voice</p><ul><li><p>Internal library update</p></li><li><p>Calibration adjustments</p></li><li><p>Return of tokenized audios</p></li></ul></li><li><p>Phingers</p><ul><li><p>WSQ tracking</p></li></ul></li><li><p>Behaviour</p><ul><li><p>Internal library update</p></li><li><p>Enhancements and fixes</p></li></ul></li></ul></td></tr><tr><td class="confluenceTd"><p>1.5.0</p></td><td class="confluenceTd"><ul><li><p>API 34 (Android 14) supported</p></li><li><p>Updated Android Gradle plugins (8.1.1)</p></li><li><p>Updated version of Kotlin used (1.9.10)</p></li><li><p>Video component input data settings</p></li><li><p>Improved SdkResult as a sealed class</p></li><li><p>Nomenclature of NewOperation input Steps</p></li></ul></td></tr></tbody></table></div>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/2605678593/2605678599.png">d886b449-da3f-4670-8f44-19f13fcb3d48.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][ES] NFC Component - Android</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605285492.html">[1.5.X][ES] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][ES] NFC Component - Android
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified by <span class='editor'> Leticia Martín</span> on nov 29, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.5.X</strong> del componente</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394367004 {padding: 0px;}
+div.rbtoc1705394367004 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394367004 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394367004'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-0.RequisitosbasedeSDKMobile'>0. Requisitos base de SDK Mobile</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-1.Introducción'>1. Introducción</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-3.Iniciarnuevaoperación'>3. Iniciar nueva operación</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-4.Controladoresdisponibles'>4. Controladores disponibles</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.Configuracióndelcomponente'>5. Configuración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.ClassNFCConfigurationData'>5.1. Class NFCConfigurationData</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.1.documentNumber'>5.1.1. documentNumber</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.2.birthDate'>5.1.2. birthDate</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.3.expirationDate'>5.1.3. expirationDate</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.4.extractionTimeout'>5.1.4. extractionTimeout</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.5.showReadingScreen'>5.1.5. showReadingScreen</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.6.showTutorial'>5.1.6. showTutorial</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.7.vibrationEnabled'>5.1.7. vibrationEnabled</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.8.enableDebugMode'>5.1.8. enableDebugMode</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-5.1.9.onlyBAC'>5.1.9. onlyBAC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-6.Usodelcomponente'>6. Uso del componente</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.Recepcióndelresultado'>7. Recepción del resultado</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.1.Recepcióndeerrores'>7.1. Recepción de errores</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.Recepcióndeejecucióncorrecta-data'>7.2. Recepción de ejecución correcta - data</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.1.nfcRawData'>7.2.1. nfcRawData</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.2.nfcDocumentInformation'>7.2.2. nfcDocumentInformation</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.3.nfcPersonalInformation'>7.2.3. nfcPersonalInformation</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.4.nfcImages'>7.2.4. nfcImages</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.5nfcSecurityData'>7.2.5 nfcSecurityData</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.6.nfcValidations'>7.2.6. nfcValidations</a></li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-7.2.7.nfcCertificateData'>7.2.7. nfcCertificateData</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-8.Personalizacióndelcomponente'>8. Personalización del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]NFCComponent-Android-8.1Textos'>8.1 Textos</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.5.X][ES]NFCComponent-Android-0.RequisitosbasedeSDKMobile">0. Requisitos base de SDK Mobile</h2><p> </p><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>Para más información sobre la configuración base, vaya a la sección de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page">Android Mobile SDK</a>.</p><p> </p><hr/><h2 id="id-[1.5.X][ES]NFCComponent-Android-1.Introducción">1. Introducción</h2><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>NFC Component</strong></em>. Éste se encarga de realizar la lectura de nfc de documentos de identidad y pasaportes. Sus principales funcionalidades son las siguientes:</p><ul><li><p>Gestión interna del sensor de NFC.</p></li><li><p>Gestión de permisos.</p></li><li><p>Análisis de documento.</p></li><li><p>Análisis del progreso.</p></li><li><p>Asistente en los procesos de lectura.</p></li><li><p>Devolución de toda la información posible a leer</p></li><li><p>Devolución de imágenes cuando estén disponible para su lectura</p></li></ul><hr/><h2 id="id-[1.5.X][ES]NFCComponent-Android-2.Integracióndelcomponente">2. Integración del componente</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a:</p><p><a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a> y seguir las instrucciones indicadas en dicho documento.</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.5.X][ES]NFCComponent-Android-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (<em>Widgets</em>), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <em><strong>SDKMobile</strong></em>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.5.X][ES]NFCComponent-Android-3.Iniciarnuevaoperación">3. Iniciar nueva operación</h2><p>Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando <strong>newOperation</strong>.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este comando debe haberse ejecutado <strong>anteriormente al lanzamiento del componente</strong>.</p><p>Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a>, en el que se detalla y explica en qué consiste este proceso.</p></div></div><hr/><h2 id="id-[1.5.X][ES]NFCComponent-Android-4.Controladoresdisponibles">4. Controladores disponibles</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6c0e67b8-9eb3-4535-bb57-832f68c0caad" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controlador</strong></p></th><th class="confluenceTh"><p><strong>Descripción</strong></p></th></tr><tr><td class="confluenceTd"><p>NFCController</p></td><td class="confluenceTd"><p>Controlador principal de lectura NFC</p></td></tr></tbody></table></div><h2 id="id-[1.5.X][ES]NFCComponent-Android-5.Configuracióndelcomponente">5. Configuración del componente</h2><p>Para configurar el componente actual, una vez inicializado, se deberá crear un objeto</p><p><em>NFCConfigurationData</em> y pasarlo como parámetro al SDKController durante el lanzamiento del componente.</p><p>En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.</p><h3 id="id-[1.5.X][ES]NFCComponent-Android-5.1.ClassNFCConfigurationData">5.1. Class NFCConfigurationData</h3><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.1.documentNumber">5.1.1. documentNumber</h4><p>Indica el número de documento o número de soporte dependiendo del documento a realizar la lectura.</p><p>Éste campo es obligatorio.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.2.birthDate">5.1.2. birthDate</h4><p>Indica la fecha de nacimiento que aparece en el documento (&quot;dd/MM/yyyy&quot;).</p><p>Éste campo es obligatorio.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.3.expirationDate">5.1.3. expirationDate</h4><p>Indica la fecha de expiración que aparece en el documento (&quot;dd/MM/yyyy&quot;).</p><p>Éste campo es obligatorio.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.4.extractionTimeout">5.1.4. extractionTimeout</h4><p>Establece el tiempo máximo que se puede realizar la lectura.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.5.showReadingScreen">5.1.5. showReadingScreen</h4><p>Establece si se desea mostrar la pantalla modal inferior con la lectura que se está realizando. Si se desactiva, no se muestra ninguna vista y se deberán escuchar los estados que devuelve el controlador.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.6.showTutorial">5.1.6. showTutorial</h4><p>Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.7.vibrationEnabled">5.1.7. vibrationEnabled</h4><p>Indica si se desea un feedback de vibración al acabar el proceso.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.8.enableDebugMode">5.1.8. enableDebugMode</h4><p>Activación del modo depuración del componente.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-5.1.9.onlyBAC">5.1.9. onlyBAC</h4><p>Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura con información más simple y rápida que permite la lectura de más variedad de documentos.</p><hr/><h2 id="id-[1.5.X][ES]NFCComponent-Android-6.Usodelcomponente">6. Uso del componente</h2><p>Una vez iniciado el componente y creada una nueva operación (<strong>apartado 3</strong>) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:</p><ul><li><p><strong>[CON TRACKING]</strong> Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de <em>tracking</em>:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    NfcController(
+        componentData = NfcConfigurationData(
+            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
+            birthDate = NFC_BIRTH_DATE, // &quot;dd/MM/yyyy&quot;
+            expirationDate = NFC_EXPIRATION_DATE, // &quot;dd/MM/yyyy&quot;,
+            ),
+        state = { state -&gt;
+            Napier.d(&quot;NFC: State: ${state.name}&quot;)
+        },
+        debugLogs = {
+            Napier.d(&quot;NFC Logs: $it&quot;)
+        }
+    ) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;APP: NFC: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; {
+                Napier.d(&quot;APP: NFC: OK&quot;)
+                Napier.d(&quot;DOCUMENT: ${it.data.nfcDocumentInformation}&quot;)
+                Napier.d(&quot;PERSONAL: ${it.data.nfcPersonalInformation}&quot;)
+            }
+        }
+    }
+)</pre>
+</div></div><ul><li><p><strong>[SIN TRACKING] </strong>Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero <strong>no se trackeará</strong> ningún evento al servidor de <em>tracking</em>:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    NfcController(
+        componentData = NfcConfigurationData(
+            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
+            birthDate = NFC_BIRTH_DATE, // &quot;dd/MM/yyyy&quot;
+            expirationDate = NFC_EXPIRATION_DATE, // &quot;dd/MM/yyyy&quot;,
+            ),
+        state = { state -&gt;
+            Napier.d(&quot;NFC: State: ${state.name}&quot;)
+        },
+        debugLogs = {
+            Napier.d(&quot;NFC Logs: $it&quot;)
+        }
+    ) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;APP: NFC: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; {
+                Napier.d(&quot;APP: NFC: OK&quot;)
+                Napier.d(&quot;DOCUMENT: ${it.data.nfcDocumentInformation}&quot;)
+                Napier.d(&quot;PERSONAL: ${it.data.nfcPersonalInformation}&quot;)
+            }
+        }
+    }
+)</pre>
+</div></div><p> </p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El método <strong>launch</strong> debe usarse <strong>por defecto</strong>. Este método permite utilizar <em><strong>tracking</strong></em> en caso de estar su componente activado, y no lo usará cuando esté desactivado (o no se encuentre el componente instalado).</p><p>Por el contrario, el método <strong>launchMethod</strong> cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.</p></div></div><hr/><h2 id="id-[1.5.X][ES]NFCComponent-Android-7.Recepcióndelresultado">7. Recepción del resultado</h2><p>Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de <a href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado" rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.</p><h3 id="id-[1.5.X][ES]NFCComponent-Android-7.1.Recepcióndeerrores">7.1. Recepción de errores</h3><p>En la parte del error, dispondremos de la clase NfcError.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">
+    NfcError.ACTIVITY_RESULT_ERROR 
+    NfcError.CANCEL_BY_USER
+    NfcError.INITIALIZATION_ERROR -&gt; it.error // Para más detalles
+    NfcError.NFC_ERROR 
+    NfcError.NFC_ERROR_DATA
+    NfcError.NFC_ERROR_DISABLED 
+    NfcError.NFC_ERROR_ILLEGAL_ARGUMENT 
+    NfcError.NFC_ERROR_IO 
+    NfcError.NFC_ERROR_NOT_SUPPORTED 
+    NfcError.NFC_ERROR_READING
+    NfcError.NFC_ERROR_TAG_LOST
+    NfcError.NO_DATA_ERROR
+    NfcError.TIMEOUT
+    NfcError.LAST_COMMAND_EXPECTED</pre>
+</div></div><h3 id="id-[1.5.X][ES]NFCComponent-Android-7.2.Recepcióndeejecucióncorrecta-data">7.2. Recepción de ejecución correcta - <em>data</em></h3><p>En la parte de <em>data</em>, dispondremos de la clase <em>NfcResult</em>.</p><p>El campo <em>data</em> es variable y dependerá de qué componente se ha devuelto el resultado. En el caso de este componente, los campos devueltos son los siguientes:</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-7.2.1.nfcRawData">7.2.1. nfcRawData</h4><p>Información obtenida por cada tipo de dato en formato crudo.</p><h4 id="id-[1.5.X][ES]NFCComponent-Android-7.2.2.nfcDocumentInformation">7.2.2. nfcDocumentInformation</h4><p>Información obtenida del documento ordenada por:</p><ul><li><p>documentNumber</p></li><li><p>expirationDate</p></li><li><p>issuer</p></li><li><p>mrzString</p></li><li><p>type</p></li></ul><h4 id="id-[1.5.X][ES]NFCComponent-Android-7.2.3.nfcPersonalInformation">7.2.3. nfcPersonalInformation</h4><p>Información obtenida del documento ordenada por:</p><ul><li><p>address</p></li><li><p>birthdate</p></li><li><p>city</p></li><li><p>gender</p></li><li><p>name</p></li><li><p>nationality</p></li><li><p>personalNumber</p></li><li><p>placeOfBirth</p></li><li><p>surname</p></li></ul><h4 id="id-[1.5.X][ES]NFCComponent-Android-7.2.4.nfcImages">7.2.4. nfcImages</h4><p>Información de imágenes obtenida del documento ordenada por:</p><ul><li><p>facialImage</p></li><li><p>fingerprintImage</p></li><li><p>signatureImage</p></li></ul><h4 id="id-[1.5.X][ES]NFCComponent-Android-7.2.5nfcSecurityData">7.2.5 nfcSecurityData</h4><p>Información de datos de seguridad del documento ordenada por:</p><ul><li><p>dataGroupsHashes</p></li><li><p>dataGroupsRead</p></li><li><p>documentSigningCertificateData</p></li><li><p>issuerSigningCertificateData</p></li><li><p>ldsVersion</p></li></ul><h4 id="id-[1.5.X][ES]NFCComponent-Android-7.2.6.nfcValidations">7.2.6. nfcValidations</h4><p>Información de las validaciones del documento ordenada por:</p><ul><li><p>accessType</p></li><li><p>activeAuthenticationSupported</p></li><li><p>activeAuthenticationValidation</p></li><li><p>chipAuthenticationValidation</p></li><li><p>dataGroupsHashesValidation</p></li><li><p>documentSigningValidation</p></li><li><p>issuerSigningValidation</p></li></ul><h4 id="id-[1.5.X][ES]NFCComponent-Android-7.2.7.nfcCertificateData">7.2.7. nfcCertificateData</h4><p>Información del certificado X509 obtenido del documento ordenada por.</p><ul><li><p>X509Certificate</p></li></ul><hr/><h2 id="id-[1.5.X][ES]NFCComponent-Android-8.Personalizacióndelcomponente">8. Personalización del componente</h2><p>Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales se explican en el documento de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a>), este componente en concreto permite la modificación de textos específicos.</p><h3 id="id-[1.5.X][ES]NFCComponent-Android-8.1Textos">8.1 Textos</h3><p>Si se desea modificar los textos de la SDK habría que incluir el siguiente fichero XML en la aplicación del cliente, y modificar el valor de cada <em>String</em> por el deseado.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;string name=&quot;nfc_component_start_message&quot;&gt;Attach the chip to your mobile.\nWhen it detects it, hold it still.&lt;/string&gt;
+&lt;string name=&quot;nfc_component_ready_to_scan&quot;&gt;Ready to scan&lt;/string&gt;
+&lt;string name=&quot;nfc_component_reading_device&quot;&gt;Reading device&lt;/string&gt;
+&lt;string name=&quot;nfc_component_in_progress&quot;&gt;In progress:&lt;/string&gt;
+&lt;string name=&quot;nfc_component_connector_of&quot;&gt;in&lt;/string&gt;
+&lt;string name=&quot;nfc_component_error&quot;&gt;The NFC could not be\nread correctly&lt;/string&gt;
+&lt;string name=&quot;nfc_component_tutorial&quot;&gt;Attach the document to the back of your device.&lt;/string&gt;
+&lt;string name=&quot;nfc_component_tutorial_button&quot;&gt;Continue&lt;/string&gt;
+&lt;string name=&quot;nfc_component_tutorial_title&quot;&gt;Scan NFC&lt;/string&gt;
+&lt;string name=&quot;nfc_component_tutorial_1&quot;&gt;When we pass a card through a sensor, there is an exchange of information called NFC.&lt;/string&gt;
+&lt;string name=&quot;nfc_component_tutorial_2&quot;&gt;On your mobile, the sensor is in the marked area. Here you must gather your document.&lt;/string&gt;
+&lt;string name=&quot;nfc_component_tutorial_3&quot;&gt;For a better reading, remove the cover of your mobile.&lt;/string&gt;
+&lt;string name=&quot;nfc_component_tutorial_more_info_button&quot;&gt;More info&lt;/string&gt;</pre>
+</div></div><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

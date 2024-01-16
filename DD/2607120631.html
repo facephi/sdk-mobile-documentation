@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][ES] Behavior Component - Android</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605285492.html">[1.5.X][ES] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][ES] Behavior Component - Android
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified by <span class='editor'> José Carlos Martínez</span> on nov 27, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.5.X</strong> del componente</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394367135 {padding: 0px;}
+div.rbtoc1705394367135 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394367135 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394367135'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-0.RequisitosbasedeSDKMobile'>0. Requisitos base de SDK Mobile</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-1.Introducción'>1. Introducción</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-3.Iniciarnuevaoperación'>3. Iniciar nueva operación</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-4.Controladoresdisponibles'>4. Controladores disponibles</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.Configuracióndelcomponente'>5. Configuración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.1.ConfiguracióndeBehaviorController'>5.1. Configuración de BehaviorController</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.2.ConfiguraciónderegistroActiveDefense'>5.2. Configuración de registro Active Defense</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.3.Configuraciónderegistrodelaposiciónactual'>5.3. Configuración de registro de la posición actual</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.4.Configuraciónderegistrodecamposparasuanalisis'>5.4. Configuración de registro de campos para su analisis</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.4.1.ConfiguraciónderegistrodeUser'>5.4.1. Configuración de registro de User</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.4.2.ConfiguraciónderegistrodePassword'>5.4.2. Configuración de registro de Password</a></li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-5.4.3.Configuraciónderegistrodecampogenérico'>5.4.3. Configuración de registro de campo genérico</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]BehaviorComponent-Android-6.Usodelcomponente'>6. Uso del componente</a></li>
+</ul>
+</div><h2 id="id-[1.5.X][ES]BehaviorComponent-Android-0.RequisitosbasedeSDKMobile">0. Requisitos base de SDK Mobile</h2><p> </p><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>Para más información sobre la configuración base, vaya a la sección de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page">Android Mobile SDK</a>.</p><p> </p><hr/><h2 id="id-[1.5.X][ES]BehaviorComponent-Android-1.Introducción">1. Introducción</h2><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>Behavior </strong>Component /<strong> </strong>Componente de<strong> comportamiento</strong></em>. Éste se encarga de realizar el trakeo y análisis del comportamiento del usuario a través de los componentes de la <strong>SDKMobile</strong>, enviándola a los servicios de <strong>Feedzai</strong>. </p><p>Al contrario que ocurre con el resto, este componente no funciona individualmente, trabaja de forma transversal al resto de componentes instalados en la <em>SDKMobile</em>. Para trackear la información se mantiene en segundo plano mientras se ejecuta el proceso de la <strong>SDKMobile</strong>.</p><hr/><h2 id="id-[1.5.X][ES]BehaviorComponent-Android-2.Integracióndelcomponente">2. Integración del componente</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a:</p><p><a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a> y seguir las instrucciones indicadas en dicho documento.</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.5.X][ES]BehaviorComponent-Android-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (<em>Widgets</em>), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <em><strong>SDKMobile</strong></em>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:behavior_component:$sdk_behavior_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.5.X][ES]BehaviorComponent-Android-3.Iniciarnuevaoperación">3. Iniciar nueva operación</h2><p>Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando <strong>newOperation</strong>.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este comando debe haberse ejecutado <strong>anteriormente al lanzamiento del componente</strong>.</p><p>Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a>, en el que se detalla y explica en qué consiste este proceso.</p></div></div><hr/><h2 id="id-[1.5.X][ES]BehaviorComponent-Android-4.Controladoresdisponibles">4. Controladores disponibles</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6c0e67b8-9eb3-4535-bb57-832f68c0caad" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controlador</strong></p></th><th class="confluenceTh"><p><strong>Descripción</strong></p></th></tr><tr><td class="confluenceTd"><p>BehaviorController</p></td><td class="confluenceTd"><p>Controlador principal de comportamiento</p></td></tr><tr><td class="confluenceTd"><p>BehaviorAutoLogoutController</p></td><td class="confluenceTd"><p>Controlador para registrar el listener del aviso de cierre de sesión por Active Defense</p></td></tr><tr><td class="confluenceTd"><p>BehaviorPositionController</p></td><td class="confluenceTd"><p>Controlador para registrar la posición a través de una cadena</p></td></tr><tr><td class="confluenceTd"><p>BehaviorUserTextFieldController</p></td><td class="confluenceTd"><p>Controlador para registrar un campo de texto con usuario para poder analizar su comportamiento</p></td></tr><tr><td class="confluenceTd"><p>BehaviorPasswordTextFieldController</p></td><td class="confluenceTd"><p>Controlador para registrar un campo de texto con contraseña para poder analizar su comportamiento</p></td></tr><tr><td class="confluenceTd"><p>BehaviorTextfieldController</p></td><td class="confluenceTd"><p>Controlador para registrar un campo de texto genérico para poder analizar su comportamiento</p></td></tr></tbody></table></div><h2 id="id-[1.5.X][ES]BehaviorComponent-Android-5.Configuracióndelcomponente">5. Configuración del componente</h2><p>Para configurar el componente actual, se realiza en el <em>initSdk</em>, revisar el apartado de inicialización en <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a>.</p><h3 id="id-[1.5.X][ES]BehaviorComponent-Android-5.1.ConfiguracióndeBehaviorController">5.1. Configuración de BehaviorController</h3><p>Se debe incluir este parámetro</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.initSdk(
+    ...
+    behaviorController = BehaviorController(){
+        Napier.d(&quot;APP: BEHAVIOR INIT ERROR: $it&quot;)
+    },
+)</pre>
+</div></div><h3 id="id-[1.5.X][ES]BehaviorComponent-Android-5.2.ConfiguraciónderegistroActiveDefense">5.2. Configuración de registro Active Defense</h3><p>Se podrá configurar el callback para controlar el aviso de Active Defense (Comportamiento con riesgo):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(BehaviorAutoLogoutController {
+    Napier.d(&quot;APP: AUTO LOGOUT LAUNCHED&quot;)
+})</pre>
+</div></div><h3 id="id-[1.5.X][ES]BehaviorComponent-Android-5.3.Configuraciónderegistrodelaposiciónactual">5.3. Configuración de registro de la posición actual</h3><p>Se debe informar desde la aplicación la posición actual de las pantallas. Ejemplo de uso con “LOGIN_SCREEN“:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(BehaviorPositionController(&quot;LOGIN_SCREEN&quot;) {
+    when (it) {
+        is SdkResult.Error -&gt; logs.add(&quot;Register Position: KO - ${it.error.javaClass.simpleName}&quot;)
+        is SdkResult.Success -&gt; logs.add(&quot;Register Position: OK&quot;)
+    }
+})</pre>
+</div></div><h3 id="id-[1.5.X][ES]BehaviorComponent-Android-5.4.Configuraciónderegistrodecamposparasuanalisis">5.4. Configuración de registro de campos para su analisis</h3><p>Dependiendo del tipo de campo se debe registrar de varias formas.</p><p>Para un correcto entrenamiento del comportamiento, se deben registrar los tipos de campos con el <strong>User</strong> y el <strong>Password</strong>. Estos se utilizarán en un entrenamiento en las primeras veces que se rellenen de la misma forma los campos. El otro campo de texto ya se puede utilizar de manera genérica en otro tipo de textos.</p><h4 id="id-[1.5.X][ES]BehaviorComponent-Android-5.4.1.ConfiguraciónderegistrodeUser">5.4.1. Configuración de registro de User</h4><p>Se debe <strong>informar</strong> un <strong>SdkText</strong> que debe contener el campo de la vista <em><strong>EditText</strong></em>.</p><p>Ejemplo de uso:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(BehaviorUserTextFieldController(SdkText(binding.user)) {
+    when (it) {
+        is SdkResult.Success -&gt; {
+            Napier.d(&quot;APP: User registered&quot;)
+        }
+        is SdkResult.Error -&gt; {
+            Napier.d(&quot;APP: User registered: ERROR - ${it.error.javaClass.simpleName}&quot;)
+        }
+    }
+})</pre>
+</div></div><h4 id="id-[1.5.X][ES]BehaviorComponent-Android-5.4.2.ConfiguraciónderegistrodePassword">5.4.2. Configuración de registro de Password</h4><p>Se debe <strong>informar</strong> un <strong>SdkText</strong> que debe contener el campo de la vista <em><strong>EditText</strong></em>.</p><p>Ejemplo de uso:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(BehaviorPasswordTextFieldController(SdkText(binding.password)) {
+    when (it) {
+        is SdkResult.Success -&gt; {
+            Napier.d(&quot;APP: Password registered&quot;)
+        }
+        is SdkResult.Error -&gt; {
+            Napier.d(&quot;APP: Password registered: ERROR - ${it.error.javaClass.simpleName}&quot;)
+        }
+    }
+})</pre>
+</div></div><h4 id="id-[1.5.X][ES]BehaviorComponent-Android-5.4.3.Configuraciónderegistrodecampogenérico">5.4.3. Configuración de registro de campo genérico</h4><p>Se debe <strong>informar</strong> un <strong>SdkText</strong> que debe contener el campo de la vista <em><strong>EditText</strong></em>.</p><p>Ejemplo de uso:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(BehaviorTextFieldController(SdkText(binding.other)) {
+    when (it) {
+        is SdkResult.Success -&gt; {
+            Napier.d(&quot;APP: TextField registered&quot;)
+        }
+        is SdkResult.Error -&gt; {
+            Napier.d(&quot;APP: TextField registered: ERROR - ${it.error.javaClass.simpleName}&quot;)
+        }
+    }
+})</pre>
+</div></div><p /><hr/><h2 id="id-[1.5.X][ES]BehaviorComponent-Android-6.Usodelcomponente">6. Uso del componente</h2><p>Como se ha comentado previamente, una vez inicializado y configurado el componente de <strong>behavior/comportamiento</strong> no será necesario lanzarlo, ya que se mantendrá funcionando en segundo plano mientras se ejecutan el resto de componentes.</p><p /><p>Una vez la aplicación ya tenga un identificador de usuario, deberá llamar al siguiente proceso para registrar el usuario.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    CustomerIdController(&quot;IDENTIFICADOR DEL USUARIO&quot;)
+)</pre>
+</div></div><hr/><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

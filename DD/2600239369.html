@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.4.X] - Tracking Component - Android [ES]</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2643165342.html">[Old Versions] Android SDK Mobile</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2599780353.html">[1.4.X] Android</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.4.X] - Tracking Component - Android [ES]
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> José Carlos Martínez</span> on oct 02, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.4.X</strong> del componente</p></div></div><p /><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394376491 {padding: 0px;}
+div.rbtoc1705394376491 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394376491 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394376491'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-1.Introducción'>1. Introducción</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-1.1Requisitosmínimos'>1.1 Requisitos mínimos</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-3.Configuracióndelcomponente'>3. Configuración del componente</a></li>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-4.Usodelcomponente'>4. Uso del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-4.1Obtenerpermisosdelocalización'>4.1 Obtener permisos de localización</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.4.X]-TrackingComponent-Android[ES]-5.Recepcióndelresultado.'>5. Recepción del resultado.</a></li>
+</ul>
+</div><h2 id="id-[1.4.X]-TrackingComponent-Android[ES]-1.Introducción">1. Introducción</h2><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>Tracking Component</strong></em>. Éste se encarga de realizar el trackeo y monitorización de la información obtenida durante la ejecución del resto de componentes de la <strong>SDKMobile</strong>, enviándola a los servicios de la <strong>Plataforma</strong>. Se podrá realizar el seguimiento en tiempo real de estos datos en la <strong>Plataforma</strong>, mientras se está ejecutando el proceso en el dispositivo del cliente.</p><p>Al contrario que ocurre con el resto, este componente no funciona individualmente, trabaja de forma transversal al resto de componentes instalados en la <em>SDKMobile</em>. Para trackear la información se mantiene en segundo plano mientras se ejecuta el proceso de la <strong>SDKMobile</strong>.</p><h3 id="id-[1.4.X]-TrackingComponent-Android[ES]-1.1Requisitosmínimos">1.1 Requisitos mínimos</h3><p>La versión mínima de la SDK de Android requerida es la siguiente:</p><ul><li><p>SDK mínima (minSdk): <strong>23</strong></p></li><li><p>API Version: <strong>33</strong></p></li><li><p>Kotlin: <strong>1.8.0</strong></p></li></ul><hr/><h2 id="id-[1.4.X]-TrackingComponent-Android[ES]-2.Integracióndelcomponente">2. Integración del componente</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a <strong><u>Core Component</u></strong> y seguir las instrucciones indicadas en dicho documento</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.4.X]-TrackingComponent-Android[ES]-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <strong>SDKMobile</strong>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">timber_version = &#39;5.0.1&#39;
+core_ktx_version = &#39;1.9.0&#39;
+kotlinx_coroutines_version = &#39;1.6.4&#39;
+ktor_version = &#39;1.6.7&#39;
+activity_ktx_version = &#39;1.7.0&#39;
+androidx_lifecycle_version = &#39;2.6.1&#39;
+
+// 3rd Parties dependencies
+
+implementation &quot;androidx.core:core-ktx:$core_ktx_version&quot;
+implementation &quot;androidx.activity:activity-ktx:$activity_ktx_version&quot;
+implementation &quot;androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version&quot;
+implementation &quot;com.jakewharton.timber:timber:$timber_version&quot;
+implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version&quot;
+implementation &quot;io.ktor:ktor-client-core:$ktor_version&quot;
+implementation &quot;io.ktor:ktor-client-android:$ktor_version&quot;
+implementation &quot;io.ktor:ktor-client-serialization:$ktor_version&quot;
+implementation &quot;io.ktor:ktor-client-logging:$ktor_version&quot;
+implementation &quot;io.ktor:ktor-utils:$ktor_version&quot;
+
+// Facephi dependencies
+compileOnly &quot;com.facephi.androidsdk:core:$versions.core&quot;
+</pre>
+</div></div><ul><li><p>Una vez instaladas las dependencias necesarias, se podrá hacer uso de las diferentes funcionalidades del <strong>componente</strong> actual:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:tracking_component:$sdk_tracking_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.4.X]-TrackingComponent-Android[ES]-3.Configuracióndelcomponente">3. Configuración del componente</h2><p>Se podrá configurar el callback para controlar los errores de tracking:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"> SDKController.setupTrackingError { trackingError -&gt;
+    Log.d(&quot; TRACKING ERROR&quot;, &quot;${trackingError.name}&quot;)
+}</pre>
+</div></div><p /><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>En el <strong>apartado 5</strong> se muestran los posibles valores de error que existen.</p></div></div><hr/><h2 id="id-[1.4.X]-TrackingComponent-Android[ES]-4.Usodelcomponente">4. Uso del componente</h2><p>Como se ha comentado previamente, una vez inicializado y configurado el componente de <strong>tracking</strong> no será necesario lanzarlo, ya que se mantendrá funcionando en segundo plano mientras se ejecutan el resto de componentes. Sin embargo, hay una serie de funcionalidades relacionadas con el proceso de tracking que se deberán comentar a continuación.                                                                           </p><h3 id="id-[1.4.X]-TrackingComponent-Android[ES]-4.1Obtenerpermisosdelocalización">4.1 Obtener permisos de localización</h3><p>Si se desea enviar el evento de localización del dispositivo a la plataforma, la aplicación deberá solicitar los permisos de localización. Se ha facilitado la siguiente función para ello:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.askForLocationPermission(activity: ComponentActivity)</pre>
+</div></div><hr/><h2 id="id-[1.4.X]-TrackingComponent-Android[ES]-5.Recepcióndelresultado.">5. Recepción del resultado.</h2><p>El resultado es un objeto <em>SDKResult</em> que devuelve el SDK tendrá siempre 3 campos:</p><p><em>finishStatus:</em> Que nos indicará si la operación ha finalizado correctamente. Posibles valores:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">FinishStatus.STATUS_OK
+FinishStatus.STATUS_ERROR</pre>
+</div></div><p><em>errorType:</em> Si el finishStatus indica que ha habido un error, este campo tendrá la descripción del mismo:</p><p>Los errores de tracking vienen en el enum <em>TrackingError</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">INIT_IDS_ERROR: No se han inicializado correctamente los datos. Revisar UUIDS de sesión.
+APPLICATION_SDK_INITIALIZATION_ERROR: Error al inicializar la SDK.
+EXTERNAL_EVENT: Error al enviar el evento externo.
+OPERATION_RESULT: Error al enviar el resultado de la operación.
+CUSTOMER_ID: Error al enviar el customer_id (suele ser un email)
+STEP_CHANGE: Error al notificar el nuevo proceso que se inicia.
+ASSET_LINK: Error con la subida de assets
+ASSET_UPLOAD: Error con la subida de assets
+OCR_DATA: Error con la subida de datos de OCR (SelphId, NFC)
+INIT_OPERATION: Error al iniciar la operación (puede ser con o sin listado de steps)
+NO_OPERATION_CREATED_ERROR: No se ha creado ninguna operación nueva (newOperation)
+TOKEN_ERROR: Error al recibir el token de autorización de tracking.
+NETWORK_CONNECTION: Error de conexión.</pre>
+</div></div><p /><hr/>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

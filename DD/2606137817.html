@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documentación Desarrollo : [1.5.X][ES] Video Call Component - Android</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Documentación Desarrollo</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Android_2405531672.html">Android</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="2605285492.html">[1.5.X][ES] Android Mobile SDK</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Documentación Desarrollo : [1.5.X][ES] Video Call Component - Android
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Armando Bueno Ben</span>, last modified by <span class='editor'> José Carlos Martínez</span> on nov 27, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este documento hace referencia la <strong>versión 1.5.X</strong> del componente</p></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1705394366863 {padding: 0px;}
+div.rbtoc1705394366863 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1705394366863 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1705394366863'>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-0.RequisitosbasedeSDKMobile'>0. Requisitos base de SDK Mobile</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-1.Introducción'>1. Introducción</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-2.Integracióndelcomponente'>2. Integración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-2.1.Dependenciasrequeridasparalaintegración'>2.1. Dependencias requeridas para la integración</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-3.Iniciarnuevaoperación'>3. Iniciar nueva operación</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-4.Controladoresdisponibles'>4. Controladores disponibles</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-5.Configuracióndelcomponente'>5. Configuración del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-5.1.ClassVideoCallConfigurationData'>5.1. Class VideoCallConfigurationData</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-5.1.1.url'>5.1.1. url</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-5.1.2.apiKey'>5.1.2. apiKey</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-5.1.3.tenantId'>5.1.3. tenantId</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-6.Usodelcomponente'>6. Uso del componente</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-7.Recepcióndelresultado'>7. Recepción del resultado</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-7.1.Recepcióndeerrores'>7.1. Recepción de errores</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-7.2.Recepcióndeejecucióncorrecta-data'>7.2. Recepción de ejecución correcta - data</a></li>
+</ul>
+</li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-8.Personalizacióndelcomponente'>8. Personalización del componente</a>
+<ul class='toc-indentation'>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-8.1.Textos'>8.1. Textos</a></li>
+<li><a href='#id-[1.5.X][ES]VideoCallComponent-Android-8.2.Colores'>8.2. Colores</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-0.RequisitosbasedeSDKMobile">0. Requisitos base de SDK Mobile</h2><p> </p><p><strong>SDK Mobile</strong> es un conjunto de librerías (<strong>Componentes</strong>) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.</p><p>Para más información sobre la configuración base, vaya a la sección de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page">Android Mobile SDK</a>.</p><p> </p><hr/><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-1.Introducción">1. Introducción</h2><p>El <em>Componente</em> tratado en el documento actual recibe el nombre de <em><strong>VideoCall Component</strong></em>. Éste se encarga de gestionar la comunicación entre un usuario y un agente de forma remota, a través de un canal de comunicación. Está orientado principalmente para casos de uso de videoasistencia.</p><hr/><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-2.Integracióndelcomponente">2. Integración del componente</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Antes de integrar este componente<strong> </strong>se recomienda leer la documentación relativa a:</p><p><a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a> y seguir las instrucciones indicadas en dicho documento.</p></div></div><p>En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.</p><h3 id="id-[1.5.X][ES]VideoCallComponent-Android-2.1.Dependenciasrequeridasparalaintegración">2.1. Dependencias requeridas para la integración</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (<em>Widgets</em>), éstos deberán eliminarse por completo antes de la instalación de los componentes de la <em><strong>SDKMobile</strong></em>.</p></div></div><ul><li><p>Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias <strong>obligatorias</strong> que deberán haberse instalado previamente:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">implementation &quot;com.facephi.androidsdk:videocall_component:$sdk_videocall_component_version&quot;</pre>
+</div></div><p> </p></li></ul><hr/><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-3.Iniciarnuevaoperación">3. Iniciar nueva operación</h2><p>Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando <strong>newOperation</strong>.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Este comando debe haberse ejecutado <strong>anteriormente al lanzamiento del componente</strong>.</p><p>Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a>, en el que se detalla y explica en qué consiste este proceso.</p></div></div><hr/><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-4.Controladoresdisponibles">4. Controladores disponibles</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="6c0e67b8-9eb3-4535-bb57-832f68c0caad" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p><strong>Controlador</strong></p></th><th class="confluenceTh"><p><strong>Descripción</strong></p></th></tr><tr><td class="confluenceTd"><p>VideoCallController</p></td><td class="confluenceTd"><p>Controlador principal de videollamada</p></td></tr></tbody></table></div><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-5.Configuracióndelcomponente">5. Configuración del componente</h2><p>Para configurar el componente actual, una vez inicializado, se deberá crear un objeto</p><p><em>VideoCallConfigurationData</em> y pasarlo como parámetro al SDKController durante el lanzamiento del componente.</p><p>En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.</p><h3 id="id-[1.5.X][ES]VideoCallComponent-Android-5.1.ClassVideoCallConfigurationData">5.1. Class VideoCallConfigurationData</h3><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Los campos incluidos en la configuración, normalmente <strong>no es necesario que sean informados</strong> ya que se completan internamente a través de la licencia usada.</p><p>Estos campos suelen informarse <strong>solo</strong> cuando el <strong>servidor</strong> es <strong>OnPremise</strong>.</p></div></div><h4 id="id-[1.5.X][ES]VideoCallComponent-Android-5.1.1.url">5.1.1. url</h4><p>Ruta al socket de video</p><h4 id="id-[1.5.X][ES]VideoCallComponent-Android-5.1.2.apiKey">5.1.2. apiKey</h4><p>ApiKey necesaria para la conexión con el socket de video</p><h4 id="id-[1.5.X][ES]VideoCallComponent-Android-5.1.3.tenantId">5.1.3. tenantId</h4><p>Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.</p><hr/><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-6.Usodelcomponente">6. Uso del componente</h2><p>Una vez iniciado el componente y creada una nueva operación (<strong>apartado 3</strong>) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:</p><ul><li><p><strong>[CON TRACKING]</strong> Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de <em>tracking</em>:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launch(
+    VideoCallController(VideoCallConfigurationData()) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;VideoCall: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; Napier.d(&quot;VideoCall OK: ${it.data}&quot;)
+        }
+    }
+)</pre>
+</div></div><ul><li><p><strong>[SIN TRACKING] </strong>Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero <strong>no se trackeará</strong> ningún evento al servidor de <em>tracking</em>:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">SDKController.launchMethod(
+    VideoCallController(VideoCallConfigurationData()) {
+        when (it) {
+            is SdkResult.Error -&gt; Napier.d(&quot;VideoCall: KO - ${it.error.name}&quot;)
+            is SdkResult.Success -&gt; Napier.d(&quot;VideoCall OK: ${it.data}&quot;)
+        }
+    }
+)</pre>
+</div></div><p> </p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>El método <strong>launch</strong> debe usarse <strong>por defecto</strong>. Este método permite utilizar <em><strong>tracking</strong></em> en caso de estar su componente activado, y no lo usará cuando esté desactivado (o no se encuentre el componente instalado).</p><p>Por el contrario, el método <strong>launchMethod</strong> cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.</p></div></div><hr/><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-7.Recepcióndelresultado">7. Recepción del resultado</h2><p>Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de <a href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado" rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.</p><h3 id="id-[1.5.X][ES]VideoCallComponent-Android-7.1.Recepcióndeerrores">7.1. Recepción de errores</h3><p>En la parte del error, dispondremos de la clase <em>VideoCallError</em>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">val message = when(it.error){
+    is VideoCallError.ACTIVITY_RESULT_ERROR -&gt; it.error.name
+    is VideoCallError.CANCEL_BY_USER -&gt; it.error.name
+    is VideoCallError.INITIALIZATION_ERROR -&gt; it.error.name
+    is VideoCallError.NETWORK_CONNECTION -&gt; it.error.name
+    is VideoCallError.NO_DATA_ERROR -&gt; it.error.name
+    is VideoCallError.TIMEOUT -&gt; it.error.name
+    is VideoCallError.VIDEO_ERROR -&gt; it.error.name
+}</pre>
+</div></div><h3 id="id-[1.5.X][ES]VideoCallComponent-Android-7.2.Recepcióndeejecucióncorrecta-data">7.2. Recepción de ejecución correcta - <em>data</em></h3><p>En la ejecución correcta, simplemente se informa de que todo ha ido bien con el SdkResult.Success.</p><hr/><h2 id="id-[1.5.X][ES]VideoCallComponent-Android-8.Personalizacióndelcomponente">8. Personalización del componente</h2><p>Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales se explican en el documento de <a href="2605285492.html" data-linked-resource-id="2605285492" data-linked-resource-version="11" data-linked-resource-type="page"><strong><u>Android Mobile SDK</u></strong></a>), este componente en concreto permite la modificación de textos específicos.</p><h3 id="id-[1.5.X][ES]VideoCallComponent-Android-8.1.Textos">8.1. Textos</h3><p>Si se desea modificar los textos de la SDK habría que incluir el siguiente fichero XML en la aplicación del cliente, y modificar el valor de cada <em>String</em> por el deseado.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;string name=&quot;video_call_text_waiting_agent_title&quot;&gt;Connecting with an assistant…&lt;/string&gt;
+&lt;string name=&quot;video_call_agent&quot;&gt;Agent&lt;/string&gt;
+&lt;string name=&quot;video_call_exit&quot;&gt;Exit&lt;/string&gt;
+&lt;string name=&quot;video_call_text_finish&quot;&gt;Video assistance is complete&lt;/string&gt;
+&lt;string name=&quot;video_call_accesibility_phone&quot;&gt;Phone&lt;/string&gt;
+&lt;string name=&quot;video_call_restart&quot;&gt;Repeat recording&lt;/string&gt;</pre>
+</div></div><h3 id="id-[1.5.X][ES]VideoCallComponent-Android-8.2.Colores">8.2. Colores</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;color name=&quot;colorVideoCallActionsBackground&quot;&gt;#30333d&lt;/color&gt;
+&lt;color name=&quot;colorVideoCallButtonBackground&quot;&gt;#FF526080&lt;/color&gt;</pre>
+</div></div><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on ene 16, 2024 08:39</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
