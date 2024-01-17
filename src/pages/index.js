@@ -21,7 +21,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/android/1.5.X_Android_Mobile_SDK"
           >
-            Android - SDK Mobile
+            Primeros Pasos
           </Link>
         </div>
       </div>
