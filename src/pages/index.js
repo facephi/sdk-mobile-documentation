@@ -19,7 +19,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/android/1.5.X_Android_Mobile_SDK"
+            to="/docs/android/Android_Mobile_SDK"
           >
             Primeros Pasos
           </Link>

@@ -1,0 +1,21 @@
+{
+  "tutorialSidebar": [
+    "intro",
+    {
+      "type": "category",
+      "label": "Android",
+      "items": [
+        "android/Android_Mobile_SDK",
+        "android/NFC_Component",
+        "android/Phingers_Component",
+        "android/Selphi_Component",
+        "android/SelphID_Component",
+        "android/Tracking_Component",
+        "android/Video_Call_Component",
+        "android/Video_Id_Component",
+        "android/Video_Recording_Component",
+        "android/Voice_Component"
+      ]
+    }
+  ]
+}

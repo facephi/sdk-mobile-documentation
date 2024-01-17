@@ -80,6 +80,13 @@ const config = {
           },
           //{ to: "/blog", label: "Blog", position: "left" },
           {
+            type: "docsVersionDropdown",
+            label: "SNAPSHOT 🚧",
+            position: "right",
+            //dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
+            dropdownActiveClassDisabled: true,
+          },
+          {
             type: "localeDropdown",
             position: "right",
           },
