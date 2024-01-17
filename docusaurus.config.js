@@ -12,6 +12,7 @@ const config = {
   tagline: "Facephi",
   favicon: "img/favicon.ico",
 
+  staticDirectories: ["static"],
   // Set the production url of your site here
   url: "https://facephi.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
