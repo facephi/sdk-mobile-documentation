@@ -69,7 +69,7 @@ const config = {
         title: "SDK Mobile Documentation",
         logo: {
           alt: "SDK Mobile Logo",
-          src: "img/logo.svg",
+          src: "img/icon.png",
         },
         items: [
           {
