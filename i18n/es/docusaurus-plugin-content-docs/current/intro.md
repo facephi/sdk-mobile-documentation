@@ -4,8 +4,8 @@ sidebar_position: 1
 
 # SDK Mobile
 
-Let's discover **SDK Mobile in less than 5 minutes**.
+Vamos a descubrir **SDK Mobile en menos de 5 minutos**.
 
-## Getting Started
+## Primeros pasos
 
-Get started by **reading all docs**.
+Primeros pasos **leer todos los documentos**.
