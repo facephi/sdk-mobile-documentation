@@ -285,5 +285,14 @@
   "theme.unlistedContent.message": {
     "message": "Esta página está sin clasificar. Los motores de búsqueda no la indexaran, y solo los usuarios con el enlace directo podrán acceder a esta.",
     "description": "The unlisted content banner message"
+  },
+  "Facephi SDK was designed from the ground up to be easily installed and used to get your application up and running quickly.": {
+    "message": "El SDK de Facephi se diseñó desde cero para que se pudiera instalar y utilizar fácilmente y poner en marcha su aplicación con rapidez."
+  },
+  "The SDK can be installed on both native and hybrid applications.": {
+    "message": "El SDK puede instalarse tanto en aplicaciones nativas como híbridas."
+  },
+  "The SDK is made up of different components that the client can combine as they wish to achieve the functionality they are looking for.": {
+    "message": "El SDK está formado por diferentes componentes que el cliente puede combinar como desee para conseguir la funcionalidad que busca."
   }
 }

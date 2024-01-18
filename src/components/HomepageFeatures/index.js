@@ -1,36 +1,36 @@
 import clsx from "clsx";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
+import Translate, { translate } from "@docusaurus/Translate";
 
 const FeatureList = [
   {
     title: "Easy to Use",
     img: require("@site/static/img/imagen_1.png").default,
     description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
+      <Translate>
+        Facephi SDK was designed from the ground up to be easily installed and
+        used to get your application up and running quickly.
+      </Translate>
     ),
   },
   {
-    title: "Focus on What Matters",
+    title: "Multiple Platforms",
     img: require("@site/static/img/imagen_2.png").default,
     description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
+      <Translate>
+        The SDK can be installed on both native and hybrid applications.
+      </Translate>
     ),
   },
   {
-    title: "Powered by React",
+    title: "Tailored functionality.",
     img: require("@site/static/img/imagen_3.png").default,
     description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
+      <Translate>
+        The SDK is made up of different components that the client can combine
+        as they wish to achieve the functionality they are looking for.
+      </Translate>
     ),
   },
 ];

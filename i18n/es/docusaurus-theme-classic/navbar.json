@@ -34,5 +34,9 @@
   "item.label.SNAPSHOT 🚧": {
     "message": "SNAPSHOT 🚧",
     "description": "Navbar item with label SNAPSHOT 🚧"
+  },
+  "item.label.React Native": {
+    "message": "React Native",
+    "description": "Navbar item with label React Native"
   }
 }
