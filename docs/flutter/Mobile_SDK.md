@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Getting Started - Flutter
+# Getting Started
 
 This document refers to **1.5.X version** of the Android Mobile SDK.
 

@@ -1,8 +1,8 @@
 ---
-sidebar_position: 15
+sidebar_position: 1
 ---
 
-# Getting Started - Cordova
+# Getting Started
 
 This document refers to **1.5.X version** of the Android Mobile SDK.
 

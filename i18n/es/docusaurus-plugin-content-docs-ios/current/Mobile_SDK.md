@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Getting Started - iOS - Español
+# Primeros pasos
 
 This document refers to **1.5.X version** of the Android Mobile SDK.
 
