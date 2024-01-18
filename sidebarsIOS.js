@@ -22,7 +22,7 @@ const sidebars = {
     {
       type: "category",
       label: "iOS",
-      items: ["Mobile_SDK"],
+      items: ["Mobile_SDK", "Phingers_Component"],
     },
   ],
 };

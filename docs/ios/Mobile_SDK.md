@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Getting Started
 
-This document refers to **1.5.X version** of the Android Mobile SDK.
+This document refers to **1.4.X version** of the iOS Mobile SDK.
 
 ## 1. Introduction
 
@@ -15,19 +15,11 @@ components must be installed depending on the use case required. Its
 high level of modularity allows other new components to be added in the
 future without affecting those already integrated into the project.
 
-## 1.1. Minimum requirements
+### 1.1 Minimum requirements
 
-The minimum version of the Android SDK required is as follows:
+The minimum version of the iOS SDK required is as follows:
 
-- Minimum SDK (minSdk): 23
-
-- API Version: 34
-
-- Kotlin: 1.9.10
-
-- Gradle Android plugin: 8.1.1
-
-- Kotlin compiler version: 1.5.3
+- iOS: **13**
 
 ---
 
@@ -38,131 +30,226 @@ components into an existing project.
 
 ### 2.1. Add private gradle repository
 
-For security and maintenance reasons, the new **_SDKMobile_** components
-are stored in private repositories that require specific credentials to
-access them. <u>These credentials</u> must be obtained through the
-**Facephi** support team.
+To access our remote repository, you must install **Cocoapods** on the
+computer.
 
-Once the credentials are obtained, the following code snippet to
-configure the maven repository must be included in your project's
-Gradle, or in the **settings.gradle** file of your project. It is
-recommended to include it after _mavenCentral()_
+For security and maintenance reasons, the new **_SDKMobile_** components
+are stored in private repositories requiring specific credentials.
+<u>These credentials</u> must be obtained through the **Facephi**
+support team. The steps to prepare the environment are the following:
+
+- First of all, we launch the command to install cocoapods
+  with **Artifactory**.
 
 ```java
-maven {
-    Properties props = new Properties()
-    def propsFile = new File('local.properties')
-    if(propsFile.exists()){
-        props.load(new FileInputStream(propsFile))
-    }
-    name="external"
-    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
-    credentials {
-        username = props["artifactory.user"] ?: System.getenv("USERNAME_ARTIFACTORY")
-        password = props["artifactory.token"] ?: System.getenv("TOKEN_ARTIFACTORY")
-    }
-}
+sudo gem install cocoapods-art
 ```
 
-The credentials (User and Token) must be correctly configured for the
-project to retrieve the dependencies correctly.
+- In the case of using a Mac with **an M1 chip**, it exists the
+  possibility of appearing errors during the installation, so it is
+  recommended to use the following command instead:
 
-There are several ways to configure the repository access credentials:
+```java
+sudo arch -arm64 gem install ffi; sudo arch -arm64 gem install cocoapods-art
+```
 
-- As environment variables with the following name. For example:
+If the issues still appear, try to uninstall Cocoapods and all the
+dependencies entirely and start a new clean installation.
 
-  ```java
-  export USERNAME_ARTIFACTORY=YOUR_CREDENTIALS_USERNAME
-  export TOKEN_ARTIFACTORY=YOUR_CREDENTIALS_TOKEN
-  ```
+- It is necessary to add the repository credentials in the file
+  called **netrc**. For this task, from a _Terminal_, you have to
+  execute:
 
-  **If the dependencies are not recognized when synchronising**, they
-  must be included via environment variables in the file:
+```java
+$ nano ~/.netrc
+```
 
-`~/.zshrc`
+And the following code snippet must be copied in that file:
 
-- Included in the _local.properties_ file with the following
-  structure:
+```java
+machine facephicorp.jfrog.io
+  login <USERNAME>
+  password <TOKEN>
+```
 
-  ```java
-  artifactory.user=YOUR_CREDENTIALS_USERNAME
-  artifactory.token=YOUR_CREDENTIALS_TOKEN
-  ```
+It is essential to copy the previous fragment **exactly**. There is an
+indentation before the **_login_** and **_password_** words formed
+by <u>two spaces</u>.
+
+- Finally, it must be added the repository that contains the private
+  dependencies:
+
+```java
+pod repo-art add cocoa-pro-fphi "https://facephicorp.jfrog.io/artifactory/api/pods/cocoa-pro-fphi"
+```
 
 ### 2.2. **Dependencies required for basic integration**
 
 To avoid conflicts and compatibility problems, if you want to install
 the component in a project containing an old Facephi libraries
-(**Widgets**) version, these must be removed entirely before installing
-the **SDKMobile** components.
+(_Widgets_) version, these must be removed entirely before installing
+the **_SDKMobile_** components.
 
-Currently, FacePhi libraries are distributed remotely through different
-dependency managers. The **mandatory dependencies** that must be
-installed:
+- Currently, FacePhi libraries are distributed remotely through
+  different dependency managers, in this case, **_Cocoapods_**.
+  **Mandatory** dependencies that must be installed beforehand (adding
+  them to the _Podfile_):
 
 ```java
-implementation "com.facephi.androidsdk:sdk:$sdk_version"
-implementation "com.facephi.androidsdk:core:$core_version"
+plugin 'cocoapods-art', :sources => [
+  'cocoa-pro-fphi’
+]
+
+source 'https://cdn.cocoapods.org/'
+
+target 'Example' do
+  pod 'JWTDecode'
+  pod 'SwiftFormat/CLI'
+  pod 'IQKeyboardManagerSwift'
+  pod 'FPHISDKMainComponent'
+  pod 'FPHISDKCoreComponent'
+
+   post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+      config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+      config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+    end
+  end
+end
+...
+end
 ```
+
+- To update the current dependencies, before executing the **_pod
+  install_** command, it is necessary to use the following command
+  that allows to update the local repository:
+
+  ```java
+  pod repo-art update cocoa-pro-fphi
+  ```
+
+### 2.3. Possible issues
+
+If the integrator uses a Macbook with **M1 Chip**, the cocoapods-art
+installation may fail. Due to that, it is necessary to take into account
+the following:
+
+- If _Cocoapods_ was installed using _Homebrew_ it is possible to have
+  several issues.
+
+- It is recommended to install cocoapods and cocoapods-art through
+  _Gem_.
+
+The following code snippet allows the developer to do the required steps
+to prepare the environment and solve the issues commented previously:
+
+```java
+ #! /bin/zsh
+
+install_cocoapods () {
+    echo "Installing cocoapods with gem"
+    # Creating new gems home if it doesnt't exist
+    if [ ! -d "$HOME/.gem" ]; then
+        mkdir "$HOME/.gem"
+    fi
+    # Adding to current session
+    export GEM_HOME="$HOME/.gem"
+    export PATH="$GEM_HOME/bin:$PATH"
+
+    # Adding for future sessions
+    if test -f "$HOME/.zshrc"; then
+        echo 'Adding $GEM_HOME env var and then adding it to your $PATH'
+        echo '' >> "$HOME/.zshrc"
+        echo 'export GEM_HOME="$HOME/.gem"' >> "$HOME/.zshrc"
+        echo 'export PATH="$GEM_HOME/bin:$PATH"' >> "$HOME/.zshrc"
+        echo 'alias pod='arch -x86_64 pod'' >> "$HOME/.zshrc"
+    fi
+
+    # Installing cocoapods
+    gem install cocoapods
+    sudo arch -x86_64 gem install ffi
+    which pod
+    pod --version
+    gem install cocoapods-art
+}
+
+uninstall_cocoapods_homebrew () {
+    which -s brew
+    if [[ $? != 0 ]] ; then
+        echo "Homebrew not installed, skipping uninstalling cocoapods from
+homebrew"
+    else
+        brew uninstall cocoapods
+    fi
+}
+
+if ! type "pod" > /dev/null; then
+    echo "You don't have cocoapods installed..."
+else
+    echo "Trying to uninstall it from homebrew first"
+    uninstall_cocoapods_homebrew
+fi
+
+install_cocoapods
+```
+
+In the case of using **_xCode15_**, it is recommended to use the
+following configuration:
+
+<!-- <img src="attachments/thumbnails/2643296411/2643591524" -->
+
+The **-ld_classic** flag must be added in _Other Linker Flags_ in the
+_Build Settings_ section of the application.
 
 ---
 
 ## 3. SDK initialization
 
-**It must be strictly avoided to initialize a controller that is not
-going to be used**
+**It must be strictly avoided to initialize a controller that will not
+be used**.
 
 Each component has a **_Controller_** that will allow access to its
 functionality. Before they can be used, they must be properly
-initialized. The steps to follow in the initialization are as follows:
+initialized. The steps to follow in the initialisation are as follows:
 
-1.  Include the Application object
+1.  Initiate the controllers that will be used.
 
-2.  Decide whether the licence will be included via a _String_ or a
-    _remote licensing service_ (**see section 3.1**).
+2.  Decide if the license will be included by string or using a
+    licensing service (more details in **section** **3.1**), and start
+    the SDK.
 
-3.  Include _TrackingController_ in case you want to connect to the
-    platform.
-
-**Point 3** is optional and would require using the **Tracking**
-component (more information about this module in its documentation).
-
-Example without _TrackingController:_
+3.  If the initialization returns a .STATUS_OK, then the SDK Controller
+    will be ready to start with the process.
 
 ```java
-SDKController.initSdk(
-    sdkApplication = SdkApplication(application),
-    license = "LICENSE"
-    ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                    "APP: INIT SDK: KO - ${it.error}"
-                  )
-          }
- })
+ let trackingController = TrackingController(trackingError: { trackingError in
+      self.log("TRACKING ERROR: \(trackingError)")
+  })
+
+// MANUAL License
+SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia manual seteada correctamente")
+    } else {
+        self.log("La licencia manual no es correcta")
+    }
+}, trackingController: trackingController)
+
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+    }
+}, trackingController: trackingController)
+
 
 ```
 
-Example with _TrackingController:_
-
-```java
-SDKController.initSdk(
-    sdkApplication = SdkApplication(application),
-    license = "LICENSE",
-    trackingController = TrackingController()
-    ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                    "APP: INIT SDK: KO - ${it.error}"
-                  )
-          }
- })
-
-```
-
-### 3.1. Licence injection
+###  3.1 Licence injection
 
 As discussed above, there are currently two ways to inject the licence:
 
@@ -173,79 +260,30 @@ This would avoid problems when manipulating the licence, as well as the
 constant replacement of these licences when a problem arises
 (malformation or improper modification, expiry of the licence...).
 
-Kotlin:
-
 ```java
-SDKController.initSdk(
-      sdkApplication = SdkApplication(application),
-      environmentLicensingData = EnvironmentLicensingData(
-            url = "https://...",
-            apiKey = "...")
-      ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                  "APP: INIT SDK: KO - ${it.error}"
-                  )
-        }
- })
-```
-
-Java:
-
-```java
-SDKController.INSTANCE.initSdk(
-        new SdkApplication(activity.getApplication()),
-        new EnvironmentLicensingData(
-          url = "https://...",
-          apiKey = "..."),
-        sdkResult ->
-        {
-          if (sdkResult instanceof SdkResult.Success) {
-            Napier.d("APP: INIT SDK: OK")
-          } else if (sdkResult instanceof SdkResult.Error) {
-            Napier.d("APP: INIT SDK: KO - ${it.error}")
-          }
-        }
-      );
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+    }
+}, trackingController: trackingController)
 ```
 
 #### b. Injecting the licence as a String
 
 You can assign the licence directly as a String, as follows:
 
-Kotlin:
-
 ```java
-SDKController.initSdk(
-      sdkApplication = SdkApplication(application),
-      license = "LICENSE"
-      ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                    "APP: INIT SDK: KO - ${it.error}"
-                  )
-          }
- })
-```
-
-Java:
-
-```java
-SDKController.INSTANCE.initSdk(
-        new SdkApplication(activity.getApplication()),
-        "LICENSE",
-        sdkResult ->
-        {
-          if (sdkResult instanceof SdkResult.Success) {
-            Napier.d("APP: INIT SDK: OK")
-          } else if (sdkResult instanceof SdkResult.Error) {
-            Napier.d("APP: INIT SDK: KO - ${it.error}")
-          }
-        }
-      );
-
+// MANUAL License
+SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia manual seteada correctamente")
+    } else {
+        self.log("La licencia manual no es correcta")
+    }
+}, trackingController: trackingController)
 ```
 
 ---
@@ -254,7 +292,7 @@ SDKController.INSTANCE.initSdk(
 
 Every time you want to start the flow of a new operation (examples of
 operations would be _onboarding, authentication, videoCall_, etc.), it
-is essential to tell the **SDKController** that it is going to start, so
+is essential to tell the **SDKController** that it is going to start so
 the SDK will know that the following **Component** calls (also called
 **Steps**) will be part of that operation. This is necessary _to track_
 the global information of this operation on the platform in a
@@ -263,7 +301,7 @@ satisfactory way.
 When starting a process or flow, **always** call the **newOperation**
 method
 
-This method has 3 input parameters:
+This method has three input parameters:
 
 1.  **operationType**: Indicates whether an ONBOARDING or AUTHENTICATION
     2 process is to be performed.
@@ -290,81 +328,18 @@ is the one who decides the order of execution of the components).
 - **Known** flow (the tracked operation will appear on the platform
   with all the steps in the list). Example of implementation:
 
-Kotlin:
-
 ```java
-SDKController.newOperation(
-        operationType = OperationType.ONBOARDING,
-        customerId = "customer_id",
-        steps = listOf(Step.SELPHI_COMPONENT, Step.SELPHID_COMPONENT)
-        ){
-        when (it) {
-                    is SdkResult.Success -> {
-                        Napier.d("APP: NEW OPERATION OK")
-                    }
-                    is SdkResult.Error -> {
-                        Napier.d("APP: NEW OPERATION ERROR: ${it.error}")
-                    }
-                }
-        }
-```
-
-Java:
-
-```java
-SDKController.INSTANCE.newOperation(
-        OperationType.ONBOARDING,
-        "customer_id",
-        [Step.SELPHI_COMPONENT, Step.SELPHID_COMPONENT]
-        ){
-          if (sdkResult instanceof SdkResult.Success) {
-            Napier.d("APP: NEW OPERATION: OK")
-          } else if (sdkResult instanceof SdkResult.Error) {
-            Napier.d("APP: NEW OPERATION: KO - ${it.error}")
-          }
-        }
-  );
+SDKController.shared.newOperation(operationType: OperationType.X, customerId: "customerId", steps: [.SELPHI, .SELPHID, .OTHER("CUSTOM_STEP")], output: { _ in })
 ```
 
 - **Unknown** flow (the tracked operation will appear on the platform
   with ellipses). Example of implementation:
 
-Kotlin:
-
 ```java
-SDKController.newOperation(
-        operationType = OperationType.ONBOARDING,
-        customerId = "customer_id",
-        ){
-        when (it) {
-                    is SdkResult.Success -> {
-                        Napier.d("APP: NEW OPERATION OK")
-                    }
-                    is SdkResult.Error -> {
-                        Napier.d("APP: NEW OPERATION ERROR: ${it.error}")
-                    }
-                }
-        }
+SDKController.shared.newOperation(operationType: OperationType.X, customerId: "customerId", output: { _ in})
 ```
 
-Java:
-
-```java
- SDKController.INSTANCE.newOperation(
-        OperationType.ONBOARDING,
-        "customer_id"
-        ){
-          if (sdkResult instanceof SdkResult.Success) {
-            Napier.d("APP: NEW OPERATION: OK")
-          } else if (sdkResult instanceof SdkResult.Error) {
-            Napier.d("APP: NEW OPERATION: KO - ${it.error}")
-          }
-        }
-  );
-```
-
-`sdkResult` → Contains in data the information of the operation
-created.
+`sdkResult` → Contains in data the information of the operation created.
 
 **Once the operation has been created**, the SDK components associated
 with this operation can be executed. <u>Consult</u> the specific
@@ -378,50 +353,45 @@ Currently, the following operations exist, during which certain
 Below is a table showing the relationship between operations and steps:
 
 <table data-table-width="760">
+<colgroup>
+</colgroup>
 <tbody>
 <tr class="header">
-<th ><p><strong>Operación
+<th><p><strong>Operation
 (</strong><em><strong>OperationType</strong></em><strong>)</strong></p></th>
-<th ><p><strong>Component
+<th><p><strong>Component
 (</strong><em><strong>Step</strong></em><strong>)</strong></p></th>
-<th ><p><strong>Description</strong></p></th>
+<th><p><strong>Description</strong></p></th>
 </tr>
 <tr class="odd">
 <td><p>ONBOARDING</p></td>
 <td><ul>
-<li>
-<p>SELPHI_COMPONENT</p>
-</li>
-<li>
-<p>SELPHID_COMPONENT</p>
-</li>
+<li><p>SELPHID</p></li>
+<li><p>SELPHI</p></li>
 </ul></td>
 <td><ul>
-<li>
-<p>Facial validation of a selfie against a document's face</p>
-</li>
-<li>
-<p>Document OCR extraction</p>
-</li>
-<li>
-<p>Liveness detection</p>
-</li>
+<li><p>Validación facial de un selfie contra la cara de un
+docuento</p></li>
+<li><p>Extracción del OCR del documento</p></li>
+<li><p>Detección de vivacidad</p></li>
 </ul></td>
 </tr>
 <tr class="even">
 <td><p>AUTHENTICATION</p></td>
 <td><ul>
-<li>
-<p>SELPHI_COMPONENT</p>
-</li>
+<li><p>SELPHI</p></li>
+<li><p>PHINGERS</p></li>
+<li><p>VOICE</p></li>
 </ul></td>
 <td><ul>
 <li>
-<p>Face validation using templates</p>
-</li>
-<li>
-<p>Liveness detection</p>
-</li>
+<p>Validación mediante plantillas</p>
+<ul>
+<li><p>Selphi: Caras</p></li>
+<li><p>Phingers: Huellas</p></li>
+<li><p>Voice: Voz</p></li>
+</ul></li>
+<li><p>Detección de vivacidad</p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -438,56 +408,27 @@ Once the **new operation** has been created **(section 4)**, the
 different SDK drivers can be launched. To consult this information,
 access the **documentation for each component**.
 
-Launch example:
-
-```java
-SDKController.launch(
-    SelphIDController(SdkData.selphIDConfiguration) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("SelphID: KO - ${it.error.name}")
-            is SdkResult.Success -> {
-                Napier.d("SelphID: OK")
-            }
-        }
-    }
-)
-```
-
 ---
 
 ## 6. Result return
 
-The result of each component will be returned through the SDK, keeping
-always the same structure through the **_SdkResult_** class, whose class
-is a Sealed Class that can have two possible states:
+El resultado de cada componente será devuelto a través de la SDK
+manteniendo siempre la misma estructura de 3 campos:
 
-- **SdkResult.Success**: Indicates that the operation has finished
-  successfully and inside it has:
+1.  **finishStatus**: Que nos indicará si la operación ha finalizado
+    correctamente. Posibles valores `FinishStatus.STATUS_OK`,
+    `FinishStatus.STATUS_ERROR`
 
-  - **_data:_** Contains the type of data that is necessary
-    according to the process/component launched.
+2.  **errorType**: Si _finishStatus_ indica que ha habido un error, este
+    campo tendrá la descripción del mismo.
 
-- **SdkResult.Error**
-
-  - **_error:_** Contains the type of data that is necessary
-    according to the process/component launched.
+3.  **data**: Tendrá los datos de respuesta de la función del SDK. Este
+    campo será diferente dependiendo del componente que se haya
+    ejecutado. En la documentación de cada componente específico se
+    desglosarán los diferentes campos que puede devolver este objeto.
 
 The documentation for each specific component will provide a breakdown
-of the different fields this object can return.
-
-Example of use:
-
-```java
-when (it) {
-    is SdkResult.Success -> {
-        Napier.d("Selphi: OK")
-        // SelphiResult:
-        // it.data.bestImageBmp
-    }
-
-    is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
-}
-```
+of the different fields that this object can return.
 
 ---
 
@@ -498,7 +439,7 @@ to notify the platform of its completion. To do this, the following line
 of code is executed:
 
 ```java
-SDKController.closeSession()
+SDKController.shared.closeSession()
 ```
 
 If a logout is performed, it will not be possible to launch controllers
@@ -506,339 +447,101 @@ until a new operation is started again.
 
 ---
 
-## 8. Auxiliary controllers
+## 8. Debugging and error-handling options
 
-This section includes other controllers and auxiliary operations, some
-of them optional, which may be necessary for the correct completion of
-the flow.
-
-These fields are necessary for communication with the **Facephi**
-service, in the event of any **verification** and _tracking_ of a
-specific operation.
-
-### 8.1 Getting the OperationId
+If a component is called, it will return a SdkResult as output. The
+following code fragment is an example of this:
 
 ```java
-SDKController.launchMethod(
-    GetOperationIdController {
-        Napier.d("Operation ID ${it})
-    }
-)
+        let controller = ComponentController(data: ComponentConfigurationData, output: { sdkResult in
+           print(sdkResult.errorType)
+        }, viewController: viewController)
+        SDKController.shared.launch(controller: controller)
 ```
 
-### 8.2 Getting the OperationType
+The .errorType attribute contains the error typology. They are defined
+in the documentation of each component.
+
+The possible error types are the following:
 
 ```java
-SDKController.launchMethod(
-    GetOperationTypeController {
-        Napier.d("Operation type ${it})
-    }
-)
+public enum ErrorType: String, Error {
+    case CANCEL_BY_USER
+    case TIMEOUT
+    case COMPONENT_CONTROLLER_ERROR
+    case COMPONENT_CONTROLLER_DATA_ERROR
+    case NETWORK_CONNECTION
+    case UNKNOWN_ERROR
+    case NFC_ERROR
+    case NFC_INVALID_MRZ_KEY // ANDROID doesn't have this, it's important
+    case CAPTURE_ERROR
+    case NO_ERROR
+    case CAMERA_PERMISSION_DENIED
+    case PERMISSION_DENIED
+    case SETTINGS_PERMISSION_ERROR
+    case HARDWARE_ERROR
+    case EXTRACTION_LICENSE_ERROR
+    case UNEXPECTED_CAPTURE_ERROR
+    case CONTROL_NOT_INITIALIZATED_ERROR // Not being used, could represent an error thrown when the app didn't init a component's Controller
+    case BAD_EXTRACTOR_CONFIGURATION_ERROR
+    case TOKEN_ERROR
+    case PHINGERS_ERROR_CAPTURE // ANDROID has more specific Phingers Errors
+    case LICENSING_ERROR_PACKAGE_NAME
+    case LICENSING_ERROR_APPID_INVALID
+    case LICENSING_ERROR_APIKEY_FORBIDDEN
+    case LICENSING_ERROR_LICENSE_NOT_FOUND
+    case VIDEO_SOCKET_TIMEOUT
+    case VIDEO_ERROR
+    case LICENSE_CHECKER_ERROR_INVALID_LICENSE
+    case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
+    case NO_OPERATION_CREATED_ERROR
+}
 ```
 
-### 8.3 Getting the SessionId
-
-```java
-SDKController.launchMethod(
-    GetSessionIdController {
-        Napier.d("Session ID ${it})
-    }
-)
-```
-
-### 8.4 Getting the CustomerID
-
-```java
-SDKController.launchMethod(
-    GetCustomerIdController {
-        Napier.d("Customer ID ${it})
-    }
-)
-```
-
-### 8.5 Getting the CustomerID
-
-```java
-SDKController.launchMethod(
-    CustomerIdController("CustomerId")
-)
-```
+If there is no error and the result returns successfully, the error
+type will be **NO_ERROR**.
 
 ---
 
-## 9. Debugging and error-handling options
+## 9. SDK customization
 
-Certain options in the SDK allow an increase in the debug logs in order
-to check that everything is working correctly.
+The customization must be done through a class called
+Theme**_Component_**Manager, where the word **_Component_** must be
+changed by the name of the current component.
 
-### 9.1. Error checking of Tracking connections to the platform
+For example, _videoidComponent_ contains `ThemeVideoIdManager`, while
+_videocallComponent_ has `ThemeVideoCallManager` …
 
-Once the SDK has started correctly, certain settings can be applied to
-have more information about possible tracking errors, which can be
-tracked through this driver release:
-
-```java
-SDKController.launch(TrackingErrorController {
-    Napier.d("Tracking Error: ${it.name}")
-})
-```
-
-### 9.2. Activation of General Debugging Logs
+This manager contains an instance of the type
+Theme**_Component_**Protocol. To customize details, a new class must be
+created and injected into the Theme**_Component_**Manager.
 
 ```java
-SDKController.enableDebugMode()
+class CustomThemeComponent: ThemeComponentProtocol {
+    var images: [R.Image: UIImage?] = [:]
+
+    var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
+
+    var name: String {
+        "custom"
+    }
+
+    var fonts: [R.Font: String] = [.regular: UIFont(...)]
+
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
+    }
+}
 ```
 
----
-
-## 10. SDK customization
-
-This version of the SDK allows some visual characteristics of the
-components to be modified. The possible changes that can be made are
-listed below.
-
-It is recommended to add the modifications to both the **light** and
-**dark** (_night_) themes.
-
-### 10.1. **Colors, logo and animations**
-
-To change the SDK colours and logo, you would have to include an XML
-file in the client application (e.g. **_sdk_styles.xml_**) changing the
-hex (RGB) value of each primary colour:
+This must be done before the initialization of the controller we want to
+use:
 
 ```java
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- SdkTheme -->
-    <color name="sdkPrimaryColor">#7636FC</color>
-    <color name="sdkSecondaryColor">#03DAC5</color>
-    <color name="sdkBackgroundColor">#FFFFFF</color>
-    <color name="sdkErrorColor">#DD3631</color>
-    <!-- SdkColorsPalette -->
-    <color name="sdkTitleTextColor">#1D2C4D</color>
-    <color name="sdkBodyTextColor">#526080</color>
-    <color name="sdkSuccessColor">#07A13A</color>
-    <color name="sdkNeutralColor">#202C4B</color>
-    <color name="sdkAccentColor">#EA7547</color>
-    <color name="sdkTopIconsColor">#243760</color>
-    <!-- SDK BUTTONS -->
-    <dimen name="sdk_buttons_corner_dimen">32dp</dimen>
-    <!-- SDK LOGO -->
-    <drawable name="sdk_logo">@drawable/ic_demo_logo</drawable>
-
-  <!-- ..Add particulars of each component... -->
-
-</resources>
+// Controller component intialization
+let controller = ComponentController(...)
+// Instance of the custom instance
+ThemeComponentManager.setup(theme: CustomThemeComponent())
+// Controller launch
+SDKController.shared.launch(controller: controller)
 ```
-
-To modify the logo visible in the different components of the SDK, it is
-sufficient to include in the file the following line, including the name
-of the logo of the client application:
-
-```java
-<!-- SDK LOGO -->
-<drawable name="sdk_logo">@drawable/logo_name</drawable>
-```
-
-The animations apply styles (mentioned above) according to the five
-fundamental colours:
-
-```java
-sdkPrimaryColor
-sdkErrorColor
-sdkSuccessColor
-sdkNeutralColor
-sdkAccentColor
-```
-
-Changing any of them will affect the animations of the components.
-
-The Selphi and SelphID components carry their associated resource zip,
-which is kept outside this feature of the SDK.
-
-### 10.2. **Texts**
-
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application and modify the value of
-each _String_ to the desired one.
-
-```java
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- GENERAL -->
-    <string name="sdk_permissions_exit_alert_title">Permission denied</string>
-    <string name="sdk_permissions_exit_alert_question">In order to continue, you need to </string>
-    <string name="sdk_permissions_exit_alert_question_other">allow access to the permission needed.</string>
-    <string name="sdk_permissions_exit_alert_question_camera">allow access to the camera.</string>
-    <string name="sdk_permissions_exit_alert_question_microphone">allow access to the microphone.</string>
-    <string name="sdk_permissions_exit_alert_confirm">Retry</string>
-    <string name="sdk_permissions_exit_alert_confirm_settings">Go to settings</string>
-    <string name="sdk_exit_alert_title">Finish the process</string>
-    <string name="sdk_exit_alert_question">Do you want to finish the process?</string>
-    <string name="sdk_exit_alert_exit">Finish</string>
-    <string name="sdk_exit_alert_cancel">Cancel</string>
-    <string name="sdk_exit_finish_exit">Finish</string>
-    <string name="sdk_text_video_error">An error has occurred with the connection to the video. Please try again.</string>
-    <string name="sdk_text_socket_error">An error has occurred with the connection to the server. Please try again.</string>
-    <string name="sdk_text_data_error">An error has occurred with the system configuration. Please try again.</string>
-    <string name="sdk_text_timeout_error">Sorry, the operation has timed out. Please try again later.</string>
-    <string name="sdk_network_connection_error_title">Connection error</string>
-    <string name="sdk_network_connection_error_desc">Check your internet connection</string>
-    <string name="sdk_network_connection_error_button">Exit</string>
-    <string name="sdk_close">Close process</string>
-    <string name="sdk_info">Show tutorial</string>
-    <string name="sdk_previous_page">Previous page</string>
-    <string name="sdk_next_page">Next page</string>
-    <string name="sdk_image_captured">Image captured</string>
-    <string name="sdk_confirmation_retry">Retry</string>
-    <string name="sdk_confirmation_continue">Continue</string>
-    <string name="sdk_skip">SKIP</string>
-
-  <!-- ..Add particulars of each component... -->
-
-
-</resources>
-```
-
-### 10.3. **Font**
-
-To modify the font, add the .ttf files to the font folder of the
-application and rename them as shown in the image:
-
-![Image](/attachments/2605678593/2605678599.png)
-
-### 10.4. **Buttons**
-
-In case you want to change the shape of the SDK buttons, you would have
-to include this line in the SDK style XML file by changing the _dp_
-value of the _dimen_ variable:
-
-```java
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="sdk_buttons_corner_dimen">5dp</dimen>
-</resources>
-```
-
----
-
-## 11. FAQ - Frequently Asked Questions
-
-<table>
-<colgroup>
-</colgroup>
-<tbody>
-<tr class="header">
-<th><p>
-<strong>Question</strong>
-</p></th>
-<th><p>
-<strong>Answer</strong>
-</p></th>
-
-<td><p>When synchronising the project, it does not
-resolve the dependencies and a 403 appears in the components.</p></td>
-<td><ul>
-<li>
-<p>Check the device connection.</p>
-</li>
-<li>
-<p>Check if you have correctly configured the <strong>TOKEN and
-USER</strong> of the Facephi repository in Gradle.</p>
-</li>
-<li>
-<p>Check the version of the embedded components</p>
-</li>
-<li>
-<p>Perform <strong>Invalidate Cache &amp; Restart</strong></p>
-</li>
-<li>
-<p>Try again</p>
-</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-If any other problems occur, please contact the
-support team so that we can help you.
-
-## 12. Changelog
-
-<table data-table-width="760">
-<tbody>
-<tr class="header">
-<th ><p><strong>Version</strong></p></th>
-<th ><p><strong>Changes</strong></p></th>
-</tr>
-<tr class="odd">
-<td><p>1.5.1</p></td>
-<td><ul>
-<li>
-<p>General</p>
-<ul>
-<li>
-<p>Improvements and bug fixes</p>
-</li>
-</ul></li>
-<li>
-<p>Voice</p>
-<ul>
-<li>
-<p>Internal library update</p>
-</li>
-<li>
-<p>Calibration adjustments</p>
-</li>
-<li>
-<p>Return of tokenized audios</p>
-</li>
-</ul></li>
-<li>
-<p>Phingers</p>
-<ul>
-<li>
-<p>WSQ tracking</p>
-</li>
-</ul></li>
-<li>
-<p>Behaviour</p>
-<ul>
-<li>
-<p>Internal library update</p>
-</li>
-<li>
-<p>Enhancements and fixes</p>
-</li>
-</ul></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p>1.5.0</p></td>
-<td><ul>
-<li>
-<p>API 34 (Android 14) supported</p>
-</li>
-<li>
-<p>Updated Android Gradle plugins (8.1.1)</p>
-</li>
-<li>
-<p>Updated version of Kotlin used (1.9.10)</p>
-</li>
-<li>
-<p>Video component input data settings</p>
-</li>
-<li>
-<p>Improved SdkResult as a sealed class</p>
-</li>
-<li>
-<p>Nomenclature of NewOperation input Steps</p>
-</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
