@@ -294,5 +294,14 @@
   },
   "The SDK is made up of different components that the client can combine as they wish to achieve the functionality they are looking for.": {
     "message": "El SDK está formado por diferentes componentes que el cliente puede combinar como desee para conseguir la funcionalidad que busca."
+  },
+  "Easy to Use": {
+    "message": "Fácil de Usar"
+  },
+  "Multiple Platforms": {
+    "message": "Múltiples Plataformas"
+  },
+  "Tailored functionality": {
+    "message": "Funcionalidad Personalizada"
   }
 }

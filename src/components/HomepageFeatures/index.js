@@ -5,7 +5,7 @@ import Translate, { translate } from "@docusaurus/Translate";
 
 const FeatureList = [
   {
-    title: "Easy to Use",
+    title: <Translate>Easy to Use</Translate>,
     img: require("@site/static/img/imagen_1.png").default,
     description: (
       <Translate>
@@ -15,7 +15,7 @@ const FeatureList = [
     ),
   },
   {
-    title: "Multiple Platforms",
+    title: <Translate>Multiple Platforms</Translate>,
     img: require("@site/static/img/imagen_2.png").default,
     description: (
       <Translate>
@@ -24,7 +24,7 @@ const FeatureList = [
     ),
   },
   {
-    title: "Tailored functionality.",
+    title: <Translate>Tailored functionality</Translate>,
     img: require("@site/static/img/imagen_3.png").default,
     description: (
       <Translate>
