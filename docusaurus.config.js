@@ -120,7 +120,11 @@ const config = {
             label: "Cordova",
             position: "left",
           },
-          { to: "/docs/react/Mobile_SDK", label: "React", position: "left" },
+          {
+            to: "/docs/react/Mobile_SDK",
+            label: "React Native",
+            position: "left",
+          },
           /*{
             type: "docsVersionDropdown",
             label: "SNAPSHOT 🚧",
