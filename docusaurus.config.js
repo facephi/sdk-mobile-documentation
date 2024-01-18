@@ -32,16 +32,16 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en"],
+    locales: ["en", "es"],
   },
   presets: [
     [
       "@docusaurus/preset-classic",
       {
         docs: {
-          // id: 'product', // omitted => default instance
-          path: "android",
-          routeBasePath: "android",
+          id: "android", // omitted => default instance
+          path: "docs/android",
+          routeBasePath: "docs/android",
           sidebarPath: "./sidebarsAndroid.js",
           // ... other options
         },
@@ -105,11 +105,11 @@ const config = {
           },
           */
           {
-            to: "/android/Android_Mobile_SDK",
+            to: "/docs/android/Android_Mobile_SDK",
             label: "Android",
             position: "left",
           },
-          { to: "/ios/iOS_Mobile_SDK", label: "iOS", position: "left" },
+          { to: "/docs/ios/iOS_Mobile_SDK", label: "iOS", position: "left" },
           /* {
             type: "docsVersionDropdown",
             label: "SNAPSHOT 🚧",
@@ -162,8 +162,8 @@ const config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "ios",
-        path: "ios",
-        routeBasePath: "ios",
+        path: "docs/ios",
+        routeBasePath: "docs/ios",
         sidebarPath: "./sidebarsIOS.js",
         // ... other options
       },
