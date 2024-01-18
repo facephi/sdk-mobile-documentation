@@ -7,6 +7,55 @@ import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
 import styles from "./index.module.css";
 
+const PlatformList = [
+  {
+    title: "Android",
+    path: "/docs/android/Mobile_SDK",
+  },
+  {
+    title: "iOS",
+    path: "/docs/ios/Mobile_SDK",
+  },
+  {
+    title: "Flutter",
+    path: "/docs/flutter/Mobile_SDK",
+  },
+  {
+    title: "Cordova",
+    path: "/docs/cordova/Mobile_SDK",
+  },
+  {
+    title: "React Native",
+    path: "/docs/react/Mobile_SDK",
+  },
+];
+
+function Platform({ title, path }) {
+  return (
+    <div className={clsx("col col--4")}>
+      <div className="text--center padding-horiz--md">
+        <Link to={path} style={{ color: "#ffffff" }}>
+          <Heading as="h3">{title}</Heading>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function HomepagePlatforms() {
+  return (
+    <section>
+      <div className="container">
+        <div className="row">
+          {PlatformList.map((props, idx) => (
+            <Platform key={idx} {...props} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -16,58 +65,7 @@ function HomepageHeader() {
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/android/Mobile_SDK"
-          >
-            Android
-          </Link>
-        </div>
-
-        <p></p>
-
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/ios/Mobile_SDK"
-          >
-            iOS
-          </Link>
-        </div>
-
-        <p></p>
-
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/flutter/Mobile_SDK"
-          >
-            Flutter
-          </Link>
-        </div>
-
-        <p></p>
-
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/cordova/Mobile_SDK"
-          >
-            Cordova
-          </Link>
-        </div>
-
-        <p></p>
-
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/react/Mobile_SDK"
-          >
-            React
-          </Link>
-        </div>
+        <HomepagePlatforms />
       </div>
     </header>
   );
