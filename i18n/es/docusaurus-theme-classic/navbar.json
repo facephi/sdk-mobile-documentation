@@ -18,5 +18,21 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Flutter": {
+    "message": "Flutter",
+    "description": "Navbar item with label Flutter"
+  },
+  "item.label.Cordova": {
+    "message": "Cordova",
+    "description": "Navbar item with label Cordova"
+  },
+  "item.label.React": {
+    "message": "React",
+    "description": "Navbar item with label React"
+  },
+  "item.label.SNAPSHOT 🚧": {
+    "message": "SNAPSHOT 🚧",
+    "description": "Navbar item with label SNAPSHOT 🚧"
   }
 }

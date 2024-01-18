@@ -23,7 +23,7 @@ const sidebars = {
       type: "category",
       label: "Android",
       items: [
-        "Android_Mobile_SDK",
+        "Mobile_SDK",
         "NFC_Component",
         "Phingers_Component",
         "Selphi_Component",

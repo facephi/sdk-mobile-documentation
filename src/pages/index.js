@@ -19,9 +19,9 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/android/Android_Mobile_SDK"
+            to="/docs/android/Mobile_SDK"
           >
-            Android - Primeros Pasos
+            Android
           </Link>
         </div>
 
@@ -30,9 +30,42 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/ios/iOS_Mobile_SDK"
+            to="/docs/ios/Mobile_SDK"
           >
-            iOS - Primeros Pasos
+            iOS
+          </Link>
+        </div>
+
+        <p></p>
+
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/flutter/Mobile_SDK"
+          >
+            Flutter
+          </Link>
+        </div>
+
+        <p></p>
+
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/cordova/Mobile_SDK"
+          >
+            Cordova
+          </Link>
+        </div>
+
+        <p></p>
+
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/react/Mobile_SDK"
+          >
+            React
           </Link>
         </div>
       </div>

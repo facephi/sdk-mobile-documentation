@@ -1,3 +1,23 @@
+# Facephi
+
+Generar traducciones cuando se mete un plugin ID nuevo
+
+```
+npm run write-translations -- --locale en
+```
+
+Iniciar localmente el servicio
+
+```
+npm run start
+```
+
+Compilar el proyecto
+
+```
+npm run build
+```
+
 # Website
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.

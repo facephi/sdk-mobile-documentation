@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.cordovaSidebar.category.Cordova": {
+    "message": "Cordova",
+    "description": "The label for category Cordova in sidebar cordovaSidebar"
+  }
+}

@@ -105,12 +105,23 @@ const config = {
           },
           */
           {
-            to: "/docs/android/Android_Mobile_SDK",
+            to: "/docs/android/Mobile_SDK",
             label: "Android",
             position: "left",
           },
-          { to: "/docs/ios/iOS_Mobile_SDK", label: "iOS", position: "left" },
-          /* {
+          { to: "/docs/ios/Mobile_SDK", label: "iOS", position: "left" },
+          {
+            to: "/docs/flutter/Mobile_SDK",
+            label: "Flutter",
+            position: "left",
+          },
+          {
+            to: "/docs/cordova/Mobile_SDK",
+            label: "Cordova",
+            position: "left",
+          },
+          { to: "/docs/react/Mobile_SDK", label: "React", position: "left" },
+          /*{
             type: "docsVersionDropdown",
             label: "SNAPSHOT 🚧",
             position: "right",
@@ -165,6 +176,36 @@ const config = {
         path: "docs/ios",
         routeBasePath: "docs/ios",
         sidebarPath: "./sidebarsIOS.js",
+        // ... other options
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "flutter",
+        path: "docs/flutter",
+        routeBasePath: "docs/flutter",
+        sidebarPath: "./sidebarsFlutter.js",
+        // ... other options
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "cordova",
+        path: "docs/cordova",
+        routeBasePath: "docs/cordova",
+        sidebarPath: "./sidebarsCordova.js",
+        // ... other options
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "react",
+        path: "docs/react",
+        routeBasePath: "docs/react",
+        sidebarPath: "./sidebarsReact.js",
         // ... other options
       },
     ],
