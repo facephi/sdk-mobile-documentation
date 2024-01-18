@@ -145,7 +145,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://github.com/facephi/sdk-android",
+            href: "https://github.com/facephi/sdk-mobile-samples",
             label: "GitHub",
             position: "right",
           },
