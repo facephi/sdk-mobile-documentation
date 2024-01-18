@@ -21,7 +21,18 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/android/Android_Mobile_SDK"
           >
-            Primeros Pasos
+            Android - Primeros Pasos
+          </Link>
+        </div>
+
+        <p></p>
+
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/ios/iOS_Mobile_SDK"
+          >
+            iOS - Primeros Pasos
           </Link>
         </div>
       </div>

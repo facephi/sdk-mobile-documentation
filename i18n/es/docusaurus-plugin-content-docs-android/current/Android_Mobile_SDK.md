@@ -1,3 +1,6 @@
+---
+---
+
 # Primeros Pasos
 
 Este documento hace referencia a la versión 1.5.X del Android Mobile SDK

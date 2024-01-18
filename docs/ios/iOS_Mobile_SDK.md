@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 15
 ---
 
-# Getting Started
+# Getting Started - iOS
 
 This document refers to **1.5.X version** of the Android Mobile SDK.
 
