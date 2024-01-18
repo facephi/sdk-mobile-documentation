@@ -28,3 +28,56 @@
   --ifm-color-primary-lightest: #3268ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(5),
+.navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(4),
+.navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(3),
+.navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(2),
+.navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(1) {
+  display: none;
+}
+
+html.docs-wrapper.plugin-id-android
+  .navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(1) {
+  display: block;
+}
+
+html.docs-wrapper.plugin-id-ios
+  .navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(2) {
+  display: block;
+}
+
+html.docs-wrapper.plugin-id-flutter
+  .navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(3) {
+  display: block;
+}
+
+html.docs-wrapper.plugin-id-cordova
+  .navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(4) {
+  display: block;
+}
+
+html.docs-wrapper.plugin-id-react
+  .navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(5) {
+  display: block;
+}

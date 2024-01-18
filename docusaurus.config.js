@@ -88,58 +88,66 @@ const config = {
           src: "img/icon.png",
         },
         items: [
-          /*
-
           {
-            type: "docSidebar",
-            sidebarId: "androidSidebar",
+            type: "docsVersion",
             position: "left",
             label: "Android",
+            docsPluginId: "android",
           },
-
           {
-            type: "docSidebar",
-            sidebarId: "iOSSidebar",
+            type: "docsVersion",
             position: "left",
             label: "iOS",
-          },
-          */
-          {
-            to: "/docs/android/Mobile_SDK",
-            label: "Android",
-            position: "left",
-          },
-          { to: "/docs/ios/Mobile_SDK", label: "iOS", position: "left" },
-          {
-            to: "/docs/flutter/Mobile_SDK",
-            label: "Flutter",
-            position: "left",
-          },
-          {
-            to: "/docs/cordova/Mobile_SDK",
-            label: "Cordova",
-            position: "left",
-          },
-          {
-            to: "/docs/react/Mobile_SDK",
-            label: "React Native",
-            position: "left",
-          },
-          /*{
-            type: "docsVersionDropdown",
-            label: "SNAPSHOT 🚧",
-            position: "right",
-            //dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
-            dropdownActiveClassDisabled: true,
-          }, */
-          /* {
-            type: "docsVersionDropdown",
             docsPluginId: "ios",
-          }, */
-          /*{
+          },
+          {
+            type: "docsVersion",
+            position: "left",
+            label: "Flutter",
+            docsPluginId: "flutter",
+          },
+          {
+            type: "docsVersion",
+            position: "left",
+            label: "Cordova",
+            docsPluginId: "cordova",
+          },
+          {
+            type: "docsVersion",
+            position: "left",
+            label: "React Native",
+            docsPluginId: "react",
+          },
+          {
             type: "docsVersionDropdown",
             docsPluginId: "android",
-          },*/
+            position: "right",
+            customCss: "menu-android",
+          },
+          {
+            type: "docsVersionDropdown",
+            docsPluginId: "ios",
+            position: "right",
+            customCss: "menu-ios",
+          },
+          {
+            type: "docsVersionDropdown",
+            docsPluginId: "flutter",
+            position: "right",
+            customCss: "menu-flutter",
+          },
+          {
+            type: "docsVersionDropdown",
+            docsPluginId: "cordova",
+            position: "right",
+            customCss: "menu-cordova",
+          },
+          {
+            type: "docsVersionDropdown",
+            docsPluginId: "react",
+            position: "right",
+            customCss: "menu-react",
+          },
           {
             type: "localeDropdown",
             position: "right",
