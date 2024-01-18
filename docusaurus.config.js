@@ -10,7 +10,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 const config = {
   title: "SDK Mobile Documentation",
   tagline: "Facephi",
-  favicon: "img/favicon.ico",
+  favicon: "img/icon.png",
 
   staticDirectories: ["static"],
   // Set the production url of your site here
