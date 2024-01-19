@@ -1,7 +1,5 @@
 # Flow Component
 
-Este documento hace referencia la **versión 1.5.X** del componente
-
 ## 0. Requisitos base de SDK Mobile
 
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
@@ -14,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Android_Mobile_SDK"
+<a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Android Mobile SDK</a>.
 
@@ -42,7 +40,7 @@ voz**.
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
-<a href="ES_Android_Mobile_SDK"
+<a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Android Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho

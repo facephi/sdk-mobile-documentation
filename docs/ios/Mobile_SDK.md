@@ -1,10 +1,4 @@
----
-sidebar_position: 1
----
-
 # Getting Started
-
-This document refers to **1.4.X version** of the iOS Mobile SDK.
 
 ## 1. Introduction
 

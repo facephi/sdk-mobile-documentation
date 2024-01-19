@@ -1,10 +1,4 @@
----
-sidebar_position: 2
----
-
 # Tracking Component
-
-This document refers to version 1.5.X of the component
 
 ## 0. SDK Mobile baseline requirements
 
@@ -16,9 +10,9 @@ modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
 For more information on the base configuration, go to the
-<a href="EN_Android_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Android Mobile SDK</a> section.
+data-linked-resource-type="page">Mobile SDK</a> section.
 
 ---
 
@@ -42,9 +36,9 @@ while the SDKMobile process is running.
 Before integrating this component, it is recommended to read the
 documentation related to
 
-<a href="EN_Android_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a>
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
 
 This section will explain step by step how to integrate the current
@@ -76,9 +70,9 @@ first be executed.
 This command must have been executed **before launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="EN_Android_Mobile_SDK"
+consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a>
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documentation, which details and explains what this process consists of.
 
 ---
@@ -95,9 +89,9 @@ documentation, which details and explains what this process consists of.
 ## 5. Component configuration
 
 To configure the current component, see the initialisation section in
-<a href="EN_Android_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a>.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>.
 
 ### 5.1. TrackingController configuration
 

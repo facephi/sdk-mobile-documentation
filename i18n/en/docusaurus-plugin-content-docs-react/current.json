@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "Canary 🚧",
+    "message": "SNAPSHOT 🚧",
     "description": "The label for version current"
   },
   "sidebar.reactSidebar.category.React Native": {

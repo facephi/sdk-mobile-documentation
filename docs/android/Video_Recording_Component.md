@@ -1,7 +1,3 @@
----
-sidebar_position: 10
----
-
 # Video Recording Component
 
 ## 0. SDK Mobile baseline requirements
@@ -14,9 +10,9 @@ level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
 For more information on the base configuration, go to the
-<a href="EN_Android_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Android Mobile SDK</a> section.
+data-linked-resource-type="page">Mobile SDK</a> section.
 
 ---
 
@@ -34,9 +30,9 @@ the recording of the onboarding process.
 Before integrating this component, it is recommended to read the
 documentation related to:
 
-<a href="EN_Android_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a>
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
 
 This section will explain step by step how to integrate the current
@@ -68,9 +64,9 @@ command must first be executed.
 This command must have been executed **prior to launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="EN_Android_Mobile_SDK"
+consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Android Mobile SDK</strong></a>
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documentation, which details and explains what this process consists of.
 
 ---
@@ -168,7 +164,7 @@ sent to the platform.
 
 The controllers will return the required information in SdkResult
 format. More information in the Android Mobile SDK's <a
-href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605678593#6.-Result-return"
+href="Mobile_SDK#6-result-return"
 rel="nofollow">6. Result return</a> section.
 
 ### 7.1. Receipt of errors

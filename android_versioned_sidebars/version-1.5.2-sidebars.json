@@ -1,19 +1,21 @@
 {
-  "androidSidebar": [
+  "sidebar": [
     {
       "type": "category",
       "label": "Android",
       "items": [
         "Mobile_SDK",
-        "NFC_Component",
-        "Phingers_Component",
+        "Tracking_Component",
         "Selphi_Component",
         "SelphID_Component",
-        "Tracking_Component",
+        "Phingers_Component",
+        "Voice_Component",
+        "NFC_Component",
         "Video_Call_Component",
         "Video_Id_Component",
         "Video_Recording_Component",
-        "Voice_Component"
+        "Changelog",
+        "FAQ"
       ]
     }
   ]
