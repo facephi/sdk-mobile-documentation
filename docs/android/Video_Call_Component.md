@@ -168,15 +168,16 @@ rel="nofollow">6. Result return</a> section.
 On the error side, we will have the _VideoCallError_ class.
 
 ```java
-val message = when(it.error){
-    is VideoCallError.ACTIVITY_RESULT_ERROR -> it.error.name
-    is VideoCallError.CANCEL_BY_USER -> it.error.name
-    is VideoCallError.INITIALIZATION_ERROR -> it.error.name
-    is VideoCallError.NETWORK_CONNECTION -> it.error.name
-    is VideoCallError.NO_DATA_ERROR -> it.error.name
-    is VideoCallError.TIMEOUT -> it.error.name
-    is VideoCallError.VIDEO_ERROR -> it.error.name
-}
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR
 ```
 
 ### _7.1. Receipt of correct execution - data_

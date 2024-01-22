@@ -200,16 +200,17 @@ SdkResult. Más información en la sección de <a
 En la parte del error, dispondremos de la clase _VideoIdError_.
 
 ```java
-val message = when(it.error){
-    is VideoIdError.ACTIVITY_RESULT_ERROR -> it.error.name
-    is VideoIdError.CANCEL_BY_USER -> it.error.name
-    is VideoIdError.INITIALIZATION_ERROR -> it.error.name
-    is VideoIdError.NETWORK_CONNECTION -> it.error.name
-    is VideoIdError.NO_DATA_ERROR -> it.error.name
-    is VideoIdError.PERMISSION_DENIED -> it.error.name
-    is VideoIdError.TIMEOUT -> it.error.name
-    is VideoIdError.VIDEO_ERROR -> it.error.name
-}
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR
+PERMISSION_DENIED
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

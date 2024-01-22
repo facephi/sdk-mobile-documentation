@@ -193,16 +193,17 @@ rel="nofollow">6. Result return</a> section.
 On the error side, we will have the _VideoIdError_ class.
 
 ```java
-val message = when(it.error){
-    is VideoIdError.ACTIVITY_RESULT_ERROR -> it.error.name
-    is VideoIdError.CANCEL_BY_USER -> it.error.name
-    is VideoIdError.INITIALIZATION_ERROR -> it.error.name
-    is VideoIdError.NETWORK_CONNECTION -> it.error.name
-    is VideoIdError.NO_DATA_ERROR -> it.error.name
-    is VideoIdError.PERMISSION_DENIED -> it.error.name
-    is VideoIdError.TIMEOUT -> it.error.name
-    is VideoIdError.VIDEO_ERROR -> it.error.name
-}
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR 
+PERMISSION_DENIED
 ```
 
 ### 7.1. _Receipt of correct execution - data_

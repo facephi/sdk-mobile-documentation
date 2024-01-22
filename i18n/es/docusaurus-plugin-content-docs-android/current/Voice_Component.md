@@ -198,15 +198,14 @@ SdkResult. Más información en la sección de <a
 En la parte del error, dispondremos de la clase VoiceError.
 
 ```java
-val message = when(it.error){
-    VoiceError.ACTIVITY_RESULT_ERROR -> "ACTIVITY_RESULT_ERROR"
-    VoiceError.CANCEL_BY_USER -> "CANCEL_BY_USER"
-    is VoiceError.INITIALIZATION_ERROR -> "INITIALIZATION_ERROR: ${(it.error as VoiceError.INITIALIZATION_ERROR).error}"
-    VoiceError.INTERNAL_LICENSE_ERROR -> "INTERNAL_LICENSE_ERROR"
-    VoiceError.NO_DATA_ERROR -> "NO_DATA_ERROR"
-    VoiceError.PERMISSION_DENIED -> "PERMISSION_DENIED"
-    VoiceError.TIMEOUT -> "TIMEOUT"
-}
+NO_DATA_ERROR
+TIMEOUT
+INTERNAL_LICENSE_ERROR
+CANCEL_BY_USER
+CANCEL_LAUNCH
+PERMISSION_DENIED
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
