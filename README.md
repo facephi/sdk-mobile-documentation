@@ -1,6 +1,6 @@
 # Facephi
 
-Iniciar localmente el servicio
+Iniciar localmente el servicio (http://localhost:3000)
 
 ```
 npm run start
