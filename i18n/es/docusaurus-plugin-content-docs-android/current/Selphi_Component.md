@@ -96,6 +96,8 @@ este proceso.
 | RawTemplateController     | Controlador para generar un RawTemplate a partir de una imagen |
 | SignatureSelphiController | Controlador para firmar un proceso con una Captura             |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá
@@ -330,9 +332,9 @@ _avatar_.
 
 ---
 
-## 10. Controladores Adicionales
+## 8. Controladores Adicionales
 
-### 10.1. RawTemplateController
+### 8.1. RawTemplateController
 
 Controlador para generar un RawTemplate a partir de una imagen (bitmap).
 

@@ -98,6 +98,8 @@ este proceso.
 | ------------------ | ------------------------------------------- |
 | PhingersController | Controlador principal de captura de huellas |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá

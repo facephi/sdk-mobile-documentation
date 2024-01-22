@@ -97,6 +97,8 @@ este proceso.
 | --------------- | ------------------------------------ |
 | NFCController   | Controlador principal de lectura NFC |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá
@@ -192,7 +194,7 @@ SDKController.launch(
         }
     ) {
         when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
             is SdkResult.Success -> {
                 Napier.d("APP: NFC: OK")
                 Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")
@@ -223,7 +225,7 @@ SDKController.launchMethod(
         }
     ) {
         when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
             is SdkResult.Success -> {
                 Napier.d("APP: NFC: OK")
                 Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")

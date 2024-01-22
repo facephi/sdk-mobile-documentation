@@ -83,6 +83,8 @@ este proceso.
 | VideoIdController          | Controlador principal de video identificación      |
 | SignatureVideoIdController | Controlador para firmar un proceso con una Captura |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá

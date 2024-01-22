@@ -84,6 +84,8 @@ este proceso.
 | ------------------- | ------------------------------------- |
 | VideoCallController | Controlador principal de videollamada |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá

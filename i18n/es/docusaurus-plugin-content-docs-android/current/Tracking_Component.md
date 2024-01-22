@@ -93,6 +93,8 @@ este proceso.
 | TrackingErrorController | Controlador para **gestionar** los posibles **errores** que ocurran |
 | ExtraDataController     | Controlador para obtener el **ExtraData** que permite la **comunicación** desde cliente con el servidor con **SelphIDSdk** instalado. |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, se realiza en el _initSdk_,

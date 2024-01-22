@@ -84,6 +84,8 @@ este proceso.
 | VideoRecordingController     | Controlador principal de video grabación.                  |
 | StopVideoRecordingController | Controlador para realizar la parada de la video grabación. |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá
