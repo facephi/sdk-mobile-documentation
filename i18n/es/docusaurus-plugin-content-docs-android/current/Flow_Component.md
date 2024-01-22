@@ -29,10 +29,6 @@ A través de un identificador de Flow, podrá lanzar un flujo diseñado en
 la web, que puede contener de 1 a N pasos de los componentes existentes
 en el SDK.
 
-Ejemplo: Lanzamiento de **reconocimiento facial** \> Lanzamiento de
-**reconocimiento documentos** \> Lanzamiento de **reconocimiento de
-voz**.
-
 ---
 
 ## 2. Integración del componente
@@ -92,6 +88,8 @@ anterioridad.
 | FVideoIdController         | Video Identificación      |
 | FVideoCallController       | Video Asistencia          |
 
+---
+
 ## 5. Inicialización del SDK con flow
 
 La función de inicialización del SDK tiene el parámetro _activateFlow_
@@ -111,6 +109,8 @@ SDKController.initSdk(
            }
  })
 ```
+
+---
 
 ## 6. Uso del componente
 
@@ -208,7 +208,7 @@ El resultado del flow tendrá 3 campos:
 
 - result: Resultado del paso en formato SdkResult. Más información en
   la sección de <a
-  href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado"
+  href="Mobile_SDK#6-retorno-de-resultado"
   rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
 
 - flowFinish: Flag que indicará si ha terminado el proceso

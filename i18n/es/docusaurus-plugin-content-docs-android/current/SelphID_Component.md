@@ -95,9 +95,8 @@ proceso.
 
 ## 4. Controladores disponibles
 
-|                   |                                                       |
-| ----------------- | ----------------------------------------------------- |
 | **Controlador**   | **Descripción**                                       |
+| ----------------- | ----------------------------------------------------- |
 | SelphIDController | Controlador principal de reconocimiento de documentos |
 
 ---
@@ -317,6 +316,10 @@ configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
+#### 5.1.19. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
 ---
 
 ## 6. Uso del componente
@@ -372,8 +375,8 @@ a la plataforma.
 
 Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
-href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado"
-rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+  href="Mobile_SDK#6-retorno-de-resultado"
+  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
 
 ### 7.1. Recepción de errores
 

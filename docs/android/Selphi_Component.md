@@ -187,6 +187,10 @@ configure the widget views.
 
 Note: This property does not alter the content of the resource file.
 
+#### 5.1.15. showDiagnostic
+
+Display diagnostic screens at the end of the process
+
 ---
 
 ## 6. Component use
@@ -303,9 +307,9 @@ avatar.
 
 ---
 
-## 10. Additional Controllers
+## 8. Additional Controllers
 
-### 10.1. RawTemplateController
+### 8.1. RawTemplateController
 
 Controller to generate a RawTemplate from an image (bitmap).
 

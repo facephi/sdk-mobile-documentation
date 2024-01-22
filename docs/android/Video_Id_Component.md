@@ -147,7 +147,7 @@ to launch the component:
 SDKController.launch(
     VideoIdController(VideoIdConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
         }
     }
@@ -162,7 +162,7 @@ SDKController.launch(
 SDKController.launchMethod(
     VideoIdController(VideoIdConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
         }
     }
@@ -193,19 +193,20 @@ rel="nofollow">6. Result return</a> section.
 On the error side, we will have the _VideoIdError_ class.
 
 ```java
-val message = when(it.error){
-    is VideoIdError.ACTIVITY_RESULT_ERROR -> it.error.name
-    is VideoIdError.CANCEL_BY_USER -> it.error.name
-    is VideoIdError.INITIALIZATION_ERROR -> it.error.name
-    is VideoIdError.NETWORK_CONNECTION -> it.error.name
-    is VideoIdError.NO_DATA_ERROR -> it.error.name
-    is VideoIdError.PERMISSION_DENIED -> it.error.name
-    is VideoIdError.TIMEOUT -> it.error.name
-    is VideoIdError.VIDEO_ERROR -> it.error.name
-}
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR 
+PERMISSION_DENIED
 ```
 
-### 7.1. _Receipt of correct execution - data_
+### 7.2. Receipt of correct execution - data_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.
@@ -228,15 +229,16 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```java
-<string name="video_id_text_waiting_agent_title">Video recording</string>
-<string name="video_id_first_message">Place your face and the front of your document within the frame</string>
-<string name="video_id_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
-<string name="video_id_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
-<string name="video_id_second_message">Now place the back of your document</string>
-<string name="video_id_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
-<string name="video_id_finish_message">Video recording finished!</string>
-<string name="video_id_record_init_button">Start recording</string>
-<string name="video_id_ready_button">Ready</string>
-<string name="video_id_first_message_face">Place your face within the frame</string>
-<string name="video_id_restart">Repeat recording</string>
+    <string name="video_id_text_waiting_agent_title">Video ID</string>
+    <string name="video_id_first_message">Place your face and the front of your document within the frame</string>
+    <string name="video_id_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
+    <string name="video_id_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
+    <string name="video_id_second_message">Now place the back of your document</string>
+    <string name="video_id_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
+    <string name="video_id_finish_message">Video recording finished!</string>
+    <string name="video_id_record_init_button">Start recording</string>
+    <string name="video_id_ready_button">Ready</string>
+    <string name="video_id_first_message_face">Place your face within the frame</string>
+    <string name="video_id_restart">Repeat recording</string>
+
 ```

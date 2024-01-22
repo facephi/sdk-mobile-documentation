@@ -183,6 +183,10 @@ Indicates a height to perform a cropping of the capture.
 
 Indicates the relation to perform a cropping of the capture.
 
+#### 5.1.15. showDiagnostic
+
+Display diagnostic screens at the end of the process
+
 ---
 
 ## 6. Component use
@@ -199,7 +203,7 @@ to launch the component:
 SDKController.launch(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -214,7 +218,7 @@ SDKController.launch(
 SDKController.launchMethod(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -245,25 +249,24 @@ rel="nofollow">6. Result return</a> section.
 On the error side, we will have the PhingersError class.
 
 ```java
-val message = when(it.error){
-    PhingersError.ACTIVITY_RESULT_ERROR -> "ACTIVITY_RESULT_ERROR"
-    PhingersError.CANCEL_BY_USER -> "CANCEL_BY_USER"
-    is PhingersError.INITIALIZATION_ERROR -> "INITIALIZATION_ERROR: ${(it.error as PhingersError.INITIALIZATION_ERROR).error}"
-    PhingersError.LOW_QUALITY -> "LOW_QUALITY"
-    PhingersError.NO_ERROR -> "NO_ERROR"
-    PhingersError.PERMISSION_DENIED -> "PERMISSION_DENIED"
-    PhingersError.PHINGERS_AUTOFOCUS_FAILURE -> "PHINGERS_AUTOFOCUS_FAILURE"
-    PhingersError.PHINGERS_CAMERA_FAILURE -> "PHINGERS_CAMERA_FAILURE"
-    PhingersError.PHINGERS_CAPTURE_FAILURE -> "PHINGERS_CAPTURE_FAILURE"
-    PhingersError.PHINGERS_CONFIGURATION_FAILURE -> "PHINGERS_CONFIGURATION_FAILURE"
-    PhingersError.PHINGERS_FINGERPRINT_CAPTURE_FAILURE -> "PHINGERS_FINGERPRINT_CAPTURE_FAILURE"
-    PhingersError.PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR -> "PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR"
-    PhingersError.PHINGERS_LICENSING_FAILURE -> "PHINGERS_LICENSING_FAILURE"
-    PhingersError.PHINGERS_LIVENESS_FAILURE -> "PHINGERS_LIVENESS_FAILURE"
-    PhingersError.PHINGERS_NO_FINGERS_DETECTED -> "PHINGERS_NO_FINGERS_DETECTED"
-    PhingersError.PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED -> "PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED"
-    PhingersError.TIMEOUT -> "TIMEOUT"
-}
+INTERNAL_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+PERMISSION_DENIED
+ACTIVITY_RESULT_ERROR
+PHINGERS_FINGERPRINT_CAPTURE_FAILURE
+LOW_QUALITY
+PHINGERS_LIVENESS_FAILURE
+PHINGERS_CONFIGURATION_FAILURE
+PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR
+PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED
+PHINGERS_NO_FINGERS_DETECTED
+PHINGERS_AUTOFOCUS_FAILURE
+PHINGERS_CAMERA_FAILURE
+PHINGERS_CAPTURE_FAILURE
+PHINGERS_LICENSING_FAILURE
+INITIALIZATION_ERROR -> it.error // More info
 ```
 
 ### 7.1. Receipt of correct execution - _data_
@@ -345,7 +348,6 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```java
-<!-- PHINGERS -->
     <string name="phingers_component_tutorial_left_message">Prepare your left hand for the catch</string>
     <string name="phingers_component_tutorial_left_title">Prepare your left hand for the catch</string>
     <string name="phingers_component_turorial_right_message">Prepare your right hand for capture</string>
@@ -354,5 +356,10 @@ each String to the desired one.
     <string name="phingers_component_capture_phingers">Hold fingers steady</string>
     <string name="phingers_component_capture_thumb">Hold finger steady</string>
     <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
-    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string> 
+    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string>
+    <string name="phingers_component_timeout_title">Time exceeded</string>
+    <string name="phingers_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="phingers_component_internal_error_title">There was a technical problem</string>
+    <string name="phingers_component_internal_error_desc">We apologize. The capture could not be made</string>
+
 ```

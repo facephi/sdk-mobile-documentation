@@ -94,10 +94,11 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                    |                                             |
-| ------------------ | ------------------------------------------- |
 | **Controlador**    | **Descripción**                             |
+| ------------------ | ------------------------------------------- |
 | PhingersController | Controlador principal de captura de huellas |
+
+---
 
 ## 5. Configuración del componente
 
@@ -192,6 +193,10 @@ Indica una altura para realizar un recorte de la captura.
 
 Indica la relación para el recorte de la captura.
 
+#### 5.1.15. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
 ---
 
 ## 6. Uso del componente
@@ -208,7 +213,7 @@ el componente:
 SDKController.launch(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -223,7 +228,7 @@ SDKController.launch(
 SDKController.launchMethod(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -247,33 +252,32 @@ a la plataforma.
 
 Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
-href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado"
-rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+  href="Mobile_SDK#6-retorno-de-resultado"
+  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
 
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase PhingersError.
 
 ```java
-val message = when(it.error){
-    PhingersError.ACTIVITY_RESULT_ERROR -> "ACTIVITY_RESULT_ERROR"
-    PhingersError.CANCEL_BY_USER -> "CANCEL_BY_USER"
-    is PhingersError.INITIALIZATION_ERROR -> "INITIALIZATION_ERROR: ${(it.error as PhingersError.INITIALIZATION_ERROR).error}"
-    PhingersError.LOW_QUALITY -> "LOW_QUALITY"
-    PhingersError.NO_ERROR -> "NO_ERROR"
-    PhingersError.PERMISSION_DENIED -> "PERMISSION_DENIED"
-    PhingersError.PHINGERS_AUTOFOCUS_FAILURE -> "PHINGERS_AUTOFOCUS_FAILURE"
-    PhingersError.PHINGERS_CAMERA_FAILURE -> "PHINGERS_CAMERA_FAILURE"
-    PhingersError.PHINGERS_CAPTURE_FAILURE -> "PHINGERS_CAPTURE_FAILURE"
-    PhingersError.PHINGERS_CONFIGURATION_FAILURE -> "PHINGERS_CONFIGURATION_FAILURE"
-    PhingersError.PHINGERS_FINGERPRINT_CAPTURE_FAILURE -> "PHINGERS_FINGERPRINT_CAPTURE_FAILURE"
-    PhingersError.PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR -> "PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR"
-    PhingersError.PHINGERS_LICENSING_FAILURE -> "PHINGERS_LICENSING_FAILURE"
-    PhingersError.PHINGERS_LIVENESS_FAILURE -> "PHINGERS_LIVENESS_FAILURE"
-    PhingersError.PHINGERS_NO_FINGERS_DETECTED -> "PHINGERS_NO_FINGERS_DETECTED"
-    PhingersError.PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED -> "PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED"
-    PhingersError.TIMEOUT -> "TIMEOUT"
-}
+INTERNAL_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+PERMISSION_DENIED
+ACTIVITY_RESULT_ERROR
+PHINGERS_FINGERPRINT_CAPTURE_FAILURE
+LOW_QUALITY
+PHINGERS_LIVENESS_FAILURE
+PHINGERS_CONFIGURATION_FAILURE
+PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR
+PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED
+PHINGERS_NO_FINGERS_DETECTED
+PHINGERS_AUTOFOCUS_FAILURE
+PHINGERS_CAMERA_FAILURE
+PHINGERS_CAPTURE_FAILURE
+PHINGERS_LICENSING_FAILURE
+INITIALIZATION_ERROR -> it.error // More info
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -355,14 +359,18 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```java
-<!-- PHINGERS -->
-    <string name="phingers_component_tutorial_left_message">Prepare your left hand for the catch</string>
-    <string name="phingers_component_tutorial_left_title">Prepare your left hand for the catch</string>
-    <string name="phingers_component_turorial_right_message">Prepare your right hand for capture</string>
-    <string name="phingers_component_tutorial_right_title">Prepare your right hand for capture</string>
-    <string name="phingers_component_tutorial_button">Take fingerprints</string>
-    <string name="phingers_component_capture_phingers">Hold fingers steady</string>
-    <string name="phingers_component_capture_thumb">Hold finger steady</string>
-    <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
-    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string> 
+    <string name="phingers_component_tutorial_left_message">Prepara tu mano izquierda para la captura</string>
+    <string name="phingers_component_tutorial_left_title">Huellas mano izquierda</string>
+    <string name="phingers_component_turorial_right_message">Prepara tu mano derecha para la captura</string>
+    <string name="phingers_component_tutorial_right_title">Huellas mano derecha</string>
+    <string name="phingers_component_tutorial_button">Tomar huellas</string>
+    <string name="phingers_component_capture_phingers">Mantenga los dedos firmes</string>
+    <string name="phingers_component_capture_thumb">Mantenga el dedo firme</string>
+    <string name="phingers_component_capture_phingers_not_focus">Mueva los dedos hasta que estén enfocados</string>
+    <string name="phingers_component_capture_thumb_not_focus">Mueva el dedo hasta que esté enfocado</string>
+    <string name="phingers_component_timeout_title">Tiempo superado</string>
+    <string name="phingers_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="phingers_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="phingers_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+
 ```

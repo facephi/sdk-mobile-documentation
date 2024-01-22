@@ -96,6 +96,8 @@ este proceso.
 | RawTemplateController     | Controlador para generar un RawTemplate a partir de una imagen |
 | SignatureSelphiController | Controlador para firmar un proceso con una Captura             |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá
@@ -208,6 +210,10 @@ configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
+#### 5.1.15. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
 ---
 
 ## 6. Uso del componente
@@ -224,7 +230,7 @@ el componente:
 SDKController.launch(
     SelphiController(SelphiConfigurationData(...)) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
             is SdkResult.Success -> it.data
         }
     }
@@ -239,7 +245,7 @@ SDKController.launch(
 SDKController.launchMethod(
     SelphiController(SelphiConfigurationData(...)) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
             is SdkResult.Success -> it.data
         }
     }
@@ -263,9 +269,8 @@ a la plataforma.
 
 Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
-href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado"
-rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
-
+  href="Mobile_SDK#6-retorno-de-resultado"
+  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase SelphiError.
@@ -327,9 +332,9 @@ _avatar_.
 
 ---
 
-## 10. Controladores Adicionales
+## 8. Controladores Adicionales
 
-### 10.1. RawTemplateController
+### 8.1. RawTemplateController
 
 Controlador para generar un RawTemplate a partir de una imagen (bitmap).
 

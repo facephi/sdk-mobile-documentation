@@ -93,10 +93,11 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                 |                                      |
-| --------------- | ------------------------------------ |
 | **Controlador** | **Descripción**                      |
+| --------------- | ------------------------------------ |
 | NFCController   | Controlador principal de lectura NFC |
+
+---
 
 ## 5. Configuración del componente
 
@@ -155,11 +156,15 @@ Indica si se desea un feedback de vibración al acabar el proceso.
 
 Activación del modo depuración del componente.
 
-#### 5.1.9. onlyBAC
+#### 5.1.9. skipPace
 
 Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura
 con información más simple y rápida que permite la lectura de más
 variedad de documentos.
+
+#### 5.1.10. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
 
 ---
 
@@ -189,7 +194,7 @@ SDKController.launch(
         }
     ) {
         when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
             is SdkResult.Success -> {
                 Napier.d("APP: NFC: OK")
                 Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")
@@ -220,7 +225,7 @@ SDKController.launchMethod(
         }
     ) {
         when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
             is SdkResult.Success -> {
                 Napier.d("APP: NFC: OK")
                 Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")
@@ -248,8 +253,8 @@ a la plataforma.
 
 Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
-href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado"
-rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+  href="Mobile_SDK#6-retorno-de-resultado"
+  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
 
 ### 7.1. Recepción de errores
 
@@ -386,17 +391,26 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```java
-<string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
-<string name="nfc_component_ready_to_scan">Ready to scan</string>
-<string name="nfc_component_reading_device">Reading device</string>
-<string name="nfc_component_in_progress">In progress:</string>
-<string name="nfc_component_connector_of">in</string>
-<string name="nfc_component_error">The NFC could not be\nread correctly</string>
-<string name="nfc_component_tutorial">Attach the document to the back of your device.</string>
-<string name="nfc_component_tutorial_button">Continue</string>
-<string name="nfc_component_tutorial_title">Scan NFC</string>
-<string name="nfc_component_tutorial_1">When we pass a card through a sensor, there is an exchange of information called NFC.</string>
-<string name="nfc_component_tutorial_2">On your mobile, the sensor is in the marked area. Here you must gather your document.</string>
-<string name="nfc_component_tutorial_3">For a better reading, remove the cover of your mobile.</string>
-<string name="nfc_component_tutorial_more_info_button">More info</string>
+    <string name="nfc_component_start_message">Desliza el documento\nhasta que el sensor lo detecte.</string>
+    <string name="nfc_component_ready_to_scan">Listo para escanear</string>
+    <string name="nfc_component_reading_device">Leyendo dispositivo</string>
+    <string name="nfc_component_in_progress">En progreso:</string>
+    <string name="nfc_component_connector_of">de</string>
+    <string name="nfc_component_error">El NFC no se ha podido\nleer correctamente</string>
+    <string name="nfc_component_tutorial">Junta el documento a la parte trasera de tu dispositivo.</string>
+    <string name="nfc_component_tutorial_button">Continuar</string>
+    <string name="nfc_component_tutorial_title">Escanear NFC</string>
+    <string name="nfc_component_tutorial_1">Cuando pasamos una tarjeta por un sensor, hay un intercambio de información llamado NFC.</string>
+    <string name="nfc_component_tutorial_2">En tu móvil, el sensor está en la zona marcada. Aquí deberás juntar tu documento.</string>
+    <string name="nfc_component_tutorial_3">Para una mejor lectura, quita la funda de tu móvil.</string>
+    <string name="nfc_component_tutorial_more_info_button">Más información</string>
+    <string name="nfc_component_timeout_title">Tiempo superado</string>
+    <string name="nfc_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="nfc_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="nfc_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="nfc_component_data_error_title">No se pudo leer el documento</string>
+    <string name="nfc_component_data_error_desc">Revisa los datos introducidos</string>
+    <string name="nfc_component_read_not_finish_title">La lectura no finalizó</string>
+    <string name="nfc_component_read_not_finish_desc">Mantén la posición hasta que finalice la lectura.</string>
+
 ```

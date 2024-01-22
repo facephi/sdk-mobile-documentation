@@ -83,6 +83,8 @@ este proceso.
 | VideoIdController          | Controlador principal de video identificación      |
 | SignatureVideoIdController | Controlador para firmar un proceso con una Captura |
 
+---
+
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá
@@ -153,7 +155,7 @@ el componente:
 SDKController.launch(
     VideoIdController(VideoIdConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
         }
     }
@@ -168,7 +170,7 @@ SDKController.launch(
 SDKController.launchMethod(
     VideoIdController(VideoIdConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
         }
     }
@@ -192,24 +194,25 @@ a la plataforma.
 
 Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
-href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado"
-rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
-
+  href="Mobile_SDK#6-retorno-de-resultado"
+  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+  
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase _VideoIdError_.
 
 ```java
-val message = when(it.error){
-    is VideoIdError.ACTIVITY_RESULT_ERROR -> it.error.name
-    is VideoIdError.CANCEL_BY_USER -> it.error.name
-    is VideoIdError.INITIALIZATION_ERROR -> it.error.name
-    is VideoIdError.NETWORK_CONNECTION -> it.error.name
-    is VideoIdError.NO_DATA_ERROR -> it.error.name
-    is VideoIdError.PERMISSION_DENIED -> it.error.name
-    is VideoIdError.TIMEOUT -> it.error.name
-    is VideoIdError.VIDEO_ERROR -> it.error.name
-}
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR
+PERMISSION_DENIED
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -235,15 +238,16 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```java
-<string name="video_id_text_waiting_agent_title">Video recording</string>
-<string name="video_id_first_message">Place your face and the front of your document within the frame</string>
-<string name="video_id_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
-<string name="video_id_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
-<string name="video_id_second_message">Now place the back of your document</string>
-<string name="video_id_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
-<string name="video_id_finish_message">Video recording finished!</string>
-<string name="video_id_record_init_button">Start recording</string>
-<string name="video_id_ready_button">Ready</string>
-<string name="video_id_first_message_face">Place your face within the frame</string>
-<string name="video_id_restart">Repeat recording</string>
+    <string name="video_id_text_waiting_agent_title">Video ID</string>
+    <string name="video_id_first_message">Coloca tu rostro y el frente de tu documento en las marcas</string>
+    <string name="video_id_init_message_face_content_desc">Coloca tu rostro en frente de la cámara e inicia la grabación</string>
+    <string name="video_id_init_message_face_docu_content_desc">Coloca tu rostro y tu documento en frente de la cámara e inicia la grabación</string>
+    <string name="video_id_second_message">Ahora coloca el reverso de tu documento</string>
+    <string name="video_id_third_message">Ahora en voz alta di “Yo (nombre y apellidos) acepto los términos y condiciones”.</string>
+    <string name="video_id_finish_message">¡Videograbación finalizada!</string>
+    <string name="video_id_record_init_button">Iniciar grabación</string>
+    <string name="video_id_ready_button">Continuar</string>
+    <string name="video_id_first_message_face">Coloque su cara dentro del marco</string>
+    <string name="video_id_restart">Repetir grabación</string>
+
 ```

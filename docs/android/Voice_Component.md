@@ -122,6 +122,10 @@ intuitively explains how the capture is performed.
 
 Sets the maximum time that the capture can be performed.
 
+#### 5.1.5. showDiagnostic
+
+Display diagnostic screens at the end of the process
+
 ---
 
 ## 6. Component use
@@ -138,7 +142,7 @@ to launch the component:
 SDKController.launch(
     VoiceController(VoiceConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Voice: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
         }
     }
@@ -153,7 +157,7 @@ SDKController.launch(
 SDKController.launchMethod(
     VoiceController(VoiceConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Voice: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
         }
     }
@@ -184,15 +188,14 @@ rel="nofollow">6. Result return</a> section.
 On the error side, we will have the _VoiceError_ class.
 
 ```java
-val message = when(it.error){
-    VoiceError.ACTIVITY_RESULT_ERROR -> "ACTIVITY_RESULT_ERROR"
-    VoiceError.CANCEL_BY_USER -> "CANCEL_BY_USER"
-    is VoiceError.INITIALIZATION_ERROR -> "INITIALIZATION_ERROR: ${(it.error as VoiceError.INITIALIZATION_ERROR).error}"
-    VoiceError.INTERNAL_LICENSE_ERROR -> "INTERNAL_LICENSE_ERROR"
-    VoiceError.NO_DATA_ERROR -> "NO_DATA_ERROR"
-    VoiceError.PERMISSION_DENIED -> "PERMISSION_DENIED"
-    VoiceError.TIMEOUT -> "TIMEOUT"
-}
+NO_DATA_ERROR
+TIMEOUT
+INTERNAL_LICENSE_ERROR
+CANCEL_BY_USER
+CANCEL_LAUNCH
+PERMISSION_DENIED
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
 ```
 
 ### 7.1. Receipt of correct execution - _data_
@@ -229,13 +232,19 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```java
-<string name="voice_component_tutorial_message">Speak clearly and loudly. \n\n Make sure you are in a quiet environment.</string>
-<string name="voice_component_tutorial_title">Speech recognition</string>
-<string name="voice_component_tutorial_button">Continue</string>
-<string name="voice_component_success_message">Recorded recording</string>
-<string name="voice_component_speech_message">Speak clearly and close to the microphone</string>
-<string name="voice_component_speech_more_message">Keep talking</string>
-<string name="voice_component_read_message">Say out loud:</string>
-<string name="voice_component_speech_noisy_message">There is too much background noise, try to go to a quiet environment</string>
-<string name="voice_component_success_records_message">successful recordings</string>
+    <string name="voice_component_tutorial_message">Speak clearly and loudly. \n\n Make sure you are in a quiet environment.</string>
+    <string name="voice_component_tutorial_title">Speech recognition</string>
+    <string name="voice_component_tutorial_button">Continue</string>
+    <string name="voice_component_success_message">Recorded recording</string>
+    <string name="voice_component_speech_message">Speak clearly and close to the microphone</string>
+    <string name="voice_component_speech_more_message">Keep talking</string>
+    <string name="voice_component_speech_empty_message" translatable="false"></string>
+    <string name="voice_component_read_message">Say out loud:</string>
+    <string name="voice_component_speech_noisy_message">There is too much background noise, try to go to a quiet environment</string>
+    <string name="voice_component_success_records_message">successful recordings</string>
+    <string name="voice_component_timeout_title">Time exceeded</string>
+    <string name="voice_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="voice_component_internal_error_title">There was a technical problem</string>
+    <string name="voice_component_internal_error_desc">We apologize. The capture could not be made</string>
+
 ```

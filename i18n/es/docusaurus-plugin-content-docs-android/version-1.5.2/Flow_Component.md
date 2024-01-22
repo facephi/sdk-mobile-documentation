@@ -210,7 +210,7 @@ El resultado del flow tendrá 3 campos:
 
 - result: Resultado del paso en formato SdkResult. Más información en
   la sección de <a
-  href="https://facephicorporative.atlassian.net/wiki/spaces/DD/pages/2605285492#6.-Retorno-de-resultado"
+  href="Mobile_SDK#6-retorno-de-resultado"
   rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
 
 - flowFinish: Flag que indicará si ha terminado el proceso

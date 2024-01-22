@@ -2,6 +2,41 @@
 
 ## Versiones
 
+### 1.5.3-SNAPSHOT
+
+- General
+  - Pantallas de diagnóstico con reintentar
+  - Flow
+    - Nuevas funcionalidades
+    - Tema dinámico
+    - Preview controller 
+    - Servicios de cliente y preview
+    - Mejoras
+- Selphi
+  - Nueva versión 5.12.0
+  - Tutoriales
+  - Envío de bestImage completa a tracking
+- SelphID
+  - Nueva versión 1.22.3
+- Phingers
+  - Se ha añadido retroalimentación háptica con vibración
+  - Mejoras en tutorial
+- NFC
+  - Mejoras
+- VideoId
+  - Mejoras en la conexión
+  - Ajustes UX
+- VideoCall
+  - ScreenSharing
+  - Nuevos estados
+  - Mejoras en la conexión
+- VideoRecording
+  - Nuevos estados
+  - Mejoras en la conexión
+  - Incidencia conocida: API 34 Android
+- Capture QR
+  - QR formatos
+
 ### 1.5.2
 
 - General

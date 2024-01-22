@@ -122,8 +122,8 @@ to launch the component:
 SDKController.launch(
     VideoCallController(VideoCallConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
         }
     }
 )
@@ -137,8 +137,8 @@ SDKController.launch(
 SDKController.launchMethod(
     VideoCallController(VideoCallConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
         }
     }
 )
@@ -168,25 +168,86 @@ rel="nofollow">6. Result return</a> section.
 On the error side, we will have the _VideoCallError_ class.
 
 ```java
-val message = when(it.error){
-    is VideoCallError.ACTIVITY_RESULT_ERROR -> it.error.name
-    is VideoCallError.CANCEL_BY_USER -> it.error.name
-    is VideoCallError.INITIALIZATION_ERROR -> it.error.name
-    is VideoCallError.NETWORK_CONNECTION -> it.error.name
-    is VideoCallError.NO_DATA_ERROR -> it.error.name
-    is VideoCallError.TIMEOUT -> it.error.name
-    is VideoCallError.VIDEO_ERROR -> it.error.name
-}
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR
 ```
 
-### _7.1. Receipt of correct execution - data_
+### 7.2. Receipt of correct execution - data_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.
 
 ---
 
-## 8. Customizing the component
+## 8. Screen sharing
+
+The screen sharing functionality can be executed using the _VideoCallScreenSharingManager_ class. 
+With it, it is possible to start and end the screen sharing as well as to collect the states in which it is.
+
+```java
+val videoCallScreenSharingManager = VideoCallScreenSharingManager(
+            SdkApplication(application)
+        )
+
+videoCallScreenSharingManager.setOutput { state ->
+            Napier.d("SCREEN SHARING STATE: ${state.name}")
+        }
+```
+
+The possible states are:
+
+```java
+    AGENT_HANGUP,
+    PERMISSION_ERROR,
+    UNKNOWN_ERROR,
+    SHARING,
+    FINISH
+```
+
+Where SHARING indicates that the screen is being recorded and FINISH indicates that the process has finished.
+
+If you want to enable the screen sharing option, the video call driver must be launched with the _activateScreenSharing_ flag of its active configuration. The output of the video call launch will indicate whether the user has requested screen sharing with the _sharingScreen_ flag.
+
+```java
+SDKController.launch(
+    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)) {
+         when (it) {
+              is SdkResult.Error -> {
+                    Napier.d("VideoCall: ERROR - ${it.error.name}")
+              }
+
+              is SdkResult.Success -> {
+                      Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
+                      if (it.data.sharingScreen) {
+                          videoCallScreenSharingManager.startScreenSharingService()
+                      }
+                   }
+              }
+        }
+    )
+```
+
+To start and end screen sharing in the call:
+
+```java
+// START
+videoCallScreenSharingManager.startScreenSharingService()
+
+// STOP
+videoCallScreenSharingManager.stopScreenSharingService()
+```
+
+---
+
+## 9. Customizing the component
 
 Apart from the changes that can be made at SDK level (which are
 explained in the <a href="Mobile_SDK"
@@ -195,22 +256,23 @@ data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 document), this particular component allows the modification of specific
 texts.
 
-### 8.1. Texts
+### 9.1. Texts
 
 If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```java
-<string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
-<string name="video_call_agent">Agent</string>
-<string name="video_call_exit">Exit</string>
-<string name="video_call_text_finish">Video assistance is complete</string>
-<string name="video_call_accesibility_phone">Phone</string>
-<string name="video_call_restart">Repeat recording</string>
+    <string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
+    <string name="video_call_agent">Agent</string>
+    <string name="video_call_exit">Exit</string>
+    <string name="video_call_text_finish">Video assistance is complete</string>
+    <string name="video_call_accesibility_phone">Phone</string>
+    <string name="video_call_restart">Repeat recording</string>
+
 ```
 
-### 8.2. Colors
+### 9.2. Colors
 
 ```java
 <color name="colorVideoCallActionsBackground">#30333d</color>
