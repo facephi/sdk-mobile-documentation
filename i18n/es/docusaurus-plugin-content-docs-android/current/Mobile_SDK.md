@@ -92,7 +92,7 @@ repositorio:
   artifactory.token=YOUR_CREDENTIALS_TOKEN
   ```
 
-### 2.2. **Dependencias requeridas para la integración básica**
+### 2.2. Dependencias requeridas para la integración básica
 
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
 instalar el componente en un proyecto que contenga una versión antigua
@@ -380,40 +380,10 @@ se hacen uso de unos determinados **Componentes (STEPS).**
 A continuación se muestra una tabla con la relación entre _operaciones_
 y _steps_:
 
-<table data-table-width="760">
-<tbody>
-<tr class="header">
-<th><p><strong>Operación
-(</strong><em><strong>OperationType</strong></em><strong>)</strong></p></th>
-<th><p><strong>Componente
-(</strong><em><strong>Step</strong></em><strong>)</strong></p></th>
-<th><p><strong>Descripción</strong></p></th>
-</tr>
-<tr class="odd">
-<td><p>ONBOARDING</p></td>
-<td><ul>
-<li><p>SELPHI_COMPONENT</p></li>
-<li><p>SELPHID_COMPONENT</p></li>
-</ul></td>
-<td><ul>
-<li><p>Validación facial de un selfie contra la cara de un
-docuento</p></li>
-<li><p>Extracción del OCR del documento</p></li>
-<li><p>Detección de vivacidad</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p>AUTHENTICATION</p></td>
-<td><ul>
-<li><p>SELPHI_COMPONENT</p></li>
-</ul></td>
-<td><ul>
-<li><p>Validación facial mediante plantillas</p></li>
-<li><p>Detección de vivacidad</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+| **Operación (OperationType)** | **Componente (Step)**                  | Descripción                                                                                                                             |
+| ----------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| ONBOARDING                    | SELPHI_COMPONENT<br/>SELPHID_COMPONENT | - Validación facial de un selfie contra la cara de un documento <br/> - Extracción del OCR del documento <br/> - Detección de vivacidad |
+| AUTHENTICATION                | SELPHI_COMPONENT                       | - Validación facial mediante plantillas <br/> - Detección de vivacidad                                                                  |
 
 Esta lista se irá ampliando en próximas actualizaciones de la SDK, según
 vayan apareciendo nuevos componentes y casos de uso.
@@ -615,7 +585,7 @@ cambios que se pueden realizar.
 Se recomienda agregar las modificaciones tanto en el tema **claro** como
 **oscuro** (night).
 
-### 10.1. **Colores, logo y animaciones**
+### 10.1. Colores, logo y animaciones
 
 Para cambiar los colores y el logo del SDK habría que incluir un fichero
 XML en la aplicación del cliente (por ejemplo **_sdk_styles.xml_**)
@@ -672,7 +642,7 @@ los componentes.
 Los componentes de Selphi y SelphID lleva su zip de recursos asociados
 que se mantiene ajeno a esta característica del SDK.
 
-### 10.2. **Textos**
+### 10.2. Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
@@ -716,14 +686,14 @@ de cada _String_ por el deseado.
 </resources>
 ```
 
-### 10.3. **Fuente**
+### 10.3. Fuente
 
 Para modificar la fuente, se agregarán los ficheros .ttf a la carpeta
 _font_ de la aplicación y renombrándolos como aparecen en la imagen:
 
-![Image](/attachments/2605285492/2605613108.png)
+![Image](/android/fonts.png)
 
-### 10.4. **Botones**
+### 10.4. Botones
 
 En caso de desear cambiar la forma de los botones del SDK habría que
 incluir esta línea en el fichero XML de estilos del SDK cambiando el

@@ -29,7 +29,7 @@ const sidebars = {
         //"SelphID_Component",
         //"Voice_Component",
         //"NFC_Component",
-        //"Video_Call_Component",
+        "VideoCall_Component",
         //"Video_Id_Component",
         //"Video_Recording_Component",
       ],

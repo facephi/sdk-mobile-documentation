@@ -77,7 +77,7 @@ by <u>two spaces</u>.
 pod repo-art add cocoa-pro-fphi "https://facephicorp.jfrog.io/artifactory/api/pods/cocoa-pro-fphi"
 ```
 
-### 2.2. **Dependencies required for basic integration**
+### 2.2. Dependencies required for basic integration
 
 To avoid conflicts and compatibility problems, if you want to install
 the component in a project containing an old Facephi libraries
@@ -192,7 +192,7 @@ install_cocoapods
 In the case of using **_xCode15_**, it is recommended to use the
 following configuration:
 
-<!-- <img src="attachments/thumbnails/2643296411/2643591524" -->
+<!-- <img src="ios/2643591524" -->
 
 The **-ld_classic** flag must be added in _Other Linker Flags_ in the
 _Build Settings_ section of the application.
@@ -346,50 +346,10 @@ Currently, the following operations exist, during which certain
 
 Below is a table showing the relationship between operations and steps:
 
-<table data-table-width="760">
-<colgroup>
-</colgroup>
-<tbody>
-<tr class="header">
-<th><p><strong>Operation
-(</strong><em><strong>OperationType</strong></em><strong>)</strong></p></th>
-<th><p><strong>Component
-(</strong><em><strong>Step</strong></em><strong>)</strong></p></th>
-<th><p><strong>Description</strong></p></th>
-</tr>
-<tr class="odd">
-<td><p>ONBOARDING</p></td>
-<td><ul>
-<li><p>SELPHID</p></li>
-<li><p>SELPHI</p></li>
-</ul></td>
-<td><ul>
-<li><p>Validación facial de un selfie contra la cara de un
-docuento</p></li>
-<li><p>Extracción del OCR del documento</p></li>
-<li><p>Detección de vivacidad</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p>AUTHENTICATION</p></td>
-<td><ul>
-<li><p>SELPHI</p></li>
-<li><p>PHINGERS</p></li>
-<li><p>VOICE</p></li>
-</ul></td>
-<td><ul>
-<li>
-<p>Validación mediante plantillas</p>
-<ul>
-<li><p>Selphi: Caras</p></li>
-<li><p>Phingers: Huellas</p></li>
-<li><p>Voice: Voz</p></li>
-</ul></li>
-<li><p>Detección de vivacidad</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+| **Operation (OperationType)** | **Component (Step)**                   | Description                                                                                                          |
+| ----------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| ONBOARDING                    | SELPHI_COMPONENT<br/>SELPHID_COMPONENT | - Facial validation of a selfie against a document's face <br/> - Document OCR extraction <br/> - Liveness detection |
+| AUTHENTICATION                | SELPHI_COMPONENT                       | - Face validation using templates <br/> - Liveness detection                                                         |
 
 This list will be expanded in future SDK updates as new components and
 use cases are released.

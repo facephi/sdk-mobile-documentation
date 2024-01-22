@@ -83,7 +83,7 @@ There are several ways to configure the repository access credentials:
   artifactory.token=YOUR_CREDENTIALS_TOKEN
   ```
 
-### 2.2. **Dependencies required for basic integration**
+### 2.2. Dependencies required for basic integration
 
 To avoid conflicts and compatibility problems, if you want to install
 the component in a project containing an old Facephi libraries
@@ -371,55 +371,10 @@ Currently, the following operations exist, during which certain
 
 Below is a table showing the relationship between operations and steps:
 
-<table data-table-width="760">
-<tbody>
-<tr class="header">
-<th ><p><strong>Operación
-(</strong><em><strong>OperationType</strong></em><strong>)</strong></p></th>
-<th ><p><strong>Component
-(</strong><em><strong>Step</strong></em><strong>)</strong></p></th>
-<th ><p><strong>Description</strong></p></th>
-</tr>
-<tr class="odd">
-<td><p>ONBOARDING</p></td>
-<td><ul>
-<li>
-<p>SELPHI_COMPONENT</p>
-</li>
-<li>
-<p>SELPHID_COMPONENT</p>
-</li>
-</ul></td>
-<td><ul>
-<li>
-<p>Facial validation of a selfie against a document's face</p>
-</li>
-<li>
-<p>Document OCR extraction</p>
-</li>
-<li>
-<p>Liveness detection</p>
-</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p>AUTHENTICATION</p></td>
-<td><ul>
-<li>
-<p>SELPHI_COMPONENT</p>
-</li>
-</ul></td>
-<td><ul>
-<li>
-<p>Face validation using templates</p>
-</li>
-<li>
-<p>Liveness detection</p>
-</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+| **Operation (OperationType)** | **Component (Step)**                   | Description                                                                                                          |
+| ----------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| ONBOARDING                    | SELPHI_COMPONENT<br/>SELPHID_COMPONENT | - Facial validation of a selfie against a document's face <br/> - Document OCR extraction <br/> - Liveness detection |
+| AUTHENTICATION                | SELPHI_COMPONENT                       | - Face validation using templates <br/> - Liveness detection                                                         |
 
 This list will be expanded in future SDK updates as new components and
 use cases are released.
@@ -594,7 +549,7 @@ listed below.
 It is recommended to add the modifications to both the **light** and
 **dark** (_night_) themes.
 
-### 10.1. **Colors, logo and animations**
+### 10.1. Colors, logo and animations
 
 To change the SDK colours and logo, you would have to include an XML
 file in the client application (e.g. **_sdk_styles.xml_**) changing the
@@ -650,7 +605,7 @@ Changing any of them will affect the animations of the components.
 The Selphi and SelphID components carry their associated resource zip,
 which is kept outside this feature of the SDK.
 
-### 10.2. **Texts**
+### 10.2. Texts
 
 If you want to modify the SDK texts, you would have to include the
 following XML file in the client application and modify the value of
@@ -694,14 +649,14 @@ each _String_ to the desired one.
 </resources>
 ```
 
-### 10.3. **Font**
+### 10.3. Font
 
 To modify the font, add the .ttf files to the font folder of the
 application and rename them as shown in the image:
 
-![Image](/attachments/2605678593/2605678599.png)
+![Image](/android/fonts.png)
 
-### 10.4. **Buttons**
+### 10.4. Buttons
 
 In case you want to change the shape of the SDK buttons, you would have
 to include this line in the SDK style XML file by changing the _dp_

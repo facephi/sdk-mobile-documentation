@@ -73,17 +73,15 @@ anterioridad.
 
 ## 4. Controladores disponibles
 
-|                       |                                                                            |
-| --------------------- | -------------------------------------------------------------------------- |
 | **Controlador**       | **Descripción**                                                            |
+| --------------------- | -------------------------------------------------------------------------- |
 | FlowController        | Controlador principal de Flow. Lanzamiento de flujos publicados.           |
 | FlowPreviewController | Controlador para el lanzamiento de flujos pendientes de publicar (pruebas) |
 
 ### 4.1. Controladores de componentes con flow
 
-|                            |                           |
-| -------------------------- | ------------------------- |
 | **Controlador**            | **Descripción**           |
+| -------------------------- | ------------------------- |
 | FSelphiController          | Reconocimiento facial     |
 | FSelphIDController         | Reconocimiento documental |
 | FVoiceController           | Captura de voz            |

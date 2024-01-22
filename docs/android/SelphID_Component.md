@@ -114,7 +114,7 @@ Specifies the name of the resources in **_zip_** format. Example:
 
 This name will fetch the file from the _assets_ path.
 
-![Image](/attachments/2605809665/2605809673.png)
+![Image](/android/selphid_resources.png)
 
 #### 5.1.2. _wizardMode_
 

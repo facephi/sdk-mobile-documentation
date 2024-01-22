@@ -118,7 +118,7 @@ Indica el nombre de los recursos en formato zip del componente. Ejemplo:
 
 Este nombre irá a buscar el fichero a la ruta de _assets_.
 
-![Image](/attachments/2605220295/2605907987.png)
+![Image](/android/selphi_resources.png)
 
 #### 5.1.2. _cropPercent_
 

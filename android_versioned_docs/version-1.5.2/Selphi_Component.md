@@ -110,7 +110,7 @@ _"resources-selphi-2-0.zip"_.
 
 This name will fetch the file from the assets path.
 
-![Image](/attachments/2606071809/2606071817.png)
+![Image](/android/selphi_resources.png)
 
 #### 5.1.2. _cropPercent_
 

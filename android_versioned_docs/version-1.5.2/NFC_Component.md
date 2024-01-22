@@ -86,9 +86,8 @@ documentation, which details and explains what this process consists of.
 
 ## 4. Available controllers
 
-|                |                            |
-| -------------- | -------------------------- |
 | **Controller** | **Description**            |
+| -------------- | -------------------------- |
 | NFCController  | NFC main reader controller |
 
 ---

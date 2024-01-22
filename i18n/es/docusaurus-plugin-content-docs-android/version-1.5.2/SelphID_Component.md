@@ -124,7 +124,7 @@ Indica el nombre de los recursos en formato zip del componente. Ejemplo:
 
 Este nombre irá a buscar el fichero a la ruta de _assets_.
 
-![Image](/attachments/2605645906/2605613209.png)
+![Image](/android/selphid_resources.png)
 
 #### 5.1.2. _wizardMode_
 
