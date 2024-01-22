@@ -203,7 +203,7 @@ to launch the component:
 SDKController.launch(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -218,7 +218,7 @@ SDKController.launch(
 SDKController.launchMethod(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -348,7 +348,6 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```java
-<!-- PHINGERS -->
     <string name="phingers_component_tutorial_left_message">Prepare your left hand for the catch</string>
     <string name="phingers_component_tutorial_left_title">Prepare your left hand for the catch</string>
     <string name="phingers_component_turorial_right_message">Prepare your right hand for capture</string>
@@ -357,5 +356,10 @@ each String to the desired one.
     <string name="phingers_component_capture_phingers">Hold fingers steady</string>
     <string name="phingers_component_capture_thumb">Hold finger steady</string>
     <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
-    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string> 
+    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string>
+    <string name="phingers_component_timeout_title">Time exceeded</string>
+    <string name="phingers_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="phingers_component_internal_error_title">There was a technical problem</string>
+    <string name="phingers_component_internal_error_desc">We apologize. The capture could not be made</string>
+
 ```

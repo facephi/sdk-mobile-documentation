@@ -152,7 +152,7 @@ el componente:
 SDKController.launch(
     VoiceController(VoiceConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Voice: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
         }
     }
@@ -167,7 +167,7 @@ SDKController.launch(
 SDKController.launchMethod(
     VoiceController(VoiceConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Voice: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
         }
     }
@@ -244,13 +244,18 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```java
-<string name="voice_component_tutorial_message">Speak clearly and loudly. \n\n Make sure you are in a quiet environment.</string>
-<string name="voice_component_tutorial_title">Speech recognition</string>
-<string name="voice_component_tutorial_button">Continue</string>
-<string name="voice_component_success_message">Recorded recording</string>
-<string name="voice_component_speech_message">Speak clearly and close to the microphone</string>
-<string name="voice_component_speech_more_message">Keep talking</string>
-<string name="voice_component_read_message">Say out loud:</string>
-<string name="voice_component_speech_noisy_message">There is too much background noise, try to go to a quiet environment</string>
-<string name="voice_component_success_records_message">successful recordings</string>
+    <string name="voice_component_tutorial_message">Habla claro y en voz alta. \n\n Asegúrate de estar en un entorno silencioso</string>
+    <string name="voice_component_tutorial_title">Reconocimiento de voz</string>
+    <string name="voice_component_tutorial_button">Comenzar</string>
+    <string name="voice_component_success_message">Grabación registrada</string>
+    <string name="voice_component_speech_message">Habla claro y cercano al micrófono</string>
+    <string name="voice_component_speech_more_message">Continue hablando</string>
+    <string name="voice_component_read_message">Di en voz alta:</string>
+    <string name="voice_component_speech_noisy_message">Demasiado ruido. Busca un entorno silencioso</string>
+    <string name="voice_component_success_records_message">grabaciones exitosas</string>
+    <string name="voice_component_timeout_title">Tiempo superado</string>
+    <string name="voice_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="voice_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="voice_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+
 ```

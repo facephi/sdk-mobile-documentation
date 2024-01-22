@@ -213,7 +213,7 @@ el componente:
 SDKController.launch(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -228,7 +228,7 @@ SDKController.launch(
 SDKController.launchMethod(
     PhingersController(PhingersConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: KO - ${it.error.javaClass.simpleName}")
+            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
             is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
         }
     }
@@ -359,14 +359,18 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```java
-<!-- PHINGERS -->
-    <string name="phingers_component_tutorial_left_message">Prepare your left hand for the catch</string>
-    <string name="phingers_component_tutorial_left_title">Prepare your left hand for the catch</string>
-    <string name="phingers_component_turorial_right_message">Prepare your right hand for capture</string>
-    <string name="phingers_component_tutorial_right_title">Prepare your right hand for capture</string>
-    <string name="phingers_component_tutorial_button">Take fingerprints</string>
-    <string name="phingers_component_capture_phingers">Hold fingers steady</string>
-    <string name="phingers_component_capture_thumb">Hold finger steady</string>
-    <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
-    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string> 
+    <string name="phingers_component_tutorial_left_message">Prepara tu mano izquierda para la captura</string>
+    <string name="phingers_component_tutorial_left_title">Huellas mano izquierda</string>
+    <string name="phingers_component_turorial_right_message">Prepara tu mano derecha para la captura</string>
+    <string name="phingers_component_tutorial_right_title">Huellas mano derecha</string>
+    <string name="phingers_component_tutorial_button">Tomar huellas</string>
+    <string name="phingers_component_capture_phingers">Mantenga los dedos firmes</string>
+    <string name="phingers_component_capture_thumb">Mantenga el dedo firme</string>
+    <string name="phingers_component_capture_phingers_not_focus">Mueva los dedos hasta que estén enfocados</string>
+    <string name="phingers_component_capture_thumb_not_focus">Mueva el dedo hasta que esté enfocado</string>
+    <string name="phingers_component_timeout_title">Tiempo superado</string>
+    <string name="phingers_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="phingers_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="phingers_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+
 ```

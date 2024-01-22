@@ -184,7 +184,7 @@ SDKController.launch(
         }
     ) {
         when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
             is SdkResult.Success -> {
                 Napier.d("APP: NFC: OK")
                 Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")
@@ -215,7 +215,7 @@ SDKController.launchMethod(
         }
     ) {
         when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
             is SdkResult.Success -> {
                 Napier.d("APP: NFC: OK")
                 Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")
@@ -380,17 +380,26 @@ following XML file in the client application and change the value of
 each String to the desired one.
 
 ```java
-<string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
-<string name="nfc_component_ready_to_scan">Ready to scan</string>
-<string name="nfc_component_reading_device">Reading device</string>
-<string name="nfc_component_in_progress">In progress:</string>
-<string name="nfc_component_connector_of">in</string>
-<string name="nfc_component_error">The NFC could not be\nread correctly</string>
-<string name="nfc_component_tutorial">Attach the document to the back of your device.</string>
-<string name="nfc_component_tutorial_button">Continue</string>
-<string name="nfc_component_tutorial_title">Scan NFC</string>
-<string name="nfc_component_tutorial_1">When we pass a card through a sensor, there is an exchange of information called NFC.</string>
-<string name="nfc_component_tutorial_2">On your mobile, the sensor is in the marked area. Here you must gather your document.</string>
-<string name="nfc_component_tutorial_3">For a better reading, remove the cover of your mobile.</string>
-<string name="nfc_component_tutorial_more_info_button">More info</string>
+    <string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
+    <string name="nfc_component_ready_to_scan">Ready to scan</string>
+    <string name="nfc_component_reading_device">Reading device</string>
+    <string name="nfc_component_in_progress">In progress:</string>
+    <string name="nfc_component_connector_of">in</string>
+    <string name="nfc_component_error">The NFC could not be\nread correctly</string>
+    <string name="nfc_component_tutorial">Attach the document to the back of your device.</string>
+    <string name="nfc_component_tutorial_button">Continue</string>
+    <string name="nfc_component_tutorial_title">Scan NFC</string>
+    <string name="nfc_component_tutorial_1">When we pass a card through a sensor, there is an exchange of information called NFC.</string>
+    <string name="nfc_component_tutorial_2">On your mobile, the sensor is in the marked area. Here you must gather your document.</string>
+    <string name="nfc_component_tutorial_3">For a better reading, remove the cover of your mobile.</string>
+    <string name="nfc_component_tutorial_more_info_button">More info</string>
+    <string name="nfc_component_timeout_title">Time exceeded</string>
+    <string name="nfc_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="nfc_component_internal_error_title">There was a technical problem</string>
+    <string name="nfc_component_internal_error_desc">We apologize. The capture could not be made</string>
+    <string name="nfc_component_data_error_title">Document could not be read</string>
+    <string name="nfc_component_data_error_desc">Review the data entered</string>
+    <string name="nfc_component_read_not_finish_title">Reading not finished</string>
+    <string name="nfc_component_read_not_finish_desc">Hold the position until the end of the reading</string>
+
 ```

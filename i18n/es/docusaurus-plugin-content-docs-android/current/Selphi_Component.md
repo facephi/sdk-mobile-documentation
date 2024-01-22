@@ -230,7 +230,7 @@ el componente:
 SDKController.launch(
     SelphiController(SelphiConfigurationData(...)) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
             is SdkResult.Success -> it.data
         }
     }
@@ -245,7 +245,7 @@ SDKController.launch(
 SDKController.launchMethod(
     SelphiController(SelphiConfigurationData(...)) {
         when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
             is SdkResult.Success -> it.data
         }
     }

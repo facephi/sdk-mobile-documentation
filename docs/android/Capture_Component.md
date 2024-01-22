@@ -151,7 +151,7 @@ to launch the component:
 SDKController.launch(
     PhacturasReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("PhacturasReader: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
         }
     }
@@ -166,7 +166,7 @@ SDKController.launch(
 SDKController.launchMethod(
     PhacturasReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("PhacturasReader: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
         }
     }
@@ -197,7 +197,7 @@ to launch the component:
 SDKController.launch(
     QrReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("QR: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
         }
     }
@@ -212,7 +212,7 @@ SDKController.launch(
 SDKController.launchMethod(
     QrReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("QR: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
         }
     }
@@ -243,7 +243,7 @@ to launch the component:
 SDKController.launch(
     QrGeneratorController(QrGeneratorConfiguration("")) {
         when (it) {
-            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("QrGenerator: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
         }
     }
@@ -258,7 +258,7 @@ SDKController.launch(
 SDKController.launchMethod(
     QrGeneratorController(QrGeneratorConfiguration("")) {
         when (it) {
-            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
+            is SdkResult.Error -> Napier.d("QrGenerator: ERROR - ${it.error.name}")
             is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
         }
     }
