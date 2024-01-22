@@ -180,7 +180,7 @@ INITIALIZATION_ERROR -> it.error
 UNKNOWN_ERROR
 ```
 
-### _7.1. Receipt of correct execution - data_
+### 7.2. Receipt of correct execution - data_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.

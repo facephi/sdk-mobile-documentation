@@ -58,16 +58,16 @@ beforehand.
 
 ---
 
-## 4. Controladores disponibles
+## 4. Available controllers
 
-| **Controlador**       | **Descripción**                                                            |
+| **Controller**       | **Description**                                                            |
 | --------------------- | -------------------------------------------------------------------------- |
 | FlowController        | Flow main controller. Launch of published flows.           |
 | FlowPreviewController | Driver for the release of flows to be published (testing) |
 
-### 4.1. Controladores de componentes con flow
+### 4.1. Available controllers for flow
 
-| **Controlador**            | **Descripción**           |
+| **Controller**            | **Description**           |
 | -------------------------- | ------------------------- |
 | FSelphiController          | Facial recognition     |
 | FSelphIDController         | Document recognition |

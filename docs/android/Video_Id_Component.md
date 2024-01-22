@@ -206,7 +206,7 @@ UNKNOWN_ERROR
 PERMISSION_DENIED
 ```
 
-### 7.1. _Receipt of correct execution - data_
+### 7.2. Receipt of correct execution - data_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.
