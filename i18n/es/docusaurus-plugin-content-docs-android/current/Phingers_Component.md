@@ -94,9 +94,8 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                    |                                             |
-| ------------------ | ------------------------------------------- |
 | **Controlador**    | **Descripción**                             |
+| ------------------ | ------------------------------------------- |
 | PhingersController | Controlador principal de captura de huellas |
 
 ## 5. Configuración del componente

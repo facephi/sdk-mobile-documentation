@@ -79,9 +79,8 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                              |                                                            |
-| ---------------------------- | ---------------------------------------------------------- |
 | **Controlador**              | **Descripción**                                            |
+| ---------------------------- | ---------------------------------------------------------- |
 | VideoRecordingController     | Controlador principal de video grabación.                  |
 | StopVideoRecordingController | Controlador para realizar la parada de la video grabación. |
 
@@ -122,23 +121,29 @@ necesario para la conexión con el servicio de video.
 
 ## 6. Uso del componente
 
+### 6.1 Iniciar grabación
+
 Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
+3**) se podrán lanzar los componentes del SDK. 
+
+Los controladores de grabación devolverán estados para indicar la evolución del proceso.
+
+Hay dos formas de lanzar el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
   del componente con normalidad, pero sí se trackearán los eventos
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    VideoRecordingController(VideoRecordingConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoRecording: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoRecording OK: ${it.data}")
-        }
-    }
+val videoRecordingController = VideoRecordingController(
+      VideoRecordingConfigurationData()
 )
+
+videoRecordingController.setState {
+     Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+}
+
+SDKController.launch(videoRecordingController)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -146,14 +151,63 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    VideoRecordingController(VideoRecordingConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoRecording: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoRecording OK: ${it.data}")
-        }
-    }
+val videoRecordingController = VideoRecordingController(
+      VideoRecordingConfigurationData()
 )
+
+videoRecordingController.setState {
+     Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+}
+
+SDKController.launchMethod(videoRecordingController)
+```
+
+El método **launch** debe usarse **por defecto**. Este método permite
+utilizar **_tracking_** en caso de estar su componente activado, y no lo
+usará cuando esté desactivado (o no se encuentre el componente
+instalado).
+
+Por el contrario, el método **launchMethod** cubre un caso especial, en
+el cual el integrador tiene instalado y activado el tracking, pero en un
+flujo determinado dentro de la aplicación no desea trackear información.
+En ese caso se usa este método para evitar que se envíe esa información
+a la plataforma.
+
+### 6.2 Parar grabación
+
+Una vez iniciado el componente y creada una nueva operación (**apartado
+3**) se podrán lanzar los componentes del SDK. 
+
+Los controladores de grabación devolverán estados para indicar la evolución del proceso.
+
+Hay dos formas de lanzar el componente:
+
+- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero sí se trackearán los eventos
+  internos al servidor de _tracking_:
+
+```java
+val stopVideoRecordingController = StopVideoRecordingController()
+
+stopVideoRecordingController.setState {
+    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+}
+
+SDKController.launch(stopVideoRecordingController)
+```
+
+- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero **no se trackeará** ningún
+  evento al servidor de _tracking_:
+
+```java
+val stopVideoRecordingController = StopVideoRecordingController()
+
+stopVideoRecordingController.setState {
+    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+}
+
+SDKController.launchMethod(stopVideoRecordingController)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -171,51 +225,20 @@ a la plataforma.
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+La evolución del proceso vendrá indicada a través de los estados:
 
-### 7.1. Recepción de errores
-
-En la parte del error, dispondremos de la clase `VideoRecordingError`.
-
+Los controladores de grabación devolverán estados para indicar la evolución del proceso:
 ```java
-val message = when(it.error){
-    VideoRecordingError.CANCEL_BY_USER -> "CANCEL_BY_USER"
-    is VideoRecordingError.INITIALIZATION_ERROR ->
-        "INITIALIZATION_ERROR: ${(it.error as VideoRecordingError.INITIALIZATION_ERROR).error}"
-    VideoRecordingError.NETWORK_CONNECTION -> "NETWORK_CONNECTION"
-    VideoRecordingError.NO_DATA_ERROR -> "NO_DATA_ERROR"
-    VideoRecordingError.PERMISSION_DENIED -> "PERMISSION_DENIED"
-    VideoRecordingError.TIMEOUT -> "TIMEOUT"
-    VideoRecordingError.UNKNOWN_ERROR -> "UNKNOWN_ERROR"
-    VideoRecordingError.VIDEO_ERROR -> "VIDEO_ERROR"
-}
+    AGENT_HANGUP,
+    FINISH,
+    SHARING,
+    INITIALIZATION_ERROR,
+    NETWORK_CONNECTION_ERROR,
+    PERMISSION_ERROR,
+    VIDEO_ERROR,
+    SOCKET_ERROR,
+    UNKNOWN_ERROR,
 ```
-
-### 7.2. Recepción de ejecución correcta - _data_
-
-En la ejecución correcta, simplemente se informa de que todo ha ido bien
-con el SdkResult.Success.
+Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
 
 ---
-
-## 10. Controladores Adicionales
-
-### 10.1. StopVideoRecordingController
-
-Este controlador permite la parada de una grabación en curso.
-
-```java
-SDKController.launch(
-    StopVideoRecordingController {
-        when (it) {
-            is SdkResult.Error -> Napier.d(
-                "VideoRecording-STOP: KO - ${it.error.javaClass.simpleName}"
-            )
-            is SdkResult.Success -> Napier.d("VideoRecording-STOP: OK")
-        }
-    }
-)
-```

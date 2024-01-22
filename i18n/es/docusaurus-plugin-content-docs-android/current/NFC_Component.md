@@ -93,9 +93,8 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                 |                                      |
-| --------------- | ------------------------------------ |
 | **Controlador** | **Descripción**                      |
+| --------------- | ------------------------------------ |
 | NFCController   | Controlador principal de lectura NFC |
 
 ## 5. Configuración del componente

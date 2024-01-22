@@ -80,9 +80,8 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                     |                                       |
-| ------------------- | ------------------------------------- |
 | **Controlador**     | **Descripción**                       |
+| ------------------- | ------------------------------------- |
 | VideoCallController | Controlador principal de videollamada |
 
 ## 5. Configuración del componente
@@ -118,6 +117,10 @@ ApiKey necesaria para la conexión con el socket de video
 Identificador del tenant que hace referencia al cliente actual,
 necesario para la conexión con el servicio de video.
 
+#### 5.1.4. activateScreenSharing
+
+Activar la opción de compartir pantalla en la llamada.
+
 ---
 
 ## 6. Uso del componente
@@ -134,8 +137,8 @@ el componente:
 SDKController.launch(
     VideoCallController(VideoCallConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
         }
     }
 )
@@ -149,8 +152,8 @@ SDKController.launch(
 SDKController.launchMethod(
     VideoCallController(VideoCallConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
         }
     }
 )
@@ -175,6 +178,8 @@ Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
   href="Mobile_SDK#6-retorno-de-resultado"
   rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+
+
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase _VideoCallError_.
@@ -197,9 +202,70 @@ UNKNOWN_ERROR
 En la ejecución correcta, simplemente se informa de que todo ha ido bien
 con el SdkResult.Success.
 
+Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá activar compartir pantalla.
+
 ---
 
-## 8. Personalización del componente
+## 8. Compartir pantalla
+
+La funcionalidad de compartir pantalla se podrá ejecutar haciendo uso de la clase _VideoCallScreenSharingManager_. 
+Con ella se podrá tanto comenzar y finalizar la compartición de pantalla como recoger los estados en los que se encuentra.
+
+```java
+val videoCallScreenSharingManager = VideoCallScreenSharingManager(
+            SdkApplication(application)
+        )
+
+videoCallScreenSharingManager.setOutput { state ->
+            Napier.d("SCREEN SHARING STATE: ${state.name}")
+        }
+```
+
+Los posibles estados son:
+
+```java
+    AGENT_HANGUP,
+    PERMISSION_ERROR,
+    UNKNOWN_ERROR,
+    SHARING,
+    FINISH
+```
+Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
+
+Si se quiere habilitar la opción de compartir pantalla se deberá lanzar el controlador de video llamada con el flag _activateScreenSharing_ de su configuración activo. En la salida del lanzamiento de la video llamada se indicará si el usuario ha solicitado compartir pantalla con el flag _sharingScreen_.
+
+```java
+SDKController.launch(
+    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)) {
+         when (it) {
+              is SdkResult.Error -> {
+                    Napier.d("VideoCall: ERROR - ${it.error.name}")
+              }
+
+              is SdkResult.Success -> {
+                      Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
+                      if (it.data.sharingScreen) {
+                          videoCallScreenSharingManager.startScreenSharingService()
+                      }
+                   }
+              }
+        }
+    )
+```
+
+Para comenzar y finalizar la compartición de pantalla en la llamada:
+
+```java
+// START
+videoCallScreenSharingManager.startScreenSharingService()
+
+// STOP
+videoCallScreenSharingManager.stopScreenSharingService()
+```
+
+---
+
+## 9. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
 se explican en el documento de <a href="ES_Mobile_SDK"
@@ -208,22 +274,22 @@ data-linked-resource-type="page"><strong><u>Android Mobile
 SDK</u></strong></a>), este componente en concreto permite la
 modificación de textos específicos.
 
-### 8.1. Textos
+### 9.1. Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```java
-<string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
-<string name="video_call_agent">Agent</string>
-<string name="video_call_exit">Exit</string>
-<string name="video_call_text_finish">Video assistance is complete</string>
-<string name="video_call_accesibility_phone">Phone</string>
-<string name="video_call_restart">Repeat recording</string>
+    <string name="video_call_text_waiting_agent_title">Conectando con un agente…</string>
+    <string name="video_call_agent">Agente</string>
+    <string name="video_call_exit">Salir</string>
+    <string name="video_call_text_finish">La video asistencia ha finalizado</string>
+    <string name="video_call_accesibility_phone">Teléfono</string>
+    <string name="video_call_restart">Repetir llamada</string>
 ```
 
-### 8.2. Colores
+### 9.2. Colores
 
 ```java
 <color name="colorVideoCallActionsBackground">#30333d</color>

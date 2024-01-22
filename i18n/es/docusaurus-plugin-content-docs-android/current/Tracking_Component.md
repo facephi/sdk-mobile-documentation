@@ -87,11 +87,10 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                         |                                                                                                                                       |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Controlador**         | **Descripción**                                                                                                                       |
-| TrackingController      | Controlador principal de tracking                                                                                                     |
-| TrackingErrorController | Controlador para **gestionar** los posibles **errores** que ocurran                                                                   |
+| **Controlador**         | **Descripción**         |
+| ----------------------- | -------------------------------------------------------------------------------------------- |
+| TrackingController      | Controlador principal de tracking  |
+| TrackingErrorController | Controlador para **gestionar** los posibles **errores** que ocurran |
 | ExtraDataController     | Controlador para obtener el **ExtraData** que permite la **comunicación** desde cliente con el servidor con **SelphIDSdk** instalado. |
 
 ## 5. Configuración del componente

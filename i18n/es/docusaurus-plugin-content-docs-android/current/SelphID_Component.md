@@ -95,9 +95,8 @@ proceso.
 
 ## 4. Controladores disponibles
 
-|                   |                                                       |
-| ----------------- | ----------------------------------------------------- |
 | **Controlador**   | **Descripción**                                       |
+| ----------------- | ----------------------------------------------------- |
 | SelphIDController | Controlador principal de reconocimiento de documentos |
 
 ---

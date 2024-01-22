@@ -122,8 +122,8 @@ to launch the component:
 SDKController.launch(
     VideoCallController(VideoCallConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
         }
     }
 )
@@ -137,8 +137,8 @@ SDKController.launch(
 SDKController.launchMethod(
     VideoCallController(VideoCallConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
         }
     }
 )
@@ -187,7 +187,67 @@ with the SdkResult.Success.
 
 ---
 
-## 8. Customizing the component
+## 8. Screen sharing
+
+The screen sharing functionality can be executed using the _VideoCallScreenSharingManager_ class. 
+With it, it is possible to start and end the screen sharing as well as to collect the states in which it is.
+
+```java
+val videoCallScreenSharingManager = VideoCallScreenSharingManager(
+            SdkApplication(application)
+        )
+
+videoCallScreenSharingManager.setOutput { state ->
+            Napier.d("SCREEN SHARING STATE: ${state.name}")
+        }
+```
+
+The possible states are:
+
+```java
+    AGENT_HANGUP,
+    PERMISSION_ERROR,
+    UNKNOWN_ERROR,
+    SHARING,
+    FINISH
+```
+
+Where SHARING indicates that the screen is being recorded and FINISH indicates that the process has finished.
+
+If you want to enable the screen sharing option, the video call driver must be launched with the _activateScreenSharing_ flag of its active configuration. The output of the video call launch will indicate whether the user has requested screen sharing with the _sharingScreen_ flag.
+
+```java
+SDKController.launch(
+    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)) {
+         when (it) {
+              is SdkResult.Error -> {
+                    Napier.d("VideoCall: ERROR - ${it.error.name}")
+              }
+
+              is SdkResult.Success -> {
+                      Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
+                      if (it.data.sharingScreen) {
+                          videoCallScreenSharingManager.startScreenSharingService()
+                      }
+                   }
+              }
+        }
+    )
+```
+
+To start and end screen sharing in the call:
+
+```java
+// START
+videoCallScreenSharingManager.startScreenSharingService()
+
+// STOP
+videoCallScreenSharingManager.stopScreenSharingService()
+```
+
+---
+
+## 9. Customizing the component
 
 Apart from the changes that can be made at SDK level (which are
 explained in the <a href="Mobile_SDK"
@@ -196,7 +256,7 @@ data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 document), this particular component allows the modification of specific
 texts.
 
-### 8.1. Texts
+### 9.1. Texts
 
 If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value of
@@ -211,7 +271,7 @@ each String to the desired one.
 <string name="video_call_restart">Repeat recording</string>
 ```
 
-### 8.2. Colors
+### 9.2. Colors
 
 ```java
 <color name="colorVideoCallActionsBackground">#30333d</color>

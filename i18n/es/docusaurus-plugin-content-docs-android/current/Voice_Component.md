@@ -95,9 +95,8 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-|                 |                                         |
-| --------------- | --------------------------------------- |
 | **Controlador** | **Descripción**                         |
+| --------------- | --------------------------------------- |
 | VoiceController | Controlador principal de captura de voz |
 
 ## 5. Configuración del componente
