@@ -88,16 +88,13 @@ este proceso.
 ## 5. Configuración del componente
 
 Para configurar el componente actual, una vez inicializado, se deberá
-crear un objeto
-
-_CaptureConfigurationData_ y pasarlo como parámetro al SDKController
-durante el lanzamiento del componente para capturas.
+crear un objeto _CaptureConfigurationData_ y pasarlo como parámetro al SDKController durante el lanzamiento del componente para capturas.
 
 _QrGeneratorConfiguration_ y pasarlo como parámetro al SDKController
 durante el lanzamiento del componente para generación de QRs.
 
 En el siguiente apartado se mostrarán los campos que forman parte de
-esta clase y para qué se utiliza cada uno de ellos.
+estas clased y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class CaptureConfigurationData
 
@@ -164,8 +161,8 @@ el componente:
 SDKController.launch(
     PhacturasReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
         }
     }
 )
@@ -179,8 +176,8 @@ SDKController.launch(
 SDKController.launchMethod(
     PhacturasReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
         }
     }
 )
@@ -211,8 +208,8 @@ el componente:
 SDKController.launch(
     QrReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
         }
     }
 )
@@ -226,8 +223,8 @@ SDKController.launch(
 SDKController.launchMethod(
     QrReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
         }
     }
 )
@@ -258,8 +255,8 @@ el componente:
 SDKController.launch(
     QrGeneratorController(QrGeneratorConfiguration("")) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
         }
     }
 )
@@ -273,8 +270,8 @@ SDKController.launch(
 SDKController.launchMethod(
     QrGeneratorController(QrGeneratorConfiguration("")) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
         }
     }
 )

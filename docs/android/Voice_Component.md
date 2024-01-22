@@ -122,6 +122,10 @@ intuitively explains how the capture is performed.
 
 Sets the maximum time that the capture can be performed.
 
+#### 5.1.5. showDiagnostic
+
+Display diagnostic screens at the end of the process
+
 ---
 
 ## 6. Component use

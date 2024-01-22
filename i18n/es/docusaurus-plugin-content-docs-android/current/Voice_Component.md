@@ -131,6 +131,10 @@ explica de forma intuitiva cómo se realiza la captura.
 
 Establece el tiempo máximo que se puede realizar la captura.
 
+#### 5.1.5. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
 ---
 
 ## 6. Uso del componente

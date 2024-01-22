@@ -208,6 +208,10 @@ configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
+#### 5.1.15. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
 ---
 
 ## 6. Uso del componente

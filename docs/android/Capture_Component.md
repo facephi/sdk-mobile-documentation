@@ -18,9 +18,7 @@ data-linked-resource-type="page">Mobile SDK</a> section.
 
 ## 1. Introduction
 
-The Component discussed in the current document is called Capture
-Component. It is responsible for the recording of a user identifying
-himself, showing his face and his identity document.
+The Component discussed in the current document is called **_Capture Component_**. It is responsible for the invoice capture and the capture and generation of QRs.
 
 ---
 
@@ -49,7 +47,7 @@ installing the **_SDKMobile_** components.
   be installed beforehand:
 
   ```java
-  implementation "com.facephi.androidsdk:video_id_component:$sdk_videoid_component_version"
+  implementation "com.facephi.androidsdk:capture_component:$sdk_capture_component_version"
   ```
 
 ---
@@ -74,66 +72,72 @@ documentation, which details and explains what this process consists of.
 
 | **Controller**             | **Description**                         |
 | -------------------------- | --------------------------------------- |
-| VideoIdController          | Video identification main controller    |
-| SignatureVideoIdController | Driver to sign a process with a Capture |
+| PhacturasReaderController          | Invoice capture controller    |
+| QrReaderController | QR capture controller |
+| QrGeneratorController | QR generator controller |
 
 ---
 
 ## 5. Component configuration
 
-To configure the current component, once it has been initialised, a
-_VideoIdConfigurationData_ object must be created and passed as a
-parameter to the SDKController when the component is launched.
+To configure the current component, once it has been initialised, you must create a _CaptureConfigurationData_ object and pass it as a parameter to the SDKController during the launch of the capture component.
 
-The following section will show the fields that are part of this class
-and what each of them is used for.
+A _QrGeneratorConfiguration_ object shall be created and passed as a parameter to the SDKController during the launch of the QR generation component.
 
-### 5.1. Class VideoIdConfigurationData
+The following section will show the fields that are part of this class and what each of them is used for.
 
-The fields included in the configuration **(url, apiKey, tenantId)**,
-usually **do not need to be reported** as they are filled internally
-through the licence used.
+### 5.1. Class CaptureConfigurationData
 
-These fields are usually **reported only** when the server is
-**OnPremise**.
+#### 5.1.1. extractionTimeout
 
-#### 5.1.1. url
+Maximum extraction time
 
-Path to the video socket
+#### 5.1.2. cameraSelected
 
-#### 5.1.2. apiKey
+Camera selected: FRONT, BACK
 
-ApiKey needed for connection to the video socket
+#### 5.1.3. cameraShape
 
-#### 5.1.3. tenantId
+Shape of the mask to be displayed on the camera: 
+- SQUARE: Square 
+- CIRCULAR: Circle
+- RECTANGLE_TALL: Rectangle
 
-Tenant identifier referring to the current client, required for the
-connection to the video service.
+#### 5.1.4. vibrationEnabled
 
-#### 5.1.4. sectionTime
+Enable in-process vibration
 
-Indicates the duration of each of the sections in which the recording
-message is displayed.
+#### 5.1.5. showStroke
 
-#### 5.1.5. mode
+Show a line as camera border
 
-- ONLY_FACE: process is necessarily performed by showing only the
-  face.
+#### 5.1.6. showDiagnostic
 
-- FACE_DOCUMENT_FRONT: The process is performed using both the face
-  and the front of the identity document.
+Display diagnostic screens at the end of the process
 
-- FACE_DOCUMENT_FRONT_BACK: The process is performed using the face,
-  the front of the identity document and the back of the document.
+#### 5.1.6. transparentBackground
 
-#### 5.1.6. showCompletedTutorial
+Semi-transparent mask
 
-Indicates if you want to show the complete initial tutorial. If not, a
-progress indicator will be shown.
+### 5.2. Class QrGeneratorConfiguration
+
+#### 5.2.1. source
+
+Text to be included in the QR
+
+#### 5.2.2. width
+
+Width of the generated QR
+
+#### 5.2.3. height
+
+Height of the generated QR
 
 ---
 
 ## 6. Component use
+
+### 6.1 Invoice capture
 
 Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched. There are two ways
@@ -145,10 +149,10 @@ to launch the component:
 
 ```java
 SDKController.launch(
-    VideoIdController(VideoIdConfigurationData()) {
+    PhacturasReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
         }
     }
 )
@@ -160,10 +164,102 @@ SDKController.launch(
 
 ```java
 SDKController.launchMethod(
-    VideoIdController(VideoIdConfigurationData()) {
+    PhacturasReaderController(CaptureConfigurationData()) {
         when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
+            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
+        }
+    }
+)
+```
+
+The **launch** method must be used by **default**. This method allows
+**_tracking_** to be used if your component is enabled, and will not use
+it when it is disabled (or the component is not installed).
+
+On the other hand, the **launchMethod** method covers a special case, in
+which the integrator has tracking installed and activated, but in a
+certain flow within the application does not want to track information.
+In this case, this method is used to prevent this information from being
+sent to the platform.
+
+### 6.2 QR capture
+
+Once the component has been started and a new operation has been created
+(**section 3**), the SDK components can be launched. There are two ways
+to launch the component:
+
+- **\[WITH TRACKING\]** This call allows to launch the functionality
+  of the component normally, but internal events will be tracked to
+  the _tracking_ server:
+
+```java
+SDKController.launch(
+    QrReaderController(CaptureConfigurationData()) {
+        when (it) {
+            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
+        }
+    }
+)
+```
+
+- **\[WITHOUT TRACKING\]** This call allows to launch the
+  functionality of the component normally, but **no event will be
+  tracked** to the _tracking_ server:
+
+```java
+SDKController.launchMethod(
+    QrReaderController(CaptureConfigurationData()) {
+        when (it) {
+            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
+        }
+    }
+)
+```
+
+The **launch** method must be used by **default**. This method allows
+**_tracking_** to be used if your component is enabled, and will not use
+it when it is disabled (or the component is not installed).
+
+On the other hand, the **launchMethod** method covers a special case, in
+which the integrator has tracking installed and activated, but in a
+certain flow within the application does not want to track information.
+In this case, this method is used to prevent this information from being
+sent to the platform.
+
+### 6.3 QR generator
+
+Once the component has been started and a new operation has been created
+(**section 3**), the SDK components can be launched. There are two ways
+to launch the component:
+
+- **\[WITH TRACKING\]** This call allows to launch the functionality
+  of the component normally, but internal events will be tracked to
+  the _tracking_ server:
+
+```java
+SDKController.launch(
+    QrGeneratorController(QrGeneratorConfiguration("")) {
+        when (it) {
+            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
+        }
+    }
+)
+```
+
+- **\[WITHOUT TRACKING\]** This call allows to launch the
+  functionality of the component normally, but **no event will be
+  tracked** to the _tracking_ server:
+
+```java
+SDKController.launchMethod(
+    QrGeneratorController(QrGeneratorConfiguration("")) {
+        when (it) {
+            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
+            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
         }
     }
 )
@@ -190,20 +286,22 @@ rel="nofollow">6. Result return</a> section.
 
 ### 7.1. Receipt of errors
 
-On the error side, we will have the _VideoIdError_ class.
+On the error side, we will have the _CaptureError_ class.
 
 ```java
-val message = when(it.error){
-    is VideoIdError.ACTIVITY_RESULT_ERROR -> it.error.name
-    is VideoIdError.CANCEL_BY_USER -> it.error.name
-    is VideoIdError.INITIALIZATION_ERROR -> it.error.name
-    is VideoIdError.NETWORK_CONNECTION -> it.error.name
-    is VideoIdError.NO_DATA_ERROR -> it.error.name
-    is VideoIdError.PERMISSION_DENIED -> it.error.name
-    is VideoIdError.TIMEOUT -> it.error.name
-    is VideoIdError.VIDEO_ERROR -> it.error.name
-}
+ NO_DATA_ERROR
+ TIMEOUT
+ CANCEL_BY_USER
+ CANCEL_LAUNCH
+ CAMERA_ERROR
+ QR_GENERATION_ERROR
+ ACTIVITY_RESULT_ERROR
+ QR_CAPTURE_ERROR
+ PHACTURAS_CAPTURE_ERROR
+ CAMERA_PERMISSION_DENIED
+ INITIALIZATION_ERROR
 ```
+
 
 ### 7.1. _Receipt of correct execution - data_
 
@@ -228,15 +326,12 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```java
-<string name="video_id_text_waiting_agent_title">Video recording</string>
-<string name="video_id_first_message">Place your face and the front of your document within the frame</string>
-<string name="video_id_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
-<string name="video_id_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
-<string name="video_id_second_message">Now place the back of your document</string>
-<string name="video_id_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
-<string name="video_id_finish_message">Video recording finished!</string>
-<string name="video_id_record_init_button">Start recording</string>
-<string name="video_id_ready_button">Ready</string>
-<string name="video_id_first_message_face">Place your face within the frame</string>
-<string name="video_id_restart">Repeat recording</string>
+    <string name="capture_component_qr_camera_message">Keep the QR in the center</string>
+    <string name="capture_component_invoice_camera_message">Keep bill in the center</string>
+    <string name="capture_component_button_message">Capture</string>
+    <string name="capture_component_timeout_title">Time exceeded</string>
+    <string name="capture_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="capture_component_internal_error_title">There was a technical problem</string>
+    <string name="capture_component_internal_error_desc">We apologize. The capture could not be made</string>
+
 ```

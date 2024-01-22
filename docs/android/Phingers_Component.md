@@ -183,6 +183,10 @@ Indicates a height to perform a cropping of the capture.
 
 Indicates the relation to perform a cropping of the capture.
 
+#### 5.1.15. showDiagnostic
+
+Display diagnostic screens at the end of the process
+
 ---
 
 ## 6. Component use

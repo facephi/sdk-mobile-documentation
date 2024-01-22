@@ -192,6 +192,10 @@ Indica una altura para realizar un recorte de la captura.
 
 Indica la relación para el recorte de la captura.
 
+#### 5.1.15. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
 ---
 
 ## 6. Uso del componente

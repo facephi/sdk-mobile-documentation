@@ -152,6 +152,10 @@ Activation of the component's debug mode.
 Indicates that only NFC BAC reading is desired. It is a simple and fast
 reader.
 
+#### 5.1.10. showDiagnostic
+
+Display diagnostic screens at the end of the process
+
 ---
 
 ## 6. Component use

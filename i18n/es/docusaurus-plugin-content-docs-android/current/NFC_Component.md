@@ -161,6 +161,10 @@ Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura
 con información más simple y rápida que permite la lectura de más
 variedad de documentos.
 
+#### 5.1.10. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
 ---
 
 ## 6. Uso del componente
