@@ -307,9 +307,9 @@ avatar.
 
 ---
 
-## 10. Additional Controllers
+## 8. Additional Controllers
 
-### 10.1. RawTemplateController
+### 8.1. RawTemplateController
 
 Controller to generate a RawTemplate from an image (bitmap).
 

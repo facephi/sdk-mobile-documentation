@@ -147,7 +147,7 @@ process.
 
 Activation of the component's debug mode.
 
-#### 5.1.9. onlyBAC
+#### 5.1.9. skipPace
 
 Indicates that only NFC BAC reading is desired. It is a simple and fast
 reader.

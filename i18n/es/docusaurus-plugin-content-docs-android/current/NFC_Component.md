@@ -156,7 +156,7 @@ Indica si se desea un feedback de vibración al acabar el proceso.
 
 Activación del modo depuración del componente.
 
-#### 5.1.9. onlyBAC
+#### 5.1.9. skipPace
 
 Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura
 con información más simple y rápida que permite la lectura de más
