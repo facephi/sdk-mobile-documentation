@@ -73,9 +73,8 @@ documentation, which details and explains what this process consists of.
 
 ## 4. Available controllers
 
-|                     |                           |
-| ------------------- | ------------------------- |
 | **Controller**      | **Description**           |
+| ------------------- | ------------------------- |
 | VideoCallController | Videocall main controller |
 
 ## 5. Component configuration

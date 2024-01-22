@@ -73,9 +73,8 @@ documentation, which details and explains what this process consists of.
 
 ## 4. Available controllers
 
-|                              |                                         |
-| ---------------------------- | --------------------------------------- |
 | **Controller**               | **Description**                         |
+| ---------------------------- | --------------------------------------- |
 | VideoRecordingController     | VideoRecording main controller          |
 | StopVideoRecordingController | Controller to stop the video recording. |
 
