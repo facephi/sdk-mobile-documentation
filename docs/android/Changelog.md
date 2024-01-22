@@ -2,6 +2,39 @@
 
 ## Versions
 
+### 1.5.3-SNAPSHOT
+
+- General
+  - Diagnostic screens with retry
+  - Flow
+    - New Feature
+    - Dynamic theme
+    - Preview controller to development
+    - Improvements
+- Selphi
+  - Version updated to 5.12.0
+  - Tutorial adjusts
+  - Full frame tracking adjust
+- SelphID
+  - Version updated to 1.22.3
+- Phingers
+  - Added haptic feedback with vibration
+  - Improvements in tutorial
+- NFC
+  - Improvements
+- VideoId
+  - Adjust bugfixes
+  - UX adjusts
+- VideoCall
+  - New Feature - ScreenSharing
+  - Adjust bugfixes
+- VideoRecording
+  - New State managements to get more control in client layer
+  - Adjust bugfixes
+  - Know Issue: API 34 Android
+- Capture QR
+  - QR format adjusts
+
 ### 1.5.2
 
 - General
