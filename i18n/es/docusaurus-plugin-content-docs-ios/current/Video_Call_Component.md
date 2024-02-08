@@ -1,0 +1,272 @@
+# Video Call Component
+
+## 0. Requisitos base de SDK Mobile
+
+**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
+una serie de funcionalidades y servicios, permitiendo a su vez su
+integración en una aplicación Mobile de forma sencilla y totalmente
+escalable. Dependiendo del caso de uso que se requiera, se deberá
+realizar la instalación de unos determinados componentes. Su alto nivel
+de modularidad permite que, en un futuro, se puedan añadir otros
+componentes nuevos sin afectar en absoluto a los ya integrados en el
+proyecto.
+
+Para más información sobre la configuración base, vaya a la sección de
+***TO DO: Añadir enlace***
+
+---
+
+## 1. Introducción
+
+El Componente tratado en el documento actual recibe el nombre de VideoCall Component. Éste se encarga de gestionar la comunicación entre un usuario y un agente de forma remota. Está orientado principalmente para casos de uso de videoasistencia.
+
+##1.1 Requisitos mínimos
+La versión mínima de la SDK de iOS requerida es la siguiente:
+
+Versión mínima de iOS: **13**
+
+---
+
+## 2. Integración del componente
+
+Antes de integrar este componente se recomienda leer la documentación relativa a ** TO DO: [1.5.X][ES] iOS Mobile SDK** y seguir las instrucciones indicadas en dicho documento.
+
+En esta sección se explicará paso a paso cómo integrar el componente
+actual en un proyecto ya existente.
+
+### 2.1. Dependencias requeridas para la integración
+
+Para evitar conflictos y problemas de compatibilidad, en caso de querer
+instalar el componente en un proyecto que contenga una versión antigua
+de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
+completo antes de la instalación de los componentes de la
+**_SDKMobile_**.
+
+#### Cocoapods
+- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
+
+```
+  pod 'FPHISDKMainComponent', '~> 1.4.0'
+```
+- Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+```
+  pod 'FPHISDKVideoCallComponent', '~> 1.4.0'
+```
+- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+
+- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+
+*** TO DO: AÑADIR IMAGEN ***
+
+## 2.2 Permisos y configuraciones
+En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **info.plist**
+```
+Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
+```
+
+## 3. Iniciar nueva operación
+
+Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
+
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de ***TO DO: enlace***[1.5.X][ES] iOS Mobile SDK , en el que se detalla y explica en qué consiste este proceso.
+
+---
+
+## 4. Controladores disponibles
+
+| **Controlador**     | **Descripción**                       |
+| ------------------- | ------------------------------------- |
+| VideoCallController | Controlador principal de videollamada |
+
+---
+
+## 5. Configuración del componente
+
+Para configurar el componente actual, una vez inicializado, se deberá
+crear un objeto
+
+_VideoCallConfigurationData_ y pasarlo como parámetro al SDKController
+durante el lanzamiento del componente.
+
+En el siguiente apartado se mostrarán los campos que forman parte de
+esta clase y para qué se utiliza cada uno de ellos.
+
+### 5.1. Class VideoCallConfigurationData
+
+Los campos incluidos en la configuración, normalmente **no es necesario
+que sean informados** ya que se completan internamente a través de la
+licencia usada.
+
+
+#### 5.1.1. Configuración Básica
+
+##### activateScreenSharing
+
+Activar la opción de compartir pantalla en la llamada.
+
+#### 5.1.2. Configuración Avanzada
+
+
+#### 5.1.2.1. url
+
+Ruta al socket de video
+
+#### 5.1.2.2 apiKey
+
+ApiKey necesaria para la conexión con el socket de video
+
+#### 5.1.2.3 tenantId
+
+Identificador del tenant que hace referencia al cliente actual,
+necesario para la conexión con el servicio de video.
+
+#### 5.1.3. Otros parametros
+
+##### VibrationEnabled
+Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
+
+---
+
+## 6. Uso del componente
+
+Una vez iniciado el componente y creada una nueva operación (**apartado
+3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+el componente:
+
+- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero sí se trackearán los eventos
+  internos al servidor de _tracking_:
+
+```java
+let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
+```
+
+- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero **no se trackeará** ningún
+  evento al servidor de _tracking_:
+
+```java
+let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
+```
+
+El método **launch** debe usarse **por defecto**. Este método permite
+utilizar **_tracking_** en caso de estar su componente activado, y no lo
+usará cuando esté desactivado (o no se encuentre el componente
+instalado).
+
+Por el contrario, el método **launchMethod** cubre un caso especial, en
+el cual el integrador tiene instalado y activado el tracking, pero en un
+flujo determinado dentro de la aplicación no desea trackear información.
+En ese caso se usa este método para evitar que se envíe esa información
+a la plataforma.
+
+
+En los datos de configuración (`EnvironmentVideoCallData`) también se podrán modificar:
+
+- **Datos opcionales que normalmente se incluyen dentro de la licencia**
+
+	 - **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
+
+	- **url**: Ruta al socket de video.
+
+	- **apiKey**: ApiKey necesaria para la conexión con el socket de video.
+
+---
+
+## 7. Recepción del resultado
+
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de ***TO DO: Enlace*** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado  del iOS Mobile SDK.
+
+
+### 7.1. Recepción de errores
+
+En la parte del error, dispondremos de la clase _VideoCallError_.
+
+```java
+VIDEO_CALL_CANCEL_BY_USER
+VIDEO_CALL_TIMEOUT
+VIDEO_CALL_INTERNAL_ERROR
+VIDEO_CALL_DECODER_ERROR
+```
+
+### 7.2. Recepción de ejecución correcta - _data_
+
+En la ejecución correcta, simplemente se informa de que todo ha ido bien
+con el SdkResult.Success.
+
+Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá activar compartir pantalla.
+
+---
+
+## 8. Compartir pantalla
+
+**TO DO**
+
+---
+
+## 9. Personalización del componente
+
+Para personalizar el componente, e debe llamar a ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) después de inicializar el videocallController:
+
+```
+let videocallController = VideoCallController(data: EnvironmentVideoCallData(), output: output, viewController: viewController)
+ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
+SDKController.shared.launch(controller: videocallController)
+```
+
+Un ejemplo de la clase CustomThemeVideoCall sería este (debe implementar ThemeVideoCallProtocol):
+
+
+```
+class CustomThemeVideoCall: ThemeVideoCallProtocol {
+    var images: [R.Image: UIImage?] = [:]
+    
+    var colors: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red]
+    
+    var animations: [R.Animation: String] = [:]
+    
+    var name: String {
+        "custom"
+    }
+    
+    var fonts: [R.Font: String] = [:]
+    
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
+    }
+}
+```
+
+### 9.1 Colores e imágenes
+Las imagenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
+```
+case close
+```
+Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+```
+case ButtonBackground
+case ButtonBackgroundDisabled
+case CardBackground
+case CardText
+case MainBackground
+case PhoneButtonBackground
+case Primary
+case TitleText
+```
+
+### 9.2 Fuentes 
+Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
+```
+case regular
+case bold
+```
+
+Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
+```
+case phone_calling
+``
+El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.

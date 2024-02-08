@@ -63,7 +63,7 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota
   a través de diferentes gestores de dependencias, en este caso
   Cocoapods. Las dependencias **obligatorias** que deberán haberse
-  instalado previamente (añadiéndolas en el fichero *Podfile* del
+  instalado previamente (añadiéndolas en el fichero espera*Podfile* del
   proyecto) son:
 
 ```java
