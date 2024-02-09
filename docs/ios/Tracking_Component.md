@@ -1,40 +1,39 @@
 # Tracking Component
 
-## 0. Requisitos base de SDK Mobile
+## 0. SDK Mobile basic requirements
  
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
+**SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] iOS Mobile SDK **TO DO: ADD LINK** 
+For more information on the base configuration, go to the [1.5.X][EN] iOS Mobile SDK **TO DO: ADD LINK** section. 
+
+---
+## 1. Introduction
+
+**SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.
+
+The component dealt with in the current document is called **Tracking Component**. It is in charge of tracking and monitoring the information obtained during the execution of the rest of the **SDKMobile** components, sending it to the **Platform** services. This data can be tracked in real time on the **Platform**, while the process is running on the client's device.
+
+Unlike the rest, this component does not work individually, it works transversally to the rest of the components installed in the *SDKMobile*. To track the information, it is kept in the background while the **SDKMobile** process is running.
+
+
+### 1.1 Minimum requirements
+The minimum iOS SDK version required is as follows:
+
+Minimum iOS version: **13**
 
 ---
 
-## 1. Introducción
-
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
-
-El Componente tratado en el documento actual recibe el nombre de **Tracking Component.** Éste se encarga de realizar el trackeo y monitorización de la información obtenida durante la ejecución del resto de componentes de la **SDKMobile**, enviándola a los servicios de la **Plataforma**. Se podrá realizar el seguimiento en tiempo real de estos datos en la **Plataforma**, mientras se está ejecutando el proceso en el dispositivo del cliente.
-
-Al contrario que ocurre con el resto, este componente no funciona individualmente, trabaja de forma transversal al resto de componentes instalados en la *SDKMobile*. Para trackear la información se mantiene en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
-
-
-### 1.1 Requisitos mínimos
-La versión mínima de la SDK de iOS requerida es la siguiente:
-
-Versión mínima de iOS: **13**
-
----
-
-## 2. Integración del componente
+## 2. Component integration
  
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] iOS Mobile SDK (**TO DO: ENLACE**) y seguir las instrucciones indicadas en dicho documento.
+Before integrating this component, it is recommended to read the documentation related to [1.5.X][EN] iOS Mobile SDK (**TO DO: LINK**) and follow the instructions given in that document.
 
-En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
+This section will explain step by step how to integrate the current component into an existing project.
 
-### 2.1. Dependencias requeridas para la integración
-Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
+### 2.1. Dependencies required for integration
+To avoid conflicts and compatibility problems, in case you want to install the component in a project containing an old version of the Facephi libraries (Widgets), these must be completely removed before the installation of the **SDKMobile** components.
 
-Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
+Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must be previously installed (by adding them in the Podfile file of the project) are:
 
 ```
 pod 'FPHISDKMainComponent', '~> 1.4.0'
