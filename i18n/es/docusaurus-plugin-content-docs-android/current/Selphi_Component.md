@@ -227,14 +227,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    SelphiController(SelphiConfigurationData(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val response = SDKController.launch(
+    SelphiController(SelphiConfigurationData(...))
 )
+when (response) {
+    is SdkResult.Error -> Napier.d("Selphi: ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
+}
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -242,14 +241,13 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    SelphiController(SelphiConfigurationData(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val response = SDKController.launchMethod(
+    SelphiController(SelphiConfigurationData(...))
 )
+when (response) {
+    is SdkResult.Error -> Napier.d("Selphi: ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
+}
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -271,6 +269,7 @@ Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
   href="Mobile_SDK#6-retorno-de-resultado"
   rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase SelphiError.
@@ -341,12 +340,11 @@ Controlador para generar un RawTemplate a partir de una imagen (bitmap).
 Ejemplo de uso:
 
 ```java
-SDKController.launch(
-    RawTemplateController(SdkImage(image)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("GenerateRaw: KO - ${it.error}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val result = SDKController.launch(
+    RawTemplateController(SdkImage(image))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("GenerateRaw: KO - ${result.error}")
+    is SdkResult.Success -> result.data
+}
 ```

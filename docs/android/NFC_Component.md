@@ -169,7 +169,7 @@ to launch the component:
   _tracking_ server:
 
 ```java
-SDKController.launch(
+val result = SDKController.launch(
     NfcController(
         componentData = NfcConfigurationData(
             documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
@@ -182,17 +182,16 @@ SDKController.launch(
         debugLogs = {
             Napier.d("NFC Logs: $it")
         }
-    ) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
-            is SdkResult.Success -> {
-                Napier.d("APP: NFC: OK")
-                Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")
-                Napier.d("PERSONAL: ${it.data.nfcPersonalInformation}")
-            }
-        }
-    }
+    )
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
+    is SdkResult.Success -> {
+        Napier.d("APP: NFC: OK")
+        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
+        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
+    }
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -200,7 +199,7 @@ SDKController.launch(
   the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
+val result = SDKController.launchMethod(
     NfcController(
         componentData = NfcConfigurationData(
             documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
@@ -213,17 +212,16 @@ SDKController.launchMethod(
         debugLogs = {
             Napier.d("NFC Logs: $it")
         }
-    ) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${it.error.name}")
-            is SdkResult.Success -> {
-                Napier.d("APP: NFC: OK")
-                Napier.d("DOCUMENT: ${it.data.nfcDocumentInformation}")
-                Napier.d("PERSONAL: ${it.data.nfcPersonalInformation}")
-            }
-        }
-    }
+    )
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
+    is SdkResult.Success -> {
+        Napier.d("APP: NFC: OK")
+        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
+        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
+    }
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -379,7 +377,7 @@ If you want to modify the SDK texts, you would have to include the
 following XML file in the client application and change the value of
 each String to the desired one.
 
-```java
+```xml
     <string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
     <string name="nfc_component_ready_to_scan">Ready to scan</string>
     <string name="nfc_component_reading_device">Reading device</string>

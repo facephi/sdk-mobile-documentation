@@ -136,14 +136,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    VideoCallController(VideoCallConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
-        }
-    }
+val result = SDKController.launch(
+    VideoCallController(VideoCallConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+}
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -151,14 +150,13 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    VideoCallController(VideoCallConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
-        }
-    }
+val result = SDKController.launchMethod(
+    VideoCallController(VideoCallConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+}
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -180,7 +178,6 @@ Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
   href="Mobile_SDK#6-retorno-de-resultado"
   rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
-
 
 ### 7.1. Recepción de errores
 
@@ -210,7 +207,7 @@ Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá
 
 ## 8. Compartir pantalla
 
-La funcionalidad de compartir pantalla se podrá ejecutar haciendo uso de la clase _VideoCallScreenSharingManager_. 
+La funcionalidad de compartir pantalla se podrá ejecutar haciendo uso de la clase _VideoCallScreenSharingManager_.
 Con ella se podrá tanto comenzar y finalizar la compartición de pantalla como recoger los estados en los que se encuentra.
 
 ```java
@@ -232,27 +229,28 @@ Los posibles estados son:
     SHARING,
     FINISH
 ```
+
 Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
 
 Si se quiere habilitar la opción de compartir pantalla se deberá lanzar el controlador de video llamada con el flag _activateScreenSharing_ de su configuración activo. En la salida del lanzamiento de la video llamada se indicará si el usuario ha solicitado compartir pantalla con el flag _sharingScreen_.
 
 ```java
-SDKController.launch(
-    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)) {
-         when (it) {
-              is SdkResult.Error -> {
-                    Napier.d("VideoCall: ERROR - ${it.error.name}")
-              }
+val result = SDKController.launch(
+    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)))
 
-              is SdkResult.Success -> {
-                      Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
-                      if (it.data.sharingScreen) {
-                          videoCallScreenSharingManager.startScreenSharingService()
-                      }
-                   }
-              }
+when (result) {
+    is SdkResult.Error -> {
+        Napier.d("VideoCall: ERROR - ${result.error.name}")
+    }
+
+    is SdkResult.Success -> {
+            Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+            if (result.data.sharingScreen) {
+                videoCallScreenSharingManager.startScreenSharingService()
+            }
         }
-    )
+    }
+}
 ```
 
 Para comenzar y finalizar la compartición de pantalla en la llamada:
@@ -282,7 +280,7 @@ Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
-```java
+```xml
     <string name="video_call_text_waiting_agent_title">Conectando con un agente…</string>
     <string name="video_call_agent">Agente</string>
     <string name="video_call_exit">Salir</string>
@@ -293,7 +291,7 @@ de cada _String_ por el deseado.
 
 ### 9.2. Colores
 
-```java
+```xml
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```

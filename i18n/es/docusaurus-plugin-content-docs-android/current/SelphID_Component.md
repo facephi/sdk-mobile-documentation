@@ -333,14 +333,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    SelphIDController(SelphIDConfiguration(..)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("SelphID: KO - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val result = SDKController.launch(
+    SelphIDController(SelphIDConfiguration(..))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("SelphID: KO - ${result.error.name}")
+    is SdkResult.Success -> result.data
+}
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -348,14 +347,13 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    SelphIDController(SelphIDConfiguration(..)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("SelphID: KO - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val result = SDKController.launchMethod(
+    SelphIDController(SelphIDConfiguration(..))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("SelphID: KO - ${result.error.name}")
+    is SdkResult.Success -> result.data
+}
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite

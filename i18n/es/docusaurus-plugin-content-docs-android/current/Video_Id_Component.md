@@ -152,14 +152,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    VideoIdController(VideoIdConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    VideoIdController(VideoIdConfigurationData())
 )
+when (it) {
+    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+}
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -167,14 +166,13 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    VideoIdController(VideoIdConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    VideoIdController(VideoIdConfigurationData())
 )
+when (it) {
+    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+}
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -196,7 +194,7 @@ Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
   href="Mobile_SDK#6-retorno-de-resultado"
   rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
-  
+
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase _VideoIdError_.
@@ -237,7 +235,7 @@ Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
-```java
+```xml
     <string name="video_id_text_waiting_agent_title">Video ID</string>
     <string name="video_id_first_message">Coloca tu rostro y el frente de tu documento en las marcas</string>
     <string name="video_id_init_message_face_content_desc">Coloca tu rostro en frente de la cámara e inicia la grabación</string>

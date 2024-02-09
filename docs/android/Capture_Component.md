@@ -70,11 +70,11 @@ documentation, which details and explains what this process consists of.
 
 ## 4. Available controllers
 
-| **Controller**             | **Description**                         |
-| -------------------------- | --------------------------------------- |
-| PhacturasReaderController          | Invoice capture controller    |
-| QrReaderController | QR capture controller |
-| QrGeneratorController | QR generator controller |
+| **Controller**            | **Description**            |
+| ------------------------- | -------------------------- |
+| PhacturasReaderController | Invoice capture controller |
+| QrReaderController        | QR capture controller      |
+| QrGeneratorController     | QR generator controller    |
 
 ---
 
@@ -98,8 +98,9 @@ Camera selected: FRONT, BACK
 
 #### 5.1.3. cameraShape
 
-Shape of the mask to be displayed on the camera: 
-- SQUARE: Square 
+Shape of the mask to be displayed on the camera:
+
+- SQUARE: Square
 - CIRCULAR: Circle
 - RECTANGLE_TALL: Rectangle
 
@@ -148,14 +149,13 @@ to launch the component:
   the _tracking_ server:
 
 ```java
-SDKController.launch(
-    PhacturasReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("PhacturasReader: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    PhacturasReaderController(CaptureConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("PhacturasReader OK: ${result.data}")
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -163,14 +163,13 @@ SDKController.launch(
   tracked** to the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    PhacturasReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("PhacturasReader: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    PhacturasReaderController(CaptureConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("PhacturasReader OK: ${result.data}")
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -194,14 +193,13 @@ to launch the component:
   the _tracking_ server:
 
 ```java
-SDKController.launch(
-    QrReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QR: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    QrReaderController(CaptureConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("QR: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("QR OK: ${result.data}")
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -209,14 +207,13 @@ SDKController.launch(
   tracked** to the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    QrReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QR: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    QrReaderController(CaptureConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("QR: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("QR OK: ${result.data}")
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -240,14 +237,13 @@ to launch the component:
   the _tracking_ server:
 
 ```java
-SDKController.launch(
-    QrGeneratorController(QrGeneratorConfiguration("")) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QrGenerator: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    QrGeneratorController(QrGeneratorConfiguration(""))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("QrGenerator: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("QrGenerator OK: ${result.data}")
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -255,14 +251,13 @@ SDKController.launch(
   tracked** to the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    QrGeneratorController(QrGeneratorConfiguration("")) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QrGenerator: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    QrGeneratorController(QrGeneratorConfiguration(""))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("QrGenerator: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("QrGenerator OK: ${result.data}")
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -302,7 +297,6 @@ On the error side, we will have the _CaptureError_ class.
  INITIALIZATION_ERROR
 ```
 
-
 ### 7.1. _Receipt of correct execution - data_
 
 On successful execution, it simply reports that everything went well
@@ -325,7 +319,7 @@ If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value of
 each String to the desired one.
 
-```java
+```xml
     <string name="capture_component_qr_camera_message">Keep the QR in the center</string>
     <string name="capture_component_invoice_camera_message">Keep bill in the center</string>
     <string name="capture_component_button_message">Capture</string>

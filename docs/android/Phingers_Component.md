@@ -200,14 +200,13 @@ to launch the component:
   the _tracking_ server:
 
 ```java
-SDKController.launch(
-    PhingersController(PhingersConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    PhingersController(PhingersConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("Phingers: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Phingers OK: ${result.data}")
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -215,14 +214,13 @@ SDKController.launch(
   tracked** to the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    PhingersController(PhingersConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    PhingersController(PhingersConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("Phingers: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Phingers OK: ${result.data}")
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -347,7 +345,7 @@ If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value of
 each String to the desired one.
 
-```java
+```xml
     <string name="phingers_component_tutorial_left_message">Prepare your left hand for the catch</string>
     <string name="phingers_component_tutorial_left_title">Prepare your left hand for the catch</string>
     <string name="phingers_component_turorial_right_message">Prepare your right hand for capture</string>

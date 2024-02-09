@@ -119,14 +119,13 @@ to launch the component:
   the _tracking_ server:
 
 ```java
-SDKController.launch(
-    VideoCallController(VideoCallConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
-        }
-    }
+val result = SDKController.launch(
+    VideoCallController(VideoCallConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -134,14 +133,13 @@ SDKController.launch(
   tracked** to the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    VideoCallController(VideoCallConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
-        }
-    }
+val result = SDKController.launchMethod(
+    VideoCallController(VideoCallConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -180,7 +178,7 @@ INITIALIZATION_ERROR -> it.error
 UNKNOWN_ERROR
 ```
 
-### 7.2. Receipt of correct execution - data_
+### 7.2. Receipt of correct execution - data\_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.
@@ -189,7 +187,7 @@ with the SdkResult.Success.
 
 ## 8. Screen sharing
 
-The screen sharing functionality can be executed using the _VideoCallScreenSharingManager_ class. 
+The screen sharing functionality can be executed using the _VideoCallScreenSharingManager_ class.
 With it, it is possible to start and end the screen sharing as well as to collect the states in which it is.
 
 ```java
@@ -217,22 +215,22 @@ Where SHARING indicates that the screen is being recorded and FINISH indicates t
 If you want to enable the screen sharing option, the video call driver must be launched with the _activateScreenSharing_ flag of its active configuration. The output of the video call launch will indicate whether the user has requested screen sharing with the _sharingScreen_ flag.
 
 ```java
-SDKController.launch(
-    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)) {
-         when (it) {
-              is SdkResult.Error -> {
-                    Napier.d("VideoCall: ERROR - ${it.error.name}")
-              }
+val result = SDKController.launch(
+    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)))
 
-              is SdkResult.Success -> {
-                      Napier.d("VideoCall: OK - ScreenSharing: ${it.data.sharingScreen}")
-                      if (it.data.sharingScreen) {
-                          videoCallScreenSharingManager.startScreenSharingService()
-                      }
-                   }
-              }
+when (result) {
+    is SdkResult.Error -> {
+        Napier.d("VideoCall: ERROR - ${result.error.name}")
+    }
+
+    is SdkResult.Success -> {
+            Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+            if (result.data.sharingScreen) {
+                videoCallScreenSharingManager.startScreenSharingService()
+            }
         }
-    )
+    }
+}
 ```
 
 To start and end screen sharing in the call:
@@ -262,7 +260,7 @@ If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value of
 each String to the desired one.
 
-```java
+```xml
     <string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
     <string name="video_call_agent">Agent</string>
     <string name="video_call_exit">Exit</string>
@@ -274,7 +272,7 @@ each String to the desired one.
 
 ### 9.2. Colors
 
-```java
+```xml
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
