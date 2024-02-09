@@ -319,14 +319,13 @@ to launch the component:
   _tracking_ server:
 
 ```java
-SDKController.launch(
-    SelphIDController(SelphIDConfiguration(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("SelphID: KO - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val result = SDKController.launch(
+    SelphIDController(SelphIDConfiguration(..))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("SelphID: KO - ${result.error.name}")
+    is SdkResult.Success -> result.data
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -334,14 +333,13 @@ SDKController.launch(
   the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    SelphIDController(SelphIDConfiguration(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("SelphID: KO - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val result = SDKController.launchMethod(
+    SelphIDController(SelphIDConfiguration(..))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("SelphID: KO - ${result.error.name}")
+    is SdkResult.Success -> result.data
+}
 ```
 
 The **launch** method must be used by **default**. This method allows

@@ -60,24 +60,24 @@ beforehand.
 
 ## 4. Available controllers
 
-| **Controller**       | **Description**                                                            |
-| --------------------- | -------------------------------------------------------------------------- |
-| FlowController        | Flow main controller. Launch of published flows.           |
+| **Controller**        | **Description**                                           |
+| --------------------- | --------------------------------------------------------- |
+| FlowController        | Flow main controller. Launch of published flows.          |
 | FlowPreviewController | Driver for the release of flows to be published (testing) |
 
 ### 4.1. Available controllers for flow
 
-| **Controller**            | **Description**           |
-| -------------------------- | ------------------------- |
-| FSelphiController          | Facial recognition     |
-| FSelphIDController         | Document recognition |
-| FVoiceController           | Voice capture            |
-| FPhingersController        | Capture of footprints        |
-| FNfcController             | NFC            |
-| FQrReaderController        | QR Reader            |
+| **Controller**             | **Description**       |
+| -------------------------- | --------------------- |
+| FSelphiController          | Facial recognition    |
+| FSelphIDController         | Document recognition  |
+| FVoiceController           | Voice capture         |
+| FPhingersController        | Capture of footprints |
+| FNfcController             | NFC                   |
+| FQrReaderController        | QR Reader             |
 | FPhacturasReaderController | Invoice capture       |
-| FVideoIdController         | Video Identification      |
-| FVideoCallController       | Video Call          |
+| FVideoIdController         | Video Identification  |
+| FVideoCallController       | Video Call            |
 
 ---
 
@@ -87,18 +87,13 @@ The SDK initialisation function has the _activateFlow_ parameter to manage its a
 parameter to manage its activation:
 
 ```java
-SDKController.initSdk(
-     ...,
-      activateFlow = true,
-      ..
-      ) {
-          when (it) {
-              is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-              is SdkResult.Error -> Napier.d(
-                     "APP: INIT SDK: KO - ${it.error}"
-                    )
-           }
- })
+val sdkConfig = SdkConfigurationData(
+    ...
+    activateFlow = true,
+    ...
+)
+
+val result = SDKController.initSdk(sdkConfig)
 ```
 
 ---
@@ -111,38 +106,57 @@ You will use the _FlowController_ to launch a flow that the client has
 published on the platform:
 
 ```java
-SDKController.launch(
-   FlowController(
-        FlowConfigurationData(
+val flowController = FlowController (
+     FlowConfigurationData(
             id = "flowId",
             controllers = listOf(FSelphiController(), FSelphIDController()),
             customerId = "customerId",
-            newOperation = true
-        )) { flowResult ->
-        Napier.d("APP: FLOW STEP KEY ${flowResult.step?.key}")
-        when (val sdkResult = flowResult.result) {
-             is SdkResult.Error -> {
-                Napier.d("APP: FLOW ERROR: ${sdkResult.error}")
-             }
-             is SdkResult.Success -> {
+        ))
 
-                when (flowResult.step?.key) {
-                    FlowKeys.SELPHI_COMPONENT.name -> {
-                          val result = sdkResult.data.getSelphiResult()
-                     }
+viewModelScope.launch {
+     flowController.stateFlow.collect { flowResult ->
+          Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
 
-                     FlowKeys.SELPHID_COMPONENT.name -> {
-                           val result = sdkResult.data.getSelphIDResult()
-                     }
-                }
-             }
-        }
+          when (flowResult.step?.key) {
+          FlowKeys.EXTERNAL_STEP.name -> {
+               delay(DELAY_EXTERNAL_STEP)
+               flowController.launchNextStep()
+          }
 
-        if (flowResult.flowFinish) {
-           Napier.d("APP: FLOW FINISH")
+          FlowKeys.SELPHI_COMPONENT.name -> {
+               when (val sdkResult = flowResult.result) {
+                    is SdkResult.Error -> {
+                         Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+                    }
 
-         }
-    }
+                    is SdkResult.Success -> {
+                         val result = sdkResult.data.getSelphiResult()
+                         Napier.d("APP: Selphi OK ${result.bestImageBmp?.bitmap?.byteCount}")
+                    }
+               }
+          }
+
+          FlowKeys.SELPHID_COMPONENT.name -> {
+               when (val sdkResult = flowResult.result) {
+                    is SdkResult.Error -> {
+                         Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+                    }
+
+                    is SdkResult.Success -> {
+                         val result = sdkResult.data.getSelphIDResult()
+                         Napier.d("APP: SelphID OK ${result.documentCaptured}")
+                    }
+               }
+          }
+          }
+
+          if (flowResult.flowFinish) {
+          Napier.d("APP: FLOW FINISH")
+          }
+     }
+}
+viewModelScope.launch {
+     SDKController.launch(flowController)
 }
 ```
 
@@ -152,39 +166,58 @@ The _FlowPreviewController_ shall be used to test a flow that the customer
 has yet to publish to the platform:
 
 ```java
-SDKController.launch(
-   FlowPreviewController(
-        FlowConfigurationData(
+val flowController = FlowPreviewController (
+     FlowConfigurationData(
             id = "flowId",
             controllers = listOf(FSelphiController(), FSelphIDController()),
             customerId = "customerId",
-            newOperation = true
-        )) { flowResult ->
-        Napier.d("APP: FLOW STEP KEY ${flowResult.step?.key}")
-        when (val sdkResult = flowResult.result) {
-             is SdkResult.Error -> {
-                Napier.d("APP: FLOW ERROR: ${sdkResult.error}")
-             }
-             is SdkResult.Success -> {
+        ))
 
-                when (flowResult.step?.key) {
-                    FlowKeys.SELPHI_COMPONENT.name -> {
-                          val result = sdkResult.data.getSelphiResult()
-                     }
+viewModelScope.launch {
+     flowController.stateFlow.collect { flowResult ->
+          Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
 
-                     FlowKeys.SELPHID_COMPONENT.name -> {
-                           val result = sdkResult.data.getSelphIDResult()
-                     }
-                }
-             }
-        }
+          when (flowResult.step?.key) {
+          FlowKeys.EXTERNAL_STEP.name -> {
+               delay(DELAY_EXTERNAL_STEP)
+               flowController.launchNextStep()
+          }
 
-        if (flowResult.flowFinish) {
-           Napier.d("APP: FLOW FINISH")
+          FlowKeys.SELPHI_COMPONENT.name -> {
+               when (val sdkResult = flowResult.result) {
+                    is SdkResult.Error -> {
+                         Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+                    }
 
-         }
-    })
+                    is SdkResult.Success -> {
+                         val result = sdkResult.data.getSelphiResult()
+                         Napier.d("APP: Selphi OK ${result.bestImageBmp?.bitmap?.byteCount}")
+                    }
+               }
+          }
 
+          FlowKeys.SELPHID_COMPONENT.name -> {
+               when (val sdkResult = flowResult.result) {
+                    is SdkResult.Error -> {
+                         Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+                    }
+
+                    is SdkResult.Success -> {
+                         val result = sdkResult.data.getSelphIDResult()
+                         Napier.d("APP: SelphID OK ${result.documentCaptured}")
+                    }
+               }
+          }
+          }
+
+          if (flowResult.flowFinish) {
+          Napier.d("APP: FLOW FINISH")
+          }
+     }
+}
+viewModelScope.launch {
+     SDKController.launch(flowController)
+}
 ```
 
 ---
@@ -198,9 +231,9 @@ The flow result will have 3 fields:
   step.
 
 - result: The controllers will return the required information in SdkResult format
--more details in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section-.
+  -more details in the Android Mobile SDK's <a
+  href="Mobile_SDK#6-result-return"
+  rel="nofollow">6. Result return</a> section-.
 
 - flowFinish: Flag indicating whether the process has finished.
 
@@ -224,26 +257,46 @@ generic, within the SDK, a converter has been created for each type of result.
 result. Ex:
 
 ```java
-flowResult ->
-        when (val sdkResult = flowResult.result) {
-             is SdkResult.Error -> {
-                Napier.d("APP: FLOW ERROR: ${sdkResult.error}")
-             }
+flowController.stateFlow.collect { flowResult ->
+     Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
 
-             is SdkResult.Success -> {
+     when (flowResult.step?.key) {
+     FlowKeys.EXTERNAL_STEP.name -> {
+          delay(DELAY_EXTERNAL_STEP)
+          flowController.launchNextStep()
+     }
 
-                when (flowResult.step?.key) {
-                    FlowKeys.SELPHI_COMPONENT.name -> {
-                          val result = sdkResult.data.getSelphiResult()
-                     }
+     FlowKeys.SELPHI_COMPONENT.name -> {
+          when (val sdkResult = flowResult.result) {
+               is SdkResult.Error -> {
+                    Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+               }
 
-                     FlowKeys.SELPHID_COMPONENT.name -> {
-                           val result = sdkResult.data.getSelphIDResult()
-                     }
-                }
-             }
-        }
-    })
+               is SdkResult.Success -> {
+                    val result = sdkResult.data.getSelphiResult()
+                    Napier.d("APP: Selphi OK ${result.bestImageBmp?.bitmap?.byteCount}")
+               }
+          }
+     }
+
+     FlowKeys.SELPHID_COMPONENT.name -> {
+          when (val sdkResult = flowResult.result) {
+               is SdkResult.Error -> {
+                    Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+               }
+
+               is SdkResult.Success -> {
+                    val result = sdkResult.data.getSelphIDResult()
+                    Napier.d("APP: SelphID OK ${result.documentCaptured}")
+               }
+          }
+     }
+     }
+
+     if (flowResult.flowFinish) {
+          Napier.d("APP: FLOW FINISH")
+     }
+}
 ```
 
 After checking the results, we should check whether the flow has been

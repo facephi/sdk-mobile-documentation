@@ -124,16 +124,15 @@ The call to get the extraData needs information on the current
 operation, forcing it to have **previously performed a newOperation**.
 
 ```java
-SDKController.launch(
-    ExtraDataController {
-        when (it) {
-            is SdkResult.Success -> logs.add("ExtraData: OK")
-            is SdkResult.Error -> logs.add(
-                "ExtraData: KO - ${it.error.javaClass.simpleName}"
-            )
-        }
-    }
+val result = SDKController.launch(
+    ExtraDataController()
 )
+when (result) {
+    is SdkResult.Success -> logs.add("ExtraData: OK")
+    is SdkResult.Error -> logs.add(
+        "ExtraData: KO - ${result.error.name}"
+    )
+}
 ```
 
 ---

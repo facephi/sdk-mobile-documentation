@@ -124,36 +124,38 @@ component (more information about this module in its documentation).
 Example without _TrackingController:_
 
 ```java
-SDKController.initSdk(
+val sdkConfig = SdkConfigurationData(
     sdkApplication = SdkApplication(application),
-    license = "LICENSE"
-    ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                    "APP: INIT SDK: KO - ${it.error}"
-                  )
-          }
- })
+    licensing = LicensingOffline("LICENSE")
+)
 
+val result = SDKController.initSdk(sdkConfig)
+
+when (result) {
+  is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+  is SdkResult.Error -> Napier.d(
+          "APP: INIT SDK: KO - ${result.error.name}"
+        )
+}
 ```
 
 Example with _TrackingController:_
 
 ```java
-SDKController.initSdk(
+val sdkConfig = SdkConfigurationData(
     sdkApplication = SdkApplication(application),
-    license = "LICENSE",
-    trackingController = TrackingController()
-    ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                    "APP: INIT SDK: KO - ${it.error}"
-                  )
-          }
- })
+    licensing = LicensingOffline("LICENSE"),
+    trackingController = TrackingController(),
+)
 
+val result = SDKController.initSdk(sdkConfig)
+
+when (result) {
+  is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+  is SdkResult.Error -> Napier.d(
+          "APP: INIT SDK: KO - ${result.error.name}"
+        )
+}
 ```
 
 ### 3.1. Licence injection
@@ -170,38 +172,41 @@ constant replacement of these licences when a problem arises
 Kotlin:
 
 ```java
-SDKController.initSdk(
-      sdkApplication = SdkApplication(application),
-      environmentLicensingData = EnvironmentLicensingData(
+val sdkConfig = SdkConfigurationData(
+    sdkApplication = SdkApplication(application),
+    licensing = LicensingOnline(EnvironmentLicensingData(
             url = "https://...",
             apiKey = "...")
-      ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                  "APP: INIT SDK: KO - ${it.error}"
-                  )
-        }
- })
+      )),
+)
+
+val result = SDKController.initSdk(sdkConfig)
+
+when (result) {
+  is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+  is SdkResult.Error -> Napier.d(
+          "APP: INIT SDK: KO - ${result.error.name}"
+        )
+}
 ```
 
 Java:
 
 ```java
 SDKController.INSTANCE.initSdk(
-        new SdkApplication(activity.getApplication()),
-        new EnvironmentLicensingData(
-          url = "https://...",
-          apiKey = "..."),
-        sdkResult ->
-        {
-          if (sdkResult instanceof SdkResult.Success) {
-            Napier.d("APP: INIT SDK: OK")
-          } else if (sdkResult instanceof SdkResult.Error) {
-            Napier.d("APP: INIT SDK: KO - ${it.error}")
-          }
-        }
-      );
+    new SdkApplication(activity.getApplication()),
+    new LicensingOnline(new EnvironmentLicensingData(
+      url = "https://...",
+      apiKey = "...")),
+    sdkResult ->
+    {
+      if (sdkResult instanceof SdkResult.Success) {
+        Napier.d("APP: INIT SDK: OK")
+      } else if (sdkResult instanceof SdkResult.Error) {
+        Napier.d("APP: INIT SDK: KO - ${it.error}")
+      }
+    }
+  );
 ```
 
 #### b. Injecting the licence as a String
@@ -211,35 +216,36 @@ You can assign the licence directly as a String, as follows:
 Kotlin:
 
 ```java
-SDKController.initSdk(
-      sdkApplication = SdkApplication(application),
-      license = "LICENSE"
-      ) {
-        when (it) {
-            is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
-            is SdkResult.Error -> Napier.d(
-                    "APP: INIT SDK: KO - ${it.error}"
-                  )
-          }
- })
+val sdkConfig = SdkConfigurationData(
+    sdkApplication = SdkApplication(application),
+    licensing = LicensingOffline("LICENSE"),
+)
+
+val result = SDKController.initSdk(sdkConfig)
+
+when (result) {
+  is SdkResult.Success -> Napier.d("APP: INIT SDK: OK")
+  is SdkResult.Error -> Napier.d(
+          "APP: INIT SDK: KO - ${result.error.name}"
+        )
+}
 ```
 
 Java:
 
 ```java
 SDKController.INSTANCE.initSdk(
-        new SdkApplication(activity.getApplication()),
-        "LICENSE",
-        sdkResult ->
-        {
-          if (sdkResult instanceof SdkResult.Success) {
-            Napier.d("APP: INIT SDK: OK")
-          } else if (sdkResult instanceof SdkResult.Error) {
-            Napier.d("APP: INIT SDK: KO - ${it.error}")
-          }
-        }
-      );
-
+  new SdkApplication(activity.getApplication()),
+  new LicensingOffline("LICENSE"),
+  sdkResult ->
+  {
+    if (sdkResult instanceof SdkResult.Success) {
+      Timber.d("APP: INIT SDK: OK")
+    } else if (sdkResult instanceof SdkResult.Error) {
+      Timber.d("APP: INIT SDK: KO - ${it.error}")
+    }
+  }
+);
 ```
 
 ---
@@ -287,20 +293,18 @@ is the one who decides the order of execution of the components).
 Kotlin:
 
 ```java
-SDKController.newOperation(
+val result = SDKController.newOperation(
         operationType = OperationType.ONBOARDING,
         customerId = "customer_id",
-        steps = listOf(Step.SELPHI_COMPONENT, Step.SELPHID_COMPONENT)
-        ){
-        when (it) {
-                    is SdkResult.Success -> {
-                        Napier.d("APP: NEW OPERATION OK")
-                    }
-                    is SdkResult.Error -> {
-                        Napier.d("APP: NEW OPERATION ERROR: ${it.error}")
-                    }
-                }
-        }
+        steps = listOf(Step.SELPHI_COMPONENT, Step.SELPHID_COMPONENT))
+when (result) {
+    is SdkResult.Success -> {
+        Timber.d("APP: NEW OPERATION OK")
+    }
+    is SdkResult.Error -> {
+        Timber.d("APP: NEW OPERATION ERROR: ${result.error.name}")
+    }
+}
 ```
 
 Java:
@@ -326,19 +330,17 @@ SDKController.INSTANCE.newOperation(
 Kotlin:
 
 ```java
-SDKController.newOperation(
+val result = SDKController.newOperation(
         operationType = OperationType.ONBOARDING,
         customerId = "customer_id",
-        ){
-        when (it) {
-                    is SdkResult.Success -> {
-                        Napier.d("APP: NEW OPERATION OK")
-                    }
-                    is SdkResult.Error -> {
-                        Napier.d("APP: NEW OPERATION ERROR: ${it.error}")
-                    }
-                }
-        }
+when (result) {
+    is SdkResult.Success -> {
+        Timber.d("APP: NEW OPERATION OK")
+    }
+    is SdkResult.Error -> {
+        Timber.d("APP: NEW OPERATION ERROR: ${result.error.name}")
+    }
+}
 ```
 
 Java:
@@ -390,14 +392,31 @@ access the **documentation for each component**.
 Launch example:
 
 ```java
-SDKController.launch(
-    SelphIDController(SdkData.selphIDConfiguration) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("SelphID: KO - ${it.error.name}")
-            is SdkResult.Success -> {
-                Napier.d("SelphID: OK")
-            }
-        }
+val result = SDKController.launch(XController(ConfigurationData()))
+when (result) {
+    is SdkResult.Success -> {
+        //Result OK
+        it.data
+    }
+    is SdkResult.Error -> {
+        //Result KO
+        it.error.name
+    }
+}
+```
+
+Java:
+
+```java
+SDKController.INSTANCE.launch(
+    new XController(new ConfigurationData()) {
+        if (sdkResult instanceof SdkResult.Success) {
+            //Result OK
+            it.data
+          } else if (sdkResult instanceof SdkResult.Error) {
+            //Result KO
+            it.error.name
+          }
     }
 )
 ```
@@ -427,14 +446,14 @@ of the different fields this object can return.
 Example of use:
 
 ```java
-when (it) {
+when (result) {
     is SdkResult.Success -> {
         Napier.d("Selphi: OK")
         // SelphiResult:
-        // it.data.bestImageBmp
+        // result.data.bestImageBmp
     }
 
-    is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
+    is SdkResult.Error -> Napier.d("Selphi: KO - ${result.error.name}")
 }
 ```
 
@@ -468,49 +487,35 @@ specific operation.
 ### 8.1 Getting the OperationId
 
 ```java
-SDKController.launchMethod(
-    GetOperationIdController {
-        Napier.d("Operation ID ${it})
-    }
-)
+val result = SDKController.launch(GetOperationIdController())
+Napier.d("Operation ID ${result}")
 ```
 
 ### 8.2 Getting the OperationType
 
 ```java
-SDKController.launchMethod(
-    GetOperationTypeController {
-        Napier.d("Operation type ${it})
-    }
-)
+val result = SDKController.launch(GetOperationTypeController())
+Napier.d("Operation type ${result}")
 ```
 
 ### 8.3 Getting the SessionId
 
 ```java
-SDKController.launchMethod(
-    GetSessionIdController {
-        Napier.d("Session ID ${it})
-    }
-)
+val result = SDKController.launch(GetSessionIdController())
+Napier.d("Session ID ${result}")
 ```
 
 ### 8.4 Getting the CustomerID
 
 ```java
-SDKController.launchMethod(
-    GetCustomerIdController {
-        Napier.d("Customer ID ${it})
-    }
-)
+val result = SDKController.launch(GetCustomerIdController())
+Napier.d("Customer ID ${result}")
 ```
 
-### 8.5 Getting the CustomerID
+### 8.5 Setting the CustomerID
 
 ```java
-SDKController.launchMethod(
-    CustomerIdController("CustomerId")
-)
+SDKController.launch(CustomerIdController("CustomerId"))
 ```
 
 ---
@@ -555,7 +560,7 @@ To change the SDK colours and logo, you would have to include an XML
 file in the client application (e.g. **_sdk_styles.xml_**) changing the
 hex (RGB) value of each primary colour:
 
-```java
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- SdkTheme -->
@@ -584,7 +589,7 @@ To modify the logo visible in the different components of the SDK, it is
 sufficient to include in the file the following line, including the name
 of the logo of the client application:
 
-```java
+```xml
 <!-- SDK LOGO -->
 <drawable name="sdk_logo">@drawable/logo_name</drawable>
 ```
@@ -611,7 +616,7 @@ If you want to modify the SDK texts, you would have to include the
 following XML file in the client application and modify the value of
 each _String_ to the desired one.
 
-```java
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GENERAL -->
@@ -662,7 +667,7 @@ In case you want to change the shape of the SDK buttons, you would have
 to include this line in the SDK style XML file by changing the _dp_
 value of the _dimen_ variable:
 
-```java
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="sdk_buttons_corner_dimen">5dp</dimen>

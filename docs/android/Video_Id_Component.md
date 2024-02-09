@@ -144,14 +144,13 @@ to launch the component:
   the _tracking_ server:
 
 ```java
-SDKController.launch(
-    VideoIdController(VideoIdConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    VideoIdController(VideoIdConfigurationData())
 )
+when (it) {
+    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -159,14 +158,13 @@ SDKController.launch(
   tracked** to the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    VideoIdController(VideoIdConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("VideoId: ERROR - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("VideoId OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    VideoIdController(VideoIdConfigurationData())
 )
+when (it) {
+    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -202,11 +200,11 @@ SOCKET_ERROR
 VIDEO_ERROR
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
-UNKNOWN_ERROR 
+UNKNOWN_ERROR
 PERMISSION_DENIED
 ```
 
-### 7.2. Receipt of correct execution - data_
+### 7.2. Receipt of correct execution - data\_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.
@@ -228,7 +226,7 @@ If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value of
 each String to the desired one.
 
-```java
+```xml
     <string name="video_id_text_waiting_agent_title">Video ID</string>
     <string name="video_id_first_message">Place your face and the front of your document within the frame</string>
     <string name="video_id_init_message_face_content_desc">Place your face in front of the camera and start recording</string>

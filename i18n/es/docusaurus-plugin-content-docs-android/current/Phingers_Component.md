@@ -210,14 +210,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    PhingersController(PhingersConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    PhingersController(PhingersConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("Phingers: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Phingers OK: ${result.data}")
+}
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -225,14 +224,13 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    PhingersController(PhingersConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    PhingersController(PhingersConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("Phingers: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Phingers OK: ${result.data}")
+}
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -358,7 +356,7 @@ Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
-```java
+```xml
     <string name="phingers_component_tutorial_left_message">Prepara tu mano izquierda para la captura</string>
     <string name="phingers_component_tutorial_left_title">Huellas mano izquierda</string>
     <string name="phingers_component_turorial_right_message">Prepara tu mano derecha para la captura</string>

@@ -204,14 +204,13 @@ to launch the component:
   _tracking_ server:
 
 ```java
-SDKController.launch(
-    SelphiController(SelphiConfigurationData(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val response = SDKController.launch(
+    SelphiController(SelphiConfigurationData(...))
 )
+when (response) {
+    is SdkResult.Error -> Napier.d("Selphi: ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
+}
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -219,14 +218,13 @@ SDKController.launch(
   the _tracking_ server:
 
 ```java
-SDKController.launchMethod(
-    SelphiController(SelphiConfigurationData(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: KO - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val response = SDKController.launchMethod(
+    SelphiController(SelphiConfigurationData(...))
 )
+when (response) {
+    is SdkResult.Error -> Napier.d("Selphi: ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
+}
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -316,12 +314,11 @@ Controller to generate a RawTemplate from an image (bitmap).
 Example of use:
 
 ```java
-SDKController.launch(
-    RawTemplateController(SdkImage(image)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("GenerateRaw: KO - ${it.error}")
-            is SdkResult.Success -> it.data
-        }
-    }
+val result = SDKController.launch(
+    RawTemplateController(SdkImage(image))
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("GenerateRaw: KO - ${result.error}")
+    is SdkResult.Success -> result.data
+}
 ```

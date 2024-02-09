@@ -149,14 +149,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    VoiceController(VoiceConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
-        }
-    }
+val result = SDKController.launch(
+    VoiceController(VoiceConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
+}
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -164,14 +163,13 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    VoiceController(VoiceConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
-        }
-    }
+val result = SDKController.launchMethod(
+    VoiceController(VoiceConfigurationData())
 )
+when (result) {
+    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
+}
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -243,7 +241,7 @@ Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
-```java
+```xml
     <string name="voice_component_tutorial_message">Habla claro y en voz alta. \n\n Asegúrate de estar en un entorno silencioso</string>
     <string name="voice_component_tutorial_title">Reconocimiento de voz</string>
     <string name="voice_component_tutorial_button">Comenzar</string>

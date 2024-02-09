@@ -126,7 +126,7 @@ necesario para la conexión con el servicio de video.
 ### 6.1 Iniciar grabación
 
 Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. 
+3**) se podrán lanzar los componentes del SDK.
 
 Los controladores de grabación devolverán estados para indicar la evolución del proceso.
 
@@ -137,15 +137,11 @@ Hay dos formas de lanzar el componente:
   internos al servidor de _tracking_:
 
 ```java
-val videoRecordingController = VideoRecordingController(
-      VideoRecordingConfigurationData()
-)
-
-videoRecordingController.setState {
-     Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+val controller = VideoRecordingController(VideoRecordingConfigurationData())
+SDKController.launch(controller)?.collect {
+    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (start): ${it.name}")
 }
-
-SDKController.launch(videoRecordingController)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -153,15 +149,11 @@ SDKController.launch(videoRecordingController)
   evento al servidor de _tracking_:
 
 ```java
-val videoRecordingController = VideoRecordingController(
-      VideoRecordingConfigurationData()
-)
-
-videoRecordingController.setState {
-     Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+val controller = VideoRecordingController(VideoRecordingConfigurationData())
+SDKController.launchMethod(controller)?.collect {
+    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (start): ${it.name}")
 }
-
-SDKController.launchMethod(videoRecordingController)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -178,7 +170,7 @@ a la plataforma.
 ### 6.2 Parar grabación
 
 Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. 
+3**) se podrán lanzar los componentes del SDK.
 
 Los controladores de grabación devolverán estados para indicar la evolución del proceso.
 
@@ -189,13 +181,11 @@ Hay dos formas de lanzar el componente:
   internos al servidor de _tracking_:
 
 ```java
-val stopVideoRecordingController = StopVideoRecordingController()
-
-stopVideoRecordingController.setState {
+val controller = StopVideoRecordingController()
+SDKController.launch(controller)?.collect {
     Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (stop): ${it.name}")
 }
-
-SDKController.launch(stopVideoRecordingController)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -203,13 +193,11 @@ SDKController.launch(stopVideoRecordingController)
   evento al servidor de _tracking_:
 
 ```java
-val stopVideoRecordingController = StopVideoRecordingController()
-
-stopVideoRecordingController.setState {
+val controller = StopVideoRecordingController()
+SDKController.launchMethod(controller)?.collect {
     Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (stop): ${it.name}")
 }
-
-SDKController.launchMethod(stopVideoRecordingController)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -230,6 +218,7 @@ a la plataforma.
 La evolución del proceso vendrá indicada a través de los estados:
 
 Los controladores de grabación devolverán estados para indicar la evolución del proceso:
+
 ```java
     AGENT_HANGUP,
     FINISH,
@@ -241,6 +230,7 @@ Los controladores de grabación devolverán estados para indicar la evolución d
     SOCKET_ERROR,
     UNKNOWN_ERROR,
 ```
+
 Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
 
 ---

@@ -87,10 +87,10 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-| **Controlador**         | **Descripción**         |
-| ----------------------- | -------------------------------------------------------------------------------------------- |
-| TrackingController      | Controlador principal de tracking  |
-| TrackingErrorController | Controlador para **gestionar** los posibles **errores** que ocurran |
+| **Controlador**         | **Descripción**                                                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| TrackingController      | Controlador principal de tracking                                                                                                     |
+| TrackingErrorController | Controlador para **gestionar** los posibles **errores** que ocurran                                                                   |
 | ExtraDataController     | Controlador para obtener el **ExtraData** que permite la **comunicación** desde cliente con el servidor con **SelphIDSdk** instalado. |
 
 ---
@@ -141,16 +141,15 @@ operación en curso</u>,** lo cual **obliga** a que se haya **realizado**
 con anterioridad un **_newOperation_**.
 
 ```java
-SDKController.launch(
-    ExtraDataController {
-        when (it) {
-            is SdkResult.Success -> logs.add("ExtraData: OK")
-            is SdkResult.Error -> logs.add(
-                "ExtraData: KO - ${it.error.javaClass.simpleName}"
-            )
-        }
-    }
+val result = SDKController.launch(
+    ExtraDataController()
 )
+when (result) {
+    is SdkResult.Success -> logs.add("ExtraData: OK")
+    is SdkResult.Error -> logs.add(
+        "ExtraData: KO - ${result.error.name}"
+    )
+}
 ```
 
 ---

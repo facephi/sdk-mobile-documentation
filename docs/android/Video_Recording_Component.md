@@ -116,7 +116,7 @@ connection to the video service.
 ### 6.1 Start recording
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. 
+(**section 3**), the SDK components can be launched.
 
 Recording controllers shall return statuses to indicate the progress of the process.
 
@@ -127,15 +127,11 @@ There are two ways to launch the component:
   the _tracking_ server:
 
 ```java
-val videoRecordingController = VideoRecordingController(
-      VideoRecordingConfigurationData()
-)
-
-videoRecordingController.setState {
-     Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+val controller = VideoRecordingController(VideoRecordingConfigurationData())
+SDKController.launch(controller)?.collect {
+    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (start): ${it.name}")
 }
-
-SDKController.launch(videoRecordingController)
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -143,15 +139,11 @@ SDKController.launch(videoRecordingController)
   tracked** to the _tracking_ server:
 
 ```java
-val videoRecordingController = VideoRecordingController(
-      VideoRecordingConfigurationData()
-)
-
-videoRecordingController.setState {
-     Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+val controller = VideoRecordingController(VideoRecordingConfigurationData())
+SDKController.launchMethod(controller)?.collect {
+    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (start): ${it.name}")
 }
-
-SDKController.launchMethod(videoRecordingController)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -166,7 +158,7 @@ In this case, this method is used to prevent this information from being sent to
 ### 6.2 Stop recording
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. 
+(**section 3**), the SDK components can be launched.
 
 Recording controllers shall return statuses to indicate the progress of the process.
 
@@ -177,13 +169,11 @@ There are two ways to launch the component:
   the _tracking_ server:
 
 ```java
-val stopVideoRecordingController = StopVideoRecordingController()
-
-stopVideoRecordingController.setState {
+val controller = StopVideoRecordingController()
+SDKController.launch(controller)?.collect {
     Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (stop): ${it.name}")
 }
-
-SDKController.launch(stopVideoRecordingController)
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -191,13 +181,11 @@ SDKController.launch(stopVideoRecordingController)
   tracked** to the _tracking_ server:
 
 ```java
-val stopVideoRecordingController = StopVideoRecordingController()
-
-stopVideoRecordingController.setState {
+val controller = StopVideoRecordingController()
+SDKController.launchMethod(controller)?.collect {
     Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+    _logs.emit("VIDEO RECORDING STATE (stop): ${it.name}")
 }
-
-SDKController.launchMethod(stopVideoRecordingController)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -229,6 +217,7 @@ Recording controllers shall return statuses to indicate the evolution of the pro
     SOCKET_ERROR,
     UNKNOWN_ERROR,
 ```
+
 Where SHARING indicates that the screen is being recorded and FINISH indicates that the process is finished.
 
 ---
