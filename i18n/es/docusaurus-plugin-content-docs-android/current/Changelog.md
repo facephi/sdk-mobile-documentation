@@ -2,6 +2,21 @@
 
 ## Versiones
 
+### 2.0.0-SNAPSHOT
+
+- General
+
+  - Todas las funciones de SDKController, pasan de tener output con lambda, a ser suspend functions y devolver el resultado de manera sincrona.
+    Para consumirlo ahora será necesario usar una Coroutine.
+    Si se llama desde un ViewModel, se puede usar viewModelScore.launch, si no CoroutineScope(Dispatchers.IO).launch
+
+  - La inicialización del SDK ahora tiene un SDKConfigurationData con los datos que se han de rellenar
+
+  - En el SDKConfigurationData podrás elegir entre LicensingOnline o LicensingOffline
+
+- Tracking
+  - Ajustes y mejoras
+
 ### 1.5.3
 
 - General

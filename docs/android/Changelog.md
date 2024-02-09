@@ -2,6 +2,21 @@
 
 ## Versions
 
+### 2.0.0-SNAPSHOT
+
+- General
+
+  - All SDKController functions, from having output with lambda, become suspend functions and return the result synchronously.
+    To consume it now it will be necessary to use a Coroutine.
+    If called from a ViewModel, you can use viewModelScore.launch, otherwise CoroutineScope(Dispatchers.IO).launch.
+
+  - The SDK initialisation now has an SDKConfigurationData with the data to be filled in.
+
+  - In the SDKConfigurationData you can choose between LicensingOnline or LicensingOffline.
+
+- Tracking
+  - Settings and improvements
+
 ### 1.5.3
 
 - General
