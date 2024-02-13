@@ -138,9 +138,13 @@ Hay dos formas de lanzar el componente:
 
 ```java
 val controller = VideoRecordingController(VideoRecordingConfigurationData())
-SDKController.launch(controller)?.collect {
-    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
-    _logs.emit("VIDEO RECORDING STATE (start): ${it.name}")
+viewModelScope.launch {
+    controller.stateFlow.collect {
+        Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+    }
+}
+viewModelScope.launch {
+    SDKController.launch(controller)
 }
 ```
 
@@ -150,9 +154,13 @@ SDKController.launch(controller)?.collect {
 
 ```java
 val controller = VideoRecordingController(VideoRecordingConfigurationData())
-SDKController.launchMethod(controller)?.collect {
-    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
-    _logs.emit("VIDEO RECORDING STATE (start): ${it.name}")
+viewModelScope.launchMethod {
+    controller.stateFlow.collect {
+        Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+    }
+}
+viewModelScope.launch {
+    SDKController.launch(controller)
 }
 ```
 
@@ -182,9 +190,13 @@ Hay dos formas de lanzar el componente:
 
 ```java
 val controller = StopVideoRecordingController()
-SDKController.launch(controller)?.collect {
-    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
-    _logs.emit("VIDEO RECORDING STATE (stop): ${it.name}")
+viewModelScope.launch {
+    controller.stateFlow.collect {
+        Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+    }
+}
+viewModelScope.launch {
+    SDKController.launch(controller)
 }
 ```
 
@@ -194,9 +206,13 @@ SDKController.launch(controller)?.collect {
 
 ```java
 val controller = StopVideoRecordingController()
-SDKController.launchMethod(controller)?.collect {
-    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
-    _logs.emit("VIDEO RECORDING STATE (stop): ${it.name}")
+viewModelScope.launchMethod {
+    controller.stateFlow.collect {
+        Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+    }
+}
+viewModelScope.launch {
+    SDKController.launch(controller)
 }
 ```
 
