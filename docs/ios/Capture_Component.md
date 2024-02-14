@@ -11,8 +11,9 @@ of modularity means that other new components can be added in the future
 new components can be added in the future without affecting those already integrated in the project.
 project.
 
-For more information on the base configuration, go to the section on
-***TO DO: Add link***.
+For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
 
 ---
 
@@ -30,7 +31,9 @@ Minimum iOS version: **13**
 
 ## 2. Component integration
 
-Before integrating this component, it is recommended to read the documentation related to ** TO DO: [1.5.X][EN] iOS Mobile SDK** and follow the instructions given in this document.
+Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
 
 This section will explain step by step how to integrate the current component into an existing project.
 component into an existing project.
@@ -59,7 +62,7 @@ completely before the installation of the components of the
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-*** TO DO: ADD IMAGE ***
+![Image](/iOS/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
 In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
@@ -75,7 +78,9 @@ When you want to perform a certain operation, in order to generate the associate
 
 This command must have been executed **prior to the launch of the component**.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation of ***TO DO: link***[1.5.X][EN] iOS Mobile SDK , which details and explains what this process consists of.
+To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
 
 ---
 

@@ -17,6 +17,10 @@ entre un usuario y un agente de forma remota, a través de un canal de
 comunicación. Está orientado principalmente para casos de uso de
 videoasistencia.
 
+For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
+
 ### 1.1 Requisitos mínimos
 
 La versión mínima de la SDK de Android requerida es la siguiente:

@@ -2,9 +2,11 @@
 
 ## 0. SDK Mobile base requirements
 
-**SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.
+**SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project
 
-For more information on the base configuration, go to the [1.5.X][EN] iOS Mobile SDK **TO DO: ADD LINK** section. 
+For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
 
 ---
 
@@ -25,10 +27,7 @@ in the background while the **SDKMobile** process is running.
 
 ## 2. Component integration
 
-Before integrating this component it is recommended to read the documentation related to [1.5.X][EN] iOS Mobile SDK (**TO DO: LINK**) and follow the instructions given in that document.
-
 This section will explain step by step how to integrate the current component into an existing project.
-
 
 ### 2.1. Dependencies required for integration
 
@@ -50,7 +49,7 @@ Once the dependencies are installed, the different functionalities of the compon
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-*** TO DO: ADD IMAGE ***
+![Image](/iOS/fix_ldClassic.png)
 
 
 ---

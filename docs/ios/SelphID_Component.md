@@ -5,7 +5,9 @@
 
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] iOS Mobile SDK **TO DO: ADD LINK** 
+For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
 
 ## 1. Introducción
 El Componente tratado en el documento actual recibe el nombre de ***SelphID Component***. Éste se encarga de realizar capturas de documentos y la posterior extracción y análisis de los datos obtenidos de ellos. Sus principales funcionalidad son las siguientes:
@@ -17,6 +19,7 @@ El Componente tratado en el documento actual recibe el nombre de ***SelphID Comp
 - Obtención de las imágenes del dorso y reverso del documento, así como otras imagénes incluidas en el documento: cara del usuario, firma del usuario,...
 - Alto nivel de configuración: diferentes países, idiomas, tipos de documentos...
 
+
 ### 1.1 Requisitos mínimos
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
@@ -27,7 +30,9 @@ Versión mínima de iOS: **13**
 ## 2. Integración del componente
  
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] iOS Mobile SDK (**TO DO: ENLACE**) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
@@ -53,7 +58,7 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-*** TO DO: AÑADIR IMAGEN ***
+![Image](/iOS/fix_ldClassic.png)
 
 #### SPM
 - Las dependencias obligatorias que deberán haberse instalado previamente son:
@@ -84,7 +89,9 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de ***TO DO: enlace***[1.5.X][ES] iOS Mobile SDK , en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** , en el que se detalla y explica en qué consiste este proceso.
 
  
 
@@ -252,7 +259,9 @@ El método **launch** debe usarse **por defecto.** Este método permite utilizar
 Por el contrario, el método **launchMethod** cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.
 
 ## 7. Recepción del resultado.
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de ***TO DO: Enlace*** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado  del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de  [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>***.
 
 ### 7.1. Recepción de errores
 

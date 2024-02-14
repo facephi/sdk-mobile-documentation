@@ -1,379 +1,372 @@
 # Phingers Component
 
-Este documento hace referencia la **versión 1.4.X** del componente
+## 0. SDK Mobile base requirements
 
-## 1. Introducción
+**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
+a series of functionalities and services, allowing its integration in a Mobile application in a
+integration into a Mobile application in a simple and fully scalable way.
+scalable. Depending on the use case that is required, certain components must be installed.
+Depending on the required use case, certain components must be installed. Its high level of
+of modularity means that other new components can be added in the future
+new components can be added in the future without affecting those already integrated in the project.
+project.
 
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
+For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">SDK móvil de iOS</a>***.
 
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_Phingers Component_**. Éste se encarga de realizar la captura de las
-huellas de los dedos (fingerprints) del usuario y la posterior
-extracción de las plantillas de las huellas posteriores. Sus principales
-funcionalidades son las siguientes:
+## 1. Introduction
 
-- Dos modos de funcionamiento: extracción de los cuatro dedos de la
-  mano (excepto el pulgar), o extracción únicamente del pulgar.
+The _Component_ dealt with in the current document is called
+**_Phingers Component_**. It is in charge of the capture of the user's fingerprints and the subsequent
+fingerprints and the subsequent extraction of the subsequent fingerprint templates.
+extraction of the subsequent fingerprint templates. Its main functionalities are
+functionalities are as follows:
 
-- Gestión interna de cámara.
+- Two modes of operation: extraction of the four fingers of the hand (except for the thumb), or
+  (except the thumb), or extraction of the thumb only.
 
-- Gestión de permisos.
+- Internal camera management.
 
-- Detección de vivacidad incorporada.
+- Permission management.
 
-- Asistente en los procesos de captura de las huellas.
+- Built-in vividness detection.
 
-- Generación de las plantillas con las características de las huellas,
-  imágenes y puntuaciones.
+- Assistant in fingerprint capture processes.
 
-### 1.1 Requisitos mínimos
+- Generation of templates with fingerprint characteristics,
+  images and scores.
 
-La versión mínima de la SDK de iOS requerida es la siguiente:
+### 1.1 Minimum requirements
 
-- Versión mínima de iOS: **13**
+The minimum iOS SDK version required is as follows:
+
+- Minimum iOS version: **13**
 
 ---
 
-## 2. Integración del componente
+## 2. Integration of the component
 
+Before integrating this component, it is recommended that you read the documentation
+documentation for the **<u>Core Component</u>** and follow the instructions
+indicated in this document.
 
+This section will explain step by step how to integrate the current component into an existing project.
+component into an existing project.
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a **<u>Core Component</u>** y seguir las instrucciones
-indicadas en dicho documento.
+### 2.1. Dependencies required for integration
 
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
+In order to avoid conflicts and compatibility problems, in case you want to
+install the component in a project containing an old version of the Facephi libraries.
+of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the components.
+completely before the installation of the components of the
+**_SDKMobile_** components.
 
-### 2.1. Dependencias requeridas para la integración
-
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
-
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias, en este caso
-  Cocoapods. Las dependencias **obligatorias** que deberán haberse
-  instalado previamente (añadiéndolas en el fichero espera*Podfile* del
-  proyecto) son:
+- Currently the FacePhi libraries are distributed remotely through different dependency managers.
+  through different dependency managers, in this case
+  Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the
+  previously installed (by adding them to the project's wait*Podfile* file) are
+  project) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 1.4.0'
+  pod 'FPHISDKMainComponent', '~> 1.4.0', '~> 1.4.0'.
 ```
 
-- Para instalar el componente actual deberá incluirse la siguiente
-  entrada en el *Podfile* de la aplicación:
+- To install the current component, the following entry must be included in the *Podfile* of the project
+  entry in the *Podfile* of the application:
 
   ```java
-  pod 'FPHISDKPhingersComponent', '~> 1.4.0'
+  pod 'FPHISDKPhingersComponent', '~> 1.4.0'.
   ```
 
-- Una vez instaladas las dependencias, se podrá hacer uso de las
-  diferentes funcionalidades del componente.
+- Once the dependencies have been installed, you will be able to use the different
+  different functionalities of the component.
 
-### 2.2 Permisos y configuraciones
+### 2.2 Permissions and settings
 
-En la aplicación cliente donde se vayan a integrar los componentes es
-necesario incorporar el siguiente elementos en el fichero **info.plist**
+In the client application where the components are going to be integrated, it is necessary to incorporate the following elements in the file **info.plist**.
+the following elements need to be incorporated in the **info.plist** file
 
 ```java
-Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
+It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
 ```
 
 ---
 
-## 3. Iniciar nueva operación
+## 3. Start new operation
 
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
+When you want to perform a certain operation, in order to generate the associated information correctly in the
+associated information correctly in the platform, the **newOperation** command
+the **newOperation** command must be executed beforehand.
 
-Este comando debe ejecutarse **siempre**. Para saber más acerca de cómo
-iniciar una nueva operación, se recomienda consultar la documentación de
-**Core Component**, en el que se detalla y explica en qué consiste este
-proceso.
-
-
+This command must be executed **always**. To learn more about how to
+to start a new operation, it is recommended to consult the documentation of
+**Core Component** documentation, which details and explains this process.
+process.
 
 ---
 
-## 4. Configuración del componente
+## 4. Component configuration
 
-Para configurar el componente actual, una vez inicializado, se deberá
-crear un objeto _PhingersConfigurationData_ y pasarlo como parámetro al
-SDKController durante el lanzamiento del componente.
+To configure the current component, once it has been initialised, you need to
+create a _PhingersConfigurationData_ object and pass it as a parameter to the
+SDKController during the component launch.
 
-En el siguiente apartado se mostrarán los campos que forman parte de
-esta clase y para qué se utiliza cada uno de ellos.
+The following section will show the fields that are part of this class and what each one is used for.
+class and what each of them is used for.
 
 ### 4.1 Class PhingersConfigurationData
 
 #### 4.1.1 reticleOrientation
 
-Establece el modo de detección de huellas e indica qué dedos se van a
-detectar durante el proceso. Los valores permitidos son:
+Sets the fingerprint detection mode and indicates which fingers are to be detected during the process.
+detected during the process. Allowed values are:
 
-- **LEFT**: Se activa la captura de los **cuatro dedos de la mano
-  izquierda**.
+- **LEFT**: Capture of the **four fingers of the left hand** is enabled.
+  left**.
 
-- **RIGHT**: Se activa la captura de los **cuatro dedos de la mano
-  izquierda**.
+- RIGHT**: The capture of the **four fingers of the left hand** is activated.
+  left**.
 
-- **THUMB**: Se activa la captura de **un pulgar**.
+- THUMB**: Activates the capture of **one thumb**.
 
 #### 4.1.2 extractionTimeout
 
-Establece un modo de estabilización previo a cualquier proceso de
-autenticación en el widget. Con este modo se obliga al widget a no
-empezar ningún proceso si el usuario no se encuentra con la cabeza
-mirando al frente y sin moverla.
+Sets a stabilisation mode prior to any authentication process in the widget.
+authentication process in the widget. This mode forces the widget to not
+start any process if the user is not facing forward and not moving his head.
+head facing forward and not moving it.
 
 #### 4.1.3 returnWSQ
 
-Si se establece a **true** entonces en el resultado de la captura se
-devolverá, para cada una de las huellas, el dato comprimido mediante
-_Wavelet Scalar Quatization_ (WSQ). WSQ es un algortimo de compresión en
-grises, siendo un estándar (NIST) para este tipo de capturas. Orientado
-a la validación contra las diferentes bases de datos gubernamentales
-existentes.
+If set to **true** then in the result of the capture it will
+will return, for each of the footprints, the compressed data by means of
+Wavelet Scalar Quatization_ (WSQ). WSQ is a grey compression algorithm, being a standard (N
+being a standard (NIST) for this type of captures. Oriented
+validation against the different existing governmental databases.
+databases.
 
 #### 4.1.4 returnRawImage
 
-Si se establece a **true** se devolverá en el resultado las imágenes de
-la misma forma en que se han capturado.
+If set to **true** it shall return in the result the images in the same form as they have been captured.
+the same form in which they have been captured.
 
 #### 4.1.5 returnProcessedImage
 
-Si se establece a **true** se devolverá en el resultado las imágenes de
-la misma forma en que se han capturado.
+If set to **true** it shall return the images in the result as they were captured.
+the same form in which they have been captured.
 
 #### 4.1.6 returnFingerprintTemplate
 
-Especifica si el proceso de captura retornará el template de huellas en
-el resultado. Es un enumerado del tipo **_FingerprintTemplateType_**, y
-cada valor sería: \*\*
+Specifies whether the capture process shall return the fingerprint template in the result.
+the result. It is an enumerated of type **_FingerprintTemplateType_**, and
+each value would be: \*\*
 
-- **ISO**: Este tipo de plantilla se refiere al estándar **ISO/IEC
+- **ISO**: This template type refers to the standard **ISO/IEC
   19794-4**.
 
-- **INNOVATRICS**: Este tipo de plantilla es una plantilla propietaria
-  compatible con el cambio de escalado, y muy útil para los diferentes
-  procesos de validación.
+- INNOVATRICS**: This type of template is a proprietary template
+  template, compatible with scaling change, and very useful for different validation processes.
+  validation processes.
 
-- **NONE**: Desactivado el retorno del template.
+- NONE**: Template return is disabled.
 
 #### 4.1.7 returnFullFrameImage
 
-Especifica si se debe devolver la imagen completa de la cámara en la que
-se han detectado los dedos.
+Specifies whether to return the full image of the camera where the fingers have been detected.
+fingers have been detected.
 
 #### 4.1.8 useLiveness
 
-Activa o desactiva el detector de vivacidad durante el proceso de
-captura de huellas. Por defecto se encuentra a **true**.
+Enables or disables the liveness detector during the fingerprint capture process.
+capture process. Defaults to **true**.
 
 #### 4.1.9 useFlash
 
-Activa o desactiva el flash de la cámara durante el proceso de captura
-de huellas. Por defecto se encuentra a **true**.
+Enables or disables the camera flash during the fingerprint capture process.
+process. Defaults to **true**.
 
 #### 4.1.10 captureFingersText
 
-Establece el mensaje (string) que se muestra en pantalla una vez se han
-detectado los cuatro dedos y debe indicarse al usuario que no los mueva.
+Sets the message (string) that is displayed on the screen after the four fingers have been
+detected and the user shall be instructed not to move them.
 
 #### 4.1.11 captureThumbText
 
-Establece el mensaje (string) que se muestra en pantalla una vez se ha
-detectado el dedo pulgar y debe indicarse al usuario que no lo mueva.
+Sets the message (string) to be displayed on the screen after the thumb has been detected and the user shall be prompted not to move the thumb.
+detected and the user shall be prompted not to move it.
 
 #### 4.1.12 thumbNotInFocusText
 
-Establece el mensaje (string) que se muestra en pantalla mientras se
-intenta
+Sets the message (string) that is displayed on the screen while attempting to
+attempted
 
 #### 4.1.13 captureFingerText
 
-Establece el mensaje (string) que se muestra en pantalla durante el
-proceso de captura del dedo pulgar.
+Sets the message (string) displayed on screen during the thumb capture process.
+thumb capture process.
 
 ---
 
-## 5. Uso del componente
+## 5. Use of the component
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
+Once the component has been started and a new operation has been created (**paragraph
+3**) the SDK components can be launched. There are two ways to launch
+the component:
 
-- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **no se trackeará** ningún
-  evento al servidor de _tracking_:
+- **[NO TRACKING]** This call allows you to launch the component's functionality as normal, but **[NO TRACKING]** This call allows you to launch the component's functionality as normal.
+  functionality of the component normally, but **no event will be tracked** to the _tracking_ server.
+  event to the _tracking_ server:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
-
-
-- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+- **[WITH TRACKING]** This call allows the component's functionality to be launched as normal.
+  functionality of the component normally, but internal events will be tracked to the _tracking_ server.
+  events to the _tracking_ server:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
+The **launch** method must be used **by default**. This method allows
+use **_tracking_** if your component is enabled, and will not use it when it is
+when it is deactivated (or the component is not installed).
+installed).
 
-
-
-El método **launch** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
-
-Por el contrario, el método **launchMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
-
-
+On the other hand, the **launchMethod** method covers a special case, in which the
+where the integrator has tracking installed and activated, but in a given flow within the application does not want to use it when it is deactivated.
+flow within the application does not want to track information.
+In that case this method is used to avoid sending that information to the
+to the platform.
 
 ---
 
-## 6. Recepción del resultado.
+## 6. Receiving the result.
 
-El resultado es un objeto _SDKResult_ que devuelve el SDK tendrá siempre
-3 campos:
+The result is an _SDKResult_ object returned by the SDK shall always have
+3 fields:
 
-_finishStatus:_ Que nos indicará si la operación ha finalizado
-correctamente. Posibles valores:
+_finishStatus:_ which will indicate if the operation has been successfully completed.
+correctly. Possible values:
 
 ```java
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
 
-_errorType:_ Si el finishStatus indica que ha habido un error, este
-campo tendrá la descripción del mismo:
+_errorType:_ If the finishStatus indicates that there has been an error, this field shall have a description of the error: `````.
+field shall contain the description of the error:
 
 ```java
-CANCEL_BY_USER: El usuario ha cancelado la operación
-TIMEOUT: Ha finalizado el tiempo establecido sin que se termine correctamente el proceso.
-COMPONENT_CONTROLLER_ERROR: No se ha inicializado correctamente el controlador. Revisar las funciones de init y setup.
-COMPONENT_CONTROLLER_DATA_ERROR: Los datos de inicio o configuración del controlador no son correctos.
-NETWORK_CONNECTION: Error de conexión a internet
-UNKNOWN_ERROR: Error no gestionado
-ACTIVITY_RESULT_ERROR: Error en el flujo de pantallas interno del controlador.
-LOW_QUALITY: La imagen capturada no tiene la calidad suficiente.
-NFC_ERROR: Error de lectura de NFC
-QR_ERROR: Error de lectura de QR
-NO_ERROR: No se ha producido ningún error
-HARDWARE_ERROR: Error de hardware de los widgets de Selphi/SelphId
-EXTRACTION_LICENSE_ERROR: Error de licenciade los widgets de Selphi/SelphId
-UNEXPECTED_CAPTURE_ERROR: Error durante el proceso de captura de los widgets de Selphi/SelphId
-CONTROL_NOT_INITIALIZATED_ERROR: Error interno de los widgets de Selphi/SelphId
-BAD_EXTRACTOR_CONFIGURATION_ERROR: Error interno de los widgets de Selphi/SelphId
-TOKEN_ERROR: Error en la petición del token para tracking
-PHINGERS_ERROR_CAPTURE: Error de captura de huellas
-LICENSING_ERROR_PACKAGE_NAME: Error de licencia que indica que el package name es incorrecto.
-LICENSING_ERROR_APPID_INVALID: Error de licencia que indica que el APPID es incorrecto.
-LICENSING_ERROR_APIKEY_FORBIDDEN: Error de licencia que indica que el APIKEY es incorrecto.
-LICENSING_ERROR_LICENSE_NOT_FOUND: Error de licencia que indica que no se ha encontrado ninguna licencia.
+CANCEL_BY_USER: The user has cancelled the operation.
+TIMEOUT: The set time has elapsed without a successful completion of the process.
+COMPONENT_CONTROLLER_ERROR: The controller has not been initialised correctly. Check the init and setup functions.
+COMPONENT_CONTROLLER_DATA_ERROR: The init or setup data of the controller is not correct.
+NETWORK_CONNECTION: Internet connection error.
+UNKNOWN_ERROR: Unhandled error.
+ACTIVITY_RESULT_ERROR: Error in the internal screen flow of the controller.
+LOW_QUALITY: The captured image is not of sufficient quality.
+NFC_ERROR: NFC reading error.
+QR_ERROROR: QR reading error.
+NO_ERROROR: No error occurred.
+HARDWARE_ERROROROR: Selphi/SelphId widgets hardware error
+EXTRACTION_LICENSE_ERROROR: Selphi/SelphId widgets licensing error
+UNEXPECTED_CAPTURE_ERROR: Error during the capture process of the Selphi/SelphId widgets
+CONTROL_NOT_INITIALIZATED_ERROROR: Internal Selphi/SelphId widgets error
+BAD_EXTRACTOR_CONFIGURATION_ERROR: Selphi/SelphId widgets internal error
+TOKEN_ERROR: Error in the request for the tracking token
+PHINGERS_ERROR_CAPTURE: Fingerprint capture error
+LICENSING_ERROR_PACKAGE_NAME: Licensing error indicating that the package name is incorrect.
+LICENSING_ERROR_APPID_INVALID: Licensing error indicating that the APPID is incorrect.
+LICENSING_ERROR_APIKEY_FORBIDDEN: Licensing error indicating that the APIKEY is incorrect.
+LICENSING_ERROR_ERROR_LICENSE_NOT_FOUND: Licensing error indicating that no license was found.
 ```
 
-_data:_ Tendrá los datos de respuesta de la función del componente
-ejecutado. En el **apartado 7.1** se especifican los campos que se
-incluyen en este componente.
+_data:_ Shall contain the response data of the executed component function.
+executed. Section 7.1** specifies the fields that are included in this component.
+included in this component.
 
-### 6.1 Contenido del campo _data_
+### 6.1 Content of the _data_ field
 
-El resultado devuelve las imágenes en formato **Bitmap**, es posible
-convertir las imágenes a **Base64** de la siguiente manera:
+The result returns the images in **Bitmap** format, it is possible to
+convert the images to **Base64** as follows:
 
-`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
+`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`.
 
-El campo _data_ es variable y dependerá de qué componente se ha devuelto
-el resultado. En el caso de este componente, los campos devueltos son
-los siguientes:
+The _data_ field is variable and will depend on which component the result was returned.
+the result has been returned. In the case of this component, the returned fields are
+the following:
 
-#### 6.1.1 _focusQuality_
+#### 6.1.1 _focusQuality_.
 
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato string Base64. Esta imagen es la imagen con el tamaño original
-extraída de la cámara. Válido para el proceso de **liveness**.
+Returns the best image extracted from the authentication process in
+Base64 string format. This image is the original size image
+extracted from the camera. Valid for the **liveness** process.
 
 #### 6.1.2 _fullFrameImage_
 
-Devuelve una imagen recortada centrada en la cara del usuarioen formato
-string Base64. Esta imagen se obtiene a partir de la _bestImage_. Ésta
-es la imagen que se deberá utilizar como imagen característica del
-usuario que realizó el proceso a modo de _avatar_.
+Returns a cropped image centred on the user's face in Base64 string format.
+string Base64 format. This image is obtained from the _bestImage_. This
+is the image that shall be used as the characteristic image of the
+user who performed the process as the _avatar_.
 
 #### 6.1.3 _livenessConfidence_
 
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato Bitmap. Esta imagen es la imagen con el tamaño original extraída
-de la cámara. Válido para el proceso de **liveness**.
+Returns the best image extracted from the authentication process in
+Bitmap format. This image is the original size image extracted from the camera.
+from the camera. Valid for the **liveness** process.
 
-#### 6.1.4 _fingersResult_
+#### 6.1.4 _fingersResult_.
 
-Es una lista de objetos **_FingerResult_**, que contiene toda la
-información asociada a cada uno de los dedos capturados.
+This is a list of **_FingerResult_** objects, containing all the information associated with each finger.
+information associated with each of the captured fingers.
 
 #### 6.1.4.1 wsq
 
-Se devuelve la captura de huella en formato WSQ.
+The fingerprint capture is returned in WSQ format.
 
 #### 6.1.4.2 fingerprintTemplate
 
-Devuelve la plantilla de la huella, usada para posteriores validaciones.
+Returns the fingerprint template, used for further validation.
 
 #### 6.1.4.3 rawFingerprintImage
 
-Devuelve la imagen de la huella actual en crudo, sin modificar.
+Returns the raw, unmodified image of the current fingerprint.
 
 #### 6.1.4.4 processedFingerprintImage
 
-Devuelve la imagen de la huella procesada.
+Returns the processed fingerprint image.
 
 #### 6.1.4.5 nfiqMetrics
 
-Son las métricas de la captura. Actualmente se devuelve el siguiente
-valor:
+These are the metrics of the capture. Currently the following is returned.
+value:
 
-- **nfiqMetric**: Es un valor entero, entre 1 y 5 (ambos inclusive),
-  que indica la calidad de la captura de huella, siendo 1 el valor que
-  indica la calidad más alta y 5 la peor calidad. Las huellas con este
-  último valor suelen ser descartadas para posteriores validaciones.
+- nfiqMetric**: An integer value, between 1 and 5 (inclusive),
+  indicating the quality of the fingerprint capture, with 1 indicating the highest quality and 5 the worst quality.
+  indicates the highest quality and 5 the worst quality. Fingerprints with the latter value
+  The latter value is usually discarded for further validation.
 
 ---
 
-## 7. Personalización del componente
+## 7. Component customisation
 
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de **Core Component**), este componente en
-concreto permite la modificación de textos específicos.
+Apart from the changes that can be made at the SDK level (which are explained in the **Core Component** document), the
+are explained in the **Core Component** document), this particular component allows the modification of specific texts.
+component allows the modification of specific texts.
 
-### 7.1 Textos
+### 7.1 Texts
 
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+If you want to modify the SDK texts you would have to include the following XML file in the client application
+following XML file in the client application, and modify the value of each _String_ to
+value of each _String_ to the desired one.
 
 ```java
 <!-- PHINGERS -->
-<string name="phingers_component_left_hand">Prepare your left hand for the catch</string>
+<string name="phingers_component_left_hand">Prepare your left hand for the catch</string>.
 <string name="phingers_component_right_hand">Prepare your right hand for capture</string>
 <string name="phingers_component_action_text">Take fingerprints</string>
 <string name="phingers_component_capture_phingers">Hold fingers steady</string>
@@ -381,7 +374,5 @@ de cada _String_ por el deseado.
 <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
 <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string>
 ```
-
-
 
 ---

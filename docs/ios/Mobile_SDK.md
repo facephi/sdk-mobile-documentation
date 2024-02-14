@@ -457,45 +457,79 @@ type will be **NO_ERROR**.
 
 ---
 
-## 9. SDK customization
+## 9. Error control
 
-The customization must be done through a class called
-Theme**_Component_**Manager, where the word **_Component_** must be
-changed by the name of the current component.
-
-For example, _videoidComponent_ contains `ThemeVideoIdManager`, while
-_videocallComponent_ has `ThemeVideoCallManager` …
-
-This manager contains an instance of the type
-Theme**_Component_**Protocol. To customize details, a new class must be
-created and injected into the Theme**_Component_**Manager.
+When calling any of the components, we will always have an output of type SdkResult as a response, as we see in the example code:
 
 ```java
-class CustomThemeComponent: ThemeComponentProtocol {
-    var images: [R.Image: UIImage?] = [:]
+         let controller = ComponentController(data: ComponentConfigurationData, output: { sdkResult in
+            print(sdkResult.errorType)
+         }, viewController: viewController)
+         SDKController.shared.launch(controller: controller)
+```
 
-    var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
+In the .errorType attribute, we will have the typology of the error. The error types are defined in the documentation of each component.
 
-    var name: String {
-        "custom"
-    }
+The error codes you may receive are as follows.
 
-    var fonts: [R.Font: String] = [.regular: UIFont(...)]
-
-    var dimensions: [R.Dimension: CGFloat] {
-        [.fontBig: 8]
-    }
+```java
+public enum ErrorType: String, Error {
+     case NO_ERROR
+     case UNKNOWN_ERROR
+     case OTHER(String)
+     case COMPONENT_CONTROLLER_DATA_ERROR
+     case NO_OPERATION_CREATED_ERROR
+     case NETWORK_CONNECTION
+     case CAMERA_PERMISSION_DENIED
+     case MIC_PERMISSION_DENIED
+     case LOCATION_PERMISSION_DENIED
+     case STORAGE_PERMISSION_DENIED
+     case CANCEL_BY_USER
+     case TIMEOUT
+     case LICENSE_CHECKER_ERROR_INVALID_LICENSE
+     case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
 }
 ```
 
-This must be done before the initialization of the controller we want to
-use:
+If there is no error and the result is returned correctly, the errorType would be **NO_ERROR**.
+
+---
+
+## 10. SDK Customization
+
+Customization is done using a component class called Theme***Component***Manager. Where ***Component*** must be replaced with the desired component.
+
+For example, videoidComponent contains `ThemeVideoIdManager`, while videocallComponent `ThemeVideoCallManager`...
+
+This manager has an instance of type Theme***Component***Protocol. If we want to customize any details, we would have to create a new class that attaches to this interface and inject it into the Theme***Component***Manager.
 
 ```java
-// Controller component intialization
+class CustomThemeComponent: ThemeComponentProtocol {
+     var images: [R.Image: UIImage?] = [:]
+
+     var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
+
+     var name: String {
+         "custom"
+     }
+
+     var fonts: [R.Font: String] = [.regular: UIFont(...)]
+
+     var dimensions: [R.Dimension: CGFloat] {
+         [.fontBig: 8]
+     }
+}
+```
+
+This should always be done after having initialized the driver of the component we want to use/customize:
+
+```java
+//Controller component initialization
 let controller = ComponentController(...)
 // Instance of the custom instance
 ThemeComponentManager.setup(theme: CustomThemeComponent())
 // Controller launch
 SDKController.shared.launch(controller: controller)
 ```
+
+<u>**Each component has its customization section,**</u> colors, images, fonts, sizes
