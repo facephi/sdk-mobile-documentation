@@ -90,7 +90,7 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 }, behaviorController: behaviorController
 
 ```
-
+---
 ## 4. Use of the component
 
 As previously mentioned, once the **behaviour/behaviour** component has been initialised and configured, it will not be necessary to launch it.

@@ -192,7 +192,15 @@ Indica la fecha de expiración que aparece en el documento
 
 ##### issuer
 
+Indicamos el pais de origen del documento a leer.
+
 ##### documentType
+
+Indica el tipo de documento que se va a leer:
+    - ID_CARD
+    - PASSPORT
+    - FOREIGN_CARD
+
 
 ##### readableTags
 

@@ -192,7 +192,7 @@ install_cocoapods
 In the case of using **_xCode15_**, it is recommended to use the
 following configuration:
 
-<!-- <img src="ios/2643591524" -->
+![Image](/iOS/fix_ldClassic.png)
 
 The **-ld_classic** flag must be added in _Other Linker Flags_ in the
 _Build Settings_ section of the application.
@@ -280,6 +280,126 @@ SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: {
 }, trackingController: trackingController)
 ```
 
+### 3.2 Optional
+
+The following controllers are optional, they are added at the end of the initSDK as follows:
+
+#### 3.2.1 TrackingController
+
+The TrackingController controller will only be added in case you have sdkMobile tracking.
+
+The import is added:
+
+```
+import trackingComponent
+```
+
+trackingController: trackingController
+
+We initialize:
+
+```
+let trackingController = TrackingController(trackingError: { trackingError in
+      print("TRACKING ERROR: \(trackingError)")
+})
+```
+Added in the initSDK:
+
+```
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Automatic license successfully set")
+    } else {
+        self.log("An error occurred while trying to obtain the license: \(sdkResult.errorType)")
+    }
+}, trackingController: trackingController)
+```
+
+#### 3.2.2. TokenizeController
+
+Added import:
+```
+import tokenizeComponent
+```
+
+Initialise:
+
+```
+let tokenizeController = TokenizeController()
+```
+
+We add in the initSDK:
+
+```
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Automatic license successfully set")
+    } else {
+        self.log("An error occurred while trying to obtain the license: \(sdkResult.errorType)")
+    }
+}, tokenizeController: tokenizeController)
+```
+
+#### 3.2.3 BehaviorController
+
+Se añade el import:
+
+```
+import behaviorComponent
+```
+
+Inicializamos:
+```
+
+behaviorController = BehaviorController(autoLogoutAction: {
+                      print("DEFENSA ACTIVA")
+                      return true
+                    },
+                    behaviorError: { behaviorError en
+                      print("ERROR DE COMPORTAMIENTO: \(behaviorError)")
+                    }, debugMode: false)
+```
+
+Se añade en el initSDK:
+
+```
+
+// AUTO Licencia
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult en
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+    }
+}, behaviorController: behaviorController
+
+```
+
+#### 3.2.4 StatusController
+
+Se añade el import:
+
+```
+import statusComponent
+```
+
+Inicializamos:
+```
+let statusController = StatusController()
+```
+Se añade en el initSDK:
+```
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+    }
+}, statusController: statusController)
+```
 ---
 
 ## 4. Start a new operation

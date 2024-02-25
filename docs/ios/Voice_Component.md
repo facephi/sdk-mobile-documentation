@@ -2,169 +2,157 @@
 
 ## 0. Requisitos base de SDK Mobile
 
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
+**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
+a series of functionalities and services, allowing its integration in a Mobile application in a
+integration into a Mobile application in a simple and fully scalable way.
+scalable. Depending on the use case that is required, certain components must be installed.
+Depending on the required use case, certain components must be installed. Its high level of
+of modularity means that other new components can be added in the future
+new components can be added in the future without affecting those already integrated in the project.
+project.
 
 For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
+data-linked-resource-type="page">SDK móvil de iOS</a>***.
 
 ---
 
-## 1. Introducción
+## 1. Introduction
 
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_Voice Component_**. Éste se encarga de realizar la captura de voz del
-usuario y la posterior extracción de las plantillas correspondientes.
-Sus principales funcionalidades son las siguientes:
+The _Component_ dealt with in the current document is called
+**Voice Component_**. It is in charge of performing the voice capture from the user and the subsequent extraction of the corresponding templates.
+and the subsequent extraction of the corresponding templates.
+Its main functionalities are the following:
 
-- Entrada de cierto número de frases para posteriormente leer cada una
-  en un paso.
+- Input of a certain number of sentences to subsequently read each one in one step.
+  in one step.
 
-- Gestión interna del micrófono.
+- Internal management of the microphone.
 
-- Gestión de permisos.
+- Management of permissions.
 
-- Análisis de los silencios.
+- Analysis of silences.
 
-- Análisis del progreso.
+- Progress analysis.
 
-- Asistente en los procesos de captura.
+- Assistant in the capture processes.
 
-- Generación de las plantillas con las características de la voz y
-  puntuaciones.
+- Generation of templates with voice characteristics and scores.
+  scores.
 
-##1.1 Requisitos mínimos
-La versión mínima de la SDK de iOS requerida es la siguiente:
+##1.1 Minimum requirements
+The minimum iOS SDK version required is as follows:
 
-Versión mínima de iOS: **13**
+Minimum iOS version: **13**
 
 ---
 
-## 2. Integración del componente
+## 2. Component integration
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][EN] ***<a href="Mobile_SDK"
+Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***y seguir las instrucciones indicadas en dicho documento.
+data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
 
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
+This section will explain step by step how to integrate the current component into an existing project.
+component into an existing project.
 
-### 2.1. Dependencias requeridas para la integración
+### 2.1. Dependencies required for integration
 
-### 2.1. Dependencias requeridas para la integración
-
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
+In order to avoid conflicts and compatibility problems, in case you want to
+install the component in a project containing an old version of the Facephi libraries.
+of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the components.
+completely before the installation of the components of the **_SDKMobile_** components.
 
 #### Cocoapods
-- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  	pod 'FPHISDKMainComponent', '~> 1.4.0'
+  	pod 'FPHISDKMainComponent', '~> 1.4.0', '~> 1.4.0'.
 ```
-- Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+- To install the SelphID component, the following entry must be included in the application Podfile:
 ```
-	pod 'FPHISDKVoiceIDComponent', '~> 1.4.0'
+	pod 'FPHISDKVoiceIDComponent', '~> 1.4.0' ````
 ```
-- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+- Once the dependencies are installed, the different functionalities of the component can be used.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- In case of development with **xCode15** a post-installation script must be included:
 
 ![Image](/iOS/fix_ldClassic.png)
 
 
 ---
 
-## 3. Iniciar nueva operación
+## 3. Start new operation
 
-Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+When you want to perform a certain operation, in order to generate the associated information correctly in the
+associated information correctly in the platform, the **newOperation** command
+the **newOperation** command must be executed beforehand.
 
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
+This command must be executed **always**. To learn more about how to
+to start a new operation, it is recommended to consult the documentation of
+**Core Component** documentation, which details and explains this process.
+process.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][EN] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, en el que se detalla y explica en qué consiste este proceso.
+data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
 
 ---
 
-## 4. Controladores disponibles
+## 4. Available controllers
 
-| **Controlador** | **Descripción**                         |
+| **Controller**            | **Description**                                    |
 | --------------- | --------------------------------------- |
-| VoiceController | Controlador principal de captura de voz |
+| VoiceController | Voice identification main controller   |
 
 ---
 
-## 5. Configuración del componente
+## 5. Component configuration
 
-Para configurar el componente actual, una vez inicializado, se deberá
-crear un objeto
+To configure the current component, once it has been initialised, you must
+create a
 
-_VoiceConfigurationData_ y pasarlo como parámetro al SDKController
-durante el lanzamiento del componente.
+_VoiceConfigurationData_ object and pass it as parameter to the SDKController
+during the launch of the component.
 
-En el siguiente apartado se mostrarán los campos que forman parte de
-esta clase y para qué se utiliza cada uno de ellos.
+The following section will show the fields that are part of this class and what each one is used for.
+class and what each of them is used for.
 
 ### 5.1. Class VoiceConfigurationData
 
 #### 5.1.1. phrases
 
-Indica la/las frases necesarias para capturar.
+Indicates the phrase(s) needed to capture.
 
 #### 5.1.2. vibrationEnabled
 
-Indica la activación de la vibración cuando el widget termine
-satisfactoriamente.
+Indicates the activation of the vibration when the widget completes successfully.
+successfully.
 
 #### 5.1.3. showTutorial
 
-Indica si el componente activa la pantalla de tutorial. En esta vista se
-explica de forma intuitiva cómo se realiza la captura.
+Indicates whether the component activates the tutorial screen. This view intuitively
+intuitively explains how the capture is performed.
 
 #### 5.1.4. extractionTimeout
 
-Establece el tiempo máximo que se puede realizar la captura.
+Sets the maximum time that the capture can be performed.
 
 #### 5.1.5. showDiagnostic
 
-Mostrar pantallas de diagnóstico al final del proceso
+Show diagnostic screens at the end of the process
 
 ---
 
-## 6. Uso del componente
+## 6. Using the component
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
+Once the component has been started and a new operation has been created (**paragraph
+3**) the SDK components can be launched. There are two ways to launch
+the component:
 
-- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
-
-```java
-let controller = VoiceController(
-            data: data,
-            output: { sdkResult in
-                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
-                output(voiceIdSdkResult)
-            }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
-```
-
-- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **no se trackeará** ningún
-  evento al servidor de _tracking_:
+- **[WITH TRACKING]** This call allows you to launch the functionality
+  functionality of the component normally, but internal events will be tracked to the _tracking_ server.
+  events will be tracked to the _tracking_ server:
 
 ```java
 let controller = VoiceController(
@@ -176,16 +164,29 @@ let controller = VoiceController(
         SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
 
-El método **launchTokenizableMethod** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
+- **[NO TRACKING]** This call allows to launch the functionality of the
+  functionality of the component normally, but **no event will be tracked** to the
+  event to the _tracking_ server:
 
-Por el contrario, el método **launchTokenizableMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
+```java
+let controller = VoiceController(
+            data: data,
+            output: { sdkResult in
+                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
+                output(voiceIdSdkResult)
+            }, viewController: viewController)
+        SDKController.shared.launchTokenizableMethod(controller: controller)
+```
+
+The **launchTokenizableMethod** method must be used **by default**. This method allowsuse **_tracking_** if your component is enabled, and will not use it when it is
+when it is disabled (or the component is not installed).
+installed).
+
+On the other hand, the **launchTokenizableMethod** method covers a special case, in which the
+where the integrator has the tracking installed and activated, but in a given flow within the
+flow within the application does not want to track information.
+In that case this method is used to prevent that information from being sent to the platform.
+to the platform.
 
 ---
 
@@ -209,32 +210,32 @@ En la parte del error, dispondremos de la clase VoiceError.
  VOICE_MATCHING_PARSE_RESPONSE
 ```
 
-### 7.2. Recepción de ejecución correcta - _data_
+### 7.2. Receiving successful execution - _data_.
 
-En la parte de _data_, dispondremos de la clase _VoiceResult_.
+In the _data_ part, we will have the _VoiceResult_ class.
 
-El campo _data_ es variable y dependerá de qué componente se ha devuelto
-el resultado. En el caso de este componente, los campos devueltos son
-los siguientes:
+The _data_ field is variable and will depend on which component has returned the result.
+the result has been returned. In the case of this component, the returned fields are
+the following:
 
-#### 7.2.1 _audios_
+#### 7.2.1 _audios_.
 
-Contiene un listado de audios capturados en formato ByteArray.
+Contains a list of captured audios in ByteArray format.
 
 #### 7.2.2 _tokenizedAudios_
 
-Contiene el listado de audios capturados en formato tokenizado de
-Facephi.
+Contains the list of captured audios in tokenised format from
+Facephi tokenised format.
 
 ---
 
-## 8. Personalización del componente
+## Customisation of the component
 
-### 8.1 Textos
+### 8.1 Texts
 
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+If you want to modify the SDK texts you would have to include the
+XML file in the client application, and modify the value of each _String_ to the desired one.
+value of each _String_ to the desired one.
 
 ```java
 "voice_component_success_records_message" = "%d/%d successful recordings";

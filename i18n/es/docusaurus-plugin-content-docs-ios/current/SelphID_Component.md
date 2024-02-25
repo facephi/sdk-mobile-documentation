@@ -9,6 +9,8 @@ Para más información sobre la configuración base, vaya a la sección de [1.5.
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">iOS Mobile SDK</a>***.
 
+---
+
 ## 1. Introducción
 El Componente tratado en el documento actual recibe el nombre de ***SelphID Component***. Éste se encarga de realizar capturas de documentos y la posterior extracción y análisis de los datos obtenidos de ellos. Sus principales funcionalidad son las siguientes:
 
@@ -24,7 +26,7 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
 
- 
+---
 
 ## 2. Integración del componente
  
@@ -78,17 +80,18 @@ git@github.com:facephi-clienters/SDK-SelphidComponentLight.git
 ### 2.2 Permisos y configuraciones
 En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero info.plist
 
-
-
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
- 
+
+--- 
 
 ## 3. Iniciar nueva operación
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de ***TO DO: enlace***[1.5.X][ES] iOS Mobile SDK , en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** , en el que se detalla y explica en qué consiste este proceso.
 
  
 
@@ -218,9 +221,6 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar modelado 
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-##### Params
-***TO DO***(esto es comodin no?)
-
 
 #### 5.1.3 Otros parametros
 ##### VideoFilename
@@ -255,8 +255,12 @@ El método **launch** debe usarse **por defecto.** Este método permite utilizar
 
 Por el contrario, el método **launchMethod** cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.
 
+---
+
 ## 7. Recepción del resultado.
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de ***TO DO: Enlace*** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado  del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>***
 
 ### 7.1. Recepción de errores
 

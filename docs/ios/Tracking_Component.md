@@ -2,13 +2,21 @@
 
 ## 0. SDK Mobile basic requirements
  
-**SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.
+**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
+a series of functionalities and services, allowing its integration in a Mobile application in a
+integration into a Mobile application in a simple and fully scalable way.
+scalable. Depending on the use case that is required, certain components must be installed.
+Depending on the required use case, certain components must be installed. Its high level of
+of modularity means that other new components can be added in the future
+new components can be added in the future without affecting those already integrated in the project.
+project.
 
 For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
+data-linked-resource-type="page">SDK móvil de iOS</a>***.
 
 ---
+
 ## 1. Introduction
 
 **SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.
@@ -43,24 +51,25 @@ Currently FacePhi libraries are distributed remotely through different dependenc
 pod 'FPHISDKMainComponent', '~> 1.4.0'
 ```
 
-Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+To install the Selphi component, the following entry must be included in the application Podfile:
 
 ```
 pod 'FPHISDKTrackingComponent', '~> 1.4.0'
 ```
 
-Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+Once the dependencies are installed, the different functionalities of the component can be used.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- In case of development with **xCode15** a post-installation script must be included:
 
 ![Image](/iOS/fix_ldClassic.png)
+
 ---
 
-## 3. Configuración del componente
+## 3. Component configuration
 
-El controlador de TrackingController solo se añadirá en caso de tener el tracking de la sdkMobile.
+The TrackingController controller will only be added in case of having the sdkMobile tracking.
 
-Se añade el import:
+The import is added:
 
 ```
 import trackingComponent
@@ -68,51 +77,50 @@ import trackingComponent
 
 trackingController: trackingController
 
-Inicializamos:
+Initialize:
 
 ```
 let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
 ```
-Se añade en el initSDK:
+
+It is added in the initSDK:
 
 ```
-// AUTO License
+//AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
-    if sdkResult.finishStatus == .STATUS_OK {
-        self.log("Licencia automática seteada correctamente")
-    } else {
-        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
-    }
+     if sdkResult.finishStatus == .STATUS_OK {
+         self.log("Automatic license set correctly")
+     } else {
+         self.log("An error occurred while attempting to obtain the license: \(sdkResult.errorType)")
+     }
 }, trackingController: trackingController)
 ```
 
+---
+
+## 4. Use of the component
+As previously mentioned, once initialized and configured the
+**tracking** component will not need to be launched, since it will
+will keep running in the background while the rest of the
+components.
+
 
 ---
 
-## 4. Uso del componente
-Como se ha comentado previamente, una vez inicializado y configurado el
-componente de **tracking** no será necesario lanzarlo, ya que se
-mantendrá funcionando en segundo plano mientras se ejecutan el resto de
-componentes.
+## 5. Reception of the result
 
+The result is an *SDKResult* object that is returned by the SDK and will always have 3 fields:
 
----
-
-
-## 5. Recepción del resultado
-
-El resultado es un objeto *SDKResult* que devuelve el SDK tendrá siempre 3 campos:
-
-*finishStatus*: Que nos indicará si la operación ha finalizado correctamente. Posibles valores:
+*finishStatus*: Which will tell us if the operation has completed correctly. Possible values:
 ```
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
-*errorType*: Si el finishStatus indica que ha habido un error, este campo tendrá la descripción del mismo:
+*errorType*: If the finishStatus indicates that there has been an error, this field will have the description of the error:
 
-Los errores de tracking vienen en el enum *TrackingError*:
+Tracking errors come in the *TrackingError* enum:
 
 ```
 INIT_DATA_ERROR

@@ -78,7 +78,9 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de ***TO DO: enlace***[1.5.X][ES] iOS Mobile SDK , en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** , en el que se detalla y explica en qué consiste este proceso.
 
 ---
 
@@ -132,8 +134,6 @@ Mostrar una línea como borde de la cámara
 
 ##### transparentBackground
 Máscara sobre la cámara semitransparente
-
-
 
 ### 5.2. Class QrGeneratorConfiguration
 

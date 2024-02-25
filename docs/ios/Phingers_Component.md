@@ -15,6 +15,8 @@ For more information on the base configuration, go to the [1.5.X][EN] ***<a href
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">SDK móvil de iOS</a>***.
 
+---
+
 ## 1. Introduction
 
 The _Component_ dealt with in the current document is called
@@ -103,6 +105,10 @@ This command must be executed **always**. To learn more about how to
 to start a new operation, it is recommended to consult the documentation of
 **Core Component** documentation, which details and explains this process.
 process.
+
+To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
 
 ---
 
@@ -244,7 +250,12 @@ to the platform.
 
 ---
 
-## 6. Receiving the result.
+## 6. Receipt of the result
+
+The controllers will return the required information in SdkResult format
+-more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
 
 The result is an _SDKResult_ object returned by the SDK shall always have
 3 fields:

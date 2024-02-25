@@ -96,7 +96,7 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 ```
 
-
+---
 
 ## 4. Uso del componente
 

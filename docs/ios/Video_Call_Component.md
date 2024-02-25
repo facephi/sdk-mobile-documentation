@@ -2,187 +2,184 @@
 
 ## 1. Introducción
 
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
+**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
+a series of functionalities and services, allowing its integration in a Mobile application in a
+integration into a Mobile application in a simple and fully scalable way.
+scalable. Depending on the use case that is required, certain components must be installed.
+Depending on the required use case, certain components must be installed. Its high level of
+of modularity means that other new components can be added in the future
+new components can be added in the future without affecting those already integrated in the project.
+project.
 
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_VideoCall Component_**. Éste se encarga de gestionar la comunicación
-entre un usuario y un agente de forma remota, a través de un canal de
-comunicación. Está orientado principalmente para casos de uso de
-videoasistencia.
+The _Component_ discussed in the current document is called
+**_VideoCall Component_**. This is responsible for managing communication
+between a user and an agent remotely, through a communication channel
+communication. It is mainly oriented for use cases of
+video assistance.
 
 For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
 
-### 1.1 Requisitos mínimos
+### 1.1 Minimum requirements
+The minimum iOS SDK version required is as follows:
 
-La versión mínima de la SDK de Android requerida es la siguiente:
-
-- SDK mínima (minSdk): **23**
-
-- API Version: **33**
-
-- Kotlin: **1.8.0**
+Minimum iOS version: **13**
 
 ---
 
-## 2. Integración del componente
+## 2. Component integration
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a **<u>Core Component</u>** y seguir las instrucciones
-indicadas en dicho documento.
+Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
 
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
+This section will explain step by step how to integrate the current component into an existing project.
+component into an existing project.
 
-### 2.1. Dependencias requeridas para la integración
+### 2.1. Dependencies required for integration
 
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
+In order to avoid conflicts and compatibility problems, in case you want to
+install the component in a project containing an old version of the Facephi libraries.
+of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the components.
+completely before the installation of the components of the **_SDKMobile_** components.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+#### Cocoapods
+- Currently the FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
-```java
-timber_version = '5.0.1'
-core_ktx_version = '1.9.0'
-kotlinx_serialization_json_version = '1.3.3'
-agora_version = '4.2.0'
-okhttp3_version = '4.9.3'
-lottie_version = '5.2.0'
-androidx_lifecycle_version = '2.5.1'
-
-//***********************************
-
-implementation "androidx.core:core-ktx:$core_ktx_version"
-implementation "com.jakewharton.timber:timber:$timber_version"
-implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_json_version"
-implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version"
-implementation "com.airbnb.android:lottie:$lottie_version"
-implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-implementation "io.agora.rtc:full-sdk:$agora_version"
-implementation "io.agora.rtc:full-screen-sharing:$agora_version"
-
-// FACEPHI
-compileOnly "com.facephi.androidsdk:core:$versions.core"
-implementation "com.facephi.androidsdk:sdk_composables:$versions.sdk_composables"
-implementation "com.facephi.androidsdk:license_checker_component:$versions.license_checker_component"
 ```
-
-Una vez instaladas las dependencias necesarias, se podrá hacer uso de
-las diferentes funcionalidades del **componente** actual:
-
-```java
-implementation "com.facephi.androidsdk:videocall_component:$sdk_videocall_component_version"
+   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+- To install the SelphID component, the following entry must be included in the application's Podfile:
+```
+pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
+```
+- Once the dependencies are installed, you can use the different functionalities of the component.
+
+- If developing with **xCode15**, a post-installation script must be included:
+![Image](/iOS/fix_ldClassic.png)
+
+### 2.2 Permissions and configurations
+In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
+
+It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
+ 
+---
+
+## 3. Start new operation
+
+When you want to perform a certain operation, in order to generate the associated information correctly in the
+associated information correctly in the platform, the **newOperation** command
+the **newOperation** command must be executed beforehand.
+
+This command must be executed **always**. To learn more about how to
+to start a new operation, it is recommended to consult the documentation of
+**Core Component** documentation, which details and explains this process.
+process.
+
+To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
 
 ---
 
-## 3. Iniciar nueva operación
+## 4. Use of the component
 
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
+Once the component has been started and a new operation has been created (**section
+3**) the SDK components can be launched. There are two ways to launch
+the component:
 
-Este comando debe ejecutarse **siempre**. Para saber más acerca de cómo
-iniciar una nueva operación, se recomienda consultar la documentación de
-**Core Component**, en el que se detalla y explica en qué consiste este
-proceso.
-
----
-
-## 4. Uso del componente
-
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
-
-- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **sí se trackearán** los eventos
-  internos al servidor de _tracking_ en el caso de que el componente
-  de tracking esté instalado y activo:
+- **\[WITH TRACKING\]** This call allows launching the functionality
+   of the component normally, but **the events will be tracked**
+   internal to the _tracking_ server in the event that the component
+   tracking is installed and active:
 
 ```java
 SDKController.launchMethod(
-    VideoCallController(EnvironmentVideoCallData()) {
-        when (it.finishStatus) {
-            FinishStatus.STATUS_OK -> {
-                //VideoCall OK
-            }
-            FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
-        }
-    }
+     VideoCallController(EnvironmentVideoCallData()) {
+         when (it.finishStatus) {
+             FinishStatus.STATUS_OK -> {
+                 //VideoCall OK
+             }
+             FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
+         }
+     }
 )
 ```
 
-- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **no se trackeará** ningún
-  evento al servidor de _tracking_ en caso de que esté activado el
-  tracking:
+- **\[NO TRACKING\]** This call allows launching the functionality
+   of the component normally, but **will not be tracked** any
+   event to the _tracking_ server in case the
+   tracking:
 
-  ```java
-  SDKController.launch(
-      VideoCallController(EnvironmentVideoCallData()) {
-          when (it.finishStatus) {
-              FinishStatus.STATUS_OK -> {
-                  //VideoCall OK
-              }
-              FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
-          }
-      }
-  )
-  ```
+   ```java
+   SDKController.launch(
+       VideoCallController(EnvironmentVideoCallData()) {
+           when (it.finishStatus) {
+               FinishStatus.STATUS_OK -> {
+                   //VideoCall OK
+               }
+               FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
+           }
+       }
+   )
+   ```
 
-El método **launch** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
+The **launch** method should be used **by default**. This method allows
+use **_tracking_** if its component is activated, and do not
+will be used when it is disabled (or the component is not found
+installed).
 
-Por el contrario, el método **launchMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
+On the contrary, the **launchMethod** method covers a special case, in
+which the integrator has tracking installed and activated, but in a
+certain flow within the application you do not want to track information.
+In that case, this method is used to prevent that information from being sent.
+to the platform.
 
-En los datos de configuración (`EnvironmentVideoCallData`) también se
-podrán modificar:
+The configuration data (`EnvironmentVideoCallData`) also contains
+They will be able to modify:
 
-- **_Datos <u>opcionales</u> que normalmente se incluyen dentro de la
-  licencia_**
+- **_<u>optional</u> data that is normally included within the
+   license_**
 
-  - **tenantId**: Identificador del tenant que hace referencia al
-    cliente actual, necesario para la conexión con el servicio de
-    video.
+   - **tenantId**: Tenant identifier that refers to the
+     current client, necessary for connection with the service
+     video.
 
-  - **url**: Ruta al socket de video.
+   - **url**: Path to the video socket.
 
-  - **apiKey**: ApiKey necesaria para la conexión con el socket de
-    video.
+   - **apiKey**: ApiKey necessary for the connection with the socket
+     video.
 
 ---
 
-## 5. Personalización del componente
+## 5. Receipt of the result
 
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de **Core Component**), este componente en
-concreto permite la modificación de textos específicos.
+The controllers will return the required information in SdkResult format
+-more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
 
-### 5.1 Textos
+### 5.1. Receiving errors
 
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+On the error side, we will have the VideoCallError class.
+
+ VIDEO_CALL_CANCEL_BY_USER
+ VIDEO_CALL_TIMEOUT
+ VIDEO_CALL_INTERNAL_ERROR
+ VIDEO_CALL_DECODER_ERROR
+
+## 6. Component customization
+
+Apart from the changes that can be made at the SDK level (which
+are explained in the **Core Component** document), this component in
+Concrete allows the modification of specific texts.
+
+### 6.1 Texts
+
+If you want to modify the SDK texts, you would have to include the
+following XML file in the client application, and modify the value
+of each _String_ by the desired one.
 
 ```java
  <!-- VIDEO CALL -->
@@ -200,7 +197,7 @@ de cada _String_ por el deseado.
     <string name="video_call_accesibility_phone">Phone</string>
 ```
 
-### 5.2 Colores
+### 6.2 Colors
 
 ```java
 <!-- VIDEO CALL -->

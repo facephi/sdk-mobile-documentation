@@ -66,7 +66,7 @@ En la aplicación cliente donde se vayan a integrar los componentes es necesario
 ```
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
-
+---
 
 ## 3. Iniciar nueva operación
 
@@ -285,7 +285,7 @@ Si se instala el paquete mediante **SPM**, para que funcione la localización de
 
 Quedaría así:
 
-***TO DO AÑADIR IMAGEN***
+![Image](/iOS/sdkVideo-infoplist-image.png)
 
 - Inglés
 

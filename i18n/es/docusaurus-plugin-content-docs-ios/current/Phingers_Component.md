@@ -49,8 +49,6 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
- 
-
 Antes de integrar este componente se recomienda leer la documentación relativa a <u>**Core Component**</u> y seguir las instrucciones indicadas en dicho documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
@@ -171,11 +169,6 @@ Indica una altura para realizar un recorte de la captura.
 
 ##### cropFactor
 Indica la relación para el recorte de la captura.
-
-##### returnFingerprintTemplate 
-**TO DO**
-##### captureQualityThreshold 
-**TO DO**
 
 ---
 

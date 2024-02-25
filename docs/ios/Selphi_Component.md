@@ -2,86 +2,88 @@
 
 ## 0. Requisitos base de SDK Mobile
 
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
+**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
+a series of functionalities and services, allowing its integration in a Mobile application in a
+integration into a Mobile application in a simple and fully scalable way.
+scalable. Depending on the use case that is required, certain components must be installed.
+Depending on the required use case, certain components must be installed. Its high level of
+of modularity means that other new components can be added in the future
+new components can be added in the future without affecting those already integrated in the project.
+project.
 
 For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
+data-linked-resource-type="page">SDK móvil de iOS</a>***.
 
 ---
 
-## 1. Introducción
+## 1. Introduction
 
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_Selphi Component_**. Éste se encarga de realizar la captura de un
-selfie del usuario y la posterior extracción de las características
-faciales más importantes. Sus principales funcionalidades son las
-siguientes:
+The _Component_ dealt with in the current document is called
+**_Selphi Component_**. It is in charge of capturing a
+selfie of the user and the subsequent extraction of the most important facial features.
+most important facial features. Its main functionalities are the following
+following:
 
-- Gestión interna de cámaras.
+- Internal camera management.
 
-- Gestión de permisos.
+- Permission management.
 
-- Asistente en los procesos de captura de la cara del usuario.
+- Assistant in the processes of capturing the user's face.
 
-- Generación de las plantillas con las características faciales y de
-  la imagen de la cara del usuario para el proceso de detección de
-  vivacidad (Liveness)
+- Generation of templates with the user's facial and facial image characteristics for the detection process.
+  the user's face image for the liveness detection process.
+  Liveness detection process
 
-### 1.1 Requisitos mínimos
-La versión mínima de la SDK de iOS requerida es la siguiente:
+### 1.1 Minimum requirements
+The minimum iOS SDK version required is as follows:
 
-Versión mínima de iOS: **13**
+Minimum iOS version: **13**
 
 ---
 
-## 2. Integración del componente
+## 2. Component integration
 
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
+Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
 
-### 2.1. Dependencias requeridas para la integración
+This section will explain step by step how to integrate the current component into an existing project.
+component into an existing project.
 
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
+### 2.1. Dependencies required for integration
+
+In order to avoid conflicts and compatibility problems, in case you want to
+install the component in a project containing an old version of the Facephi libraries.
+of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the components.
+completely before the installation of the components of the **_SDKMobile_** components.
 
 #### Cocoapods
-- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
-
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
   pod 'zipzap'
 ```
-- Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+- To install the SelphID component, the following entry must be included in the Podfile of the application:
 ```
   pod 'FPHISDKSelphiComponent', '~> 1.5.0'
 ```
-- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+- Once the dependencies are installed, the different functionalities of the component can be used.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- In case of development with **xCode15** a post-installation script must be included:
 
 ![Image](/iOS/fix_ldClassic.png)
 
 #### SPM
-- Las dependencias obligatorias que deberán haberse instalado previamente son:
+- The mandatory dependencies that must have been previously installed are:
 ```
 //HTTPS
 https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
-- Para instalar el componente de NFC deberá incluirse en los módulos del proyecto:
+- To install the NFC component, it must be included in the project modules:
 ```
 //HTTPS
 https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git
@@ -89,174 +91,175 @@ https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git
 git@github.com:facephi-clienters/SDK-Selphi_component-SPM.git
 ```
 
-### 2.2 Permisos y configuraciones
-En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero info.plist
+### 2.2 Permissions and configurations
+In the client application where the components are to be integrated, it is necessary to incorporate the following elements in the info.plist file
 ```
-Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
+It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
 ```
+---
 
+## 3. Start new operation
 
-## 3. Iniciar nueva operación
+When you want to perform a certain operation, in order to generate the associated information correctly in the
+associated information correctly in the platform, the **newOperation** command
+the **newOperation** command must be executed beforehand.
 
-Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+This command must be executed **always**. To learn more about how to
+to start a new operation, it is recommended to consult the documentation of
+**Core Component** documentation, which details and explains this process.
+process.
 
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
-
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** , en el que se detalla y explica en qué consiste este proceso.
+data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
 
 ---
 
-## 4. Controladores disponibles
+## 4. Available controllers
 
-| **Controlador**           | **Descripción**                                                |
-| ------------------------- | -------------------------------------------------------------- |
-| SelphiController          | Controlador principal de reconocimiento facial                 |
-| RawTemplateController     | Controlador para generar un RawTemplate a partir de una imagen           |
+| **Controllers**           | **Description**                                                	|
+| ------------------------- | ------------------------------------------------------------------|
+| SelphiController          | Facial recognition main controller                 			 	|
+| RawTemplateController     | Driver to generate a RawTemplate from an image				 	|
 
 ---
 
-## 5. Configuración del componente
+## 5. Component configuration
 
-En este documento no se incluye información acerca de cómo trackear los datos del componente. En el caso de que se requiera esta funcionalidad, se recomienda revisar previamente la documentación del **componente** de **Tracking**
+This document does not include information on how to track the component data. In case this functionality is required, it is recommended to review the documentation of the **Tracking** **component** beforehand.
 
-Para configurar el componente actual, una vez inicializado, se deberá crear un objeto *SelphiConfigurationData* y pasarlo como parámetro al SDKController durante el lanzamiento del componente.
+To configure the current component, once initialised, a *SelphiConfigurationData* object must be created and passed as a parameter to the SDKController during the component launch.
 
-En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.
+The following section will show the fields that are part of this class and what each of them is used for.
 
 ### 5.1. Class SelphiConfigurationData
 
-#### 5.1.1 Configuración Básica
+#### 5.1.1 Basic Configuration
 
 ##### resourcesPath
 
-Establece la ruta donde se encuentra el archivo de recursos del widget. Este archivo contiene tanto los recursos gráficos como los recursos de localización. Esta ruta debe especificarse relativa a la carpeta ‘assets’ de la aplicación principal.
+Sets the path to the widget's resource file. This file contains both the graphics resources and the localisation resources. This path must be specified relative to the 'assets' folder of the main application.
 
 ##### showTutorial
-Esta propiedad permite mostrar el tutorial previo al proceso de captura.
+This property allows to show the tutorial before the capture process.
 
 ##### showDiagnostic
-Si se le da valor true, al producirse un error o una falta de permisos, el sdk mostrará una pantalla con el error devuelto por el widget.
+If set to true, when an error or lack of permissions occurs, the sdk will display a screen with the error returned by the widget.
 
 ##### showResultAfterCapture
-Indica si mostrar o no una pantalla con la imagen capturada del documento después del proceso de análisis. En esta pantalla se le da al usuario la posibilidad de repetir el proceso de captura si la imagen que se obtuvo del documento no fuera correcta.
+Indicates whether or not to display a screen with the captured image of the document after the analysis process. This screen gives the user the possibility to repeat the capture process if the image obtained from the document is not correct.
 
-#### 5.1.2 Configuración Avanzada
+#### 5.1.2 Advanced Settings
 
 ##### debug
-Activación del modo depuración del componente.
+Activation of the debug mode of the component.
 
 ##### fullscreen
-Indica si la vista va a tener prioridad para mostrarse en pantalla
-completa, si el sistema lo permite.
+Indicates if the view will have priority to be displayed in fullscreen, if the system allows it.
+fullscreen, if the system allows it.
 
 ##### cropPercent
-Permite modificar el porcentaje de recortado de la cara. Cuanto mayor
-sea el número mayor será el recorte del rectángulo con respecto a la
-cara.
+Allows to modify the crop percentage of the face. The higher the
+the higher the number, the more the rectangle is cropped with respect to the face.
+face.
 
 ##### locale
-Fuerza al widget a utilizar la configuración de idioma indicado por el
-parámetro locale. Este parámetro acepta tanto un código de idioma (p.
-ej. ‘en’) como un código de identificación regional (p. ej. ‘en_US’). Si
-el archivo de recursos del widget no tuviera una localización para el
-‘locale’ seleccionado su configuración pasaría a utilizar el idioma por
-defecto.
+Forces the widget to use the language setting indicated by the
+locale parameter. This parameter accepts both a language code (e.g. 'en') and a regional identification code (e.g. 'en_US').
+e.g. 'en') and a regional identification code (e.g. 'en_US'). If
+the widget's resource file did not have a locale for the selected
+locale' selected, its configuration will fall back to the default language.
+language.
 
 ##### livenessMode
-Establece el modo liveness del widget. Los valores permitidos son:
+Sets the liveness mode of the widget. Allowed values are:
 
-- **SelphiFaceLivenessMode.NONE**: Indica que no debe activarse el modo detección de foto en los procesos de autenticación.
+- **SelphiFaceLivenessMode.NONE**: Indicates that photo detection mode should not be enabled in authentication processes.
 
-- **SelphiFaceLivenessMode.PASSIVE**: Indica que la prueba de vida pasiva se realiza en el servidor, enviando para tal fin la “BestImage” o el “TemplateRaw” correspondiente.
+- **SelphiFaceLivenessMode.PASSIVE**: Indicates that the passive liveness test is performed on the server, by sending the corresponding "BestImage" or "TemplateRaw" for this purpose.
 
 ##### stabilizationMode
-Establece un modo de estabilización previo a cualquier proceso de autenticación en el widget. Con este modo se obliga al widget a no empezar ningún proceso si el usuario no se encuentra con la cabeza mirando al frente y sin moverla.
+Sets a stabilisation mode prior to any authentication process in the widget. This mode forces the widget not to start any process if the user is not facing forward and not moving his head.
 
 ##### templateRawOptimized
-Indica si el template (templateRaw) generado tras el selfie debe optimizarse o no.
+Indicates whether the template (templateRaw) generated after the selfie should be optimised or not.
 
 ##### qrMode
-Booleano que indica si se quiere o no activar la lectura de QR previo al proceso de autenticación.
+Boolean indicating whether or not to activate QR reading prior to the authentication process.
 
 ##### videoFilename
-Establece la ruta absoluta del nombre del archivo en el que se grabará
-un video del proceso de captura. La aplicación es la responsable de
-solicitar los permisos necesarios al teléfono en caso de que esa ruta
-requiera de permisos adicionales. El widget, por defecto, no realizará
-ningún proceso de grabación a menos que se especifique una ruta de
-archivo mediante este método.
+Sets the absolute path to the filename where a video of the capture process will be recorded.
+a video of the capture process will be recorded. The application is responsible for
+requesting the necessary permissions from the phone in case that path requires additional permissions.
+requires additional permissions. The widget, by default, will not perform
+recording process unless a file path is specified using this method.
+file path is specified using this method.
 
 ##### cameraFlashEnabled
-Indica si se activa el flash de la cámara del dispositivo.
+Indicates whether the device's camera flash is enabled.
 
 ##### translationsContent
-Esta propiedad avanzada permite, mediante una cadena en formato xml,
-configurar la traducción de los literales que se muestran durante el
-proceso.
+This advanced property allows, by means of a string in xml format,
+to configure the translation of the literals displayed during the process.
+process.
 
 ##### viewsContent
-Esta propiedad avanzada permite, mediante una cadena en formato xml,
-configurar las vistas del widget.
-
-##### Params
-***TO DO***
-
+This advanced property allows, by means of a string in xml format,
+to configure the views of the widget.
 
 #### 5.1.3 Otros parametros
 
-##### cropRatio
-***TO DO***
-
 ##### VibrationEnabled
-Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
+If true, vibration is enabled on errors and if the response of the widget is OK
 
+---
 
-## 6. Uso del componente
+## 6. Use of the component
 
-Una vez iniciado el componente y creada una nueva operación (**apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:
+Once the component has been started and a new operation (**section 3**) has been created, the SDK components can be launched. There are two ways to launch the component:
 
-- **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero **no se trackeará** ningún evento al servidor de *tracking*:
+- **[NO TRACKING]** This call allows the component functionality to be launched normally, but **no events will be tracked** to the *tracking* server:
 
 ```java
 let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
-- **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de *tracking*::
+- **[WITH TRACKING]** This call allows the component functionality to be launched normally, but internal events will be tracked to the *tracking* server::
 
 ```java
 let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
-El método **launch** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
+The **launch** method must be used **by default**. This method allows
+use **_tracking_** if your component is enabled, and will not use it when it is
+when it is deactivated (or the component is not installed).
+installed).
 
-Por el contrario, el método **launchMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
+On the other hand, the **launchMethod** method covers a special case, in which the
+where the integrator has tracking installed and activated, but in a given flow within the application does not want to use it when it is deactivated.
+flow within the application does not want to track information.
+In that case this method is used to avoid sending that information to the
+to the platform.
 
 ---
 
-## 7. Recepción del resultado.
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
+## 7. Receipt of the result
+
+The controllers will return the required information in SdkResult format
+-more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
 
-### 7.1. Recepción de errores
+### 7.1. Receiving errors
 
-*finishStatus*: Que nos indicará si la operación ha finalizado correctamente. Posibles valores:
+*finishStatus*: Which will tell us if the operation has finished successfully. Possible values:
 ```
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
-*errorType*: Errores propios del widget.
+*errorType*: Widget's own errors
 ```
 SELPHID_CANCEL_BY_USER
 SELPHID_TIMEOUT
@@ -266,33 +269,34 @@ COULD_NOT_CREATE_WIDGET_INSTANCE
 RESOURCES_FILE_NOT_FOUND
 ```
 
-### 7.2. Recepción de ejecución correcta - _data_
+### 7.2. Receiving successful execution - _data_
 
-El campo data es variable y dependerá de qué componente se ha devuelto el resultado. En el caso de este componente, los campos devueltos son los siguientes:
+The data field is variable and will depend on which component the result was returned. In the case of this component, the fields returned are as follows:
 
 #### 7.2.1 template
-Devuelve la plantilla que se genera después del proceso de extracción. Válida para el proceso de AUTHENTICATION.
+Returns the template that is generated after the extraction process. Valid for the AUTHENTICATION process.
 
 #### 7.2.2 templateRaw
-Devuelve la plantilla en bruto que se genera después del proceso de extracción. Válida para el proceso de AUTHENTICATION.
+Returns the raw template that is generated after the extraction process. Valid for the AUTHENTICATION process.
 
 #### 7.2.3 bestImageData
-Devuelve la mejor imagen extraída del proceso de autenticación en formato array de bytes. Esta imagen es la imagen con el tamaño original extraída de la cámara. Válido para el proceso de **liveness**.
+Returns the best image extracted from the authentication process in byte array format. This image is the image with the original size extracted from the camera. Valid for the **liveness** process.
 
 #### 7.2.4 bestImageCroppedData
-Devuelve una imagen recortada centrada en la cara del usuario en formato array de bytes. Esta imagen se obtiene a partir de la bestImage. Ésta es la imagen que se deberá utilizar como imagen característica del usuario que realizó el proceso a modo de avatar.
+Returns a cropped image centered on the user's face in byte array format. This image is obtained from the bestImage. This is the image to be used as the characteristic image of the user who performed the process as an avatar.
 
 #### 7.2.5 QrData
-Devuelve la información proveniente de la lectura del QR en formato String
+Returns the information from the QR reading in String format.
+
 ---
 
-## 8. Controladores Adicionales
+## 8. Additional Drivers
 
 ### 8.1. RawTemplateController
 
-Controlador para generar un RawTemplate se puede usar tanto la imagen en base64 como en data. .
+Controller to generate a RawTemplate, you can use both the image in base64 and in data .
 
-Ejemplo de uso:
+Example of use:
 
 ```java
 let controller = RawTemplateController(
@@ -304,7 +308,7 @@ let controller = RawTemplateController(
 SDKController.shared.launchMethod(controller: controller)
 ```
 
-o 
+or 
 
 
 ```java

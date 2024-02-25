@@ -73,7 +73,9 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de ***TO DO: enlace***[1.5.X][ES] iOS Mobile SDK , en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>***, en el que se detalla y explica en qué consiste este proceso.
 
 ---
 
@@ -182,7 +184,9 @@ En los datos de configuración (`EnvironmentVideoCallData`) también se podrán 
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de ***TO DO: Enlace*** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado  del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** | 7. Retorno de resultado  del iOS Mobile SDK.
 
 
 ### 7.1. Recepción de errores
@@ -203,15 +207,10 @@ con el SdkResult.Success.
 
 Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá activar compartir pantalla.
 
----
-
-## 8. Compartir pantalla
-
-**TO DO**
 
 ---
 
-## 9. Personalización del componente
+## 8. Personalización del componente
 
 Para personalizar el componente, e debe llamar a ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) después de inicializar el videocallController:
 
@@ -244,7 +243,7 @@ class CustomThemeVideoCall: ThemeVideoCallProtocol {
 }
 ```
 
-### 9.1 Colores e imágenes
+### 8.1 Colores e imágenes
 Las imagenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
 ```
 case close
@@ -261,7 +260,7 @@ case Primary
 case TitleText
 ```
 
-### 9.2 Fuentes 
+### 8.2 Fuentes 
 Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
 ```
 case regular

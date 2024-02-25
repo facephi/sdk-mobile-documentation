@@ -99,9 +99,7 @@ componente de **tracking** no será necesario lanzarlo, ya que se
 mantendrá funcionando en segundo plano mientras se ejecutan el resto de
 componentes.
 
-
 ---
-
 
 ## 5. Recepción del resultado
 

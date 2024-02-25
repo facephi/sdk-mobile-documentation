@@ -114,13 +114,18 @@ It is necessary to add the Near Field Communication Tag Reading option in the Si
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, to generate the associated information correctly on the platform, the **newOperation** command must be previously executed.
+When you want to perform a certain operation, in order to generate the associated information correctly in the
+associated information correctly in the platform, the **newOperation** command
+the **newOperation** command must be executed beforehand.
 
-This command must have been run **prior to launching the component**.
+This command must be executed **always**. To learn more about how to
+to start a new operation, it is recommended to consult the documentation of
+**Core Component** documentation, which details and explains this process.
+process.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation for [1.5.X][ES] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** , which details and explains what this process consists of.
+data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
 
 ---
 
@@ -192,7 +197,14 @@ This field is mandatory.
 
 ##### issuer
 
+Indicates the country of origin of the document to be read.
+
 ##### documentType
+
+Indicates the type of document to be read:
+    - ID_CARD
+    - PASSPORT
+    - FOREIGN_CARD
 
 ##### readableTags
 
@@ -222,11 +234,12 @@ On the contrary, the **launchMethod** method covers a special case, in which the
 
 ---
 
-## 7. Recepción del resultado
+## 7. Receipt of the result
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
+The controllers will return the required information in SdkResult format
+-more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.	
+data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
 
 ### 7.1. Recepción de errores
 

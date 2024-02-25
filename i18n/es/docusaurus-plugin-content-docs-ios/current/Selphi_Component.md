@@ -98,7 +98,7 @@ En la aplicación cliente donde se vayan a integrar los componentes es necesario
 ```
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
-
+---
 
 ## 3. Iniciar nueva operación
 
@@ -202,18 +202,12 @@ proceso.
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
-##### Params
-***TO DO***
-
-
 #### 5.1.3 Otros parametros
-
-##### cropRatio
-***TO DO***
 
 ##### VibrationEnabled
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
+---
 
 ## 6. Uso del componente
 
@@ -284,6 +278,7 @@ Devuelve una imagen recortada centrada en la cara del usuario en formato array d
 
 #### 7.2.5 QrData
 Devuelve la información proveniente de la lectura del QR en formato String
+
 ---
 
 ## 8. Controladores Adicionales

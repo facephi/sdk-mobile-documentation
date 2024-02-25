@@ -159,14 +159,9 @@ install_cocoapods
 
 En caso de usar **_xCode15_** se deberá realizar la siguiente configuración:
 
-<!-- TODO: AÑADIR IMAGEN -->
+![Image](/iOS/fix_ldClassic.png)
 
 Se deberá añadir **_-ld_classic_** en Other Linker Flags, en el Build Settings de la aplicación.
-
-
-**TO DO**
-- Selphid y zipzap
-- agora y sta
 
 ---
 

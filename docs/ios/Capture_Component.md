@@ -74,9 +74,14 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, in order to generate the associated information correctly in the platform, the **newOperation** command must be previously executed.
+When you want to perform a certain operation, in order to generate the associated information correctly in the
+associated information correctly in the platform, the **newOperation** command
+the **newOperation** command must be executed beforehand.
 
-This command must have been executed **prior to the launch of the component**.
+This command must be executed **always**. To learn more about how to
+to start a new operation, it is recommended to consult the documentation of
+**Core Component** documentation, which details and explains this process.
+process.
 
 To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
@@ -84,7 +89,7 @@ data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explai
 
 ---
 
-## Available controllers
+## 4. Available controllers
 
 | **Controller**             | **Description**                         |
 | -------------------------- | --------------------------------------- |
@@ -94,7 +99,7 @@ data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explai
 
 ---
 
-## Component configuration
+## 5. Component configuration
 
 To configure the current component, once it has been initialised, the following must be done
 Create a _CaptureConfigurationData_ object and pass it as a parameter to the SDKController during the launch of the capture component.
@@ -260,6 +265,13 @@ In that case this method is used to avoid sending that information to the
 to the platform.
 
 ---
+
+## 7. Receipt of the result
+
+The controllers will return the required information in SdkResult format
+-more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
 
 ## 7. Reception of the result
 
