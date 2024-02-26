@@ -547,7 +547,7 @@ public enum ErrorType: String, Error {
     case NETWORK_CONNECTION
     case UNKNOWN_ERROR
     case NFC_ERROR
-    case NFC_INVALID_MRZ_KEY // ANDROID doesn't have this, it's important
+    case NFC_INVALID_MRZ_KEY 
     case CAPTURE_ERROR
     case NO_ERROR
     case CAMERA_PERMISSION_DENIED
@@ -556,10 +556,10 @@ public enum ErrorType: String, Error {
     case HARDWARE_ERROR
     case EXTRACTION_LICENSE_ERROR
     case UNEXPECTED_CAPTURE_ERROR
-    case CONTROL_NOT_INITIALIZATED_ERROR // Not being used, could represent an error thrown when the app didn't init a component's Controller
+    case CONTROL_NOT_INITIALIZATED_ERROR 
     case BAD_EXTRACTOR_CONFIGURATION_ERROR
     case TOKEN_ERROR
-    case PHINGERS_ERROR_CAPTURE // ANDROID has more specific Phingers Errors
+    case PHINGERS_ERROR_CAPTURE 
     case LICENSING_ERROR_PACKAGE_NAME
     case LICENSING_ERROR_APPID_INVALID
     case LICENSING_ERROR_APIKEY_FORBIDDEN

@@ -167,23 +167,6 @@ Se deberá añadir **_-ld_classic_** en Other Linker Flags, en el Build Settings
 
 ## 3. SDK initialization
 
-**It must be strictly avoided to initialize a controller that will not
-be used**.
-
-Each component has a **_Controller_** that will allow access to its
-functionality. Before they can be used, they must be properly
-initialized. The steps to follow in the initialisation are as follows:
-
-1.  Initiate the controllers that will be used.
-
-2.  Decide if the license will be included by string or using a
-    licensing service (more details in **section** **3.1**), and start
-    the SDK.
-
-3.  If the initialization returns a .STATUS_OK, then the SDK Controller
-    will be ready to start with the process.
-
-
 **Debe evitarse inicializar un controlador que no vaya a usarse.**
 
 Cada uno de los componentes tiene un controlador (_Controller_) que permitirá acceder a su propia funcionalidad. Antes de poder utilizarse, deberán inicializarse correctamente. Los pasos a seguir en la inicialización son:
@@ -421,20 +404,14 @@ Esta lista se irá ampliando en próximas actualizaciones de la SDK, según vaya
 
 ---
 
-## 5. Lanzamiento de Flow
-
-**TO DO**
-
-
-
-## 6. Lanzamiento de componentes
+## 5. Lanzamiento de componentes
 
 Una vez creada la **nueva operación (apartado 4)**, se podrán lanzar los diferentes controladores de la SDK. Para consultar esta información se deberá acceder a la **documentación de cada uno de los componentes específicos**.
 
 
 ---
 
-## 7. Retorno de resultado
+## 6. Retorno de resultado
 
 El resultado de cada componente será devuelto a través de la SDK manteniendo siempre la misma estructura de 3 campos:
 
@@ -454,7 +431,7 @@ En la documentación de cada componente específico se desglosarán los diferent
 
 ---
 
-## 8. Cierre de sesión / Logout
+## 7. Cierre de sesión / Logout
 
 **Antes de que la aplicación se vaya a destruir**, se deberá cerrar la sesión de la SDK para así avisar a la plataforma de su finalización. Para ello, se ejecuta la siguiente línea de código:
 
@@ -463,6 +440,62 @@ SDKController.shared.closeSession()
 ```
 
 Si se realiza un cierre de sesión, no se van a poder lanzar controladores hasta que se vuelva a iniciar una nueva operación.
+
+---
+
+## 8. Opciones de depuración y gestión de errores
+
+Si un componente es llamado, devolverá un SdkResult como salida. El siguiente fragmento de código de
+siguiente fragmento de código es un ejemplo de esto:
+
+```java
+        let controlador = ComponentController(datos: ComponentConfigurationData, output: { sdkResultado en
+           print(sdkResult.errorType)
+        }, viewController: viewController)
+        SDKController.shared.launch(controlador: controlador)
+```
+
+El atributo .errorType contiene la tipología de los errores. Se definen
+en la documentación de cada componente.
+
+Los posibles tipos de error son los siguientes:
+
+```java
+public enum ErrorType: String, Error {
+    case CANCEL_BY_USER
+    case TIMEOUT
+    case COMPONENT_CONTROLLER_ERROR
+    case COMPONENT_CONTROLLER_DATA_ERROR
+    case NETWORK_CONNECTION
+    case UNKNOWN_ERROR
+    case NFC_ERROR
+    case NFC_INVALID_MRZ_KEY 
+    case CAPTURE_ERROR
+    case NO_ERROR
+    case CAMERA_PERMISSION_DENIED
+    case PERMISSION_DENIED
+    case SETTINGS_PERMISSION_ERROR
+    case HARDWARE_ERROR
+    case EXTRACTION_LICENSE_ERROR
+    case UNEXPECTED_CAPTURE_ERROR
+    case CONTROL_NOT_INITIALIZATED_ERROR 
+    case BAD_EXTRACTOR_CONFIGURATION_ERROR
+    case TOKEN_ERROR
+    case PHINGERS_ERROR_CAPTURE 
+    case LICENSING_ERROR_PACKAGE_NAME
+    case LICENSING_ERROR_APPID_INVALID
+    case LICENSING_ERROR_APIKEY_FORBIDDEN
+    case LICENSING_ERROR_LICENSE_NOT_FOUND
+    case VIDEO_SOCKET_TIMEOUT
+    case VIDEO_ERROR
+    case LICENSE_CHECKER_ERROR_INVALID_LICENSE
+    case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
+    case NO_OPERATION_CREATED_ERROR
+}
+```
+
+Si no hay ningún error y el resultado se devuelve correctamente, el tipo de error
+será **NO_ERROR**.
 
 ---
 
