@@ -192,7 +192,7 @@ install_cocoapods
 In the case of using **_xCode15_**, it is recommended to use the
 following configuration:
 
-<!-- <img src="ios/2643591524" -->
+![Image](/iOS/fix_ldClassic.png)
 
 The **-ld_classic** flag must be added in _Other Linker Flags_ in the
 _Build Settings_ section of the application.
@@ -280,6 +280,126 @@ SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: {
 }, trackingController: trackingController)
 ```
 
+### 3.2 Optional
+
+The following controllers are optional, they are added at the end of the initSDK as follows:
+
+#### 3.2.1 TrackingController
+
+The TrackingController controller will only be added in case you have sdkMobile tracking.
+
+The import is added:
+
+```
+import trackingComponent
+```
+
+trackingController: trackingController
+
+We initialize:
+
+```
+let trackingController = TrackingController(trackingError: { trackingError in
+      print("TRACKING ERROR: \(trackingError)")
+})
+```
+Added in the initSDK:
+
+```
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Automatic license successfully set")
+    } else {
+        self.log("An error occurred while trying to obtain the license: \(sdkResult.errorType)")
+    }
+}, trackingController: trackingController)
+```
+
+#### 3.2.2. TokenizeController
+
+Added import:
+```
+import tokenizeComponent
+```
+
+Initialise:
+
+```
+let tokenizeController = TokenizeController()
+```
+
+We add in the initSDK:
+
+```
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Automatic license successfully set")
+    } else {
+        self.log("An error occurred while trying to obtain the license: \(sdkResult.errorType)")
+    }
+}, tokenizeController: tokenizeController)
+```
+
+#### 3.2.3 BehaviorController
+
+Se añade el import:
+
+```
+import behaviorComponent
+```
+
+Inicializamos:
+```
+
+behaviorController = BehaviorController(autoLogoutAction: {
+                      print("DEFENSA ACTIVA")
+                      return true
+                    },
+                    behaviorError: { behaviorError en
+                      print("ERROR DE COMPORTAMIENTO: \(behaviorError)")
+                    }, debugMode: false)
+```
+
+Se añade en el initSDK:
+
+```
+
+// AUTO Licencia
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult en
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+    }
+}, behaviorController: behaviorController
+
+```
+
+#### 3.2.4 StatusController
+
+Se añade el import:
+
+```
+import statusComponent
+```
+
+Inicializamos:
+```
+let statusController = StatusController()
+```
+Se añade en el initSDK:
+```
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+    }
+}, statusController: statusController)
+```
 ---
 
 ## 4. Start a new operation
@@ -427,7 +547,7 @@ public enum ErrorType: String, Error {
     case NETWORK_CONNECTION
     case UNKNOWN_ERROR
     case NFC_ERROR
-    case NFC_INVALID_MRZ_KEY // ANDROID doesn't have this, it's important
+    case NFC_INVALID_MRZ_KEY 
     case CAPTURE_ERROR
     case NO_ERROR
     case CAMERA_PERMISSION_DENIED
@@ -436,10 +556,10 @@ public enum ErrorType: String, Error {
     case HARDWARE_ERROR
     case EXTRACTION_LICENSE_ERROR
     case UNEXPECTED_CAPTURE_ERROR
-    case CONTROL_NOT_INITIALIZATED_ERROR // Not being used, could represent an error thrown when the app didn't init a component's Controller
+    case CONTROL_NOT_INITIALIZATED_ERROR 
     case BAD_EXTRACTOR_CONFIGURATION_ERROR
     case TOKEN_ERROR
-    case PHINGERS_ERROR_CAPTURE // ANDROID has more specific Phingers Errors
+    case PHINGERS_ERROR_CAPTURE 
     case LICENSING_ERROR_PACKAGE_NAME
     case LICENSING_ERROR_APPID_INVALID
     case LICENSING_ERROR_APIKEY_FORBIDDEN
@@ -457,45 +577,79 @@ type will be **NO_ERROR**.
 
 ---
 
-## 9. SDK customization
+## 9. Error control
 
-The customization must be done through a class called
-Theme**_Component_**Manager, where the word **_Component_** must be
-changed by the name of the current component.
-
-For example, _videoidComponent_ contains `ThemeVideoIdManager`, while
-_videocallComponent_ has `ThemeVideoCallManager` …
-
-This manager contains an instance of the type
-Theme**_Component_**Protocol. To customize details, a new class must be
-created and injected into the Theme**_Component_**Manager.
+When calling any of the components, we will always have an output of type SdkResult as a response, as we see in the example code:
 
 ```java
-class CustomThemeComponent: ThemeComponentProtocol {
-    var images: [R.Image: UIImage?] = [:]
+         let controller = ComponentController(data: ComponentConfigurationData, output: { sdkResult in
+            print(sdkResult.errorType)
+         }, viewController: viewController)
+         SDKController.shared.launch(controller: controller)
+```
 
-    var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
+In the .errorType attribute, we will have the typology of the error. The error types are defined in the documentation of each component.
 
-    var name: String {
-        "custom"
-    }
+The error codes you may receive are as follows.
 
-    var fonts: [R.Font: String] = [.regular: UIFont(...)]
-
-    var dimensions: [R.Dimension: CGFloat] {
-        [.fontBig: 8]
-    }
+```java
+public enum ErrorType: String, Error {
+     case NO_ERROR
+     case UNKNOWN_ERROR
+     case OTHER(String)
+     case COMPONENT_CONTROLLER_DATA_ERROR
+     case NO_OPERATION_CREATED_ERROR
+     case NETWORK_CONNECTION
+     case CAMERA_PERMISSION_DENIED
+     case MIC_PERMISSION_DENIED
+     case LOCATION_PERMISSION_DENIED
+     case STORAGE_PERMISSION_DENIED
+     case CANCEL_BY_USER
+     case TIMEOUT
+     case LICENSE_CHECKER_ERROR_INVALID_LICENSE
+     case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
 }
 ```
 
-This must be done before the initialization of the controller we want to
-use:
+If there is no error and the result is returned correctly, the errorType would be **NO_ERROR**.
+
+---
+
+## 10. SDK Customization
+
+Customization is done using a component class called Theme***Component***Manager. Where ***Component*** must be replaced with the desired component.
+
+For example, videoidComponent contains `ThemeVideoIdManager`, while videocallComponent `ThemeVideoCallManager`...
+
+This manager has an instance of type Theme***Component***Protocol. If we want to customize any details, we would have to create a new class that attaches to this interface and inject it into the Theme***Component***Manager.
 
 ```java
-// Controller component intialization
+class CustomThemeComponent: ThemeComponentProtocol {
+     var images: [R.Image: UIImage?] = [:]
+
+     var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
+
+     var name: String {
+         "custom"
+     }
+
+     var fonts: [R.Font: String] = [.regular: UIFont(...)]
+
+     var dimensions: [R.Dimension: CGFloat] {
+         [.fontBig: 8]
+     }
+}
+```
+
+This should always be done after having initialized the driver of the component we want to use/customize:
+
+```java
+//Controller component initialization
 let controller = ComponentController(...)
 // Instance of the custom instance
 ThemeComponentManager.setup(theme: CustomThemeComponent())
 // Controller launch
 SDKController.shared.launch(controller: controller)
 ```
+
+<u>**Each component has its customization section,**</u> colors, images, fonts, sizes
