@@ -140,7 +140,7 @@ viewModelScope.launch {
 
                     is SdkResult.Success -> {
                          val result = sdkResult.data.getSelphiResult()
-                         Napier.d("APP: Selphi OK ${result.bestImageBmp?.bitmap?.byteCount}")
+                         Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
                     }
                }
           }
@@ -200,7 +200,7 @@ viewModelScope.launch {
 
                     is SdkResult.Success -> {
                          val result = sdkResult.data.getSelphiResult()
-                         Napier.d("APP: Selphi OK ${result.bestImageBmp?.bitmap?.byteCount}")
+                         Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
                     }
                }
           }
@@ -282,7 +282,7 @@ flowController.stateFlow.collect { flowResult ->
 
                is SdkResult.Success -> {
                     val result = sdkResult.data.getSelphiResult()
-                    Napier.d("APP: Selphi OK ${result.bestImageBmp?.bitmap?.byteCount}")
+                    Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
                }
           }
      }

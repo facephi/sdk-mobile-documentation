@@ -450,7 +450,7 @@ when (result) {
     is SdkResult.Success -> {
         Napier.d("Selphi: OK")
         // SelphiResult:
-        // result.data.bestImageBmp
+        // result.data.bestImage
     }
 
     is SdkResult.Error -> Napier.d("Selphi: KO - ${result.error.name}")

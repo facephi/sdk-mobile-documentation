@@ -314,14 +314,14 @@ extracción. Válida para el proceso de AUTHENTICATION.
 Devuelve la plantilla que se genera después del proceso de extracción.
 Válida para el proceso de AUTHENTICATION.
 
-#### 7.2.3 _bestImageBmp_
+#### 7.2.3 _bestImage_
 
 Devuelve la mejor imagen extraída del proceso de autenticación en
 formato SdkImage (Se puede extraer el bitmap de dentro). Esta imagen es
 la imagen con el tamaño original extraída de la cámara. Válido para el
 proceso de **liveness**.
 
-#### 7.2.4 _bestImageCroppedBmp_
+#### 7.2.4 _bestImageCropped_
 
 Devuelve una imagen recortada centrada en la cara del usuario en formato
 SdkImage (Se puede extraer el bitmap de dentro). Esta imagen se obtiene
