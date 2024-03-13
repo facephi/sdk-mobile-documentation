@@ -25,6 +25,24 @@
   - Mejorado el UX/UI
   - Mejorados los resultados de las verificaciones
 
+### 1.5.5
+
+- General
+  - Ajustes y mejoras de seguridad
+  - Selphi and Selphid mejora de la gestión interna de imágenes
+- NFC
+  - Corrección del campo Personal Number
+
+### 1.5.4
+
+- General
+  - Ajustes y mejoras de seguridad
+  - Ajustes de diseño en las vistas de tutorial con fullscreen
+- Selphi
+  - Nueva versión 5.12.1
+- SelphID
+  - Nueva versión 1.23.1
+
 ### 1.5.3
 
 - General
