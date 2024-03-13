@@ -290,13 +290,13 @@ for the AUTHENTICATION process.
 Returns the template that is generated after the extraction process.
 Valid for the AUTHENTICATION process.
 
-#### 7.2.3 _bestImageBmp_
+#### 7.2.3 _bestImage_
 
 Returns the best image extracted from the authentication process in
 SdkImage format. This image is the original size image extracted from
 the camera. Valid for the liveness process.
 
-#### 7.2.4 _bestImageCroppedBmp_
+#### 7.2.4 _bestImageCropped_
 
 Returns a cropped image centred on the user's face in SdkImage format.
 This image is obtained from the bestImage. This image will be used as

@@ -14,8 +14,16 @@
 
   - En el SDKConfigurationData podrás elegir entre LicensingOnline o LicensingOffline
 
+  - Todos los ConfigurationData con imágenes en su interior han sido modificados para cambiar el nombre de los parámetros (Image)
+
 - Tracking
+
   - Ajustes y mejoras
+
+- Voice
+  - Librería del widget actualizada a la versión 3.13.0
+  - Mejorado el UX/UI
+  - Mejorados los resultados de las verificaciones
 
 ### 1.5.3
 
