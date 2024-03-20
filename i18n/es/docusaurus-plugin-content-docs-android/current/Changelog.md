@@ -2,7 +2,7 @@
 
 ## Versiones
 
-### 2.0.0-SNAPSHOT
+### 2.0.0
 
 - General
 
