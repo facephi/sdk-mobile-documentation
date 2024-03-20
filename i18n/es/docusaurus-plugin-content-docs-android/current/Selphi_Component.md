@@ -348,3 +348,29 @@ when (result) {
     is SdkResult.Success -> result.data
 }
 ```
+
+## 9. Personalización del componente
+
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Android Mobile
+SDK</u></strong></a>), este componente en concreto permite la
+modificación de textos específicos.
+
+### 9.1 Textos
+
+Si se desea modificar los textos de la SDK habría que incluir el
+siguiente fichero XML en la aplicación del cliente, y modificar el valor
+de cada _String_ por el deseado.
+
+```xml
+    <string name="selphi_component_timeout_title">Tiempo superado</string>
+    <string name="selphi_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="selphi_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="selphi_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="selphi_component_tutorial_message">Permanece quieto,\ncon tu cara\nen el centro del círculo</string>
+    <string name="selphi_component_tutorial_title">Tómate una selfie</string>
+    <string name="selphi_component_tutorial_button">Comenzar</string>
+
+```

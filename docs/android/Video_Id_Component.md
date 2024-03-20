@@ -227,16 +227,20 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
-    <string name="video_id_text_waiting_agent_title">Video ID</string>
-    <string name="video_id_first_message">Place your face and the front of your document within the frame</string>
-    <string name="video_id_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
-    <string name="video_id_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
-    <string name="video_id_second_message">Now place the back of your document</string>
-    <string name="video_id_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
-    <string name="video_id_finish_message">Video recording finished!</string>
-    <string name="video_id_record_init_button">Start recording</string>
-    <string name="video_id_ready_button">Ready</string>
-    <string name="video_id_first_message_face">Place your face within the frame</string>
-    <string name="video_id_restart">Repeat recording</string>
+    <string name="video_id_component_text_waiting_agent_title">Video ID</string>
+    <string name="video_id_component_first_message">Place your face and the front of your document within the frame</string>
+    <string name="video_id_component_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
+    <string name="video_id_component_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
+    <string name="video_id_component_second_message">Now place the back of your document</string>
+    <string name="video_id_component_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
+    <string name="video_id_component_finish_message">Video recording finished!</string>
+    <string name="video_id_component_record_init_button">Start recording</string>
+    <string name="video_id_component_ready_button">Ready</string>
+    <string name="video_id_component_first_message_face">Place your face within the frame</string>
+    <string name="video_id_component_restart">Repeat recording</string>
+    <string name="video_id_component_timeout_title">Time exceeded</string>
+    <string name="video_id_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="video_id_component_internal_error_title">There was a technical problem</string>
+    <string name="video_id_component_internal_error_desc">We apologize. The capture could not be made</string>
 
 ```

@@ -261,12 +261,18 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
-    <string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
-    <string name="video_call_agent">Agent</string>
-    <string name="video_call_exit">Exit</string>
-    <string name="video_call_text_finish">Video assistance is complete</string>
-    <string name="video_call_accesibility_phone">Phone</string>
-    <string name="video_call_restart">Repeat recording</string>
+    <string name="video_call_component_text_waiting_agent_title">Connecting with an assistant…</string>
+    <string name="video_call_component_local">You</string>
+    <string name="video_call_component_agent">Agent</string>
+    <string name="video_call_component_exit">Exit</string>
+    <string name="video_call_component_text_finish">Video assistance is complete</string>
+    <string name="video_call_component_accesibility_phone">Phone</string>
+    <string name="video_call_component_accesibility_switch">Switch camera</string>
+    <string name="video_call_component_restart">Repeat recording</string>
+    <string name="video_call_component_timeout_title">Time exceeded</string>
+    <string name="video_call_component_timeout_desc">An assistant could not be reached.</string>
+    <string name="video_call_component_internal_error_title">There was a technical problem</string>
+    <string name="video_call_component_internal_error_desc">An assistant could not be reached.</string>
 
 ```
 

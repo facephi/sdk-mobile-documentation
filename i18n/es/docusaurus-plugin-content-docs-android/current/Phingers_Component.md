@@ -371,4 +371,5 @@ de cada _String_ por el deseado.
     <string name="phingers_component_internal_error_title">Hubo un problema técnico</string>
     <string name="phingers_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
 
+
 ```

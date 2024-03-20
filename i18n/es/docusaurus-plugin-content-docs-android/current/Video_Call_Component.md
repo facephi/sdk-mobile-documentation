@@ -281,12 +281,19 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-    <string name="video_call_text_waiting_agent_title">Conectando con un agente…</string>
-    <string name="video_call_agent">Agente</string>
-    <string name="video_call_exit">Salir</string>
-    <string name="video_call_text_finish">La video asistencia ha finalizado</string>
-    <string name="video_call_accesibility_phone">Teléfono</string>
-    <string name="video_call_restart">Repetir llamada</string>
+    <string name="video_call_component_text_waiting_agent_title">Conectando con un agente…</string>
+    <string name="video_call_component_agent">Agente</string>
+    <string name="video_call_component_local">Tú</string>
+    <string name="video_call_component_exit">Salir</string>
+    <string name="video_call_component_text_finish">La video asistencia ha finalizado</string>
+    <string name="video_call_component_accesibility_phone">Teléfono</string>
+    <string name="video_call_component_accesibility_switch">Cambiar cámara</string>
+    <string name="video_call_component_restart">Repetir llamada</string>
+    <string name="video_call_component_timeout_title">Tiempo superado</string>
+    <string name="video_call_component_timeout_desc">No se ha podido contactar con un asistente.</string>
+    <string name="video_call_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="video_call_component_internal_error_desc">No se ha podido contactar con un asistente.</string>
+
 ```
 
 ### 9.2. Colores

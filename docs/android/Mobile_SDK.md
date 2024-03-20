@@ -617,9 +617,6 @@ following XML file in the client application and modify the value of
 each _String_ to the desired one.
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- GENERAL -->
     <string name="sdk_permissions_exit_alert_title">Permission denied</string>
     <string name="sdk_permissions_exit_alert_question">In order to continue, you need to </string>
     <string name="sdk_permissions_exit_alert_question_other">allow access to the permission needed.</string>
@@ -629,15 +626,15 @@ each _String_ to the desired one.
     <string name="sdk_permissions_exit_alert_confirm_settings">Go to settings</string>
     <string name="sdk_exit_alert_title">Finish the process</string>
     <string name="sdk_exit_alert_question">Do you want to finish the process?</string>
-    <string name="sdk_exit_alert_exit">Finish</string>
+    <string name="sdk_exit_alert_finish">Finish</string>
     <string name="sdk_exit_alert_cancel">Cancel</string>
     <string name="sdk_exit_finish_exit">Finish</string>
     <string name="sdk_text_video_error">An error has occurred with the connection to the video. Please try again.</string>
     <string name="sdk_text_socket_error">An error has occurred with the connection to the server. Please try again.</string>
     <string name="sdk_text_data_error">An error has occurred with the system configuration. Please try again.</string>
     <string name="sdk_text_timeout_error">Sorry, the operation has timed out. Please try again later.</string>
-    <string name="sdk_network_connection_error_title">Connection error</string>
-    <string name="sdk_network_connection_error_desc">Check your internet connection</string>
+    <string name="sdk_network_connection_error_title">Check your internet connection</string>
+    <string name="sdk_network_connection_error_desc">Check that your connection is stable and try again.</string>
     <string name="sdk_network_connection_error_button">Exit</string>
     <string name="sdk_close">Close process</string>
     <string name="sdk_info">Show tutorial</string>
@@ -647,11 +644,7 @@ each _String_ to the desired one.
     <string name="sdk_confirmation_retry">Retry</string>
     <string name="sdk_confirmation_continue">Continue</string>
     <string name="sdk_skip">SKIP</string>
-
-  <!-- ..Add particulars of each component... -->
-
-
-</resources>
+    
 ```
 
 ### 10.3. Font

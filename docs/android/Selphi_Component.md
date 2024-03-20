@@ -322,3 +322,28 @@ when (result) {
     is SdkResult.Success -> result.data
 }
 ```
+## 9. Customizing the component
+
+Apart from the changes that can be made at the SDK level (explained in
+the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+document), this particular component allows the modification of specific
+texts.
+
+### 9.1 Texts
+
+If you want to modify the SDK texts, you would have to include the
+following XML file in the client application and change the value of
+each String to the desired one.
+
+```xml
+    <string name="selphi_component_timeout_title">Time exceeded</string>
+    <string name="selphi_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="selphi_component_internal_error_title">There was a technical problem</string>
+    <string name="selphi_component_internal_error_desc">We apologize. The capture could not be made</string>
+    <string name="selphi_component_tutorial_message">Stay still,\nwith your face\nin the center of the circle</string>
+    <string name="selphi_component_tutorial_title">Take a selfie</string>
+    <string name="selphi_component_tutorial_button">Continue</string>
+
+```

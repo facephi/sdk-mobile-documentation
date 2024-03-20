@@ -630,41 +630,34 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- GENERAL -->
-    <string name="sdk_permissions_exit_alert_title">Permission denied</string>
-    <string name="sdk_permissions_exit_alert_question">In order to continue, you need to </string>
-    <string name="sdk_permissions_exit_alert_question_other">allow access to the permission needed.</string>
-    <string name="sdk_permissions_exit_alert_question_camera">allow access to the camera.</string>
-    <string name="sdk_permissions_exit_alert_question_microphone">allow access to the microphone.</string>
-    <string name="sdk_permissions_exit_alert_confirm">Retry</string>
-    <string name="sdk_permissions_exit_alert_confirm_settings">Go to settings</string>
-    <string name="sdk_exit_alert_title">Finish the process</string>
-    <string name="sdk_exit_alert_question">Do you want to finish the process?</string>
-    <string name="sdk_exit_alert_exit">Finish</string>
-    <string name="sdk_exit_alert_cancel">Cancel</string>
-    <string name="sdk_exit_finish_exit">Finish</string>
-    <string name="sdk_text_video_error">An error has occurred with the connection to the video. Please try again.</string>
-    <string name="sdk_text_socket_error">An error has occurred with the connection to the server. Please try again.</string>
-    <string name="sdk_text_data_error">An error has occurred with the system configuration. Please try again.</string>
-    <string name="sdk_text_timeout_error">Sorry, the operation has timed out. Please try again later.</string>
-    <string name="sdk_network_connection_error_title">Connection error</string>
-    <string name="sdk_network_connection_error_desc">Check your internet connection</string>
-    <string name="sdk_network_connection_error_button">Exit</string>
-    <string name="sdk_close">Close process</string>
-    <string name="sdk_info">Show tutorial</string>
-    <string name="sdk_previous_page">Previous page</string>
-    <string name="sdk_next_page">Next page</string>
-    <string name="sdk_image_captured">Image captured</string>
-    <string name="sdk_confirmation_retry">Retry</string>
-    <string name="sdk_confirmation_continue">Continue</string>
-    <string name="sdk_skip">SKIP</string>
-
-  <!-- ..Add particulars of each component... -->
-
-
-</resources>
+    <string name="sdk_permissions_exit_alert_title">Permiso denegado</string>
+    <string name="sdk_permissions_exit_alert_question">Para poder continuar es necesario que </string>
+    <string name="sdk_permissions_exit_alert_question_other">permitas el acceso al permiso necesario.</string>
+    <string name="sdk_permissions_exit_alert_question_camera">permitas el acceso a la cámara.</string>
+    <string name="sdk_permissions_exit_alert_question_microphone">permitas el acceso al micrófono.</string>
+    <string name="sdk_permissions_exit_alert_confirm">Reintentar</string>
+    <string name="sdk_permissions_exit_alert_confirm_settings">Ir a ajustes</string>
+    <string name="sdk_exit_alert_title">Cancelar el proceso</string>
+    <string name="sdk_exit_alert_question">¿Quieres abandonar el proceso?</string>
+    <string name="sdk_exit_alert_finish">Abandonar</string>
+    <string name="sdk_exit_alert_cancel">Cancelar</string>
+    <string name="sdk_exit_finish_exit">Finalizar</string>
+    <string name="sdk_text_video_error">Ha ocurrido un error en la conexión con el vídeo. Inténtelo de nuevo.</string>
+    <string name="sdk_text_socket_error">Ha ocurrido un problema con la conexión hacia el servidor. Inténtelo de nuevo.</string>
+    <string name="sdk_text_data_error">Ha ocurrido un error con la configuración del sistema. Inténtelo de nuevo.</string>
+    <string name="sdk_text_timeout_error">Lo sentimos, la operación ha excedido el tiempo de espera. Por favor, inténtalo de nuevo más tarde.</string>
+    <string name="sdk_network_connection_error_title">Revisa tu conexión a internet</string>
+    <string name="sdk_network_connection_error_desc">Comprueba que tu conexión es estable e inténtalo de nuevo.</string>
+    <string name="sdk_network_connection_error_button">Salir</string>
+    <string name="sdk_close">Cerrar proceso</string>
+    <string name="sdk_info">Mostrar tutorial</string>
+    <string name="sdk_previous_page">Página anterior</string>
+    <string name="sdk_next_page">Próxima página</string>
+    <string name="sdk_image_captured">Imagen capturada</string>
+    <string name="sdk_confirmation_retry">Reintentar</string>
+    <string name="sdk_confirmation_continue">Continuar</string>
+    <string name="sdk_skip">OMITIR</string>
+    
 ```
 
 ### 10.3. Fuente
