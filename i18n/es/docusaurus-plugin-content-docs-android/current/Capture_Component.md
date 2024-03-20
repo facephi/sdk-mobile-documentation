@@ -126,7 +126,11 @@ Mostrar una línea como borde de la cámara
 
 Mostrar pantallas de diagnóstico al final del proceso
 
-#### 5.1.6. transparentBackground
+#### 5.1.7. showTutorial
+
+Muestra la pantalla de tutorial al inicio del proceso (Sólo modo QR)
+
+#### 5.1.8. transparentBackground
 
 Máscara sobre la cámara semitransparente
 

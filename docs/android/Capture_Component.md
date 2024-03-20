@@ -116,7 +116,11 @@ Show a line as camera border
 
 Display diagnostic screens at the end of the process
 
-#### 5.1.6. transparentBackground
+#### 5.1.7. showTutorial
+
+Display tutorial screen at the start of the process (only QR mode)
+
+#### 5.1.8. transparentBackground
 
 Semi-transparent mask
 
