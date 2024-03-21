@@ -184,7 +184,6 @@ Ejemplo de implementación en Kotlin:
 val sdkConfig = SdkConfigurationData(
     sdkApplication = SdkApplication(application),
     licensing = LicensingOnline(EnvironmentLicensingData(
-            url = "https://...",
             apiKey = "...")
       )),
 )
@@ -205,7 +204,6 @@ Ejemplo de implementación en Java:
 SDKController.INSTANCE.initSdk(
     new SdkApplication(activity.getApplication()),
     new LicensingOnline(new EnvironmentLicensingData(
-      url = "https://...",
       apiKey = "...")),
     sdkResult ->
     {
