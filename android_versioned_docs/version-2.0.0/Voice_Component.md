@@ -1,4 +1,4 @@
-# Video Id Component
+# Voice Component
 
 ## 0. SDK Mobile baseline requirements
 
@@ -18,9 +18,25 @@ data-linked-resource-type="page">Mobile SDK</a> section.
 
 ## 1. Introduction
 
-The Component discussed in the current document is called VideoID
-Component. It is responsible for the recording of a user identifying
-himself, showing his face and his identity document.
+The _component_ discussed in the current document is called **Voice
+Component**. It is in charge of capturing the user's voice and the
+subsequent extraction of the corresponding templates. Its main
+functionalities are the following:
+
+- Input of a certain number of sentences to subsequently read each one
+  in one step.
+
+- Internal microphone management.
+
+- Management of permissions.
+
+- Analysis of silences.
+
+- Progress analysis.
+
+- Assistant in the capture processes.
+
+- Generation of templates with voice characteristics and scores.
 
 ---
 
@@ -49,7 +65,7 @@ installing the **_SDKMobile_** components.
   be installed beforehand:
 
   ```java
-  implementation "com.facephi.androidsdk:video_id_component:$sdk_videoid_component_version"
+  implementation "com.facephi.androidsdk:voice_component:$sdk_voice_component_version"
   ```
 
 ---
@@ -72,64 +88,43 @@ documentation, which details and explains what this process consists of.
 
 ## 4. Available controllers
 
-| **Controller**             | **Description**                         |
-| -------------------------- | --------------------------------------- |
-| VideoIdController          | Video identification main controller    |
-| SignatureVideoIdController | Driver to sign a process with a Capture |
-
----
+|                 |                               |
+| --------------- | ----------------------------- |
+| **Controller**  | **Descripción**               |
+| VoiceController | Voice capture main controller |
 
 ## 5. Component configuration
 
 To configure the current component, once it has been initialised, a
-_VideoIdConfigurationData_ object must be created and passed as a
+_VoiceConfigurationData_ object must be created and passed as a
 parameter to the SDKController when the component is launched.
 
 The following section will show the fields that are part of this class
 and what each of them is used for.
 
-### 5.1. Class VideoIdConfigurationData
+### 5.1. Class VoiceConfigurationData
 
-The fields included in the configuration **(url, apiKey, tenantId)**,
-usually **do not need to be reported** as they are filled internally
-through the licence used.
+#### 5.1.1. phrases
 
-These fields are usually **reported only** when the server is
-**OnPremise**.
+Indicates the phrase(s) required to capture.
 
-#### 5.1.1. url
+#### 5.1.2. vibrationEnabled
 
-Path to the video socket
+Indicates the activation of the vibration when the widget finishes
+successfully.
 
-#### 5.1.2. apiKey
+#### 5.1.3. showTutorial
 
-ApiKey needed for connection to the video socket
+Indicates whether the component activates the tutorial screen. This view
+intuitively explains how the capture is performed.
 
-#### 5.1.3. tenantId
+#### 5.1.4. extractionTimeout
 
-Tenant identifier referring to the current client, required for the
-connection to the video service.
+Sets the maximum time that the capture can be performed.
 
-#### 5.1.4. sectionTime
+#### 5.1.5. showDiagnostic
 
-Indicates the duration of each of the sections in which the recording
-message is displayed.
-
-#### 5.1.5. mode
-
-- ONLY_FACE: process is necessarily performed by showing only the
-  face.
-
-- FACE_DOCUMENT_FRONT: The process is performed using both the face
-  and the front of the identity document.
-
-- FACE_DOCUMENT_FRONT_BACK: The process is performed using the face,
-  the front of the identity document and the back of the document.
-
-#### 5.1.6. showCompletedTutorial
-
-Indicates if you want to show the complete initial tutorial. If not, a
-progress indicator will be shown.
+Display diagnostic screens at the end of the process
 
 ---
 
@@ -145,11 +140,11 @@ to launch the component:
 
 ```java
 val result = SDKController.launch(
-    VideoIdController(VideoIdConfigurationData())
+    VoiceController(VoiceConfigurationData())
 )
-when (it) {
-    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+when (result) {
+    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
 }
 ```
 
@@ -159,11 +154,11 @@ when (it) {
 
 ```java
 val result = SDKController.launchMethod(
-    VideoIdController(VideoIdConfigurationData())
+    VoiceController(VoiceConfigurationData())
 )
-when (it) {
-    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+when (result) {
+    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
 }
 ```
 
@@ -188,26 +183,34 @@ rel="nofollow">6. Result return</a> section.
 
 ### 7.1. Receipt of errors
 
-On the error side, we will have the _VideoIdError_ class.
+On the error side, we will have the _VoiceError_ class.
 
 ```java
 NO_DATA_ERROR
 TIMEOUT
+INTERNAL_LICENSE_ERROR
 CANCEL_BY_USER
 CANCEL_LAUNCH
-NETWORK_CONNECTION
-SOCKET_ERROR
-VIDEO_ERROR
+PERMISSION_DENIED
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
-UNKNOWN_ERROR
-PERMISSION_DENIED
 ```
 
-### 7.2. Receipt of correct execution - data\_
+### 7.1. Receipt of correct execution - _data_
 
-On successful execution, it simply reports that everything went well
-with the SdkResult.Success.
+In the data part, we have the _VoiceResult class_.
+
+The data field is variable and will depend on which component has
+returned the result. In the case of this component, the fields returned
+are the following:
+
+#### 7.1.1 _audios_
+
+Contains a list of captured audios in ByteArray format.
+
+#### 7.1.3 _tokenizedAudios_
+
+Contains the list of captured audios in Facephi tokenize format.
 
 ---
 
@@ -220,27 +223,26 @@ data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 document), this particular component allows the modification of specific
 texts.
 
-### 8.1. Texts
+### 8.1 Texts
 
 If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
-    <string name="video_id_component_text_waiting_agent_title">Video ID</string>
-    <string name="video_id_component_first_message">Place your face and the front of your document within the frame</string>
-    <string name="video_id_component_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
-    <string name="video_id_component_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
-    <string name="video_id_component_second_message">Now place the back of your document</string>
-    <string name="video_id_component_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
-    <string name="video_id_component_finish_message">Video recording finished!</string>
-    <string name="video_id_component_record_init_button">Start recording</string>
-    <string name="video_id_component_ready_button">Ready</string>
-    <string name="video_id_component_first_message_face">Place your face within the frame</string>
-    <string name="video_id_component_restart">Repeat recording</string>
-    <string name="video_id_component_timeout_title">Time exceeded</string>
-    <string name="video_id_component_timeout_desc">We apologize. The capture could not be made</string>
-    <string name="video_id_component_internal_error_title">There was a technical problem</string>
-    <string name="video_id_component_internal_error_desc">We apologize. The capture could not be made</string>
+    <string name="voice_component_tutorial_message">Speak clearly and loudly. \n\n Make sure you are in a quiet environment.</string>
+    <string name="voice_component_tutorial_title">Speech recognition</string>
+    <string name="voice_component_tutorial_button">Continue</string>
+    <string name="voice_component_success_message">Recorded recording</string>
+    <string name="voice_component_speech_message">Speak clearly and close to the microphone</string>
+    <string name="voice_component_speech_more_message">Keep talking</string>
+    <string name="voice_component_speech_empty_message" translatable="false"></string>
+    <string name="voice_component_read_message">Say out loud:</string>
+    <string name="voice_component_speech_noisy_message">There is too much background noise, try to go to a quiet environment</string>
+    <string name="voice_component_success_records_message">successful recordings</string>
+    <string name="voice_component_timeout_title">Time exceeded</string>
+    <string name="voice_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="voice_component_internal_error_title">There was a technical problem</string>
+    <string name="voice_component_internal_error_desc">We apologize. The capture could not be made</string>
 
 ```

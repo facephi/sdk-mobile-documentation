@@ -1,4 +1,4 @@
-# Video Id Component
+# Voice Component
 
 ## 0. Requisitos base de SDK Mobile
 
@@ -21,8 +21,25 @@ data-linked-resource-type="page">Android Mobile SDK</a>.
 ## 1. Introducción
 
 El _Componente_ tratado en el documento actual recibe el nombre de
-**_VideoID Component_**. Éste se encarga de realizar la grabación de un
-usuario identificándose, mostrando la cara y su documento de identidad.
+**_Voice Component_**. Éste se encarga de realizar la captura de voz del
+usuario y la posterior extracción de las plantillas correspondientes.
+Sus principales funcionalidades son las siguientes:
+
+- Entrada de cierto número de frases para posteriormente leer cada una
+  en un paso.
+
+- Gestión interna del micrófono.
+
+- Gestión de permisos.
+
+- Análisis de los silencios.
+
+- Análisis del progreso.
+
+- Asistente en los procesos de captura.
+
+- Generación de las plantillas con las características de la voz y
+  puntuaciones.
 
 ---
 
@@ -53,7 +70,7 @@ completo antes de la instalación de los componentes de la
   **obligatorias** que deberán haberse instalado previamente:
 
   ```java
-  implementation "com.facephi.androidsdk:video_id_component:$sdk_videoid_component_version"
+  implementation "com.facephi.androidsdk:voice_component:$sdk_voice_component_version"
   ```
 
 ---
@@ -78,10 +95,9 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-| **Controlador**            | **Descripción**                                    |
-| -------------------------- | -------------------------------------------------- |
-| VideoIdController          | Controlador principal de video identificación      |
-| SignatureVideoIdController | Controlador para firmar un proceso con una Captura |
+| **Controlador** | **Descripción**                         |
+| --------------- | --------------------------------------- |
+| VoiceController | Controlador principal de captura de voz |
 
 ---
 
@@ -90,54 +106,35 @@ este proceso.
 Para configurar el componente actual, una vez inicializado, se deberá
 crear un objeto
 
-_VideoIdConfigurationData_ y pasarlo como parámetro al SDKController
+_VoiceConfigurationData_ y pasarlo como parámetro al SDKController
 durante el lanzamiento del componente.
 
 En el siguiente apartado se mostrarán los campos que forman parte de
 esta clase y para qué se utiliza cada uno de ellos.
 
-### 5.1. Class VideoIdConfigurationData
+### 5.1. Class VoiceConfigurationData
 
-Los campos incluidos en la configuración (**url, apiKey, tenantId**),
-normalmente **no es necesario que sean informados** ya que se completan
-internamente a través de la licencia usada.
+#### 5.1.1. phrases
 
-Estos campos suelen informarse **solo** cuando el **servidor** es
-**OnPremise**.
+Indica la/las frases necesarias para capturar.
 
-#### 5.1.1. url
+#### 5.1.2. vibrationEnabled
 
-Ruta al socket de video
+Indica la activación de la vibración cuando el widget termine
+satisfactoriamente.
 
-#### 5.1.2. apiKey
+#### 5.1.3. showTutorial
 
-ApiKey necesaria para la conexión con el socket de video
+Indica si el componente activa la pantalla de tutorial. En esta vista se
+explica de forma intuitiva cómo se realiza la captura.
 
-#### 5.1.3. tenantId
+#### 5.1.4. extractionTimeout
 
-Identificador del tenant que hace referencia al cliente actual,
-necesario para la conexión con el servicio de video.
+Establece el tiempo máximo que se puede realizar la captura.
 
-#### 5.1.4. sectionTime
+#### 5.1.5. showDiagnostic
 
-Indica la duración de cada una de las secciones en las que se muestra el
-mensaje de grabación.
-
-#### 5.1.5. mode
-
-- ONLY_FACE: El proceso se realiza siendo necesariamente solo
-  mostrando la cara.
-
-- FACE_DOCUMENT_FRONT: El proceso se realiza usando tanto la cara como
-  el frontal del documento de identidad.
-
-- FACE_DOCUMENT_FRONT_BACK: El proceso se realiza usando la cara, el
-  frontal del documento de identidad y la parte trasera del documento.
-
-#### 5.1.6. showCompletedTutorial
-
-Indica si se quiere mostrar el tutorial inicial completo. Si no, se
-mostrará un progress indicator.
+Mostrar pantallas de diagnóstico al final del proceso
 
 ---
 
@@ -153,11 +150,11 @@ el componente:
 
 ```java
 val result = SDKController.launch(
-    VideoIdController(VideoIdConfigurationData())
+    VoiceController(VoiceConfigurationData())
 )
-when (it) {
-    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+when (result) {
+    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
 }
 ```
 
@@ -167,11 +164,11 @@ when (it) {
 
 ```java
 val result = SDKController.launchMethod(
-    VideoIdController(VideoIdConfigurationData())
+    VoiceController(VoiceConfigurationData())
 )
-when (it) {
-    is SdkResult.Error -> Napier.d("VideoId: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoId OK: ${result.data}")
+when (result) {
+    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
 }
 ```
 
@@ -193,30 +190,39 @@ a la plataforma.
 Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a
   href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
 
 ### 7.1. Recepción de errores
 
-En la parte del error, dispondremos de la clase _VideoIdError_.
+En la parte del error, dispondremos de la clase VoiceError.
 
 ```java
 NO_DATA_ERROR
 TIMEOUT
+INTERNAL_LICENSE_ERROR
 CANCEL_BY_USER
 CANCEL_LAUNCH
-NETWORK_CONNECTION
-SOCKET_ERROR
-VIDEO_ERROR
+PERMISSION_DENIED
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
-UNKNOWN_ERROR
-PERMISSION_DENIED
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
-En la ejecución correcta, simplemente se informa de que todo ha ido bien
-con el SdkResult.Success.
+En la parte de _data_, dispondremos de la clase _VoiceResult_.
+
+El campo _data_ es variable y dependerá de qué componente se ha devuelto
+el resultado. En el caso de este componente, los campos devueltos son
+los siguientes:
+
+#### 7.2.1 _audios_
+
+Contiene un listado de audios capturados en formato ByteArray.
+
+#### 7.2.2 _tokenizedAudios_
+
+Contiene el listado de audios capturados en formato tokenizado de
+Facephi.
 
 ---
 
@@ -229,27 +235,25 @@ data-linked-resource-type="page"><strong><u>Android Mobile
 SDK</u></strong></a>), este componente en concreto permite la
 modificación de textos específicos.
 
-### 8.1. Textos
+### 8.1 Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-    <string name="video_id_component_text_waiting_agent_title">Video ID</string>
-    <string name="video_id_component_first_message">Coloca tu rostro y el frente de tu documento en las marcas</string>
-    <string name="video_id_component_init_message_face_content_desc">Coloca tu rostro en frente de la cámara e inicia la grabación</string>
-    <string name="video_id_component_init_message_face_docu_content_desc">Coloca tu rostro y tu documento en frente de la cámara e inicia la grabación</string>
-    <string name="video_id_component_second_message">Ahora coloca el reverso de tu documento</string>
-    <string name="video_id_component_third_message">Ahora en voz alta di “Yo (nombre y apellidos) acepto los términos y condiciones”.</string>
-    <string name="video_id_component_finish_message">¡Videograbación finalizada!</string>
-    <string name="video_id_component_record_init_button">Iniciar grabación</string>
-    <string name="video_id_component_ready_button">Continuar</string>
-    <string name="video_id_component_first_message_face">Coloque su cara dentro del marco</string>
-    <string name="video_id_component_restart">Repetir grabación</string>
-    <string name="video_id_component_timeout_title">Tiempo superado</string>
-    <string name="video_id_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="video_id_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="video_id_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="voice_component_tutorial_message">Habla claro y en voz alta. \n\n Asegúrate de estar en un entorno silencioso</string>
+    <string name="voice_component_tutorial_title">Reconocimiento de voz</string>
+    <string name="voice_component_tutorial_button">Comenzar</string>
+    <string name="voice_component_success_message">Grabación registrada</string>
+    <string name="voice_component_speech_message">Habla claro y cercano al micrófono</string>
+    <string name="voice_component_speech_more_message">Continue hablando</string>
+    <string name="voice_component_read_message">Di en voz alta:</string>
+    <string name="voice_component_speech_noisy_message">Demasiado ruido. Busca un entorno silencioso</string>
+    <string name="voice_component_success_records_message">grabaciones exitosas</string>
+    <string name="voice_component_timeout_title">Tiempo superado</string>
+    <string name="voice_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="voice_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="voice_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
 
 ```

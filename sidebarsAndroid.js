@@ -36,6 +36,7 @@ const sidebars = {
         "Flow_Component",
         "Changelog",
         "FAQ",
+        "Sample_applications_use",
       ],
     },
   ],
