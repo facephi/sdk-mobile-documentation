@@ -2,29 +2,6 @@
 
 ## Versiones
 
-### 2.0.0
-
-- General
-
-  - Todas las funciones de SDKController, pasan de tener output con lambda, a ser suspend functions y devolver el resultado de manera sincrona.
-    Para consumirlo ahora será necesario usar una Coroutine.
-    Si se llama desde un ViewModel, se puede usar viewModelScore.launch, si no CoroutineScope(Dispatchers.IO).launch
-
-  - La inicialización del SDK ahora tiene un SDKConfigurationData con los datos que se han de rellenar
-
-  - En el SDKConfigurationData podrás elegir entre LicensingOnline o LicensingOffline
-
-  - Todos los ConfigurationData con imágenes en su interior han sido modificados para cambiar el nombre de los parámetros (Image)
-
-- Tracking
-
-  - Ajustes y mejoras
-
-- Voice
-  - Librería del widget actualizada a la versión 3.13.0
-  - Mejorado el UX/UI
-  - Mejorados los resultados de las verificaciones
-
 ### 1.5.6
 
 - Selphi
