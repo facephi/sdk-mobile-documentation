@@ -1,16 +1,18 @@
-# Uso de aplicaciones de ejemplo
+# Aplicaciones de ejemplo
 
 ## Introducción
 
-Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub al que se accede desde el botón a la derecha en la barra superior de esta pantalla.
+Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub:
 
-En la carpeta de Android del repositorio se pueden encontrar las aplicaciones de ejemplo para cada versión del SDK publicada.
+<a href="https://github.com/facephi/sdk-mobile-samples"
+   rel="nofollow">Repositorio Demos Android</a>
+
 
 ### Pasos para configurar y ejecutar las aplicaciones
 
-1. Es necesario incluir el usuario y token facilitado por Facephi en el fichero de local.properties como se indica en <a
+1. Es necesario incluir el usuario y token facilitado por Facephi en el fichero de local.properties como se indica en la <a
    href="Mobile_SDK#21-a%C3%B1adir-repositorio-privado"
-   rel="nofollow">Repositorio</a>
+   rel="nofollow">documentación del SDK</a>
 2. Es necesario incluir el applicationId de la licencia facilitada por Facephi en el Gradle de la aplicación.
 3. Rellenar los datos de SdkData.
 

@@ -5,7 +5,7 @@
 Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub:
 
 <a href="https://github.com/facephi/sdk-mobile-samples/tree/2.0.X"
-   rel="nofollow">Repositorio Demos Android v.2.0.0</a>
+   rel="nofollow">Repositorio Demos Android v.1.5.3</a>
 
 ### Pasos para configurar y ejecutar las aplicaciones
 
