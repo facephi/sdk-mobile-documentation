@@ -214,6 +214,10 @@ Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
 Mostrar pantallas de diagnóstico al final del proceso
 
+#### 5.1.15. logImages
+
+Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
+
 ---
 
 ## 6. Uso del componente
@@ -328,6 +332,10 @@ SdkImage (Se puede extraer el bitmap de dentro). Esta imagen se obtiene
 a partir de la _bestImage_. Ésta es la imagen que se podrá utilizar como
 imagen característica del usuario que realizó el proceso a modo de
 _avatar_.
+
+#### 7.2.5 _logImages_
+
+Lista con las 5 mejores imágenes capturadas. Se devuelve si se activa el flag "logImages" en la configuración.
 
 ---
 

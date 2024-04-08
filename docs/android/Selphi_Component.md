@@ -128,7 +128,7 @@ capture process if the image obtained is incorrect.
 Indicates whether the widget activates the tutorial screen. This view
 intuitively explains how the capture is performed.
 
-#### 5.1.5. livenessMode
+#### 5.1.5. _livenessMode_
 
 Sets the liveness mode of the widget. Allowed values are:
 
@@ -139,13 +139,13 @@ Sets the liveness mode of the widget. Allowed values are:
   performed in the server, sending the corresponding "BestImage" or
   "TemplateRaw" for this purpose.
 
-#### 5.1.6. stabilizationMode
+#### 5.1.6. _stabilizationMode_
 
 Sets a stabilization mode before any authentication process in the
 widget. This mode forces the widget not to start any process if the user
 is not facing forward and not moving his head.
 
-#### 5.1.7. cameraFlashEnabled
+#### 5.1.7. _cameraFlashEnabled_
 
 Indicates whether the device's camera flash is activated.
 
@@ -162,12 +162,12 @@ fall back to the default language.
 Indicates whether the view will prioritize for full-screen display if
 the system allows it.
 
-#### 5.1.10. templateRawOptimized
+#### 5.1.10. _templateRawOptimized_
 
 Indicates whether the template (templateRaw) generated after the selfie
 should be optimized or not.
 
-#### 5.1.11. qrMode
+#### 5.1.11. _qrMode_
 
 Sets whether or not to activate QR reading before the authentication
 process.
@@ -180,16 +180,20 @@ the necessary permissions from the phone if that path requires
 additional permissions. The widget, by default, will not perform any
 recording process unless a file path is specified using this method.
 
-#### 5.1.14 viewsContent
+#### 5.1.14 _viewsContent_
 
 This advanced property allows, through a string in XML format, to
 configure the widget views.
 
 Note: This property does not alter the content of the resource file.
 
-#### 5.1.15. showDiagnostic
+#### 5.1.15. _showDiagnostic_
 
 Display diagnostic screens at the end of the process
+
+#### 5.1.15. _logImages_
+
+When activated, a list of the 5 best images taken of the user is returned.
 
 ---
 
@@ -302,6 +306,10 @@ Returns a cropped image centred on the user's face in SdkImage format.
 This image is obtained from the bestImage. This image will be used as
 the characteristic image of the user who carried out the process as an
 avatar.
+
+#### 7.2.5 _logImages_
+
+List of the top 5 captured images returned if the "logImages" flag is set in the configuration.
 
 ---
 
