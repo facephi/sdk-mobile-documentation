@@ -140,7 +140,7 @@ correcta.
 Indica si el widget activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-#### 5.1.5. livenessMode
+#### 5.1.5. _livenessMode_
 
 Establece el modo liveness del widget. Los valores permitidos son:
 
@@ -151,14 +151,14 @@ Establece el modo liveness del widget. Los valores permitidos son:
   el servidor, enviando para tal fin la “BestImage” o el “TemplateRaw”
   correspondiente.
 
-#### 5.1.6. stabilizationMode
+#### 5.1.6. _stabilizationMode_
 
 Establece un modo de estabilización previo a cualquier proceso de
 autenticación en el widget. Con este modo se obliga al widget a no
 empezar ningún proceso si el usuario no se encuentra con la cabeza,
 mirando al frente y sin moverla.
 
-#### 5.1.7. cameraFlashEnabled
+#### 5.1.7. _cameraFlashEnabled_
 
 Indica si se activa el flash de la cámara del dispositivo.
 
@@ -176,12 +176,12 @@ defecto.
 Indica si la vista va a tener prioridad para mostrarse en pantalla
 completa, si el sistema lo permite.
 
-#### 5.1.10. templateRawOptimized
+#### 5.1.10. _templateRawOptimized_
 
 Indica si el template (templateRaw) generado tras el selfie debe
 optimizarse o no.
 
-#### 5.1.11. qrMode
+#### 5.1.11. _qrMode_
 
 Booleano que indica si se quiere o no activar la lectura de QR previo al
 proceso de autenticación.
@@ -195,7 +195,7 @@ requiera de permisos adicionales. El widget, por defecto, no realizará
 ningún proceso de grabación a menos que se especifique una ruta de
 archivo mediante este método.
 
-#### 5.1.13 translationsContent
+#### 5.1.13 _translationsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar la traducción de los literales que se muestran durante el
@@ -203,16 +203,20 @@ proceso.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 5.1.14 viewsContent
+#### 5.1.14 _viewsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 5.1.15. showDiagnostic
+#### 5.1.15. _showDiagnostic_
 
 Mostrar pantallas de diagnóstico al final del proceso
+
+#### 5.1.15. _logImages_
+
+Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
 
 ---
 
@@ -328,6 +332,10 @@ SdkImage (Se puede extraer el bitmap de dentro). Esta imagen se obtiene
 a partir de la _bestImage_. Ésta es la imagen que se podrá utilizar como
 imagen característica del usuario que realizó el proceso a modo de
 _avatar_.
+
+#### 7.2.5 _logImages_
+
+Lista con las 5 mejores imágenes capturadas. Se devuelve si se activa el flag "logImages" en la configuración.
 
 ---
 

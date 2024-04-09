@@ -4,15 +4,14 @@
 
 Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub:
 
-[![Android Repository v.2.0.0](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X"
-   rel="nofollow">Repositorio Demos Android v.2.0.0</a>
-
+[![Android Repository v.1.5.6](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/1.5.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/1.5.X"
+   rel="nofollow">Repositorio Demos Android v.1.5.6</a>
 
 ### Pasos para configurar y ejecutar las aplicaciones
 
-1. Es necesario incluir el usuario y token facilitado por Facephi en el fichero de local.properties como se indica en la <a
+1. Es necesario incluir el usuario y token facilitado por Facephi en el fichero de local.properties como se indica en <a
    href="Mobile_SDK#21-a%C3%B1adir-repositorio-privado"
-   rel="nofollow">documentación del SDK</a>
+   rel="nofollow">Repositorio</a>
 2. Es necesario incluir el applicationId de la licencia facilitada por Facephi en el Gradle de la aplicación.
 3. Rellenar los datos de SdkData.
 

@@ -151,12 +151,7 @@ const config = {
           {
             type: "localeDropdown",
             position: "right",
-          },
-          {
-            href: "https://github.com/facephi/sdk-mobile-samples",
-            label: "GitHub",
-            position: "right",
-          },
+          }
         ],
       },
       footer: {

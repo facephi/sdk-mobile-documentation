@@ -1,14 +1,16 @@
-# Sample Applications Use
+# Sample Applications 
 
 ## Introduction
 
-Sample applications can be found in the GitHub repository accessed from the button on the right in the top bar of this screen.
+Android sample applications can be found in the GitHub repository:
 
-In the repository's Android folder, you can find sample applications for each version of the SDK released.
+[![Android Repository v.2.0.0](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X"
+   rel="nofollow">Android Repository v.2.0.0</a>
+
 
 ### Steps to Set Up and Run the Applications
 
-1. It's necessary to include the user and token provided by Facephi in the local.properties file as indicated in [Repository](Mobile_SDK#21-add-private-repository).
+1. It's necessary to include the user and token provided by Facephi in the local.properties file as indicated in [documentation](Mobile_SDK#21-add-private-repository).
 2. The applicationId from the license provided by Facephi must be included in the application's Gradle.
 3. Fill in the SdkData details.
 

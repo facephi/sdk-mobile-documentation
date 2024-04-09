@@ -25,6 +25,11 @@
   - Mejorado el UX/UI
   - Mejorados los resultados de las verificaciones
 
+### 1.5.6
+
+- Selphi
+  - Nueva versión 5.12.3
+  
 ### 1.5.5
 
 - General

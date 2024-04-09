@@ -25,6 +25,11 @@
   - Improved UX/UI
   - Improved verifications results
 
+### 1.5.6
+
+- Selphi
+  - Updated widget version to 5.12.3
+
 ### 1.5.5
 
 - General

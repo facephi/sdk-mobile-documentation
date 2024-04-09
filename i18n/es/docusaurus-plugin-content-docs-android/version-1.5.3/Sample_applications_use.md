@@ -4,9 +4,8 @@
 
 Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub:
 
-[![Android Repository v.2.0.0](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X"
-   rel="nofollow">Repositorio Demos Android v.2.0.0</a>
-
+[![Android Repository v.1.5.3](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/1.5.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/1.5.X"
+   rel="nofollow">Repositorio Demos Android v.1.5.3</a>
 
 ### Pasos para configurar y ejecutar las aplicaciones
 
