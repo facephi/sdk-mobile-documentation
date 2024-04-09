@@ -395,10 +395,10 @@ SDKController.shared.newOperation(operationType: OperationType.X, customerId: "c
 
 En la actualidad, existen las siguientes operaciones, durante las cuales se hacen uso de unos determinados **Componentes (STEPS)**. A continuación se muestra una tabla con la relación entre operaciones y steps:
 
-| **Operation (OperationType)** | **Component (Step)**                   | **Description**                                                                                                          |
-| ----------------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| ONBOARDING                    | SELPHI_COMPONENT<br/>SELPHID_COMPONENT | - Validación facial de un selfie contra la cara de un docuento</br> - Extracción del OCR del documento</br> -Detección de vivacidad |
-| AUTHENTICATION                | SELPHI_COMPONENT<br/> PHINGERS_COMPONENT</br>VOICE_COMPONENT                       | - Face validation using templates <br/> - Liveness detection                                                         |
+| **Operación (OperationType)** | **Componente (Step)**                  | Descripción                                                                                                                             |
+| ----------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| ONBOARDING                    | SELPHI_COMPONENT<br/>SELPHID_COMPONENT | - Validación facial de un selfie contra la cara de un documento <br/> - Extracción del OCR del documento <br/> - Detección de vivacidad |
+| AUTHENTICATION                | SELPHI_COMPONENT                       | - Validación facial mediante plantillas <br/> - Detección de vivacidad                                                          |
 
 Esta lista se irá ampliando en próximas actualizaciones de la SDK, según vayan apareciendo nuevos componentes y casos de uso.
 
