@@ -49,11 +49,11 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 1.4.0'
+  pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 - Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```
-  pod 'FPHISDKVideoCallComponent', '~> 1.4.0'
+  pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
@@ -127,6 +127,7 @@ ApiKey necesaria para la conexión con el socket de video
 Identificador del tenant que hace referencia al cliente actual,
 necesario para la conexión con el servicio de video.
 
+
 #### 5.1.3. Otros parametros
 
 ##### VibrationEnabled
@@ -181,6 +182,23 @@ En los datos de configuración (`EnvironmentVideoCallData`) también se podrán 
 	- **apiKey**: ApiKey necesaria para la conexión con el socket de video.
 
 ---
+
+### Ejemplo de configuración
+
+```
+  log("LAUNCH VIDEO CALL")
+  
+  let videocallController = VideoCallController(data: EnvironmentVideoCallData(
+                                                          url: "Enter URL",
+                                                          apikey: "Enter the ApiKey",
+                                                          tenantId: "Enter the tenantId"),
+                                                output: output, viewController: viewController)
+  SDKController.shared.launchMethod(controller: videocallController)
+```
+
+#### IMPORTANTE
+Los valores se asignan por defecto. **SOLO** se debe configurar en caso de usar una plataforma externa a la proporcionada por Facephi, dentro de la licencia.
+
 
 ## 7. Recepción del resultado
 
@@ -272,3 +290,35 @@ Las animaciones a usar se inicializan similarmente en la variable animations con
 case phone_calling
 ``
 El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.
+
+### 8.3 Textos
+
+If you want to modify the SDK texts, you would have to include the
+following XML file in the client application, and modify the value
+of each _String_ by the desired one.
+
+```java
+ <!-- VIDEO CALL -->
+    <string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
+    <string name="video_call_agent">Agent</string>
+    <string name="video_call_exit_alert_title">Cancel process</string>
+    <string name="video_call_exit_alert_question">Are you sure you want to leave the video assistance?</string>
+    <string name="video_call_exit_alert_exit">Quit</string>
+    <string name="video_call_exit_alert_cancel">Cancel</string>
+    <string name="video_call_exit">Exit</string>
+    <string name="video_call_network_connection_error">Check your internet connection.</string>
+    <string name="video_call_image_description">Phone</string>
+    <string name="video_call_text_finish">Video assistance is complete</string>
+    <string name="video_call_text_finish_button">Exit</string>
+    <string name="video_call_accesibility_phone">Phone</string>
+```
+
+### 8.4 Colores
+
+```java
+<!-- VIDEO CALL -->
+<color name="colorVideoCallPhoneButtonBackground">#F44336</color>
+<color name="colorVideoCallActionsBackground">#30333d</color>
+<color name="colorVideoCallCardText">#ffffff</color>
+<color name="colorVideoCallButtonBackground">#FF526080</color>
+```

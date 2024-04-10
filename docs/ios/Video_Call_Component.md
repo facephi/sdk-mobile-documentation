@@ -1,62 +1,62 @@
 # VideoCall Component
 
-## 1. Introducción
+## 0. Requisitos base de SDK Mobile
 
-**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
-a series of functionalities and services, allowing its integration in a Mobile application in a
-integration into a Mobile application in a simple and fully scalable way.
-scalable. Depending on the use case that is required, certain components must be installed.
-Depending on the required use case, certain components must be installed. Its high level of
-of modularity means that other new components can be added in the future
-new components can be added in the future without affecting those already integrated in the project.
-project.
+**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
+una serie de funcionalidades y servicios, permitiendo a su vez su
+integración en una aplicación Mobile de forma sencilla y totalmente
+escalable. Dependiendo del caso de uso que se requiera, se deberá
+realizar la instalación de unos determinados componentes. Su alto nivel
+de modularidad permite que, en un futuro, se puedan añadir otros
+componentes nuevos sin afectar en absoluto a los ya integrados en el
+proyecto.
 
-The _Component_ discussed in the current document is called
-**_VideoCall Component_**. This is responsible for managing communication
-between a user and an agent remotely, through a communication channel
-communication. It is mainly oriented for use cases of
-video assistance.
-
-For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
+data-linked-resource-type="page">iOS Mobile SDK</a>***.
 
-### 1.1 Minimum requirements
-The minimum iOS SDK version required is as follows:
+
+## 1. Introduction
+
+The component discussed in the current document is called VideoCall Component. It is in charge of managing the communication between a user and an agent remotely. It is mainly oriented for video assistance use cases.
+
+## 1.1 Minimum requirements
+The minimum iOS SDK version required is the following:
 
 Minimum iOS version: **13**
 
 ---
 
-## 2. Component integration
+## 2. Integración del componente
 
-Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
+Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
+data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
 
-This section will explain step by step how to integrate the current component into an existing project.
-component into an existing project.
+En esta sección se explicará paso a paso cómo integrar el componente
+actual en un proyecto ya existente.
 
 ### 2.1. Dependencies required for integration
 
 In order to avoid conflicts and compatibility problems, in case you want to
-install the component in a project containing an old version of the Facephi libraries.
-of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the components.
-completely before the installation of the components of the **_SDKMobile_** components.
+to install the component in a project containing an old version of the Facephi libraries (_Widgets_), these must be removed by
+of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the Facephi components.
+completely before the installation of the components of the
+**_SDKMobile_** components.
 
 #### Cocoapods
-- Currently the FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-   pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 1.5.0', '~> 1.5.0'.
 ```
-- To install the SelphID component, the following entry must be included in the application's Podfile:
+- To install the SelphID component, the following entry must be included in the application Podfile:
 ```
-pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
+  pod 'FPHISDKVideoCallComponent', '~> 1.5.0', '~> 1.5.0' 
 ```
-- Once the dependencies are installed, you can use the different functionalities of the component.
+- Once the dependencies are installed, the different functionalities of the component can be used.
 
-- If developing with **xCode15**, a post-installation script must be included:
+- In case of development with **xCode15** a post-installation script must be included:
 ![Image](/iOS/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
@@ -68,22 +68,71 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, in order to generate the associated information correctly in the
-associated information correctly in the platform, the **newOperation** command
-the **newOperation** command must be executed beforehand.
+When you want to perform a certain operation, to generate the associated information correctly on the platform, the **newOperation** command must be previously executed.
 
-This command must be executed **always**. To learn more about how to
-to start a new operation, it is recommended to consult the documentation of
-**Core Component** documentation, which details and explains this process.
-process.
+This command must have been run **prior to launching the component**.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to consult the documentation for [1.5.X][ES] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
 
 ---
 
-## 4. Use of the component
+## 4. Available controllers
+
+| **Controllers**     | **Description**                       |
+| ------------------- | ------------------------------------- |
+| VideoCallController | VideoCall main controller |
+
+---
+
+## 5. Component configuration
+
+To configure the current component, once it has been initialised, you must create a
+
+_VideoCallConfigurationData_ object and pass it as parameter to the SDKController
+during the component launch.
+
+The following section will show the fields that are part of this class and what each one is used for.
+this class and what each of them is used for.
+
+### 5.1. Class VideoCallConfigurationData
+
+The fields included in the configuration, normally **do not need to be
+be reported** as they are filled internally through the license used.
+licence used.
+
+
+#### 5.1.1. Basic Configuration
+
+##### activateScreenSharing
+
+Activate the screen sharing option in the call.
+
+#### 5.1.2. Advanced Settings
+
+
+#### 5.1.2.1. url
+
+Path to video socket
+
+#### 5.1.2.2 apiKey
+
+ApiKey needed for the connection to the video socket
+
+#### 5.1.2.3 tenantId
+
+Tenant identifier referring to the current client,
+required for the connection to the video service.
+
+#### 5.1.3. Other parameters
+
+##### VibrationEnabled
+If set to true, vibration is enabled on errors and if the widget response is OK.
+
+---
+
+## 6. Use of the component
 
 Once the component has been started and a new operation has been created (**section
 3**) the SDK components can be launched. There are two ways to launch
@@ -139,8 +188,7 @@ to the platform.
 The configuration data (`EnvironmentVideoCallData`) also contains
 They will be able to modify:
 
-- **_<u>optional</u> data that is normally included within the
-   license_**
+- **_<u>optional</u> data that is normally included within the license_**
 
    - **tenantId**: Tenant identifier that refers to the
      current client, necessary for connection with the service
@@ -153,14 +201,31 @@ They will be able to modify:
 
 ---
 
-## 5. Receipt of the result
+ ### Example configuration
+
+```
+  log("LAUNCH VIDEO CALL")
+  
+  let videocallController = VideoCallController(data: EnvironmentVideoCallData(
+                                                          url: "Enter URL",
+                                                          apikey: "Enter the ApiKey",
+                                                          tenantId: "Enter the tenantId"),
+                                                output: output, viewController: viewController)
+  SDKController.shared.launchMethod(controller: videocallController)
+```
+
+
+#### IMPORTANT
+The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the licence.
+
+## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult format
 -more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
 
-### 5.1. Receiving errors
+### 7.1. Receiving errors
 
 On the error side, we will have the VideoCallError class.
 
@@ -169,13 +234,79 @@ On the error side, we will have the VideoCallError class.
  VIDEO_CALL_INTERNAL_ERROR
  VIDEO_CALL_DECODER_ERROR
 
-## 6. Component customization
+### 7.2. Receiving successful execution - _data_
 
-Apart from the changes that can be made at the SDK level (which
-are explained in the **Core Component** document), this component in
-Concrete allows the modification of specific texts.
+On successful execution, simply report that everything went well with the SdkResult.Success.
+with the SdkResult.Success.
 
-### 6.1 Texts
+When the result is Success and the _sharingScreen_ flag is active, screen sharing can be enabled.
+
+---
+
+## 8. Customizing the component
+
+To customise the component, ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) must be called after initialising the videocallController:
+
+```
+let videocallController = VideoCallController(data: EnvironmentVideoCallData(), output: output, viewController: viewController)
+ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
+SDKController.shared.launch(controller: videocallController)
+```
+
+An example of the CustomThemeVideoCall class would be this (must implement ThemeVideoCallProtocol):
+
+
+```
+class CustomThemeVideoCall: ThemeVideoCallProtocol {
+    var images: [R.Image: UIImage?] = [:]
+    
+    var colours: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
+    
+    var animations: [R.Animation: String] = [:] var animations: [R.Animation: String] = [:]
+    
+    var name: String {
+        "custom"
+    }
+    
+    var fonts: [R.Font: String] = [:] var fonts: [R.Font: String] = [:] var font: [R.Font: String] = [:]
+    
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
+    }
+}
+```
+
+### 8.1 Colours and images
+Images are initialised in the variable images , passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
+```
+case close
+```
+Colours are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+```
+case ButtonBackground
+case ButtonBackgroundDisabled
+case CardBackground
+case CardText
+case MainBackground
+case PhoneButtonBackground
+case Primary
+case TitleText
+```
+
+### 8.2 Fonts 
+Fonts are initialised similarly in the fonts variable with a dictionary, having as value a String with the name of the desired UIFont.
+```
+case regular
+case bold
+```
+
+The animations to be used are similarly initialised in the animations variable with a dictionary, having as value a String with the name of the animation found in the xcassets to be used.
+```
+case phone_calling
+```
+The size of the texts is initialised similarly in the dimensions variable with a dictionary, having as value a CGFloat with the desired size.
+
+### 8.3 Texts
 
 If you want to modify the SDK texts, you would have to include the
 following XML file in the client application, and modify the value
@@ -197,7 +328,7 @@ of each _String_ by the desired one.
     <string name="video_call_accesibility_phone">Phone</string>
 ```
 
-### 6.2 Colors
+### 8.4 Colors
 
 ```java
 <!-- VIDEO CALL -->
