@@ -2,7 +2,14 @@
 
 ## 1. Introducción
 
-**SDK Mobile** es un conjunto de librerías (**_Componentes_**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
+**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
+una serie de funcionalidades y servicios, permitiendo a su vez su
+integración en una aplicación Mobile de forma sencilla y totalmente
+escalable. Dependiendo del caso de uso que se requiera, se deberá
+realizar la instalación de unos determinados componentes. Su alto nivel
+de modularidad permite que, en un futuro, se puedan añadir otros
+componentes nuevos sin afectar en absoluto a los ya integrados en el
+proyecto.
 
 ### 1.1 Requisitos mínimos
 
@@ -60,9 +67,16 @@ pod repo-art add cocoa-pro-fphi "https://facephicorp.jfrog.io/artifactory/api/po
 
 ### 2.2. Dependencias requeridas para la integración
 
-Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
+Para evitar conflictos y problemas de compatibilidad, en caso de querer
+instalar el componente en un proyecto que contenga una versión antigua
+de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
+completo antes de la instalación de los componentes de la
+**_SDKMobile_**.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias. Las dependencias **obligatorias** que deberán haberse instalado previamente:
+- Actualmente las librerías FacePhi se distribuyen remotamente a través de
+  diferentes gestores de dependencias, en este caso, **_Cocoapods_**.
+  **Dependencias obligatorias** que deben ser instaladas previamente (añadiéndolas
+  al _Podfile_):
 
 ```java
 plugin 'cocoapods-art', :sources => [
@@ -97,7 +111,7 @@ end
   pod repo-art update cocoa-pro-fphi
   ```
 
-### Posibles incidencias
+### 2.3 Posibles incidencias
 
 En el caso de que el integrador utilice un Macbook con Chip **M1**, cabe la posibilidad de que la instalación de cocoapods-art no se realice correctamente. Por ello, se debe tener en cuenta los siguientes puntos:
 
@@ -140,8 +154,7 @@ install_cocoapods () {
 uninstall_cocoapods_homebrew () {
     which -s brew
     if [[ $? != 0 ]] ; then
-        echo "Homebrew not installed, skipping uninstalling cocoapods from
-homebrew"
+        echo "Homebrew not installed, skipping uninstalling cocoapods from homebrew"
     else
         brew uninstall cocoapods
     fi
@@ -205,11 +218,16 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 ###  3.1 Inyección de licencias
 
-Como se ha comentado previamente, actualmente existen dos formas de inyectar la licencia:
+Como se ha comentado previamente, actualmente existen dos formas de
+inyectar la licencia:
 
 #### a. Obteniendo la licencia a través de un servicio
 
-A través de un servicio que simplemente requerirá una URL y un API-KEY como identificador. Esto evitaría problemas a la hora de manipular la licencia, así como la constante sustitución de dichas licencias a la hora de surgir algún problema con ella (malformación o modificación indebida, expiración de la licencia…)
+A través de un servicio que simplemente requerirá una URL y un API-KEY
+como identificador. Esto evitaría problemas a la hora de manipular la
+licencia, así como la constante sustitución de dichas licencias a la
+hora de surgir algún problema con ella (malformación o modificación
+indebida, expiración de la licencia...)
 
 ```java
 // AUTO License
@@ -224,7 +242,8 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 #### b. Inyectando la licencia como String
 
-Se puede asignar la licencia directamente como un String, de la siguiente manera:
+Se puede asignar la licencia directamente como un String, de la
+siguiente manera:
 
 ```java
 // MANUAL License
@@ -247,7 +266,7 @@ El controlador de TrackingController solo se añadirá en caso de tener el track
 
 Se añade el import:
 
-```
+``` java
 import trackingComponent
 ```
 
@@ -255,14 +274,14 @@ trackingController: trackingController
 
 Inicializamos:
 
-```
+``` java
 let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
 ```
 Se añade en el initSDK:
 
-```
+``` java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
@@ -276,19 +295,19 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 #### 3.2.2. TokenizeController
 
 Se añade el import:
-```
+``` java
 import tokenizeComponent
 ```
 
 Inicializamos:
 
-```
+``` java
 let tokenizeController = TokenizeController()
 ```
 
 Se añade en el initSDK:
 
-```
+``` java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
@@ -303,12 +322,12 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 Se añade el import:
 
-```
+``` java
 import behaviorComponent
 ```
 
 Inicializamos:
-```
+``` java
 
 behaviorController = BehaviorController(autoLogoutAction: {
                       print("ACTIVE DEFENSE")
@@ -321,7 +340,7 @@ behaviorController = BehaviorController(autoLogoutAction: {
 
 Se añade en el initSDK:
 
-```
+``` java
 
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
@@ -338,16 +357,16 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 Se añade el import:
 
-```
+``` java
 import statusComponent
 ```
 
 Inicializamos:
-```
+``` java
 let statusController = StatusController()
 ```
 Se añade en el initSDK:
-```
+``` java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
@@ -398,9 +417,10 @@ En la actualidad, existen las siguientes operaciones, durante las cuales se hace
 | **Operación (OperationType)** | **Componente (Step)**                  | Descripción                                                                                                                             |
 | ----------------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | ONBOARDING                    | SELPHI_COMPONENT<br/>SELPHID_COMPONENT | - Validación facial de un selfie contra la cara de un documento <br/> - Extracción del OCR del documento <br/> - Detección de vivacidad |
-| AUTHENTICATION                | SELPHI_COMPONENT                       | - Validación facial mediante plantillas <br/> - Detección de vivacidad                                                          |
+| AUTHENTICATION                | SELPHI_COMPONENT                       | - Validación facial mediante plantillas <br/> - Detección de vivacidad                                                                  |
 
-Esta lista se irá ampliando en próximas actualizaciones de la SDK, según vayan apareciendo nuevos componentes y casos de uso.
+Esta lista se irá ampliando en próximas actualizaciones de la SDK, según
+vayan apareciendo nuevos componentes y casos de uso.
 
 ---
 
@@ -443,7 +463,7 @@ Si se realiza un cierre de sesión, no se van a poder lanzar controladores hasta
 
 ---
 
-## 8. Opciones de depuración y gestión de errores
+## 8. Gestión de errores
 
 Si un componente es llamado, devolverá un SdkResult como salida. El siguiente fragmento de código de
 siguiente fragmento de código es un ejemplo de esto:
@@ -462,35 +482,20 @@ Los posibles tipos de error son los siguientes:
 
 ```java
 public enum ErrorType: String, Error {
-    case CANCEL_BY_USER
-    case TIMEOUT
-    case COMPONENT_CONTROLLER_ERROR
-    case COMPONENT_CONTROLLER_DATA_ERROR
-    case NETWORK_CONNECTION
-    case UNKNOWN_ERROR
-    case NFC_ERROR
-    case NFC_INVALID_MRZ_KEY 
-    case CAPTURE_ERROR
-    case NO_ERROR
-    case CAMERA_PERMISSION_DENIED
-    case PERMISSION_DENIED
-    case SETTINGS_PERMISSION_ERROR
-    case HARDWARE_ERROR
-    case EXTRACTION_LICENSE_ERROR
-    case UNEXPECTED_CAPTURE_ERROR
-    case CONTROL_NOT_INITIALIZATED_ERROR 
-    case BAD_EXTRACTOR_CONFIGURATION_ERROR
-    case TOKEN_ERROR
-    case PHINGERS_ERROR_CAPTURE 
-    case LICENSING_ERROR_PACKAGE_NAME
-    case LICENSING_ERROR_APPID_INVALID
-    case LICENSING_ERROR_APIKEY_FORBIDDEN
-    case LICENSING_ERROR_LICENSE_NOT_FOUND
-    case VIDEO_SOCKET_TIMEOUT
-    case VIDEO_ERROR
-    case LICENSE_CHECKER_ERROR_INVALID_LICENSE
-    case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
-    case NO_OPERATION_CREATED_ERROR
+     case NO_ERROR
+     case UNKNOWN_ERROR
+     case OTHER(String)
+     case COMPONENT_CONTROLLER_DATA_ERROR
+     case NO_OPERATION_CREATED_ERROR
+     case NETWORK_CONNECTION
+     case CAMERA_PERMISSION_DENIED
+     case MIC_PERMISSION_DENIED
+     case LOCATION_PERMISSION_DENIED
+     case STORAGE_PERMISSION_DENIED
+     case CANCEL_BY_USER
+     case TIMEOUT
+     case LICENSE_CHECKER_ERROR_INVALID_LICENSE
+     case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
 }
 ```
 

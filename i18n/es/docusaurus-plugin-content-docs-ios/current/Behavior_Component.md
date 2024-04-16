@@ -2,18 +2,25 @@
 
 ## 0. Requisitos base de SDK Mobile
 
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
+**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
+una serie de funcionalidades y servicios, permitiendo a su vez su
+integración en una aplicación Mobile de forma sencilla y totalmente
+escalable. Dependiendo del caso de uso que se requiera, se deberá
+realizar la instalación de unos determinados componentes. Su alto nivel
+de modularidad permite que, en un futuro, se puedan añadir otros
+componentes nuevos sin afectar en absoluto a los ya integrados en el
+proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
+Para más información sobre la configuración base, vaya a la sección de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
 ## 1. Introducción
 
 El _Componente_ tratado en el documento actual recibe el nombre de
-***Behavior** Component / Componente de **comportamiento***. Éste se
+**Behavior** Component / Componente de **comportamiento**. Éste se
 encarga de realizar el trakeo y análisis del comportamiento del usuario
 a través de los componentes de la **SDKMobile**, enviándola a los
 servicios de **Feedzai**.
@@ -27,26 +34,39 @@ en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación
+relativa a:
 
-En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho
+documento.
+
+En esta sección se explicará paso a paso cómo integrar el componente
+actual en un proyecto ya existente.
 
 
 ### 2.1. Dependencias requeridas para la integración
 
-Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
+Para evitar conflictos y problemas de compatibilidad, en caso de querer
+instalar el componente en un proyecto que contenga una versión antigua
+de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
+completo antes de la instalación de los componentes de la
+**_SDKMobile_**.
 
-Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-```
+Actualmente las librerías de FacePhi se distribuyen de forma remota 
+a través de diferentes gestores de dependencias, en este caso Cocoapods. 
+Las dependencias **obligatorias** que deberán haberse instalado previamente 
+(añadiéndolas en el fichero Podfile del proyecto) son:
+
+```java
 pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
 Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
-```
+```java
 pod 'FPHISDKBehaviorComponent', '~> 1.5.0'
 ```
 
@@ -59,7 +79,24 @@ Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funci
 
 ---
 
-## 3. Configuración del componente
+## 3. Iniciar nueva operación
+
+Cuando se desea realizar una determinada operación, para generar la
+información asociada correctamente en la plataforma deberá ejecutarse
+previamente el comando **newOperation**.
+
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del
+componente**.
+
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla 
+y explica en qué consiste este proceso.
+
+---
+
+## 4. Configuración del componente
 
 El controlador de BehaviorController solo se añadirá en caso de tener el comportamiento de la sdkMobile.
 
@@ -98,7 +135,7 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 ---
 
-## 4. Uso del componente
+## 5. Uso del componente
 
 Como se ha comentado previamente, una vez inicializado y configurado el
 componente de **behavior/comportamiento** no será necesario lanzarlo, ya

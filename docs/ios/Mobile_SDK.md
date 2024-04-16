@@ -324,11 +324,11 @@ Initialise:
 ```java
 
 behaviorController = BehaviorController(autoLogoutAction: {
-                      print("DEFENSA ACTIVA")
+                      print("ACTIVE DEFENSE")
                       return true
                     },
                     behaviorError: { behaviorError en
-                      print("ERROR DE COMPORTAMIENTO: \(behaviorError)")
+                      print("BEHAVIOR ERROR: \(behaviorError)")
                     }, debugMode: false)
 ```
 
