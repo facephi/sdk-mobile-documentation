@@ -11,9 +11,10 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -63,12 +64,12 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 
-```
+```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
   pod 'zipzap'
 ```
 - Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
-```
+```java
   pod 'FPHISDKSelphiComponent', '~> 1.5.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -79,14 +80,14 @@ completo antes de la instalación de los componentes de la
 
 #### SPM
 - Las dependencias obligatorias que deberán haberse instalado previamente son:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 - Para instalar el componente de NFC deberá incluirse en los módulos del proyecto:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git
 //SSH
@@ -95,7 +96,7 @@ git@github.com:facephi-clienters/SDK-Selphi_component-SPM.git
 
 ### 2.2 Permisos y configuraciones
 En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero info.plist
-```
+```java
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
 ---
@@ -106,9 +107,12 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** , en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+este proceso.
 
 ---
 
@@ -117,17 +121,19 @@ data-linked-resource-type="page">iOS Mobile SDK</a>*** , en el que se detalla y 
 | **Controlador**           | **Descripción**                                                |
 | ------------------------- | -------------------------------------------------------------- |
 | SelphiController          | Controlador principal de reconocimiento facial                 |
-| RawTemplateController     | Controlador para generar un RawTemplate a partir de una imagen           |
+| RawTemplateController     | Controlador para generar un RawTemplate a partir de una imagen |
+| SignatureSelphiController | Controlador para firmar un proceso con una Captura             |
 
 ---
 
 ## 5. Configuración del componente
 
-En este documento no se incluye información acerca de cómo trackear los datos del componente. En el caso de que se requiera esta funcionalidad, se recomienda revisar previamente la documentación del **componente** de **Tracking**
+Para configurar el componente actual, una vez inicializado, se deberá
+crear un objeto _SelphiConfigurationData_ y pasarlo como parámetro al
+SDKController durante el lanzamiento del componente.
 
-Para configurar el componente actual, una vez inicializado, se deberá crear un objeto *SelphiConfigurationData* y pasarlo como parámetro al SDKController durante el lanzamiento del componente.
-
-En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.
+En el siguiente apartado se mostrarán los campos que forman parte de
+esta clase y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class SelphiConfigurationData
 
@@ -213,21 +219,28 @@ Si se le da valor true, se activa la vibración en errores y si la respuesta del
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:
+Una vez iniciado el componente y creada una nueva operación (**apartado
+3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+el componente:
 
-- **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero **no se trackeará** ningún evento al servidor de *tracking*:
+- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero sí se trackearán los eventos
+  internos al servidor de _tracking_:
+
+```java
+let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
+```
+
+- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero **no se trackeará** ningún
+  evento al servidor de _tracking_:
 
 ```java
 let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
-- **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de *tracking*::
-
-```java
-let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
-```
 
 El método **launch** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
@@ -243,9 +256,12 @@ a la plataforma.
 ---
 
 ## 7. Recepción del resultado.
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+
+Los controllers devolverán la información necesaria en formato
+SdkResult. Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>
 
 ### 7.1. Recepción de errores
 

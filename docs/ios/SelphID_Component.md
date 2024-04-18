@@ -188,7 +188,7 @@ The allowed values are as follows:
 
 - **SelphIDDocumentType.FOREIGN_CARD:** The widget is configured to capture foreign documents.
 
-- The widget is configured to perform the capture of credit cards.
+- - **SelphIDDocumentType.CREDIT_CARD:** The widget is configured to perform the capture of credit cards.
 
 - **SelphIDDocumentType.CUSTOM:** The widget is configured to capture other types of documents that do not fall into any of the above categories.
 
@@ -200,7 +200,7 @@ If set to true, when an error or lack of permissions occurs, the sdk will displa
 ##### Debug
 When this attribute is set to true, the number of traces is increased and technical information is displayed on the screen. 
 
-**Once the development is finished, it must be set to false.
+**Once the development is finished, it must be set to false.**
 
 ##### TutorialOnly
 This property allows to show **only the tutorial**, without launching later the capture process.

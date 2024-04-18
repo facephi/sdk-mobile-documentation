@@ -222,9 +222,11 @@ They will be able to modify:
   SDKController.shared.launchMethod(controller: videocallController)
 ```
 
-
-#### IMPORTANT
+<blockquote>
+*** IMPORTANT ***
 The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the licence.
+</blockquote>
+
 
 ## 7. Receipt of the result
 
@@ -237,10 +239,12 @@ data-linked-resource-type="page">Mobile SDK</a>-.
 
 On the error side, we will have the VideoCallError class.
 
+```java
  VIDEO_CALL_CANCEL_BY_USER
  VIDEO_CALL_TIMEOUT
  VIDEO_CALL_INTERNAL_ERROR
  VIDEO_CALL_DECODER_ERROR
+```
 
 ### 7.2. Receiving successful execution - _data_
 
@@ -262,7 +266,7 @@ texts.
 
 To customise the component, ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) must be called after initialising the videocallController:
 
-```
+```java
 let videocallController = VideoCallController(data: EnvironmentVideoCallData(), output: output, viewController: viewController)
 ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
 SDKController.shared.launch(controller: videocallController)
@@ -271,7 +275,7 @@ SDKController.shared.launch(controller: videocallController)
 An example of the CustomThemeVideoCall class would be this (must implement ThemeVideoCallProtocol):
 
 
-```
+```java
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
     

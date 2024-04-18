@@ -11,17 +11,22 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
 ## 1. Introducción
 
-El Componente tratado en el documento actual recibe el nombre de VideoCall Component. Éste se encarga de gestionar la comunicación entre un usuario y un agente de forma remota. Está orientado principalmente para casos de uso de videoasistencia.
+El _Componente_ tratado en el documento actual recibe el nombre de
+**_VideoCall Component_**. Éste se encarga de gestionar la comunicación
+entre un usuario y un agente de forma remota, a través de un canal de
+comunicación. Está orientado principalmente para casos de uso de
+videoasistencia.
 
-##1.1 Requisitos mínimos
+## 1.1 Requisitos mínimos
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
@@ -30,9 +35,14 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación
+relativa a:
+
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
+documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
@@ -48,11 +58,11 @@ completo antes de la instalación de los componentes de la
 #### Cocoapods
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-```
+```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 - Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
-```
+```java
   pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -69,13 +79,19 @@ Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 
 ## 3. Iniciar nueva operación
 
-Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+Cuando se desea realizar una determinada operación, para generar la
+información asociada correctamente en la plataforma deberá ejecutarse
+previamente el comando **newOperation**.
 
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del
+componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+este proceso.
 
 ---
 
@@ -196,15 +212,18 @@ En los datos de configuración (`EnvironmentVideoCallData`) también se podrán 
   SDKController.shared.launchMethod(controller: videocallController)
 ```
 
-#### IMPORTANTE
+<blockquote>
+*** IMPORTANTE ***
 Los valores se asignan por defecto. **SOLO** se debe configurar en caso de usar una plataforma externa a la proporcionada por Facephi, dentro de la licencia.
-
+</blockquote>
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** | 7. Retorno de resultado  del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. 
+Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>.
 
 
 ### 7.1. Recepción de errores
@@ -212,10 +231,10 @@ data-linked-resource-type="page">iOS Mobile SDK</a>*** | 7. Retorno de resultado
 En la parte del error, dispondremos de la clase _VideoCallError_.
 
 ```java
-VIDEO_CALL_CANCEL_BY_USER
-VIDEO_CALL_TIMEOUT
-VIDEO_CALL_INTERNAL_ERROR
-VIDEO_CALL_DECODER_ERROR
+ VIDEO_CALL_CANCEL_BY_USER
+ VIDEO_CALL_TIMEOUT
+ VIDEO_CALL_INTERNAL_ERROR
+ VIDEO_CALL_DECODER_ERROR
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -230,9 +249,16 @@ Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá
 
 ## 8. Personalización del componente
 
-Para personalizar el componente, e debe llamar a ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) después de inicializar el videocallController:
+Los cambios que se pueden realizar a nivel de SDK (que son
+explicado en el <a href="ES_Mobile_SDK"
+ID-recurso-vinculado-datos="2605678593" Versión-recurso-vinculado-datos="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documento), este componente en particular permite la modificación de datos específicos
+textos.
 
-```
+Para personalizar el componente, se debe llamar a ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) después de inicializar videocallController:
+
+```java
 let videocallController = VideoCallController(data: EnvironmentVideoCallData(), output: output, viewController: viewController)
 ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
 SDKController.shared.launch(controller: videocallController)
@@ -241,7 +267,7 @@ SDKController.shared.launch(controller: videocallController)
 Un ejemplo de la clase CustomThemeVideoCall sería este (debe implementar ThemeVideoCallProtocol):
 
 
-```
+```java
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
     

@@ -5,9 +5,10 @@
 
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -31,9 +32,9 @@ Versión mínima de iOS: **13**
 ## 2. Integración del componente
  
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación relativa a <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.y seguir las instrucciones indicadas en dicho documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
@@ -89,26 +90,29 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** , en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>. , en el que se detalla y explica en qué consiste este proceso.
 
- 
+--- 
 
 ## 4. Controladores disponibles
 
 
+| **Controlador**   | **Descripción**                                       |
+| ----------------- | ----------------------------------------------------- |
+| SelphIDController | Controlador principal de reconocimiento de documentos |
 
-| **Controlador** | **Descripción** |
-| ----------------------------- | -------------------------------------- | 
-| SelphIDController | Controlador principal de reconocimiento de documentos
-
- 
+--- 
 
 ## 5. Configuración del componente
-Para configurar el componente actual, una vez inicializado, se deberá crear un objeto SelphIDConfigurationData y pasarlo como parámetro al SDKController durante el lanzamiento del componente (consultar el **apartado 6**).
 
-En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.
+Para configurar el componente actual, una vez inicializado, se deberá
+crear un objeto _SelphIDConfigurationData_ y pasarlo como parámetro al
+SDKController durante el lanzamiento del componente.
+
+En el siguiente apartado se mostrarán los campos que forman parte de
+esta clase y para qué se utiliza cada uno de ellos.
 
 ### 5.1 Class SelphIDConfigurationData
 
@@ -208,7 +212,7 @@ Es un enumerado que define el timeout de la captura de un lado del documento. Ti
 - **SelphIDTimeout.LONG:** 25 segundos.
 
 ##### GenerateRawImages
-Esta propiedad configura el widget para devolver la imagen completa de la cámara que se utilizó para capturar el documento. Estas imágenes se devuelven en las propiedades  `rawFrontDocument`  y  `rawBackDocument`  del objeto `results respectivamente.
+Esta propiedad configura el widget para devolver la imagen completa de la cámara que se utilizó para capturar el documento. Estas imágenes se devuelven en las propiedades  `rawFrontDocument`  y  `rawBackDocument`  del objeto `results respectivamente.`
 
 ##### TranslationsContent
 Esta propiedad admite un xml donde se le proporciona traducciones a los mensajes que están definidos en el widget
@@ -237,30 +241,45 @@ Si se le da valor true, se activa la vibración en errores y si la respuesta del
  
 
 ## 6. Uso del componente
-Una vez iniciado el componente y creada una nueva operación (**apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:
+Una vez iniciado el componente y creada una nueva operación (**apartado
+3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+el componente:
 
-- **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de tracking:
-```
+- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero sí se trackearán los eventos
+  internos al servidor de _tracking_:
+
+```java
 let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
-- **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero no se trackeará ningún evento al servidor de tracking:
-```
+- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero **no se trackeará** ningún
+  evento al servidor de _tracking_:
+
+```java
 let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
  
-El método **launch** debe usarse **por defecto.** Este método permite utilizar **tracking** en caso de estar su componente activado, y no lo usará cuando esté desactivado (o no se encuentre el componente instalado).
+El método **launch** debe usarse **por defecto**. Este método permite
+utilizar **_tracking_** en caso de estar su componente activado, y no lo
+usará cuando esté desactivado (o no se encuentre el componente
+instalado).
 
-Por el contrario, el método **launchMethod** cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.
+Por el contrario, el método **launchMethod** cubre un caso especial, en
+el cual el integrador tiene instalado y activado el tracking, pero en un
+flujo determinado dentro de la aplicación no desea trackear información.
+En ese caso se usa este método para evitar que se envíe esa información
+a la plataforma.
 
 ---
 
 ## 7. Recepción del resultado.
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ### 7.1. Recepción de errores
 

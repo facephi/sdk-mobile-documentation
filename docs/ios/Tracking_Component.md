@@ -59,13 +59,13 @@ the **_SDKMobile_** components.
 Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must be previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-pod 'FPHISDKMainComponent', '~> 1.4.0'
+pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
 To install the Selphi component, the following entry must be included in the application Podfile:
 
 ```
-pod 'FPHISDKTrackingComponent', '~> 1.4.0'
+pod 'FPHISDKTrackingComponent', '~> 1.5.0'
 ```
 
 Once the dependencies are installed, the different functionalities of the component can be used.
@@ -98,7 +98,7 @@ The TrackingController controller will only be added in case of having the sdkMo
 
 The import is added:
 
-```
+```java
 import trackingComponent
 ```
 
@@ -106,7 +106,7 @@ trackingController: trackingController
 
 Initialize:
 
-```
+```java
 let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
@@ -114,7 +114,7 @@ let trackingController = TrackingController(trackingError: { trackingError in
 
 It is added in the initSDK:
 
-```
+```java
 //AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
      if sdkResult.finishStatus == .STATUS_OK {

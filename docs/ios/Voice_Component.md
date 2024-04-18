@@ -71,10 +71,6 @@ installing the **_SDKMobile_** components.
 ```
   	pod 'FPHISDKMainComponent', '~> 1.4.0', '~> 1.4.0'.
 ```
-- To install the SelphID component, the following entry must be included in the application Podfile:
-```
-	pod 'FPHISDKVoiceIDComponent', '~> 1.4.0' ````
-```
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
 - In case of development with **xCode15** a post-installation script must be included:

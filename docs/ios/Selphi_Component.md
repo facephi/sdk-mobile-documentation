@@ -63,12 +63,12 @@ completely before the installation of the components of the **_SDKMobile_** comp
 #### Cocoapods
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
-```
+```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
   pod 'zipzap'
 ```
 - To install the SelphID component, the following entry must be included in the Podfile of the application:
-```
+```java
   pod 'FPHISDKSelphiComponent', '~> 1.5.0'
 ```
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -79,14 +79,14 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 #### SPM
 - The mandatory dependencies that must have been previously installed are:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 - To install the NFC component, it must be included in the project modules:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git
 //SSH
@@ -95,7 +95,7 @@ git@github.com:facephi-clienters/SDK-Selphi_component-SPM.git
 
 ### 2.2 Permissions and configurations
 In the client application where the components are to be integrated, it is necessary to incorporate the following elements in the info.plist file
-```
+```java
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
 ```
 ---
