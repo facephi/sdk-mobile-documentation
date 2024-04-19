@@ -61,7 +61,7 @@ completo antes de la instalación de los componentes de la
 ```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+- Para instalar el componente de VideoCall deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```java
   pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
 ```

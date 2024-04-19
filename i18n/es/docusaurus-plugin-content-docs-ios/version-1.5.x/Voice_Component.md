@@ -14,7 +14,7 @@ proyecto.
 Para más información sobre la configuración base, vaya a la sección de
 <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -41,16 +41,22 @@ Sus principales funcionalidades son las siguientes:
 - Generación de las plantillas con las características de la voz y
   puntuaciones.
 
+##1.1 Requisitos mínimos
+La versión mínima de la SDK de iOS requerida es la siguiente:
+
+Versión mínima de iOS: **13**
+
 ---
 
 ## 2. Integración del componente
+
 
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
 <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
+data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
 
@@ -65,29 +71,36 @@ de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+#### Cocoapods
+- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-  ```java
-  implementation "com.facephi.androidsdk:voice_component:$sdk_voice_component_version"
-  ```
+```
+  	pod 'FPHISDKMainComponent', '~> 1.5.0'
+```
+
+- Para instalar el componente de VoiceID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+```
+	 pod 'VoiceIdController', '~> 1.5.0'
+```
+- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+
+- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+
+![Image](/iOS/fix_ldClassic.png)
+
 
 ---
 
 ## 3. Iniciar nueva operación
 
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
+Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del
-componente**.
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
+data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
 
@@ -149,14 +162,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    VoiceController(VoiceConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
-        }
-    }
-)
+let controller = VoiceController(
+            data: data,
+            output: { sdkResult in
+                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
+                output(voiceIdSdkResult)
+            }, viewController: viewController)
+        SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -164,22 +176,21 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    VoiceController(VoiceConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Voice: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Voice OK: ${it.data}")
-        }
-    }
-)
+let controller = VoiceController(
+            data: data,
+            output: { sdkResult in
+                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
+                output(voiceIdSdkResult)
+            }, viewController: viewController)
+        SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
 
-El método **launch** debe usarse **por defecto**. Este método permite
+El método **launchTokenizableMethod** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
 usará cuando esté desactivado (o no se encuentre el componente
 instalado).
 
-Por el contrario, el método **launchMethod** cubre un caso especial, en
+Por el contrario, el método **launchTokenizableMethod** cubre un caso especial, en
 el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
@@ -190,23 +201,21 @@ a la plataforma.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+SdkResult. Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase VoiceError.
 
 ```java
-NO_DATA_ERROR
-TIMEOUT
-INTERNAL_LICENSE_ERROR
-CANCEL_BY_USER
-CANCEL_LAUNCH
-PERMISSION_DENIED
-ACTIVITY_RESULT_ERROR
-INITIALIZATION_ERROR -> it.error
+ INTERNAL_ERROR
+ MIC_PERMISSION_DENIED
+ TIMEOUT
+ CANCEL_BY_USER
+ VOICE_ENROLLMENT_PARSE_RESPONSE
+ VOICE_MATCHING_PARSE_RESPONSE
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -230,13 +239,6 @@ Facephi.
 
 ## 8. Personalización del componente
 
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>), este componente en concreto permite la
-modificación de textos específicos.
-
 ### 8.1 Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
@@ -244,18 +246,22 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```java
-    <string name="voice_component_tutorial_message">Habla claro y en voz alta. \n\n Asegúrate de estar en un entorno silencioso</string>
-    <string name="voice_component_tutorial_title">Reconocimiento de voz</string>
-    <string name="voice_component_tutorial_button">Comenzar</string>
-    <string name="voice_component_success_message">Grabación registrada</string>
-    <string name="voice_component_speech_message">Habla claro y cercano al micrófono</string>
-    <string name="voice_component_speech_more_message">Continue hablando</string>
-    <string name="voice_component_read_message">Di en voz alta:</string>
-    <string name="voice_component_speech_noisy_message">Demasiado ruido. Busca un entorno silencioso</string>
-    <string name="voice_component_success_records_message">grabaciones exitosas</string>
-    <string name="voice_component_timeout_title">Tiempo superado</string>
-    <string name="voice_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="voice_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="voice_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+"voice_component_success_records_message" = "%d/%d successful recordings";
+"voice_component_read_message" = "Say loudly:";
+"voice_component_speech_message" = "Speak clearly and close to the microphone";
+"voice_component_speech_noisy_message" = "There is too much noise. Try to be in a quiet environment.";
+"voice_component_success_message" = "Recording registred";
+"voice_component_phrase_generic_error_feedback" = "Please, repeat the sentence.";
+"voice_component_phrase_long_silence_feedback" = "Talk for 2 seconds or more.";
+"voice_component_phrase_long_reverberation_feedback" = "Too much echo. Try in another environment.";
+"voice_component_tutorial_title" = "Voice Recognition";
+"voice_component_tutorial_message" = "Speak clearly and aloud\n\nMake sure your surroundings are silent";
+"voice_component_tutorial_button" = "Start";
+"voice_component_success_button" = "Continue";
+"voice_component_ok"="Ok";
+"voice_component_cancel"="Cancel";
+"voice_component_end_confirmation_title" = "Are you sure you will finish the process?";
+"voice_component_text_results_finish_button" = "Finish";
+"voice_component_agree" = "Accept";
 
 ```

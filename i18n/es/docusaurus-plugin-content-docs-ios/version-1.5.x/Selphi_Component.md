@@ -14,7 +14,7 @@ proyecto.
 Para más información sobre la configuración base, vaya a la sección de
 <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -36,18 +36,18 @@ siguientes:
   la imagen de la cara del usuario para el proceso de detección de
   vivacidad (Liveness)
 
+### 1.1 Requisitos mínimos
+La versión mínima de la SDK de iOS requerida es la siguiente:
+
+Versión mínima de iOS: **13**
+
 ---
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
-documento.
+Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
@@ -60,29 +60,57 @@ de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+#### Cocoapods
+- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-  ```java
-  implementation "com.facephi.androidsdk:selphi_component:$sdk_selphi_component_version"
-  ```
 
+```java
+  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'zipzap'
+```
+- Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+```java
+  pod 'FPHISDKSelphiComponent', '~> 1.5.0'
+```
+- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+
+- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+
+![Image](/iOS/fix_ldClassic.png)
+
+#### SPM
+- Las dependencias obligatorias que deberán haberse instalado previamente son:
+```java
+//HTTPS
+https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
+//SSH
+git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
+```
+- Para instalar el componente de NFC deberá incluirse en los módulos del proyecto:
+```java
+//HTTPS
+https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git
+//SSH
+git@github.com:facephi-clienters/SDK-Selphi_component-SPM.git
+```
+
+### 2.2 Permisos y configuraciones
+En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero info.plist
+```java
+Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
+```
 ---
 
 ## 3. Iniciar nueva operación
 
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
+Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del
-componente**.
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
+data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
 
@@ -109,61 +137,36 @@ esta clase y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class SelphiConfigurationData
 
-#### 5.1.0. _debug_
+#### 5.1.1 Configuración Básica
 
+##### resourcesPath
+
+Establece la ruta donde se encuentra el archivo de recursos del widget. Este archivo contiene tanto los recursos gráficos como los recursos de localización. Esta ruta debe especificarse relativa a la carpeta ‘assets’ de la aplicación principal.
+
+##### showTutorial
+Esta propiedad permite mostrar el tutorial previo al proceso de captura.
+
+##### showDiagnostic
+Si se le da valor true, al producirse un error o una falta de permisos, el sdk mostrará una pantalla con el error devuelto por el widget.
+
+##### showResultAfterCapture
+Indica si mostrar o no una pantalla con la imagen capturada del documento después del proceso de análisis. En esta pantalla se le da al usuario la posibilidad de repetir el proceso de captura si la imagen que se obtuvo del documento no fuera correcta.
+
+#### 5.1.2 Configuración Avanzada
+
+##### debug
 Activación del modo depuración del componente.
 
-#### 5.1.1. _resourcesPath_
+##### fullscreen
+Indica si la vista va a tener prioridad para mostrarse en pantalla
+completa, si el sistema lo permite.
 
-Indica el nombre de los recursos en formato zip del componente. Ejemplo:
-“resources-selphi-2-0.zip“.
-
-Este nombre irá a buscar el fichero a la ruta de _assets_.
-
-![Image](/android/selphi_resources.png)
-
-#### 5.1.2. _cropPercent_
-
+##### cropPercent
 Permite modificar el porcentaje de recortado de la cara. Cuanto mayor
 sea el número mayor será el recorte del rectángulo con respecto a la
 cara.
 
-#### 5.1.3. _showResultAfterCapture_
-
-Indica si mostrar o no una pantalla con la imagen capturada después del
-proceso de análisis. En esta pantalla se le da al usuario la posibilidad
-de repetir el proceso de captura si la imagen que se obtuvo no fuera
-correcta.
-
-#### 5.1.4. _showTutorial_
-
-Indica si el widget activa la pantalla de tutorial. En esta vista se
-explica de forma intuitiva cómo se realiza la captura.
-
-#### 5.1.5. livenessMode
-
-Establece el modo liveness del widget. Los valores permitidos son:
-
-- LIVENESS_NONE: Indica que no debe activarse el modo detección de
-  foto en los procesos de autenticación.
-
-- LIVENESS_PASSIVE: Indica que la prueba de vida pasiva se realiza en
-  el servidor, enviando para tal fin la “BestImage” o el “TemplateRaw”
-  correspondiente.
-
-#### 5.1.6. stabilizationMode
-
-Establece un modo de estabilización previo a cualquier proceso de
-autenticación en el widget. Con este modo se obliga al widget a no
-empezar ningún proceso si el usuario no se encuentra con la cabeza,
-mirando al frente y sin moverla.
-
-#### 5.1.7. cameraFlashEnabled
-
-Indica si se activa el flash de la cámara del dispositivo.
-
-#### 5.1.8 _locale_
-
+##### locale
 Fuerza al widget a utilizar la configuración de idioma indicado por el
 parámetro locale. Este parámetro acepta tanto un código de idioma (p.
 ej. ‘en’) como un código de identificación regional (p. ej. ‘en_US’). Si
@@ -171,23 +174,23 @@ el archivo de recursos del widget no tuviera una localización para el
 ‘locale’ seleccionado su configuración pasaría a utilizar el idioma por
 defecto.
 
-#### 5.1.9 _fullscreen_
+##### livenessMode
+Establece el modo liveness del widget. Los valores permitidos son:
 
-Indica si la vista va a tener prioridad para mostrarse en pantalla
-completa, si el sistema lo permite.
+- **SelphiFaceLivenessMode.NONE**: Indica que no debe activarse el modo detección de foto en los procesos de autenticación.
 
-#### 5.1.10. templateRawOptimized
+- **SelphiFaceLivenessMode.PASSIVE**: Indica que la prueba de vida pasiva se realiza en el servidor, enviando para tal fin la “BestImage” o el “TemplateRaw” correspondiente.
 
-Indica si el template (templateRaw) generado tras el selfie debe
-optimizarse o no.
+##### stabilizationMode
+Establece un modo de estabilización previo a cualquier proceso de autenticación en el widget. Con este modo se obliga al widget a no empezar ningún proceso si el usuario no se encuentra con la cabeza mirando al frente y sin moverla.
 
-#### 5.1.11. qrMode
+##### templateRawOptimized
+Indica si el template (templateRaw) generado tras el selfie debe optimizarse o no.
 
-Booleano que indica si se quiere o no activar la lectura de QR previo al
-proceso de autenticación.
+##### qrMode
+Booleano que indica si se quiere o no activar la lectura de QR previo al proceso de autenticación.
 
-#### 5.1.12 _videoFilename_
-
+##### videoFilename
 Establece la ruta absoluta del nombre del archivo en el que se grabará
 un video del proceso de captura. La aplicación es la responsable de
 solicitar los permisos necesarios al teléfono en caso de que esa ruta
@@ -195,24 +198,22 @@ requiera de permisos adicionales. El widget, por defecto, no realizará
 ningún proceso de grabación a menos que se especifique una ruta de
 archivo mediante este método.
 
-#### 5.1.13 translationsContent
+##### cameraFlashEnabled
+Indica si se activa el flash de la cámara del dispositivo.
 
+##### translationsContent
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar la traducción de los literales que se muestran durante el
 proceso.
 
-Nota: Esta propiedad no altera el contenido del archivo de recursos.
-
-#### 5.1.14 viewsContent
-
+##### viewsContent
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
-Nota: Esta propiedad no altera el contenido del archivo de recursos.
+#### 5.1.3 Otros parametros
 
-#### 5.1.15. showDiagnostic
-
-Mostrar pantallas de diagnóstico al final del proceso
+##### VibrationEnabled
+Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
 ---
 
@@ -227,14 +228,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    SelphiController(SelphiConfigurationData(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
-)
+let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -242,15 +237,10 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    SelphiController(SelphiConfigurationData(...)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Selphi: ERROR - ${it.error.name}")
-            is SdkResult.Success -> it.data
-        }
-    }
-)
+let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
+
 
 El método **launch** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
@@ -265,70 +255,49 @@ a la plataforma.
 
 ---
 
-## 7. Recepción del resultado
+## 7. Recepción del resultado.
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+SdkResult. Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>
+
 ### 7.1. Recepción de errores
 
-En la parte del error, dispondremos de la clase SelphiError.
-
-```java
-    SelphiError.ACTIVITY_RESULT_ERROR
-    SelphiError.BAD_EXTRACTOR_CONFIGURATION_ERROR
-    SelphiError.CAMERA_PERMISSION_DENIED
-    SelphiError.CANCEL_BY_USER
-    SelphiError.CONTROL_NOT_INITIALIZATED_ERROR
-    SelphiError.EXTRACTION_LICENSE_ERROR
-    SelphiError.HARDWARE_ERROR
-    is SelphiError.INITIALIZATION_ERROR -> it.error //Para más detalles
-    SelphiError.NO_ERROR
-    SelphiError.RESOURCES_NOT_FOUND
-    SelphiError.SETTINGS_PERMISSION_ERROR
-    SelphiError.TIMEOUT
-    SelphiError.UNEXPECTED_CAPTURE_ERROR
-    SelphiError.UNKNOWN_ERROR
+*finishStatus*: Que nos indicará si la operación ha finalizado correctamente. Posibles valores:
+```
+FinishStatus.STATUS_OK
+FinishStatus.STATUS_ERROR
+```
+*errorType*: Errores propios del widget.
+```
+SELPHID_CANCEL_BY_USER
+SELPHID_TIMEOUT
+SELPHID_INTERNAL_ERROR
+EXTRACTION_FINISHED_WITH_NO_RESULTS
+COULD_NOT_CREATE_WIDGET_INSTANCE
+RESOURCES_FILE_NOT_FOUND
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
-En la parte de _data_, dispondremos de la clase SelphiResult.
+El campo data es variable y dependerá de qué componente se ha devuelto el resultado. En el caso de este componente, los campos devueltos son los siguientes:
 
-El resultado devuelve las imágenes en formato **Bitmap**, es posible
-convertir las imágenes a **Base64** de la siguiente manera:
+#### 7.2.1 template
+Devuelve la plantilla que se genera después del proceso de extracción. Válida para el proceso de AUTHENTICATION.
 
-`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
+#### 7.2.2 templateRaw
+Devuelve la plantilla en bruto que se genera después del proceso de extracción. Válida para el proceso de AUTHENTICATION.
 
-El campo _data_ es variable y dependerá de qué componente se ha devuelto
-el resultado. En el caso de este componente, los campos devueltos son
-los siguientes:
+#### 7.2.3 bestImageData
+Devuelve la mejor imagen extraída del proceso de autenticación en formato array de bytes. Esta imagen es la imagen con el tamaño original extraída de la cámara. Válido para el proceso de **liveness**.
 
-#### 7.2.1 _templateRaw_
+#### 7.2.4 bestImageCroppedData
+Devuelve una imagen recortada centrada en la cara del usuario en formato array de bytes. Esta imagen se obtiene a partir de la bestImage. Ésta es la imagen que se deberá utilizar como imagen característica del usuario que realizó el proceso a modo de avatar.
 
-Devuelve la plantilla en bruto que se genera después del proceso de
-extracción. Válida para el proceso de AUTHENTICATION.
-
-#### 7.2.2 _template_
-
-Devuelve la plantilla que se genera después del proceso de extracción.
-Válida para el proceso de AUTHENTICATION.
-
-#### 7.2.3 _bestImageBmp_
-
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato SdkImage (Se puede extraer el bitmap de dentro). Esta imagen es
-la imagen con el tamaño original extraída de la cámara. Válido para el
-proceso de **liveness**.
-
-#### 7.2.4 _bestImageCroppedBmp_
-
-Devuelve una imagen recortada centrada en la cara del usuario en formato
-SdkImage (Se puede extraer el bitmap de dentro). Esta imagen se obtiene
-a partir de la _bestImage_. Ésta es la imagen que se podrá utilizar como
-imagen característica del usuario que realizó el proceso a modo de
-_avatar_.
+#### 7.2.5 QrData
+Devuelve la información proveniente de la lectura del QR en formato String
 
 ---
 
@@ -336,17 +305,29 @@ _avatar_.
 
 ### 8.1. RawTemplateController
 
-Controlador para generar un RawTemplate a partir de una imagen (bitmap).
+Controlador para generar un RawTemplate se puede usar tanto la imagen en base64 como en data. .
 
 Ejemplo de uso:
 
 ```java
-SDKController.launch(
-    RawTemplateController(SdkImage(image)) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("GenerateRaw: KO - ${it.error}")
-            is SdkResult.Success -> it.data
-        }
-    }
-)
+let controller = RawTemplateController(
+	base64: bestImageData.base64EncodedString(),
+	output: { sdkResult in
+		guard let result = sdkResult.data else {return}
+		print(result.base64EncodedString())
+	})
+SDKController.shared.launchMethod(controller: controller)
+```
+
+o 
+
+
+```java
+let controller = RawTemplateController(
+	data: bestImageData,
+	output: { sdkResult in
+		guard let result = sdkResult.data else {return}
+		print(result.base64EncodedString())
+	})
+SDKController.shared.launchMethod(controller: controller)
 ```

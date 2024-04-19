@@ -13,8 +13,9 @@ proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
 <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>.
+
 
 ---
 
@@ -40,37 +41,38 @@ funcionalidades son las siguientes:
 - Generación de las plantillas con las características de las huellas,
   imágenes y puntuaciones.
 
+### 1.1 Requisitos mínimos
+La versión mínima de la SDK de iOS requerida es la siguiente:
+
+Versión mínima de iOS: **13**
+
 ---
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
+Antes de integrar este componente se recomienda leer la documentación relativa a <u>**Core Component**</u> y seguir las instrucciones indicadas en dicho documento.
 
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
-documento.
-
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
+En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
 
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
+Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (*Widgets*), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero *Podfile* del proyecto) son:
+```java
+  pod 'FPHISDKMainComponent', '~> 1.4.0'
+```
+- Para instalar el componente actual deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+```java
+pod 'FPHISDKPhingersComponent', '~> 1.4.0'
+```
+- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-  ```java
-  implementation "com.facephi.androidsdk:phingers_component:$sdk_phingers_component_version"
-  ```
+### 2.2 Permisos y configuraciones
+En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **info.plist**
+```
+Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
+```
 
 ---
 
@@ -85,9 +87,8 @@ componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste
 este proceso.
 
 ---
@@ -113,7 +114,16 @@ esta clase y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class PhingersConfigurationData
 
-#### 5.1.1. reticleOrientation
+#### 5.1.1. Configuración Básica
+
+##### showTutorial
+Indica si el componente activa la pantalla de tutorial. En esta vista se
+explica de forma intuitiva cómo se realiza la captura.
+
+##### VibrationEnabled
+Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
+
+##### reticleOrientation
 
 Establece el modo de detección de huellas e indica qué dedos se van a
 detectar durante el proceso. Los valores permitidos son:
@@ -126,28 +136,32 @@ detectar durante el proceso. Los valores permitidos son:
 
 - **THUMB**: Se activa la captura de **un pulgar**.
 
-#### 5.1.2. useFlash
+##### extractionTimeout
+Establece el tiempo máximo que se puede realizar la lectura.
 
+##### useFlash
 Activa o desactiva el flash de la cámara durante el proceso de captura
 de huellas. Por defecto se encuentra a **true**.
 
-#### 5.1.3. returnProcessedImage
+##### showDiagnostic
+Mostrar pantallas de diagnóstico al final del proceso
 
+
+#### 5.1.2. Configuración Avanzada
+
+##### returnProcessedImage
 Si se establece a **true** se devolverá en el resultado las imágenes de
 la misma forma en que se han capturado.
 
-#### 5.1.4. returnRawImage
-
+##### returnRawImage
 Si se establece a **true** se devolverá en el resultado las imágenes de
 la misma forma en que se han capturado.
 
-#### 5.1.5. useLiveness
-
+##### useLiveness
 Activa o desactiva el detector de vivacidad durante el proceso de
 captura de huellas. Por defecto se encuentra a **true**.
 
-#### 5.1.6. returnWSQ
-
+##### returnWSQ
 Si se establece a **true** entonces en el resultado de la captura se
 devolverá, para cada una de las huellas, el dato comprimido mediante
 _Wavelet Scalar Quatization_ (WSQ). WSQ es un algortimo de compresión en
@@ -155,47 +169,21 @@ grises, siendo un estándar (NIST) para este tipo de capturas. Orientado
 a la validación contra las diferentes bases de datos gubernamentales
 existentes.
 
-#### 5.1.7. returnFullFrameImage
-
+##### returnFullFrameImage
 Especifica si se debe devolver la imagen completa de la cámara en la que
 se han detectado los dedos.
 
-#### 5.1.8. extractionTimeout
-
-Establece un modo de estabilización previo a cualquier proceso de
-autenticación en el widget. Con este modo se obliga al widget a no
-empezar ningún proceso si el usuario no se encuentra con la cabeza
-mirando al frente y sin moverla.
-
-#### 5.1.9. showTutorial
-
-Indica si el componente activa la pantalla de tutorial. En esta vista se
-explica de forma intuitiva cómo se realiza la captura.
-
-#### 5.1.10. threshold
-
-El parámetro configura un captureQualityThreshold, para definir un
-threshold de calidad para realizar la captura.
-
-#### 5.1.11. showSpinner
-
+#### showSpinner
 Indica si se quiere mostrar el spinner de carga.
 
-#### 5.1.12. cropWidth
-
+##### cropWidth
 Indica un ancho para realizar un recorte de la captura.
 
-#### 5.1.13. cropHeight
-
+##### cropHeight
 Indica una altura para realizar un recorte de la captura.
 
-#### 5.1.14. cropFactor
-
+##### cropFactor
 Indica la relación para el recorte de la captura.
-
-#### 5.1.15. showDiagnostic
-
-Mostrar pantallas de diagnóstico al final del proceso
 
 ---
 
@@ -210,14 +198,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    PhingersController(PhingersConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
-        }
-    }
-)
+let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -225,14 +207,8 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    PhingersController(PhingersConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("Phingers: ERROR - ${it.error.javaClass.simpleName}")
-            is SdkResult.Success -> Napier.d("Phingers OK: ${it.data}")
-        }
-    }
-)
+let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -250,44 +226,27 @@ a la plataforma.
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. 
+Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK's</a>.
 
 ### 7.1. Recepción de errores
 
-En la parte del error, dispondremos de la clase PhingersError.
-
 ```java
-INTERNAL_ERROR
-TIMEOUT
+NO_OPERATION_CREATED_ERROR
+COMPONENT_CONTROLLER_DATA_ERROR
+CAMERA_PERMISSION_DENIED
+LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
+ERROR_CAPTURE_SUCCESS_WITHOUT_RESULT
+CAMERA_PERMISSION_DENIED
 CANCEL_BY_USER
-CANCEL_LAUNCH
-PERMISSION_DENIED
-ACTIVITY_RESULT_ERROR
-PHINGERS_FINGERPRINT_CAPTURE_FAILURE
-LOW_QUALITY
-PHINGERS_LIVENESS_FAILURE
-PHINGERS_CONFIGURATION_FAILURE
-PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR
-PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED
-PHINGERS_NO_FINGERS_DETECTED
-PHINGERS_AUTOFOCUS_FAILURE
-PHINGERS_CAMERA_FAILURE
-PHINGERS_CAPTURE_FAILURE
-PHINGERS_LICENSING_FAILURE
-INITIALIZATION_ERROR -> it.error // More info
+TIMEOUT
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
 En la parte de _data_, dispondremos de la clase _PhingersResult_.
-
-El resultado devuelve las imágenes en formato **Bitmap**, es posible
-convertir las imágenes a **Base64** de la siguiente manera:
-
-`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
 
 El campo _data_ es variable y dependerá de qué componente se ha devuelto
 el resultado. En el caso de este componente, los campos devueltos son
@@ -295,24 +254,40 @@ los siguientes:
 
 #### 7.2.1 _fingersResult_
 
-##### 7.2.1.1. rawFingerprintImage
+##### 7.2.1.1 _fullFrameImage_
+Devuelve una imagen recortada centrada en la cara del usuarioen formato
+string Base64. Esta imagen se obtiene a partir de la _bestImage_. Ésta
+es la imagen que se deberá utilizar como imagen característica del
+usuario que realizó el proceso a modo de _avatar_.
 
-Devuelve la imagen de la huella actual en crudo, sin modificar.
+#### 7.2.1.2 _focusQuality_
+Devuelve la mejor imagen extraída del proceso de autenticación en
+formato string Base64. Esta imagen es la imagen con el tamaño original
+extraída de la cámara. Válido para el proceso de **liveness**.
 
-##### 7.2.1.2. processedFingerprintImage
+#### 7.2.1.3 _livenessConfidence_
+Devuelve la mejor imagen extraída del proceso de autenticación en
+formato Bitmap. Esta imagen es la imagen con el tamaño original extraída
+de la cámara. Válido para el proceso de **liveness**.
 
-Devuelve la imagen de la huella procesada.
+##### 7.2.1.4. rawFingerprintImage
 
-##### 7.2.1.3. wsq
+Devuelve el array de las imagenes de la huella actual en crudo, sin modificar.
 
-Se devuelve la captura de huella en formato WSQ.
+##### 7.2.1.5. processedFingerprintImage
 
-##### 7.2.1.4. fingerprintTemplate
+Devuelve el array de las imagenes de la huella procesada.
+
+##### 7.2.1.6. wsqDataArray
+
+Se devuelve el array de las capturas de huella en formato WSQ.
+
+##### 7.2.1.7. fingerprintTemplate
 
 Devuelve la plantilla en bruto que se genera después del proceso de
 extracción. Válida para el proceso de AUTHENTICATION.
 
-##### 7.2.1.5. nfiqMetrics
+##### 7.2.1.8. nfiqMetrics
 
 Son las métricas de la captura. Actualmente se devuelve el siguiente
 valor:
@@ -322,55 +297,27 @@ valor:
   indica la calidad más alta y 5 la peor calidad. Las huellas con este
   último valor suelen ser descartadas para posteriores validaciones.
 
-##### 7.2.2 _fullFrameImage_
-
-Devuelve una imagen recortada centrada en la cara del usuarioen formato
-string Base64. Esta imagen se obtiene a partir de la _bestImage_. Ésta
-es la imagen que se deberá utilizar como imagen característica del
-usuario que realizó el proceso a modo de _avatar_.
-
-#### 7.2.3 _focusQuality_
-
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato string Base64. Esta imagen es la imagen con el tamaño original
-extraída de la cámara. Válido para el proceso de **liveness**.
-
-#### 7.2.4 _livenessConfidence_
-
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato Bitmap. Esta imagen es la imagen con el tamaño original extraída
-de la cámara. Válido para el proceso de **liveness**.
-
 ---
 
 ## 8. Personalización del componente
 
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>), este componente en concreto permite la
-modificación de textos específicos.
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales se explican en el documento de Core Component), este componente en concreto permite la modificación de textos específicos.
 
 ### 8.1 Textos
-
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
-
-```java
-    <string name="phingers_component_tutorial_left_message">Prepara tu mano izquierda para la captura</string>
-    <string name="phingers_component_tutorial_left_title">Huellas mano izquierda</string>
-    <string name="phingers_component_turorial_right_message">Prepara tu mano derecha para la captura</string>
-    <string name="phingers_component_tutorial_right_title">Huellas mano derecha</string>
-    <string name="phingers_component_tutorial_button">Tomar huellas</string>
-    <string name="phingers_component_capture_phingers">Mantenga los dedos firmes</string>
-    <string name="phingers_component_capture_thumb">Mantenga el dedo firme</string>
-    <string name="phingers_component_capture_phingers_not_focus">Mueva los dedos hasta que estén enfocados</string>
-    <string name="phingers_component_capture_thumb_not_focus">Mueva el dedo hasta que esté enfocado</string>
-    <string name="phingers_component_timeout_title">Tiempo superado</string>
-    <string name="phingers_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="phingers_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="phingers_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-
+```
+<!-- PHINGERS -->
+"phingers_component_tutorial_title_left" = "Huellas mano izquierda.";
+"phingers_component_tutorial_title_right" = "Huellas mano derecha.";
+"phingers_component_tutorial_title_thumb" = "Huellas dedo pulgar.";
+"phingers_component_action_text" = "Comenzar";
+"phingers_component_tutorial_description" = "Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.";
+"phingers_component_capture_phingers" = "Mantenga los dedos firmes";
+"phingers_component_capture_thumb" = "Mantenga el dedo firme";
+"phingers_component_capture_phingers_not_focus" = "Mueva los dedos hasta que estén enfocados";
+"phingers_component_capture_thumb_not_focus" = "Mueva el dedo hasta que esté enfocado";
+"phingers_component_ok"="Ok";
+"phingers_component_cancel"="Cancel";
+"phingers_component_end_confirmation_title" = "¿Seguro que finalizar el proceso?";
+"phingers_component_text_results_finish_button" = "Finalizar";
+"phingers_component_agree" = "Aceptar";
 ```

@@ -11,17 +11,16 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+Para más información sobre la configuración base, vaya a la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
 ## 1. Introducción
 
 El _Componente_ tratado en el documento actual recibe el nombre de
-**\*Behavior** Component / Componente de **comportamiento\***. Éste se
+**Behavior** Component / Componente de **comportamiento**. Éste se
 encarga de realizar el trakeo y análisis del comportamiento del usuario
 a través de los componentes de la **SDKMobile**, enviándola a los
 servicios de **Feedzai**.
@@ -39,13 +38,13 @@ Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
 <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho
 documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
+
 
 ### 2.1. Dependencias requeridas para la integración
 
@@ -55,13 +54,28 @@ de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
 
-  ```java
-  implementation "com.facephi.androidsdk:behavior_component:$sdk_behavior_component_version"
-  ```
+Actualmente las librerías de FacePhi se distribuyen de forma remota 
+a través de diferentes gestores de dependencias, en este caso Cocoapods. 
+Las dependencias **obligatorias** que deberán haberse instalado previamente 
+(añadiéndolas en el fichero Podfile del proyecto) son:
+
+```java
+pod 'FPHISDKMainComponent', '~> 1.5.0'
+```
+
+Para instalar el componente de Behavior deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
+```java
+pod 'FPHISDKBehaviorComponent', '~> 1.5.0'
+```
+
+Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+
+- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+
+![Image](/iOS/fix_ldClassic.png)
+
 
 ---
 
@@ -76,145 +90,52 @@ componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>, en el que se detalla y explica en qué consiste
-este proceso.
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla 
+y explica en qué consiste este proceso.
 
 ---
 
-## 4. Controladores disponibles
+## 4. Configuración del componente
 
-|                                     |                                                                                                   |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------- |
-| **Controlador**                     | **Descripción**                                                                                   |
-| BehaviorController                  | Controlador principal de comportamiento                                                           |
-| BehaviorAutoLogoutController        | Controlador para registrar el listener del aviso de cierre de sesión por Active Defense           |
-| BehaviorPositionController          | Controlador para registrar la posición a través de una cadena                                     |
-| BehaviorUserTextFieldController     | Controlador para registrar un campo de texto con usuario para poder analizar su comportamiento    |
-| BehaviorPasswordTextFieldController | Controlador para registrar un campo de texto con contraseña para poder analizar su comportamiento |
-| BehaviorTextfieldController         | Controlador para registrar un campo de texto genérico para poder analizar su comportamiento       |
+El controlador de BehaviorController solo se añadirá en caso de tener el comportamiento de la sdkMobile.
 
-## 5. Configuración del componente
+Se añade el import:
 
-Para configurar el componente actual, se realiza en el _initSdk_,
-revisar el apartado de inicialización en
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>.
-
-### 5.1. Configuración de BehaviorController
-
-Se debe incluir este parámetro
-
-```java
-SDKController.initSdk(
-    ...
-    behaviorController = BehaviorController(){
-        Napier.d("APP: BEHAVIOR INIT ERROR: $it")
-    },
-)
+```
+import behaviorComponent
 ```
 
-### 5.2. Configuración de registro Active Defense
-
-Se podrá configurar el callback para controlar el aviso de Active
-Defense (Comportamiento con riesgo):
-
-```java
-SDKController.launch(BehaviorAutoLogoutController {
-    Napier.d("APP: AUTO LOGOUT LAUNCHED")
-})
+Inicializamos:
 ```
 
-### 5.3. Configuración de registro de la posición actual
+behaviorController = BehaviorController(autoLogoutAction: {
+                      print("ACTIVE DEFENSE")
+                      return true
+                    },
+                    behaviorError: { behaviorError in
+                      print("BEHAVIOR ERROR: \(behaviorError)")
+                    }, debugMode: false)
+```
 
-Se debe informar desde la aplicación la posición actual de las
-pantallas. Ejemplo de uso con “LOGIN_SCREEN“:
+Se añade en el initSDK:
 
-```java
-SDKController.launch(BehaviorPositionController("LOGIN_SCREEN") {
-    when (it) {
-        is SdkResult.Error -> logs.add("Register Position: KO - ${it.error.javaClass.simpleName}")
-        is SdkResult.Success -> logs.add("Register Position: OK")
+```
+
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
     }
-})
-```
+}, behaviorController: behaviorController
 
-### 5.4. Configuración de registro de campos para su analisis
-
-Dependiendo del tipo de campo se debe registrar de varias formas.
-
-Para un correcto entrenamiento del comportamiento, se deben registrar
-los tipos de campos con el **User** y el **Password**. Estos se
-utilizarán en un entrenamiento en las primeras veces que se rellenen de
-la misma forma los campos. El otro campo de texto ya se puede utilizar
-de manera genérica en otro tipo de textos.
-
-#### 5.4.1. Configuración de registro de User
-
-Se debe **informar** un **SdkText** que debe contener el campo de la
-vista **_EditText_**.
-
-Ejemplo de uso:
-
-```java
-SDKController.launch(BehaviorUserTextFieldController(SdkText(binding.user)) {
-    when (it) {
-        is SdkResult.Success -> {
-            Napier.d("APP: User registered")
-        }
-        is SdkResult.Error -> {
-            Napier.d("APP: User registered: ERROR - ${it.error.javaClass.simpleName}")
-        }
-    }
-})
-```
-
-#### 5.4.2. Configuración de registro de Password
-
-Se debe **informar** un **SdkText** que debe contener el campo de la
-vista **_EditText_**.
-
-Ejemplo de uso:
-
-```java
-SDKController.launch(BehaviorPasswordTextFieldController(SdkText(binding.password)) {
-    when (it) {
-        is SdkResult.Success -> {
-            Napier.d("APP: Password registered")
-        }
-        is SdkResult.Error -> {
-            Napier.d("APP: Password registered: ERROR - ${it.error.javaClass.simpleName}")
-        }
-    }
-})
-```
-
-#### 5.4.3. Configuración de registro de campo genérico
-
-Se debe **informar** un **SdkText** que debe contener el campo de la
-vista **_EditText_**.
-
-Ejemplo de uso:
-
-```java
-SDKController.launch(BehaviorTextFieldController(SdkText(binding.other)) {
-    when (it) {
-        is SdkResult.Success -> {
-            Napier.d("APP: TextField registered")
-        }
-        is SdkResult.Error -> {
-            Napier.d("APP: TextField registered: ERROR - ${it.error.javaClass.simpleName}")
-        }
-    }
-})
 ```
 
 ---
 
-## 6. Uso del componente
+## 5. Uso del componente
 
 Como se ha comentado previamente, una vez inicializado y configurado el
 componente de **behavior/comportamiento** no será necesario lanzarlo, ya
@@ -225,9 +146,14 @@ Una vez la aplicación ya tenga un identificador de usuario, deberá
 llamar al siguiente proceso para registrar el usuario.
 
 ```java
-SDKController.launch(
-    CustomerIdController("IDENTIFICADOR DEL USUARIO")
-)
+       behaviorController = BehaviorController(autoLogoutAction: {
+                self.mainVC.showAlert(msg: "ACTIVE DEFENSE")
+                return true
+            },
+            behaviorError: { behaviorError in
+                self.log("BEHAVIOR ERROR: \(behaviorError)")
+            }, debugMode: false)
+        
 ```
 
 ---

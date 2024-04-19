@@ -1,20 +1,13 @@
 # Tracking Component
 
 ## 0. Requisitos base de SDK Mobile
-
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
+ 
+**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
 <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -33,37 +26,46 @@ individualmente, trabaja de forma transversal al resto de componentes
 instalados en la _SDKMobile_. Para trackear la información se mantiene
 en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
 
+### 1.1 Requisitos mínimos
+La versión mínima de la SDK de iOS requerida es la siguiente:
+
+Versión mínima de iOS: **13**
+
 ---
 
 ## 2. Integración del componente
-
+ 
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
 <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
+data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
 
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
+En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
+Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
 
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
+Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+```
+pod 'FPHISDKMainComponent', '~> 1.5.0'
+```
 
-  ```java
-  implementation "com.facephi.androidsdk:tracking_component:$sdk_tracking_component_version"
-  ```
+Para instalar el componente de Tracking deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
+```
+pod 'FPHISDKTrackingComponent', '~> 1.5.0'
+```
+
+Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+
+- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+
+![Image](/iOS/fix_ldClassic.png)
 
 ---
 
@@ -79,84 +81,48 @@ componente**.
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
+data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
 
 ---
 
-## 4. Controladores disponibles
+## 4. Configuración del componente
 
-| **Controlador**         | **Descripción**         |
-| ----------------------- | -------------------------------------------------------------------------------------------- |
-| TrackingController      | Controlador principal de tracking  |
-| TrackingErrorController | Controlador para **gestionar** los posibles **errores** que ocurran |
-| ExtraDataController     | Controlador para obtener el **ExtraData** que permite la **comunicación** desde cliente con el servidor con **SelphIDSdk** instalado. |
+El controlador de TrackingController solo se añadirá en caso de tener el tracking de la sdkMobile.
 
----
-
-## 5. Configuración del componente
-
-Para configurar el componente actual, se realiza en el _initSdk_,
-revisar el apartado de inicialización en
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>.
-
-### 5.1. Configuración de TrackingController
-
-Se debe incluir este parámetro durante la inicialización de la SDK.
+Se añade el import:
 
 ```java
-SDKController.initSdk(
-    ...
-    trackingController = TrackingController(),
-)
+import trackingComponent
 ```
 
-### 5.2. Configuración de control de errores
+trackingController: trackingController
 
-Se podrá configurar el callback para controlar los errores de tracking:
+Inicializamos:
 
 ```java
-SDKController.launch(
-     TrackingErrorController {
-        Napier.d("Tracking Error: ${it.name}")
-     }
-)
+let trackingController = TrackingController(trackingError: { trackingError in
+      print("TRACKING ERROR: \(trackingError)")
+})
 ```
-
-En el **apartado 7** se muestran los posibles valores de error que
-existen.
-
-### 5.3. Obtención del ExtraData para comunicación con la Plataforma
-
-Este controlador (_ExtraDataController_) permite obtener un array con
-los identificadores de la operación actual. Este dato se enviará con al
-backend donde se realizarán las verificaciones pertinentes.
-
-La llamada para obtener al extraData, **<u>necesita la información de la
-operación en curso</u>,** lo cual **obliga** a que se haya **realizado**
-con anterioridad un **_newOperation_**.
+Se añade en el initSDK:
 
 ```java
-SDKController.launch(
-    ExtraDataController {
-        when (it) {
-            is SdkResult.Success -> logs.add("ExtraData: OK")
-            is SdkResult.Error -> logs.add(
-                "ExtraData: KO - ${it.error.javaClass.simpleName}"
-            )
-        }
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
     }
-)
+}, trackingController: trackingController)
 ```
+
 
 ---
 
-## 6. Uso del componente
-
+## 5. Uso del componente
 Como se ha comentado previamente, una vez inicializado y configurado el
 componente de **tracking** no será necesario lanzarlo, ya que se
 mantendrá funcionando en segundo plano mientras se ejecutan el resto de
@@ -164,29 +130,30 @@ componentes.
 
 ---
 
-## 7. Recepción del resultado
+## 6. Recepción del resultado
 
-### 7.1. Recepción de errores
+El resultado es un objeto *SDKResult* que devuelve el SDK tendrá siempre 3 campos:
 
-En la parte del error, dispondremos de la clase TrackingError.
-
-```java
-INIT_IDS_ERROR,
-LICENSE_ERROR,
-APPLICATION_CONTEXT_ERROR,
-OPERATION_RESULT,
-OPERATION_ID,
-SESSION_ID,
-CUSTOMER_ID,
-STEP_CHANGE,
-ASSET_LINK,
-ASSET_UPLOAD,
-OCR_DATA,
-INIT_OPERATION,
-NO_OPERATION_CREATED_ERROR,
-TOKEN_ERROR,
-NETWORK_CONNECTION,
-SEND_BYTEARRAY
+*finishStatus*: Que nos indicará si la operación ha finalizado correctamente. Posibles valores:
 ```
+FinishStatus.STATUS_OK
+FinishStatus.STATUS_ERROR
+```
+*errorType*: Si el finishStatus indica que ha habido un error, este campo tendrá la descripción del mismo:
 
+Los errores de tracking vienen en el enum *TrackingError*:
+
+```
+INIT_DATA_ERROR
+ASSET_UPLOAD
+INIT_IDS_ERROR
+ASSET_LINK
+STEP_CHANGE
+OCR_DATA
+INIT_OPERATION
+EXTERNAL_EVENT
+OPERATION_RESULT
+CUSTOMER_ID
+TOKEN_ERROR
+```
 ---

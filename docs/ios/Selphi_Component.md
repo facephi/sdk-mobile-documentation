@@ -67,7 +67,7 @@ completely before the installation of the components of the **_SDKMobile_** comp
   pod 'FPHISDKMainComponent', '~> 1.5.0'
   pod 'zipzap'
 ```
-- To install the SelphID component, the following entry must be included in the Podfile of the application:
+- To install the Selphi component, the following entry must be included in the Podfile of the application:
 ```java
   pod 'FPHISDKSelphiComponent', '~> 1.5.0'
 ```

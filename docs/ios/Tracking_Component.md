@@ -62,7 +62,7 @@ Currently FacePhi libraries are distributed remotely through different dependenc
 pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
-To install the Selphi component, the following entry must be included in the application Podfile:
+To install the Tracking component, the following entry must be included in the application Podfile:
 
 ```
 pod 'FPHISDKTrackingComponent', '~> 1.5.0'

@@ -39,7 +39,7 @@ Currently FacePhi libraries are distributed remotely through different dependenc
 pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
-To install the Selphi component, the following entry must be included in the Podfile of the application:
+To install the Behaviorcomponent, the following entry must be included in the Podfile of the application:
 
 ```
 pod 'FPHISDKBehaviorComponent', '~> 1.5.0'

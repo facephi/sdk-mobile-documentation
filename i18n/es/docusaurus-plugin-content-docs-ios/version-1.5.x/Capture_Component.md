@@ -11,10 +11,9 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+Para más información sobre la configuración base, vaya a la sección de <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -23,18 +22,20 @@ data-linked-resource-type="page">Android Mobile SDK</a>.
 El _Componente_ tratado en el documento actual recibe el nombre de
 **_Capture Component_**. Éste se encarga de realizar la captura de facturas y la captura y generación de QRs.
 
+### 1.1 Requisitos mínimos
+La versión mínima de la SDK de iOS requerida es la siguiente:
+
+Versión mínima de iOS: **13**
+
 ---
 
 ## 2. Integración del componente
 
 Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
-documento.
+relativa a: 
+<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
@@ -47,13 +48,28 @@ de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+#### Cocoapods
+- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-  ```java
-  implementation "com.facephi.androidsdk:capture_component:$sdk_capture_component_version"
-  ```
+
+```
+  pod 'FPHISDKMainComponent', '~> 1.5.0'
+```
+- Para instalar el componente de capture deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+```
+  pod 'FPHISDKCaptureComponent', '~> 1.5.0'
+```
+- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+
+- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+
+![Image](/iOS/fix_ldClassic.png)
+
+### 2.2 Permisos y configuraciones
+En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero info.plist
+```
+Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
+```
 
 ---
 
@@ -67,10 +83,9 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+consultar la documentación de <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste
 este proceso.
 
 ---
@@ -79,7 +94,7 @@ este proceso.
 
 | **Controlador**            | **Descripción**                                    |
 | -------------------------- | -------------------------------------------------- |
-| PhacturasReaderController  | Controlador para la captura de facturas      |
+| InvoiceReaderController  | Controlador para la captura de facturas      |
 | QrReaderController | Controlador para la captura de QRs |
 | QrGeneratorController | Controlador para la generación de QRs |
 
@@ -97,50 +112,44 @@ En el siguiente apartado se mostrarán los campos que forman parte de
 estas clased y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class CaptureConfigurationData
+#### 5.1.1 Configuración Básica
 
-#### 5.1.1. extractionTimeout
-
-Tiempo de extracción máximo
-
-#### 5.1.2. cameraSelected
-
+##### cameraSelected
 Cámara seleccionada: FRONT, BACK
 
-#### 5.1.3. cameraShape
+##### vibrationEnabled
+Habilitar vibración durante el proceso
 
+##### cameraShape
 Forma de la máscara que se quiere mostrar sobre la cámara: 
 - SQUARE: Cuadrado 
 - CIRCULAR: Círculo
 - RECTANGLE_TALL: Rectángulo
 
-#### 5.1.4. vibrationEnabled
-
-Habilitar vibración durante el proceso
-
-#### 5.1.5. showStroke
-
-Mostrar una línea como borde de la cámara
-
-#### 5.1.6. showDiagnostic
-
+##### showDiagnostic
 Mostrar pantallas de diagnóstico al final del proceso
 
-#### 5.1.6. transparentBackground
+##### extractionTimeout
+Tiempo de extracción máximo
 
+
+#### 5.1.2 Configuración Avanzada
+
+##### showStroke
+Mostrar una línea como borde de la cámara
+
+##### transparentBackground
 Máscara sobre la cámara semitransparente
 
 ### 5.2. Class QrGeneratorConfiguration
 
-#### 5.2.1. source
-
+##### source
 Texto que se va a incluir en el QR
 
-#### 5.2.2. width
-
+##### width
 Ancho del QR generado
 
-#### 5.2.3. height
-
+##### height
 Alto del QR generado
 
 ---
@@ -158,13 +167,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    PhacturasReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
-        }
-    }
+   let controller = InvoiceReaderController(output: output, viewController: viewController)
+   SDKController.shared.launch(controller: controller)
 )
 ```
 
@@ -173,13 +177,8 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    PhacturasReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("PhacturasReader OK: ${it.data}")
-        }
-    }
+   let controller = InvoiceReaderController(output: output, viewController: viewController)
+   SDKController.shared.launchMethod(controller: controller)
 )
 ```
 
@@ -205,13 +204,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    QrReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
-        }
-    }
+        let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+        SDKController.shared.launch(controller: controller)
 )
 ```
 
@@ -220,14 +214,8 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    QrReaderController(CaptureConfigurationData()) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QR: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QR OK: ${it.data}")
-        }
-    }
-)
+        let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+        SDKController.shared.launchMethod(controller: controller)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -252,14 +240,9 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-SDKController.launch(
-    QrGeneratorController(QrGeneratorConfiguration("")) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
-        }
-    }
-)
+        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+        SDKController.shared.launch(controller: controller)
+
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -267,14 +250,8 @@ SDKController.launch(
   evento al servidor de _tracking_:
 
 ```java
-SDKController.launchMethod(
-    QrGeneratorController(QrGeneratorConfiguration("")) {
-        when (it) {
-            is SdkResult.Error -> Napier.d("QrGenerator: KO - ${it.error.name}")
-            is SdkResult.Success -> Napier.d("QrGenerator OK: ${it.data}")
-        }
-    }
-)
+        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+        SDKController.shared.launchMethod(controller: controller)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -293,26 +270,18 @@ a la plataforma.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+SdkResult. Más información en la sección de <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>
   
 ### 7.1. Recepción de errores
 
-En la parte del error, dispondremos de la clase _CaptureError_.
-
 ```java
- NO_DATA_ERROR
- TIMEOUT
- CANCEL_BY_USER
- CANCEL_LAUNCH
- CAMERA_ERROR
- QR_GENERATION_ERROR
- ACTIVITY_RESULT_ERROR
- QR_CAPTURE_ERROR
- PHACTURAS_CAPTURE_ERROR
- CAMERA_PERMISSION_DENIED
- INITIALIZATION_ERROR
+NO_OPERATION_CREATED_ERROR
+CAMERA_PERMISSION_DENIED
+CANCEL_BY_USER
+TIMEOUT
+INTERNAL_ERROR
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -323,27 +292,25 @@ con el SdkResult.Success.
 ---
 
 ## 8. Personalización del componente
-
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>), este componente en concreto permite la
-modificación de textos específicos.
-
 ### 8.1. Textos
 
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
-
 ```java
-    <string name="capture_component_qr_camera_message">Mantén el QR en el centro</string>
-    <string name="capture_component_invoice_camera_message">Manten la factura en el centro</string>
-    <string name="capture_component_button_message">Capturar</string>
-    <string name="capture_component_timeout_title">Tiempo superado</string>
-    <string name="capture_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="capture_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="capture_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+"qr_reader_component_exit_alert_question"="Are you sure you will finish the process?";
+"qr_reader_component_camera_message_circle"="Keep the QR inside the circle";
+"qr_reader_component_camera_message_square"="Keep the QR inside the square";
+"invoice_reader_component_camera_message_circle"="Keep the document inside the circle";
+"invoice_reader_component_camera_message_square"="Keep the document inside the square";
+"capture_component_camera_unauthorized_title"="Camara unauthorized";
+"capture_component_camera_unauthorized_description"="It seems you haven't given this app permission to use the camera. Please go to Settings and enable it.";
+"capture_component_image_capture_error"="Image capture error";
+"capture_component_preview_image"="Captured image preview";
+"capture_component_take_again"="Capture again";
+"capture_component_accept"="Accept";
+"capture_component_capture"="Capture";
+"capture_component_ok"="Ok";
+"capture_component_cancel"="Cancel";
+"capture_component_end_confirmation_title" = "Are you sure you will finish the process?";
+"capture_component_text_results_finish_button" = "Finish";
+"capture_component_agree" = "Accept";
 
 ```

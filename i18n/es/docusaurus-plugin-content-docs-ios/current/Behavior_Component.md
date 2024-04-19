@@ -64,7 +64,7 @@ Las dependencias **obligatorias** que deberán haberse instalado previamente
 pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
-Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+Para instalar el componente de Behavior deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
 pod 'FPHISDKBehaviorComponent', '~> 1.5.0'

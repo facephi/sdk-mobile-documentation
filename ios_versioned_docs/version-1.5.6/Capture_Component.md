@@ -52,7 +52,7 @@ installing the **_SDKMobile_** components.
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- To install the SelphID component, the following entry must be included in the Podfile of the application:
+- To install the Capture component, the following entry must be included in the Podfile of the application:
 ```
   pod 'FPHISDKCaptureComponent', '~> 1.5.0'
 ```

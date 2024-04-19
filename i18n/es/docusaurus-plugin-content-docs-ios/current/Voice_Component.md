@@ -77,6 +77,11 @@ completo antes de la instalación de los componentes de la
 ```
   	pod 'FPHISDKMainComponent', '~> 1.4.0'
 ```
+
+- Para instalar el componente de VoiceID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+```
+	pod 'VoiceIdController', '~> 1.5.0'
+```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:

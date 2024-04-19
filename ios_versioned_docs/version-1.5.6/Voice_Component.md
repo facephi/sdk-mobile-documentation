@@ -71,7 +71,7 @@ installing the **_SDKMobile_** components.
 ```
   	pod 'FPHISDKMainComponent', '~> 1.4.0', '~> 1.4.0'.
 ```
-- To install the SelphID component, the following entry must be included in the application Podfile:
+- To install the VoiceID component, the following entry must be included in the application Podfile:
 ```
 	pod 'FPHISDKVoiceIDComponent', '~> 1.4.0' ````
 ```

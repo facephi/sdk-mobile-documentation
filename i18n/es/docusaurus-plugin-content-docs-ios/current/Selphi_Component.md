@@ -68,7 +68,7 @@ completo antes de la instalación de los componentes de la
   pod 'FPHISDKMainComponent', '~> 1.5.0'
   pod 'zipzap'
 ```
-- Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+- Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```java
   pod 'FPHISDKSelphiComponent', '~> 1.5.0'
 ```

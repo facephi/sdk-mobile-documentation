@@ -14,7 +14,7 @@ proyecto.
 Para más información sobre la configuración base, vaya a la sección de
 <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -26,6 +26,11 @@ entre un usuario y un agente de forma remota, a través de un canal de
 comunicación. Está orientado principalmente para casos de uso de
 videoasistencia.
 
+## 1.1 Requisitos mínimos
+La versión mínima de la SDK de iOS requerida es la siguiente:
+
+Versión mínima de iOS: **13**
+
 ---
 
 ## 2. Integración del componente
@@ -35,7 +40,7 @@ relativa a:
 
 <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
+data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
 
@@ -50,13 +55,27 @@ de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+#### Cocoapods
+- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-  ```java
-  implementation "com.facephi.androidsdk:videocall_component:$sdk_videocall_component_version"
-  ```
+```java
+  pod 'FPHISDKMainComponent', '~> 2.0.0'
+```
+- Para instalar el componente de VideoCall deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+```java
+  pod 'FPHISDKVideoCallComponent', '~> 2.0.0'
+```
+- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
+
+- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+
+![Image](/iOS/fix_ldClassic.png)
+
+## 2.2 Permisos y configuraciones
+En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **info.plist**
+```
+Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
+```
 
 ---
 
@@ -72,7 +91,7 @@ componente**.
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
+data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
 
@@ -103,25 +122,29 @@ Los campos incluidos en la configuración, normalmente **no es necesario
 que sean informados** ya que se completan internamente a través de la
 licencia usada.
 
-Estos campos suelen informarse **solo** cuando el **servidor** es
-**OnPremise**.
+#### 5.1.1. Configuración Básica
+##### activateScreenSharing
 
-#### 5.1.1. url
+Activar la opción de compartir pantalla en la llamada.
+
+#### 5.1.2. Configuración Avanzada
+##### url
 
 Ruta al socket de video
 
-#### 5.1.2. apiKey
+##### apiKey
 
 ApiKey necesaria para la conexión con el socket de video
 
-#### 5.1.3. tenantId
+##### tenantId
 
 Identificador del tenant que hace referencia al cliente actual,
 necesario para la conexión con el servicio de video.
 
-#### 5.1.4. activateScreenSharing
 
-Activar la opción de compartir pantalla en la llamada.
+#### 5.1.3. Otros parametros
+##### VibrationEnabled
+Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
 ---
 
@@ -136,13 +159,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-val result = SDKController.launch(
-    VideoCallController(VideoCallConfigurationData())
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
-}
+let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -150,13 +168,8 @@ when (result) {
   evento al servidor de _tracking_:
 
 ```java
-val result = SDKController.launchMethod(
-    VideoCallController(VideoCallConfigurationData())
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
-}
+let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -170,30 +183,56 @@ flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 
+
+En los datos de configuración (`EnvironmentVideoCallData`) también se podrán modificar:
+
+- **Datos opcionales que normalmente se incluyen dentro de la licencia**
+
+	 - **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
+
+	- **url**: Ruta al socket de video.
+
+	- **apiKey**: ApiKey necesaria para la conexión con el socket de video.
+
+---
+
+### Ejemplo de configuración
+
+```
+  log("LAUNCH VIDEO CALL")
+  
+  let videocallController = VideoCallController(data: EnvironmentVideoCallData(
+                                                          url: "Enter URL",
+                                                          apikey: "Enter the ApiKey",
+                                                          tenantId: "Enter the tenantId"),
+                                                output: output, viewController: viewController)
+  SDKController.shared.launchMethod(controller: videocallController)
+```
+
+<blockquote>
+*** IMPORTANTE ***
+Los valores se asignan por defecto. **SOLO** se debe configurar en caso de usar una plataforma externa a la proporcionada por Facephi, dentro de la licencia.
+</blockquote>
+
 ---
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+Los controllers devolverán la información necesaria en formato SdkResult. 
+Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>.
+
 
 ### 7.1. Recepción de errores
 
 En la parte del error, dispondremos de la clase _VideoCallError_.
 
 ```java
-NO_DATA_ERROR
-TIMEOUT
-CANCEL_BY_USER
-CANCEL_LAUNCH
-NETWORK_CONNECTION
-SOCKET_ERROR
-VIDEO_ERROR
-ACTIVITY_RESULT_ERROR
-INITIALIZATION_ERROR -> it.error
-UNKNOWN_ERROR
+ CANCEL_BY_USER
+ TIMEOUT
+ INTERNAL_ERROR
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -203,102 +242,109 @@ con el SdkResult.Success.
 
 Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá activar compartir pantalla.
 
+
 ---
 
-## 8. Compartir pantalla
+---
 
-La funcionalidad de compartir pantalla se podrá ejecutar haciendo uso de la clase _VideoCallScreenSharingManager_.
-Con ella se podrá tanto comenzar y finalizar la compartición de pantalla como recoger los estados en los que se encuentra.
+## 8. Personalización del componente
+
+Los cambios que se pueden realizar a nivel de SDK (que son
+explicado en el <a href="ES_Mobile_SDK"
+ID-recurso-vinculado-datos="2605678593" Versión-recurso-vinculado-datos="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documento), este componente en particular permite la modificación de datos específicos
+textos.
+
+Para personalizar el componente, se debe llamar a ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) después de inicializar videocallController:
 
 ```java
-val videoCallScreenSharingManager = VideoCallScreenSharingManager(
-            SdkApplication(application)
-        )
-
-videoCallScreenSharingManager.setOutput { state ->
-            Napier.d("SCREEN SHARING STATE: ${state.name}")
-        }
+let videocallController = VideoCallController(data: EnvironmentVideoCallData(), output: output, viewController: viewController)
+ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
+SDKController.shared.launch(controller: videocallController)
 ```
 
-Los posibles estados son:
+Un ejemplo de la clase CustomThemeVideoCall sería este (debe implementar ThemeVideoCallProtocol):
+
 
 ```java
-    AGENT_HANGUP,
-    PERMISSION_ERROR,
-    UNKNOWN_ERROR,
-    SHARING,
-    FINISH
-```
-
-Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
-
-Si se quiere habilitar la opción de compartir pantalla se deberá lanzar el controlador de video llamada con el flag _activateScreenSharing_ de su configuración activo. En la salida del lanzamiento de la video llamada se indicará si el usuario ha solicitado compartir pantalla con el flag _sharingScreen_.
-
-```java
-val result = SDKController.launch(
-    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)))
-
-when (result) {
-    is SdkResult.Error -> {
-        Napier.d("VideoCall: ERROR - ${result.error.name}")
+class CustomThemeVideoCall: ThemeVideoCallProtocol {
+    var images: [R.Image: UIImage?] = [:]
+    
+    var colors: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red]
+    
+    var animations: [R.Animation: String] = [:]
+    
+    var name: String {
+        "custom"
     }
-
-    is SdkResult.Success -> {
-            Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
-            if (result.data.sharingScreen) {
-                videoCallScreenSharingManager.startScreenSharingService()
-            }
-        }
+    
+    var fonts: [R.Font: String] = [:]
+    
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
     }
 }
 ```
 
-Para comenzar y finalizar la compartición de pantalla en la llamada:
+### 8.1 Colores e imágenes
+Las imagenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
+```
+case close
+```
+Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+```
+case ButtonBackground
+case ButtonBackgroundDisabled
+case CardBackground
+case CardText
+case MainBackground
+case PhoneButtonBackground
+case Primary
+case TitleText
+```
+
+### 8.2 Fuentes 
+Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
+```
+case regular
+case bold
+```
+
+Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
+```
+case phone_calling
+``
+El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.
+
+### 8.3 Textos
+
+If you want to modify the SDK texts, you would have to include the
+following XML file in the client application, and modify the value
+of each _String_ by the desired one.
 
 ```java
-// START
-videoCallScreenSharingManager.startScreenSharingService()
-
-// STOP
-videoCallScreenSharingManager.stopScreenSharingService()
+ <!-- VIDEO CALL -->
+    <string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
+    <string name="video_call_agent">Agent</string>
+    <string name="video_call_exit_alert_title">Cancel process</string>
+    <string name="video_call_exit_alert_question">Are you sure you want to leave the video assistance?</string>
+    <string name="video_call_exit_alert_exit">Quit</string>
+    <string name="video_call_exit_alert_cancel">Cancel</string>
+    <string name="video_call_exit">Exit</string>
+    <string name="video_call_network_connection_error">Check your internet connection.</string>
+    <string name="video_call_image_description">Phone</string>
+    <string name="video_call_text_finish">Video assistance is complete</string>
+    <string name="video_call_text_finish_button">Exit</string>
+    <string name="video_call_accesibility_phone">Phone</string>
 ```
 
----
+### 8.4 Colores
 
-## 9. Personalización del componente
-
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>), este componente en concreto permite la
-modificación de textos específicos.
-
-### 9.1. Textos
-
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
-
-```xml
-    <string name="video_call_component_text_waiting_agent_title">Conectando con un agente…</string>
-    <string name="video_call_component_agent">Agente</string>
-    <string name="video_call_component_local">Tú</string>
-    <string name="video_call_component_exit">Salir</string>
-    <string name="video_call_component_text_finish">La video asistencia ha finalizado</string>
-    <string name="video_call_component_accesibility_phone">Teléfono</string>
-    <string name="video_call_component_accesibility_switch">Cambiar cámara</string>
-    <string name="video_call_component_restart">Repetir llamada</string>
-    <string name="video_call_component_timeout_title">Tiempo superado</string>
-    <string name="video_call_component_timeout_desc">No se ha podido contactar con un asistente.</string>
-    <string name="video_call_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="video_call_component_internal_error_desc">No se ha podido contactar con un asistente.</string>
-
-```
-
-### 9.2. Colores
-
-```xml
+```java
+<!-- VIDEO CALL -->
+<color name="colorVideoCallPhoneButtonBackground">#F44336</color>
 <color name="colorVideoCallActionsBackground">#30333d</color>
+<color name="colorVideoCallCardText">#ffffff</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```

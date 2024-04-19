@@ -54,7 +54,7 @@ completely before the installation of the components of the **_SDKMobile_** comp
 ```
    pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- To install the SelphID component, the following entry must be included in the application's Podfile:
+- To install the VideoID component, the following entry must be included in the application's Podfile:
 ```
 pod 'FPHISDKVideoIDComponent', '~> 1.5.0'
 ```

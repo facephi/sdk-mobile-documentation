@@ -67,7 +67,8 @@ completely before the installation of the components of the **_SDKMobile_** comp
   pod 'FPHISDKMainComponent', '~> 1.5.0'
   pod 'zipzap'
 ```
-- To install the SelphID component, the following entry must be included in the Podfile of the application:
+- To install the current component, the following entry must be included in the *Podfile* of the project
+  entry in the *Podfile* of the application:
 ```
   pod 'FPHISDKSelphiComponent', '~> 1.5.0'
 ```
@@ -85,7 +86,7 @@ https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
-- To install the NFC component, it must be included in the project modules:
+- To install the Selphi component, it must be included in the project modules:
 ```
 //HTTPS
 https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git

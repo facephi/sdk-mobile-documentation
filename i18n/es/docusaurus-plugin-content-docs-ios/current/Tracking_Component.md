@@ -55,7 +55,7 @@ Actualmente las librerías de FacePhi se distribuyen de forma remota a través d
 pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
-Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+Para instalar el componente de Tracking deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```
 pod 'FPHISDKTrackingComponent', '~> 1.5.0'

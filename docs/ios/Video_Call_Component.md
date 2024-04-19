@@ -55,7 +55,7 @@ installing the **_SDKMobile_** components.
 ```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- To install the SelphID component, the following entry must be included in the application Podfile:
+- To install the VideoCall component, the following entry must be included in the application Podfile:
 ```java
   pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
 ```
