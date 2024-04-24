@@ -617,5 +617,5 @@ Los elementos `image` solo tienen la propiedad que define el archivo donde se en
 #### 6.2.8. Elemento VIDEO
 value: define el nombre del archivo que contiene el video a mostrar.
 
-Los elementos `video` solo tienen la propiedad que define el archivo donde se encuentra el video físicamente en el bundle de recursos.
+Los elementos *`video`* solo tienen la propiedad que define el archivo donde se encuentra el video físicamente en el bundle de recursos.
 
