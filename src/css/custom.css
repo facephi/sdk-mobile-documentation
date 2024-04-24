@@ -81,3 +81,36 @@ html.docs-wrapper.plugin-id-react
   > .navbar__item:nth-child(5) {
   display: block;
 }
+
+div.warning {
+  background-color: #fff8e6;
+  color: #4d3800;
+  border-radius: 1%;
+  padding-left: 1%;
+  padding-bottom: 0.1%;
+  padding-top: 1%;
+  margin-bottom: 1%;
+  border-left: solid 0.3em gold;
+}
+
+span.warning {
+  color: orangered;
+  font-size: larger;
+  font-weight: bold;
+}
+
+div.note {
+  background-color: #d4e7f9;
+  color: #000;
+  border-radius: 1%;
+  padding-left: 1%;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  border-left: solid 0.3em rgb(55, 170, 232);
+}
+
+span.note {
+  color: #180fc8;
+  font-size: larger;
+  font-weight: bold;
+}
