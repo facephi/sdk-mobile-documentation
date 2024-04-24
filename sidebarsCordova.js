@@ -23,6 +23,7 @@ const sidebars = {
       label: "Cordova",
       items: [
         "Mobile_SDK",
+        "Core_Component",
         //"Tracking_Component",
         //"Selphi_Component",
         //"SelphID_Component",
@@ -32,7 +33,9 @@ const sidebars = {
         //"Video_Call_Component",
         //"Video_Id_Component",
         //"Video_Recording_Component",
-        "Sample_applications_use"
+        "Selphi_Component",
+        "Selphid_Component",
+        "Sample_applications_use",
       ],
     },
   ],

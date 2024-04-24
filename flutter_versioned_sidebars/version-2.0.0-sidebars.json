@@ -1,0 +1,12 @@
+{
+  "sidebar": [
+    {
+      "type": "category",
+      "label": "Flutter",
+      "items": [
+        "Mobile_SDK",
+        "Sample_applications_use"
+      ]
+    }
+  ]
+}
