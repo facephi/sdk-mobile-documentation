@@ -311,12 +311,12 @@ los siguientes:
 #### 7.2.1 _templateRaw_
 
 Devuelve la plantilla en bruto que se genera después del proceso de
-extracción. Válida para el proceso de AUTHENTICATION.
+extracción. Válida para el proceso de **matching**.
 
 #### 7.2.2 _template_
 
 Devuelve la plantilla que se genera después del proceso de extracción.
-Válida para el proceso de AUTHENTICATION.
+Válida para el proceso de **matching**.
 
 #### 7.2.3 _bestImage_
 
@@ -336,6 +336,10 @@ _avatar_.
 #### 7.2.5 _logImages_
 
 Lista con las 5 mejores imágenes capturadas. Se devuelve si se activa el flag "logImages" en la configuración.
+
+#### 7.2.6 _bestImageTokenized_
+
+Devuelve la mejor imagen extraída del proceso cifrada. Válido para el proceso de **liveness**.
 
 ---
 

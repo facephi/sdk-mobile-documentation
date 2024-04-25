@@ -287,18 +287,18 @@ are the following:
 #### 7.2.1 _templateRaw_
 
 Returns the raw template generated after the extraction process. Valid
-for the AUTHENTICATION process.
+for the **matching** process.
 
 #### 7.2.2 _template_
 
 Returns the template that is generated after the extraction process.
-Valid for the AUTHENTICATION process.
+Valid for the **matching** process.
 
 #### 7.2.3 _bestImage_
 
 Returns the best image extracted from the authentication process in
 SdkImage format. This image is the original size image extracted from
-the camera. Valid for the liveness process.
+the camera. Valid for the **liveness** process.
 
 #### 7.2.4 _bestImageCropped_
 
@@ -310,6 +310,10 @@ avatar.
 #### 7.2.5 _logImages_
 
 List of the top 5 captured images returned if the "logImages" flag is set in the configuration.
+
+#### 7.2.6 _bestImageTokenized_
+
+Returns the best image tokenized. Valid for the **liveness** process.
 
 ---
 
