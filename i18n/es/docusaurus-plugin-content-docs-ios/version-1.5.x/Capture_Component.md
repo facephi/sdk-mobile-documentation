@@ -55,7 +55,7 @@ completo antes de la instalación de los componentes de la
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- Para instalar el componente de capture deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+- Para instalar el componente de Capture deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```
   pod 'FPHISDKCaptureComponent', '~> 1.5.0'
 ```
