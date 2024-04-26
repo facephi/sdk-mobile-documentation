@@ -393,14 +393,8 @@ This method has three input parameters:
 2.  **customerId**: Unique user ID if available (controlled at the
     application level).
 
-    1.  This parameter will be reflected for each operation in the
-        platform.
-
 3.  **steps**: List of steps of the operation if they have been
     previously defined.
-
-    1.  This parameter will be reflected for each operation in the
-        platform.
 
 There are two ways to perform this operation start, depending on whether
 the **steps that will form the flow** of the registration or
@@ -466,12 +460,9 @@ access the **documentation for each component**.
 The result of each component will be returned through the SDK
 always keeping the same 3-field structure:
 
-1.  **finishStatus**: This will indicate whether the operation has been successfully completed.
-    correctly. Possible values `FinishStatus.STATUS_OK`,
-    `FinishStatus.STATUS_ERROR`.
+1.  **finishStatus**: This will indicate whether the operation has been successfully completed. Possible values `FinishStatus.STATUS_OK`,`FinishStatus.STATUS_ERROR`.
 
 2.  **errorType**: If _finishStatus_ indicates that an error has occurred, this field shall contain the description of the error.
-    field shall contain the description of the error.
 
 3.  **data**: This shall contain the response data from the SDK function. This
     This field will be different depending on the component that has been

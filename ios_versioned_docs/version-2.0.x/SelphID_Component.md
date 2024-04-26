@@ -1,7 +1,7 @@
 # SelphID Component
 
 ## 0. SDK Mobile baseline requirements
-
+ 
 **SDK Mobile** is a set of libraries (Components) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
@@ -14,6 +14,7 @@ For more information on the base configuration, go to the
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a> section.
 
+
 ---
 
 ## 1. Introduction
@@ -24,18 +25,22 @@ extraction and analysis of their data. Its main functionalities are the
 following:
 
 - Internal management of cameras.
-
 - Permits management.
-
 - Assistant in the processes of capturing the front and back of the
   document. Extraction of the information contained in the document.
-
 - Obtain the images of the back and reverse side of the document, as
   well as other images included in the document: user's face, user's
   signature, etc.
-
 - High level of configuration: different countries, languages,
   document types...
+
+---
+
+
+### 1.1 Minimum requirements
+The minimum iOS SDK version required is as follows:
+
+Minimum iOS version: **13**
 
 ---
 
@@ -47,27 +52,60 @@ data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow its instructions.
 
-This section will explain step by step how to integrate the current
+This section will explain step by step how to integrate the current component into an existing project.
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
 
-To avoid conflicts and compatibility problems, if you want to install
-the component in a project containing an old Facephi libraries
-(_Widgets_) version, these must be removed entirely before installing
-the **_SDKMobile_** components.
+In order to avoid conflicts and compatibility problems, in case you want to
+install the component in a project containing an old version of the Facephi libraries.
+of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the components.
+completely before the installation of the components of the **_SDKMobile_** components.
 
-- Currently, FacePhi libraries are distributed remotely through
-  different dependency managers. **Mandatory** dependencies that must
-  be installed beforehand:
+#### Cocoapods
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them in the Podfile file of the project) are:
 
-  ```java
-  implementation "com.facephi.androidsdk:selphid_component:$sdk_selphid_component_version"
-  ```
+```
+  pod 'FPHISDKMainComponent', '~> 2.0.0'
+  pod 'JWTDecode'
+  pod 'SwiftFormat/CLI'
+  pod 'IQKeyboardManagerSwift'
+  pod 'zipzap'
+```
+- To install the SelphID component, the following entry must be included in the application Podfile:
+```
+  pod 'FPHISDKSelphIDComponent', '~> 2.0.0'
+```
+- Once the dependencies are installed, the different functionalities of the component can be used.
 
+- In case of development with **xCode15** a post-installation script must be included:
+
+![Image](/iOS/fix_ldClassic.png)
+
+#### SPM
+- The mandatory dependencies that must have been previously installed are:
+```
+//HTTPS
+https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
+//SSH
+git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
+```
+- To install the Selphid component, it must be included in the project modules:
+```
+//HTTPS
+https://github.com/facephi-clienters/SDK-SelphidComponentLight.git
+//SSH
+git@github.com:facephi-clienters/SDK-SelphidComponentLight.git
+```
+
+### 2.2 Permissions and configurations
+In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
+
+It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
+ 
 ---
 
-## 3. Start a new operation
+## 3. Start new operation
 
 When you want to perform a specific operation, in order to generate the
 associated information correctly in the platform, the **newOperation**
@@ -101,215 +139,131 @@ to configure the current component.
 The following section will show the fields part of this class and what
 each is used for.
 
-### 5.1. Class SelphIDConfigurationData
+### 5.1 Class SelphIDConfigurationData
 
-#### 5.1.0. _debug_
+#### 5.1.1 Basic Configuration
 
-Activation of the component's debugging mode.
+##### ResourcesPath
+This is the name of the resource bundle that contains all the elements of the interface
 
-#### 5.1.1. _resourcesPath_
+##### WizardMode
+Indicates whether the widget is configured to capture both parts (front and back) of the document one after the other. In this mode the widget would only be launched once and when it finishes capturing the front, it would continue with the back.
 
-Specifies the name of the resources in **_zip_** format. Example:
-"resources-selphid-2-0.zip".
+##### ShowResultAfterCapture
+Indicates whether or not to show a screen with the captured image of the document after the analysis process. This screen gives the user the possibility to repeat the capture process if the image obtained from the document is not correct.
 
-This name will fetch the file from the _assets_ path.
+##### ShowTutorial
+This property allows to show the tutorial prior to the capture process.
 
-![Image](/android/selphid_resources.png)
+##### ScanMode
+Specifies the OCR scanning mode of the documents. Depending on the choice, several types of documents or a specific one will be scanned and searched. This mode can be of three types:
+- **SelphIDScanMode.MODE_GENERIC:** The generic mode that allows scanning any type of document independent of country or document type. The output of this mode is not as accurate as the following but it allows to scan several standard documents.
 
-#### 5.1.2. _wizardMode_
+- **SelphIDScanMode.MODE_SPECIFIC:** The search mode will allow to use a whitelist and blacklist, and will search the documents that meet these conditions. These conditions are indicated in the variable "specificData". This allows the search to be performed by narrowing the number of templates, and making the search much more refined than in the generic case.
 
-Indicates whether the widget is configured to capture both parts (front
-and back) of the document one after the other. In this mode, the widget
-would only be launched once, and when it finishes capturing the front,
-it would continue with the back.
+- **SelphIDScanMode.MODE_SEARCH:** Search for a specific document. These conditions are indicated in the "specificData" property shown below.
 
-#### 5.1.3. _showResultAfterCapture_
+##### SpecificData
+This property allows to define which documents will be scanned during the process, in case of declaring the scan mode (scanMode) to SMSearch or SMSpecific.
 
-Indicates whether or not to display a screen with the captured image of
-the document after the analysis process. This screen allows the user to
-repeat the capture process if the image obtained from the document is
-incorrect.
-
-#### 5.1.4. _showTutorial_
-
-Indicates whether the widget activates the tutorial screen. This view
-intuitively explains how the capture is performed.
-
-#### 5.1.5. _tutorialOnly_
-
-Indicates if the widget is to be launched only to display the tutorial.
-
-#### 5.1.6. _scanMode_
-
-Indicates the OCR scanning mode for documents. Depending on the choice,
-several documents or a specific one will be scanned and searched. This
-mode can be of three types:
-
-- **SelphIDScanMode.MODE_GENERIC:** The generic mode that allows
-  scanning any document independent of country or document type. The
-  result of this mode is not as accurate as the following modes, but
-  it allows the scanning of several standard documents.
-
-- **SelphIDScanMode.MODE_SEARCH:** The search mode shall allow the use
-  of a whitelist and blacklist, and shall search the documents
-  matching these conditions. These conditions are specified in the
-  variable "specificData". This allows us to perform the search by
-  narrowing the number of templates and making the search much more
-  refined than in the generic case.
-
-- **SelphIDScanMode.MODE_SPECIFIC:** Search for a specific document.
-  These conditions are indicated in the "specificData" property shown
-  below.
-
-#### 5.1.7 _specificData_
-
-This property allows you to define which documents will be scanned
-during the process if you declare the scan mode (scanMode) to
-**MODE_SEARCH** or **MODE_SPECIFIC**.
-
-An example configuration allowing the scan all the documents of Spanish
-nationality would be the following:
-
-```java
-val selphIDConfiguration = SelphIDConfigurationData(
-    scanMode = SelphIDScanMode.MODE_SEARCH,
-    specificData = "ES|<ALL>",  // ISO Code of Spain (ES)
-)
+An example configuration allowing to scan all documents of Spanish nationality would be the following:
+```
+// Search mode definition
+conf.scanMode = SelphIDScanMode.MODE_SEARCH
+conf.specificData = “ES|<ALL>” // Código ISO de España (ES)
 ```
 
-#### 5.1.8 _locale_
+##### DocumentType
+The allowed values are as follows:
 
-This is a string that allows you to change the locale and language of
-the widget. Examples of values they can have are as follows:
+- **SelphIDDocumentType.ID_CARD:** The widget is configured to perform ID document capture.
 
-- ““ for use the system language
+- **SelphIDDocumentType.PASSPORT:** The widget is configured to capture passports.
 
-- “es” for Spanish.
+- **SelphIDDocumentType.DRIVERS_LICENSE:** The widget is configured to capture driver's licenses.
 
-- “en” for English.
+- **SelphIDDocumentType.FOREIGN_CARD:** The widget is configured to capture foreign documents.
 
-- “fr” for french.
+- The widget is configured to perform the capture of credit cards.
 
-Ultimately, it will depend on the name that appears in the file
-`strings.xml` of the language you want to choose (`strings-es.xml`,
-`strings-en.xml`, `strings-fr.xml`).
+- **SelphIDDocumentType.CUSTOM:** The widget is configured to capture other types of documents that do not fall into any of the above categories.
 
-In the resources zip, located inside the strings folder, you can add the
-files `strings-xx.xml` corresponding to each location you need to
-incorporate in the widget.
+##### ShowDiagnostic
+If set to true, when an error or lack of permissions occurs, the sdk will display a screen with the error returned by the widget.
 
-#### 5.1.9 _fullscreen_
+#### 5.1.2 Advanced configuration
 
-Indicates whether the view will be prioritised for full-screen display
-if the system allows it.
+##### Debug
+When this attribute is set to true, the number of traces is increased and technical information is displayed on the screen. 
 
-#### 5.1.9 _tokenImageQuality_
+**Once the development is finished, it must be set to false.
 
-Indicates the amount of quality to be received in the tokenised images.
-A value between 0 and 1.
+##### TutorialOnly
+This property allows to show **only the tutorial**, without launching later the capture process.
 
-#### 5.1.10. _documentType_
+##### TokenImageQuality
+It indicates the quality of the JPEG that is generated and then tokenized, its default and recommended value is **"0.5"**. Its result is merely informative, its use is not recommended for authentication.
 
-The permitted values are as follows:
+##### Locale
+It is a String that allows to change the locale and language of the widget. Examples of values it can have are the following:
 
-- **SelphIDDocumentType.ID_CARD**: The widget is configured to capture
-  identity documents.
+- "es" for Spanish.
 
-- **SelphIDDocumentType.PASSPORT**: The widget is configured to
-  capture passports.
+- en" for English.
 
-- **SelphIDDocumentType.DRIVERS_LICENSE**: The widget is configured to
-  capture driving licences.
+- fr" for French.
 
-- **SelphIDDocumentType.FOREIGN_CARD**: The widget is configured to
-  capture foreign documents.
+In short, it will depend on the name that appears in the strings.xml file of the language you want to select (`strings-es.xml`, `strings-en.xml`, `strings-fr.xml`).
 
-- **SelphIDDocumentType.CREDIT_CARD**: The widget is configured to
-  capture credit cards.
+In the resources zip, which is located inside the strings folder, you can add the `strings-xx.xml` files corresponding to each localization you need to incorporate in the widget.
 
-- **SelphIDDocumentType.CUSTOM**: The widget is configured to capture
-  other types of documents that do not fall into the above categories.
+##### DocumentSide
+The allowed values are the following:
 
-#### 5.1.11 _documentSide_
+- **SelphIDDocumentSide.FRONT:** The widget is configured to capture the front side of the document.
 
-The permitted values are as follows:
+- **SelphIDDocumentSide.BACK:** The widget is configured to capture the back side of the document.
 
-- **SelphIDDocumentSide.FRONT**: The widget is configured to capture
-  the front side of the document
+- **SelphIDDocumentSide.ALL:** The widget is configured to capture both sides of the document.
 
-- **SelphIDDocumentSide.BACK**: The widget is configured to capture
-  the back side of the document.
+##### Timeout
+It is an enumerated that defines the timeout of the capture of one side of the document. It has 3 possible values:
 
-#### 5.1.12 _timeout_
+- **SelphIDTimeout.SHORT:** 15 seconds.
 
-It is an enum that defines the timeout of capturing one side of the
-document. It has three possible values:
+- **SelphIDTimeout.MEDIUM:** 20 seconds.
 
-- SelphIDTimeout.SHORT: 15 seconds.
+- **SelphIDTimeout.LONG:** 25 seconds.
 
-- SelphIDTimeout.MEDIUM: 20 seconds.
+##### GenerateRawImages
+This property configures the widget to return the full image from the camera that was used to capture the document. These images are returned in the `rawFrontDocument` and `rawBackDocument` properties of the `results` object respectively.
 
-- SelphIDTimeout.LONG: 25 seconds.
+##### TranslationsContent
+This property supports an xml where you provide translations to the messages that are defined in the widget
 
-#### 5.1.13 _videoFilename_
+##### ViewsContent
+This property supports an xml where you provide modifications to the widget appearance, colors, proportions... that are defined.
 
-Sets the absolute path to the filename where a video of the capture
-process will be recorded. The application is responsible for requesting
-the necessary permissions from the phone if that path requires
-additional permissions. The widget, by default, will not perform any
-recording process unless a file path is specified using this method.
-
-#### 5.1.14 _DocumentModels_
-
-This property allows a string in XML format to configure the modelling
-of the documents that the widget will try to capture. The definition of
-this modelling is contained, by default, in a .xml of models that can be
-found in the .zip of resources. This property allows an application to
-hot-update the modelling of the documents.
+##### DocumentModels
+This property allows, by means of a string in xml format, to configure the modeling of the documents that the widget will try to capture. The definition of this modeling is contained, by default, in a .xml of models that is in the .zip of resources. This property allows an application to update, in hot, the modeling of the documents.
 
 Note: This property does not alter the content of the resource file.
 
-#### 5.1.15 _generateRawImages_
+#### 5.1.3 Other parameters
+##### VideoFilename
+Sets the absolute path to the filename where a video of the capture process will be recorded. The application is responsible for requesting the necessary permissions from the phone in case that path requires additional permissions. The widget, by default, will not perform any recording process unless a file path is specified using this method.
 
-This property configures the widget to return the entire image from the
-camera used to capture the document. These images are returned in the
-rawFrontDocument and rawBackDocument properties of the resulting object,
-respectively.
+##### TokenPreviousCaptureData
+When the document capture is performed in 2 calls, this property allows to pass a dictionary with the information from the previous capture. This way the widget can combine the results of both reads in a smart way and thus return the combined information from both captures. It also allows the widget to calculate a degree of similarity of the data from both sides.
 
-#### 5.1.16 tokenPreviousCaptureData
+In case both sides of the document are captured in a single call this is not necessary as the widget internally does this process.
 
-When the document capture is done in 2 calls, this property allows the
-pass a dictionary with the information from the previous capture. This
-way the widget can combine the results of both readings in an
-intelligent way and thus return the combined information from both
-captures. It also allows the widget to calculate a degree of similarity
-of the data from both sides.
-
-If both sides of the document are captured in a single call, this is
-unnecessary as the widget does this process internally.
-
-#### 5.1.17 translationsContent
-
-This advanced property allows, through a string in XML format, to
-configure the current translation of the component literals.
-
-**Note**: This property does not alter the content of the resource file.
-
-#### 5.1.18 viewsContent
-
-This advanced property allows, through a string in XML format, to
-configure the widget views.
-
-**Note**: This property does not alter the content of the resource file.
-
-#### 5.1.19. showDiagnostic
-
-Display diagnostic screens at the end of the process
+##### VibrationEnabled
+If true, vibration is enabled on errors and if the widget response is OK, the following is true
 
 ---
 
-## 6. Component use
-
+## 6. Using the component
 Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
@@ -317,31 +271,19 @@ to launch the component:
 - **\[WITH TRACKING\]** This call allows to launch the functionality
   of the component, but internal events will be tracked to the
   _tracking_ server:
-
-```java
-val result = SDKController.launch(
-    SelphIDController(SelphIDConfiguration(..))
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("SelphID: KO - ${result.error.name}")
-    is SdkResult.Success -> result.data
-}
+```
+let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
   functionality of the component, but **no event will be tracked** to
   the _tracking_ server:
-
-```java
-val result = SDKController.launchMethod(
-    SelphIDController(SelphIDConfiguration(..))
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("SelphID: KO - ${result.error.name}")
-    is SdkResult.Success -> result.data
-}
 ```
-
+let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
+```
+ 
 The **launch** method must be used by **default**. This method allows
 **_tracking_** if your component is enabled and will not be used when it
 is disabled (or the component is not installed).
@@ -357,84 +299,47 @@ sent to the platform.
 ## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult format
--more details in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section-.
+-more details in the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK's</a>.	
 
-### 7.1. Receipt of errors
+### 7.1. Receiving errors
 
-On the error side, we will have the SelphIdError class.
-
-```java
-    SelphIDError.ACTIVITY_RESULT_ERROR
-    SelphIDError.BAD_EXTRACTOR_CONFIGURATION_ERROR
-    SelphIDError.CAMERA_PERMISSION_DENIED
-    SelphIDError.CANCEL_BY_USER
-    SelphIDError.CONTROL_NOT_INITIALIZATED_ERROR
-    SelphIDError.EXTRACTION_LICENSE_ERROR
-    SelphIDError.HARDWARE_ERROR
-    is SelphIDError.INITIALIZATION_ERROR -> it.error // More info
-    SelphIDError.NO_ERROR
-    SelphIDError.RESOURCES_NOT_FOUND
-    SelphIDError.SETTINGS_PERMISSION_ERROR
-    is SelphIDError.TIMEOUT
-    SelphIDError.UNEXPECTED_CAPTURE_ERROR
-    SelphIDError.UNKNOWN_ERROR
+*finishStatus*: Which will tell us if the operation has finished successfully. Possible values:
+```
+FinishStatus.STATUS_OK
+FinishStatus.STATUS_ERROR
+```
+*errorType*: Errors specific to the widget.
+```
+case SELPHID_CANCEL_BY_USER
+case SELPHID_TIMEOUT
+case SELPHID_INTERNAL_ERROR
 ```
 
-### 7.2. Receipt of correct execution - _data_
+*data*: It will have the response data of the executed component function. The fields included in this component are specified in section 7.2.
 
-In the data part, we have the SelphIdResult class.
+### 7.2. Receiving successful execution - data
+The data field is variable and will depend on which component the result was returned. In the case of this component, the fields returned are as follows:
 
-The result returns the images in **Bitmap** format. It is possible to
-convert the images to **Base64** as follows:
+#### 7.2.1 rawFrontDocumentData / rawFrontDocument / frontDocument / frontDocumentData / tokenFrontDocument / tokenRawFrontDocument:
+The front image of the processed document, cleaned and trimmed by the edges and its corresponding token.
 
-`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
+#### 7.2.2 rawBackDocumentData / rawBackDocument / backDocument / backDocumentData / tokenBackDocument / tokenRawBackDocument:
+The back image of the processed, cleaned and edge-trimmed document and its associated token.
 
-The data field is variable and will depend on which component has
-returned the result. In the case of this component, the fields returned
-are the following:
+#### 7.2.3 faceImage / faceImageData / tokenFaceImage.
+The image of the face found in the document, if any, and its associated token.
 
-#### 7.2.1 _frontDocument / tokenFrontDocument:_
+#### 7.2.4 documentCaptured
+This property indicates the document model that has been captured when a search is performed in SMSearch mode. In this way the application can know which model, among all the allowed ones, has been detected.
 
-The front image of the processed document, cleaned and trimmed along the
-edges and its corresponding token.
+#### 7.2.5 matchingSidesScore
+This property returns a calculation of the similarity of the data read between the front and the back of the document. The calculation is performed by checking the similarity between the common fields read on both sides. The result of the calculation will be a value between 0.0 and 1.0 if there are common fields in the document. The higher the value, the more similar the data compared. If the calculation returns -1.0 then the document does not contain common fields or there is no information from the two sides yet.
 
-#### 7.2.2 _backDocument / tokenBackDocument_
-
-The back image of the processed document, cleaned and trimmed around the
-edges and its associated token.
-
-#### 7.2.3 _faceImage / tokenFaceImage_
-
-The image of the face found in the document, if any, and its associated
-token.
-
-Valid for the FACIAL MATCHING process.
-
-#### 7.2.4 _documentCaptured_
-
-This property indicates the document model captured when a search is
-performed in SMSearch mode. In this way, the application can know which
-model has been detected among all the allowed ones.
-
-#### 7.2.5 _matchingSidesScore_
-
-This property returns a calculation of the similarity of the data read
-between the front and the back of the document. The calculation is
-performed by checking the similarity between the common fields read on
-both sides. The result of the calculation will be a value between 0.0
-and 1.0 if there are common fields in the document. The higher the
-value, the more similar the data compared. If the calculation returns
--1.0, then the document contains no common fields or there is no
-information yet from both sides.
-
-#### 7.2.6 _Propiedad captureProgress_
-
-This property returns the state the capture process was in when the
-widget ended. Here are the possible values:
-
-```java
+#### 7.2.6 Property captureProgress
+This property returns the state in which the capture process was when the widget finished. These are the possible values:
+```
 Front_Detection_None = 0
 Front_Detection_Uncertain = 1
 Front_Detection_Completed = 2
@@ -445,80 +350,45 @@ Back_Detection_Completed = 6
 Back_Document_Analyzed = 7
 ```
 
-- **0**: When reading the Front, the widget ended up not being able to
-  detect anything. Generally when no document is put in.
+- **0**: When reading the Front, the widget ended without being able to detect anything. Generally when no document is put in.
 
-- **1**: In the Front reading, the widget ended up having partially
-  detected a document. In this case, some of the expected elements
-  have been detected, but not all the necessary ones.
+- **1**: In the Front reading, the widget ended up having partially detected a document. In this case some of the expected elements have been detected, but not all the necessary ones.
 
-- **2**: In the Front reading, the widget ended up having completed
-  the detection of all the elements of the document. If the widget
-  ends up in this state, it is because the OCR analysis could not be
-  completed successfully.
+- **2**: In the Front reading, the widget ended up having completed the detection of all the elements of the document. If the widget ends up in this state, it is because the OCR analysis could not be completed successfully.
 
-- **3**: On Front reading, the widget ended up having analysed and
-  extracted all OCR from the document. This is the state in which a
-  successful Front-end reading of a document would end.
+- **3**: In the Front reading, the widget ended up having analyzed and extracted all the OCR from the document. This is the state in which a successful Front reading of a document would end.
 
-Statuses 4 to 7 are exactly the same but refer to the result of the
-process when the back is analysed.
+The states **4 to 7** are exactly the same but refer to the result of the process when the back is analyzed.
 
-#### 7.2.7 _ocrResults_
+#### 7.2.7 ocrResults / tokenOCR
+This dictionary contains all the data detected in the document. The keys of each field are encoded in such a way that the key itself contains information on where the value was obtained from. Thus, for example, the key Front/MRZ/DocumentNumber indicates the value of the DocumentNumber that has been read in the Front of the document and in the MRZ region. These keys depend on the captured document and will therefore be different between different countries and document models. The dictionary also contains keys with more generic names and which do not carry location information. These keys contain the most complete data of all those read for that field.
 
-This dictionary contains all the data detected in the document. The keys
-of each field are encoded in such a way that the key itself contains
-information on where the value has been obtained from. Thus, for
-example, the key Front/MRZ/DocumentNumber indicates the value of the
-DocumentNumber that has been read in the Front of the document and in
-the MRZ region. These keys depend on the captured document and will
-therefore differ between different countries and document models. The
-dictionary also contains keys with more generic names and which do not
-carry location information. These keys contain the most complete data of
-all those read for that field.Estas claves son los siguientes:
+These keys are as follows:
 
-- FirstName: The value associated with this key contains the user's
-  first name.
+- **FirstName**: The value associated with this key contains the user's first name.
 
-- LastName: The value associated with this key contains the user's
-  surname.
+- **LastName**: The value associated with this key contains the user's last name.
 
-- DateOfBirth: The value associated with this key contains the date of
-  birth detected in the document.
+- **DateOfBirth**: The value associated with this key contains the date of birth detected in the document.
 
-- Gender: The value associated with this key contains the gender of
-  the user detected in the document.
+- **Gender**: The value associated to this key contains the user's gender detected in the document.
 
-- Nationality: The value associated with this key contains the
-  nationality of the user detected in the document.
+- **Nationality**: The value associated to this key contains the nationality of the user detected in the document.
 
-- DocumentNumber: The value associated with this key contains the
-  document number.
+- **DocumentNumber**: The value associated with this key contains the document number.
 
-- DateOfExpiry: The value associated with this key contains the expiry
-  date of the document.
+- **DateOfExpiry**: The value associated with this key contains the expiry date of the document.
 
-- Issuer: The value associated with this key contains the publisher of
-  the document.
+- **Issuer**: The value associated with this key contains the publisher of the document.
 
-- DateofIssue: The value associated with this key contains the date of
-  issue of the document.
+- **DateofIssue**: The value associated with this key contains the date of issue of the document.
 
-- PlaceOfBirth: The value associated with this key contains the user's
-  place of birth.
+- **PlaceOfBirth**: The value associated with this key contains the user's place of birth.
 
-- Address: The value associated to this key contains the address
-  detected in the document.
+- **Address**: The value associated to this key contains the address detected in the document.
 
-Additionally, keys of the results object itself are added to make it
-easier to search:
+Additionally, keys of the results object itself are added to make it easier to search for:
 
-- DocumentCaptured: Value of the document model that has been captured
-  according to the .xml model. It corresponds to the documentCaptured
-  property.
+- **DocumentCaptured**: Value of the document template that has been captured according to the .xml of templates. Corresponds to the documentCaptured property.
 
-- MatchingSidesScore: Value that indicates the correspondence between
-  the read sides of the document. It corresponds to the
-  matchingSidesScore property.
-
----
+- **MatchingSidesScore**: Value that indicates the correspondence between the read sides of the document. It corresponds to the matchingSidesScore property.

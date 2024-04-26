@@ -1,6 +1,6 @@
 # NFC Component
 
-## 0. SDK Mobile baseline requirements
+## 0. SDK Mobile Base Requirements
 
 **SDK Mobile** is a set of libraries (Components) that offer a series of
 functionalities and services, allowing their integration into a Mobile
@@ -12,7 +12,7 @@ affecting those already integrated into the project.
 For more information on the base configuration, go to the
 <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+data-linked-resource-type="page">Mobile SDK</a>
 
 ---
 
@@ -36,20 +36,26 @@ passports. Its main functionalities are the following:
 
 - Return of images when they are available for reading.
 
+### 1.1 Minimum requirements
+
+The minimum iOS SDK version required is as follows:
+
+- Minimum iOS version: **13**
+
+- Minimum device: iPhone 6s - the first to have an NFC reader
+
 ---
 
 ## 2. Integration of the component
 
-Before integrating this component, it is recommended to read the
-documentation related to
-
+Before integrating this component, it is recommended to read the documentation related to 
 <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
-and follow the instructions in that document.
+and follow the instructions indicated in said document.
 
-This section will explain step by step how to integrate the current
-component into an existing project.
+This section will explain step by step how to integrate the component
+current in an existing project.
 
 ### 2.1. Dependencies required for integration
 
@@ -58,13 +64,58 @@ the component in a project containing an old Facephi libraries
 (_Widgets_) version, these must be removed entirely before installing
 the **_SDKMobile_** components.
 
-- Currently, FacePhi libraries are distributed remotely through
-  different dependency managers. **Mandatory** dependencies that must
-  be installed beforehand:
+- Currently FacePhi libraries are distributed remotely through 
+  different dependency managers, in this case Cocoapods. 
+  The **mandatory** dependencies that must have been previously installed 
+  (adding them to the project's Podfile file) are:
 
-  ```java
-  implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version"
-  ```
+#### Cocoapods
+
+The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
+```java
+pod 'FPHISDKMainComponent', '~> 2.0.0'
+```
+To install the NFC component, the following entry must be included in the application's Podfile:
+```java
+pod 'FPHISDKNFCComponent', '~>2.8.0'
+```
+#### SPM
+
+The mandatory dependencies that must have been previously installed are:
+
+```java
+//HTTPS
+https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
+//SSH
+git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
+
+```
+To install the NFC component, it must be included in the project modules:
+```java
+//HTTPS
+https://github.com/facephi-clienters/SDK-NFC_component-SPM.git
+//SSH
+git@github.com:facephi-clienters/SDK-NFC_component-SPM.git
+```
+
+Once the dependencies are installed, you can use the different functionalities of the component.
+
+- If developing with **xCode15**, a post-installation script must be included:
+
+![Image](/iOS/fix_ldClassic.png)
+
+### 2.2 Permissions and settings
+
+In the client application where the components are going to be integrated, it is necessary to incorporate the following elements in the **Info.plist** file:
+
+```
+It is necessary to allow the use of NFC - (Privacy - NFC Scan Usage Description)
+Indicate NFC identifiers - (ISO7816 application identifiers for NFC Tag Reader Session)
+A0000002471001
+A0000002472001
+00000000000000
+It is necessary to add the Near Field Communication Tag Reading option in the Signing & Capabilities section of the target
+```
 
 ---
 
@@ -79,8 +130,7 @@ This command must have been executed **before launch**.
 To learn more about how to start a new operation, it is recommended to
 consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
-documentation, which details and explains what this process consists of.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a> documentation, which details and explains what this process consists of.
 
 ---
 
@@ -104,60 +154,69 @@ each is used for.
 
 ### 5.1. Class NFCConfigurationData
 
-#### 5.1.1. documentNumber
+#### 5.1.1. Basic Documentation
 
-Indicates the document or media number depending on the document to be
-read.
+##### showTutorial
+Indicates if the component activates the tutorial screen. This view explains intuitively how the capture is performed.
+
+##### vibrationEnabled 
+iOS does not allow vibration to be added while taking NFC readings.
+
+##### showDiagnostic
+If set to true, if an error or lack of permissions occurs, the sdk will display a screen with the error returned by the widget.
+
+##### extractionTimeout
+Sets the maximum time the readout can be performed.
+
+#### 5.1.2. Advanced Documentation
+
+##### enableDebugMode
+
+Enable debug mode for the component.
+
+##### skipPace
+
+Indicates that only NFC BAC reading is desired. This is a simpler and faster
+simpler and faster information that allows reading of a wider variety of documents.
+variety of documents.
+
+#### 5.1.3 Other parameters
+
+##### documentNumber
+
+Indicates the document number or media number depending on the document to be read.
+document to be read.
 
 This field is mandatory.
 
-#### 5.1.2. birthDate
+##### birthDate
 
-Indicates the date of birth that appears on the document ("dd/MM/yyyy").
-
-This field is mandatory.
-
-#### 5.1.3. expirationDate
-
-Indicates the expiry date that appears on the document ("dd/MM/yyyy").
+Indicates the date of birth appearing in the document
+("dd/MM/yyyy").
 
 This field is mandatory.
 
-#### 5.1.4. extractionTimeout
+##### expirationDate
 
-Sets the maximum time the reading can be done.
+Indicates the expiry date as it appears in the document
+("dd/MM/yyyy").
 
-#### 5.1.5. showReadingScreen
+This field is mandatory.
 
-Sets whether to display the lower modal display with the reading being
-taken. If disabled, no view is displayed, and you must listen to the
-statuses returned by the controller.
+##### issuer
 
-#### 5.1.6. showTutorial
+Indicates the country of origin of the document to be read.
 
-Indicates whether the component activates the tutorial screen. This view
-intuitively explains how the capture is performed.
+##### documentType
 
-#### 5.1.7. vibrationEnabled
+Indicates the type of document to be read:
+    - ID_CARD
+    - PASSPORT
+    - FOREIGN_CARD
 
-Indicates whether vibration feedback is desired at the end of the
-process.
-
-#### 5.1.8. enableDebugMode
-
-Activation of the component's debug mode.
-
-#### 5.1.9. skipPace
-
-Indicates that only NFC BAC reading is desired. It is a simple and fast
-reader.
-
-#### 5.1.10. showDiagnostic
-
-Display diagnostic screens at the end of the process
+##### readableTags
 
 ---
-
 ## 6. Component use
 
 Once the component has been started and a new operation has been created
@@ -168,61 +227,19 @@ to launch the component:
   of the component, but internal events will be tracked to the
   _tracking_ server:
 
-```java
-val result = SDKController.launch(
-    NfcController(
-        componentData = NfcConfigurationData(
-            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
-            birthDate = NFC_BIRTH_DATE, // "dd/MM/yyyy"
-            expirationDate = NFC_EXPIRATION_DATE, // "dd/MM/yyyy",
-            ),
-        state = { state ->
-            Napier.d("NFC: State: ${state.name}")
-        },
-        debugLogs = {
-            Napier.d("NFC Logs: $it")
-        }
-    )
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
-    is SdkResult.Success -> {
-        Napier.d("APP: NFC: OK")
-        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
-        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
-    }
-}
 ```
-
+let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
+```
 - **\[WITHOUT TRACKING\]** This call allows to launch the
   functionality of the component, but **no event will be tracked** to
   the _tracking_ server:
 
-```java
-val result = SDKController.launchMethod(
-    NfcController(
-        componentData = NfcConfigurationData(
-            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
-            birthDate = NFC_BIRTH_DATE, // "dd/MM/yyyy"
-            expirationDate = NFC_EXPIRATION_DATE, // "dd/MM/yyyy",
-            ),
-        state = { state ->
-            Napier.d("NFC: State: ${state.name}")
-        },
-        debugLogs = {
-            Napier.d("NFC Logs: $it")
-        }
-    )
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
-    is SdkResult.Success -> {
-        Napier.d("APP: NFC: OK")
-        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
-        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
-    }
-}
 ```
+let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
+NFCController.shared.launchMethod(controller: controller)
+```
+ 
 
 The **launch** method must be used by **default**. This method allows
 **_tracking_** to be used if your component is enabled and will not be
@@ -234,43 +251,57 @@ certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
 
+
 ---
 
 ## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult format
--more details in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section-.
+-more details in the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK's</a>.	
 
 ### 7.1. Receipt of errors
 
-On the error side, we will have the _NfcError_ class.
+On the error side, **internally** we have the NFCPassportReaderError class. This enumeration contains many specific errors that do not provide useful information if returned to the integrator, so they are transformed to a simpler type (**ErrorType**):
 
 ```java
-    NfcError.ACTIVITY_RESULT_ERROR
-    NfcError.CANCEL_BY_USER
-    NfcError.INITIALIZATION_ERROR -> it.error // More info
-    NfcError.NFC_ERROR
-    NfcError.NFC_ERROR_DATA
-    NfcError.NFC_ERROR_DISABLED
-    NfcError.NFC_ERROR_ILLEGAL_ARGUMENT
-    NfcError.NFC_ERROR_IO
-    NfcError.NFC_ERROR_NOT_SUPPORTED
-    NfcError.NFC_ERROR_READING
-    NfcError.NFC_ERROR_TAG_LOST
-    NfcError.NO_DATA_ERROR
-    NfcError.TIMEOUT
-    NfcError.LAST_COMMAND_EXPECTED
+    CANCEL_BY_USER
+    TIMEOUT
+    UNKNOWN_ERROR
+    NFC_INVALID_MRZ_KEY
+    NFC_NOT_SUPPORTED
+    TAG_CONNECTION_LOST
+    SECURITY_STATUS_NOT_SATISFIED
+    SYSTEM_RESOURCE_UNAVAILABLE
 ```
 
-### 7.2. Receipt of correct execution - _data_
+**NOTE**: `NFC_INVALID_MRZ_KEY` *implies that the connection could not be established because the configuration input data (documentNumber, birthDate, expiryDate) is not correct.
+All read launches for that NFC shall fail as long as a new NFCController is not initialised with the correct data.*.
 
-In the data part, we have the _NfcResult class_.
+### 7.2. Receiving successful execution - *data*
 
-The data field is variable and will depend on which component has
-returned the result. In the case of this component, the fields returned
-are the following:
+In the _data_ part, we will have the _NfcResult_ class.
+
+```
+public class NfcResult {
+    public let nfcRawData: NfcRawData
+    public private(set) var nfcDocumentInformation: NfcDocumentInformation?
+    public private(set) var nfcPersonalInformation: NfcPersonalInformation?
+    public let nfcImages: NfcImages?
+    public let nfcSecurityData: NfcSecurityData
+    public private(set) var nfcValidations: NfcValidations?
+}
+
+extension NfcResult {
+    public var personalData: [String: String]
+    {
+        ...
+    }
+}
+```
+
+In the case of this component, the fields returned are the following:
 
 #### 7.2.1. nfcRawData
 
@@ -278,126 +309,158 @@ Information obtained for each data type in raw format.
 
 #### 7.2.2. nfcDocumentInformation
 
-Information obtained from the document ordered by:
-
-- documentNumber
-
-- expirationDate
-
-- issuer
-
-- mrzString
+Information retrieved from the document sorted by:
 
 - type
+- documentNumber
+- issuer
+- expirationDate
+- mrzString
 
 #### 7.2.3. nfcPersonalInformation
 
-Information obtained from the document ordered by:
-
-- address
-
-- birthdate
-
-- city
-
-- gender
+Information obtained from the document sorted by:
 
 - name
-
-- nationality
-
-- personalNumber
-
-- placeOfBirth
-
 - surname
+- address
+- nationality
+- personalNumber
+- birthdate
+- placeOfBirth
+- gender
 
 #### 7.2.4. nfcImages
 
-Image information obtained from the document sorted by:
+Image information obtained from the document ordered by:
 
 - facialImage
-
 - fingerprintImage
-
 - signatureImage
 
 #### 7.2.5 nfcSecurityData
 
 Document security data information sorted by:
 
-- dataGroupsHashes
-
-- dataGroupsRead
-
-- documentSigningCertificateData
-
-- issuerSigningCertificateData
-
 - ldsVersion
+- dataGroupsHashes
+- dataGroupsRead
+- documentSigningCertificateData
+- issuerSigningCertificateData
 
 #### 7.2.6. nfcValidations
 
-Document validation information sorted by:
+Information of the document validations sorted by:
 
-- accessType
-
+- accessProtocol
 - activeAuthenticationSupported
-
 - activeAuthenticationValidation
-
 - chipAuthenticationValidation
-
 - dataGroupsHashesValidation
-
 - documentSigningValidation
-
 - issuerSigningValidation
 
-#### 7.2.7. nfcCertificateData
+#### 7.2.7 personalData
 
-X509 certificate information obtained from the document ordered by.
-
-- X509Certificate
+- issuer
+- documentNumber
+- issueDate
+- expiryDate
+- name
+- surname
+- fullName
+- gender
+- birthDate
+- birthPlace
+- nationality
+- address
+- nfcKey
+- numSupport
+- mrz
 
 ---
 
-## 8. Customizing the component
+## 8. Component customisation
 
-Apart from the changes that can be made at the SDK level (explained in
-the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
-document), this particular component allows the modification of specific
-texts.
+The NFC component has parameterisable visual resources that modify the interface, animations, texts and translations,...
+
+The customisation system is based on themes. By default, the component has a theme called ThemeNFC.
+
+To modify the visual interface (UX/UI) you can create a new CustomTheme that extends the following protocol:
 
 ### 8.1 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application and change the value of
-each String to the desired one.
+If you want to modify the SDK texts you would have to include the following
+XML file in the client application, and modify the value of each _String_ to
+value of each _String_ to the desired one.
 
-```xml
-    <string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
-    <string name="nfc_component_ready_to_scan">Ready to scan</string>
-    <string name="nfc_component_reading_device">Reading device</string>
-    <string name="nfc_component_in_progress">In progress:</string>
-    <string name="nfc_component_connector_of">in</string>
-    <string name="nfc_component_error">The NFC could not be\nread correctly</string>
-    <string name="nfc_component_tutorial">Attach the document to the back of your device.</string>
-    <string name="nfc_component_tutorial_button">Continue</string>
-    <string name="nfc_component_tutorial_title">Scan NFC</string>
-    <string name="nfc_component_tutorial_1">When we pass a card through a sensor, there is an exchange of information called NFC.</string>
-    <string name="nfc_component_tutorial_2">On your mobile, the sensor is in the marked area. Here you must gather your document.</string>
-    <string name="nfc_component_tutorial_3">For a better reading, remove the cover of your mobile.</string>
-    <string name="nfc_component_tutorial_more_info_button">More info</string>
-    <string name="nfc_component_timeout_title">Time exceeded</string>
-    <string name="nfc_component_timeout_desc">We apologize. The capture could not be made</string>
-    <string name="nfc_component_internal_error_title">There was a technical problem</string>
-    <string name="nfc_component_internal_error_desc">We apologize. The capture could not be made</string>
-    <string name="nfc_component_data_error_title">Document could not be read</string>
-    <string name="nfc_component_data_error_desc">Review the data entered</string>
-    <string name="nfc_component_read_not_finish_title">Reading not finished</string>
-    <string name="nfc_component_read_not_finish_desc">Hold the position until the end of the reading</string>
+```java
+"text_intro_chip_state_waiting_tag_text" = "Slowly slide the document until the sensor detects it";
+"text_chip_security_enable_nfc_title" = "Please enable NFC to continue";
+"text_error_retrieving_document_data" = "An error happened while trying to retrieve the document's data";
+"text_nfc_read_successfull_title" = "NFC read successfully";
+"text_intro_chip_state_fail" = "The NFC could not be read";
+"text_diagnostic_NFC_timeout_description" = "You have exceeded the NFC read time. Please try again";
+"text_chip_duplicated_session_error" = "Duplicated scan session, please try again after this message is dismissed";
+"text_chip_security_serial_number_title" = "Serial number";
+"text_chip_security_algorithm_sign_title" = "Signature algorithm";
+"text_chip_security_algorithm_public_key_title" = "Public key algorithm";
+"text_chip_security_certificated_impress_title" = "Printout of certificate";
+"text_chip_security_editor_title" = "Editor";
+"text_chip_security_subject_title" = "Subject";
+"text_chip_security_valid_from_title" = "Valid from";
+"text_chip_security_valid_still_title" = "Valid to";
+"text_loading_optional_description" = "Reading, please don't move the document\n\n";
+"icon_loading_filled_circle" = "🟢";
+"icon_loading_void_circle" = "⚪️";
+"nfc_component_cancel"="Cancel";
+"nfc_component_end_confirmation_title" = "Are you sure you will finish the process?";
+"nfc_component_agree" = "Accept";
+"nfc_component_tutorial"="Attach the document to the back of your device.";
+"nfc_component_tutorial_button"= "Start";
+"nfc_component_tutorial_button_info"= "More information";
+"nfc_component_tutorial_title"="Scan NFC";
+"nfc_component_tutorial_1"="When we pass a card through a sensor, there is an exchange of information called NFC.";
+"nfc_component_tutorial_2"="On your mobile, the sensor is in the marked area. Here you must gather your document.";
+"nfc_component_tutorial_3"="For a better reading, remove the cover of your mobile.";
+"nfc_component_skip" = "Skip";
+"diagnostic_tag_connection_lost_title" = "Reading not finished";
+"diagnostic_tag_connection_lost_description" = "Hold the position until the end of the reading";
+"diagnostic_invaliz_mrz_error_title" = "There was a technical problem";
+"diagnostic_invalid_mrz_error_description" = "We’re sorry. We need a new photo of the document";
+```
 
+```java
+public protocol ThemeNFCProtocol {
+    var name: String { get }
+    var fonts: [R.Font: String] { get }
+    var dimensions: [R.Dimension: CGFloat] { get }
+    var images: [R.Image: UIImage?] { get }
+    var colours: [R.Color: UIColor?] { get }
+    var animations: [R.Animation: String] { get }
+}
+```
+For example:
+```java
+class CustomThemeNFC: ThemeNFCProtocol {
+    public var name: String {
+        "customNfc"
+    }
+
+    public var fonts: [R.Font: String] {
+        [.bold: "Arial"] // the font is overrided
+    }
+
+    public var dimensions: [R.Dimension: CGFloat] {
+        [.fontSmall: 7,
+         .fontRegular: 12,
+         .fontBig: 20,
+         .radiusCorner: 16]
+    }
+    ...
+}
+```
+To apply this custom theme we must use the following instruction before launching the component:
+```java
+ThemeNFCManager.setup(theme: CustomThemeNFC())
 ```

@@ -1,7 +1,7 @@
 # Tracking Component
 
 ## 0. SDK Mobile baseline requirements
-
+ 
 **SDK Mobile** is a set of libraries (Components) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
@@ -29,10 +29,16 @@ transversally with the rest of the components installed in the
 **_SDKMobile_**. To track the information, it is kept in the background
 while the SDKMobile process is running.
 
+
+### 1.1 Minimum requirements
+The minimum iOS SDK version required is as follows:
+
+Minimum iOS version: **13**
+
 ---
 
-## 2. Integration of the component
-
+## 2. Component integration
+ 
 Before integrating this component, it is recommended to read the
 documentation related to
 
@@ -45,19 +51,28 @@ This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
-
 To avoid conflicts and compatibility problems, if you want to install
 the component in a project containing an old Facephi libraries
 (_Widgets_) version, these must be removed entirely before installing
 the **_SDKMobile_** components.
 
-- Currently, FacePhi libraries are distributed remotely through
-  different dependency managers. **Mandatory** dependencies that must
-  be installed beforehand:
+Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must be previously installed (by adding them in the Podfile file of the project) are:
 
-  ```java
-  implementation "com.facephi.androidsdk:tracking_component:$sdk_tracking_component_version"
-  ```
+```
+pod 'FPHISDKMainComponent',, '~> 2.0.0'
+```
+
+To install the Tracking component, the following entry must be included in the application Podfile:
+
+```
+pod 'FPHISDKTrackingComponent', '~> 2.0.0'
+```
+
+Once the dependencies are installed, the different functionalities of the component can be used.
+
+- In case of development with **xCode15** a post-installation script must be included:
+
+![Image](/iOS/fix_ldClassic.png)
 
 ---
 
@@ -77,98 +92,74 @@ documentation, which details and explains what this process consists of.
 
 ---
 
-## 4. Available controllers
+## 4. Component configuration
 
-|                         |                                                                                                        |
-| ----------------------- | ------------------------------------------------------------------------------------------------------ |
-| **Controller**          | **Description**                                                                                        |
-| TrackingController      | Tracking the main controller                                                                           |
-| TrackingErrorController | Controller to handle any errors that occur                                                             |
-| ExtraDataController     | Driver to get the ExtraData that allows communication from client to server with SelphIDSdk installed. |
+The TrackingController controller will only be added in case of having the sdkMobile tracking.
 
-## 5. Component configuration
+The import is added:
 
-To configure the current component, see the initialisation section in
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>.
-
-### 5.1. TrackingController configuration
-
-This parameter must be included
-
-```java
-SDKController.initSdk(
-    ...
-    trackingController = TrackingController(),
-)
+```
+import trackingComponent
 ```
 
-### 5.2. Error control settings
+trackingController: trackingController
 
-The callback can be configured to control tracking errors:
+Initialize:
 
-```java
-SDKController.launch(
-     TrackingErrorController {
-        Napier.d("Tracking Error: ${it.name}")
+```
+let trackingController = TrackingController(trackingError: { trackingError in
+      print("TRACKING ERROR: \(trackingError)")
+})
+```
+
+It is added in the initSDK:
+
+```
+//AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+     if sdkResult.finishStatus == .STATUS_OK {
+         self.log("Automatic license set correctly")
+     } else {
+         self.log("An error occurred while attempting to obtain the license: \(sdkResult.errorType)")
      }
-)
-```
-
-**Section 7** shows the possible error values that exist.
-
-### 5.3. Obtaining the ExtraData for communication with the Platform
-
-The call to get the extraData needs information on the current
-operation, forcing it to have **previously performed a newOperation**.
-
-```java
-val result = SDKController.launch(
-    ExtraDataController()
-)
-when (result) {
-    is SdkResult.Success -> logs.add("ExtraData: OK")
-    is SdkResult.Error -> logs.add(
-        "ExtraData: KO - ${result.error.name}"
-    )
-}
+}, trackingController: trackingController)
 ```
 
 ---
 
-## 6. Use of the component
+## 5. Use of the component
+As previously mentioned, once initialized and configured the
+**tracking** component will not need to be launched, since it will
+will keep running in the background while the rest of the
+components.
 
-As previously mentioned, once the tracking component has been
-initialised and configured, launching it will not be necessary, as it
-will keep running in the background while the rest of the components are
-running.
 
 ---
 
-## 7. Receipt of the result
+## 6. Reception of the result
 
-### 7.1. Receipt of errors
+The result is an *SDKResult* object that is returned by the SDK and will always have 3 fields:
 
-In the error part, we will have the TrackingError class.
-
-```java
-INIT_IDS_ERROR,
-LICENSE_ERROR,
-APPLICATION_CONTEXT_ERROR,
-OPERATION_RESULT,
-OPERATION_ID,
-SESSION_ID,
-CUSTOMER_ID,
-STEP_CHANGE,
-ASSET_LINK,
-ASSET_UPLOAD,
-OCR_DATA,
-INIT_OPERATION,
-NO_OPERATION_CREATED_ERROR,
-TOKEN_ERROR,
-NETWORK_CONNECTION,
-SEND_BYTEARRAY
+*finishStatus*: Which will tell us if the operation has completed correctly. Possible values:
 ```
+FinishStatus.STATUS_OK
+FinishStatus.STATUS_ERROR
+```
+*errorType*: If the finishStatus indicates that there has been an error, this field will have the description of the error:
 
+Tracking errors come in the *TrackingError* enum:
+
+```
+INIT_DATA_ERROR
+ASSET_UPLOAD
+INIT_IDS_ERROR
+ASSET_LINK
+STEP_CHANGE
+OCR_DATA
+INIT_OPERATION
+EXTERNAL_EVENT
+OPERATION_RESULT
+CUSTOMER_ID
+TOKEN_ERROR
+```
 ---

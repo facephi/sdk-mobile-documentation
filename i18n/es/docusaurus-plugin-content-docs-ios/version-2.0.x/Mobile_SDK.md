@@ -111,23 +111,6 @@ end
   pod repo-art update cocoa-pro-fphi
   ```
 
-### 2.2. Dependencias requeridas para la integración básica
-
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
-
-Actualmente las librerías de FacePhi se distribuyen de forma remota a
-través de diferentes gestores de dependencias.
-
-Las dependencias base **obligatorias** para el uso del SDK son:
-
-```java
-implementation "com.facephi.androidsdk:sdk:$sdk_version"
-implementation "com.facephi.androidsdk:core:$core_version"
-```
 ### 2.3 Posibles incidencias
 
 En el caso de que el integrador utilice un Macbook con Chip **M1**, cabe la posibilidad de que la instalación de cocoapods-art no se realice correctamente. Por ello, se debe tener en cuenta los siguientes puntos:
@@ -207,31 +190,6 @@ Se decide si la licencia se incluirá a través de un String o con un servicio d
 
 Si la inicialización devuelve un .STATUS_OK el controlador del SDK estará listo para su uso.
 
-```java
- let trackingController = TrackingController(trackingError: { trackingError in
-      self.log("TRACKING ERROR: \(trackingError)")
-  })
-
-// MANUAL License
-SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: { sdkResult in
-    if sdkResult.finishStatus == .STATUS_OK {
-        self.log("Licencia manual seteada correctamente")
-    } else {
-        self.log("La licencia manual no es correcta")
-    }
-}, trackingController: trackingController)
-
-// AUTO License
-SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
-    if sdkResult.finishStatus == .STATUS_OK {
-        self.log("Licencia automática seteada correctamente")
-    } else {
-        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
-    }
-}, trackingController: trackingController)
-
-
-```
 ### 3.1 Inyección de licencias
 
 Como se ha comentado previamente, actualmente existen dos formas de

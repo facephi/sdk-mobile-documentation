@@ -22,7 +22,7 @@ In the SdkData class:
 
 - Necessary data if a service is going to be used to obtain the licenses:
 
-```kotlin
+```java
 val environmentLicensingData: EnvironmentLicensingData = EnvironmentLicensingData(
         apiKey = "....."
     )
@@ -30,19 +30,19 @@ val environmentLicensingData: EnvironmentLicensingData = EnvironmentLicensingDat
 
 - License string if a service is not to be used:
 
-```kotlin
+```java
 const val LICENSE = "...."
 ```
 
 - Depending on how the license was added adapt the value of the variable:
 
-```kotlin
+```java
   const val LICENSE_ONLINE = false
 ```
 
 - Client identifier and type of operation to be used in the initialization:
 
-```kotlin
+```java
 const val CUSTOMER_ID = "...."
 val OPERATION_TYPE = OperationType.ONBOARDING
 
@@ -50,7 +50,7 @@ val OPERATION_TYPE = OperationType.ONBOARDING
 
 - For Selphi, the name of the ZIP file of resources (which will be in the application's assets folder) and the configuration data:
 
-```kotlin
+```java
 const val SELPHI_RESOURCES = ".....zip"
 
 val selphiConfiguration = SelphiConfigurationData(
@@ -61,7 +61,7 @@ val selphiConfiguration = SelphiConfigurationData(
 
 - For SelphID, the name of the ZIP file of resources (which will be in the application's assets folder) and the configuration data:
 
-```kotlin
+```java
 const val SELPHID_RESOURCES = "...zip"
 
 val selphIDConfiguration = SelphIDConfigurationData(
