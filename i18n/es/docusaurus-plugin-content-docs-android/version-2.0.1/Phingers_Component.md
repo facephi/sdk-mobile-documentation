@@ -146,54 +146,45 @@ la misma forma en que se han capturado.
 Activa o desactiva el detector de vivacidad durante el proceso de
 captura de huellas. Por defecto se encuentra a **true**.
 
-#### 5.1.6. returnWSQ
-
-Si se establece a **true** entonces en el resultado de la captura se
-devolverá, para cada una de las huellas, el dato comprimido mediante
-_Wavelet Scalar Quatization_ (WSQ). WSQ es un algortimo de compresión en
-grises, siendo un estándar (NIST) para este tipo de capturas. Orientado
-a la validación contra las diferentes bases de datos gubernamentales
-existentes.
-
-#### 5.1.7. returnFullFrameImage
+#### 5.1.6. returnFullFrameImage
 
 Especifica si se debe devolver la imagen completa de la cámara en la que
 se han detectado los dedos.
 
-#### 5.1.8. extractionTimeout
+#### 5.1.7. extractionTimeout
 
 Establece un modo de estabilización previo a cualquier proceso de
 autenticación en el widget. Con este modo se obliga al widget a no
 empezar ningún proceso si el usuario no se encuentra con la cabeza
 mirando al frente y sin moverla.
 
-#### 5.1.9. showTutorial
+#### 5.1.8. showTutorial
 
 Indica si el componente activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-#### 5.1.10. threshold
+#### 5.1.9. threshold
 
 El parámetro configura un captureQualityThreshold, para definir un
 threshold de calidad para realizar la captura.
 
-#### 5.1.11. showSpinner
+#### 5.1.10. showSpinner
 
 Indica si se quiere mostrar el spinner de carga.
 
-#### 5.1.12. cropWidth
+#### 5.1.11. cropWidth
 
 Indica un ancho para realizar un recorte de la captura.
 
-#### 5.1.13. cropHeight
+#### 5.1.12. cropHeight
 
 Indica una altura para realizar un recorte de la captura.
 
-#### 5.1.14. cropFactor
+#### 5.1.13. cropFactor
 
 Indica la relación para el recorte de la captura.
 
-#### 5.1.15. showDiagnostic
+#### 5.1.14. showDiagnostic
 
 Mostrar pantallas de diagnóstico al final del proceso
 

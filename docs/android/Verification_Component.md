@@ -1,55 +1,51 @@
 # Verification Component
+## 0. SDK Mobile baseline requirements
 
-## 0. Requisitos base de SDK Mobile
+**SDK Mobile** is a set of libraries (Components) that offer a series of
+functionalities and services, allowing their integration into a Mobile
+application in a simple and fully scalable way. Certain components must
+be installed depending on the use case required. Its high level of
+modularity allows other new components to be added in the future without
+affecting those already integrated into the project.
 
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
-
-Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+For more information on the base configuration, go to the
+<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a> section.
 
 ---
 
-## 1. Introducción
+## 1. Introduction
 
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_Verification Component_**. Éste se encarga de realizar las verificaciones 
-facilitadas por Facephi sobre los datos extraídos.
+The _Component_ dealt with in the current document is called the
+**_Verification Component_**. It is in charge of performing the verifications provided by Facephi 
+on the extracted data.
+
 ---
 
-## 2. Integración del componente
+## 2. Integration of the component
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
+Before integrating this component, it is recommended to read the
+documentation related to
 
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
-documento.
+<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow the instructions in that document.
 
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
+This section will explain step by step how to integrate the current
+component into an existing project.
 
-### 2.1. Dependencias requeridas para la integración
+### 2.1. Dependencies required for integration
 
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
+To avoid conflicts and compatibility problems, if you want to install
+the component in a project containing an old Facephi libraries
+(_Widgets_) version, these must be removed entirely before installing
+the **_SDKMobile_** components.
 
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+- Currently, FacePhi libraries are distributed remotely through
+  different dependency managers. **Mandatory** dependencies that must
+  be installed beforehand:
 
   ```java
   implementation "com.facephi.androidsdk:verifications_component:$sdk_verifications_component_version"
@@ -57,31 +53,29 @@ completo antes de la instalación de los componentes de la
 
 ---
 
-## 3. Iniciar nueva operación
+## 3. Start a new operation
 
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
+When you want to perform a specific operation to generate the associated
+information correctly in the platform, the **newOperation** command must
+first be executed.
 
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del
-componente**.
+This command must have been executed **before launch**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>, en el que se detalla y explica en qué consiste
-este proceso.
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation, which details and explains what this process consists of.
 
 ---
 
-## 4. Controladores disponibles
+## 4. Available controllers
 
 | **Controlador**    | **Descripción**                             |
 | ------------------ | ------------------------------------------- |
-| VerificationController | Controlador principal de Verificaciones |
+| VerificationController | Main Verifications Controller |
 
-Para hacer uso del mismo:
+In order to make use of it:
 
 ```java
   val verificationController = VerificationController(context)
@@ -89,21 +83,21 @@ Para hacer uso del mismo:
 
 ---
 
-## 5. Funciones
+## 5. Functions
 
-Los procesos de verificación se dividen en:
+The verification processes are divided into:
 
 - Liveness
 - Matching
-- Voz
+- Voice
 
-**El _extraData_ será necesario cuando se utilice el componente de tracking**
+**The _extraData_ will be necessary if tracking component is used**
 
 ### 5.1. Liveness
 
-Proceso para verificar que la imagen corresponde a una persona viva.
+Process to verify that the image corresponds to a living person.
 
-La respuesta de estas funciones tendrá los siguientes datos:
+The response of these functions will have the following data:
 
 ```java
  data class LivenessResponse(
@@ -114,15 +108,15 @@ La respuesta de estas funciones tendrá los siguientes datos:
 )
   ```
 
-#### 5.1.1. Liveness con imagen
+#### 5.1.1. Liveness with image
 
 ```java
   /api/v1/selphid/passive-liveness/evaluate
   ```
 
-Para utilizar este servicio se debe enviar la bestImage de Selphi en base64 y el extra data.
+This service uses the base64 Selphi bestImage and the extra data.
 
-Datos de entrada:
+Request:
 
 ```java
  data class LivenessWithImageRequest(
@@ -131,7 +125,7 @@ Datos de entrada:
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun livenessWithImage(
@@ -140,15 +134,15 @@ fun livenessWithImage(
     ): VerificationsResult<LivenessResponse>
   ```
 
-#### 5.1.2. Liveness con _template_
+#### 5.1.2. Liveness with _template_
 
 ```java
  /api/v1/selphid/passive-liveness/evaluate/token
   ```
 
-Para utilizar este servicio se debe enviar la bestImageTokenized de Selphi  y el extra data.
+This service uses Selphi's bestImageTokenized and the extra data.
 
-Datos de entrada:
+Request:
 
 ```java
 data class LivenessWithTemplateRequest(
@@ -157,7 +151,7 @@ data class LivenessWithTemplateRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun livenessWithTemplate(
@@ -168,9 +162,9 @@ fun livenessWithTemplate(
 
 ### 5.2. Matching
 
-Proceso para verificar que las dos imágenes corresponden a la mispa persona.
+Process to verify that the two images correspond to the same person.
 
-La respuesta de estas funciones tendrá los siguientes datos:
+The response of these functions will have the following data:
 
 ```java
  data class MatchingResponse(
@@ -182,15 +176,15 @@ La respuesta de estas funciones tendrá los siguientes datos:
 )
   ```
 
-#### 5.2.1. Matching de dos imágenes faciales en base 64
+#### 5.2.1. Matching of two facial images in base 64
 
 ```java
  /api/v1/selphid/authenticate-facial/images
   ```
 
-Para utilizar este servicio se deben enviar dos imágenes en base 64 y el extra data.
+This service uses two images in base 64 and the extra data.
 
-Datos de entrada:
+Request:
 
 ```java
 data class MatchingFacialImagesRequest(
@@ -200,7 +194,7 @@ data class MatchingFacialImagesRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
  fun matchingFacialImages(
@@ -210,17 +204,15 @@ Función:
   ```
 
 
-#### 5.2.2. Matching de dos _templates_
+#### 5.2.2. Matching of two _templates_
 
 ```java
  /api/v1/selphid/authenticate-facial/templates
   ```
 
-Para utilizar este servicio se deben enviar dos imágenes tokenizadas en base 64. Si se 
-utilizan los datos extraídos de Selphi se puede hacer uso tanto del string bestImageTokenized 
-como de la templateRaw convertida.
+This service uses two base 64 encrypted images. From the data extracted from Selphi, both the bestImageTokenized string and the converted templateRaw can be used.
 
-Datos de entrada:
+Request:
 
 ```java
 data class MatchingFacialTemplatesRequest(
@@ -230,7 +222,7 @@ data class MatchingFacialTemplatesRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun matchingFacialTemplates(
@@ -239,15 +231,15 @@ fun matchingFacialTemplates(
     ): VerificationsResult<MatchingResponse>
   ```
 
-#### 5.2.3. Matching de una imagen facial en base 64 con un _template_
+#### 5.2.3. Matching of a base 64 facial image with a _template_.
 
 ```java
  /api/v1/selphid/authenticate-facial/image/template
   ```
 
-Mezcla de los dos casos anteriores.
+Mixture of the two previous cases.
 
-Datos de entrada:
+Request:
 
 ```java
 data class MatchingFacialImageWithTemplateRequest(
@@ -257,7 +249,7 @@ data class MatchingFacialImageWithTemplateRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun matchingFacialImageWithTemplate(
@@ -266,16 +258,15 @@ fun matchingFacialImageWithTemplate(
     ): VerificationsResult<MatchingResponse>
   ```
 
-#### 5.2.4. Matching de una imagen facial en base 64 con la imagen del documento
+#### 5.2.4. Matching of a base 64 facial image with the document image
 
 ```java
  /api/v1/selphid/authenticate-facial/document/face-image
   ```
 
-Para utilizar este servicio se deben enviar, por un lado, la imagen tokenizada extraída del 
-ocumento con SelphID tokenFaceImage y, por otro, la bestImage en base 64 extraída de Selphi.
+This service uses, on the one hand, the encrypted image extracted from the document with SelphID _tokenFaceImage_ and, on the other hand, the _bestImage_ in base 64 extracted from Selphi.
 
-Datos de entrada:
+Request:
 
 ```java
 data class MatchingDocumentWithFaceImageRequest(
@@ -285,7 +276,7 @@ data class MatchingDocumentWithFaceImageRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun matchingDocumentWithFaceImage(
@@ -294,17 +285,16 @@ fun matchingDocumentWithFaceImage(
     ): VerificationsResult<MatchingResponse>
   ```
 
-#### 5.2.5. Matching de una _template_ con la imagen del documento 
+#### 5.2.5. Matching of a _template_ with the document image 
 
 ```java
  /api/v1/selphid/authenticate-facial/document/face-template
   ```
 
-Para utilizar este servicio se deben enviar, por un lado, la imagen tokenizada extraída del documento 
-con SelphID tokenFaceImage y, por otro, si se utilizan los datos extraídos de Selphi, tanto del string 
-bestImageTokenized como de la templateRaw convertida a Base64.
+The service uses, on the one hand, the encrypted image extracted from the document with SelphID tokenFaceImage and, on the other hand, if the data extracted from Selphi are used, both from the string 
+bestImageTokenized string and the templateRaw converted to Base64.
 
-Datos de entrada:
+Request:
 
 ```java
 data class MatchingDocumentWithFaceTemplateRequest(
@@ -314,7 +304,7 @@ data class MatchingDocumentWithFaceTemplateRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun matchingDocumentWithFaceTemplate(
@@ -323,9 +313,9 @@ fun matchingDocumentWithFaceTemplate(
     ): VerificationsResult<MatchingResponse>
   ```
 
-### 5.3. Voz
+### 5.3. Voice
 
-Proceso para hacer verificaciones sobre los audios tokenizados extraídos del componente de voz.
+Process for making checks on encrypted audios extracted from the speech component.
 
 #### 5.3.1. Enroll
 
@@ -333,9 +323,9 @@ Proceso para hacer verificaciones sobre los audios tokenizados extraídos del co
 /api/v1/enrollment
   ```
 
-Este servicio recibe los audios tokenizados y responde con la _template_ creada a partir de ellos.
+This service receives the encrypted audios and responds with the _template_ created from them.
 
-Datos de entrada:
+Request:
 
 ```java
 data class VoiceEnrollRequest(
@@ -350,7 +340,7 @@ data class VoiceEnrollRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun voiceEnroll(
@@ -359,7 +349,7 @@ fun voiceEnroll(
     ): VerificationsResult<EnrollResponse>
   ```
 
-Datos de salida:
+Response:
 
 ```java
 data class EnrollResponse(
@@ -377,9 +367,9 @@ data class EnrollResponse(
 /api/v1/authentication
   ```
 
-Este servicio verifica si un audio tokenizado corresponde con una _template_ obtenida de audios anteriores con el servicio de enroll.
+This service checks whether an encrypted audio corresponds to a _template_ obtained with the enrolment service.
 
-Datos de entrada:
+Request:
 
 ```java
 data class VoiceAuthenticationRequest(
@@ -392,7 +382,7 @@ data class VoiceAuthenticationRequest(
 )
   ```
 
-Función:
+Function:
 
 ```java
 fun voiceAuthentication(
@@ -401,7 +391,7 @@ fun voiceAuthentication(
     ): VerificationsResult<VoiceAuthenticationResponse>
   ```
 
-Datos de salida:
+Response:
 
 ```java
 data class VoiceAuthenticationResponse(
@@ -415,9 +405,9 @@ data class VoiceAuthenticationResponse(
 
 ---
 
-## 6. Extensiones y otras funciones del SDK
+## 6. Extensions and other SDK features
 
-Para las conversiones se pueden hacer uso de las siguientes extemsiones:
+The following extensions can be used for conversions:
 
 ```java
 fun Bitmap.toBase64(): String? {
@@ -433,7 +423,7 @@ fun Bitmap.toByteArray(quality: Int = 95): ByteArray {
 }
   ```
 
-Para la obtención del _extraData_ necesario para las operaciones se puede utilizar la siguiente función (se puede usar viewModelScope.launch o CoroutineScope(Dispatchers.IO).launch):
+The following function can be used to obtain the _extraData_ needed for the operations (either viewModelScope.launch or CoroutineScope(Dispatchers.IO).launch can be used):
 
 ```java
 private fun getExtraData(output: (String) -> Unit) 
@@ -447,8 +437,10 @@ private fun getExtraData(output: (String) -> Unit)
   }
   ```
 
-Para la obtención de una imagen tokenizada en base 64 en el SDK Mobile se puede a utilizar la 
-siguiente función (se puede usar viewModelScope.launch o CoroutineScope(Dispatchers.IO).launch):
+
+To obtain a base 64 encrypted image in the Mobile SDK, you can use the following function (you can use 
+viewModelScope.launch or CoroutineScope(Dispatchers.IO).launch) following function (either 
+viewModelScope.launch or CoroutineScope(Dispatchers.IO).launch can be used):
 
 ```java
 private fun getTemplateFromImage(

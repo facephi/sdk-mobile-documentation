@@ -1,61 +1,4 @@
-# Verification Component
 
-## 0. Requisitos base de SDK Mobile
-
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
-
-Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
-
----
-
-## 1. Introducción
-
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_Verification Component_**. Éste se encarga de realizar las verificaciones 
-facilitadas por Facephi sobre los datos extraídos.
----
-
-## 2. Integración del componente
-
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
-documento.
-
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
-
-### 2.1. Dependencias requeridas para la integración
-
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
-
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
-
-  ```java
-  implementation "com.facephi.androidsdk:verifications_component:$sdk_verifications_component_version"
-  ```
-
----
 
 ## 3. Iniciar nueva operación
 
@@ -216,7 +159,7 @@ Función:
  /api/v1/selphid/authenticate-facial/templates
   ```
 
-Para utilizar este servicio se deben enviar dos imágenes tokenizadas en base 64. Si se 
+Para utilizar este servicio se deben enviar dos imágenes cifradas y en base 64. Si se 
 utilizan los datos extraídos de Selphi se puede hacer uso tanto del string bestImageTokenized 
 como de la templateRaw convertida.
 
@@ -272,7 +215,7 @@ fun matchingFacialImageWithTemplate(
  /api/v1/selphid/authenticate-facial/document/face-image
   ```
 
-Para utilizar este servicio se deben enviar, por un lado, la imagen tokenizada extraída del 
+Para utilizar este servicio se deben enviar, por un lado, la imagen cifrada extraída del 
 ocumento con SelphID tokenFaceImage y, por otro, la bestImage en base 64 extraída de Selphi.
 
 Datos de entrada:
@@ -300,7 +243,7 @@ fun matchingDocumentWithFaceImage(
  /api/v1/selphid/authenticate-facial/document/face-template
   ```
 
-Para utilizar este servicio se deben enviar, por un lado, la imagen tokenizada extraída del documento 
+Para utilizar este servicio se deben enviar, por un lado, la imagen cifrada extraída del documento 
 con SelphID tokenFaceImage y, por otro, si se utilizan los datos extraídos de Selphi, tanto del string 
 bestImageTokenized como de la templateRaw convertida a Base64.
 
@@ -325,7 +268,7 @@ fun matchingDocumentWithFaceTemplate(
 
 ### 5.3. Voz
 
-Proceso para hacer verificaciones sobre los audios tokenizados extraídos del componente de voz.
+Proceso para hacer verificaciones sobre los audios cifrados extraídos del componente de voz.
 
 #### 5.3.1. Enroll
 
@@ -333,7 +276,7 @@ Proceso para hacer verificaciones sobre los audios tokenizados extraídos del co
 /api/v1/enrollment
   ```
 
-Este servicio recibe los audios tokenizados y responde con la _template_ creada a partir de ellos.
+Este servicio recibe los audios cifrados y responde con la _template_ creada a partir de ellos.
 
 Datos de entrada:
 
@@ -377,7 +320,7 @@ data class EnrollResponse(
 /api/v1/authentication
   ```
 
-Este servicio verifica si un audio tokenizado corresponde con una _template_ obtenida de audios anteriores con el servicio de enroll.
+Este servicio verifica si un audio cifrado corresponde con una _template_ obtenida con el servicio de _enroll_.
 
 Datos de entrada:
 
@@ -447,7 +390,7 @@ private fun getExtraData(output: (String) -> Unit)
   }
   ```
 
-Para la obtención de una imagen tokenizada en base 64 en el SDK Mobile se puede a utilizar la 
+Para la obtención de una imagen cifrada y en base 64 en el SDK Mobile se puede a utilizar la 
 siguiente función (se puede usar viewModelScope.launch o CoroutineScope(Dispatchers.IO).launch):
 
 ```java
