@@ -38,6 +38,11 @@ functionalities are the following:
 
 - Generation of templates with voice characteristics and scores.
 
+## 1.1 Minimum requirements
+The minimum iOS SDK version required is as follows:
+
+Minimum iOS version: **13**
+
 ---
 
 ## 2. Integration of the component
@@ -60,13 +65,22 @@ install the component in a project containing an old version of the
 Facephi libraries (_Widgets_), these must be completely removed before
 installing the **_SDKMobile_** components.
 
-- Currently FacePhi libraries are distributed remotely through
-  different dependency managers. **Mandatory** dependencies that must
-  be installed beforehand:
+#### Cocoapods
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
-  ```java
-  implementation "com.facephi.androidsdk:voice_component:$sdk_voice_component_version"
-  ```
+```
+  	pod 'FPHISDKMainComponent', '~> 2.0.0'
+```
+- To install the VoiceID component, the following entry must be included in the application Podfile:
+```
+	pod 'FPHISDKVoiceIDComponent', '~> 2.0.0' 
+```
+- Once the dependencies are installed, the different functionalities of the component can be used.
+
+- In case of development with **xCode15** a post-installation script must be included:
+
+![Image](/iOS/fix_ldClassic.png)
+
 
 ---
 
@@ -90,32 +104,36 @@ documentation, which details and explains what this process consists of.
 
 |                 |                               |
 | --------------- | ----------------------------- |
-| **Controller**  | **Descripción**               |
+| **Controller**  | **Description**               |
 | VoiceController | Voice capture main controller |
+
+---
 
 ## 5. Component configuration
 
-To configure the current component, once it has been initialised, a
-_VoiceConfigurationData_ object must be created and passed as a
-parameter to the SDKController when the component is launched.
+To configure the current component, once it has been initialised, you must
+create a
 
-The following section will show the fields that are part of this class
-and what each of them is used for.
+_VoiceConfigurationData_ object and pass it as parameter to the SDKController
+during the launch of the component.
+
+The following section will show the fields that are part of this class and what each one is used for.
+class and what each of them is used for.
 
 ### 5.1. Class VoiceConfigurationData
 
 #### 5.1.1. phrases
 
-Indicates the phrase(s) required to capture.
+Indicates the phrase(s) needed to capture.
 
 #### 5.1.2. vibrationEnabled
 
-Indicates the activation of the vibration when the widget finishes
+Indicates the activation of the vibration when the widget completes successfully.
 successfully.
 
 #### 5.1.3. showTutorial
 
-Indicates whether the component activates the tutorial screen. This view
+Indicates whether the component activates the tutorial screen. This view intuitively
 intuitively explains how the capture is performed.
 
 #### 5.1.4. extractionTimeout
@@ -124,11 +142,11 @@ Sets the maximum time that the capture can be performed.
 
 #### 5.1.5. showDiagnostic
 
-Display diagnostic screens at the end of the process
+Show diagnostic screens at the end of the process
 
 ---
 
-## 6. Component use
+## 6. Using the component
 
 Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched. There are two ways
@@ -139,13 +157,13 @@ to launch the component:
   the _tracking_ server:
 
 ```java
-val result = SDKController.launch(
-    VoiceController(VoiceConfigurationData())
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
-}
+let controller = VoiceController(
+            data: data,
+            output: { sdkResult in
+                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
+                output(voiceIdSdkResult)
+            }, viewController: viewController)
+        SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -153,13 +171,13 @@ when (result) {
   tracked** to the _tracking_ server:
 
 ```java
-val result = SDKController.launchMethod(
-    VoiceController(VoiceConfigurationData())
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("Voice: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
-}
+let controller = VoiceController(
+            data: data,
+            output: { sdkResult in
+                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
+                output(voiceIdSdkResult)
+            }, viewController: viewController)
+        SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -174,47 +192,46 @@ sent to the platform.
 
 ---
 
-## 7. Receipt of the result
+## 7. Recepción del resultado
 
-The controllers will return the required information in SdkResult
-format. More information in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section.
+Los controllers devolverán la información necesaria en formato
+SdkResult. Más información en la sección de <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>.
 
-### 7.1. Receipt of errors
+### 7.1. Recepción de errores
 
-On the error side, we will have the _VoiceError_ class.
+En la parte del error, dispondremos de la clase VoiceError.
 
 ```java
-NO_DATA_ERROR
-TIMEOUT
-INTERNAL_LICENSE_ERROR
-CANCEL_BY_USER
-CANCEL_LAUNCH
-PERMISSION_DENIED
-ACTIVITY_RESULT_ERROR
-INITIALIZATION_ERROR -> it.error
+ INTERNAL_ERROR
+ MIC_PERMISSION_DENIED
+ TIMEOUT
+ CANCEL_BY_USER
+ VOICE_ENROLLMENT_PARSE_RESPONSE
+ VOICE_MATCHING_PARSE_RESPONSE
 ```
 
-### 7.1. Receipt of correct execution - _data_
+### 7.2. Receiving successful execution - _data_.
 
-In the data part, we have the _VoiceResult class_.
+In the _data_ part, we will have the _VoiceResult_ class.
 
-The data field is variable and will depend on which component has
-returned the result. In the case of this component, the fields returned
-are the following:
+The _data_ field is variable and will depend on which component has returned the result.
+the result has been returned. In the case of this component, the returned fields are
+the following:
 
-#### 7.1.1 _audios_
+#### 7.2.1 _audios_.
 
 Contains a list of captured audios in ByteArray format.
 
-#### 7.1.3 _tokenizedAudios_
+#### 7.2.2 _tokenizedAudios_
 
-Contains the list of captured audios in Facephi tokenize format.
+Contains the list of captured audios in tokenised format from
+Facephi tokenised format.
 
 ---
 
-## 8. Customizing the component
+## Customisation of the component
 
 Apart from the changes that can be made at SDK level (which are
 explained in the <a href="Mobile_SDK"
@@ -225,24 +242,27 @@ texts.
 
 ### 8.1 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application, and modify the value of
-each String to the desired one.
+If you want to modify the SDK texts you would have to include the
+XML file in the client application, and modify the value of each _String_ to the desired one.
+value of each _String_ to the desired one.
 
-```xml
-    <string name="voice_component_tutorial_message">Speak clearly and loudly. \n\n Make sure you are in a quiet environment.</string>
-    <string name="voice_component_tutorial_title">Speech recognition</string>
-    <string name="voice_component_tutorial_button">Continue</string>
-    <string name="voice_component_success_message">Recorded recording</string>
-    <string name="voice_component_speech_message">Speak clearly and close to the microphone</string>
-    <string name="voice_component_speech_more_message">Keep talking</string>
-    <string name="voice_component_speech_empty_message" translatable="false"></string>
-    <string name="voice_component_read_message">Say out loud:</string>
-    <string name="voice_component_speech_noisy_message">There is too much background noise, try to go to a quiet environment</string>
-    <string name="voice_component_success_records_message">successful recordings</string>
-    <string name="voice_component_timeout_title">Time exceeded</string>
-    <string name="voice_component_timeout_desc">We apologize. The capture could not be made</string>
-    <string name="voice_component_internal_error_title">There was a technical problem</string>
-    <string name="voice_component_internal_error_desc">We apologize. The capture could not be made</string>
+```java
+"voice_component_success_records_message" = "%d/%d successful recordings";
+"voice_component_read_message" = "Say loudly:";
+"voice_component_speech_message" = "Speak clearly and close to the microphone";
+"voice_component_speech_noisy_message" = "There is too much noise. Try to be in a quiet environment.";
+"voice_component_success_message" = "Recording registred";
+"voice_component_phrase_generic_error_feedback" = "Please, repeat the sentence.";
+"voice_component_phrase_long_silence_feedback" = "Talk for 2 seconds or more.";
+"voice_component_phrase_long_reverberation_feedback" = "Too much echo. Try in another environment.";
+"voice_component_tutorial_title" = "Voice Recognition";
+"voice_component_tutorial_message" = "Speak clearly and aloud\n\nMake sure your surroundings are silent";
+"voice_component_tutorial_button" = "Start";
+"voice_component_success_button" = "Continue";
+"voice_component_ok"="Ok";
+"voice_component_cancel"="Cancel";
+"voice_component_end_confirmation_title" = "Are you sure you will finish the process?";
+"voice_component_text_results_finish_button" = "Finish";
+"voice_component_agree" = "Accept";
 
 ```
