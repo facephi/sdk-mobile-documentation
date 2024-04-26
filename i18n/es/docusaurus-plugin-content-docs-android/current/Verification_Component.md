@@ -81,6 +81,12 @@ este proceso.
 | ------------------ | ------------------------------------------- |
 | VerificationController | Controlador principal de Verificaciones |
 
+Para hacer uso del mismo:
+
+```java
+  val verificationController = VerificationController(context)
+  ```
+
 ---
 
 ## 5. Funciones
@@ -91,38 +97,322 @@ Los procesos de verificación se dividen en:
 - Matching
 - Voz
 
+**El _extraData_ será necesario cuando se utilice el componente de tracking**
+
 ### 5.1. Liveness
 
 Proceso para verificar que la imagen corresponde a una persona "viva"
 
 #### 5.1.1. Liveness con imagen
 
+```java
+  /api/v1/selphid/passive-liveness/evaluate
+  ```
+
 Para utilizar este servicio se debe enviar la bestImage de Selphi en base64 y el extra data.
 
+Datos de entrada:
+
+```java
+ data class LivenessWithImageRequest(
+    var image: String,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+fun livenessWithImage(
+        request: LivenessWithImageRequest,
+        baseUrl: String,
+    ): VerificationsResult<LivenessResponse>
+  ```
 
 #### 5.1.2. Liveness con _template_
 
+```java
+ /api/v1/selphid/passive-liveness/evaluate/token
+  ```
+
+Para utilizar este servicio se debe enviar la bestImageTokenized de Selphi  y el extra data.
+
+Datos de entrada:
+
+```java
+data class LivenessWithTemplateRequest(
+    var tokenImage: String,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+fun livenessWithTemplate(
+        request: LivenessWithTemplateRequest,
+        baseUrl: String,
+    ): VerificationsResult<LivenessResponse>
+  ```
 
 ### 5.2. Matching
 
 Proceso para verificar que las dos imágenes corresponden a la mispa persona.
 
-#### 5.2.1. Matching de 2 imágenes faciales en base 64
+#### 5.2.1. Matching de dos imágenes faciales en base 64
+
+```java
+ /api/v1/selphid/authenticate-facial/images
+  ```
+
+Para utilizar este servicio se deben enviar dos imágenes en base 64 y el extra data.
+
+Datos de entrada:
+
+```java
+data class MatchingFacialImagesRequest(
+    var image1: String,
+    var image2: String,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+ fun matchingFacialImages(
+        request: MatchingFacialImagesRequest,
+        baseUrl: String,
+    ): VerificationsResult<MatchingResponse>
+  ```
 
 
+#### 5.2.2. Matching de dos _templates_
 
-#### 5.2.2. Matching de 2 _templates_
+```java
+ /api/v1/selphid/authenticate-facial/templates
+  ```
 
+Para utilizar este servicio se deben enviar dos imágenes tokenizadas en base 64. Si se 
+utilizan los datos extraídos de Selphi se puede hacer uso tanto del string bestImageTokenized 
+como de la templateRaw convertida.
 
+Datos de entrada:
 
-#### 5.2.3. Matching de una imagen facial con la imagen del documento
+```java
+data class MatchingFacialTemplatesRequest(
+    var faceTemplate1: String,
+    var faceTemplate2: String,
+    var extraData: String
+)
+  ```
 
+Función:
 
-#### 5.2.4. Matching de una _template_ con la imagen del documento
+```java
+fun matchingFacialTemplates(
+        request: MatchingFacialTemplatesRequest,
+        baseUrl: String,
+    ): VerificationsResult<MatchingResponse>
+  ```
 
+#### 5.2.3. Matching de una imagen facial en base 64 con un _template_
 
+```java
+ /api/v1/selphid/authenticate-facial/image/template
+  ```
+
+Mezcla de los dos casos anteriores.
+
+Datos de entrada:
+
+```java
+data class MatchingFacialImageWithTemplateRequest(
+    var faceTemplate: String,
+    var image: String,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+fun matchingFacialImageWithTemplate(
+        request: MatchingFacialImageWithTemplateRequest,
+        baseUrl: String,
+    ): VerificationsResult<MatchingResponse>
+  ```
+
+#### 5.2.4. Matching de una imagen facial en base 64 con la imagen del documento
+
+```java
+ /api/v1/selphid/authenticate-facial/document/face-image
+  ```
+
+Para utilizar este servicio se deben enviar, por un lado, la imagen tokenizada extraída del 
+ocumento con SelphID tokenFaceImage y, por otro, la bestImage en base 64 extraída de Selphi.
+
+Datos de entrada:
+
+```java
+data class MatchingDocumentWithFaceImageRequest(
+    var image: String,
+    var documentTemplate: String,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+fun matchingDocumentWithFaceImage(
+        request: MatchingDocumentWithFaceImageRequest,
+        baseUrl: String,
+    ): VerificationsResult<MatchingResponse>
+  ```
+
+#### 5.2.5. Matching de una _template_ con la imagen del documento 
+
+```java
+ /api/v1/selphid/authenticate-facial/document/face-template
+  ```
+
+Para utilizar este servicio se deben enviar, por un lado, la imagen tokenizada extraída del documento 
+con SelphID tokenFaceImage y, por otro, si se utilizan los datos extraídos de Selphi, tanto del string 
+bestImageTokenized como de la templateRaw convertida a Base64.
+
+Datos de entrada:
+
+```java
+data class MatchingDocumentWithFaceTemplateRequest(
+    var faceTemplate: String,
+    var documentTemplate: String,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+fun matchingDocumentWithFaceTemplate(
+        request: MatchingDocumentWithFaceTemplateRequest,
+        baseUrl: String,
+    ): VerificationsResult<MatchingResponse>
+  ```
+
+### 5.3. Voz
+
+Proceso para hacer verificaciones sobre los audios tokenizados extraídos del componente de voz.
+
+#### 5.3.1. Enroll
+
+```java
+/api/v1/enrollment
+  ```
+
+Este servicio recibe los audios tokenizados y responde con la _template_ creada a partir de ellos.
+
+Datos de entrada:
+
+```java
+data class VoiceEnrollRequest(
+    var audios: Array<String>,
+    var checkLiveness: Boolean = true,
+    var livenessThreshold: Double = 0.5,
+    var minimumSnrDb: Int = 8,
+    var minimumSpeechDurationMs: Int = 1500,
+    var minimumSpeechRelativeLenght: Float? = null,
+    var maximumMultipleSpeakersDetectorScore: Int? = null,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+fun voiceEnroll(
+        request: VoiceEnrollRequest,
+        baseUrl: String = RepositoryConstants.BASE_VOICE_URL,
+    ): VerificationsResult<EnrollResponse>
+  ```
+
+#### 5.3.2. Authentication
+
+```java
+/api/v1/authentication
+  ```
+
+Este servicio verifica si un audio tokenizado corresponde con una _template_ obtenida de audios anteriores con el servicio de enroll.
+
+Datos de entrada:
+
+```java
+data class VoiceAuthenticationRequest(
+    var audio: String,
+    var template: String,
+    var livenessThreshold: Double = 0.5,
+    var minimumSnrDb: Int = 8,
+    var minimumSpeechDurationMs: Int = 1500,
+    var extraData: String
+)
+  ```
+
+Función:
+
+```java
+fun voiceAuthentication(
+        request: VoiceAuthenticationRequest,
+        baseUrl: String,
+    ): VerificationsResult<VoiceAuthenticationResponse>
+  ```
 
 ---
 
-## 6. Uso del componente
+## 6. Extensiones y otras funciones del SDK
 
+Para las conversiones se pueden hacer uso de las siguientes extemsiones:
+
+```java
+fun Bitmap.toBase64(): String? {
+    return Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)
+}
+
+
+fun Bitmap.toByteArray(quality: Int = 95): ByteArray {
+    ByteArrayOutputStream().apply {
+        compress(Bitmap.CompressFormat.JPEG, quality, this)
+        return toByteArray()
+    }
+}
+  ```
+
+Para la obtención del _extraData_ necesario para las operaciones se puede utilizar la siguiente función (se puede usar viewModelScope.launch o CoroutineScope(Dispatchers.IO).launch):
+
+```java
+private fun getExtraData(output: (String) -> Unit) 
+  {
+      viewModelScope.launch {
+        when (val result = SDKController.launch(ExtraDataController(sdkImage)) {
+            is SdkResult.Success -> output(result.data)
+            is SdkResult.Error -> output("")
+        }
+      }
+  }
+  ```
+
+Para la obtención de una imagen tokenizada en base 64 en el SDK Mobile se puede a utilizar la 
+siguiente función (se puede usar viewModelScope.launch o CoroutineScope(Dispatchers.IO).launch):
+
+```java
+private fun getTemplateFromImage(
+  sdkImage: SdkImage, 
+  output: (String) -> Unit) 
+  {
+      viewModelScope.launch {
+        when (val result = SDKController.launch(RawTemplateController(sdkImage)) {
+            is SdkResult.Success -> output(result.data)
+            is SdkResult.Error -> output("")
+        }
+      }
+  }
+  ```
