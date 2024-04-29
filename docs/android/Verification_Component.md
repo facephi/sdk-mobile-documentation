@@ -429,7 +429,7 @@ The following function can be used to obtain the _extraData_ needed for the oper
 private fun getExtraData(output: (String) -> Unit))
   {
       viewModelScope.launch {
-        when (val result = SDKController.launch(ExtraDataController(sdkImage)) {
+        when (val result = SDKController.launch(ExtraDataController()) {
             is SdkResult.Success -> output(result.data)
             is SdkResult.Error -> output("")
         }
