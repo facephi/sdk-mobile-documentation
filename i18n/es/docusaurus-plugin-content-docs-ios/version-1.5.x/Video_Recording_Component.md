@@ -33,7 +33,8 @@ Minimum iOS version: **13**
 ---
 
 ## 2. Integración del componente
-
+<div class="warning">
+<span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
@@ -41,7 +42,7 @@ relativa a:
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile SDK</u></strong></a> 
 y seguir las instrucciones indicadas en dichodocumento.
-
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -93,11 +94,10 @@ XCode generará o actualizará automáticamente los archivos de tipo entitlement
 
 ### 2.3 Dependencias requeridas para la integración
 
-<blockquote>
-    <p>
+<div class="warning">
+<span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la SDKMobile.
-    </p>
-</blockquote>
+</div>
 
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias.
 
@@ -269,11 +269,10 @@ extension SampleHandler: AgoraRtcEngineDelegate {
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
-<blockquote>
-    <p>
+<div class="warning">
+<span class="warning">:warning:</span>
 Este comando debe ejecutarse siempre. Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de Core Component, en el que se detalla y explica en qué consiste este proceso.
-    </p>
-</blockquote>
+</div>
 
 ---
 
@@ -298,13 +297,12 @@ let controller = VideoRecordingController(data: VideoRecordingConfigurationData(
 SDKController.shared.launch(controller: controller)
 ```
 
-<blockquote>
-    <p>
+<div class="warning">
+<span class="warning">:warning:</span>
 El método **launch** debe usarse **por defecto**. Este método permite utilizar **tracking** en caso de estar su componente activado, y no lo usará cuando esté desactivado (o no se encuentre el componente instalado).
 
 Por el contrario, el método **launchMethod** cubre un caso especial, en el cual el integrador tiene instalado y activado el tracking, pero en un flujo determinado dentro de la aplicación no desea trackear información. En ese caso se usa este método para evitar que se envíe esa información a la plataforma.
-    </p>
-</blockquote>
+</div>
 
 En los datos de configuración (*VideoRecordingConfigurationData*) también se podrán modificar:
 

@@ -14,11 +14,12 @@ Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub:
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ##### Añadir repositorio privado
-
+<div class="warning">
+<span class="warning">:warning:</span>
 Para tener acceso a nuestro repositorio privado, se requiere haber instalado previamente **Cocoapods** en la máquina.
 
 Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la **_SDKMobile_** se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi. A continuación se indica como preparar el entorno para consumir los componentes:
-
+</div>
 
 - Primero instalamos el comando que nos dará acceso a usar cocoapods con **Artifactory**.
 
