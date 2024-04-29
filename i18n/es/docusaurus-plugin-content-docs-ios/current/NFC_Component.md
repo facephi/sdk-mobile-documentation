@@ -11,9 +11,10 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+data-linked-resource-type="page">Mobile SDK</a>
 
 ---
 
@@ -49,9 +50,13 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
+Antes de integrar este componente se recomienda leer la documentación
+relativa a:
+
+<a href="ES_Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a> y seguir las instrucciones indicadas en dicho
+documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
@@ -68,17 +73,17 @@ Actualmente las librerías de FacePhi se distribuyen de forma remota a través d
 
 #### Cocoapods
 Las dependencias obligatorias que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
-```
+```java
 pod 'FPHISDKMainComponent', '~> 1.4.0'
 ```
 Para instalar el componente de NFC deberá incluirse la siguiente entrada en el Podfile de la aplicación:
-```
+```java
 pod 'FPHISDKNFCComponent', '~> 2.6.0'
 ```
 #### SPM
 Las dependencias obligatorias que deberán haberse instalado previamente son:
 
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
@@ -86,7 +91,7 @@ git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 
 ```
 Para instalar el componente de NFC deberá incluirse en los módulos del proyecto:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-NFC_component-SPM.git
 //SSH
@@ -120,7 +125,11 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de ***TO DO: enlace***[1.5.X][ES] iOS Mobile SDK , en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>, en el que se detalla y explica en qué consiste
+este proceso.
 
 ---
 
@@ -133,6 +142,7 @@ Para saber más acerca de cómo iniciar una nueva operación, se recomienda cons
 ---
 
 ## 5. Configuración del componente
+
 Para configurar el componente actual, una vez inicializado, se deberá crear un objeto
 
 *NFCConfigurationData* y pasarlo como parámetro en la inicialización de *NFCController*.
@@ -204,8 +214,6 @@ Indica el tipo de documento que se va a leer:
 
 ##### readableTags
 
-
-
 ---
 
 ## 6. Uso del componente
@@ -214,12 +222,12 @@ Una vez iniciado el componente y creada una nueva operación (**apartado 3**) se
 
 - **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de tracking:
 
-```
+``` java
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 - **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero no se trackeará ningún evento al servidor de tracking:
-```
+``` java
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 NFCController.shared.launchMethod(controller: controller)
 ```
@@ -241,22 +249,14 @@ Los controllers devolverán la información necesaria en formato SdkResult. Más
 En la parte del error, **internamente** disponemos de la clase NFCPassportReaderError. Este enumerado contiene muchos errores específicos que no aportan información útil si son devueltos al integrador, por lo que son transformados a un tipo más simple (**ErrorType**):
 
 ```java
-extension NFCPassportReaderError {
-    func toErrorType() -> ErrorType {
-        switch self {
-        case .UserCanceled:
-            return .CANCEL_BY_USER
-        case .NFCNotSupported:
-            return .NFC_ERROR
-        case .InvalidMRZKey:
-            return .NFC_INVALID_MRZ_KEY
-        case .Timeout:
-            return .TIMEOUT
-        default:
-            return .UNKNOWN_ERROR
-        }
-    }
-}
+    CANCEL_BY_USER
+    TIMEOUT
+    UNKNOWN_ERROR
+    NFC_INVALID_MRZ_KEY
+    NFC_NOT_SUPPORTED
+    TAG_CONNECTION_LOST
+    SECURITY_STATUS_NOT_SATISFIED
+    SYSTEM_RESOURCE_UNAVAILABLE
 ```
 
 **NOTA**: `NFC_INVALID_MRZ_KEY` *implica que la conexión no se ha podido establecer por culpa de que los datos de entrada de la configuración (documentNumber, birthDate, expiryDate) no son correctos.
@@ -275,6 +275,13 @@ public class NfcResult {
     public let nfcSecurityData: NfcSecurityData
     public private(set) var nfcValidations: NfcValidations?
 }
+
+extension NfcResult {
+    public var personalData: [String: String]
+    {
+        ...
+    }
+}
 ```
 
 En el caso de este componente, los campos devueltos son los siguientes:
@@ -287,78 +294,72 @@ Información obtenida por cada tipo de dato en formato crudo.
 
 Información obtenida del documento ordenada por:
 
-- documentNumber
-
-- expirationDate
-
-- issuer
-
-- mrzString
-
 - type
+- documentNumber
+- issuer
+- expirationDate
+- mrzString
 
 #### 7.2.3. nfcPersonalInformation
 
 Información obtenida del documento ordenada por:
 
-- address
-
-- birthdate
-
-- gender
-
 - name
-
-- nationality
-
-- personalNumber
-
-- placeOfBirth
-
 - surname
+- address
+- nationality
+- personalNumber
+- birthdate
+- placeOfBirth
+- gender
 
 #### 7.2.4. nfcImages
 
 Información de imágenes obtenida del documento ordenada por:
 
 - facialImage
-
 - fingerprintImage
-
 - signatureImage
 
 #### 7.2.5 nfcSecurityData
 
 Información de datos de seguridad del documento ordenada por:
 
-- dataGroupsHashes
-
-- dataGroupsRead
-
-- documentSigningCertificateData
-
-- issuerSigningCertificateData
-
 - ldsVersion
+- dataGroupsHashes
+- dataGroupsRead
+- documentSigningCertificateData
+- issuerSigningCertificateData
 
 #### 7.2.6. nfcValidations
 
 Información de las validaciones del documento ordenada por:
 
 - accessProtocol
-
 - activeAuthenticationSupported
-
 - activeAuthenticationValidation
-
 - chipAuthenticationValidation
-
 - dataGroupsHashesValidation
-
 - documentSigningValidation
-
 - issuerSigningValidation
 
+#### 7.2.7 personalData
+
+- issuer
+- documentNumber
+- issueDate
+- expiryDate
+- name
+- surname
+- fullName
+- gender
+- birthDate
+- birthPlace
+- nationality
+- address
+- nfcKey
+- numSupport
+- mrz
 
 ---
 
@@ -375,7 +376,45 @@ Para modificar la interfaz visual (UX/UI) se puede crear un nuevo CustomTheme qu
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
+
+```java
+"text_intro_chip_state_waiting_tag_text" = "Desliza lentamente el documento hasta que el sensor lo detecte";
+"text_chip_security_enable_nfc_title" = "Por favor habilita NFC para poder continuar";
+"text_error_retrieving_document_data" = "Ha ocurrido un error durante la captura de los datos del documento";
+"text_nfc_read_successfull_title" = "NFC leído exitosamente";
+"text_intro_chip_state_fail" = "¡Ups! El NFC no ha podido ser leído";
+"text_diagnostic_NFC_timeout_description" = "Has excedido el tiempo de lectura de NFC. Por favor intenta de nuevo";
+"text_chip_duplicated_session_error" = "El proceso de captura se ha duplicado, por favor vuelva a intentarlo tras desaparecer este mensaje";
+"text_chip_security_serial_number_title" = "Número de serie";
+"text_chip_security_algorithm_sign_title" = "Algoritmo de firma";
+"text_chip_security_algorithm_public_key_title" = "Algoritmo de clave pública";
+"text_chip_security_certificated_impress_title" = "Impresión de certificado";
+"text_chip_security_editor_title" = "Editor";
+"text_chip_security_subject_title" = "Sujeto";
+"text_chip_security_valid_from_title" = "Válido desde";
+"text_chip_security_valid_still_title" = "Válido hasta";
+"text_loading_optional_description" = "Leyendo, por favor, no mueva el documento\n\n";
+"icon_loading_filled_circle" = "🟢";
+"icon_loading_void_circle" = "⚪️";
+"nfc_component_cancel" = "Cancelar";
+"nfc_component_end_confirmation_title" = "¿Seguro que finalizar el proceso?";
+"nfc_component_agree" = "Aceptar";
+"nfc_component_tutorial" = "Junta el documento a la parte trasera de tu dispositivo";
+"nfc_component_tutorial_button" = "Comenzar";
+"nfc_component_tutorial_button_info" = "Más información";
+"nfc_component_tutorial_title" = "Escanear NFC";
+"nfc_component_tutorial_1" = "Cuando pasamos una tarjeta por un sensor, hay un intercambio de información llamado NFC.";
+"nfc_component_tutorial_2" = "En tu móvil, el sensor está en la zona marcada. Aquí deberás juntar tu documento.";
+"nfc_component_tutorial_3" = "Para una mejor lectura, quita la funda de tu móvil.";
+"nfc_component_skip" = "Omitir";
+"diagnostic_tag_connection_lost_title" = "La lectura no finalizó";
+"diagnostic_tag_connection_lost_description" = "Mantén la posición hasta que finalice la lectura";
+"diagnostic_invaliz_mrz_error_title" = "Hubo un problema técnico";
+"diagnostic_invalid_mrz_error_description" = "Pedimos disculpas. Necesitamos una nueva foto del documento";
+
 ```
+
+``` java
 public protocol ThemeNFCProtocol {
     var name: String { get }
     var fonts: [R.Font: String] { get }
@@ -386,7 +425,7 @@ public protocol ThemeNFCProtocol {
 }
 ```
 Por ejemplo:
-```
+```java
 class CustomThemeNFC: ThemeNFCProtocol {
     public var name: String {
         "customNfc"

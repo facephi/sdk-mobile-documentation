@@ -1,39 +1,36 @@
 # Selphi Component
 
-## 0. Requisitos base de SDK Mobile
+## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
-a series of functionalities and services, allowing its integration in a Mobile application in a
-integration into a Mobile application in a simple and fully scalable way.
-scalable. Depending on the use case that is required, certain components must be installed.
-Depending on the required use case, certain components must be installed. Its high level of
-of modularity means that other new components can be added in the future
-new components can be added in the future without affecting those already integrated in the project.
-project.
+**SDK Mobile** is a set of libraries (Components) that offer a series of
+functionalities and services, allowing their integration into a Mobile
+application in a simple and fully scalable way. Certain components must
+be installed depending on the use case required. Its high level of
+modularity allows other new components to be added in the future without
+affecting those already integrated into the project.
 
-For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+For more information on the base configuration, go to the
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">SDK móvil de iOS</a>***.
+data-linked-resource-type="page">Mobile SDK</a> section.
 
 ---
 
 ## 1. Introduction
 
-The _Component_ dealt with in the current document is called
-**_Selphi Component_**. It is in charge of capturing a
-selfie of the user and the subsequent extraction of the most important facial features.
-most important facial features. Its main functionalities are the following
-following:
+The Component discussed in the current document is called **Selphi
+Component**. It is responsible for capturing a selfie of the user and
+then extracting the most important facial features. Its main
+functionalities are the following:
 
 - Internal camera management.
 
 - Permission management.
 
-- Assistant in the processes of capturing the user's face.
+- Assistant in the process of capturing the user's face.
 
-- Generation of templates with the user's facial and facial image characteristics for the detection process.
-  the user's face image for the liveness detection process.
-  Liveness detection process
+- Generation of the templates with the facial characteristics and the
+  image of the user's face for the liveness detection process.
 
 ### 1.1 Minimum requirements
 The minimum iOS SDK version required is as follows:
@@ -44,12 +41,17 @@ Minimum iOS version: **13**
 
 ## 2. Component integration
 
-Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
+Before integrating this component, it is recommended to read the
+documentation related to
 
-This section will explain step by step how to integrate the current component into an existing project.
+<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow the instructions in that document.
+
+This section will explain step by step how to integrate the current
 component into an existing project.
+
 
 ### 2.1. Dependencies required for integration
 
@@ -61,12 +63,12 @@ completely before the installation of the components of the **_SDKMobile_** comp
 #### Cocoapods
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
-```
+```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
   pod 'zipzap'
 ```
-- To install the SelphID component, the following entry must be included in the Podfile of the application:
-```
+- To install the Selphi component, the following entry must be included in the Podfile of the application:
+```java
   pod 'FPHISDKSelphiComponent', '~> 1.5.0'
 ```
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -77,14 +79,14 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 #### SPM
 - The mandatory dependencies that must have been previously installed are:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 - To install the NFC component, it must be included in the project modules:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git
 //SSH
@@ -93,44 +95,45 @@ git@github.com:facephi-clienters/SDK-Selphi_component-SPM.git
 
 ### 2.2 Permissions and configurations
 In the client application where the components are to be integrated, it is necessary to incorporate the following elements in the info.plist file
-```
+```java
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
 ```
 ---
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, in order to generate the associated information correctly in the
-associated information correctly in the platform, the **newOperation** command
-the **newOperation** command must be executed beforehand.
+When you want to perform a specific operation, in order to generate the
+associated information correctly in the platform, the **newOperation**
+command must first be executed.
 
-This command must be executed **always**. To learn more about how to
-to start a new operation, it is recommended to consult the documentation of
-**Core Component** documentation, which details and explains this process.
-process.
+This command must have been executed **before launch**.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation, which details and explains what this process consists of.
 
 ---
 
 ## 4. Available controllers
 
-| **Controllers**           | **Description**                                                	|
-| ------------------------- | ------------------------------------------------------------------|
-| SelphiController          | Facial recognition main controller                 			 	|
-| RawTemplateController     | Driver to generate a RawTemplate from an image				 	|
+| **Controller**            | **Description**                                |
+| ------------------------- | ---------------------------------------------- |
+| SelphiController          | Facial recognition main controller             |
+| RawTemplateController     | Driver to generate a RawTemplate from an image |
+| SignatureSelphiController | Driver to sign a process with a Capture        |
 
 ---
 
 ## 5. Component configuration
 
-This document does not include information on how to track the component data. In case this functionality is required, it is recommended to review the documentation of the **Tracking** **component** beforehand.
+To configure the current component, once it has been initialized, a
+SelphiConfigurationData object must be created and passed as a parameter
+to the SDKController when the component is launched.
 
-To configure the current component, once initialised, a *SelphiConfigurationData* object must be created and passed as a parameter to the SDKController during the component launch.
-
-The following section will show the fields that are part of this class and what each of them is used for.
+The following section will show the fields that are part of this class
+and what each is used for.
 
 ### 5.1. Class SelphiConfigurationData
 
@@ -216,41 +219,46 @@ If true, vibration is enabled on errors and if the response of the widget is OK
 
 ## 6. Use of the component
 
-Once the component has been started and a new operation (**section 3**) has been created, the SDK components can be launched. There are two ways to launch the component:
+Once the component has been started and a new operation has been created
+(**section 3**), the SDK components can be launched. There are two ways
+to launch the component:
 
-- **[NO TRACKING]** This call allows the component functionality to be launched normally, but **no events will be tracked** to the *tracking* server:
-
-```java
-let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
-```
-
-- **[WITH TRACKING]** This call allows the component functionality to be launched normally, but internal events will be tracked to the *tracking* server::
+- **\[WITH TRACKING\]** This call allows to launch the functionality
+  of the component, but internal events will be tracked to the
+  _tracking_ server:
 
 ```java
 let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
-The **launch** method must be used **by default**. This method allows
-use **_tracking_** if your component is enabled, and will not use it when it is
-when it is deactivated (or the component is not installed).
-installed).
+- **\[WITHOUT TRACKING\]** This call allows to launch the
+  functionality of the component, but **no event will be tracked** to
+  the _tracking_ server:
 
-On the other hand, the **launchMethod** method covers a special case, in which the
-where the integrator has tracking installed and activated, but in a given flow within the application does not want to use it when it is deactivated.
-flow within the application does not want to track information.
-In that case this method is used to avoid sending that information to the
-to the platform.
+```java
+let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
+```
+
+The **launch** method must be used by **default**. This method allows
+**_tracking_** if your component is enabled and will not be used when it
+is disabled (or the component is not installed).
+
+On the other hand, the **launchMethod** method covers a particular case
+in which the integrator has tracking installed and activated but, in a
+certain flow within the application does not want to track information.
+In this case, this method is used to prevent this information from being
+sent to the platform.
 
 ---
 
 ## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult format
--more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
+-more details in the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
+data-linked-resource-type="page">Mobile SDK</a> section.	
 
 ### 7.1. Receiving errors
 

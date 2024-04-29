@@ -11,9 +11,10 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -49,14 +50,18 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][EN] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***y seguir las instrucciones indicadas en dicho documento.
+
+Antes de integrar este componente se recomienda leer la documentación
+relativa a:
+
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
+documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
-
-### 2.1. Dependencias requeridas para la integración
 
 ### 2.1. Dependencias requeridas para la integración
 
@@ -72,9 +77,10 @@ completo antes de la instalación de los componentes de la
 ```
   	pod 'FPHISDKMainComponent', '~> 1.4.0'
 ```
-- Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
+- Para instalar el componente de VoiceID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```
-	pod 'FPHISDKVoiceIDComponent', '~> 1.4.0'
+  	pod 'VoiceIdController', '~> 1.5.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
@@ -91,9 +97,12 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][EN] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+este proceso.
 
 ---
 
@@ -192,9 +201,9 @@ a la plataforma.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+SdkResult. Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ### 7.1. Recepción de errores
 

@@ -11,9 +11,10 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
@@ -23,17 +24,18 @@ El _Componente_ tratado en el documento actual recibe el nombre de
 **_VideoID Component_**. Éste se encarga de realizar la grabación de un
 usuario identificándose, mostrando la cara y su documento de identidad.
 
-##1.1 Requisitos mínimos
+## 1.1 Requisitos mínimos
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
+
 ---
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][EN] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
@@ -50,11 +52,11 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-  	pod 'FPHISDKMainComponent', '~> 1.4.0'
+  pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+- Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```
-	pod 'VideoIdController', '~> 1.4.0'
+	pod 'VideoIdController', '~> 1.5.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
@@ -74,9 +76,9 @@ Cuando se desea realizar una determinada operación, para generar la informació
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [1.5.X][EN] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, en el que se detalla y explica en qué consiste este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste este proceso.
 
 ---
 
@@ -85,20 +87,18 @@ data-linked-resource-type="page">iOS Mobile SDK</a>***, en el que se detalla y e
 | **Controlador**            | **Descripción**                                    |
 | -------------------------- | -------------------------------------------------- |
 | VideoIdController          | Controlador principal de video identificación      |
-
+| SignatureVideoIdController | Controlador para firmar un proceso con una Captura |
 
 ---
 
 ## 5. Configuración del componente
 
-Para configurar el componente actual, una vez inicializado, se deberá
-crear un objeto
+Los campos incluidos en la configuración (**url, apiKey, tenantId**),
+normalmente **no es necesario que sean informados** ya que se completan
+internamente a través de la licencia usada.
 
-_VideoIdConfigurationData_ y pasarlo como parámetro al SDKController
-durante el lanzamiento del componente.
-
-En el siguiente apartado se mostrarán los campos que forman parte de
-esta clase y para qué se utiliza cada uno de ellos.
+Estos campos suelen informarse **solo** cuando el **servidor** es
+**OnPremise**.
 
 ### 5.1. Class VideoIdConfigurationData
 
@@ -132,12 +132,13 @@ ApiKey necesaria para la conexión con el socket de video
 Identificador del tenant que hace referencia al cliente actual,
 necesario para la conexión con el servicio de video.
 
-#### 5.1.3. Otros parametros
+#### 5.1.3. Otros 
+
 ##### extractionTimeout
 Establece el tiempo máximo que se puede realizar la lectura.
+
 ##### VibrationEnabled
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
-
 
 ---
 
@@ -177,7 +178,7 @@ En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 
 
-En los datos de configuración (EnvironmentVideoIdData) también se podrán modificar:
+En los datos de configuración (VideoIDConfigurationData) también se podrán modificar:
 
 - **sectionTime**: Tiempo que se permanecerá en cada pantalla del proceso en ms
 
@@ -201,6 +202,31 @@ En los datos de configuración (EnvironmentVideoIdData) también se podrán modi
 ---
 
 ## 7. Recepción del resultado
+
+Los controllers devolverán la información necesaria en formato
+SdkResult. Más información en <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+
+### 7.1. Recepción de errores
+
+En la parte del error, dispondremos de la clase _VideoIdError_.
+
+```java
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR
+PERMISSION_DENIED
+```
+
+## 8. Customizing the component
 
 Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) después de inicializar el videoIdController:
 ```
@@ -230,7 +256,7 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 }
 ```
 
-### 7.1 Colores e imágenes
+### 8.1 Colores e imágenes
 - Las imágenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
 ```
 case ic_video_id_back_id
@@ -255,7 +281,7 @@ case CheckText
 case Primary
 ``` 
 
-### 7.2 Fuentes 
+### 8.2 Fuentes 
 Las fuentes se inicializan similarmente en la variable `fonts` con un diccionario, teniendo como valor un **String** con el nombre de la **UIFont** que se desee.
 ```
 case regular
@@ -264,10 +290,10 @@ case bold
 
 - El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un **CGFloat** con el tamaño deseado.
 
-### 7.3 Personalizar el tiempo entre pantallas
-Para modificar el tiempo que se permanece en cada pantalla de grabación hay que modificar el valor del parámetro time (en ms) del EnvironmentVideoIdData:
+### 8.3 Personalizar el tiempo entre pantallas
+Para modificar el tiempo que se permanece en cada pantalla de grabación hay que modificar el valor del parámetro time (en ms) del VideoIDConfigurationData:
 
-`EnvironmentVideoIdData(time = TIEMPO EN MS)`
+`VideoIDConfigurationData(time = TIEMPO EN MS)`
 
 Siempre será el mínimo 5000.
 
@@ -275,8 +301,8 @@ Este objeto se pasará al hacer el setup del video ID.
 
  
 
-### 7.4 Textos - Multiidioma
-#### 7.4.1 Configuración de idiomas por defecto
+### 8.4 Textos - Multiidioma
+#### 8.4.1 Configuración de idiomas por defecto
 Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
 
 **CFBundleAllowMixedLocalizations = YES**
@@ -303,14 +329,14 @@ El idioma del componente se selecciona en función del idioma que tenga el móvi
 
  
 
-#### 7.4.2 Configuración de idiomas personalizada
+#### 8.4.2 Configuración de idiomas personalizada
 El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
 
 Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt-PT). Se hace a través del uso de los archivos **Localizable.strings.**
 
  
 
-#### 7.4.3 Keys para multiidioma
+#### 8.4.3 Keys para multiidioma
 El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
 
 

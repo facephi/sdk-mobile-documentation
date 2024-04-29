@@ -4,20 +4,27 @@
  
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
 
 ## 1. Introducción
 
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
+El _Componente_ tratado en el documento actual recibe el nombre de
+**_Tracking Component_**. Éste se encarga de realizar el trackeo y
+monitorización de la información obtenida durante la ejecución del resto
+de componentes de la **SDKMobile**, enviándola a los servicios de la
+**Plataforma**. Se podrá realizar el seguimiento en tiempo real de estos
+datos en la **Plataforma**, mientras se está ejecutando el proceso en el
+dispositivo del cliente.
 
-El Componente tratado en el documento actual recibe el nombre de **Tracking Component.** Éste se encarga de realizar el trackeo y monitorización de la información obtenida durante la ejecución del resto de componentes de la **SDKMobile**, enviándola a los servicios de la **Plataforma**. Se podrá realizar el seguimiento en tiempo real de estos datos en la **Plataforma**, mientras se está ejecutando el proceso en el dispositivo del cliente.
-
-Al contrario que ocurre con el resto, este componente no funciona individualmente, trabaja de forma transversal al resto de componentes instalados en la *SDKMobile*. Para trackear la información se mantiene en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
-
+Al contrario que ocurre con el resto, este componente no funciona
+individualmente, trabaja de forma transversal al resto de componentes
+instalados en la _SDKMobile_. Para trackear la información se mantiene
+en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
 
 ### 1.1 Requisitos mínimos
 La versión mínima de la SDK de iOS requerida es la siguiente:
@@ -28,10 +35,14 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
  
+Antes de integrar este componente se recomienda leer la documentación
+relativa a:
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] ***<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** y seguir las instrucciones indicadas en dicho documento.
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
+documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
@@ -41,13 +52,13 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-pod 'FPHISDKMainComponent', '~> 1.4.0'
+pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
-Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+Para instalar el componente de Tracking deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```
-pod 'FPHISDKTrackingComponent', '~> 1.4.0'
+pod 'FPHISDKTrackingComponent', '~> 1.5.0'
 ```
 
 Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -58,13 +69,31 @@ Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funci
 
 ---
 
-## 3. Configuración del componente
+## 3. Iniciar nueva operación
+
+Cuando se desea realizar una determinada operación, para generar la
+información asociada correctamente en la plataforma deberá ejecutarse
+previamente el comando **newOperation**.
+
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del
+componente**.
+
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u>Mobile
+SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+este proceso.
+
+---
+
+## 4. Configuración del componente
 
 El controlador de TrackingController solo se añadirá en caso de tener el tracking de la sdkMobile.
 
 Se añade el import:
 
-```
+```java
 import trackingComponent
 ```
 
@@ -72,14 +101,14 @@ trackingController: trackingController
 
 Inicializamos:
 
-```
+```java
 let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
 ```
 Se añade en el initSDK:
 
-```
+```java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
@@ -93,7 +122,7 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 ---
 
-## 4. Uso del componente
+## 5. Uso del componente
 Como se ha comentado previamente, una vez inicializado y configurado el
 componente de **tracking** no será necesario lanzarlo, ya que se
 mantendrá funcionando en segundo plano mientras se ejecutan el resto de
@@ -101,7 +130,7 @@ componentes.
 
 ---
 
-## 5. Recepción del resultado
+## 6. Recepción del resultado
 
 El resultado es un objeto *SDKResult* que devuelve el SDK tendrá siempre 3 campos:
 

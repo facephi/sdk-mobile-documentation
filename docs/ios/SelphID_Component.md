@@ -1,31 +1,44 @@
-# Selphid Component
+# SelphID Component
 
-## 0. Requisitos base de SDK Mobile
+## 0. SDK Mobile baseline requirements
  
-**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
-a series of functionalities and services, allowing its integration in a Mobile application in a
-integration into a Mobile application in a simple and fully scalable way.
-scalable. Depending on the use case that is required, certain components must be installed.
-Depending on the required use case, certain components must be installed. Its high level of
-of modularity means that other new components can be added in the future
-new components can be added in the future without affecting those already integrated in the project.
-project.
+**SDK Mobile** is a set of libraries (Components) that offer a series of
+functionalities and services, allowing their integration into a Mobile
+application in a simple and fully scalable way. Certain components must
+be installed depending on the use case required. Its high level of
+modularity allows other new components to be added in the future without
+affecting those already integrated into the project.
 
-For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+For more information on the base configuration, go to the
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">SDK móvil de iOS</a>***.
+data-linked-resource-type="page">Mobile SDK</a> section.
+
 
 ---
 
 ## 1. Introduction
-The Component discussed in the current document is called ***SelphID Component***. It is responsible for capturing documents and the subsequent extraction and analysis of the data obtained from them. Its main functionalities are the following:
 
-- Internal camera management.
-- Permission management.
-- Assistant in the processes of capturing the front and back of the document.
-- Extraction of the information contained in the document.
-- Obtaining the images of the back and back of the document, as well as other images included in the document: user's face, user's signature,...
-- High level of configuration: different countries, languages, document types...
+The _Component_ dealt with in the current document is called **_SelphID
+Component_**. It is in charge of capturing documents and the subsequent
+extraction and analysis of their data. Its main functionalities are the
+following:
+
+- Internal management of cameras.
+
+- Permits management.
+
+- Assistant in the processes of capturing the front and back of the
+  document. Extraction of the information contained in the document.
+
+- Obtain the images of the back and reverse side of the document, as
+  well as other images included in the document: user's face, user's
+  signature, etc.
+
+- High level of configuration: different countries, languages,
+  document types...
+
+---
 
 
 ### 1.1 Minimum requirements
@@ -35,11 +48,13 @@ Minimum iOS version: **13**
 
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
-Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
+Before integrating this component, it is recommended to read the
+documentation related to <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow its instructions.
 
 This section will explain step by step how to integrate the current component into an existing project.
 component into an existing project.
@@ -96,36 +111,37 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, in order to generate the associated information correctly in the
-associated information correctly in the platform, the **newOperation** command
-the **newOperation** command must be executed beforehand.
+When you want to perform a specific operation, in order to generate the
+associated information correctly in the platform, the **newOperation**
+command must first be executed.
 
-This command must be executed **always**. To learn more about how to
-to start a new operation, it is recommended to consult the documentation of
-**Core Component** documentation, which details and explains this process.
-process.
+This command must have been executed **before launch**.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation, which details and explains what this process consists of.
 
 ---
 
 ## 4. Available controllers
 
-| **Controller** | **Description** |
-| ----------------------------- | -------------------------------------- | 
-| SelphIDController | Document recognition main controller
+|                   |                                      |
+| ----------------- | ------------------------------------ |
+| **Controller**    | **Description**                      |
+| SelphIDController | Document recognition main controller |
 
---- 
+---
 
 ## 5. Component configuration
 
-This document does not include information on how to track the component data. In case this functionality is required, it is recommended to review the documentation of the **Tracking** **component** beforehand.
+Once initialized, a _SelphIDConfigurationData_ object must be created
+and passed as a parameter to the SDKController during component launch
+to configure the current component.
 
-To configure the current component, once initialised, a *SelphidConfigurationData* object must be created and passed as a parameter to the SDKController during the component launch.
-
-The following section will show the fields that are part of this class and what each of them is used for.
+The following section will show the fields part of this class and what
+each is used for.
 
 ### 5.1 Class SelphIDConfigurationData
 
@@ -149,7 +165,7 @@ Specifies the OCR scanning mode of the documents. Depending on the choice, sever
 
 - **SelphIDScanMode.MODE_SPECIFIC:** The search mode will allow to use a whitelist and blacklist, and will search the documents that meet these conditions. These conditions are indicated in the variable "specificData". This allows the search to be performed by narrowing the number of templates, and making the search much more refined than in the generic case.
 
-- SelphIDScanMode.MODE_SEARCH:** Search for a specific document. These conditions are indicated in the "specificData" property shown below.
+- **SelphIDScanMode.MODE_SEARCH:** Search for a specific document. These conditions are indicated in the "specificData" property shown below.
 
 ##### SpecificData
 This property allows to define which documents will be scanned during the process, in case of declaring the scan mode (scanMode) to SMSearch or SMSpecific.
@@ -166,15 +182,15 @@ The allowed values are as follows:
 
 - **SelphIDDocumentType.ID_CARD:** The widget is configured to perform ID document capture.
 
-- SelphIDDocumentType.PASSPORT:** The widget is configured to capture passports.
+- **SelphIDDocumentType.PASSPORT:** The widget is configured to capture passports.
 
-- SelphIDDocumentType.DRIVERS_LICENSE:** The widget is configured to capture driver's licenses.
+- **SelphIDDocumentType.DRIVERS_LICENSE:** The widget is configured to capture driver's licenses.
 
-- SelphIDDocumentType.FOREIGN_CARD:** The widget is configured to capture foreign documents.
+- **SelphIDDocumentType.FOREIGN_CARD:** The widget is configured to capture foreign documents.
 
-- The widget is configured to perform the capture of credit cards.
+- - **SelphIDDocumentType.CREDIT_CARD:** The widget is configured to perform the capture of credit cards.
 
-- SelphIDDocumentType.CUSTOM:** The widget is configured to capture other types of documents that do not fall into any of the above categories.
+- **SelphIDDocumentType.CUSTOM:** The widget is configured to capture other types of documents that do not fall into any of the above categories.
 
 ##### ShowDiagnostic
 If set to true, when an error or lack of permissions occurs, the sdk will display a screen with the error returned by the widget.
@@ -184,7 +200,7 @@ If set to true, when an error or lack of permissions occurs, the sdk will displa
 ##### Debug
 When this attribute is set to true, the number of traces is increased and technical information is displayed on the screen. 
 
-**Once the development is finished, it must be set to false.
+**Once the development is finished, it must be set to false.**
 
 ##### TutorialOnly
 This property allows to show **only the tutorial**, without launching later the capture process.
@@ -210,16 +226,16 @@ The allowed values are the following:
 
 - **SelphIDDocumentSide.FRONT:** The widget is configured to capture the front side of the document.
 
-- SelphIDDocumentSide.BACK:** The widget is configured to capture the back side of the document.
+- **SelphIDDocumentSide.BACK:** The widget is configured to capture the back side of the document.
 
-- SelphIDDocumentSide.ALL:** The widget is configured to capture both sides of the document.
+- **SelphIDDocumentSide.ALL:** The widget is configured to capture both sides of the document.
 
 ##### Timeout
 It is an enumerated that defines the timeout of the capture of one side of the document. It has 3 possible values:
 
 - **SelphIDTimeout.SHORT:** 15 seconds.
 
-- SelphIDTimeout.MEDIUM:** 20 seconds.
+- **SelphIDTimeout.MEDIUM:** 20 seconds.
 
 - **SelphIDTimeout.LONG:** 25 seconds.
 
@@ -252,32 +268,44 @@ If true, vibration is enabled on errors and if the widget response is OK, the fo
 ---
 
 ## 6. Using the component
-Once the component has been started and a new operation has been created (**section 3**), the SDK components can be launched. There are two ways to launch the component:
+Once the component has been started and a new operation has been created
+(**section 3**), the SDK components can be launched. There are two ways
+to launch the component:
 
-- **[WITH TRACKING]** This call allows to launch the component functionality normally, but internal events will be tracked to the tracking server:
+- **\[WITH TRACKING\]** This call allows to launch the functionality
+  of the component, but internal events will be tracked to the
+  _tracking_ server:
 ```
 let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
-- **[NO TRACKING]** This call allows to launch the component functionality normally, but no events will be tracked to the tracking server:
+- **\[WITHOUT TRACKING\]** This call allows to launch the
+  functionality of the component, but **no event will be tracked** to
+  the _tracking_ server:
 ```
 let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
  
-The **launch method** must be used **by default**. This method allows using **tracking** in case its component is activated, and will not use it when it is deactivated (or the component is not installed).
+The **launch** method must be used by **default**. This method allows
+**_tracking_** if your component is enabled and will not be used when it
+is disabled (or the component is not installed).
 
-On the contrary, the **launchMethod** method covers a special case, in which the integrator has tracking installed and activated, but in a certain flow within the application does not want to track information. In this case, this method is used to avoid sending this information to the platform.
+On the other hand, the **launchMethod** method covers a particular case
+in which the integrator has tracking installed and activated but, in a
+certain flow within the application does not want to track information.
+In this case, this method is used to prevent this information from being
+sent to the platform.
 
 ---
 
 ## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult format
--more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
+-more details in the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
+data-linked-resource-type="page">iOS Mobile SDK's</a>.	
 
 ### 7.1. Receiving errors
 

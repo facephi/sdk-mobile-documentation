@@ -172,8 +172,7 @@ install_cocoapods () {
 uninstall_cocoapods_homebrew () {
     which -s brew
     if [[ $? != 0 ]] ; then
-        echo "Homebrew not installed, skipping uninstalling cocoapods from
-homebrew"
+        echo "Homebrew not installed, skipping uninstalling cocoapods from homebrew"
     else
         brew uninstall cocoapods
     fi
@@ -208,42 +207,12 @@ Each component has a **_Controller_** that will allow access to its
 functionality. Before they can be used, they must be properly
 initialized. The steps to follow in the initialisation are as follows:
 
-1.  Initiate the controllers that will be used.
+1.  Include the Application object
 
-2.  Decide if the license will be included by string or using a
-    licensing service (more details in **section** **3.1**), and start
-    the SDK.
+2.  Decide whether the licence will be included via a _String_ or a
+    _remote licensing service_ (**see section 3.1**).
 
-3.  If the initialization returns a .STATUS_OK, then the SDK Controller
-    will be ready to start with the process.
-
-```java
- let trackingController = TrackingController(trackingError: { trackingError in
-      self.log("TRACKING ERROR: \(trackingError)")
-  })
-
-// MANUAL License
-SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: { sdkResult in
-    if sdkResult.finishStatus == .STATUS_OK {
-        self.log("Licencia manual seteada correctamente")
-    } else {
-        self.log("La licencia manual no es correcta")
-    }
-}, trackingController: trackingController)
-
-// AUTO License
-SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
-    if sdkResult.finishStatus == .STATUS_OK {
-        self.log("Licencia automática seteada correctamente")
-    } else {
-        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
-    }
-}, trackingController: trackingController)
-
-
-```
-
-###  3.1 Licence injection
+### 3.1 Licence injection
 
 As discussed above, there are currently two ways to inject the licence:
 
@@ -256,7 +225,7 @@ constant replacement of these licences when a problem arises
 
 ```java
 // AUTO License
-SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
         self.log("Licencia automática seteada correctamente")
     } else {
@@ -271,7 +240,7 @@ You can assign the licence directly as a String, as follows:
 
 ```java
 // MANUAL License
-SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: { sdkResult in
+SDKController.shared.initSdk(license: "LICENSE", output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
         self.log("Licencia manual seteada correctamente")
     } else {
@@ -290,7 +259,7 @@ The TrackingController controller will only be added in case you have sdkMobile 
 
 The import is added:
 
-```
+```java
 import trackingComponent
 ```
 
@@ -298,16 +267,16 @@ trackingController: trackingController
 
 We initialize:
 
-```
+```java
 let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
 ```
 Added in the initSDK:
 
-```
+```java
 // AUTO License
-SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
         self.log("Automatic license successfully set")
     } else {
@@ -319,21 +288,21 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 #### 3.2.2. TokenizeController
 
 Added import:
-```
+```java
 import tokenizeComponent
 ```
 
 Initialise:
 
-```
+```java
 let tokenizeController = TokenizeController()
 ```
 
 We add in the initSDK:
 
-```
+```java
 // AUTO License
-SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
         self.log("Automatic license successfully set")
     } else {
@@ -344,34 +313,35 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 #### 3.2.3 BehaviorController
 
-Se añade el import:
+Added import
 
-```
+```java
 import behaviorComponent
 ```
 
-Inicializamos:
-```
+Initialise:
+
+```java
 
 behaviorController = BehaviorController(autoLogoutAction: {
-                      print("DEFENSA ACTIVA")
+                      print("ACTIVE DEFENSE")
                       return true
                     },
                     behaviorError: { behaviorError en
-                      print("ERROR DE COMPORTAMIENTO: \(behaviorError)")
+                      print("BEHAVIOR ERROR: \(behaviorError)")
                     }, debugMode: false)
 ```
 
-Se añade en el initSDK:
+We add in the initSDK:
 
-```
+```java
 
-// AUTO Licencia
-SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult en
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output: { sdkResult en
     if sdkResult.finishStatus == .STATUS_OK {
-        self.log("Licencia automática seteada correctamente")
+        self.log("Automatic license successfully set")
     } else {
-        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+        self.log("An error occurred while trying to obtain the license: \(sdkResult.errorType)")
     }
 }, behaviorController: behaviorController
 
@@ -381,22 +351,22 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 Se añade el import:
 
-```
+```java
 import statusComponent
 ```
 
 Inicializamos:
-```
+```java
 let statusController = StatusController()
 ```
 Se añade en el initSDK:
-```
+```java
 // AUTO License
-SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
+SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
-        self.log("Licencia automática seteada correctamente")
+        self.log("Automatic license successfully set")
     } else {
-        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+        self.log("An error occurred while trying to obtain the license: \(sdkResult.errorType)")
     }
 }, statusController: statusController)
 ```
@@ -482,26 +452,33 @@ Once the **new operation** has been created **(section 4)**, the
 different SDK drivers can be launched. To consult this information,
 access the **documentation for each component**.
 
+```java
+
+ let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+ SDKController.shared.launch(controller: controller)
+
+```
+
 ---
 
 ## 6. Result return
 
-El resultado de cada componente será devuelto a través de la SDK
-manteniendo siempre la misma estructura de 3 campos:
+The result of each component will be returned through the SDK
+always keeping the same 3-field structure:
 
-1.  **finishStatus**: Que nos indicará si la operación ha finalizado
-    correctamente. Posibles valores `FinishStatus.STATUS_OK`,
-    `FinishStatus.STATUS_ERROR`
+1.  **finishStatus**: This will indicate whether the operation has been successfully completed.
+    correctly. Possible values `FinishStatus.STATUS_OK`,
+    `FinishStatus.STATUS_ERROR`.
 
-2.  **errorType**: Si _finishStatus_ indica que ha habido un error, este
-    campo tendrá la descripción del mismo.
+2.  **errorType**: If _finishStatus_ indicates that an error has occurred, this field shall contain the description of the error.
+    field shall contain the description of the error.
 
-3.  **data**: Tendrá los datos de respuesta de la función del SDK. Este
-    campo será diferente dependiendo del componente que se haya
-    ejecutado. En la documentación de cada componente específico se
-    desglosarán los diferentes campos que puede devolver este objeto.
+3.  **data**: This shall contain the response data from the SDK function. This
+    This field will be different depending on the component that has been
+    executed. The documentation of each specific component will
+    The documentation for each specific component will provide a breakdown of the different fields that this object can return.
 
-The documentation for each specific component will provide a breakdown
+The documentation for each specific component will provide a breakdown of the different fields that this object can return.
 of the different fields that this object can return.
 
 ---
@@ -521,63 +498,8 @@ until a new operation is started again.
 
 ---
 
-## 8. Debugging and error-handling options
 
-If a component is called, it will return a SdkResult as output. The
-following code fragment is an example of this:
-
-```java
-        let controller = ComponentController(data: ComponentConfigurationData, output: { sdkResult in
-           print(sdkResult.errorType)
-        }, viewController: viewController)
-        SDKController.shared.launch(controller: controller)
-```
-
-The .errorType attribute contains the error typology. They are defined
-in the documentation of each component.
-
-The possible error types are the following:
-
-```java
-public enum ErrorType: String, Error {
-    case CANCEL_BY_USER
-    case TIMEOUT
-    case COMPONENT_CONTROLLER_ERROR
-    case COMPONENT_CONTROLLER_DATA_ERROR
-    case NETWORK_CONNECTION
-    case UNKNOWN_ERROR
-    case NFC_ERROR
-    case NFC_INVALID_MRZ_KEY 
-    case CAPTURE_ERROR
-    case NO_ERROR
-    case CAMERA_PERMISSION_DENIED
-    case PERMISSION_DENIED
-    case SETTINGS_PERMISSION_ERROR
-    case HARDWARE_ERROR
-    case EXTRACTION_LICENSE_ERROR
-    case UNEXPECTED_CAPTURE_ERROR
-    case CONTROL_NOT_INITIALIZATED_ERROR 
-    case BAD_EXTRACTOR_CONFIGURATION_ERROR
-    case TOKEN_ERROR
-    case PHINGERS_ERROR_CAPTURE 
-    case LICENSING_ERROR_PACKAGE_NAME
-    case LICENSING_ERROR_APPID_INVALID
-    case LICENSING_ERROR_APIKEY_FORBIDDEN
-    case LICENSING_ERROR_LICENSE_NOT_FOUND
-    case VIDEO_SOCKET_TIMEOUT
-    case VIDEO_ERROR
-    case LICENSE_CHECKER_ERROR_INVALID_LICENSE
-    case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
-    case NO_OPERATION_CREATED_ERROR
-}
-```
-
-If there is no error and the result returns successfully, the error
-type will be **NO_ERROR**.
-
----
-
-## 9. Error control
+## 8. Error control
 
 When calling any of the components, we will always have an output of type SdkResult as a response, as we see in the example code:
 
@@ -615,7 +537,7 @@ If there is no error and the result is returned correctly, the errorType would b
 
 ---
 
-## 10. SDK Customization
+## 9. SDK Customization
 
 Customization is done using a component class called Theme***Component***Manager. Where ***Component*** must be replaced with the desired component.
 
@@ -651,5 +573,3 @@ ThemeComponentManager.setup(theme: CustomThemeComponent())
 // Controller launch
 SDKController.shared.launch(controller: controller)
 ```
-
-<u>**Each component has its customization section,**</u> colors, images, fonts, sizes

@@ -11,9 +11,10 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de [1.5.X][ES] ***<a href="Mobile_SDK"
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+data-linked-resource-type="page">Mobile SDK</a>.
 
 
 ---
@@ -58,11 +59,11 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (*Widgets*), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
 
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero *Podfile* del proyecto) son:
-```
+```java
   pod 'FPHISDKMainComponent', '~> 1.4.0'
 ```
 - Para instalar el componente actual deberá incluirse la siguiente entrada en el Podfile de la aplicación:
-```
+```java
 pod 'FPHISDKPhingersComponent', '~> 1.4.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -77,9 +78,18 @@ Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 
 ## 3. Iniciar nueva operación
 
-Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+Cuando se desea realizar una determinada operación, para generar la
+información asociada correctamente en la plataforma deberá ejecutarse
+previamente el comando **newOperation**.
 
-Este comando debe ejecutarse **siempre**. Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de **Core Component**, en el que se detalla y explica en qué consiste este proceso.
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del
+componente**.
+
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste
+este proceso.
 
 ---
 
@@ -93,9 +103,14 @@ Este comando debe ejecutarse **siempre**. Para saber más acerca de cómo inicia
 
 ## 5. Configuración del componente
 
-Para configurar el componente actual, una vez inicializado, se deberá crear un objeto *PhingersConfigurationData* y pasarlo como parámetro al SDKController durante el lanzamiento del componente.
+Para configurar el componente actual, una vez inicializado, se deberá
+crear un objeto
 
-En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.
+_PhingersConfigurationData_ y pasarlo como parámetro al SDKController
+durante el lanzamiento del componente.
+
+En el siguiente apartado se mostrarán los campos que forman parte de
+esta clase y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class PhingersConfigurationData
 
@@ -211,23 +226,23 @@ a la plataforma.
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de ***TO DO: Enlace*** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado  del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. 
+Más información en la sección de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">iOS Mobile SDK's</a>.
 
 ### 7.1. Recepción de errores
 
-*finishStatus*: Que nos indicará si la operación ha finalizado correctamente. Posibles valores:
+```java
+NO_OPERATION_CREATED_ERROR
+COMPONENT_CONTROLLER_DATA_ERROR
+CAMERA_PERMISSION_DENIED
+LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
+ERROR_CAPTURE_SUCCESS_WITHOUT_RESULT
+CAMERA_PERMISSION_DENIED
+CANCEL_BY_USER
+TIMEOUT
 ```
-FinishStatus.STATUS_OK
-FinishStatus.STATUS_ERROR
-```
-*errorType*: Errores propios del widget.
-```
-PHINGERS_CANCEL_BY_USER
-PHINGERS_INTERNAL_ERROR
-```
-
-*data*: Tendrá los datos de respuesta de la función del componente ejecutado. En el apartado 7.2 se especifican los campos que se incluyen en este componente.
-
 
 ### 7.2. Recepción de ejecución correcta - _data_
 

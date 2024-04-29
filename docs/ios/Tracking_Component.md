@@ -1,29 +1,33 @@
 # Tracking Component
 
-## 0. SDK Mobile basic requirements
+## 0. SDK Mobile baseline requirements
  
-**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
-a series of functionalities and services, allowing its integration in a Mobile application in a
-integration into a Mobile application in a simple and fully scalable way.
-scalable. Depending on the use case that is required, certain components must be installed.
-Depending on the required use case, certain components must be installed. Its high level of
-of modularity means that other new components can be added in the future
-new components can be added in the future without affecting those already integrated in the project.
-project.
+**SDK Mobile** is a set of libraries (Components) that offer a series of
+functionalities and services, allowing their integration into a Mobile
+application in a simple and fully scalable way. Certain components must
+be installed depending on the use case required. Its high level of
+modularity allows other new components to be added in the future without
+affecting those already integrated into the project.
 
-For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+For more information on the base configuration, go to the
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">SDK móvil de iOS</a>***.
+data-linked-resource-type="page">Mobile SDK</a> section.
 
 ---
 
 ## 1. Introduction
 
-**SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.
+The component dealt with in the current document is called **Tracking
+Component**. It tracks and monitors the information obtained while
+executing the rest of the **SDKMobile** components, sending it to the
+**Platform** services. This data can be tracked in real-time on the
+Platform, while the process is running on the client's device.
 
-The component dealt with in the current document is called **Tracking Component**. It is in charge of tracking and monitoring the information obtained during the execution of the rest of the **SDKMobile** components, sending it to the **Platform** services. This data can be tracked in real time on the **Platform**, while the process is running on the client's device.
-
-Unlike the rest, this component does not work individually, it works transversally to the rest of the components installed in the *SDKMobile*. To track the information, it is kept in the background while the **SDKMobile** process is running.
+Unlike the rest, this component does not work individually, it works
+transversally with the rest of the components installed in the
+**_SDKMobile_**. To track the information, it is kept in the background
+while the SDKMobile process is running.
 
 
 ### 1.1 Minimum requirements
@@ -35,26 +39,33 @@ Minimum iOS version: **13**
 
 ## 2. Component integration
  
+Before integrating this component, it is recommended to read the
+documentation related to
 
-Before integrating this component, it is recommended to read the documentation related to [1.5.X][EN] ***<a href="Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in that document.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow the instructions in that document.
 
-This section will explain step by step how to integrate the current component into an existing project.
+This section will explain step by step how to integrate the current
+component into an existing project.
 
 ### 2.1. Dependencies required for integration
-To avoid conflicts and compatibility problems, in case you want to install the component in a project containing an old version of the Facephi libraries (Widgets), these must be completely removed before the installation of the **SDKMobile** components.
+To avoid conflicts and compatibility problems, if you want to install
+the component in a project containing an old Facephi libraries
+(_Widgets_) version, these must be removed entirely before installing
+the **_SDKMobile_** components.
 
 Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must be previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-pod 'FPHISDKMainComponent', '~> 1.4.0'
+pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 
-To install the Selphi component, the following entry must be included in the application Podfile:
+To install the Tracking component, the following entry must be included in the application Podfile:
 
 ```
-pod 'FPHISDKTrackingComponent', '~> 1.4.0'
+pod 'FPHISDKTrackingComponent', '~> 1.5.0'
 ```
 
 Once the dependencies are installed, the different functionalities of the component can be used.
@@ -65,13 +76,29 @@ Once the dependencies are installed, the different functionalities of the compon
 
 ---
 
-## 3. Component configuration
+## 3. Start a new operation
+
+When you want to perform a specific operation to generate the associated
+information correctly in the platform, the **newOperation** command must
+first be executed.
+
+This command must have been executed **before launch**.
+
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation, which details and explains what this process consists of.
+
+---
+
+## 4. Component configuration
 
 The TrackingController controller will only be added in case of having the sdkMobile tracking.
 
 The import is added:
 
-```
+```java
 import trackingComponent
 ```
 
@@ -79,7 +106,7 @@ trackingController: trackingController
 
 Initialize:
 
-```
+```java
 let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
@@ -87,7 +114,7 @@ let trackingController = TrackingController(trackingError: { trackingError in
 
 It is added in the initSDK:
 
-```
+```java
 //AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
      if sdkResult.finishStatus == .STATUS_OK {
@@ -100,7 +127,7 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 ---
 
-## 4. Use of the component
+## 5. Use of the component
 As previously mentioned, once initialized and configured the
 **tracking** component will not need to be launched, since it will
 will keep running in the background while the rest of the
@@ -109,7 +136,7 @@ components.
 
 ---
 
-## 5. Reception of the result
+## 6. Reception of the result
 
 The result is an *SDKResult* object that is returned by the SDK and will always have 3 fields:
 

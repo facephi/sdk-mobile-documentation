@@ -1,33 +1,32 @@
 # Voice Component
 
-## 0. Requisitos base de SDK Mobile
+## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
-a series of functionalities and services, allowing its integration in a Mobile application in a
-integration into a Mobile application in a simple and fully scalable way.
-scalable. Depending on the use case that is required, certain components must be installed.
-Depending on the required use case, certain components must be installed. Its high level of
-of modularity means that other new components can be added in the future
-new components can be added in the future without affecting those already integrated in the project.
-project.
+**SDK Mobile** is a set of libraries (Components) that offer a series of
+functionalities and services, allowing their integration into a Mobile
+application in a simple and fully scalable way. Depending on the use
+case that is required, certain components must be installed. Its high
+level of modularity allows other new components to be added in the
+future without affecting those already integrated in the project.
 
-For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+For more information on the base configuration, go to the
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">SDK móvil de iOS</a>***.
+data-linked-resource-type="page">Mobile SDK</a> section.
 
 ---
 
 ## 1. Introduction
 
-The _Component_ dealt with in the current document is called
-**Voice Component_**. It is in charge of performing the voice capture from the user and the subsequent extraction of the corresponding templates.
-and the subsequent extraction of the corresponding templates.
-Its main functionalities are the following:
+The _component_ discussed in the current document is called **Voice
+Component**. It is in charge of capturing the user's voice and the
+subsequent extraction of the corresponding templates. Its main
+functionalities are the following:
 
-- Input of a certain number of sentences to subsequently read each one in one step.
+- Input of a certain number of sentences to subsequently read each one
   in one step.
 
-- Internal management of the microphone.
+- Internal microphone management.
 
 - Management of permissions.
 
@@ -38,40 +37,43 @@ Its main functionalities are the following:
 - Assistant in the capture processes.
 
 - Generation of templates with voice characteristics and scores.
-  scores.
 
-##1.1 Minimum requirements
+## 1.1 Minimum requirements
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
 
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
-Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
+Before integrating this component, it is recommended to read the
+documentation related to:
+
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow the instructions in that document.
 
-This section will explain step by step how to integrate the current component into an existing project.
+This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
 
-In order to avoid conflicts and compatibility problems, in case you want to
-install the component in a project containing an old version of the Facephi libraries.
-of the Facephi libraries (_Widgets_), these must be completely removed before the installation of the components.
-completely before the installation of the components of the **_SDKMobile_** components.
+To avoid conflicts and compatibility problems, in case you want to
+install the component in a project containing an old version of the
+Facephi libraries (_Widgets_), these must be completely removed before
+installing the **_SDKMobile_** components.
 
 #### Cocoapods
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  	pod 'FPHISDKMainComponent', '~> 1.4.0', '~> 1.4.0'.
+  	pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- To install the SelphID component, the following entry must be included in the application Podfile:
+- To install the VoiceID component, the following entry must be included in the application's Podfile:
 ```
-	pod 'FPHISDKVoiceIDComponent', '~> 1.4.0' ````
+  	pod 'VoiceIdController', '~> 1.5.0'
 ```
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
@@ -84,26 +86,26 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, in order to generate the associated information correctly in the
-associated information correctly in the platform, the **newOperation** command
-the **newOperation** command must be executed beforehand.
+When you want to perform a specific operation, in order to generate the
+associated information correctly in the platform, the **newOperation**
+command must first be executed.
 
-This command must be executed **always**. To learn more about how to
-to start a new operation, it is recommended to consult the documentation of
-**Core Component** documentation, which details and explains this process.
-process.
+This command must have been executed **prior to launch**.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation, which details and explains what this process consists of.
 
 ---
 
 ## 4. Available controllers
 
-| **Controller**            | **Description**                                    |
-| --------------- | --------------------------------------- |
-| VoiceController | Voice identification main controller   |
+|                 |                               |
+| --------------- | ----------------------------- |
+| **Controller**  | **Description**               |
+| VoiceController | Voice capture main controller |
 
 ---
 
@@ -146,27 +148,13 @@ Show diagnostic screens at the end of the process
 
 ## 6. Using the component
 
-Once the component has been started and a new operation has been created (**paragraph
-3**) the SDK components can be launched. There are two ways to launch
-the component:
+Once the component has been started and a new operation has been created
+(**section 3**), the SDK components can be launched. There are two ways
+to launch the component:
 
-- **[WITH TRACKING]** This call allows you to launch the functionality
-  functionality of the component normally, but internal events will be tracked to the _tracking_ server.
-  events will be tracked to the _tracking_ server:
-
-```java
-let controller = VoiceController(
-            data: data,
-            output: { sdkResult in
-                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
-                output(voiceIdSdkResult)
-            }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
-```
-
-- **[NO TRACKING]** This call allows to launch the functionality of the
-  functionality of the component normally, but **no event will be tracked** to the
-  event to the _tracking_ server:
+- **\[WITH TRACKING\]** This call allows to launch the functionality
+  of the component normally, but internal events will be tracked to
+  the _tracking_ server:
 
 ```java
 let controller = VoiceController(
@@ -178,24 +166,38 @@ let controller = VoiceController(
         SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
 
-The **launchTokenizableMethod** method must be used **by default**. This method allowsuse **_tracking_** if your component is enabled, and will not use it when it is
-when it is disabled (or the component is not installed).
-installed).
+- **\[WITHOUT TRACKING\]** This call allows to launch the
+  functionality of the component normally, but **no event will be
+  tracked** to the _tracking_ server:
 
-On the other hand, the **launchTokenizableMethod** method covers a special case, in which the
-where the integrator has the tracking installed and activated, but in a given flow within the
-flow within the application does not want to track information.
-In that case this method is used to prevent that information from being sent to the platform.
-to the platform.
+```java
+let controller = VoiceController(
+            data: data,
+            output: { sdkResult in
+                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
+                output(voiceIdSdkResult)
+            }, viewController: viewController)
+        SDKController.shared.launchTokenizableMethod(controller: controller)
+```
+
+The **launch** method must be used by **default**. This method allows
+**_tracking_** to be used if your component is enabled, and will not use
+it when it is disabled (or the component is not installed).
+
+On the other hand, the **launchMethod** method covers a special case, in
+which the integrator has tracking installed and activated, but in a
+certain flow within the application does not want to track information.
+In this case, this method is used to prevent this information from being
+sent to the platform.
 
 ---
 
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+SdkResult. Más información en la sección de <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page">Mobile SDK</a>.
 
 ### 7.1. Recepción de errores
 
@@ -230,6 +232,13 @@ Facephi tokenised format.
 ---
 
 ## Customisation of the component
+
+Apart from the changes that can be made at SDK level (which are
+explained in the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+document), this particular component allows the modification of specific
+texts.
 
 ### 8.1 Texts
 

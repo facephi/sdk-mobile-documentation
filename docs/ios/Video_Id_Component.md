@@ -1,19 +1,18 @@
 # Video Id Component
 
-## 0. Requisitos base de SDK Mobile
+## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (**Components**) that provides a set of functionalities and services
-a series of functionalities and services, allowing its integration in a Mobile application in a
-integration into a Mobile application in a simple and fully scalable way.
-scalable. Depending on the use case that is required, certain components must be installed.
-Depending on the required use case, certain components must be installed. Its high level of
-of modularity means that other new components can be added in the future
-new components can be added in the future without affecting those already integrated in the project.
-project.
+**SDK Mobile** is a set of libraries (Components) that offer a series of
+functionalities and services, allowing their integration into a Mobile
+application in a simple and fully scalable way. Depending on the use
+case that is required, certain components must be installed. Its high
+level of modularity allows other new components to be added in the
+future without affecting those already integrated in the project.
 
-For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+For more information on the base configuration, go to the
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">SDK móvil de iOS</a>***.
+data-linked-resource-type="page">Mobile SDK</a> section.
 
 ---
 
@@ -23,19 +22,23 @@ The _Component_ discussed in the current document is called
 **_VideoID Component_**. This is responsible for recording a
 user identifying themselves, showing their face and their identity document.
 
-##1.1 Minimum requirements
+## 1.1 Minimum requirements
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
-Before integrating this component, it is recommended to read the documentation related to  [1.5.X][EN] ***<a href="Mobile_SDK"
+Before integrating this component, it is recommended to read the
+documentation related to:
+
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** and follow the instructions given in this document.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow the instructions in that document.
 
-This section will explain step by step how to integrate the current component into an existing project.
+This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
@@ -51,7 +54,7 @@ completely before the installation of the components of the **_SDKMobile_** comp
 ```
    pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
-- To install the SelphID component, the following entry must be included in the application's Podfile:
+- To install the VideoID component, the following entry must be included in the application's Podfile:
 ```
 pod 'FPHISDKVideoIDComponent', '~> 1.5.0'
 ```
@@ -69,42 +72,46 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, in order to generate the associated information correctly in the
-associated information correctly in the platform, the **newOperation** command
-the **newOperation** command must be executed beforehand.
+When you want to perform a specific operation, in order to generate the
+associated information correctly in the platform, the **newOperation**
+command must first be executed.
 
-This command must be executed **always**. To learn more about how to
-to start a new operation, it is recommended to consult the documentation of
-**Core Component** documentation, which details and explains this process.
-process.
+This command must have been executed **prior to launch**.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation, which details and explains what this process consists of.
 
 ---
 
 ## 4. Available controllers
 
-| **Controller**            | **Description**                                    |
-| -------------------------- | -------------------------------------------------- |
-| VideoIdController          | Video identification main controller      |
-
+| **Controller**             | **Description**                         |
+| -------------------------- | --------------------------------------- |
+| VideoIdController          | Video identification main controller    |
+| SignatureVideoIdController | Driver to sign a process with a Capture |
 
 ---
 
-## 5. Component Configuration
+## 5. Component configuration
 
-To configure the current component, once initialized, you must
-create an object
+To configure the current component, once it has been initialised, a
+_VideoIdConfigurationData_ object must be created and passed as a
+parameter to the SDKController when the component is launched.
 
-_VideoIdConfigurationData_ and pass it as a parameter to the SDKController
-during component launch.
-
-The following section will show the fields that are part of
-this class and what each of them is used for.
+The following section will show the fields that are part of this class
+and what each of them is used for.
 
 ### 5.1. Class VideoIdConfigurationData
+
+The fields included in the configuration **(url, apiKey, tenantId)**,
+usually **do not need to be reported** as they are filled internally
+through the licence used.
+
+These fields are usually **reported only** when the server is
+**OnPremise**.
 
 #### 5.1.1. Basic Configuration
 ##### sectionTime
@@ -146,40 +153,39 @@ If the value is set to true, the vibration is activated on errors and if the wid
 
 ## 6. Use of the component
 
-Once the component has been started and a new operation has been created (**section
-3**) the SDK components can be launched. There are two ways to launch
-the component:
+Once the component has been started and a new operation has been created
+(**section 3**), the SDK components can be launched. There are two ways
+to launch the component:
 
-- **\[WITH TRACKING\]** This call allows launching the functionality
-   of the component normally, but the events will be tracked
-   internal to the _tracking_ server:
+- **\[WITH TRACKING\]** This call allows to launch the functionality
+  of the component normally, but internal events will be tracked to
+  the _tracking_ server:
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
-   of the component normally, but **will not be tracked** any
-   event to _tracking_ server:
+- **\[WITHOUT TRACKING\]** This call allows to launch the
+  functionality of the component normally, but **no event will be
+  tracked** to the _tracking_ server:
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
-The **launch** method should be used **by default**. This method allows
-use **_tracking_** if its component is activated, and do not
-will be used when it is disabled (or the component is not found
-installed).
+The **launch** method must be used by **default**. This method allows
+**_tracking_** to be used if your component is enabled, and will not use
+it when it is disabled (or the component is not installed).
 
-On the contrary, the **launchMethod** method covers a special case, in
+On the other hand, the **launchMethod** method covers a special case, in
 which the integrator has tracking installed and activated, but in a
-certain flow within the application you do not want to track information.
-In that case, this method is used to prevent that information from being sent.
-to the platform.
+certain flow within the application does not want to track information.
+In this case, this method is used to prevent this information from being
+sent to the platform.
 
-In the configuration data (EnvironmentVideoIdData) you can also modify:
+In the configuration data (VideoIDConfigurationData) you can also modify:
 
 - **sectionTime**: Time that will remain on each screen of the process in ms
 
@@ -203,6 +209,33 @@ In the configuration data (EnvironmentVideoIdData) you can also modify:
 ---
 
 ## 7. Reception of the result
+
+The controllers will return the required information in SdkResult
+format. More information in the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+
+### 7.1. Receipt of errors
+
+On the error side, we will have the _VideoIdError_ class.
+
+```java
+NO_DATA_ERROR
+TIMEOUT
+CANCEL_BY_USER
+CANCEL_LAUNCH
+NETWORK_CONNECTION
+SOCKET_ERROR
+VIDEO_ERROR
+ACTIVITY_RESULT_ERROR
+INITIALIZATION_ERROR -> it.error
+UNKNOWN_ERROR 
+PERMISSION_DENIED
+```
+
+---
+
+## 8. Customizing the component
 
 To customize the component, ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) must be called after initializing the videoIdController:
 ```
@@ -232,7 +265,7 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 }
 ```
 
-### 7.1 Colors and images
+### 8.1 Colors and images
 - The images initialize in the variable images , passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
 ```
 case ic_video_id_back_id
@@ -258,7 +291,7 @@ case CheckText
 case Primary
 ``` 
 
-### 7.2 Fonts 
+### 8.2 Fonts 
 Fonts are similarly initialized in the `fonts` variable with a dictionary, having as value a **String** with the name of the desired **UIFont**.
 ```
 case regular
@@ -267,17 +300,17 @@ case bold
 
 - The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
 
-### 7.3 Customizing the time between screens
-To modify the time spent on each recording screen, the value of the time parameter (in ms) of the EnvironmentVideoIdData must be modified:
+### 8.3 Customizing the time between screens
+To modify the time spent on each recording screen, the value of the time parameter (in ms) of the VideoIDConfigurationData must be modified:
 
-`EnvironmentVideoIdData(time = TIME IN MS)`.
+`VideoIDConfigurationData(time = TIME IN MS)`.
 
 It will always be the minimum 5000.
 
 This object will be passed during the setup of the video ID.
 
-### 7.4.4 Texts - Multi-Language
-#### 7.4.1 Default language settings
+### 8.4 Texts - Multi-Language
+#### 8.4.1 Default language settings
 If the package is installed via **SPM**, for text localization to work, the following needs to be added to the **Info.plist** file of the integrator app:
 
 **CFBundleAllowMixedLocalizations = YES**.
@@ -301,14 +334,14 @@ The language of the component is selected according to the language that the cel
 - For any other case, English will be used.
 
 
-#### 7.4.2 Customized Language Configuration
+#### 8.4.2 Customized Language Configuration
 The component allows the customization of texts according to the language, which as in the previous case, will be defined by the language that is selected on the device.
 
 This customization applies to new localizations as well as to the case of the default languages (es, en and pt-PT). It is done through the use of **Localizable.strings.** files.
 
  
 
-#### 7.4.3 Keys for multi-languages
+#### 8.4.3 Keys for multi-languages
 The **Localizable.strings** file in the **es.lproj** folder of the component is the following:
 
 

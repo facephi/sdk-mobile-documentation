@@ -1,44 +1,43 @@
-#NFC Component
+# NFC Component
 
 ## 0. SDK Mobile Base Requirements
 
-**SDK Mobile** is a set of libraries (**Components**) that offers
-a series of functionalities and services, allowing in turn its
-integration into a Mobile application in a simple and completely
-scalable. Depending on the use case required, it must be
-perform the installation of certain components. Its high level
-Modularity allows, in the future, to add other
-new components without affecting in any way those already integrated into the
-project.
+**SDK Mobile** is a set of libraries (Components) that offer a series of
+functionalities and services, allowing their integration into a Mobile
+application in a simple and fully scalable way. Certain components must
+be installed depending on the use case required. Its high level of
+modularity allows other new components to be added in the future without
+affecting those already integrated into the project.
 
-For more information on the base configuration, go to the [1.5.X][ES] section ***<a href="Mobile_SDK"
+For more information on the base configuration, go to the
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***.
+data-linked-resource-type="page">Mobile SDK</a>
 
 ---
 
 ## 1. Introduction
 
-The _Component_ discussed in the current document is called
-**_NFC Component_**. This is responsible for reading NFC from
-identity documents and passports. Its main functionalities
-are the following:
+The Component discussed in the current document is called **NFC
+Component**. It is responsible for NFC reading of ID cards and
+passports. Its main functionalities are the following:
 
 - Internal management of the NFC sensor.
 
-- Permit management.
+- Permission management.
 
 - Document analysis.
 
-- Analysis of progress.
+- Progress analysis.
 
-- Assistant in the reading processes.
+- Assistant in reading processes.
 
-- Return of all possible information to read
+- Return all possible information to be read
 
-- Return of images when they are available for reading
+- Return of images when they are available for reading.
 
 ### 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
 - Minimum iOS version: **13**
@@ -47,36 +46,44 @@ The minimum iOS SDK version required is as follows:
 
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
-Before integrating this component, it is recommended to read the documentation related to ** TO DO: [1.5.X][ES] iOS Mobile SDK** and follow the instructions indicated in said document.
+Before integrating this component, it is recommended to read the documentation related to 
+<a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow the instructions indicated in said document.
 
 This section will explain step by step how to integrate the component
 current in an existing project.
 
 ### 2.1. Dependencies required for integration
 
-To avoid conflicts and compatibility problems, if you want
-install the component in a project that contains an old version
-from the Facephi libraries (_Widgets_), these must be removed by
-complete before installing the components of the
-**_SDKMobile_**.
+To avoid conflicts and compatibility problems, if you want to install
+the component in a project containing an old Facephi libraries
+(_Widgets_) version, these must be removed entirely before installing
+the **_SDKMobile_** components.
 
-Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
+- Currently FacePhi libraries are distributed remotely through 
+  different dependency managers, in this case Cocoapods. 
+  The **mandatory** dependencies that must have been previously installed 
+  (adding them to the project's Podfile file) are:
 
 #### Cocoapods
+
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
-```
+```java
 pod 'FPHISDKMainComponent', '~> 1.4.0'
 ```
 To install the NFC component, the following entry must be included in the application's Podfile:
-```
+```java
 pod 'FPHISDKNFCComponent', '~>2.6.0'
 ```
 #### SPM
+
 The mandatory dependencies that must have been previously installed are:
 
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
@@ -84,7 +91,7 @@ git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 
 ```
 To install the NFC component, it must be included in the project modules:
-```
+```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-NFC_component-SPM.git
 //SSH
@@ -98,8 +105,8 @@ Once the dependencies are installed, you can use the different functionalities o
 ![Image](/iOS/fix_ldClassic.png)
 
 ### 2.2 Permissions and settings
-In the client application where the components are going to be integrated, it is necessary to incorporate the following elements in the **Info.plist** file:
 
+In the client application where the components are going to be integrated, it is necessary to incorporate the following elements in the **Info.plist** file:
 
 ```
 It is necessary to allow the use of NFC - (Privacy - NFC Scan Usage Description)
@@ -112,20 +119,18 @@ It is necessary to add the Near Field Communication Tag Reading option in the Si
 
 ---
 
-## 3. Start new operation
+## 3. Start a new operation
 
-When you want to perform a certain operation, in order to generate the associated information correctly in the
-associated information correctly in the platform, the **newOperation** command
-the **newOperation** command must be executed beforehand.
+When you want to perform a specific operation, in order to generate the
+associated information correctly in the platform, the **newOperation**
+command must first be executed.
 
-This command must be executed **always**. To learn more about how to
-to start a new operation, it is recommended to consult the documentation of
-**Core Component** documentation, which details and explains this process.
-process.
+This command must have been executed **before launch**.
 
-To learn more about how to start a new operation, it is recommended to consult the documentation of [1.5.X][EN] ***<a href="Mobile_SDK"
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explains what this process consists of.
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a> documentation, which details and explains what this process consists of.
 
 ---
 
@@ -138,11 +143,13 @@ data-linked-resource-type="page">iOS Mobile SDK</a>***, which details and explai
 ---
 
 ## 5. Component configuration
-To configure the current component, once it has been initialised, create an object
 
-*NFCConfigurationData* object and pass it as a parameter in the initialisation of *NFCController*.
+Once initialized, a _NFCConfigurationData_ object must be created and
+passed as a parameter to the SDKController during component launch to
+configure the current component.
 
-The following section will show the fields that are part of this class and what each of them is used for.
+The following section will show the fields part of this class and what
+each is used for.
 
 ### 5.1. Class NFCConfigurationData
 
@@ -210,26 +217,39 @@ Indicates the type of document to be read:
 
 ---
 
-## 6. Using the component
+## 6. Component use
 
-Once the component has been started and a new operation has been created (**section 3**), the SDK components can be launched. There are two ways to launch the component:
+Once the component has been started and a new operation has been created
+(**section 3**), the SDK components can be launched. There are two ways
+to launch the component:
 
-- **[WITH TRACKING]** This call allows the component functionality to be launched normally, but internal events will be tracked to the tracking server:
+- **\[WITH TRACKING\]** This call allows to launch the functionality
+  of the component, but internal events will be tracked to the
+  _tracking_ server:
 
 ```
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
-- **[NO TRACKING]** This call allows the component's functionality to be launched normally, but no events will be tracked to the tracking server:
+- **\[WITHOUT TRACKING\]** This call allows to launch the
+  functionality of the component, but **no event will be tracked** to
+  the _tracking_ server:
+
 ```
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 NFCController.shared.launchMethod(controller: controller)
 ```
  
 
-The **launch** method must be used **by default.** This method allows **tracking*** to be used if your component is enabled, and will not use it when it is disabled (or the component is not installed).
+The **launch** method must be used by **default**. This method allows
+**_tracking_** to be used if your component is enabled and will not be
+used when it is disabled (or the component is not installed).
 
-On the contrary, the **launchMethod** method covers a special case, in which the integrator has tracking installed and activated, but in a certain flow within the application does not want to track information. In that case, this method is used to avoid sending that information to the platform.
+On the other hand, the **launchMethod** method covers a particular case
+in which the integrator has tracking installed and activated but, in a
+certain flow within the application does not want to track information.
+In this case, this method is used to prevent this information from being
+sent to the platform.
 
 
 ---
@@ -237,31 +257,23 @@ On the contrary, the **launchMethod** method covers a special case, in which the
 ## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult format
--more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
+-more details in the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
+data-linked-resource-type="page">iOS Mobile SDK's</a>.	
 
-### 7.1. Recepción de errores
+### 7.1. Receipt of errors
 
-En la parte del error, **internamente** disponemos de la clase NFCPassportReaderError. Este enumerado contiene muchos errores específicos que no aportan información útil si son devueltos al integrador, por lo que son transformados a un tipo más simple (**ErrorType**):
+On the error side, **internally** we have the NFCPassportReaderError class. This enumeration contains many specific errors that do not provide useful information if returned to the integrator, so they are transformed to a simpler type (**ErrorType**):
 
 ```java
-extension NFCPassportReaderError {
-    func toErrorType() -> ErrorType {
-        switch self {
-        case .UserCanceled:
-            return .CANCEL_BY_USER
-        case .NFCNotSupported:
-            return .NFC_ERROR
-        case .InvalidMRZKey:
-            return .NFC_INVALID_MRZ_KEY
-        case .Timeout:
-            return .TIMEOUT
-        default:
-            return .UNKNOWN_ERROR
-        }
-    }
-}
+    CANCEL_BY_USER
+    TIMEOUT
+    UNKNOWN_ERROR
+    NFC_INVALID_MRZ_KEY
+    NFC_NOT_SUPPORTED
+    TAG_CONNECTION_LOST
+    SECURITY_STATUS_NOT_SATISFIED
+    SYSTEM_RESOURCE_UNAVAILABLE
 ```
 
 **NOTE**: `NFC_INVALID_MRZ_KEY` *implies that the connection could not be established because the configuration input data (documentNumber, birthDate, expiryDate) is not correct.
@@ -280,6 +292,13 @@ public class NfcResult {
     public let nfcSecurityData: NfcSecurityData
     public private(set) var nfcValidations: NfcValidations?
 }
+
+extension NfcResult {
+    public var personalData: [String: String]
+    {
+        ...
+    }
+}
 ```
 
 In the case of this component, the fields returned are the following:
@@ -292,78 +311,74 @@ Information obtained for each data type in raw format.
 
 Information retrieved from the document sorted by:
 
-- documentNumber
-
-- expirationDate
-
-- issuer
-
-- mrzString
-
 - type
+- documentNumber
+- issuer
+- expirationDate
+- mrzString
 
 #### 7.2.3. nfcPersonalInformation
 
 Information obtained from the document sorted by:
 
-- address
-
-- birthdate
-
-- gender
-
 - name
-
-- nationality
-
-- personalNumber
-
-- placeOfBirth
-
 - surname
+- address
+- nationality
+- personalNumber
+- birthdate
+- placeOfBirth
+- gender
 
 #### 7.2.4. nfcImages
 
 Image information obtained from the document ordered by:
 
 - facialImage
-
 - fingerprintImage
-
 - signatureImage
 
 #### 7.2.5 nfcSecurityData
 
 Document security data information sorted by:
 
+- ldsVersion
 - dataGroupsHashes
-
 - dataGroupsRead
-
 - documentSigningCertificateData
-
 - issuerSigningCertificateData
 
-- ldsVersion
+
 
 #### 7.2.6. nfcValidations
 
 Information of the document validations sorted by:
 
 - accessProtocol
-
 - activeAuthenticationSupported
-
 - activeAuthenticationValidation
-
 - chipAuthenticationValidation
-
 - dataGroupsHashesValidation
-
 - documentSigningValidation
-
 - issuerSigningValidation
 
+#### 7.2.7 personalData
+
+- issuer
+- documentNumber
+- issueDate
+- expiryDate
+- name
+- surname
+- fullName
+- gender
+- birthDate
+- birthPlace
+- nationality
+- address
+- nfcKey
+- numSupport
+- mrz
 ---
 
 ## 8. Component customisation
@@ -379,7 +394,44 @@ To modify the visual interface (UX/UI) you can create a new CustomTheme that ext
 If you want to modify the SDK texts you would have to include the following
 XML file in the client application, and modify the value of each _String_ to
 value of each _String_ to the desired one.
+
+```java
+"text_intro_chip_state_waiting_tag_text" = "Slowly slide the document until the sensor detects it";
+"text_chip_security_enable_nfc_title" = "Please enable NFC to continue";
+"text_error_retrieving_document_data" = "An error happened while trying to retrieve the document's data";
+"text_nfc_read_successfull_title" = "NFC read successfully";
+"text_intro_chip_state_fail" = "The NFC could not be read";
+"text_diagnostic_NFC_timeout_description" = "You have exceeded the NFC read time. Please try again";
+"text_chip_duplicated_session_error" = "Duplicated scan session, please try again after this message is dismissed";
+"text_chip_security_serial_number_title" = "Serial number";
+"text_chip_security_algorithm_sign_title" = "Signature algorithm";
+"text_chip_security_algorithm_public_key_title" = "Public key algorithm";
+"text_chip_security_certificated_impress_title" = "Printout of certificate";
+"text_chip_security_editor_title" = "Editor";
+"text_chip_security_subject_title" = "Subject";
+"text_chip_security_valid_from_title" = "Valid from";
+"text_chip_security_valid_still_title" = "Valid to";
+"text_loading_optional_description" = "Reading, please don't move the document\n\n";
+"icon_loading_filled_circle" = "🟢";
+"icon_loading_void_circle" = "⚪️";
+"nfc_component_cancel"="Cancel";
+"nfc_component_end_confirmation_title" = "Are you sure you will finish the process?";
+"nfc_component_agree" = "Accept";
+"nfc_component_tutorial"="Attach the document to the back of your device.";
+"nfc_component_tutorial_button"= "Start";
+"nfc_component_tutorial_button_info"= "More information";
+"nfc_component_tutorial_title"="Scan NFC";
+"nfc_component_tutorial_1"="When we pass a card through a sensor, there is an exchange of information called NFC.";
+"nfc_component_tutorial_2"="On your mobile, the sensor is in the marked area. Here you must gather your document.";
+"nfc_component_tutorial_3"="For a better reading, remove the cover of your mobile.";
+"nfc_component_skip" = "Skip";
+"diagnostic_tag_connection_lost_title" = "Reading not finished";
+"diagnostic_tag_connection_lost_description" = "Hold the position until the end of the reading";
+"diagnostic_invaliz_mrz_error_title" = "There was a technical problem";
+"diagnostic_invalid_mrz_error_description" = "We’re sorry. We need a new photo of the document";
 ```
+
+```java
 public protocol ThemeNFCProtocol {
     var name: String { get }
     var fonts: [R.Font: String] { get }
@@ -390,7 +442,7 @@ public protocol ThemeNFCProtocol {
 }
 ```
 For example:
-```
+```java
 class CustomThemeNFC: ThemeNFCProtocol {
     public var name: String {
         "customNfc"
@@ -410,6 +462,6 @@ class CustomThemeNFC: ThemeNFCProtocol {
 }
 ```
 To apply this custom theme we must use the following instruction before launching the component:
-```
+```java
 ThemeNFCManager.setup(theme: CustomThemeNFC())
 ```
