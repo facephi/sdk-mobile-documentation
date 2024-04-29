@@ -138,52 +138,44 @@ form as they have been captured.
 Enables or disables the liveness detector during the fingerprint capture
 process. Default is set to **true**.
 
-#### 5.1.6. returnWSQ
-
-If set to **true** then the capture result will return, for each of the
-traces, the data compressed by _Wavelet Scalar Quatization_ (WSQ). WSQ
-is a grey compression algorithm, being a standard (NIST) for this type
-of captures. It is oriented towards validation against the different
-existing government databases.
-
-#### 5.1.7. returnFullFrameImage
+#### 5.1.6. returnFullFrameImage
 
 Specifies whether to return the full image of the camera in which the
 fingers have been detected.
 
-#### 5.1.8. extractionTimeout
+#### 5.1.7. extractionTimeout
 
 Sets a stabilisation mode prior to any authentication process in the
 widget. This mode forces the widget not to start any process if the user
 is not facing forward and not moving his head.
 
-#### 5.1.9. showTutorial
+#### 5.1.8. showTutorial
 
 Indicates whether the component activates the tutorial screen. This view
 intuitively explains how the capture is performed.
 
-#### 5.1.10. threshold
+#### 5.1.9. threshold
 
 The parameter configures a captureQualityThreshold, to define a quality
 threshold to perform the capture.
 
-#### 5.1.11. showSpinner
+#### 5.1.10. showSpinner
 
 Indicates whether to show the load spinner.
 
-#### 5.1.12. cropWidth
+#### 5.1.11. cropWidth
 
 Indicates a width to perform a cropping of the capture.
 
-#### 5.1.13. cropHeight
+#### 5.1.12. cropHeight
 
 Indicates a height to perform a cropping of the capture.
 
-#### 5.1.14. cropFactor
+#### 5.1.13. cropFactor
 
 Indicates the relation to perform a cropping of the capture.
 
-#### 5.1.15. showDiagnostic
+#### 5.1.14. showDiagnostic
 
 Display diagnostic screens at the end of the process
 

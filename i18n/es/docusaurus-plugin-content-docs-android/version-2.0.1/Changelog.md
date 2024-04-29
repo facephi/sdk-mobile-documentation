@@ -16,6 +16,7 @@
 - Selphi
 
   - Nueva versión 5.12.3
+  - Se añade a la respuesta bestImageTokenized
 
 - SelphID
 
@@ -27,6 +28,12 @@
 
 - Phingers
   - Simplificado ConfigurationData
+
+- Tokenizer
+  - Nueva versión de core 2.0.7
+
+- Verification
+  - Se añaden nuevos servicios
 
 ### 2.0.0
 
