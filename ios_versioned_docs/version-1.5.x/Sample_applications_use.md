@@ -4,7 +4,7 @@
 
 Example applications can be found in the GitHub repository:
 
-[![IOS Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-ios-samples)<a href="https://github.com /facephi/sdk-mobile-ios-samples" rel="nofollow">IOS Repository</a>
+[![IOS Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-ios-samples/tree/1.5.x)<a href="https://github.com/facephi/sdk-mobile-ios-samples/tree/1.5.x" rel="nofollow">IOS Repository</a>
 
 
 ### Steps to configure and run applications
