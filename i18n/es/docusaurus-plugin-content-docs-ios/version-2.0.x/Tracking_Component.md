@@ -34,7 +34,8 @@ Versión mínima de iOS: **13**
 ---
 
 ## 2. Integración del componente
- 
+<div class="warning">
+<span class="warning">:warning:</span> 
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
@@ -43,12 +44,14 @@ data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
-
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
+<div class="warning">
+<span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
-
+</div>
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```

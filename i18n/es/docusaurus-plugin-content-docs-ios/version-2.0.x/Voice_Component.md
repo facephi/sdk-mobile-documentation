@@ -50,7 +50,8 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-
+<div class="warning">
+<span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
@@ -59,18 +60,19 @@ data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
-
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
-
+<div class="warning">
+<span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
 instalar el componente en un proyecto que contenga una versión antigua
 de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
-
+</div>
 #### Cocoapods
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
@@ -94,7 +96,8 @@ completo antes de la instalación de los componentes de la
 ## 3. Iniciar nueva operación
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
-
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
@@ -103,7 +106,7 @@ data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
-
+</div>
 ---
 
 ## 4. Controladores disponibles
@@ -184,7 +187,8 @@ when (result) {
     is SdkResult.Success -> Napier.d("Voice OK: ${result.data}")
 }
 ```
-
+<div class="warning">
+<span class="warning">:warning:</span>
 El método **launch** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
 usará cuando esté desactivado (o no se encuentre el componente
@@ -195,7 +199,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
-
+</div>
 ---
 
 ## 7. Recepción del resultado

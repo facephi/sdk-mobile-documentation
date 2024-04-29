@@ -93,11 +93,10 @@ XCode will automatically generate or update the entitlement files involved to ad
 
 ### 2.3 Dependencies required for integration
 
-<blockquote>
-     <p>
+<div class="warning">
+<span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, if you want to install the component in a project that contains an old version of the Facephi libraries (Widgets), these must be completely removed before installing the SDKMobile components.
-     </p>
-</blockquote>
+</div>
 
 Currently FacePhi libraries are distributed remotely through different dependency managers.
 
@@ -269,12 +268,10 @@ extension SampleHandler: AgoraRtcEngineDelegate {
 
 When you want to perform a certain operation, to generate the associated information correctly on the platform, the **newOperation** command must be previously executed.
 
-<blockquote>
-     <p>
+<div class="warning">
+<span class="warning">:warning:</span>
 This command must always be executed. To learn more about how to start a new operation, it is recommended to consult the Core Component documentation, which details and explains what this process entails.
-     </p>
-</blockquote>
-
+</div>
 ---
 
 ## 4. Use of component
@@ -298,13 +295,12 @@ let controller = VideoRecordingController(data: VideoRecordingConfigurationData(
 SDKController.shared.launch(controller: controller)
 ```
 
-<blockquote>
-     <p>
+<div class="warning">
+<span class="warning">:warning:</span>
 The **launch** method should be used **by default**. This method allows you to use **tracking** if your component is activated, and will not use it when it is deactivated (or the component is not installed).
 
 On the contrary, the **launchMethod** method covers a special case, in which the integrator has tracking installed and activated, but in a given flow within the application they do not want to track information. In that case, this method is used to prevent that information from being sent to the platform.
-     </p>
-</blockquote>
+</div>
 
 In the configuration data (*VideoRecordingConfigurationData*) you can also modify:
 

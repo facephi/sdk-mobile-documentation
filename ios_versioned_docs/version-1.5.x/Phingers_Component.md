@@ -48,21 +48,23 @@ The minimum iOS SDK version required is as follows:
 ---
 
 ## 2. Integration of the component
-
+<div class="warning">
+<span class="warning">:warning:</span>
 Before integrating this component, it is recommended that you read the documentation
 documentation for the **<u>Core Component</u>** and follow the instructions
 indicated in this document.
-
+</div>
 This section will explain step by step how to integrate the current component into an existing project.
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
-
+<div class="warning">
+<span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, if you want to install
 the component in a project containing an old Facephi libraries
 (_Widgets_) version, these must be removed entirely before installing
 the **_SDKMobile_** components.
-
+</div>
 - Currently FacePhi libraries are distributed remotely through 
   different dependency managers, in this case Cocoapods. 
   The **mandatory** dependencies that must have been previously installed 
@@ -99,14 +101,15 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 When you want to perform a specific operation, in order to generate the
 associated information correctly in the platform, the **newOperation**
 command must first be executed.
-
+<div class="note">
+<span class="note">:information_source:</span>
 This command must have been executed **before launch**.
 
 To learn more about how to start a new operation, it is recommended to 
 consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a>, which details and explains what this process consists of.
-
+</div>
 ---
 
 ## 4. Available controllers
@@ -243,6 +246,8 @@ SDKController.shared.launch(controller: controller)
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
+<div class="warning">
+<span class="warning">:warning:</span>
 The **launch** method must be used by **default**. This method allows
 **_tracking_** to be used if your component is enabled, and will not use
 it when it is disabled (or the component is not installed).
@@ -252,7 +257,7 @@ which the integrator has tracking installed and activated, but in a
 certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
-
+</div>
 ---
 
 ## 7. Receipt of the result

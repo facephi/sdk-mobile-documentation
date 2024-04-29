@@ -38,7 +38,8 @@ Minimum iOS version: **13**
 ---
 
 ## 2. Component integration
- 
+ <div class="warning">
+<span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
 documentation related to
 
@@ -46,16 +47,18 @@ documentation related to
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
-
+</div>
 This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
+<div class="warning">
+<span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, if you want to install
 the component in a project containing an old Facephi libraries
 (_Widgets_) version, these must be removed entirely before installing
 the **_SDKMobile_** components.
-
+</div>
 Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must be previously installed (by adding them in the Podfile file of the project) are:
 
 ```
