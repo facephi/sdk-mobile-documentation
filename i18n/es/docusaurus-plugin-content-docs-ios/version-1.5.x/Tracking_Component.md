@@ -5,7 +5,7 @@
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a>.
 
@@ -39,7 +39,7 @@ Versión mínima de iOS: **13**
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
@@ -82,7 +82,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
+consultar la documentación de <a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste

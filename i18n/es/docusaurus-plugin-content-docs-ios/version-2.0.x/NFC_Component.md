@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a>
 
@@ -54,7 +54,7 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a> y seguir las instrucciones indicadas en dicho
 documento.
@@ -130,7 +130,7 @@ Cuando se desea realizar una determinada operación, para generar la informació
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
+consultar la documentación de <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
@@ -279,7 +279,7 @@ extension SDKManager: NfcWidgetDelegateProtocol {
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en <a href="ES_Mobile_SDK"
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 

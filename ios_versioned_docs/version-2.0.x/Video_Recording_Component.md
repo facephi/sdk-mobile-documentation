@@ -12,7 +12,7 @@ new components without affecting in any way those already integrated into the
 project.
 
 For more information on the base configuration, go to the section
-<a href='ES_Mobile_SDK'
+<a href='Mobile_SDK'
 linked-data-resource-id='2605285492' linked-data-resource-version='11'
 data-linked-resource-type='page'>Mobile SDK</a>.
 
@@ -37,7 +37,7 @@ Minimum iOS version: **13**
 Before integrating this component, it is recommended to read the documentation
 Relative to:
 
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile SDK</u></strong></a>
 and follow the instructions indicated in said document.

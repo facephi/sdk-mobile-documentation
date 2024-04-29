@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a>.
 
@@ -39,7 +39,7 @@ Versión mínima de iOS: **13**
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
@@ -93,7 +93,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
+consultar la documentación de <a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
@@ -224,7 +224,7 @@ Los valores se asignan por defecto. **SOLO** se debe configurar en caso de usar 
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato SdkResult. 
-Más información en la sección de <a href="ES_Mobile_SDK"
+Más información en la sección de <a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>.
@@ -255,7 +255,7 @@ Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá
 ## 8. Personalización del componente
 
 Los cambios que se pueden realizar a nivel de SDK (que son
-explicado en el <a href="ES_Mobile_SDK"
+explicado en el <a href="Mobile_SDK"
 ID-recurso-vinculado-datos="2605678593" Versión-recurso-vinculado-datos="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documento), este componente en particular permite la modificación de datos específicos

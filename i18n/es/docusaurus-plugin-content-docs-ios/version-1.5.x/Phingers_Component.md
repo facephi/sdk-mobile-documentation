@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a>.
 
@@ -92,7 +92,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
+consultar la documentación de <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste
 este proceso.
@@ -235,7 +235,7 @@ a la plataforma.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato SdkResult. 
-Más información en la sección de <a href="ES_Mobile_SDK"
+Más información en la sección de <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">iOS Mobile SDK's</a>.
 
