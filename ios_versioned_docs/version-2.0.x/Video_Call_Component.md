@@ -154,7 +154,7 @@ the component:
 
 ```java
 SDKController.launchMethod(
-     VideoCallController(EnvironmentVideoCallData()) {
+     VideoCallController(VideoCallConfigurationData()) {
          when (it.finishStatus) {
              FinishStatus.STATUS_OK -> {
                  //VideoCall OK
@@ -172,7 +172,7 @@ SDKController.launchMethod(
 
    ```java
    SDKController.launch(
-       VideoCallController(EnvironmentVideoCallData()) {
+       VideoCallController(VideoCallConfigurationData()) {
            when (it.finishStatus) {
                FinishStatus.STATUS_OK -> {
                    //VideoCall OK
@@ -195,7 +195,7 @@ certain flow within the application you do not want to track information.
 In that case, this method is used to prevent that information from being sent.
 to the platform.
 </div>
-The configuration data (`EnvironmentVideoCallData`) also contains
+The configuration data (`VideoCallConfigurationData`) also contains
 They will be able to modify:
 
 - **_<u>optional</u> data that is normally included within the license_**
@@ -216,7 +216,7 @@ They will be able to modify:
 ```
   log("LAUNCH VIDEO CALL")
   
-  let videocallController = VideoCallController(data: EnvironmentVideoCallData(
+  let videocallController = VideoCallController(data: VideoCallConfigurationData(
                                                           url: "Enter URL",
                                                           apikey: "Enter the ApiKey",
                                                           tenantId: "Enter the tenantId"),
@@ -265,7 +265,7 @@ texts.
 To customise the component, ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) must be called after initialising the videocallController:
 
 ```
-let videocallController = VideoCallController(data: EnvironmentVideoCallData(), output: output, viewController: viewController)
+let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)
 ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
 SDKController.shared.launch(controller: videocallController)
 ```

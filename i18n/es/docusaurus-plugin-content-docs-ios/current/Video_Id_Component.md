@@ -178,7 +178,7 @@ En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 
 
-En los datos de configuración (EnvironmentVideoIdData) también se podrán modificar:
+En los datos de configuración (VideoIDConfigurationData) también se podrán modificar:
 
 - **sectionTime**: Tiempo que se permanecerá en cada pantalla del proceso en ms
 
@@ -291,9 +291,9 @@ case bold
 - El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un **CGFloat** con el tamaño deseado.
 
 ### 8.3 Personalizar el tiempo entre pantallas
-Para modificar el tiempo que se permanece en cada pantalla de grabación hay que modificar el valor del parámetro time (en ms) del EnvironmentVideoIdData:
+Para modificar el tiempo que se permanece en cada pantalla de grabación hay que modificar el valor del parámetro time (en ms) del VideoIDConfigurationData:
 
-`EnvironmentVideoIdData(time = TIEMPO EN MS)`
+`VideoIDConfigurationData(time = TIEMPO EN MS)`
 
 Siempre será el mínimo 5000.
 

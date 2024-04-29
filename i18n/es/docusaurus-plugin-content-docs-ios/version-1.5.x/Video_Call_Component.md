@@ -193,7 +193,7 @@ En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 </div>
 
-En los datos de configuración (`EnvironmentVideoCallData`) también se podrán modificar:
+En los datos de configuración (`VideoCallConfigurationData`) también se podrán modificar:
 
 - **Datos opcionales que normalmente se incluyen dentro de la licencia**
 
@@ -210,7 +210,7 @@ En los datos de configuración (`EnvironmentVideoCallData`) también se podrán 
 ```java
   log("LAUNCH VIDEO CALL")
   
-  let videocallController = VideoCallController(data: EnvironmentVideoCallData(
+  let videocallController = VideoCallController(data: VideoCallConfigurationData(
                                                           url: "Enter URL",
                                                           apikey: "Enter the ApiKey",
                                                           tenantId: "Enter the tenantId"),
@@ -266,7 +266,7 @@ textos.
 Para personalizar el componente, se debe llamar a ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) después de inicializar videocallController:
 
 ```java
-let videocallController = VideoCallController(data: EnvironmentVideoCallData(), output: output, viewController: viewController)
+let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)
 ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
 SDKController.shared.launch(controller: videocallController)
 ```

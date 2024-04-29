@@ -190,7 +190,7 @@ certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
 </div>
-In the configuration data (EnvironmentVideoIdData) you can also modify:
+In the configuration data (VideoIDConfigurationData) you can also modify:
 
 - **sectionTime**: Time that will remain on each screen of the process in ms
 
@@ -302,9 +302,9 @@ case bold
 - The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
 
 ### 8.3 Customizing the time between screens
-To modify the time spent on each recording screen, the value of the time parameter (in ms) of the EnvironmentVideoIdData must be modified:
+To modify the time spent on each recording screen, the value of the time parameter (in ms) of the VideoIDConfigurationData must be modified:
 
-`EnvironmentVideoIdData(time = TIME IN MS)`.
+`VideoIDConfigurationData(time = TIME IN MS)`.
 
 It will always be the minimum 5000.
 

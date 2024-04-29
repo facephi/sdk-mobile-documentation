@@ -62,12 +62,13 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (*Widgets*), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
 </div>
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero *Podfile* del proyecto) son:
+
 ```java
-  pod 'FPHISDKMainComponent', '~> 1.4.0'
+  pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
 - Para instalar el componente actual deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```java
-pod 'FPHISDKPhingersComponent', '~> 1.4.0'
+pod 'FPHISDKPhingersComponent', '~> 1.5.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
