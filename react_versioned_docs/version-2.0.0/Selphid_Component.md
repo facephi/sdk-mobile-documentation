@@ -1,417 +1,642 @@
-# Selphid Component
+# SelphID Component
 
-## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de SelphID Component. Éste se encarga de realizar capturas de documentos y la posterior extracción y análisis de los datos obtenidos de ellos. Sus principales funcionalidad son las siguientes:
+## 1. Introduction
 
-- Gestión interna de cámaras.
+**Mobile SDK** is a set of libraries (**Components**) that offers a
+series of functionalities and services, allowing its integration into a
+Mobile application in a simple, totally scalable way. Depending on the
+use case that is required, the installation of certain components must
+be carried out. Its high level of modularity allows that, in the future,
+other new components can be added without affecting at all those already
+integrated into the project.
 
-- Gestión de permisos.
+The Component addressed in the current document is named ***SelphID
+Component***. This is responsible for capturing documents and the
+subsequent extraction and analysis of the data obtained from them. Its
+main functionalities are the following:
 
-- Asistente en los procesos de captura de la parte frontal y trasera del documento.
+-   Internal camera management.
 
-- Extracción de la información contenida en el documento.
+-   Permissions management.
 
-- Obtención de las imágenes del dorso y reverso del documento, así como otras imagénes incluidas en el documento: cara del usuario, firma del usuario,...
+-   Assists in the processes of capturing the front and back of the
+    document.
 
-- Alto nivel de configuración: diferentes países, idiomas, tipos de documentos...
+-   Extraction of the information contained in the document.
 
-### 1.1 Requisitos mínimos
-La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
+-   Obtaining the images of the back and reverse of the document, as
+    well as other images included in the document: user's face, user's
+    signature,...
 
-- Versión mínima Android: 23 - JDK 11
-- Versión mínima iOS: 13
+-   High level of configuration: different countries, languages, types
+    of documents...
 
-En cuanto a la arquitectura del dispositivo móvil:
+### 1.1 Minimum requirements
 
-armeabi-v7, x86, arm64 y x64
+The minimum native version (Android and iOS) of the SDK are as follows:
 
-### 1.2 Versión del plugin
-La versión del plugin actual se puede consultar de la siguiente forma:
+-   Minimum Android version: **24 - JDK 11**
 
-Buscamos el archivo package.json en la raíz del plugin.
+-   Minimum iOS version: **13**
 
-En el ***KEY/TAG*** version se indica la versión.
+Regarding the architecture of the mobile device:
 
-## 2. Integración del componente 
-Antes de integrar este componente se recomienda leer la documentación relativa a Core Component y seguir las instrucciones indicadas en dicho documento.
+-   armeabi-v7, x86, arm64 and x64
+
+### 1.2 Plugin version
+
+The current plugin version can be checked as follows:
+
+-   We look for the ***package.json*** file at the root of the plugin.
+
+-   The KEY/TAG ***version*** indicates the version.
+
+---
+
+## 2. Component integration 
+
+Before integrating this component, it is **recommended** to read the
+documentation related to **<u>Core Component</u>** and follow the
+instructions indicated in said document.
 
 <div class="note">
 <span class="note">:information_source:</span>
-En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente. 
-Para esta sección, se considerarán los siguiente valores:
-- **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
-- **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_SELPHID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-selphid)
+For this section, the following values ​​will be considered:
+
+-   **\<%APPLICATION_PATH%\> -** Path to the root of the application
+    (example: /folder/example)
+
+-   **\<%PLUGIN_CORE_PATH%\> -** Path to the root of the core plugin,
+    which is mandatory (example: /folder/sdk-core)
+
+-   **\<%PLUGIN_SELPHID_PATH%\> -** Path to the root of the current
+    plugin (example: /folder/sdk-selphid)
 </div>
 
-### 2.1. Instalación del plugin: Common
-El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
+### 2.1. Plugin installation: Common
 
-- Asegurarse de que cordova esté instalado.
-- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
+The plugin allows execution on **Android and iOS** platforms. This
+section explains the common steps to all platforms. To install the
+plugin, the following steps must be adopted:
 
+-   Make sure **react-native** is installed.
+-   Access **\<%APPLICATION_PATH%\>** at a terminal and run:
+
+``` java
+yarn add @facephi/sdk-core-react-native
+yarn add @facephi/sdk-selphid-react-native
+yarn install
 ```
-[ionic] cordova plugin add @facephi/sdk-core-cordova
-[ionic] cordova plugin @facephi/sdk-selphid-cordova
+
+-   In addition, to install the plugin on iOS, the following must also
+    be executed:
+
+``` java
+cd ios
+pod install
 ```
 
-Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
+-   It is important to verify that the path to the plugin is correctly
+    defined in **package.json**:
 
-```
+``` java
 "dependencies": {
-  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-selphid-cordova": <% PLUGIN_SELPHID_PATH %>
+  "sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
+  "sdk-selphid-react-native": <% PLUGIN_SELPHID_PATH %>
 }
 ```
 
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
-Una forma de verificar la correcta instalación es ejecutar el siguiente comando por consola:
+After running the above steps, you can start the app with the
+sdk/component installed.
 
+-   Finally, to launch the projects, the following commands must be
+    executed in two ways:
+
+***From Terminal***
+
+For Android:
+
+``` java
+npx react-native run-android 
+or
+npx react-native run-android --active-arch-only
 ```
-[ionic] cordova plugin list
+
+For iOS:
+
+``` java
+npx react-native run-ios
 ```
-Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
 
-## 2.2 Instalación plugin: iOS
-### 2.2.1 Configuración del proyecto
-Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
+***From different IDEs***
 
-- **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
-Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como No.
+Projects generated in the Android and iOS folders can be opened,
+compiled, and debugged using *Android Studio* and *XCode* respectively.
 
-- **Añadir los permisos de cámara**: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
+### 2.2 Plugin installation: iOS
 
-```
-<key>NSCameraUsageDescription</key>
+#### 2.2.1 Project configuration
+
+For the iOS version, when adding our plugin to the final application,
+the following points must be previously taken into account:
+
+-   ***Disable the BITCODE:*** If the application that is going to
+    integrate the plugin has the BITCODE enabled, it will produce a
+    compilation error. To prevent this from happening, **the BITCODE
+    must be disabled**.  
+    Within the XCODE simply accessing *Build from Settings*, in the
+    *Build Options* section, you must indicate the *Enable Bitcode*
+    parameter as **No**.
+
+-   ***Add camera permissions:*** To use the widget, you need to enable
+    the camera permission in the application's ***info.plist*** file
+    (included within the project in the ***ios*** folder). You will need
+    to edit the file with a text editor and add the following
+    *key/value* pair:
+
+``` java
+<key> NSCameraUsageDescription </key>
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
-### 2.2.2 Actualizar el Podfile
-En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
+#### 2.2.2 Podfile Update
 
-```
+In the project podfile it will be necessary to add the information from
+the private repository (see section 2.1). To do this, the following
+lines must be added at the beginning of the file:
+
+``` java
 platform :ios, '13.0' //MIN VERSION
+
 plugin 'cocoapods-art', :sources => ['cocoa-pro-fphi']
 source 'https://cdn.cocoapods.org/'
 ```
 
 <div class="note">
 <span class="note">:information_source:</span>
-Para saber más acerca de la configuración y uso de Cocoapods Artifactory, es necesario acceder al siguiente documento de Componente Core.
+To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
 
-### 2.2.3 Establecer la versión de Swift
-En Xcode, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
 
-- Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
+#### 2.2.3 Set Swift version
 
-### 2.2.4 Posibles incidencias
-Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
+In *Xcode*, for the application and all its methods to work correctly,
+the minimum version of swift must be set to version 5. Changes can be
+made by following these steps:
 
-- Abrir la carpeta ios de la aplicación en un terminal.
-- Ejecutar el siguiente comando:
+> Target -\> Project -\> Build Settings -\> Swift Compiler - Language
+> -\> Swift Language Version -\> Choose Swift 5.
 
-```
+#### 2.2.4 Possible issues
+
+If environmental problems occur or the plugin is not updated after
+making new changes (for example, problems occurred due to the bundle not
+being generated correctly, or the libraries not being updated to the
+correct versions), it is recommended to execute the following sequence
+of instructions after launching the plugin:
+
+-   Open the application's **ios** folder at a terminal.
+
+-   Run the following command:
+
+``` java
 pod deintegrate
 ```
 
-- Eliminar el Podfile.lock
-- Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
+-   Remove the ***Podfile.lock***
 
-```
+-   Run the following command (or open the project with Xcode and run
+    it):
+
+``` java
 pod install --repo-update
 ```
 
-## 2.3 Instalación plugin: Android
-### 2.3.1 Establecer la versión de Android SDK
-En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es 23, por lo que si la aplicación tiene un SDK mínimo definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero build.gradle de la aplicación (ubicado en la carpeta android) y modifica el siguiente parámetro:
+### 2.3 Plugin installation: Android
 
-```
+#### 2.3.1 Set Android SDK version
+
+For Android, the minimum SDK version required by our native libraries is
+**24**, so if your app has a *Minimum SDK* defined less than this, it
+will need to be modified to avoid a compile error. To do this, access
+the application's ***build.gradle*** file (located in the ***android***
+folder) and modify the following parameter:
+
+``` java
 buildscript {
   ext {
-    minSdkVersion = 23
+    minSdkVersion = 24
   }
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de Tracking tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
+ 
 
-```
+#### 2.3.2 Permissions for geolocation
+
+Because the **Tracking** component has geolocation options, it is
+necessary to add the permissions for it. In the *AndroidManifest* add
+the following permissions:
+
+``` java
 <!-- Always include this permission -->
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <!-- Include only if your app benefits from precise location access. -->
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
-### 2.3.3 Posibles incidencias
-En caso de errores verificar que el archivo cdv-gradle-config.json tenga la siguiente configuración:
 
-```
-{
-  "MIN_SDK_VERSION": 23,
-  "SDK_VERSION": 33, //IMPORTANT
-  "GRADLE_VERSION": "7.1.1",
-  "MIN_BUILD_TOOLS_VERSION": "30.0.3",
-  "AGP_VERSION": "7.1.0", //IMPORTANT
-  "KOTLIN_VERSION": "1.5.21",
-  "ANDROIDX_APP_COMPAT_VERSION": "1.3.1",
-  "ANDROIDX_WEBKIT_VERSION": "1.4.0",
-  "GRADLE_PLUGIN_GOOGLE_SERVICES_VERSION": "4.3.8",
-  "IS_GRADLE_PLUGIN_GOOGLE_SERVICES_ENABLED": false,
-  "IS_GRADLE_PLUGIN_KOTLIN_ENABLED": false
-}
-```
+---
 
-## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo **SdkSelphidConfig.js**. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+## 3. Component configuration
 
-A continuación se muestra la clase **SdkSelphIDConfig**, que permite configurar el componente de SelphID:
+The current component contains a number of Typescript methods and
+interfaces contained within the ***node_modules/@facephi/sdk-selphid-react-native/src/index.tsx*** file. ** In this file
+you can find the necessary API for the communication between the
+application and the native functionality of the component. It is then
+explained what each one of those listed is for and the other properties
+that affect the operation of the component.
 
-```
-SdkSelphidConfig {
-  wizardMode: boolean;
+The following is the *SelphIDConfiguration* class, which allows you to
+configure the **SelphID** component:
+
+``` java
+ export interface SelphidConfiguration {
+  debug?: boolean;
+  fullScreen?: boolean;
   frontalCameraPreferred?: boolean;
   tokenImageQuality?: number;
   widgetTimeout?: number;
   showResultAfterCapture?: boolean;
   showTutorial?: boolean;
-  tutorialOnly: boolean;
+  tutorialOnly?: boolean;
+  scanMode?: string;
+  specificData?: string;
+  documentType?: string;
   videoFilename?: string;
+  fullscreen?: boolean;
   locale?: string;
   documentModels?: string;
+  enableWidgetEventListener?: boolean;
   generateRawImages?: boolean;
   translationsContent?: string;
   viewsContent?: string;
+  cameraId?: number;
+  params?: any;
   resourcesPath?: string;
+  tokenPrevCaptureData?: string;
+  wizardMode?: boolean;
+  documentSide?: string;
+  showDiagnostic?: boolean;
+  compressFormat?: SdkCompressFormat,
+  imageQuality?: number,
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SdkSelphidConfig**:
+Then, all the properties that can be defined in the ***SdkTracking***
+object will be commented on:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo www/SdkSelphidConfig.js del componente.
+All the configuration can be found in the component's ***src/index.tsx*** file.
 </div>
 
-A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
+When making the call to the widget there is a series of parameters that
+must be included. They will be briefly discussed below.
 
-### 3.1 resourcesPath (string)
-Establece el nombre del archivo de recursos que utilizará el widget para su configuración gráfica. Éste archivo es personalizable y se encuentra en el complemento en la carpeta **src/main/assets** para Android y en **ios/Frameworks** y de la carpeta Resources para iOS. Su instalación es transparente para el usuario, simplemente se agregará a los proyectos de las respectivas plataformas durante la instalación del complemento. Más detalles sobre cómo funciona este paquete de recursos y cómo modificarlo se explican en **apartado 6**.
+### 3.1 resourcesPath (*string*)
 
-```
-resourcesPath: "fphi-selphid-widget-resources-sdk.zip"
-```
+Sets the name of the resource file that the widget will use for its
+graphical configuration. This file is customisable and is located in the
+plugin in the ***src/main/assets*** folder for ***Android*** and in the
+***ios/Frameworks*** and Resources folder for iOS. Its installation is
+transparent to the user, it will simply be added to the respective
+platform's projects during plugin installation. More details about how
+this resource pack works and how to modify it are explained in
+***section 6***.
 
-### 3.2 ShowResultAfterCapture (boolean)
-Indica si mostrar o no una pantalla con la imagen capturada del documento después del proceso de análisis. En esta pantalla se le da al usuario la posibilidad de repetir el proceso de captura si la imagen que se obtuvo del documento no fuera correcta.
+> **resourcesPath**: "fphi-selphid-widget-resources-sdk.zip"
 
-```
-showResultAfterCapture: false
-```
+### 3.2 ShowResultAfterCapture (*boolean*)
 
-### 3.3 ScanMode (WidgetScanMode)
-Este enumerado se define en la clase www/SdkSelphidScanMode.js. Indica el modo de escaneo OCR de los documentos. Dependiendo de la elección, se escanearán y buscarán varios tipos de documentos o uno en concreto. Este modo puede ser de tres tipos:
+Indicates whether or not to display a screen with the captured image of
+the document after the analysis process. This screen gives the user the
+option of repeating the capture process if the image obtained from the
+document is not correct.
 
-- SelphIDScanMode.Generic: El modo genérico que permite escanear cualquier tipo de documento independiente del país o el tipo de documento. El resultado de este modo no es tan preciso como los siguientes pero permite escanear varios documentos estándar.
-- SelphIDScanMode.Search: El modo de búsqueda permitirá utilizar una whitelist y blacklist, y buscará en los documentos que cumplan dichas condiciones. Estas condiciones se indican en la variable "specificData". De este modo se permite realizar la búsqueda acotando el número de plantillas, y haciendo que la búsqueda sea mucho más afinada que en el caso genérico.
-- SelphIDScanMode.Specific: Búsqueda de un documento específico. Estas condiciones se indican en la propiedad "specificData" que se muestra en lo sucesivo.
+> **showResultAfterCapture:** false
 
-```
-scanMode: SdkSelphidEnums.SdkScanMode.Search;
-```
+### 3.3 ScanMode (*WidgetScanMode*)
 
-### 3.4 SpecificData (string)
-Esta propiedad permite definir qué documentos se escanearán durante el proceso, en caso de declarar el modo de escaneo (scanMode) a GenericMode, SpecificMode o SearchMode.
+This enumeration is defined in the *js/WidgetSelphidEnums.js* class.
+Indicates the OCR scanning mode of the documents. Depending on the
+choice, several types of documents or one in particular will be scanned
+and searched. This mode can be of three types:
 
-Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:
+-   **SelphIDScanMode.Generic:** The generic mode that allows you to
+    scan any type of document regardless of the country or the type of
+    document. The result of this mode is not as accurate as the
+    following, but it allows you to scan various standard documents.
 
-```
-scanMode: WidgetScanMode.Search;
-specificData: “ES|<ALL>”; // Spanish ISO code(ES)
-```
+-   **SelphIDScanMode.Search**: The search mode will allow you to use a
+    whitelist and blacklist, and will search the documents that meet
+    those conditions. These conditions are specified in the
+    "specificData" variable. In this way it is possible to carry out the
+    search limiting the number of templates, and making the search much
+    more refined than in the generic case.
 
-### 3.5 FullScreen (*bool*)
-Establece si se desea que el widget se arranque en modo pantalla completa, ocultando el status bar.
-```
-fullscreen: true;
-```
-### 3.6 Locale (*String*)
-Es un string que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
+-   **SelphIDScanMode.Specific**: Search for a specific document. These
+    conditions are indicated in the "specificData" property shown below.
 
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
+> **scanMode**: SdkSelphidEnums.SdkScanMode.Search;
 
-En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del lenguaje que se desee seleccionar (strings-es.xml, strings-en.xml, strings-fr.xml).
+### 3.4 SpecificData (*string*)
 
-En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el widget.
-```
-locale: "es";
-```
-### 3.7 DocumentType (SdkDocumentType)
-Este enumerado se define en la clase `js/WidgetSelphidEnums.js`. Especificado en la clase `WidgetDocumentType`:
+This property allows you to define which documents will be scanned
+during the process in the event of declaring the scan mode (scanMode) to
+GenericMode, SpecificMode or SearchMode.
 
-- IDCard: Establece que se capturarán documentos de identidad o tarjetas.
-- Passport: Establece que se capturarán pasaportes. (Adicionamente habrá que setear el scanMode en SelphIDScanMode.Generic)
-- DriverLicense: Establece que se capturarán licencias de conducir.
-- CreditCard: Establece que se capturarán tarjetas de crédito.
-- ForeignCard: Establece que se capturarán tarjetas de identidad de Extranjeros.
-- Custom: Engloba documentos que no se encuentran en ninguna de las categorías anteriores.
+An example of a configuration that allows all documents of Spanish
+nationality to be scanned would be the following:
 
-```
-documentType: SdkSelphidEnums.SdkDocumentType.IDCard;
-```
+> **scanMode**: WidgetScanMode.Search;  
+> **specificData**: “ES\|\<ALL\>”; // Spanish ISO code(ES)
 
-### 3.8 TokenImageQuality (double)
-Especifica la calidad de compresión del tokenFaceImage.3.9 enableImages (boolean)
+### 3.5 FullScreen (\**bool*\*)
 
-Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
-```
-tokenFaceImage: 0.9;
-```
-### 3.9 generateRawImages (boolean)
-Esta propiedad configura el widget para devolver la imagen completa de la cámara que se utilizó para capturar el documento:
+Determines whether you wish the widget to start in full screen mode,
+hiding the status bar.
 
-- rawFrontDocument: Imagen frontal del documento sin procesar.
-- rawBackDocument:  Imagen trasera del documento sin procesar.
-- tokenRawFrontDocument:  Tokenizado de la imagen frontal del documento sin procesar.
-- tokenRawBackDocument:  Tokenizado de la imagen trasera del documento sin procesar.
+    **fullscreen**: true;
 
-```
-generateRawImages: true;
-```
+### 3.6 Locale (\**String*\*)
 
-### 3.10 widgetTimeout (number)
-Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
+It is a string that allows the localisation and language of the widget
+to be changed. Examples of values ​​that they may have are the following:
 
-- WidgetTimeout.Short: 15 segundos.
-- WidgetTimeout.Medium: 20 segundos.
-- WidgetTimeout.Long: 25 segundos
+-   “es” for Spanish.
 
-### 3.11 tutorialOnly (boolean)
-Establece si se desea lanzar el widget en modo Tutorial. Esto permite mostrar el tutorial del widget previo, pero SIN realizar el proceso posterior de captura. Útil en caso de que se desee mostrar el tutorial de forma aislada.
+-   “en” for English.
 
-```
-tutorialOnly: true;
-```
+-   “fr” for French.
 
-### 3.12 videoFilename (string)
+Ultimately, it will depend on the name that appears in the strings.xml
+file of the language you want to select (strings-es.xml, strings-en.xml,
+strings-fr.xml).
+
+In the resource zip, which is located inside the strings folder, you can
+add the strings-xx.xml files corresponding to each location that needs
+to be incorporated into the widget.
+
+> **locale**: "es";
+
+### 3.7 DocumentType (*SdkDocumentType*)
+
+This enumeration is defined in the *js/WidgetSelphidEnums.js* class.
+Specified in the ***WidgetDocumentType*** class:
+
+-   **IDCard**: Establishes that identity documents or cards will be
+    captured.
+
+-   **Passport**: Establishes that passports will be captured.
+    (Additionally, the scanMode will have to be set to
+    ***SelphIDScanMode.Generic***).
+
+-   **DriverLicence**: Establishes that driver's licences will be
+    captured.
+
+-   **CreditCard**: Sets that credit cards will be captured.
+
+-   **ForeignCard:** It establishes that Foreigners' identity cards will
+    be captured.
+
+-   **Custom:** Includes documents that are not in any of the above
+    categories.
+
+>     **documentType**: SdkSelphidEnums.SdkDocumentType.IDCard;
+
+### 3.8 TokenImageQuality (*double*)
+
+Specifies the compression quality of the tokenFaceImage.
+
+Indicates whether the sdk returns to the application the images used
+during extraction or not. It should be noted that returning images can
+result in a significant increase in device resource usage:
+
+>       **tokenFaceImage**: 0.9;
+
+### 3.9 generateRawImages (*boolean*)
+
+This property configures the widget to return the full image from the
+camera that was used to capture the document:
+
+-   **rawFrontDocument:** Front image of the raw document.
+
+-   **rawBackDocument:** Rear image of the raw document.
+
+-   **tokenRawFrontDocument:** Tokenisation of the front image of the
+    raw document.
+
+-   **tokenRawBackDocument:** Tokenisation of the rear image of the raw
+    document.
+
+    **    generateRawImages: true;**
+
+>     **generateRawImages**: true;
+
+###  3.10 widgetTimeout (number)
+
+It is an enumerator that defines the timeout of the capture of one side
+of the document. It has 3 possible values:
+
+-   WidgetTimeout.Short: 15 segundos.
+
+-   WidgetTimeout.Medium: 20 segundos.
+
+-   WidgetTimeout.Long: 25 segundos
+
+###  3.11 tutorialOnly (boolean)
+
+Establishes whether you wish to launch the widget in Tutorial mode. This
+allows you to show the previous widget tutorial, but WITHOUT performing
+the post capture process. Useful if you wish to show the tutorial in
+isolation.
+
+>     **tutorialOnly**: true;
+
+###  3.12 videoFilename (string)
+
 <div class="warning">
 <span class="warning">:warning:</span>
-Esta es una propiedad avanzada, y que en la mayoría de casos no es necesario modificar. Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
 </div>
+This is an **advanced property**, and in most cases you don't need to
+modify it. Incorrect use may cause component malfunction.
 
-Establece la ruta absoluta del nombre del archivo en el que se grabará un video del proceso de captura. La aplicación es la responsable de solicitar los permisos necesarios al teléfono en caso de que esa ruta requiera de permisos adicionales. El componente, por defecto, no realizará ningún proceso de grabación a menos que se especifique una ruta de archivo mediante este método.
+Sets the absolute path of the file name in which a video of the capture
+process will be recorded. The application is responsible for requesting
+the necessary permissions to the phone in case that route requires
+additional permissions. The component, by default, will not perform any
+write processing unless a file path is specified using this method.
 
-```
-videoFilename: “<videofile-path>“;
-```
+>     **videoFilename**: “\<videofile-path\>“;
 
-3.13 documentModels (string)
-<div class="warning">
-<span class="warning">:warning:</span>
-Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario modificarla. Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
-</div>
-
-Esta propiedad permite, mediante una cadena en formato xml, configurar modelado de los documentos que el widget va a tratar de capturar. La definición de este modelado se puede encontrar, por defecto, en  un .xml de modelos dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, los modelados de los documentos actuales del componente.
-
-```
-documentModels: “<document-models-content-string>“;
-```
-
-### 3.14 translationsContent (string)
-<div class="warning">
-<span class="warning">:warning:</span>
-Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario modificarla. Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
-</div>
-
-Esta propiedad permite, mediante una cadena en formato xml, configurar la localización actual del widget. La definición de este modelado se puede encontrar, por defecto, en una carpeta interna de traducciones  dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, la localización actual del componente.
-
-```
-translationsContent: “<translation-content-string>“;
-```
-
-3.15 viewsContent (string)
-<div class="warning">
-<span class="warning">:warning:</span>
-Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario modificarla.  Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
-</div>
-
-Esta propiedad permite, mediante una cadena en formato xml, configurar las vistas del componente actual. La definición de este modelado se puede encontrar, por defecto, en un fichero llamado widget.xml dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, el diseño de las pantallas internas del componente.
-
-```
-viewsContent: “<views-content-string>“;
-```
-
-## 4. Uso del componente
-A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
+###  3.13 documentModels (string)
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Se recuerda que para lanzar un componente determinado previamente habrá que inicializar el SDK con su respectiva licencia, y después iniciar una nueva operación. Para más información consulte la documentación del Componente Core.
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
 </div>
 
-Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
 
-```
-function callSelphID()
-{
-    if (typeof facephi.plugins.sdkselphid === "undefined") {
-        showErrorUI("Cordova Selphid Sdk is not installed...");
-        return;
-    }
-    console.log('callSelphID started...');
-    $("#authenticationResponse").hide();
-    $("#selphidResponse").hide();
-    $("#messageResult").html("Starting proccess...").addClass("blink").css("color", "#000000").css("text-align","center").show();
-    if (isStartingSDK) {
-        console.log("A process is running...");
-        return false;
-    }
-    if (!isStartingSDK) {
-        isStartingSDK = true;
-    }
-    var config_id = new SdkSelphIDConfig();
-    config_id.showResultAfterCapture    = true;
-    config_id.showTutorial              = false;
-    config_id.scanMode                  = facephi.plugins.scanmode.SdkSelphIDScanMode.SearchMode;
-    config_id.timeout                   = facephi.plugins.timeout.SdkMobileTimeOutType.Short;
-    config_id.documentType              = facephi.plugins.doctype.SdkSelphIDDocumentType.IDCard;
-    config_id.resourcesPath             = "fphi-selphid-widget-resources-sdk.zip";
-    config_id.specificData              = "AR|<ALL>";
-    tokenFaceImage = null;
-    //const lic = window.cordova.platformId.toUpperCase() == "IOS" ? LICENSEIOS : LICENSEANDROID
-    facephi.plugins.sdkselphid.launchSelphID(config_id).then(
-        (result) => onSuccessSelphIDCapture(result),
-        (err) => onErrorSelphIDCapture(err)
-    )
-    .finally (() =>
+This property allows, through a string in xml format, to configure the
+modelling of the documents that the widget will try to capture. The
+definition of this modelling can be found, by default, in .xml models
+within the resources .zip. With this property an application is allowed
+to update and replace, in execution, the models of the current documents
+of the component.
+
+>     **documentModels**: “\<document-models-content-string\>“;
+
+###  3.14 translationsContent (string)
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+
+This property allows, through a string in xml format, to configure the
+current location of the widget. The definition of this model can be
+found, by default, in an internal translations folder within the
+resources .zip. This property allows an application to update and
+replace the current location of the component at run time.
+
+>     **translationsContent**: “\<translation-content-string\>“;
+
+###  3.15 viewsContent (string)
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+
+This property allows, through a string in xml format, to configure the
+views of the current component. The definition of this modelling can be
+found, by default, in a file called **widget.xml** inside the resources
+.zip. This property allows an application to update and override the
+layout of the component's internal screens whilst running.
+
+>     **viewsContent**: “\<views-content-string\>“;
+
+---
+
+## 4. Component Usage
+
+The following will show how to execute the functionality of the current
+component.
+
+
+<div class="warning">
+<span class="warning">:warning:</span>
+Remember that in order to launch a certain component previously, you
+must **initialise the SDK** with its respective licence, and then
+**start a new operation**. For more information consult the
+documentation of the **Core Component**.
+</div>
+
+
+Once the component has been configured, to launch it, the following code
+must be executed:
+
+``` java
+const getSelphidConfiguration = () => {
+    let config: SelphidConfiguration = {
+      debug: false,
+      showResultAfterCapture: true,
+      showTutorial: false,
+      scanMode: SdkSelphidEnums.SdkScanMode.Search,
+      specificData: 'AR|<ALL>',
+      documentType: SdkSelphidEnums.SdkDocumentType.IdCard,
+      fullscreen: true,
+      locale: '',
+      resourcesPath: "fphi-selphid-widget-resources-sdk.zip",
+    };
+    return config;
+};
+
+const startSelphid = async () => 
+{ 
+    try 
     {
-        console.log("callSelphID finished...");
-        isStartingSDK = false
-    });
-}
+      console.log("Starting startSelphid...");
+      clearAll();
+ 
+      return await SdkMobileSelphid.selphid(getSelphidConfiguration())
+      .then((result: any) => 
+      {
+        let r: SelphidResult = result;
+        console.log("result parsed", r);
+
+        console.log("result", result);
+        processSelphidResult(result);
+      })
+      .catch((error: any) => 
+      {
+        console.log(error);
+        setMessage(JSON.stringify(error));
+        setFrontDocumentImage(null);
+        setBackDocumentImage(null);
+        setFaceImage(null);
+        setTokenFaceImage(null);
+        setOcrContent(null);
+        setShowError(true);
+        setTextColorMessage('#DE2222');
+      })
+      .finally(()=> {
+        console.log("End startSelphid...");
+      });
+    } 
+    catch (error) {
+      setMessage(JSON.stringify(error));
+    }
+};
+
 ```
 
-## 5. Retorno de resultado
-Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto JSON a través de Promises, ya sea una operación exitosa o un error:
-```
-facephi.plugins.sdkselphid.launchSelphID(config_id).then(
-    (result) => onSuccessSelphIDCapture(result),
-    (err) => onErrorSelphIDCapture(err)
-)
-.finally (() =>
+---
+
+## 5. Return of result
+
+As shown in the example above, the result is returned in the form of a
+**JSON** object via ***Promises***, whether it is a successful operation
+or an error:
+
+``` java
+.then((result: SelphidResult) => 
 {
-    console.log("callSelphID finished...");
-    isStartingSDK = false
-});
+  console.log("result", result);
+})
+.catch((error: any) => 
+{
+  console.log(error);
+})
 ```
 
-Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
+Regardless of whether the result is correct/erroneous, the result will
+have the following format:
 
-```
-SdkSelphidResult {
+``` java
+export interface SelphidResult {
   finishStatus: number;
   finishStatusDescription?: string;
   errorType: number;
@@ -436,186 +661,404 @@ SdkSelphidResult {
   lastActionBeforeCapture?: string;
 }
 ```
-<div class="note">
-<span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SdkSelphidResult. A continuación se amplía información sobre esos campos.
-</div>
+
+The result will be returned via a Promise containing an object of class
+***SelphidResult***. Information on these fields is expanded below.
 
 ### 5.1 finishStatus
-- **SdkFinishStatus.Ok**: La operación fue exitosa.
-- **SdkFinishStatus.Error**: Se ha producido un error, el cuál se indicará en el enumerado `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
+
+-   **SdkFinishStatus.Ok**: The operation was successful.
+
+-   **SdkFinishStatus.Error**: An error has occurred, which will be
+    indicated in the \`errorDiagnostic\` enumerated and, optionally, an
+    extra information message will be displayed in the \`errorMessage\`
+    property.
 
 ### 5.2 errorType
- Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase SdkErrorType. Los valores que puede tener son los siguientes:
 
-- **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
-- **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
-- **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
-- **SettingsPermissionDenied**: Excepción que se produce cuando el widget no tiene permiso de acceso a la configuración del sistema (*deprecated*).
-- **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
-- **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
-- **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
-- **ControlNotInitializedError**: El configurador del widget no ha sido inicializado.
-- **BadExtractorConfiguration**: Problema surgido durante la configuración del widget.
-- **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
-- **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
-- **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
-- **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
-- **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
-- **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
-- **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
+Returns the type of error that occurred (if there was one, which is
+indicated in the *finishStatus* parameter with the value *Error*). They
+are defined in the *SdkErrorType* class. It may have the following
+values:
 
-### 5.3 errorMessage: 
-Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+-   **NoError:** No error has occurred. The process can continue.
 
-### 5.3 frontDocument/tokenFrontDocument
-- frontDocument: La imagen frontal del documento procesada, limpiada y recortada por los bordes y su token correspondiente.
-- tokenFrontDocument: Contiene la misma información que frontDocument, sólo que se encuentra encriptada, tokenizada y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
+-   **UnknownError:** Unhandled error. Possibly caused by a bug in the
+    resource bundle.
 
-### 5.4 backDocument/tokenBackDocument
-- backDocument: La imagen trasera del documento procesada, limpiada y recortada por los bordes.
-- tokenBackDocument: Contiene la misma información que backDocument, sólo que se encuentra encriptada, tokenizada y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
+-   **CameraPermissionDenied:** The exception that is thrown when the
+    sdk does not have permission to access the camera.
 
-### 5.5 rawFrontDocument/tokenRawFrontDocument
-- rawFrontDocument: La imagen frontal del documento sin procesar, tal y como se obtiene de la cámara.
-- tokenRawFrontDocument: Contiene la misma información que rawFrontDocument, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
+-   **SettingsPermissionDenied**: The exception that is thrown when the
+    widget does not have permission to access system settings
+    (\*deprecated\*).
 
-### 5.6 rawBackDocument/tokenRawBackDocument
-- rawBackDocument: La imagen trasera del documento sin procesar, tal y como se obtiene de la cámara.
-- tokenRawBackDocument: Contiene la misma información que rawBackDocument, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
+-   **HardwareError**: Exception that occurs when there is a hardware
+    problem with the device, usually caused by very few available
+    resources.
 
-### 5.7 faceImage/tokenFaceImage
-- faceImage: La imagen frontal del documento procesada, limpiada y recortada por los bordes.
-- tokenFaceImage: Contiene la misma información que faceImage, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
+-   **ExtractionLicenceError**: Exception that occurs when there has
+    been a licencing problem on the server.
 
-### 5.8 documentData/tokenOCR
-- documentData: Los datos OCR obtenidos durante la captura del documento. La información contenida en este objeto variará dependiendo del tipo de documento y del país de éste.
-- tokenOCR: Contiene la misma información que documentData, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
+-   **UnexpectedCaptureError**: Exception that occurs during the capture
+    of frames by the camera.
 
-### 5.9 matchingSidesScore
-Esta propiedad devuelve un cálculo de la similitud de los datos leídos entre el front y el back del documento. El cálculo se realiza comprobando la similitud entre los campos comunes leídos en ambas caras. El resultado del cálculo será un valor entre 0.0 y 1.0 para el caso de que existan campos comunes en el documento. Cuanto mayor es el valor, más similares son los datos comparados.
+-   **ControlNotInitialisedError**: The widget configurator has not been
+    initialised.
 
-Si el cálculo devuelve -1.0 es que el documento no contiene campos comunes o aún no se tiene información de las dos caras.
+-   **BadExtractorConfiguration**: Problem arose during widget
+    configuration.
 
-### 5.10 captureProgress/timeoutStatus
-Esta propiedad devuelve el estado en el que se encontraba el proceso de captura cuando el widget terminó. Estos son los posibles valores:
+-   **CancelByUser**: The exception that is thrown when the user stops
+    the extraction manually.
 
+-   **TimeOut**: Exception that is thrown when a maximum time elapses
+    without successfully completing the extraction.
+
+-   **InitProccessError**: Exception that is thrown when the sdk cannot
+    process the captured images.
+
+-   **NfcError:** The exception that is thrown when the sdk does not
+    have permission to access the nfc.
+
+-   **NetworkConnection**: The exception that is thrown when there are
+    issues with the means the device uses to connect to the network.
+
+-   **TokenError:** The exception that is thrown when an invalid token
+    is passed as a parameter.
+
+-   **InitSessionError**: The exception that is thrown when session
+    cannot be initialised. The normal thing is that it happens because
+    the \`SdkCore\` was not called when calling any other component.
+
+-   **ComponentControllerError**: The exception that is thrown when the
+    component cannot be instantiated.
+
+### 5.3 errorMessage
+
+-   Indicates an additional error message if necessary. It is an
+    optional value.
+
+### 5.4 frontDocument/tokenFrontDocument
+
+***frontDocument***: The front image of the document processed, cleaned
+and cropped by the edges and its corresponding token.
+
+***tokenFrontDocument***: It contains the same information as
+frontDocument, only it is encrypted, tokenised, and converted to
+stringBase64. This field can be detokenised in the SelphID service.
+
+### 5.5 backDocument/tokenBackDocument
+
+***backDocument***: The back image of the document processed, cleaned
+and cropped at the edges.
+
+***tokenBackDocument***: It contains the same information as the
+backDocument, only it is encrypted, tokenised, and converted to
+stringBase64. This field can be detokenised in the SelphID service.
+
+### 5.6 rawFrontDocument/tokenRawFrontDocument
+
+***rawFrontDocument*****:** The front image of the raw document, as
+obtained from the camera.
+
+***tokenRawFrontDocument***: It contains the same information as
+rawFrontDocument, only it is encrypted and tokenised, and converted to
+stringBase64. This field can be detokenised in the SelphID service.
+
+### 5.7 rawBackDocument/tokenRawBackDocument
+
+***rawBackDocument***: The rear image of the raw document, as obtained
+from the camera.
+
+***tokenRawBackDocument***: It contains the same information as
+rawBackDocument, only it is encrypted and tokenised, and converted to
+stringBase64. This field can be detokenised in the SelphID service.
+
+### 5.8 faceImage/tokenFaceImage
+
+***faceImage***: The front image of the document processed, cleaned up,
+and cropped at the edges.
+
+***tokenFaceImage***: It contains the same information as faceImage,
+only it is encrypted and tokenised, and converted to stringBase64. This
+field can be detokenised in the SelphID service.
+
+### 5.9 documentData/tokenOCR
+
+***documentData***: The OCR data obtained during document capture. The
+information contained in this object will vary depending on the type of
+document and the country of the document.
+
+***tokenOCR***: It contains the same data as documentData, only it is
+encrypted and tokenised, and converted to stringBase64. This field can
+be detokenised in the SelphID service.
+
+### 5.10 matchingSidesScore
+
+This property returns a calculation of the similarity of the data read
+between the front and the back of the document. The calculation is
+performed by checking the similarity between the common fields read on
+both faces. The result of the calculation will be a value between 0.0
+and 1.0 in the case that there are common fields in the document. The
+higher the value, the more similar the compared data are.
+
+If the calculation returns -1.0, it means that the document does not
+contain common fields or there is still no information on both sides.
+
+### 5.11 captureProgress/timeoutStatus
+
+This property returns the status the search process was in when the
+widget terminated. These are the possible values:
+
+``` java
+        Front_Detection_None = 0
+
+        Front_Detection_Uncertain = 1
+
+        Front_Detection_Completed = 2
+
+        Front_Document_Analyzed = 3
+
+        Back_Detection_None = 4
+
+        Back_Detection_Uncertain = 5
+
+        Back_Detection_Completed = 6
+
+        Back_Document_Analyzed = 7
 ```
-Front_Detection_None = 0
-Front_Detection_Uncertain = 1
-Front_Detection_Completed = 2
-Front_Document_Analyzed = 3
-Back_Detection_None = 4
-Back_Detection_Uncertain = 5
-Back_Detection_Completed = 6
-Back_Document_Analyzed = 7
-```
 
-- 0: En la lectura del Front, el widget termino sin poder haber detectado nada. Generalmente cuando no se pone ningún - documento.
-- 1: En la lectura del Front, el widget termino habiendo detectado parcialmente un documento. En este caso algunos de los elementos esperados se han conseguido detectar, pero no todos los necesarios.
-- 2: En la lectura del Front, el widget termino habiendo completado la detección de todos los elementos del documento. Si el widget acaba en este estado es porque el análisis de OCR no se ha podido completar con éxito
-- 3: En la lectura del Front, el widget termino habiendo analizado y extraído todo el OCR del documento. Este es el estado en el que acabaría una lectura correcta del Front de un documento.
-- Los estados del **4 al 7 son exactamente iguales** solo que se refieren al resultado del proceso cuando se analiza el back.
+This property returns the status the search process was in when the
+widget terminated. These are the possible values:
 
-## 6. Personalización de componente (Opcional)
-Este componente permite la personalización de textos, imágenes, fuentes de letra y colores. La personalización se realiza mediante el archivo .zip suministrado internamente. Este zip está compuesto de un fichero llamado widget.xml que contiene la definición de todas las pantallas del widget, cada una de ellas con una serie de elementos los cuales permiten realizar la personalización. El archivo zip también contiene una carpeta con recursos gráficos y otra carpeta con las traducciones de los textos.
+-   0: When reading the Front, the widget ended without being able to
+    detect anything. Generally when no document is included.
 
-### 6.1. Descripción básica
-#### 6.1.1. Personalización de textos
-La personalización de textos se realiza editando los textos de los archivos de traducciones existentes en el .zip de recursos.
+-   1: When reading from the Front, the widget ended up having partially
+    detected a document. In this case, some of the expected elements
+    have been detected, but not all the necessary ones.
 
-    - /strings/strings.es.xml
-    - /strings/strings.xml
+-   2: When reading from the Front, the widget ended up having completed
+    the detection of all the elements of the document. If the widget
+    ends up in this status it is because the OCR analysis could not be
+    completed successfully
 
-#### 6.1.2. Personalización de imágenes
-Para personalizar las imágenes que usa el widget se deben añadir las imágenes en el .zip de recursos. En el zip vienen 3 carpetas:
+-   3: When reading from the Front, the widget ended up having parsed
+    and extracted all the OCR from the document. This is the status in
+    which a successful reading of the Front of a document would end up.
 
-    - /resources/163dpi
-    - /resources/326dpi
-    - /resources/489dpi
+The statuses **from 4 to 7 are exactly the same** only that they refer
+to the result of the process when the back is parsed.
 
-Estas carpetas corresponden a las diferentes densidades de pantalla y se pueden crear tantas carpetas de densidad como se desee. En estas carpetas están las versiones de las imágenes para cada una de las resoluciones.
+---
 
-Es necesario añadir las imágenes en todas las carpetas, ya que una vez determinada la resolución óptima para el dispositivo, el widget sólo carga imágenes de la carpeta con la resolución elegida.
+## 6. Component Customisation (Optional)
 
-Las imágenes son referenciadas desde el archivo `widget.xml`.
+This component allows the customisation of texts, images, fonts and
+colours. Customisation is done using the internally supplied **.zip
+file**. This zip is made up of a file called ***widget.xml*** that
+contains the definition of all the widget screens, each one of them with
+a series of elements which allow customisation. The zip file also
+contains a folder with graphic resources and another folder with the
+translations of the texts.
 
-#### 6.1.3. Personalización de colores
-La personalización de los colores de los botones se realiza desde el archivo `widget.xml`. En él se puede personalizar cualquier color de cualquier elemento gráfico que aparece en el widget. Simplemente basta con modificar el color de la propiedad deseada.
+### 6.1. Basic description
 
-#### 6.1.4. Personalización de tipo de fuente
-Los archivos de tipografía deben colocarse en la carpeta `/resources/163dpi` y una vez ahí pueden ser referenciados desde el archivo `widget.xml`. Para cambiar el tipo de letra de un elemento de texto bastaría con modificar la propiedad ‘font’ y poner el nombre del archivo correspondiente.
+#### 6.1.1. Text customisation
 
-En el siguiente apartado se ampliará la información acerca del contenido del bundle de recursos y el modo de modificar.
+Text customisation is carried out by editing the texts of the existing
+translation files in the resource .zip.
 
-### 6.2. Descripción avanzada
+>     /strings/strings.es.xml
+>
+>     /strings/strings.xml
+
+#### 6.1.2. Image customisation
+
+To customise the images used by the widget, you must add the images to
+the resource .zip. In the zip there are 3 folders:
+
+>     /resources/163dpi
+>
+>     /resources/326dpi
+>
+>     /resources/489dpi
+
+These folders correspond to the different screen densities and you can
+create as many density folders as you want. These folders contain the
+versions of the images for each of the resolutions.
+
+It is necessary to add the images in all the folders, since once the
+optimal resolution for the device has been determined, the widget only
+loads images from the folder with the chosen resolution.
+
+The images are referenced from the *widget.xml* file.
+
+#### 6.1.3. Colour customisation
+
+Button colour customisation is carried out from the *widget.xml* file.
+In it you can customise any colour of any graphic element that appears
+in the widget. Simply modify the colour of the desired property.
+
+#### 6.1.4. Font type customisation
+
+Font files should be placed in the \`/resources/163dpi\` folder and once
+there they can be referenced from the \`widget.xml\` file. To change the
+font of a text element, it would be enough to modify the 'font' property
+and put the name of the corresponding file.
+
+In the next section, the information about the content of the resource
+bundle and the way to modify it will be elaborated on.
+
+### 6.2. Advanced description
+
 #### 6.2.1. Widget.xml
-Este fichero contiene la definición de todas las propiedades que son configurables en los procesos de autenticación y registro. Está dividido por pantallas de navegación y dentro de cada etiqueta de pantalla se encuentran todas las propiedades que pueden modificarse.
 
-#### 6.2.2. Carpeta strings
-Esta carpeta contiene un fichero `strings.xml` por cada traducción que se desee soportar. El nombre debe estar formado de la siguiente manera:
+This file contains the definition of all the properties that are
+configurable in the authentication and registration processes. It is
+divided by navigation screens and within each screen label are all the
+properties that can be modified.
 
-    strings.(idioma).xml
+#### 6.2.2. Strings folder
 
-Siendo (idioma) el código del idioma. Por ejemplo, `strings.es.xml` sería la traducción en castellano, `strings.en.xml` la traducción en inglés, `strings.es_ES.xml` el español de España o `strings.es_AR.xml` el español de Argentina.
+This folder contains a *strings.xml* file for each translation you want
+to support. The name must be formed as follows:
 
-Se puede forzar el idioma o dejar que el widget lo escoja en función de la configuración del dispositivo. A la hora de decidir cuál es el idioma a aplicar se sigue el siguiente orden:
+>     strings.(language).xml
 
-Buscar por código de localización (por ejemplo, “es_AR”).
-Si no encuentra ninguna que coincida, buscaría uno para el idioma genérico (es decir, en este caso sería “es”).
-Si tampoco existiese ningún resultado, entonces usaría el idioma por defecto.
+Where (language) is the language code. For example, \`strings.es.xml\`
+would be the Spanish translation, *strings.en.xml* the English
+translation, *strings.es_ES.xml* the Spanish of Spain or
+*strings.es_AR.xml* the Spanish of Argentina.
 
-A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, “es” o “es_ES”).
+You can force the language or let the widget choose it based on device
+settings. When deciding which language to apply, the following order is
+followed:
 
-#### 6.2.3. Carpeta resources
-Contiene las carpetas con todos los recursos necesarios para poder modificarse, divididos en densidades. Es obligatorio generar las imágenes en todas las densidades ya que el widget espera encontrarlas en la carpeta correspondiente a la densidad del dispositivo. También se pueden crear nuevas carpetas con la densidad deseada.
+-   Search by location code (for example, “es_AR”).
 
-#### 6.2.4. Elemento BACKGROUND
-El elemento `background` se compone de 4 segmentos a los que se puede dar color independientemente:
+-   If it doesn't find a match, it would look for one for the generic
+    language (i.e., in this case it would be "es").
 
-- **top**: define el color de fondo el segmento o panel superior.
-- **middle_top**: define el color de fondo del segmento o panel donde está situada la imagen de la cámara.
-- **middle_bottom**: define el color de fondo el segmento o panel situado debajo de la imagen de la cámara.
-- **bottom**: define el color de fondo el segmento o panel inferior.
+-   If there were no results either, then it would use the default
+    language.
 
-También se pueden configurar ciertas propiedades que se usan solo en pantallas específicas. A continuación, las enumeramos haciendo referencia a las pantallas en la que son utilizadas:
+At the code level it is possible to select the localisation using the
+locale property. This parameter accepts a string with the language code
+to be used (for example, "es" or "es_ES").
 
-pagination_separator (RegistrationTips, FaceMovementTips): define el color de la separación entre el panel inferior y el panel de debajo de la cámara.
+#### 6.2.3. Resources folder
 
-- **mirror_border_color (RegistrationTips, FaceMovementTips)**: define el color del borde del círculo que rodea a la imagen de la cámara o del video de los consejos de registro. A este elemento también se le llama mirror o espejo.
-- **mirror_border_width (RegistrationTips, FaceMovementTips)**: define el ancho del borde del círculo que rodea a la imagen de la cámara o del video de los consejos de registro. Si no deseáramos mostrar un borde, tendríamos que asignar un valor de 0.0 a esta propiedad.
-- **mirror_mist_color (StartExtractor)**: define el color del círculo central en la pantalla previa a la extracción. Este color deberá tener siempre un valor de transparencia ya que debemos dejar ver la imagen de la cámara para que el usuario pueda colocarse correctamente antes de empezar con la extracción. El formato del color cuando se incluye un valor de transparencia es RGBA (El valor de alpha se indicará con el último byte).
-- **mirror_color (Results)**: define el color de fondo del círculo que muestra los resultados del proceso de registro.
+It contains the folders with all the necessary resources to be able to
+be modified, divided into densities. It is mandatory to generate the
+images in all densities as the widget expects to find them in the folder
+corresponding to the density of the device. New folders with the desired
+density can also be created.
 
-#### 6.2.5. Elemento BUTTON
-- **background**: define el color de fondo el botón
-- **decorator**: define el color de la sombra del botón
-- **foreground**: define el color de la fuente del botón en caso de que el contenido sea un texto
-- **content_type**: define el tipo de contenido del botón. Existen 2 tipos diferentes:
-- **resource_id**: Content debe contener el nombre de un archivo en el bundle de recursos
-- **text_id**: Content debe contener el identificador de un literal del fichero de traducciones del bundle de recursos
-- **content**: define el contenido del botón. Puede ser tanto una imagen como el identificador de un literal.
-- **align**: Define la alienación del contenido del botón, ya sea una imagen o un texto
-- **font**: Define el tipo de letra utilizado si el contenido del botón es un texto
-- **font_size**: Define el tamaño de la letra si el contenido del botón es un texto
+#### 6.2.4. BACKGROUND element
 
-#### 6.2.6. Elemento TEXT
-Los elementos `text` se utilizan para definir el aspecto gráfico de los textos de cada una de las pantallas del widget. Estas son las propiedades que se pueden modificar:
+The *background* element is made up of 4 segments that can be coloured
+independently:
 
-- **color**: define el color del texto.
-- **font**: define el tipo de fuente utilizado para mostrar el texto.
-- **font_size**:. define el tamaño de la fuente.
+-   **top**: Defines the background colour of the top segment or panel.
 
-Hay que tener en cuenta que en la pantalla de resultados del registro los dos textos que definen la calidad del registro tienen forzado su color al color de la barra que indica la puntuación.
+-   **middle_top**: defines the background colour of the segment or
+    panel where the camera image is located.
 
-#### 6.2.7. Elemento IMAGE
-value: define el nombre del archivo que contiene la imagen a mostrar.
+-   **middle_bottom**: defines the background colour of the segment or
+    panel below the camera image.
 
-Los elementos `image` solo tienen la propiedad que define el archivo donde se encuentra la imagen físicamente en el bundle de recursos. Las imágenes se obtienen del bundle buscando en la carpeta apropiada de acuerdo con la densidad del dispositivo.
+-   **bottom**: defines the background colour of the bottom segment or
+    panel.
 
-#### 6.2.8. Elemento VIDEO
-value: define el nombre del archivo que contiene el video a mostrar.
+You can also set certain properties that are used only on specific
+screens. We have listed them below referring to the screens on which
+they are used:
 
-Los elementos *`video`* solo tienen la propiedad que define el archivo donde se encuentra el video físicamente en el bundle de recursos.
+-   **pagination_separator (RegistrationTips, FaceMovementTips)**:
+    Defines the colour of the separation between the bottom panel and
+    the panel below the camera.
 
+-   **mirror_border_colour (RegistrationTips, FaceMovementTips**):
+    Defines the colour of the border of the circle around the camera or
+    video image of the registration tips. This element is also called a
+    mirror.
+
+-   **mirror_border_width (RegistrationTips, FaceMovementTips)**:
+    Defines the width of the border of the circle around the camera or
+    video image of the registration tips. If we didn't want to display a
+    border, we would have to assign a value of 0.0 to this property.
+
+-   **mirror_mist_colour (StartExtractor)**: Defines the colour of the
+    centre circle on the pre-extraction screen. This colour should
+    always have a transparency value since we must show the image of the
+    camera so that the user can position himself correctly before
+    starting the extraction. The colour format when a transparency value
+    is included is RGBA (The alpha value will be indicated with the last
+    byte).
+
+-   **mirror_colour (Results)**: defines the background colour of the
+    circle that displays the results of the registration process.
+
+#### 6.2.5. BUTTON element
+
+-   **background**: defines the background colour of the button
+
+-   **decorator**: defines the colour of the button's shadow
+
+-   **foreground**: defines the colour of the button font in case the
+    content is text
+
+-   **content_type**: defines the content type of the button. There are
+    2 different types:
+
+-   **resource_id:** Content must contain the name of a file in the
+    resource bundle
+
+-   **text_id:** Content must contain the identifier of a literal from
+    the translations file of the resource bundle
+
+-   **content**: defines the content of the button. It can be either an
+    image or the identifier of a literal.
+
+-   **align:** Defines the alignment of the button content, be it an
+    image or a text
+
+-   **font:** Defines the font used if the button content is text
+
+-   **font_size**: Defines the font size if the button content is text
+
+#### 6.2.6. TEXT element
+
+The *text* elements are used to define the graphic aspect of the texts
+of each of the widget's screens. These are the properties that can be
+modified:
+
+-   **colour**: defines the colour of the text.
+
+-   **font**: defines the type of font used to display the text.
+
+-   **font_size**: defines the font size.
+
+It must be borne in mind that on the registration results screen, the
+two texts that define the quality of the registration have their colour
+forced to the colour of the bar that indicates the score.
+
+#### 6.2.7. IMAGE element
+
+-   **value**: defines the name of the file that contains the image to
+    display.
+
+*image* elements only have the property that defines the file where the
+image is physically located in the resource bundle. The images are
+obtained from the bundle by looking in the appropriate folder according
+to the density of the device.
+
+#### 6.2.8. VIDEO element
+
+-   **value**: defines the name of the file that contains the video to
+    display.
+
+*Video* elements only have the property that defines the file when the
+video is physically located in the resource bundle.
