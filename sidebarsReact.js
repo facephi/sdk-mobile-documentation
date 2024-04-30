@@ -23,9 +23,10 @@ const sidebars = {
       label: "React Native",
       items: [
         "Mobile_SDK",
+        "Core_Component",
         //"Tracking_Component",
-        //"Selphi_Component",
-        //"SelphID_Component",
+        "Selphi_Component",
+        "Selphid_Component",
         //"Phingers_Component",
         //"Voice_Component",
         //"NFC_Component",
