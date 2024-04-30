@@ -4,13 +4,6 @@
 
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
-El Componente tratado en el documento actual recibe el nombre de Core Component. Este componente es de instalación obligatoria, independientemente del caso de uso, pues contiene funcionalidad genérica a toda la sdk, además de permitir el uso de componentes más específicos. Sus principales características son las siguientes:
-
-Permite configurar e inicializar los demás componentes instalados
-
-Permite realizar las llamadas a los componentes y obtener los resultados pertinentes
-
-Gestión de las licencias
 
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
@@ -29,22 +22,26 @@ La versión del plugin actual se puede consultar de la siguiente forma:
 ## 2. Integración del componente
 En esta sección se explicará paso a paso cómo integrar el plugin actual en un proyecto ya existente. Se tratarán los siguientes puntos:
 
-- 2.1 Configurar y añadir el repositorio privado para acceder a las dependencias de los componentes
+- Configurar y añadir el repositorio privado para acceder a las dependencias de los componentes
 
-- 2.2 Pasos de la instalación comunes a ambas plataformas (Android y iOS)
+- Pasos de la instalación comunes a ambas plataformas (Android y iOS)
 
-- 2.3 Pasos de la instalación específicos para iOS
+- Pasos de la instalación específicos para iOS
 
-- 2.4 Pasos de la instalación específicos para Android
+- Pasos de la instalación específicos para Android
 
-- 2.5 Dependencias que se deben añadir al proyecto
+- Dependencias que se deben añadir al proyecto
 
-> [!NOTE]
-> Para esta sección, se considerarán los siguiente valores:
->
-> - **\<APPLICATION_PATH\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
->
-> - **\<PLUGIN_CORE_PATH\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-core) 
+
+<div class="note">
+<span class="note">:note:</span>
+
+Para esta sección, se considerarán los siguiente valores:
+
+- **\<APPLICATION_PATH\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
+- **\<PLUGIN_CORE_PATH\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-core) 
+</div>
+
 
 ### 2.1. Añadir repositorio privado
 Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la SDKMobile se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi.
@@ -264,5 +261,3 @@ buildscript {
   }
 }
 ```
-
-### 2.4.3 Posibles incidencias

@@ -1,14 +1,15 @@
 # Core Component
 
 ## 1. Introducción 
-SDK Mobile es un conjunto de librerías (Componentes) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
-## 1.1 Requisitos mínimos
+El Componente tratado en el documento actual recibe el nombre de Core Component. Este componente es de instalación obligatoria, independientemente del caso de uso, pues contiene funcionalidad genérica a toda la sdk, además de permitir el uso de componentes más específicos. 
+
+### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: 24 - JDK 11
+- Versión mínima Android: **24 - JDK 11**
 
-- Versión mínima iOS: 13
+- Versión mínima iOS: **13**
 
 En cuanto a la arquitectura del dispositivo móvil:
 
@@ -25,7 +26,7 @@ La versión del plugin actual se puede consultar de la siguiente forma:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo node_modules/@facephi/sdk-core-react-native/src/src/index.tsx del componente.
+Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/src/index.tsx* del componente.
 </div>
 
 Antes de poder utilizar cualquier componente, se deberá inicializar la sesión de la SDK. Esta inicialización se debe hacer lo más pronto posible, preferentemente al inicio de la aplicación. Al mismo tiempo, una vez terminadas todas las operaciones con la SDK Mobile, deberá cerrarse igualmente la sesión (apartado 7)
@@ -150,7 +151,7 @@ Habilita o deshabilita el uso del componente de tracking. Esto permite ver la in
 enableTracking: true
 ```
 
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SdkCoreResult. Más información sobre cómo funciona esta clase se añadirá en el apartado 6.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SdkCoreResult. Más información sobre cómo funciona esta clase se añadirá en el ***apartado 6***.
 
 ## 3. Inicialización de la operación
 Cada vez que se desee iniciar el flujo de alguna operación nueva (ejemplos de operaciones serían: onboarding, authentication,…) es esencial indicarle al SDKController que ésta va a comenzar, y así la SDK sabrá que las próximas llamadas de Componentes (también llamados Steps) formarán parte de dicha operación. Esto es necesario para trackear a la plataforma la información global de esta operación de forma satisfactoria.
@@ -261,7 +262,7 @@ Los parámetros recibidos son los siguientes:
 
     - **CancelByUser**: Excepción que se produce cuando el usuario para la extracción de forma manual.
 
-    - **TimeOu**t:Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
+    - **TimeOut**:Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
 
     - **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
 
@@ -310,7 +311,7 @@ const launchCloseSession = async () =>
 El resultado se devolverá por medio de una Promise, la cual contiene un objeto de la clase **CoreResult**. Para saber más sobre cómo funciona esta clase consultar el apartado 5.
 
 ## 8. Método ExtraData
-El método getExtraData permite generar los identificadores necesarios para una operación que deba continuar en el backend. Esta situación suele darse en casos en los que, una vez obtenida la información necesaria en la aplicación del cliente, se deba enviar esa información a un determinado servicio para su posterior validación o análisis. En caso de que deban trackearse los resultados de esos procesos en la Plataforma, ésta deberá ser capaz de unificar la primera parte del proceso realizada en cliente con la última realizada en el servicio, ya que al final forman parte de la misma operación. Ejemplos en los que puede ser necesario el envío de estos datos:
+El método getExtraData permite generar los identificadores necesarios para una operación que deba continuar en el *Servicio de Validaciones de Facephi* (Backend). Esta situación suele darse en casos en los que, una vez obtenida la información necesaria en la aplicación del cliente, se deba enviar esa información a un determinado servicio para su posterior validación o análisis. En caso de que deban trackearse los resultados de esos procesos en la Plataforma, ésta deberá ser capaz de unificar la primera parte del proceso realizada en cliente con la última realizada en el servicio, ya que al final forman parte de la misma operación. Ejemplos en los que puede ser necesario el envío de estos datos:
 
 - En cliente se obtiene una selfie y se requiere hacer una validación de vivacidad en un servicio.
 - En cliente se captura la cara de un documento y la selfie de un usuario y posteriomente se requiere hacer la validación de estos en un servicio.
@@ -355,7 +356,7 @@ const getExtraData = async () =>
 ```
 
 ## 9. Método Tokenize
-El método tratado en el documento actual recibe el nombre de Tokenize. Éste se encarga de codificar y tokenizar las imágenes obtenidas en cualquiera de los demás componentes, en caso de que sea necesario, para su posterior envío al servicio de Facephi. En el este servicio se podrá descodificar y validar de forma segura.
+El método tratado en el documento actual recibe el nombre de Tokenize. Éste se encarga de codificar y tokenizar las imágenes obtenidas en cualquiera de los demás componentes, en caso de que sea necesario, para su posterior envío al *Servicio de Validaciones de Facephi* (Backend). En el este servicio se podrá descodificar y validar de forma segura.
 
 ```
 const getTokenize = async () => 
