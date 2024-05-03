@@ -37,7 +37,7 @@ Minimum iOS version: **13**
 Before integrating this component, it is recommended to read the documentation
 Relative to:
 
-<a href="ES_Mobile_SDK"
+<a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile SDK</u></strong></a>
 and follow the instructions indicated in said document.
