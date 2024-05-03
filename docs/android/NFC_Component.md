@@ -63,7 +63,36 @@ the **_SDKMobile_** components.
   be installed beforehand:
 
   ```java
-  implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version"
+  implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version"{
+        exclude group : "org.bouncycastle", module : "bcprov-jdk15on"
+        exclude group : "org.bouncycastle", module : "jetified-bcprov-jdk15on-1.68"
+    }
+  ```
+
+In the case of the NFC component, it is necessary to add in gradle:
+
+  ```java
+  android {
+    ...
+   packaging {
+        resources {
+            pickFirsts.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+        }
+    }
+  }
+  ```
+
+  In the case of the NFC component, it is necessary to add in gradle:
+
+  ```java
+  android {
+    ...
+   packaging {
+        resources {
+            pickFirsts.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+        }
+    }
+  }
   ```
 
 ---
