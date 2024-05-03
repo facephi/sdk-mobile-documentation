@@ -23,9 +23,7 @@ const sidebars = {
       label: "iOS",
       items: [
         "Mobile_SDK",
-        //"Behavior_Component",
         "Phingers_Component",
-        //"Capture_Component",
         "Tracking_Component",
         "Selphi_Component",
         "SelphID_Component",
