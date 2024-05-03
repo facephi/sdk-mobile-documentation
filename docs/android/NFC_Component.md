@@ -82,19 +82,6 @@ In the case of the NFC component, it is necessary to add in gradle:
   }
   ```
 
-  In the case of the NFC component, it is necessary to add in gradle:
-
-  ```java
-  android {
-    ...
-   packaging {
-        resources {
-            pickFirsts.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
-        }
-    }
-  }
-  ```
-
 ---
 
 ## 3. Start a new operation
