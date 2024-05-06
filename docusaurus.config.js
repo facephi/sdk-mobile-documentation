@@ -119,6 +119,12 @@ const config = {
             docsPluginId: "react",
           },
           {
+            type: "docsVersion",
+            position: "left",
+            label: "Capacitor",
+            docsPluginId: "capacitor",
+          },
+          {
             type: "docsVersionDropdown",
             docsPluginId: "android",
             position: "right",
@@ -147,6 +153,12 @@ const config = {
             docsPluginId: "react",
             position: "right",
             customCss: "menu-react",
+          },
+          {
+            type: "docsVersionDropdown",
+            docsPluginId: "capacitor",
+            position: "right",
+            customCss: "menu-capacitor",
           },
           {
             type: "localeDropdown",
@@ -213,6 +225,16 @@ const config = {
         path: "docs/react",
         routeBasePath: "docs/react",
         sidebarPath: "./sidebarsReact.js",
+        // ... other options
+      },
+      ],
+      [ 
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "capacitor",
+        path: "docs/capacitor",
+        routeBasePath: "docs/capacitor",
+        sidebarPath: "./sidebarsCapacitor.js",
         // ... other options
       },
     ],

@@ -31,6 +31,10 @@
     "message": "React",
     "description": "Navbar item with label React"
   },
+  "item.label.Capacitor": {
+    "message": "Capacitor",
+    "description": "Navbar item with label Capacitor"
+  },
   "item.label.SNAPSHOT 🚧": {
     "message": "SNAPSHOT 🚧",
     "description": "Navbar item with label SNAPSHOT 🚧"
