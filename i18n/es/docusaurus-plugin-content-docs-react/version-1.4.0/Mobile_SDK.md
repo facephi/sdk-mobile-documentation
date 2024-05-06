@@ -39,15 +39,16 @@ This section will explain step by step how to integrate the current
 component into an existing project.
 
 <div class="note">
-<span class="note">:information_source:</span>
-For this section, the following values ​​will be considered:
+<span class="note">:note:</span>
+
+Para esta sección, se considerarán los siguiente valores:
 
 - **\<APPLICATION_PATH\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<PLUGIN_CORE_PATH\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-core) 
 </div>
 
 
-### 2.1. Adding private repository
+### 2.1. Añadir repositorio privado
 For security and maintenance reasons, the new ***SDKMobile*** components
 are stored in private repositories requiring specific credentials. Those
 credentials must be obtained from the support team of **Facephi**.
@@ -87,6 +88,8 @@ configured correctly
 Access to our private repositories (**Cocoapods**) is required if you
 want to access our iOS native libraries.
 </div>
+
+Para tener acceso a nuestro repositorio privado en iOS, se requiere haber instalado previamente Cocoapods en la máquina.
 
 For security and maintenance reasons, the new ***SDKMobile*** components
 are stored in private repositories requiring specific credentials. The

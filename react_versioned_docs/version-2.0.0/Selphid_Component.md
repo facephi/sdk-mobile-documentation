@@ -293,7 +293,7 @@ configure the **SelphID** component:
 }
 ```
 
-Then, all the properties that can be defined in the ***SdkTracking***
+Then, all the properties that can be defined in the **SelphidConfiguration**
 object will be commented on:
 
 <div class="note">
@@ -304,12 +304,14 @@ All the configuration can be found in the component's ***src/index.tsx*** file.
 When making the call to the widget there is a series of parameters that
 must be included. They will be briefly discussed below.
 
-### 3.1 resourcesPath (*string*)
+### 3.1 resourcesPath
+
+**type:** *string*
 
 Sets the name of the resource file that the widget will use for its
 graphical configuration. This file is customisable and is located in the
 plugin in the ***src/main/assets*** folder for ***Android*** and in the
-***ios/Frameworks*** and Resources folder for iOS. Its installation is
+***ios/Frameworks*** and Resources folder for ***iOS***. Its installation is
 transparent to the user, it will simply be added to the respective
 platform's projects during plugin installation. More details about how
 this resource pack works and how to modify it are explained in
@@ -317,7 +319,9 @@ this resource pack works and how to modify it are explained in
 
 > **resourcesPath**: "fphi-selphid-widget-resources-sdk.zip"
 
-### 3.2 ShowResultAfterCapture (*boolean*)
+### 3.2 ShowResultAfterCapture
+
+**type:** *boolean*
 
 Indicates whether or not to display a screen with the captured image of
 the document after the analysis process. This screen gives the user the
@@ -326,31 +330,35 @@ document is not correct.
 
 > **showResultAfterCapture:** false
 
-### 3.3 ScanMode (*WidgetScanMode*)
+### 3.3 ScanMode
 
-This enumeration is defined in the *js/WidgetSelphidEnums.js* class.
+**type:** *WidgetScanMode*
+
+This enumeration is defined in the ***SdkSelphidEnum.tsx*** class.
 Indicates the OCR scanning mode of the documents. Depending on the
 choice, several types of documents or one in particular will be scanned
 and searched. This mode can be of three types:
 
--   **SelphIDScanMode.Generic:** The generic mode that allows you to
+-   ***SelphIDScanMode.Generic:*** The generic mode that allows you to
     scan any type of document regardless of the country or the type of
     document. The result of this mode is not as accurate as the
     following, but it allows you to scan various standard documents.
 
--   **SelphIDScanMode.Search**: The search mode will allow you to use a
+-   ***SelphIDScanMode.Search***: The search mode will allow you to use a
     whitelist and blacklist, and will search the documents that meet
     those conditions. These conditions are specified in the
     "specificData" variable. In this way it is possible to carry out the
     search limiting the number of templates, and making the search much
     more refined than in the generic case.
 
--   **SelphIDScanMode.Specific**: Search for a specific document. These
+-   ***SelphIDScanMode.Specific***: Search for a specific document. These
     conditions are indicated in the "specificData" property shown below.
 
-> **scanMode**: SdkSelphidEnums.SdkScanMode.Search;
+> ***scanMode***: SdkSelphidEnums.SdkScanMode.Search;
 
-### 3.4 SpecificData (*string*)
+### 3.4 SpecificData
+
+**type:** *string*
 
 This property allows you to define which documents will be scanned
 during the process in the event of declaring the scan mode (scanMode) to
@@ -362,14 +370,18 @@ nationality to be scanned would be the following:
 > **scanMode**: WidgetScanMode.Search;  
 > **specificData**: “ES\|\<ALL\>”; // Spanish ISO code(ES)
 
-### 3.5 FullScreen (\**bool*\*)
+### 3.5 FullScreen
+
+**type:** *boolean*
 
 Determines whether you wish the widget to start in full screen mode,
 hiding the status bar.
 
     **fullscreen**: true;
 
-### 3.6 Locale (\**String*\*)
+### 3.6 Locale
+
+**type:** *string*
 
 It is a string that allows the localisation and language of the widget
 to be changed. Examples of values ​​that they may have are the following:
@@ -390,10 +402,12 @@ to be incorporated into the widget.
 
 > **locale**: "es";
 
-### 3.7 DocumentType (*SdkDocumentType*)
+### 3.7 DocumentType
 
-This enumeration is defined in the *js/WidgetSelphidEnums.js* class.
-Specified in the ***WidgetDocumentType*** class:
+**type:** *string*
+
+This enumeration is defined in the *SdkSelphidEnums.tsx* class.
+Specified in the ***WidgetDocumentType** class:
 
 -   **IDCard**: Establishes that identity documents or cards will be
     captured.
@@ -415,7 +429,9 @@ Specified in the ***WidgetDocumentType*** class:
 
 >     **documentType**: SdkSelphidEnums.SdkDocumentType.IDCard;
 
-### 3.8 TokenImageQuality (*double*)
+### 3.8 TokenImageQuality
+
+**type:** *double*
 
 Specifies the compression quality of the tokenFaceImage.
 
@@ -425,26 +441,26 @@ result in a significant increase in device resource usage:
 
 >       **tokenFaceImage**: 0.9;
 
-### 3.9 generateRawImages (*boolean*)
+### 3.9 generateRawImages
+
+**type:** *boolean*
 
 This property configures the widget to return the full image from the
 camera that was used to capture the document:
 
--   **rawFrontDocument:** Front image of the raw document.
-
--   **rawBackDocument:** Rear image of the raw document.
-
--   **tokenRawFrontDocument:** Tokenisation of the front image of the
+-   rawFrontDocument: Front image of the raw document.
+-   rawBackDocument: Rear image of the raw document.
+-   tokenRawFrontDocument: Tokenisation of the front image of the
     raw document.
-
--   **tokenRawBackDocument:** Tokenisation of the rear image of the raw
+-   tokenRawBackDocument: Tokenisation of the rear image of the raw
     document.
 
-    **    generateRawImages: true;**
+> generateRawImages: true;**
 
->     **generateRawImages**: true;
 
-###  3.10 widgetTimeout (number)
+###  3.10 widgetTimeout
+
+**type:** *number*
 
 It is an enumerator that defines the timeout of the capture of one side
 of the document. It has 3 possible values:
@@ -455,7 +471,9 @@ of the document. It has 3 possible values:
 
 -   WidgetTimeout.Long: 25 segundos
 
-###  3.11 tutorialOnly (boolean)
+###  3.11 tutorialOnly
+
+**type:** *boolean*
 
 Establishes whether you wish to launch the widget in Tutorial mode. This
 allows you to show the previous widget tutorial, but WITHOUT performing
@@ -464,7 +482,9 @@ isolation.
 
 >     **tutorialOnly**: true;
 
-###  3.12 videoFilename (string)
+###  3.12 videoFilename
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -482,7 +502,9 @@ write processing unless a file path is specified using this method.
 
 >     **videoFilename**: “\<videofile-path\>“;
 
-###  3.13 documentModels (string)
+###  3.13 documentModels
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -502,7 +524,9 @@ of the component.
 
 >     **documentModels**: “\<document-models-content-string\>“;
 
-###  3.14 translationsContent (string)
+###  3.14 translationsContent
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -521,7 +545,9 @@ replace the current location of the component at run time.
 
 >     **translationsContent**: “\<translation-content-string\>“;
 
-###  3.15 viewsContent (string)
+###  3.15 viewsContent
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -663,7 +689,7 @@ export interface SelphidResult {
 ```
 
 The result will be returned via a Promise containing an object of class
-***SelphidResult***. Information on these fields is expanded below.
+***SdkSelphidResult***. Information on these fields is expanded below.
 
 ### 5.1 finishStatus
 

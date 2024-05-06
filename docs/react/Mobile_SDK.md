@@ -172,7 +172,7 @@ yarn add @facephi/sdk-core-react-native
 If executing a **pod** command occurs an error like the following:  
 *arch: Can't find any plists for install*
 
-It is recommended to launch every **pod** command with ***arch -x86_64 ***before them, for example:
+It is recommended to launch every **pod** command with ***arch -x86_64*** before them, for example:
 
 - **pod install**
 - **arch -x86_64 pod install**
@@ -210,7 +210,6 @@ npx react-native run-ios
  Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
 
 ### 2.3 Plugin installation: iOS
-
 #### 2.3.1 Project configuration
 
 For the iOS version, when adding our plugin to the final application,
@@ -258,7 +257,7 @@ made by following these steps:
 > -\> Swift Language Version -\> Choose Swift 5.
 
 #### 2.3.4 Possible issues
-
+#### 2.3.4.1 Cocoapods issues
 If environmental problems occur or the plugin is not updated after
 making new changes (for example, problems occurred due to the bundle not
 being generated correctly, or the libraries not being updated to the

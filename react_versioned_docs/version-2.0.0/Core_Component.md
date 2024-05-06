@@ -247,7 +247,7 @@ export interface CoreResult {
 ```
 The parameters are the following:
 
-### **5.1 finishStatus**
+### 5.1 finishStatus
 Returns the global diagnostic. The possible values are:
 
     - **1**: The operation was successful.
@@ -255,13 +255,13 @@ Returns the global diagnostic. The possible values are:
     - **2**: An error has occurred, which will be indicated in the *errorDiagnostic* enumerated and, optionally, an extra information message will be displayed in the *errorMessage* property.
 
 
-### **5.2 finishStatusDescription**
+### 5.2 finishStatusDescription
 Returns an optional description of **finishStatus**.
   
-### **5.3 errorMessage**
+### 5.3 errorMessage
 Returns a message with additional information about the error if it is necessary. Is an optional value.
 
-### **5.4 errorType**
+### 5.4 errorType
 Returns the type of error that occurred (if there was one, which is indicated by the \`finishStatus\` parameter with the value \`Error\`). They are defined in the \`SdkErrorType\` class. The values ​​it can have are the following:
 
 -   **NoError:** No error has occurred. The process can continue.
@@ -319,10 +319,10 @@ Returns the type of error that occurred (if there was one, which is indicated by
 -   **ComponentControllerError**: The exception that is thrown when the
     component cannot be instantiated.
 
-### **5.5 tokenized**
+### 5.5 tokenized
 Optional parameter. Only visible if the *Tokenized* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
 
-### **5.6 data**
+### 5.6 data
 
 Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
 

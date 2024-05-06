@@ -2,6 +2,14 @@
 
 ## 1. Introduction
 
+**Mobile SDK** is a set of libraries (**Components**) that offers a
+series of functionalities and services, allowing its integration into a
+Mobile application in a simple, totally scalable way. Depending on the
+use case that is required, the installation of certain components must
+be carried out. Its high level of modularity allows that, in the future,
+other new components can be added without affecting at all those already
+integrated into the project.
+
 The Component addressed in the current document is named ***SelphID
 Component***. This is responsible for capturing documents and the
 subsequent extraction and analysis of the data obtained from them. Its
@@ -27,7 +35,7 @@ main functionalities are the following:
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
--   Minimum Android version: **24 - JDK 11**
+-   Minimum Android version: **23 - JDK 11**
 
 -   Minimum iOS version: **13**
 
@@ -48,7 +56,7 @@ The current plugin version can be checked as follows:
 ## 2. Component integration 
 
 Before integrating this component, it is **recommended** to read the
-documentation related to **Core Component** and follow the
+documentation related to **<u>Core Component</u>** and follow the
 instructions indicated in said document.
 
 <div class="note">
@@ -77,6 +85,15 @@ plugin, the following steps must be adopted:
 ``` java
 yarn add @facephi/sdk-core-react-native
 yarn add @facephi/sdk-selphid-react-native
+yarn install
+```
+
+-   In addition, to install the plugin on iOS, the following must also
+    be executed:
+
+``` java
+cd ios
+pod install
 ```
 
 -   It is important to verify that the path to the plugin is correctly

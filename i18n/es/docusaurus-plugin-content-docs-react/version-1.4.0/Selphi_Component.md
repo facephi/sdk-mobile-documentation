@@ -13,7 +13,7 @@ The Component addressed in the current document is called the Selphi Component. 
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
-- Minimum Android version: **24 - JDK 11**
+- Minimum Android version: **23 - JDK 11**
 
 - Minimum iOS version: **13**
 
@@ -103,7 +103,7 @@ Within the XCODE simply accessing Build from Settings, in the *Build Options* se
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
-#### 2.2.2 Update the Podfile
+### 2.2.2 Update the Podfile
 In the project podfile it will be necessary to add the information from the private repository (see section 2.1). To do this, the following lines must be added at the beginning of the file:
 
 ```
@@ -117,13 +117,12 @@ source 'https://cdn.cocoapods.org/'
 To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
 
-#### 2.2.3 Set Swift version
+### 2.2.3 Set Swift version
 In *Xcode*, for the application and all its methods to work correctly, the minimum version of swift must be set to version 5. Changes can be made by following these steps:
 
 - Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
-  
 
-#### 2.2.4 Possible issues
+### 2.2.4 Possible issues
 If environment problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the correct versions), it is recommended to execute the following sequence of instructions after launching the plugin:
 
 Open the application's ios folder at a terminal.
@@ -154,7 +153,7 @@ buildscript {
 }
 ```
 
-#### 2.3.2 Permissions for geolocation (optional)
+### 2.3.2 Permissions for geolocation (optional)
 Because the Tracking component has geolocation options, it is necessary to add the permissions for it. In the AndroidManifest add the following permissions:
 
 ```
@@ -199,26 +198,19 @@ export interface SelphiConfiguration {
 Then, all the properties that can be defined in the ***SdkTracking*** object will be commented on:
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's *node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx* file.
+All the configuration can be found in the component's node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx file.
 </div>
 
 When making the call to the widget there is a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1. resourcesPath 
-
-**type:** *string*
-
+- **resourcesPath (string):**
 Sets the name of the resource file that the widget will use for its graphical configuration. This file is customisable and is located in the plugin in the src/main/assets folder for Android and in the ios/Frameworks and Resources folder for iOS. Its installation is transparent to the user, it will simply be added to the respective platform's projects during plugin installation. More details about how this resource pack works and how to modify it are explained in section 6.
 
 ```
 resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
-
-### 3.2. crop
-
-**type:** *boolean*
-
+- **crop (boolean):**
 Indicates whether the images returned (in the images parameter that is activated with enableImages = true) in the completion event contain only the area of ​​the detected face, at a magnification given by CropPercent, or whether the entire image is returned.
 
 
@@ -226,55 +218,37 @@ Indicates whether the images returned (in the images parameter that is activated
 crop: false
 ```
 
-### 3.3. cropPercent
-
-**type:** *float*
-
+- **cropPercent (float):**
 Specifies the magnification percentage of the detected face area to compose the returned image.
 
 ```
 cropPercent: 1.0
 ```
 
-
-### 3.4. debug
-
-**type:** *boolean*
-
+- **Debug (boolean):**
 Sets the debugging mode of the widget.
 
 ```
 debug: false
 ```
 
-### 3.5. livenessMode
-
-**type:** *string*
-
+- **livenessMode (string):**
 Sets the liveness mode of the component. The possible values are:
 
 - **NoneMode**: Indicates that the photodetection mode should not be enabled in authentication processes.
 
 - **PassiveMode**: Indicates that the passive life test is carried out on the server, sending the corresponding "BestImage" for this purpose
 
-```
-livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
-```
+    livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 
-### 3.6. stabilizationMode
-
-**type:** *boolean*
-
+- **stabilizationMode (boolean):**
 Property that allows activating or deactivating the stabilised mode before the face detection process. In the case of being activated, it will give some guidelines to know if it is correctly located or not.
 
 ```
 stabilizationMode: true
 ```
 
-### 3.7. locale
-
-**type:** *string*
-
+- **locale (string):**
 Forces the sdk to use the language setting indicated by the locale parameter.
 
 This parameter accepts both a language code (for example, en) and a regional identification code (for example, en_US). If the widget's resource file does not have a locale for the selected locale, its setting will revert to the default language of ES.
@@ -283,30 +257,21 @@ This parameter accepts both a language code (for example, en) and a regional ide
 locale: 'ES'
 ```
 
-### 3.8. fullScreen
-
-**type:** *string*
-
+- **fullScreen (boolean):**
 Sets whether you want the sdk to start in full screen mode, hiding the status bar.
 
 ```
 fullscreen: true
 ```
 
-### 3.9. enableImages
-
-**type:** *string*
-
+- **enableImages (boolean):**
 Indicates whether the sdk returns to the application the images used during extraction or not. It should be noted that returning images can result in a significant increase in device resource usage:
 
 ```
 logImages: false
 ```
 
-### 3.10. frontalCameraPreferred
-
-**type:** *boolean*
-
+- **frontalCameraPreferred (boolean):** 
 Property to select the front camera as the preferred camera.
 
 ```
@@ -322,7 +287,7 @@ The following will show how to execute the functionality of the current componen
 Remember that in order to launch a certain component previously, you must **initialise the SDK** with its respective licence, and then **start a new operation**. For further information, consult the documentation of the Core Component.
 </div>
 
-Once the component has been configured, to launch it, the following code must be executed:
+Once the component has been configured, to launch it, the following code must be executed:0
 
 ```
 const getSelphiConfiguration = () => {
@@ -401,21 +366,19 @@ export interface SelphiResult {
   images?: string[];
 }
 ```
-
  
-<div class="note">
-<span class="note">:information_source:</span>
+<div class="info">
+<span class="info">:information_source:</span>
 The result will be returned via a Promise containing an object of class SelphiResult. Information on these fields has been elaborated on below.
 </div>
 
 
-### 5.1 finishStatus
-
+**finishStatus**
 - **SdkFinishStatus.Ok**: The operation was successful.
 
 - **SdkFinishStatus.Error**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.2 errorType
+**errorType**
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). They are defined in the `SdkErrorType` class. The values ​​it can have are the following:
 
 - **NoError**: No error has occurred. The process can continue.
@@ -448,28 +411,29 @@ Returns the type of error that occurred (if there was one, which is indicated by
 
 - **TokenError**: The exception that is thrown when an invalid token is passed as a parameter.
 
-- **InitSessionError**: The exception that is thrown when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
+- **InitSessionError**: The exception that is thrown
 
-- **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
+ when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
 
-### 5.3 errorMessage
+ComponentControllerError: The exception that is thrown when the component cannot be instantiated.
 
+**errorMessage**
 Indicates an additional error message if necessary. It is an optional value.
 
-### 5.4 templateRaw
+**templateRaw**
 Returns the raw template that is generated after the extraction process.
 
-### 5.5 bestImage
+**bestImage**
 Returns the best image extracted from the registration or authentication process. This image is the original size image extracted from the camera.
 
-### 5.6 bestImageCropped
+**bestImageCropped**
 Returns a cropped image centered on the user's face. This image is obtained from the bestImage. This is the image that should be used as the characteristic image of the user who carried out the registration or authentication process as an 'avatar'.
 
-### 5.7 qrData
+**qrData**
 Returns the captured QR code data.
 
-### 5.8 bestImageTemplateRaw
-Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The widget will return the *bestImage* encrypted and in stringBase64 format.
+**bestImageTemplateRaw**
+Optional parameter. Only visible if the parameter enableGenerateTemplateRaw is set to true. The widget will return the templateRaw in stringBase64 format-
 
 ---
 

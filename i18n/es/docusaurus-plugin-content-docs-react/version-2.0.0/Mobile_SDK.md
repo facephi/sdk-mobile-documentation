@@ -44,7 +44,7 @@ Para esta sección, se considerarán los siguiente valores:
 
 
 ### 2.1. Añadir repositorio privado
-Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la SDKMobile se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi.
+Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la SDKMobile se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de **Facephi**.
 
 Para configurar la aplicación y así poder usar estos componentes, se deberá acceder a **\<APPLICATION_PATH\>**. En esa ruta, se debe crear un archivo con el siguiente nombre: 
 
@@ -52,7 +52,7 @@ Para configurar la aplicación y así poder usar estos componentes, se deberá a
 .npmrc
 ```
 
-Dentro de ese fichero se deberá agregar la información proporcionada por Facephi para poder descargarse las librerías del repositorio privado:
+Dentro de ese fichero se deberá agregar la información proporcionada por Facephi (**Credenciales**) para poder descargarse las librerías del repositorio privado:
 
 ```java
 registry=https://registry.npmjs.org/
@@ -77,15 +77,15 @@ Para acceder a las librerías nativas de iOS se requiere configurar el acceso a 
 
 Para tener acceso a nuestro repositorio privado en iOS, se requiere haber instalado previamente Cocoapods en la máquina.
 
-Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la SDKMobile se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi. A continuación se indica como preparar el entorno para consumir los componentes:
+Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la **SDKMobile** se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi. A continuación se indica como preparar el entorno para consumir los componentes:
 
-- Primero instalamos el comando que nos dará acceso a usar cocoapods con Artifactory.
+- Primero instalamos el comando que nos dará acceso a usar cocoapods con **Artifactory**.
 
 ```
 sudo gem install cocoapods-art
 ```
 
-- En caso de utilizar un Mac con chip M1, pueden surgir errores durante la instalación es posible que surjan errores en el futuro, de ser así, se recomienda usar en cambio el siguiente comando:
+- En caso de utilizar un Mac con **chip M1**, pueden surgir errores durante la instalación es posible que surjan errores en el futuro, de ser así, se recomienda usar en cambio el siguiente comando:
 
 ```
 sudo arch -arm64 gem install ffi; 
@@ -97,7 +97,7 @@ sudo arch -arm64 gem install cocoapods-art
 En caso de tener problemas con la instalación, desinstalar completamente cocoapods y todas sus dependencias para hacer una instalación limpia.
 </div>
 
-- Necesitaremos añadir el repositorio a la lista del fichero netrc. Para ello, desde un Terminal, se ejecuta el siguiente comando:
+- Necesitaremos añadir el repositorio a la lista del fichero **netrc**. Para ello, desde un Terminal, se ejecuta el siguiente comando:
 
 ```
 nano ~/.netrc
@@ -129,11 +129,11 @@ pod repo-art update cocoa-pro-fphi
 ```
 
 ### 2.2. Instalación del plugin: Common
-El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
+El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que cordova esté instalado.
+- Asegurarse de que **react-native** esté instalado.
 
-- Acceda al \<%APPLICATION_PATH%\> en un terminal y ejecute:
+- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
 yarn add @facephi/sdk-core-react-native
@@ -144,7 +144,7 @@ yarn add @facephi/sdk-core-react-native
 Si al ejecutar cualquier comando pod surge un error como el siguiente:
 arch: Can't find any plists for install
 
-Se recomienda ejecutar todos los comandos con arch -x86_64 delante, por ejemplo:
+Se recomienda ejecutar todos los comandos con ***arch -x86_64*** delante, por ejemplo:
 
 - **pod install**
 - **arch -x86_64 pod install**
@@ -161,7 +161,9 @@ Se recomienda ejecutar todos los comandos con arch -x86_64 delante, por ejemplo:
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado. 
 Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
 
-Desde Terminal(Para Android):
+***Desde Terminal***
+
+Para Android:
 
 ```
 npx react-native run-android 
@@ -175,18 +177,19 @@ Para iOS:
 npx react-native run-ios
 ```
 
-**Desde diferentes IDE**
+***Desde diferentes IDE***
 
  Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
 
 ### 2.3 Instalación plugin: iOS
 #### 2.3.1 Configuración del proyecto
+
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-- **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
-Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como No.
+- ***Deshabilitar el BITCODE***: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
+Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como **No**.
 
-- **Añadir los permisos de cámara**: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
+- ***Añadir los permisos de cámara***: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
 
 ```
 ***<key>NSCameraUsageDescription</key>***
@@ -194,6 +197,7 @@ Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Bu
 ```
 
 ### 2.3.2 Actualizar el Podfile
+
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
 
 ```
@@ -203,7 +207,7 @@ source 'https://cdn.cocoapods.org/'
 ```
 
 ### 2.3.3 Establecer la versión de Swift
-En Xcode, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
+En *Xcode*, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
 
 - Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
 

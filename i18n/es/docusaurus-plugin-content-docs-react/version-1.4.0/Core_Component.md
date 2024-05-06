@@ -3,7 +3,7 @@
 ## 1. Introduction 
 
 The Component addressed in the current document is called ***Core
-Component***. **This component is **mandatory installation**, regardless
+Component***. This component is **mandatory installation**, regardless
 of the use case, as it contains **generic functionality** to the entire
 sdk, as well as allowing the use of more specific components.  
 
@@ -136,20 +136,14 @@ In the previous section, there is a class called
 properties of this class are the following:
 
 
-#### 2.2.1 license
-
-**type:** *string*
-
+#### 2.2.1 license (string)
 Sets the SDK Mobile *license*. This license is provided by Facephi.
 
 ```
 license: "valid license“
 ```
 
-#### 2.2.2 licenseUrl
-
-**type:** *string*
-
+#### 2.2.2 licenseUrl (string)
 Sets the *url* where the service remotely validates the current license.
 This *endpoint* is provided by Facephi (online license).
 
@@ -158,19 +152,13 @@ This *endpoint* is provided by Facephi (online license).
 licenseUrl: "https://***.***.pro"
 ```
 
-#### 2.2.3 licenseApiKey
-
-**type:** *string*
-
+#### 2.2.3 licenseApiKey (string) 
 Sets the *apikey* for the license service (online license).
 ```
 licenseApiKey: "valid ApiKey"
 ```
 
-#### 2.2.4 enableTracking
-
-**type:** *boolean*
-
+#### 2.2.4 enableTracking (boolean)
 This property enables or disables the tracking component. This parameter allows the information tracking from the SDK to the Platform. 
 
 ```
@@ -184,7 +172,7 @@ Every time you wish to start the flow of a new operation (examples of operations
 
 <div class="warning">
 <span class="warning">:warning:</span>
-When starting a process or flow, the **initOperation** method call should **always** be made
+When starting a process or flow, the **initOperation** method call should **<u>always</u>** be made
 </div>
 
 This method has 2 input parameters:
@@ -333,10 +321,10 @@ Returns the type of error that occurred (if there was one, which is indicated by
     component cannot be instantiated.
 
 ### **5.5 tokenized**
-Optional parameter. Only visible if the *Tokenized* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
+Optional parameter. Only visible if the *Tokenized* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
 
 ### **5.6 data**: 
-Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
+Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
 ---
 
 ## 6. Close Session
@@ -409,6 +397,7 @@ const getExtraData = async () =>
 ```
 
 ## 8. Tokenize Method
+
 
 The Tokenize method tokenizes and encrypts the images obtained from the different components of the SDK Mobile. Thus, these images can be sent to the *Facephi Validation Service* (Backend) securely. 
 
