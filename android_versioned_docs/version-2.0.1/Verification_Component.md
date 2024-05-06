@@ -426,10 +426,10 @@ fun Bitmap.toByteArray(quality: Int = 95): ByteArray {
 The following function can be used to obtain the _extraData_ needed for the operations (either viewModelScope.launch or CoroutineScope(Dispatchers.IO).launch can be used):
 
 ```java
-private fun getExtraData(output: (String) -> Unit))
+private fun getExtraData(output: (String) -> Unit)
   {
       viewModelScope.launch {
-        when (val result = SDKController.launch(ExtraDataController()) {
+        when (val result = SDKController.launch(ExtraDataController())) {
             is SdkResult.Success -> output(result.data)
             is SdkResult.Error -> output("")
         }

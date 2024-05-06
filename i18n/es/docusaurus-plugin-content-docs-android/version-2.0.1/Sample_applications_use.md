@@ -72,4 +72,10 @@ val selphIDConfiguration = SelphIDConfigurationData(
     )
 ```
 
-- IMPORTANTE: El applicationId de la aplicación debe coincidir con el que se ha solicitado en la licencia
+- Para hacer uso de los servicios de verificacion hay que incluir la BASE_URL:
+
+```kotlin
+  const val BASE_URL = "..."
+```
+
+**IMPORTANTE: El applicationId de la aplicación debe coincidir con el que se ha solicitado en la licencia**

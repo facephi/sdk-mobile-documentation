@@ -68,7 +68,23 @@ completo antes de la instalación de los componentes de la
   **obligatorias** que deberán haberse instalado previamente:
 
   ```java
-  implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version"
+  implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version"{
+        exclude group : "org.bouncycastle", module : "bcprov-jdk15on"
+        exclude group : "org.bouncycastle", module : "jetified-bcprov-jdk15on-1.68"
+    }
+  ```
+
+  En el caso de NFC hay que añadir en gradle:
+
+  ```java
+  android {
+    ...
+   packaging {
+        resources {
+            pickFirsts.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+        }
+    }
+  }
   ```
 
 ---
