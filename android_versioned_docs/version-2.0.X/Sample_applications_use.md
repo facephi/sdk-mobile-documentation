@@ -1,12 +1,11 @@
-# Sample Applications
+# Sample Applications 
 
 ## Introduction
 
 Android sample applications can be found in the GitHub repository:
 
-[![Android Repository v.1.5.2](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/1.5.X)
-
-[Android Repository v.1.5.2](https://github.com/facephi/sdk-mobile-android-samples/tree/1.5.X")
+[![Android Repository v.2.0.1](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/2.0.X"
+   rel="nofollow"> Android Repository v.2.0.1</a>
 
 ### Steps to Set Up and Run the Applications
 
@@ -70,4 +69,10 @@ val selphIDConfiguration = SelphIDConfigurationData(
     )
 ```
 
-- IMPORTANT: The applicationId of the application must match the one requested in the license
+- To make use of the verification services, the BASE_URL must be included:
+
+```kotlin
+  const val BASE_URL = "..."
+```
+
+**IMPORTANT: The applicationId of the application must match the one requested in the license**

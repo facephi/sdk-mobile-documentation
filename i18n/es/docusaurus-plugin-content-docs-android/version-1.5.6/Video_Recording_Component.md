@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK).
 
 ---
 
@@ -32,10 +30,7 @@ grabación del proceso de onboarding.
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
+[Primeros Pasos](./Mobile_SDK) y seguir las instrucciones indicadas en dicho
 documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
@@ -69,10 +64,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+consultar la documentación de [Primeros Pasos](./Mobile_SDK), en el que se detalla y explica en qué consiste
 este proceso.
 
 ---
@@ -126,7 +118,7 @@ necesario para la conexión con el servicio de video.
 ### 6.1 Iniciar grabación
 
 Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. 
+3**) se podrán lanzar los componentes del SDK.
 
 Los controladores de grabación devolverán estados para indicar la evolución del proceso.
 
@@ -178,7 +170,7 @@ a la plataforma.
 ### 6.2 Parar grabación
 
 Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. 
+3**) se podrán lanzar los componentes del SDK.
 
 Los controladores de grabación devolverán estados para indicar la evolución del proceso.
 
@@ -230,6 +222,7 @@ a la plataforma.
 La evolución del proceso vendrá indicada a través de los estados:
 
 Los controladores de grabación devolverán estados para indicar la evolución del proceso:
+
 ```java
     AGENT_HANGUP,
     FINISH,
@@ -241,6 +234,7 @@ Los controladores de grabación devolverán estados para indicar la evolución d
     SOCKET_ERROR,
     UNKNOWN_ERROR,
 ```
+
 Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
 
 ---
