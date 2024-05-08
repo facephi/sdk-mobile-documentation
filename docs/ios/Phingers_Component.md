@@ -11,10 +11,8 @@ of modularity means that other new components can be added in the future
 new components can be added in the future without affecting those already integrated in the project.
 project.
 
-For more information on the base configuration, go to the 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+For more information on the base configuration, go to the
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -36,7 +34,7 @@ main functionalities are as follows:
 
 - Assistant in fingerprint capture processes.
 
-- Generation of templates with fingerprint characteristics, images and 
+- Generation of templates with fingerprint characteristics, images and
   scores.
 
 ### 1.1 Minimum requirements
@@ -63,18 +61,19 @@ the component in a project containing an old Facephi libraries
 (_Widgets_) version, these must be removed entirely before installing
 the **_SDKMobile_** components.
 
-- Currently FacePhi libraries are distributed remotely through 
-  different dependency managers, in this case Cocoapods. 
-  The **mandatory** dependencies that must have been previously installed 
+- Currently FacePhi libraries are distributed remotely through
+  different dependency managers, in this case Cocoapods.
+  The **mandatory** dependencies that must have been previously installed
   (adding them to the project's Podfile file) are:
 
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
+
 ```java
   pod 'FPHISDKMainComponent', '~> 1.4.0'.
 ```
 
-- To install the current component, the following entry must be included in the *Podfile* of the project
-  entry in the *Podfile* of the application:
+- To install the current component, the following entry must be included in the _Podfile_ of the project
+  entry in the _Podfile_ of the application:
 
   ```java
   pod 'FPHISDKPhingersComponent', '~> 1.4.0'.
@@ -102,10 +101,8 @@ command must first be executed.
 
 This command must have been executed **before launch**.
 
-To learn more about how to start a new operation, it is recommended to 
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>, which details and explains what this process consists of.
+To learn more about how to start a new operation, it is recommended to
+consult the [Getting Started](./Mobile_SDK), which details and explains what this process consists of.
 
 ---
 
@@ -153,7 +150,7 @@ head facing forward and not moving it.
 
 If set to **true** then in the result of the capture it will
 will return, for each of the footprints, the compressed data by means of
-Wavelet Scalar Quatization_ (WSQ). WSQ is a grey compression algorithm, being a standard (N
+Wavelet Scalar Quatization\_ (WSQ). WSQ is a grey compression algorithm, being a standard (N
 being a standard (NIST) for this type of captures. Oriented
 validation against the different existing governmental databases.
 databases.
@@ -172,7 +169,7 @@ the same form in which they have been captured.
 
 Specifies whether the capture process shall return the fingerprint template in the result.
 the result. It is an enumerated of type **_FingerprintTemplateType_**, and
-each value would be: 
+each value would be:
 
 - **ISO**: This template type refers to the standard **ISO/IEC
   19794-4**.
@@ -243,6 +240,7 @@ SDKController.shared.launch(controller: controller)
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
+
 The **launch** method must be used by **default**. This method allows
 **_tracking_** to be used if your component is enabled, and will not use
 it when it is disabled (or the component is not installed).
@@ -260,7 +258,7 @@ sent to the platform.
 The controllers will return the required information in SdkResult
 format. More information in the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>.	
+data-linked-resource-type="page">iOS Mobile SDK's</a>.
 
 ### 7.1. Receipt of errors
 
@@ -331,7 +329,7 @@ Returns the processed fingerprint image.
 These are the metrics of the capture. Currently the following is returned.
 value:
 
-- nfiqMetric**: An integer value, between 1 and 5 (inclusive),
+- nfiqMetric\*\*: An integer value, between 1 and 5 (inclusive),
   indicating the quality of the fingerprint capture, with 1 indicating the highest quality and 5 the worst quality.
   indicates the highest quality and 5 the worst quality. Fingerprints with the latter value
   The latter value is usually discarded for further validation.
@@ -341,9 +339,7 @@ value:
 ## 8. Customizing the component
 
 Apart from the changes that can be made at SDK level (which are
-explained in the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+explained in the [Getting Started](./Mobile_SDK)
 document), this particular component allows the modification of specific
 texts.
 
@@ -370,3 +366,4 @@ each String to the desired one.
 "phingers_component_text_results_finish_button" = "Finish";
 "phingers_component_agree" = "Accept";
 ---
+```

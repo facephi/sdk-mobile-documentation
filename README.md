@@ -21,7 +21,7 @@ npm run build
 Generar una nueva versión partiendo del directorio de docs
 
 ```
-npm run docusaurus docs:version:android 1.5.2
+npm run docusaurus docs:version:android 2.0.X
 ```
 
 Generar traducciones cuando se mete un plugin ID nuevo
@@ -38,4 +38,5 @@ Generar Warning/Alert/Note
 Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario modificarla. Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
 </div>
 ```
+
 En el custom.css estan los style que hacen referencia a las clases que dan estilos a los carteles de advertencia.

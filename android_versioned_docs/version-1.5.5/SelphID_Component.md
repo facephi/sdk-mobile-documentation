@@ -10,9 +10,7 @@ modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
 For more information on the base configuration, go to the
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -42,9 +40,7 @@ following:
 ## 2. Integration of the component
 
 Before integrating this component, it is recommended to read the
-documentation related to <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation related to [Getting Started](./Mobile_SDK)
 and follow its instructions.
 
 This section will explain step by step how to integrate the current
@@ -76,9 +72,7 @@ command must first be executed.
 This command must have been executed **before launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+consult the [Getting Started](./Mobile_SDK)
 documentation, which details and explains what this process consists of.
 
 ---

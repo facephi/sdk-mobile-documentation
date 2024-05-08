@@ -10,9 +10,7 @@ level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
 For more information on the base configuration, go to the
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -30,9 +28,7 @@ oriented to video assistance use cases.
 Before integrating this component, it is recommended to read the
 documentation related to:
 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+[Getting Started](./Mobile_SDK)
 and follow the instructions in that document.
 
 This section will explain step by step how to integrate the current
@@ -64,9 +60,7 @@ command must first be executed.
 This command must have been executed **prior to launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+consult the [Getting Started](./Mobile_SDK)
 documentation, which details and explains what this process consists of.
 
 ---
@@ -180,7 +174,7 @@ INITIALIZATION_ERROR -> it.error
 UNKNOWN_ERROR
 ```
 
-### 7.2. Receipt of correct execution - data_
+### 7.2. Receipt of correct execution - data\_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.
@@ -189,7 +183,7 @@ with the SdkResult.Success.
 
 ## 8. Screen sharing
 
-The screen sharing functionality can be executed using the _VideoCallScreenSharingManager_ class. 
+The screen sharing functionality can be executed using the _VideoCallScreenSharingManager_ class.
 With it, it is possible to start and end the screen sharing as well as to collect the states in which it is.
 
 ```java
@@ -250,9 +244,7 @@ videoCallScreenSharingManager.stopScreenSharingService()
 ## 9. Customizing the component
 
 Apart from the changes that can be made at SDK level (which are
-explained in the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+explained in the [Getting Started](./Mobile_SDK)
 document), this particular component allows the modification of specific
 texts.
 
