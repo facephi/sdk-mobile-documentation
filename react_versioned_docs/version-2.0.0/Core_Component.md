@@ -273,7 +273,7 @@ Returns the type of error that occurred (if there was one, which is indicated by
     sdk does not have permission to access the camera.
 
 -   **SettingsPermissionDenied**: The exception that is thrown when the
-    widget does not have permission to access system settings
+    component does not have permission to access system settings
     (\*deprecated\*).
 
 -   **HardwareError**: Exception that occurs when there is a hardware
@@ -286,10 +286,10 @@ Returns the type of error that occurred (if there was one, which is indicated by
 -   **UnexpectedCaptureError**: Exception that occurs during the capture
     of frames by the camera.
 
--   **ControlNotInitialisedError**: The widget configurator has not been
+-   **ControlNotInitialisedError**: The component configurator has not been
     initialised.
 
--   **BadExtractorConfiguration**: Problem arose during widget
+-   **BadExtractorConfiguration**: Problem arose during component
     configuration.
 
 -   **CancelByUser**: The exception that is thrown when the user stops

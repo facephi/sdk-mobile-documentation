@@ -26,8 +26,8 @@ Regarding the architecture of the mobile device:
 
 The current plugin version can be checked as follows:
 
-- Look for the package.json file at the root of the plugin.
-- The KEY/TAG version indicates the version.
+- Look for the *pubspec.yaml* file at the root of the plugin.
+- The KEY/TAG **version** indicates the version.
 
 ---
 
@@ -52,41 +52,22 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-- Make sure **react-native is** installed.
-
+- Make sure **react-native** is installed.
 - Access **APPLICATION_PATH** at a terminal and run:
+
 ```
-yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-selphi-react-native
+dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
 ```
 
 - It is important to verify that the path to the plugin is correctly defined in package.json:
 
 ```
-"dependencies": {
-  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-selphi-react-native": <% PLUGIN_SELPHI_FACE_PATH %>
-}
+fphi_sdkmobile_selphi:
+  hosted:
+    name: sdkselphi
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.0.0
 ```
-After running the above steps, you can start the app with the sdk/component installed.
-
-- Finally, to launch the projects, the following commands must be executed in two ways:
-
-***From Terminal (For Android):***
-```
-npx react-native run-android 
-or 
-npx react-native run-android --active-arch-only
-```
-
-***From Terminal (For iOS):***
-```
-npx react-native run-ios
-```
-
-***From different IDEs***
-
-Projects generated in the Android and iOS folders can be opened, compiled, and debugged using *Android Studio* and *XCode*, respectively.
 
 ### 2.2 Plugin installation: iOS
 #### 2.2.1 Project configuration
@@ -141,6 +122,12 @@ pod deintegrate
 pod install --repo-update
 ```
 
+y
+
+```
+pod repo-art update cocoa-pro-fphi
+```
+
 ### 2.3  Plugin installation: Android
 #### 2.3.1 Set Android SDK version
 
@@ -171,32 +158,28 @@ The actual component contains a number of Typescript methods and interfaces cont
 
 Below is the *SelphiConfiguration* class, which allows you to configure the Selphi component:
 
-```
-export interface SelphiConfiguration {
-  debug?: boolean;
-  fullscreen?: boolean;
-  cropPercent?: number;
-  locale?: string;
-  stabilizationMode?: boolean;
-  templateRawOptimized?: boolean;
-  resourcesPath?: string;
-  enableGenerateTemplateRaw?: boolean;
-  livenessMode?: SdkLivenessMode;
-  showResultAfterCapture?: boolean;
-  cameraFlashEnabled?: boolean;
-  translationsContent?: string;
-  viewsContent?: string;
-  showTutorial?: boolean;
-  cameraId?: number;
-  videoFilename?: string;
-  params?: any;
-  qrMode?: boolean;
-  showDiagnostic?: boolean;
-  logImages?: boolean;
+``` dart
+class SelphiFaceConfiguration {
+  bool mDebug;
+  bool mFullscreen;
+  bool mCrop;
+  double mCropPercent;
+  bool mStabilizationMode;
+  bool mTemplateRawOptimized;
+  bool mEnableGenerateTemplateRaw;
+  SelphiFaceLivenessMode mLivenessMode;
+  bool mShowResultAfterCapture;
+  double mJPGQuality;
+  String mLocale;
+  String mTranslationsContent;
+  String mViewsContent;
+  String mVideoFilename;
+  bool? mShowDiagnostic;
+  bool? mShowTutorial;
+  bool mLogImages;
 }
 ```
 
-Then, all the properties that can be defined in the ***SdkTracking*** object will be commented on:
 <div class="note">
 <span class="note">:information_source:</span>
 All the configuration can be found in the component's *node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx* file.
@@ -208,7 +191,7 @@ When making the call to the widget there is a series of parameters that must be 
 
 **type:** *string*
 
-Sets the name of the resource file that the widget will use for its graphical configuration. This file is customisable and is located in the plugin in the src/main/assets folder for Android and in the ios/Frameworks and Resources folder for iOS. Its installation is transparent to the user, it will simply be added to the respective platform's projects during plugin installation. More details about how this resource pack works and how to modify it are explained in section 6.
+Sets the name of the resource file that the widget will use for its graphical configuration. This file is customisable and is located in the plugin in the ***src/main/assets*** folder for **Android** and in the ***ios/Frameworks*** and Resources folder for **iOS**. Its installation is transparent to the user, it will simply be added to the respective platform's projects during plugin installation. More details about how this resource pack works and how to modify it are explained in ***section 6***.
 
 ```
 resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
@@ -219,7 +202,7 @@ resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 
 **type:** *boolean*
 
-Indicates whether the images returned (in the images parameter that is activated with enableImages = true) in the completion event contain only the area of ​​the detected face, at a magnification given by CropPercent, or whether the entire image is returned.
+Indicates whether the images returned (in the images parameter that is activated with *logImages = true*) in the completion event contain only the area of ​​the detected face, at a magnification given by *CropPercent*, or whether the entire image is returned.
 
 
 ```
@@ -249,7 +232,7 @@ debug: false
 
 ### 3.5. livenessMode
 
-**type:** *string*
+**type:** *SdkLivenessMode*
 
 Sets the liveness mode of the component. The possible values are:
 
@@ -293,7 +276,7 @@ Sets whether you want the sdk to start in full screen mode, hiding the status ba
 fullscreen: true
 ```
 
-### 3.9. enableImages
+### 3.9. logImages
 
 **type:** *string*
 
@@ -303,14 +286,118 @@ Indicates whether the sdk returns to the application the images used during extr
 logImages: false
 ```
 
-### 3.10. frontalCameraPreferred
+### 3.10. templateRawOptimized
 
 **type:** *boolean*
 
-Property to select the front camera as the preferred camera.
+Indicates whether if the selfie token generated must be optimized or not.
 
 ```
-frontalCameraPreferred: true
+templateRawOptimized: false
+```
+
+### 3.11. showDiagnostic
+
+**type:** *boolean*
+
+Shows a pop-up with the component diagnostic if the process fails.
+
+```
+showDiagnostic: true
+```
+
+### 3.12 enableGenerateTemplateRaw
+
+**type:** *boolean*
+
+Optional parameter. Only visible if the parameter enableGenerateTemplateRaw is set to true. The widget will return the *bestImage* encrypted and in *stringBase64* format.
+
+```
+enableGenerateTemplateRaw: true
+```
+
+
+###  3.13 showResultAfterCapture
+
+**type:** *boolean*
+
+Indicates whether or not to display a screen with the captured image of the selfie after the process. This screen gives the user the option of repeating the capture process if the image obtained is not correct.
+
+```
+showResultAfterCapture: false
+```
+
+
+###  3.14 showTutorial
+
+**type:** *boolean*
+
+Indicates whether or not to display the tutorial before the process. After the tutorial finishes, the component process will continue as usual.
+
+```
+showTutorial: true
+```
+
+###  3.15 videoFilename
+
+**type:** *string*
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+Sets the absolute path of the file name in which a video of the capture
+process will be recorded. The application is responsible for requesting
+the necessary permissions to the phone in case that route requires
+additional permissions. The component, by default, will not perform any
+write processing unless a file path is specified using this method.
+
+```
+videoFilename: “\<videofile-path\>“;
+```
+
+
+###  3.16 translationsContent
+
+**type:** *string*
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+This property allows, through a string in xml format, to configure the
+current location of the widget. The definition of this model can be
+found, by default, in an internal translations folder within the
+resources .zip. This property allows an application to update and
+replace the current location of the component at run time.
+
+```
+translationsContent: “\<translation-content-string\>“;
+```
+
+
+###  3.17 viewsContent
+
+**type:** *string*
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+
+This property allows, through a string in xml format, to configure the
+views of the current component. The definition of this modelling can be
+found, by default, in a file called **widget.xml** inside the resources
+.zip. This property allows an application to update and override the
+layout of the component's internal screens whilst running.
+```
+viewsContent: “\<views-content-string\>“;
 ```
 ---
 
@@ -325,43 +412,44 @@ Remember that in order to launch a certain component previously, you must **init
 Once the component has been configured, to launch it, the following code must be executed:
 
 ```
-const getSelphiConfiguration = () => {
-    let config: SelphiConfiguration = {
-      debug: false,
-      fullscreen: true,
-      livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode,
-      resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
-      //enableGenerateTemplateRaw: true,
-      logImages: true
-    };
-    return config;
-};
+Future<Either<Exception, SelphiFaceResult>> launchSelphiAuthenticate(String resourcesPath) async
+  {
+    return launchSelphiAuthenticateWithConfiguration(resourcesPath, createStandardConfiguration());
+  }
 
-const startSelphi = async () => 
-{ 
-    try 
+  Future<Either<Exception, SelphiFaceResult>>
+      launchSelphiAuthenticateWithConfiguration(
+          String resourcesPath, SelphiFaceConfiguration configuration) async {
+    try
     {
-      console.log("Starting startSelphi...");
-      clearAll();
+      FphiSdkmobileSelphi selphi = FphiSdkmobileSelphi();
+      final Map resultJson = await selphi.startSelphiFaceWidget(
+          resourcesPath: resourcesPath,
+          widgetConfigurationJSON: configuration);
 
-      return await SdkMobileSelphi.selphi(getSelphiConfiguration())
-      .then((result: any) => 
-      {
-        console.log("result", result);
-        processSelphiResult(result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End startSelphi...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
+      if (resultJson != null)
+        return Right(SelphiFaceResult.fromMap(resultJson));
+      else
+        throw Exception('Plugin internal error');
     }
-};
+    on Exception catch (e) {
+      return (Left(e));
+    }
+  }
+
+  /// Sample of standard plugin configuration
+  SelphiFaceConfiguration createStandardConfiguration()
+  {
+    SelphiFaceConfiguration configurationWidget;
+    configurationWidget = SelphiFaceConfiguration();
+    configurationWidget.livenessMode = SelphiFaceLivenessMode.LM_PASSIVE; // Liveness mode
+    configurationWidget.fullscreen = true;
+    configurationWidget.enableImages = false;
+    configurationWidget.jpgQuality = 0.95;
+    configurationWidget.enableGenerateTemplateRaw = true;
+
+    return configurationWidget;
+  }
 ```
 
 ---
@@ -369,36 +457,37 @@ const startSelphi = async () =>
 ## 5. Return of result
 As shown in the example above, the result is returned in the form of a JSON object via Promises, whether it is a successful operation or an error:
 
-```
-return await SdkMobileSelphi.selphi(getSelphiConfiguration())
-.then((result: any) => 
-{
-    console.log("result", result);
-})
-.catch((error: any) => 
-{
-    console.log(error);
-})
-.finally(()=> {
-    console.log("End startSelphi...");
-});
+``` dart
+  try
+    {
+      FphiSdkmobileSelphi selphi = FphiSdkmobileSelphi();
+      final Map resultJson = await selphi.startSelphiFaceWidget(
+          resourcesPath: resourcesPath,
+          widgetConfigurationJSON: configuration);
+
+      if (resultJson != null)
+        return Right(SelphiFaceResult.fromMap(resultJson));
+      else
+        throw Exception('Plugin internal error');
+    }
+    on Exception catch (e) {
+      return (Left(e));
+    }
 ```
 
 Regardless of whether the result is correct/erroneous, the result will have the following format:
 
-```
-export interface SelphiResult {
-  finishStatus?: number;
-  errorType?: string;
-  finishStatusDescription?: string;
-  errorMessage?: string;
-  bestImage?: string;
-  bestImageCropped?: string;
-  bestImageTemplateRaw?: string;
-  bestImageTokenized?: string;
-  qrData?: string;
-  templateRaw?: string;
-  images?: string[];
+``` dart
+class SelphiFaceResult {
+  final SdkFinishStatus finishStatus;
+  final String finishStatusDescription;
+  final String errorDiagnostic;
+  final String? errorMessage;
+  final String? templateRaw;
+  final String? qrData;
+  final String? bestImage;
+  final String? bestImageCropped;
+  final String? bestImageTemplateRaw;
 }
 ```
 

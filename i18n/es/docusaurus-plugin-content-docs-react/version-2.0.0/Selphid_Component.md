@@ -16,6 +16,7 @@ El Componente tratado en el documento actual recibe el nombre de SelphID Compone
 - Alto nivel de configuración: diferentes países, idiomas, tipos de documentos...
 
 ### 1.1 Requisitos mínimos
+
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 - Versión mínima Android: 24 - JDK 11
@@ -88,7 +89,7 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 - **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, **el BITCODE debe estar desactivado**. 
 Dentro del XCODE simplemente accediendo a *Build from Settings*, en la sección *Build Options*, deberás indicar el parámetro Habilitar Bitcode como No.
 
-- **Añadir los permisos de cámara**: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
+- **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
 
 ```
 <key>NSCameraUsageDescription</key>
@@ -164,7 +165,6 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
  export interface SelphidConfiguration {
   debug?: boolean;
   fullScreen?: boolean;
-  frontalCameraPreferred?: boolean;
   tokenImageQuality?: number;
   widgetTimeout?: number;
   showResultAfterCapture?: boolean;
@@ -173,16 +173,12 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   scanMode?: string;
   specificData?: string;
   documentType?: string;
-  videoFilename?: string;
-  fullscreen?: boolean;
+  videoFilename?: stirng;
   locale?: string;
   documentModels?: string;
-  enableWidgetEventListener?: boolean;
   generateRawImages?: boolean;
   translationsContent?: string;
   viewsContent?: string;
-  cameraId?: number;
-  params?: any;
   resourcesPath?: string;
   tokenPrevCaptureData?: string;
   wizardMode?: boolean;
@@ -200,17 +196,17 @@ A continuación, se comentarán todas las propiedades que se pueden definir en e
 Toda la configuración se podrá encontrar en el archivo ***src/index.tsx*** del componente.
 </div>
 
-A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
+A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
 ### 3.1 resourcesPath
 
 **type:** *string*
 
-Establece el nombre del archivo de recursos que utilizará el widget para su configuración gráfica. Éste archivo es personalizable y se encuentra en el complemento en la carpeta **src/main/assets** para ***Android*** y en **ios/Frameworks** y de la carpeta Resources para ***iOS***. Su instalación es transparente para el usuario, simplemente se agregará a los proyectos de las respectivas plataformas durante la instalación del complemento. Más detalles sobre cómo funciona este paquete de recursos y cómo modificarlo se explican en **apartado 6**.
+Establece el nombre del archivo de recursos que utilizará el componente para su configuración gráfica. Éste archivo es personalizable y se encuentra en el complemento en la carpeta **src/main/assets** para ***Android*** y en **ios/Frameworks** y de la carpeta Resources para ***iOS***. Su instalación es transparente para el usuario, simplemente se agregará a los proyectos de las respectivas plataformas durante la instalación del complemento. Más detalles sobre cómo funciona este paquete de recursos y cómo modificarlo se explican en **apartado 6**.
 
 > resourcesPath: "fphi-selphid-widget-resources-sdk.zip"
 
-### 3.2 ShowResultAfterCapture
+### 3.2 showResultAfterCapture
 
 **type:** *boolean*
 
@@ -219,7 +215,7 @@ Indica si mostrar o no una pantalla con la imagen capturada del documento despu�
 > showResultAfterCapture: false
 
 
-### 3.3 ScanMode
+### 3.3 scanMode
 
 **type:** *WidgetScanMode*
 
@@ -233,7 +229,7 @@ Este enumerado se define en la clase ***SdkSelphidEnum.tsx***. Indica el modo de
 scanMode: SdkSelphidEnums.SdkScanMode.Search;
 ```
 
-### 3.4 SpecificData
+### 3.4 specificData
 
 **type:** *string*
 
@@ -245,19 +241,19 @@ Un ejemplo de configuración que permita escanear todos los documentos de nacion
 > specificData: “ES|<ALL>”; // Spanish ISO code(ES)
 
 
-### 3.5 FullScreen
+### 3.5 fullScreen
 
 **type:** *boolean*
 
-Establece si se desea que el widget se arranque en modo pantalla completa, ocultando el status bar.
+Establece si se desea que el componente se arranque en modo pantalla completa, ocultando el status bar.
 ```
 fullscreen: true;
 ```
-### 3.6 Locale
+### 3.6 locale
 
 **type:** *string*
 
-Es un string que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
+Es un string que permite cambiar la localización y el idioma del componente. Ejemplos de valores que pueden tener son los siguientes:
 
 - “es” para español.
 - “en” para inglés.
@@ -265,11 +261,11 @@ Es un string que permite cambiar la localización y el idioma del widget. Ejempl
 
 En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del lenguaje que se desee seleccionar (strings-es.xml, strings-en.xml, strings-fr.xml).
 
-En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el widget.
+En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el componente.
 
 > locale: "es";
 
-### 3.7 DocumentType
+### 3.7 documentType
 
 **type:** *string*
 
@@ -285,7 +281,7 @@ Este enumerado se define en la clase `SdkSelphidEnums.tsx`. Especificado en el e
 > documentType: SdkSelphidEnums.SdkDocumentType.IDCard;
 
 
-### 3.8 TokenImageQuality
+### 3.8 tokenImageQuality
 
 **type:** *double*
 
@@ -299,7 +295,7 @@ Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la e
 
 **type:** *boolean*
 
-Esta propiedad configura el widget para devolver la imagen completa de la cámara que se utilizó para capturar el documento:
+Esta propiedad configura el componente para devolver la imagen completa de la cámara que se utilizó para capturar el documento:
 
 - rawFrontDocument: Imagen frontal del documento sin procesar.
 - rawBackDocument:  Imagen trasera del documento sin procesar.
@@ -310,7 +306,7 @@ Esta propiedad configura el widget para devolver la imagen completa de la cámar
 generateRawImages: true;
 ```
 
-### 3.10 SdkTimeout
+### 3.10 widgetTimeout
 
 **type:** *number*
 
@@ -324,11 +320,84 @@ Es un enumerado que define el timeout de la captura de un lado del documento. Ti
 
 **type:** *boolean*
 
-Establece si se desea lanzar el widget en modo Tutorial. Esto permite mostrar el tutorial del widget previo, pero SIN realizar el proceso posterior de captura. Útil en caso de que se desee mostrar el tutorial de forma aislada.
+Establece si se desea lanzar el componente en modo Tutorial. Esto permite mostrar el tutorial del componente previo, pero SIN realizar el proceso posterior de captura. Útil en caso de que se desee mostrar el tutorial de forma aislada.
 
 >     **tutorialOnly**: true;
 
-### 3.12 videoFilename
+
+###  3.12 debug
+
+**type:** *boolean*
+
+Establece el modo debug del componente.
+
+```
+debug: false
+```
+
+###  3.13 showTutorial
+
+**type:** *boolean*
+
+Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Después de que termine el tutorial, el proceso continuará con normalidad.
+
+```
+showTutorial: true
+```
+
+###  3.14 wizardMode
+
+**type:** *boolean*
+
+Indica si el componente se configurará para capturar ambas partes del documento (frontal y dorso) una después de la otra. En este modo, el componente se lanzará sólo una vez, y capturará el dorso del documento justo después de capturar el frontal.
+
+
+
+###  3.15 tokenPrevCaptureData
+
+**type:** *string*
+
+Cuando el documento se captura mediante dos pasos (para ello, ***wizardMode*** debe establecerse a *false*), esta propiedad permite inyectar un diccionario con la información de la captura previa. De este modo, el componente puede combinar el resultado de ambas lecturas de forma inteligente, y de ese modo devolver la información combinada de ambas capturas. También permite calcular el grado de similitud de los datos de ambos lados.
+
+Si ambos lado del documento se capturan en una única llamada al componente (***wizardMode*** debe establecerse a *true*), esto sería innecesario ya que el componente realiza este proceso internamente.
+
+> tokenPrevCaptureData: selphIDResult.tokenOCR
+
+
+### 3.16. showDiagnostic
+
+**type:** *boolean*
+
+Muestra un popup con el diagnóstico del componente en caso de que el proceso falle.
+
+```
+showDiagnostic: true
+```
+
+
+
+###  3.17 compressFormat
+
+**type:** *SdkCompressFormat*
+
+Indica el formato de compresión de la imagen. Los valores posibles son:
+
+- PNG
+- JPG
+
+>     **compressFormat**: "JPG“;
+
+
+###  3.18 imageQuality
+
+**type:** *number*
+
+Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible establecer la calidad de compresión de la imagen. Este parámetro se ignorará si el valor de la propiedad ***compressFormat*** es **PNG**.
+
+>     **imageQuality**: 95
+
+
+### 3.19 videoFilename
 
 **type:** *string*
 
@@ -341,7 +410,7 @@ Establece la ruta absoluta del nombre del archivo en el que se grabará un video
 
 >     **videoFilename**: “\<videofile-path\>“;
 
-### 3.13 documentModels
+### 3.20 documentModels
 
 **type:** *string*
 
@@ -350,11 +419,11 @@ Establece la ruta absoluta del nombre del archivo en el que se grabará un video
 Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario modificarla. Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
 </div>
 
-Esta propiedad permite, mediante una cadena en formato xml, configurar modelado de los documentos que el widget va a tratar de capturar. La definición de este modelado se puede encontrar, por defecto, en  un .xml de modelos dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, los modelados de los documentos actuales del componente.
+Esta propiedad permite, mediante una cadena en formato xml, configurar modelado de los documentos que el componente va a tratar de capturar. La definición de este modelado se puede encontrar, por defecto, en  un .xml de modelos dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, los modelados de los documentos actuales del componente.
 
 >     **documentModels**: “\<document-models-content-string\>“;
 
-### 3.14 translationsContent
+### 3.21 translationsContent
 
 **type:** *string*
 
@@ -363,11 +432,11 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar modelado 
 Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario modificarla. Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
 </div>
 
-Esta propiedad permite, mediante una cadena en formato xml, configurar la localización actual del widget. La definición de este modelado se puede encontrar, por defecto, en una carpeta interna de traducciones  dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, la localización actual del componente.
+Esta propiedad permite, mediante una cadena en formato xml, configurar la localización actual del componente. La definición de este modelado se puede encontrar, por defecto, en una carpeta interna de traducciones  dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, la localización actual del componente.
 
 >     **translationsContent**: “\<translation-content-string\>“;
 
-### 3.15 viewsContent
+### 3.22 viewsContent
 
 **type:** *string*
 
@@ -395,7 +464,7 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
-```
+``` java
 const getSelphidConfiguration = () => {
     let config: SelphidConfiguration = {
       debug: false,
@@ -500,21 +569,30 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 </div>
 
 ### 5.1 finishStatus
-- **SdkFinishStatus.Ok**: La operación fue exitosa.
-- **SdkFinishStatus.Error**: Se ha producido un error, el cuál se indicará en el enumerado `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-### 5.2 errorType
+Devuelve el diagnóstico global de la operación.
+
+- **SdkFinishStatus.Ok**: La operación fue exitosa.
+- **SdkFinishStatus.Error**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+
+
+### 5.2 finishStatusDescription
+
+Devuelve la descripción de finishStatus. Es un valor opcional.
+
+
+### 5.3 errorType
  Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
 
 - **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
 - **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
 - **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
-- **SettingsPermissionDenied**: Excepción que se produce cuando el widget no tiene permiso de acceso a la configuración del sistema (*deprecated*).
+- **SettingsPermissionDenied**: Excepción que se produce cuando el componente no tiene permiso de acceso a la configuración del sistema (*deprecated*).
 - **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
 - **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
 - **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
-- **ControlNotInitializedError**: El configurador del widget no ha sido inicializado.
-- **BadExtractorConfiguration**: Problema surgido durante la configuración del widget.
+- **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
+- **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
 - **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
 - **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
 - **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
@@ -524,40 +602,40 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-### 5.3 errorMessage: 
+### 5.4 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
-### 5.4 frontDocument/tokenFrontDocument
+### 5.5 frontDocument/tokenFrontDocument
 - ***frontDocument***: La imagen frontal del documento procesada, limpiada y recortada por los bordes y su token correspondiente.
 - ***tokenFrontDocument***: Contiene la misma información que frontDocument, sólo que se encuentra encriptada, tokenizada y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
 
-### 5.5 backDocument/tokenBackDocument
+### 5.6 backDocument/tokenBackDocument
 - ***backDocument***: La imagen trasera del documento procesada, limpiada y recortada por los bordes.
 - ***tokenBackDocument***: Contiene la misma información que backDocument, sólo que se encuentra encriptada, tokenizada y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
 
-### 5.6 rawFrontDocument/tokenRawFrontDocument
+### 5.7 rawFrontDocument/tokenRawFrontDocument
 - ***rawFrontDocument***: La imagen frontal del documento sin procesar, tal y como se obtiene de la cámara.
 - ***tokenRawFrontDocument***: Contiene la misma información que rawFrontDocument, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
 
-### 5.7 rawBackDocument/tokenRawBackDocument
+### 5.8 rawBackDocument/tokenRawBackDocument
 - ***rawBackDocument***: La imagen trasera del documento sin procesar, tal y como se obtiene de la cámara.
 - ***tokenRawBackDocument***: Contiene la misma información que rawBackDocument, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
 
-### 5.8 faceImage/tokenFaceImage
+### 5.9 faceImage/tokenFaceImage
 - ***faceImage***: La imagen frontal del documento procesada, limpiada y recortada por los bordes.
 - ***tokenFaceImage***: Contiene la misma información que faceImage, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
 
-### 5.9 documentData/tokenOCR
+### 5.10 documentData/tokenOCR
 - ***documentData***: Los datos OCR obtenidos durante la captura del documento. La información contenida en este objeto variará dependiendo del tipo de documento y del país de éste.
 - ***tokenOCR***: Contiene la misma información que documentData, sólo que se encuentra encriptada y tokenizada, y convertida a stringBase64. Este campo podrá destokenizarse en el servicio de SelphID.
 
-### 5.10 matchingSidesScore
+### 5.11 matchingSidesScore
 Esta propiedad devuelve un cálculo de la similitud de los datos leídos entre el front y el back del documento. El cálculo se realiza comprobando la similitud entre los campos comunes leídos en ambas caras. El resultado del cálculo será un valor entre 0.0 y 1.0 para el caso de que existan campos comunes en el documento. Cuanto mayor es el valor, más similares son los datos comparados.
 
 Si el cálculo devuelve -1.0 es que el documento no contiene campos comunes o aún no se tiene información de las dos caras.
 
-### 5.11 captureProgress/timeoutStatus
-Esta propiedad devuelve el estado en el que se encontraba el proceso de captura cuando el widget terminó. Estos son los posibles valores:
+### 5.12 captureProgress/timeoutStatus
+Esta propiedad devuelve el estado en el que se encontraba el proceso de captura cuando el componente terminó. Estos son los posibles valores:
 
 ``` java
 Front_Detection_None = 0
@@ -570,16 +648,22 @@ Back_Detection_Completed = 6
 Back_Document_Analyzed = 7
 ```
 
-- 0: En la lectura del Front, el widget termino sin poder haber detectado nada. Generalmente cuando no se pone ningún - documento.
-- 1: En la lectura del Front, el widget termino habiendo detectado parcialmente un documento. En este caso algunos de los elementos esperados se han conseguido detectar, pero no todos los necesarios.
-- 2: En la lectura del Front, el widget termino habiendo completado la detección de todos los elementos del documento. Si el widget acaba en este estado es porque el análisis de OCR no se ha podido completar con éxito
-- 3: En la lectura del Front, el widget termino habiendo analizado y extraído todo el OCR del documento. Este es el estado en el que acabaría una lectura correcta del Front de un documento.
+- 0: En la lectura del Front, el componente termino sin poder haber detectado nada. Generalmente cuando no se pone ningún - documento.
+- 1: En la lectura del Front, el componente termino habiendo detectado parcialmente un documento. En este caso algunos de los elementos esperados se han conseguido detectar, pero no todos los necesarios.
+- 2: En la lectura del Front, el componente termino habiendo completado la detección de todos los elementos del documento. Si el componente acaba en este estado es porque el análisis de OCR no se ha podido completar con éxito
+- 3: En la lectura del Front, el componente termino habiendo analizado y extraído todo el OCR del documento. Este es el estado en el que acabaría una lectura correcta del Front de un documento.
 - Los estados del **4 al 7 son exactamente iguales** solo que se refieren al resultado del proceso cuando se analiza el back.
+
+
+### 5.13 documentCaptured
+
+Devuelve el modelo o versión del documento capturado.
+
 
 ---
 
 ## 6. Personalización de componente (Opcional)
-Este componente permite la personalización de textos, imágenes, fuentes de letra y colores. La personalización se realiza mediante el archivo .zip suministrado internamente. Este zip está compuesto de un fichero llamado widget.xml que contiene la definición de todas las pantallas del widget, cada una de ellas con una serie de elementos los cuales permiten realizar la personalización. El archivo zip también contiene una carpeta con recursos gráficos y otra carpeta con las traducciones de los textos.
+Este componente permite la personalización de textos, imágenes, fuentes de letra y colores. La personalización se realiza mediante el archivo .zip suministrado internamente. Este zip está compuesto de un fichero llamado widget.xml que contiene la definición de todas las pantallas del componente, cada una de ellas con una serie de elementos los cuales permiten realizar la personalización. El archivo zip también contiene una carpeta con recursos gráficos y otra carpeta con las traducciones de los textos.
 
 ### 6.1. Descripción básica
 #### 6.1.1. Personalización de textos
@@ -589,7 +673,7 @@ La personalización de textos se realiza editando los textos de los archivos de 
     - /strings/strings.xml
 
 #### 6.1.2. Personalización de imágenes
-Para personalizar las imágenes que usa el widget se deben añadir las imágenes en el .zip de recursos. En el zip vienen 3 carpetas:
+Para personalizar las imágenes que usa el componente se deben añadir las imágenes en el .zip de recursos. En el zip vienen 3 carpetas:
 
     - /resources/163dpi
     - /resources/326dpi
@@ -597,12 +681,12 @@ Para personalizar las imágenes que usa el widget se deben añadir las imágenes
 
 Estas carpetas corresponden a las diferentes densidades de pantalla y se pueden crear tantas carpetas de densidad como se desee. En estas carpetas están las versiones de las imágenes para cada una de las resoluciones.
 
-Es necesario añadir las imágenes en todas las carpetas, ya que una vez determinada la resolución óptima para el dispositivo, el widget sólo carga imágenes de la carpeta con la resolución elegida.
+Es necesario añadir las imágenes en todas las carpetas, ya que una vez determinada la resolución óptima para el dispositivo, el componente sólo carga imágenes de la carpeta con la resolución elegida.
 
-Las imágenes son referenciadas desde el archivo `widget.xml`.
+Las imágenes son referenciadas desde el archivo `componente.xml`.
 
 #### 6.1.3. Personalización de colores
-La personalización de los colores de los botones se realiza desde el archivo `widget.xml`. En él se puede personalizar cualquier color de cualquier elemento gráfico que aparece en el widget. Simplemente basta con modificar el color de la propiedad deseada.
+La personalización de los colores de los botones se realiza desde el archivo `widget.xml`. En él se puede personalizar cualquier color de cualquier elemento gráfico que aparece en el componente. Simplemente basta con modificar el color de la propiedad deseada.
 
 #### 6.1.4. Personalización de tipo de fuente
 Los archivos de tipografía deben colocarse en la carpeta `/resources/163dpi` y una vez ahí pueden ser referenciados desde el archivo `widget.xml`. Para cambiar el tipo de letra de un elemento de texto bastaría con modificar la propiedad ‘font’ y poner el nombre del archivo correspondiente.
@@ -620,7 +704,7 @@ Esta carpeta contiene un fichero `strings.xml` por cada traducción que se desee
 
 Siendo (idioma) el código del idioma. Por ejemplo, `strings.es.xml` sería la traducción en castellano, `strings.en.xml` la traducción en inglés, `strings.es_ES.xml` el español de España o `strings.es_AR.xml` el español de Argentina.
 
-Se puede forzar el idioma o dejar que el widget lo escoja en función de la configuración del dispositivo. A la hora de decidir cuál es el idioma a aplicar se sigue el siguiente orden:
+Se puede forzar el idioma o dejar que el componente lo escoja en función de la configuración del dispositivo. A la hora de decidir cuál es el idioma a aplicar se sigue el siguiente orden:
 
 Buscar por código de localización (por ejemplo, “es_AR”).
 Si no encuentra ninguna que coincida, buscaría uno para el idioma genérico (es decir, en este caso sería “es”).
@@ -629,7 +713,7 @@ Si tampoco existiese ningún resultado, entonces usaría el idioma por defecto.
 A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, “es” o “es_ES”).
 
 #### 6.2.3. Carpeta resources
-Contiene las carpetas con todos los recursos necesarios para poder modificarse, divididos en densidades. Es obligatorio generar las imágenes en todas las densidades ya que el widget espera encontrarlas en la carpeta correspondiente a la densidad del dispositivo. También se pueden crear nuevas carpetas con la densidad deseada.
+Contiene las carpetas con todos los recursos necesarios para poder modificarse, divididos en densidades. Es obligatorio generar las imágenes en todas las densidades ya que el componente espera encontrarlas en la carpeta correspondiente a la densidad del dispositivo. También se pueden crear nuevas carpetas con la densidad deseada.
 
 #### 6.2.4. Elemento BACKGROUND
 El elemento `background` se compone de 4 segmentos a los que se puede dar color independientemente:
@@ -661,7 +745,7 @@ pagination_separator (RegistrationTips, FaceMovementTips): define el color de la
 - **font_size**: Define el tamaño de la letra si el contenido del botón es un texto
 
 #### 6.2.6. Elemento TEXT
-Los elementos `text` se utilizan para definir el aspecto gráfico de los textos de cada una de las pantallas del widget. Estas son las propiedades que se pueden modificar:
+Los elementos `text` se utilizan para definir el aspecto gráfico de los textos de cada una de las pantallas del componente. Estas son las propiedades que se pueden modificar:
 
 - **color**: define el color del texto.
 - **font**: define el tipo de fuente utilizado para mostrar el texto.

@@ -54,10 +54,12 @@ The current plugin version can be checked as follows:
 ---
 
 ## 2. Component integration 
-
+<div class="note">
+<span class="note">:information_source:</span>
 Before integrating this component, it is **recommended** to read the
 documentation related to **<u>Core Component</u>** and follow the
 instructions indicated in said document.
+</div>
 
 <div class="note">
 <span class="note">:information_source:</span>
@@ -148,7 +150,7 @@ the following points must be previously taken into account:
     *Build Options* section, you must indicate the *Enable Bitcode*
     parameter as **No**.
 
--   ***Add camera permissions:*** To use the widget, you need to enable
+-   ***Add camera permissions:*** To use the component, you need to enable
     the camera permission in the application's ***info.plist*** file
     (included within the project in the ***ios*** folder). You will need
     to edit the file with a text editor and add the following
@@ -264,7 +266,6 @@ configure the **SelphID** component:
  export interface SelphidConfiguration {
   debug?: boolean;
   fullScreen?: boolean;
-  frontalCameraPreferred?: boolean;
   tokenImageQuality?: number;
   widgetTimeout?: number;
   showResultAfterCapture?: boolean;
@@ -273,16 +274,12 @@ configure the **SelphID** component:
   scanMode?: string;
   specificData?: string;
   documentType?: string;
-  videoFilename?: string;
-  fullscreen?: boolean;
+  videoFilename?: stirng;
   locale?: string;
   documentModels?: string;
-  enableWidgetEventListener?: boolean;
   generateRawImages?: boolean;
   translationsContent?: string;
   viewsContent?: string;
-  cameraId?: number;
-  params?: any;
   resourcesPath?: string;
   tokenPrevCaptureData?: string;
   wizardMode?: boolean;
@@ -301,14 +298,14 @@ object will be commented on:
 All the configuration can be found in the component's ***src/index.tsx*** file.
 </div>
 
-When making the call to the widget there is a series of parameters that
+When making the call to the component there is a series of parameters that
 must be included. They will be briefly discussed below.
 
 ### 3.1 resourcesPath
 
 **type:** *string*
 
-Sets the name of the resource file that the widget will use for its
+Sets the name of the resource file that the component will use for its
 graphical configuration. This file is customisable and is located in the
 plugin in the ***src/main/assets*** folder for ***Android*** and in the
 ***ios/Frameworks*** and Resources folder for ***iOS***. Its installation is
@@ -374,7 +371,7 @@ nationality to be scanned would be the following:
 
 **type:** *boolean*
 
-Determines whether you wish the widget to start in full screen mode,
+Determines whether you wish the component to start in full screen mode,
 hiding the status bar.
 
     **fullscreen**: true;
@@ -383,7 +380,7 @@ hiding the status bar.
 
 **type:** *string*
 
-It is a string that allows the localisation and language of the widget
+It is a string that allows the localisation and language of the component
 to be changed. Examples of values ​​that they may have are the following:
 
 -   “es” for Spanish.
@@ -398,7 +395,7 @@ strings-fr.xml).
 
 In the resource zip, which is located inside the strings folder, you can
 add the strings-xx.xml files corresponding to each location that needs
-to be incorporated into the widget.
+to be incorporated into the component.
 
 > **locale**: "es";
 
@@ -445,7 +442,7 @@ result in a significant increase in device resource usage:
 
 **type:** *boolean*
 
-This property configures the widget to return the full image from the
+This property configures the component to return the full image from the
 camera that was used to capture the document:
 
 -   rawFrontDocument: Front image of the raw document.
@@ -475,14 +472,86 @@ of the document. It has 3 possible values:
 
 **type:** *boolean*
 
-Establishes whether you wish to launch the widget in Tutorial mode. This
-allows you to show the previous widget tutorial, but WITHOUT performing
+Establishes whether you wish to launch the component in Tutorial mode. This
+allows you to show the previous component tutorial, but WITHOUT performing
 the post capture process. Useful if you wish to show the tutorial in
 isolation.
 
 >     **tutorialOnly**: true;
 
-###  3.12 videoFilename
+###  3.12 debug
+
+**type:** *boolean*
+
+Sets the debugging mode of the component.
+
+```
+debug: false
+```
+
+###  3.13 showTutorial
+
+**type:** *boolean*
+
+Indicates whether or not to display the tutorial before the process. After the tutorial finishes, the component process will continue as usual.
+
+```
+showTutorial: true
+```
+
+###  3.14 wizardMode
+
+**type:** *boolean*
+
+Indicates whether the component is configured to capture both parts (front and back) of the document one after the other. In this mode, the component would only be launched once, and when it finishes capturing the front, it would continue with the back.
+
+
+###  3.15 tokenPrevCaptureData
+
+**type:** *string*
+
+When the document capture is done in 2 calls (in this case, ***wizardMode*** must be set to *false*), this property allows the pass a dictionary with the information from the previous capture. This way the component can combine the results of both readings in an intelligent way and thus return the combined information from both captures. It also allows the component to calculate a degree of similarity of the data from both sides.
+
+If both sides of the document are captured in a single call (***wizardMode*** must be set to *true*), this is unnecessary as the component does this process internally.
+
+> tokenPrevCaptureData: selphIDResult.tokenOCR
+
+
+### 3.16. showDiagnostic
+
+**type:** *boolean*
+
+Shows a pop-up with the component diagnostic if the process fails.
+
+```
+showDiagnostic: true
+```
+
+
+
+###  3.17 compressFormat
+
+**type:** *SdkCompressFormat*
+
+Indicates the format compression of the image. The possible values are:
+
+- PNG
+- JPG
+
+>     **compressFormat**: "JPG“;
+
+
+###  3.18 imageQuality
+
+**type:** *number*
+
+If the ***compressFormat*** property is configured as **JPG**, it is possible to set the image's *quality compression*. However, this parameter will be ignored if the ***compressFormat*** is **PNG**.
+
+>     **imageQuality**: 95
+
+
+
+###  3.19 videoFilename
 
 **type:** *string*
 
@@ -491,8 +560,6 @@ isolation.
 This is an **advanced property**, and in most use cases you don't need
 to modify it. Incorrect use may cause component malfunction.
 </div>
-This is an **advanced property**, and in most cases you don't need to
-modify it. Incorrect use may cause component malfunction.
 
 Sets the absolute path of the file name in which a video of the capture
 process will be recorded. The application is responsible for requesting
@@ -502,7 +569,7 @@ write processing unless a file path is specified using this method.
 
 >     **videoFilename**: “\<videofile-path\>“;
 
-###  3.13 documentModels
+###  3.20 documentModels
 
 **type:** *string*
 
@@ -512,11 +579,8 @@ This is an **advanced property**, and in most use cases you don't need
 to modify it. Incorrect use may cause component malfunction.
 </div>
 
-This is an **advanced property**, and in most use cases you don't need
-to modify it. Incorrect use may cause component malfunction.
-
 This property allows, through a string in xml format, to configure the
-modelling of the documents that the widget will try to capture. The
+modelling of the documents that the component will try to capture. The
 definition of this modelling can be found, by default, in .xml models
 within the resources .zip. With this property an application is allowed
 to update and replace, in execution, the models of the current documents
@@ -524,7 +588,7 @@ of the component.
 
 >     **documentModels**: “\<document-models-content-string\>“;
 
-###  3.14 translationsContent
+###  3.21 translationsContent
 
 **type:** *string*
 
@@ -534,18 +598,15 @@ This is an **advanced property**, and in most use cases you don't need
 to modify it. Incorrect use may cause component malfunction.
 </div>
 
-This is an **advanced property**, and in most use cases you don't need
-to modify it. Incorrect use may cause component malfunction.
-
 This property allows, through a string in xml format, to configure the
-current location of the widget. The definition of this model can be
+current location of the component. The definition of this model can be
 found, by default, in an internal translations folder within the
 resources .zip. This property allows an application to update and
 replace the current location of the component at run time.
 
 >     **translationsContent**: “\<translation-content-string\>“;
 
-###  3.15 viewsContent
+###  3.22 viewsContent
 
 **type:** *string*
 
@@ -670,8 +731,6 @@ export interface SelphidResult {
   frontDocumentImage?: string;
   backDocumentImage?: string;
   faceImage?: string;
-  signatureImage?: string;
-  fingerprintImage?: string;
   documentData?: string;
   tokenFrontDocumentImage?: string;
   tokenBackDocumentImage?: string;
@@ -684,7 +743,6 @@ export interface SelphidResult {
   rawBackDocument?: string;
   tokenRawFrontDocument?: string;
   tokenRawBackDocument?: string;
-  lastActionBeforeCapture?: string;
 }
 ```
 
@@ -693,14 +751,23 @@ The result will be returned via a Promise containing an object of class
 
 ### 5.1 finishStatus
 
+Returns the global diagnostic of the process.
+
 -   **SdkFinishStatus.Ok**: The operation was successful.
 
 -   **SdkFinishStatus.Error**: An error has occurred, which will be
-    indicated in the \`errorDiagnostic\` enumerated and, optionally, an
-    extra information message will be displayed in the \`errorMessage\`
+    indicated in the ***errorType*** enumerated and, optionally, an
+    extra information message will be displayed in the ***errorMessage***
     property.
 
-### 5.2 errorType
+
+
+### 5.2 finishStatusDescription
+
+Returns the finishStatus description. It is an optional value.
+
+
+### 5.3 errorType
 
 Returns the type of error that occurred (if there was one, which is
 indicated in the *finishStatus* parameter with the value *Error*). They
@@ -716,7 +783,7 @@ values:
     sdk does not have permission to access the camera.
 
 -   **SettingsPermissionDenied**: The exception that is thrown when the
-    widget does not have permission to access system settings
+    component does not have permission to access system settings
     (\*deprecated\*).
 
 -   **HardwareError**: Exception that occurs when there is a hardware
@@ -729,10 +796,10 @@ values:
 -   **UnexpectedCaptureError**: Exception that occurs during the capture
     of frames by the camera.
 
--   **ControlNotInitialisedError**: The widget configurator has not been
+-   **ControlNotInitialisedError**: The component configurator has not been
     initialised.
 
--   **BadExtractorConfiguration**: Problem arose during widget
+-   **BadExtractorConfiguration**: Problem arose during component
     configuration.
 
 -   **CancelByUser**: The exception that is thrown when the user stops
@@ -760,12 +827,12 @@ values:
 -   **ComponentControllerError**: The exception that is thrown when the
     component cannot be instantiated.
 
-### 5.3 errorMessage
+### 5.4 errorMessage
 
 -   Indicates an additional error message if necessary. It is an
     optional value.
 
-### 5.4 frontDocument/tokenFrontDocument
+### 5.5 frontDocument/tokenFrontDocument
 
 ***frontDocument***: The front image of the document processed, cleaned
 and cropped by the edges and its corresponding token.
@@ -774,7 +841,7 @@ and cropped by the edges and its corresponding token.
 frontDocument, only it is encrypted, tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.5 backDocument/tokenBackDocument
+### 5.6 backDocument/tokenBackDocument
 
 ***backDocument***: The back image of the document processed, cleaned
 and cropped at the edges.
@@ -783,7 +850,7 @@ and cropped at the edges.
 backDocument, only it is encrypted, tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.6 rawFrontDocument/tokenRawFrontDocument
+### 5.7 rawFrontDocument/tokenRawFrontDocument
 
 ***rawFrontDocument*****:** The front image of the raw document, as
 obtained from the camera.
@@ -792,7 +859,7 @@ obtained from the camera.
 rawFrontDocument, only it is encrypted and tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.7 rawBackDocument/tokenRawBackDocument
+### 5.8 rawBackDocument/tokenRawBackDocument
 
 ***rawBackDocument***: The rear image of the raw document, as obtained
 from the camera.
@@ -801,7 +868,7 @@ from the camera.
 rawBackDocument, only it is encrypted and tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.8 faceImage/tokenFaceImage
+### 5.9 faceImage/tokenFaceImage
 
 ***faceImage***: The front image of the document processed, cleaned up,
 and cropped at the edges.
@@ -810,7 +877,7 @@ and cropped at the edges.
 only it is encrypted and tokenised, and converted to stringBase64. This
 field can be detokenised in the SelphID service.
 
-### 5.9 documentData/tokenOCR
+### 5.10 documentData/tokenOCR
 
 ***documentData***: The OCR data obtained during document capture. The
 information contained in this object will vary depending on the type of
@@ -820,7 +887,7 @@ document and the country of the document.
 encrypted and tokenised, and converted to stringBase64. This field can
 be detokenised in the SelphID service.
 
-### 5.10 matchingSidesScore
+### 5.11 matchingSidesScore
 
 This property returns a calculation of the similarity of the data read
 between the front and the back of the document. The calculation is
@@ -832,10 +899,10 @@ higher the value, the more similar the compared data are.
 If the calculation returns -1.0, it means that the document does not
 contain common fields or there is still no information on both sides.
 
-### 5.11 captureProgress/timeoutStatus
+### 5.12 captureProgress/timeoutStatus
 
 This property returns the status the search process was in when the
-widget terminated. These are the possible values:
+component terminated. These are the possible values:
 
 ``` java
         Front_Detection_None = 0
@@ -856,26 +923,31 @@ widget terminated. These are the possible values:
 ```
 
 This property returns the status the search process was in when the
-widget terminated. These are the possible values:
+component terminated. These are the possible values:
 
--   0: When reading the Front, the widget ended without being able to
+-   0: When reading the Front, the component ended without being able to
     detect anything. Generally when no document is included.
 
--   1: When reading from the Front, the widget ended up having partially
+-   1: When reading from the Front, the component ended up having partially
     detected a document. In this case, some of the expected elements
     have been detected, but not all the necessary ones.
 
--   2: When reading from the Front, the widget ended up having completed
-    the detection of all the elements of the document. If the widget
+-   2: When reading from the Front, the component ended up having completed
+    the detection of all the elements of the document. If the component
     ends up in this status it is because the OCR analysis could not be
     completed successfully
 
--   3: When reading from the Front, the widget ended up having parsed
+-   3: When reading from the Front, the component ended up having parsed
     and extracted all the OCR from the document. This is the status in
     which a successful reading of the Front of a document would end up.
 
 The statuses **from 4 to 7 are exactly the same** only that they refer
 to the result of the process when the back is parsed.
+
+
+### 5.13 documentCaptured
+
+Returns the version or model of the document captured.
 
 ---
 
@@ -884,7 +956,7 @@ to the result of the process when the back is parsed.
 This component allows the customisation of texts, images, fonts and
 colours. Customisation is done using the internally supplied **.zip
 file**. This zip is made up of a file called ***widget.xml*** that
-contains the definition of all the widget screens, each one of them with
+contains the definition of all the component screens, each one of them with
 a series of elements which allow customisation. The zip file also
 contains a folder with graphic resources and another folder with the
 translations of the texts.
@@ -902,7 +974,7 @@ translation files in the resource .zip.
 
 #### 6.1.2. Image customisation
 
-To customise the images used by the widget, you must add the images to
+To customise the images used by the component, you must add the images to
 the resource .zip. In the zip there are 3 folders:
 
 >     /resources/163dpi
@@ -916,7 +988,7 @@ create as many density folders as you want. These folders contain the
 versions of the images for each of the resolutions.
 
 It is necessary to add the images in all the folders, since once the
-optimal resolution for the device has been determined, the widget only
+optimal resolution for the device has been determined, the component only
 loads images from the folder with the chosen resolution.
 
 The images are referenced from the *widget.xml* file.
@@ -925,7 +997,7 @@ The images are referenced from the *widget.xml* file.
 
 Button colour customisation is carried out from the *widget.xml* file.
 In it you can customise any colour of any graphic element that appears
-in the widget. Simply modify the colour of the desired property.
+in the component. Simply modify the colour of the desired property.
 
 #### 6.1.4. Font type customisation
 
@@ -958,7 +1030,7 @@ would be the Spanish translation, *strings.en.xml* the English
 translation, *strings.es_ES.xml* the Spanish of Spain or
 *strings.es_AR.xml* the Spanish of Argentina.
 
-You can force the language or let the widget choose it based on device
+You can force the language or let the component choose it based on device
 settings. When deciding which language to apply, the following order is
 followed:
 
@@ -978,7 +1050,7 @@ to be used (for example, "es" or "es_ES").
 
 It contains the folders with all the necessary resources to be able to
 be modified, divided into densities. It is mandatory to generate the
-images in all densities as the widget expects to find them in the folder
+images in all densities as the component expects to find them in the folder
 corresponding to the density of the device. New folders with the desired
 density can also be created.
 
@@ -1058,7 +1130,7 @@ they are used:
 #### 6.2.6. TEXT element
 
 The *text* elements are used to define the graphic aspect of the texts
-of each of the widget's screens. These are the properties that can be
+of each of the component's screens. These are the properties that can be
 modified:
 
 -   **colour**: defines the colour of the text.

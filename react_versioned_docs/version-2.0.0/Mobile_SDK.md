@@ -221,7 +221,7 @@ the following points must be previously taken into account:
     *Build Options* section, you must indicate the *Enable Bitcode*
     parameter as **No**.
 
--   ***Add camera permissions:*** To use the widget, you need to enable
+-   ***Add camera permissions:*** To use the component, you need to enable
     the camera permission in the application's ***info.plist*** file
     (included within the project in the ***ios*** folder). You will need
     to edit the file with a text editor and add the following

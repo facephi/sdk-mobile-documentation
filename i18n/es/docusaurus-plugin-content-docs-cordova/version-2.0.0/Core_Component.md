@@ -23,6 +23,8 @@ La versión del plugin actual se puede consultar de la siguiente forma:
 - Buscamos el archivo **package.json** en la raíz del plugin.
 - En el **KEY/TAG** version se indica la versión.
 
+---
+
 ## 2. Inicialización de la sesión
 ### 2.1 Inicialización
 

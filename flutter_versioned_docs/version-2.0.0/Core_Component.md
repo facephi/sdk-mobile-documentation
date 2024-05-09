@@ -23,9 +23,9 @@ Regarding the architecture of the mobile device:
 
 The current plugin version can be checked as follows:
 
--   Look for the ***package.json*** file at the root of the plugin.
-
--   The KEY/TAG ***version*** indicates the version.
+- Look for the *pubspec.yaml* file at the root of the plugin.
+- The KEY/TAG **version** indicates the version.
+  
 
 ---
 
@@ -60,72 +60,50 @@ In both cases, the result will be returned through a ***Promise*** containing an
 
 You can assign the licence directly as a String, as follows:
 
-```
-const launchInitSession = async () => 
-{ 
-    try 
+```dart
+Future<Either<Exception, CoreResult>> initSession() async
+  {
+    try
     {
-        console.log("Starting initSession...");
-        let config: InitSessionConfiguration = {
-            license: Platform.OS === 'ios' ? JSON.stringify(<enter_your_lic_here>) : JSON.stringify(<enter_your_lic_here>),
-            //licenseUrl: LICENSE_URL,
-            //licenseApiKey: Platform.OS === 'ios' ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID
-        };
+      FphiSdkmobileCore core = FphiSdkmobileCore();
+      String lic    = (Platform.isAndroid) ? LICENSE_ANDROID : LICENSE_IOS;
 
-        console.log(config);
-        return await SdkMobileCore.initSession(config)
-        .then((result: CoreResult) => 
-        {
-            console.log("result", result);
-        })
-        .catch((error: any) => 
-        {
-            console.log(error);
-        })
-        .finally(()=> {
-            console.log("End closeSession...");
-        });
-    } 
-    catch (error) {
-        setMessage(JSON.stringify(error));
+      final Map resultJson = await core.initSession(widgetConfigurationJSON: CoreConfigurationInitSession(
+          mLicense: lic,
+          mEnableTracking: true
+      ));
+
+      return Right(CoreResult.fromMap(resultJson));
+    } on Exception catch (e) {
+      return (Left(e));
     }
-};
+  }
 ```
 
 #### b. Obtaining the licence through a service
 
 Through a service that will simply require a URL and an API-KEY as an identifier. This would avoid problems when manipulating the licence, as well as the constant substitution of said licences when a problem arises in this regard (malformation or improper modification, licence expiry...):
 
-```
-const launchInitSession = async () => 
-{ 
-    try 
+```dart
+Future<Either<Exception, CoreResult>> initSession() async
+  {
+    try
     {
-        console.log("Starting initSession...");
-        let config: InitSessionConfiguration = {
-            //license: Platform.OS === 'ios' ? JSON.stringify(LICENSE_IOS_NEW) : JSON.stringify(LICENSE_ANDROID_NEW),
-            licenseUrl: "https://***.***.pro",
-            licenseApiKey: "<enter_your_apikey_here>",
-        };
+      FphiSdkmobileCore core = FphiSdkmobileCore();
 
-        console.log(config);
-        return await SdkMobileCore.initSession(config)
-        .then((result: CoreResult) => 
-        {
-            console.log("result", result);
-        })
-        .catch((error: any) => 
-        {
-            console.log(error);
-        })
-        .finally(()=> {
-            console.log("End closeSession...");
-        });
-    } 
-    catch (error) {
-        setMessage(JSON.stringify(error));
+      String apiKey = (Platform.isAndroid) ? LICENSE_APIKEY_ANDROID : LICENSE_APIKEY_IOS;
+
+      final Map resultJson = await core.initSession(widgetConfigurationJSON: CoreConfigurationInitSession(
+          mLicenseUrl: "https://***.***.pro",
+          mLicenseApiKey: apiKey,
+          mEnableTracking: true
+      ));
+
+      return Right(CoreResult.fromMap(resultJson));
+    } on Exception catch (e) {
+      return (Left(e));
     }
-};
+  }
 ```
 
 ### 2.2 Init session configuration
@@ -135,33 +113,45 @@ In the previous section, there is a class called
 properties of this class are the following:
 
 
-#### 2.2.1 license (string)
+#### 2.2.1 license
+
+**type:** *string*
+
 Sets the SDK Mobile *license*. This license is provided by Facephi.
 
 ```
-license: "valid license“
+mLicense: "valid license“
 ```
 
-#### 2.2.2 licenseUrl (string)
+#### 2.2.2 licenseUrl
+
+**type:** *string*
+
 Sets the *url* where the service remotely validates the current license.
 This *endpoint* is provided by Facephi (online license).
 
 
 ```
-licenseUrl: "https://***.***.pro"
+mLicenseUrl: "https://***.***.pro"
 ```
 
-#### 2.2.3 licenseApiKey (string) 
+#### 2.2.3 licenseApiKey
+
+**type:** *string*
+
 Sets the *apikey* for the license service (online license).
 ```
-licenseApiKey: "valid ApiKey"
+mLicenseApiKey: "valid ApiKey"
 ```
 
-#### 2.2.4 enableTracking (boolean)
+#### 2.2.4 enableTracking
+
+**type:** *boolean*
+
 This property enables or disables the tracking component. This parameter allows the information tracking from the SDK to the Platform. 
 
 ```
-enableTracking: true
+mEnableTracking: true
 ```
 
 ---
@@ -182,40 +172,25 @@ This method has 2 input parameters:
 To execute the **initOperation** method, the call must be done using the **SdkMobileCore** class:
 
 
-```
-const initOperation = async () => 
-{ 
-    try 
+```dart
+  Future<Either<Exception, CoreResult>> initOperation() async
+  {
+    try
     {
-      console.log("Starting initOperation...");
+      FphiSdkmobileCore core = FphiSdkmobileCore();
 
-      return await SdkMobileCore.initOperation(getInitOperationConfiguration())
-      .then((result: CoreResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End initOperation...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
+      final Map resultJson = await core.initOperation(
+        widgetConfigurationJSON: TrackingConfiguration(mCustomerId: CUSTOMER_ID, mType: TrackingOperationType.ONBOARDING),
+      );
+      if (resultJson != null) {
+        return Right(CoreResult.fromMap(resultJson));
+      } else {
+        throw Exception('Plugin internal error');
+      }
+    } on Exception catch (e) {
+      return (Left(e));
     }
-};
-
-const getInitOperationConfiguration = () => 
-{
-    let config: InitOperationConfiguration = {
-      customerId: CUSTOMER_ID,
-      type: SdkOperationType.Onboarding,
-    };
-
-    return config;
-};
+  }
 ```
 
 
@@ -332,103 +307,56 @@ Optional parameter. Only visible if the *GetExtraData* method is called. The plu
 **Before the application is destroyed**, the SDK session must be closed to notify the platform of its termination. To do this, the following line of code is executed:
 
 
-```
-const launchCloseSession = async () => 
-{ 
-    try 
-    {
-      console.log("Starting closeSession...");
-      return await SdkMobileCore.closeSession()
-      .then((result: CoreResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End closeSession...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
+```dart
+Future<Either<Exception, CoreResult>> closeSession(SdkOperationEvent event) async
+  {
+    try {
+      FphiSdkmobileCore core = FphiSdkmobileCore();
+
+      final Map resultJson = await core.closeSession();
+      return Right(CoreResult.fromMap(resultJson));
+    } on Exception catch (e) {
+      return (Left(e));
     }
-};
+  }
 ``` 
 ---
 
 ## 7. ExtraData method
+
 The *getExtraData* method generates the identifiers related to a specific operation. These identifiers are tokenized and prepared to be sent to the *Facephi Validation Service* (Backend). That Service needs these identifiers to know which operation the client is currently executing. Thus, all the process information generated in the client and server can be successfully gathered in the different services. 
 
-```
-const getExtraData = async () => 
-{ 
-    try 
+```dart
+ Future<Either<Exception, CoreResult>> getExtraData() async
+  {
+    try
     {
-      console.log("Starting getExtraData...");
-
-      return await SdkMobileCore.getExtraData()
-      .then(async (result: CoreResult) => 
-      {
-        console.log("result", result);
-        if (result.finishStatus == SdkFinishStatus.Ok)
-        {
-          const params1 = {'extraData': result.data, 'image': bestImageApi};
-          const params2 = {'documentTemplate': tokenFaceImage, 'extraData': result.data, 'image1': bestImageApi};
-          
-          let r1: any = await apiPost('/v5/api/v1/selphid/passive-liveness/evaluate', params1);
-          console.log("r1", r1);
-          let r2: any = await apiPost('/v5/api/v1/selphid/authenticate-facial/document/face-image', params2);
-          console.log("r2", r2);
-        }
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End getExtraData...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
+      FphiSdkmobileCore core = FphiSdkmobileCore();
+      final Map resultJson = await core.getExtraData();
+      return Right(CoreResult.fromMap(resultJson));
     }
-};
+    on Exception catch (e) {
+      return (Left(e));
+    }
+  }
 ```
+---
 
 ## 8. Tokenize Method
 
 The Tokenize method tokenizes and encrypts the images obtained from the different components of the SDK Mobile. Thus, these images can be sent to the *Facephi Validation Service* (Backend) securely. 
 
-```
-const getTokenize = async () => 
-{ 
-  try 
+```dart
+  Future<Either<Exception, CoreResult>> tokenize() async
   {
-    console.log("Starting getTokenize...", getTokenizeConfiguration());
-    return await SdkMobileCore.tokenize(getTokenizeConfiguration())
-    .then((result: CoreResult) => 
+    try
     {
-      console.log("result", result);
-    })
-    .catch((error: any) => 
-    {
-      console.log(error);
-    })
-    .finally(()=> {
-      console.log("End getTokenize...");
-    });
-  } 
-  catch (error) {
-    setMessage(JSON.stringify(error));
+      FphiSdkmobileCore core = FphiSdkmobileCore();
+      final Map resultJson = await core.tokenize(widgetConfigurationJSON: TokenizeConfiguration(mStringToTokenize: "Something to tokenize ..."));
+      return Right(CoreResult.fromMap(resultJson));
+    }
+    on Exception catch (e) {
+      return (Left(e));
+    }
   }
-};
-const getTokenizeConfiguration = () => 
-{
-  const sdkConfiguration: TokenizeConfiguration = {
-    stringToTokenize: "String to Tokenize ..."
-  };
-  return sdkConfiguration;
-};
 ```

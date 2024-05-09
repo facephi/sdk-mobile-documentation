@@ -278,9 +278,9 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
 
-  - **ControlNotInitializedError**: El configurador del widget no ha sido inicializado.
+  - **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
 
-  - **BadExtractorConfiguration**: Problema surgido durante la configuración del widget.
+  - **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
 
   - **CancelByUser**: Excepción que se produce cuando el usuario para la extracción de forma manual.
 

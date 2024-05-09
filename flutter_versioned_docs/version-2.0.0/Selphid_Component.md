@@ -47,40 +47,35 @@ Regarding the architecture of the mobile device:
 
 The current plugin version can be checked as follows:
 
--   We look for the ***package.json*** file at the root of the plugin.
-
--   The KEY/TAG ***version*** indicates the version.
+- Look for the *pubspec.yaml* file at the root of the plugin.
+- The KEY/TAG **version** indicates the version.
 
 ---
 
-## 2. Component integration 
-
-Before integrating this component, it is **recommended** to read the
-documentation related to **<u>Core Component</u>** and follow the
-instructions indicated in said document.
-
+## 2. Component integration
 <div class="note">
 <span class="note">:information_source:</span>
+Before integrating this component, it is *recommended* to read the documentation related to *Core Component* and follow the instructions indicated in said document.
+</div>
+
+This section will explain step by step how to integrate the current component into an existing project. 
+
+<div class="warning">
+<span class="warning">:warning:</span>
+
 For this section, the following values ​​will be considered:
 
--   **\<%APPLICATION_PATH%\> -** Path to the root of the application
-    (example: /folder/example)
-
--   **\<%PLUGIN_CORE_PATH%\> -** Path to the root of the core plugin,
-    which is mandatory (example: /folder/sdk-core)
-
--   **\<%PLUGIN_SELPHID_PATH%\> -** Path to the root of the current
-    plugin (example: /folder/sdk-selphid)
+- **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
+- **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the Core plugin, which is required (example:/folder/sdk-core)
+- **\<%PLUGIN_SELPHI_FACE_PATH%\>** - Path to the root of the current plugin (example /folder/sdk-selphi)
 </div>
 
 ### 2.1. Plugin installation: Common
+The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-The plugin allows execution on **Android and iOS** platforms. This
-section explains the common steps to all platforms. To install the
-plugin, the following steps must be adopted:
+- Make sure **react-native is** installed.
 
--   Make sure **react-native** is installed.
--   Access **\<%APPLICATION_PATH%\>** at a terminal and run:
+- Access **APPLICATION_PATH** at a terminal and run:
 
 ``` java
 yarn add @facephi/sdk-core-react-native
