@@ -10,9 +10,7 @@ level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
 For more information on the base configuration, go to the
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -30,9 +28,7 @@ the recording of the onboarding process.
 Before integrating this component, it is recommended to read the
 documentation related to:
 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+[Getting Started](./Mobile_SDK)
 and follow the instructions in that document.
 
 This section will explain step by step how to integrate the current
@@ -64,9 +60,7 @@ command must first be executed.
 This command must have been executed **prior to launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+consult the [Getting Started](./Mobile_SDK)
 documentation, which details and explains what this process consists of.
 
 ---
@@ -116,7 +110,7 @@ connection to the video service.
 ### 6.1 Start recording
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. 
+(**section 3**), the SDK components can be launched.
 
 Recording controllers shall return statuses to indicate the progress of the process.
 
@@ -166,7 +160,7 @@ In this case, this method is used to prevent this information from being sent to
 ### 6.2 Stop recording
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. 
+(**section 3**), the SDK components can be launched.
 
 Recording controllers shall return statuses to indicate the progress of the process.
 
@@ -229,6 +223,7 @@ Recording controllers shall return statuses to indicate the evolution of the pro
     SOCKET_ERROR,
     UNKNOWN_ERROR,
 ```
+
 Where SHARING indicates that the screen is being recorded and FINISH indicates that the process is finished.
 
 ---

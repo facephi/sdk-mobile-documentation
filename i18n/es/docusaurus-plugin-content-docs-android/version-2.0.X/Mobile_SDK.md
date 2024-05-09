@@ -121,11 +121,13 @@ El SDK funciona a través de un controlador principal (SDKController) que
 debe inicializarse correctamente para poder hacer uso del resto de
 funcionalidad. Los pasos a seguir en la inicialización son:
 
-1. Incluir el objeto Application a través de la clase SdkApplication.
+1.  Incluir el objeto Application a través de la clase SdkApplication.
 
-2. Decidir si la licencia se incluirá a través de un _String_ o con un _servicio de licenciamiento remoto_ (consultar **apartado 3.1**).
+2.  Decidir si la licencia se incluirá a través de un _String_ o con un
+    _servicio de licenciamiento remoto_ (consultar **apartado 3.1**).
 
-3. El controlador _TrackingController_ en caso de querer conectar con la plataforma.
+3.  El controlador _TrackingController_ en caso de querer conectar con
+    la plataforma.
 
 El **punto 3** es opcional, y requeriría usar el componente de Tracking
 (más información acerca de este módulo en su propia documentación).

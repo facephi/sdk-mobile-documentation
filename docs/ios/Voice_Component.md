@@ -10,9 +10,7 @@ level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
 For more information on the base configuration, go to the
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -39,6 +37,7 @@ functionalities are the following:
 - Generation of templates with voice characteristics and scores.
 
 ## 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
@@ -50,9 +49,7 @@ Minimum iOS version: **13**
 Before integrating this component, it is recommended to read the
 documentation related to:
 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+[Getting Started](./Mobile_SDK)
 and follow the instructions in that document.
 
 This section will explain step by step how to integrate the current
@@ -66,21 +63,24 @@ Facephi libraries (_Widgets_), these must be completely removed before
 installing the **_SDKMobile_** components.
 
 #### Cocoapods
+
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
   	pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+
 - To install the VoiceID component, the following entry must be included in the application's Podfile:
+
 ```
   	pod 'VoiceIdController', '~> 1.5.0'
 ```
+
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
 - In case of development with **xCode15** a post-installation script must be included:
 
 ![Image](/iOS/fix_ldClassic.png)
-
 
 ---
 
@@ -93,9 +93,7 @@ command must first be executed.
 This command must have been executed **prior to launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+consult the [Getting Started](./Mobile_SDK)
 documentation, which details and explains what this process consists of.
 
 ---
@@ -195,9 +193,7 @@ sent to the platform.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>.
+SdkResult. Más información en la sección de [Getting Started](./Mobile_SDK).
 
 ### 7.1. Recepción de errores
 
@@ -234,9 +230,7 @@ Facephi tokenised format.
 ## Customisation of the component
 
 Apart from the changes that can be made at SDK level (which are
-explained in the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+explained in the [Getting Started](./Mobile_SDK)
 document), this particular component allows the modification of specific
 texts.
 

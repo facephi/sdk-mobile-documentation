@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">[1.5.X][ES] Android Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK).
 
 ---
 
@@ -48,10 +46,7 @@ de ellos. Sus principales funcionalidad son las siguientes:
 Antes de integrar este componente se recomienda leer la documentación
 relativa a
 
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
+[Primeros Pasos](./Mobile_SDK) y seguir las instrucciones indicadas en dicho
 documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
@@ -85,10 +80,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong>[1.5.X][ES] Android Mobile
-SDK</strong></a>, en el que se detalla y explica en qué consiste este
+consultar la documentación de [Primeros Pasos](./Mobile_SDK), en el que se detalla y explica en qué consiste este
 proceso.
 
 ---

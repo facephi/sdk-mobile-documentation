@@ -10,9 +10,7 @@ level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
 For more information on the base configuration, go to the
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -23,19 +21,17 @@ The _Component_ discussed in the current document is called
 user identifying themselves, showing their face and their identity document.
 
 ## 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
-Minimum iOS version: **13**
----
+## Minimum iOS version: **13**
 
 ## 2. Integration of the component
 
 Before integrating this component, it is recommended to read the
 documentation related to:
 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+[Getting Started](./Mobile_SDK)
 and follow the instructions in that document.
 
 This section will explain step by step how to integrate the current
@@ -49,25 +45,30 @@ of the Facephi libraries (_Widgets_), these must be completely removed before th
 completely before the installation of the components of the **_SDKMobile_** components.
 
 #### Cocoapods
+
 - Currently the FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```
    pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+
 - To install the VideoID component, the following entry must be included in the application's Podfile:
+
 ```
 pod 'FPHISDKVideoIDComponent', '~> 1.5.0'
 ```
+
 - Once the dependencies are installed, you can use the different functionalities of the component.
 
 - If developing with **xCode15**, a post-installation script must be included:
-![Image](/iOS/fix_ldClassic.png)
+  ![Image](/iOS/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
+
 In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
 
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
- 
+
 ---
 
 ## 3. Start new operation
@@ -79,9 +80,7 @@ command must first be executed.
 This command must have been executed **prior to launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+consult the [Getting Started](./Mobile_SDK)
 documentation, which details and explains what this process consists of.
 
 ---
@@ -114,39 +113,51 @@ These fields are usually **reported only** when the server is
 **OnPremise**.
 
 #### 5.1.1. Basic Configuration
+
 ##### sectionTime
+
 Indicates the duration of each of the sections in which the
 recording message.
 
 ##### showCompletedTutorial
+
 Indicates whether you want to show the complete initial tutorial. If I dont know
 will show a progress indicator.
 
 ##### mode
+
 - ONLY_FACE: The process is carried out being necessarily only
-   showing face.
+  showing face.
 
 - FACE_DOCUMENT_FRONT: The process is carried out using both the face and
-   the front of the identity document.
+  the front of the identity document.
 
 - FACE_DOCUMENT_FRONT_BACK: The process is carried out using the face, the
-   front of the identity document and the back of the document.
+  front of the identity document and the back of the document.
 
 #### 5.1.2 Advanced Configuration
+
 ##### url
+
 Path to video socket
 
 ##### apiKey
+
 ApiKey required for connection to video socket
 
 ##### tenantId
+
 Tenant identifier that refers to the current client,
 necessary for connection to the video service.
 
 #### 5.1.3. Other parameters
+
 ##### extractionTimeout
+
 Sets the maximum time that the reading can be performed.
+
 ##### VibrationEnabled
+
 If the value is set to true, the vibration is activated on errors and if the widget response is OK
 
 ---
@@ -206,14 +217,13 @@ In the configuration data (VideoIDConfigurationData) you can also modify:
 - **url**: Path to the video socket.
 
 - **apiKey**: ApiKey required for connection to the video socket.
+
 ---
 
 ## 7. Reception of the result
 
 The controllers will return the required information in SdkResult
-format. More information in the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+format. More information in the [Getting Started](./Mobile_SDK)
 
 ### 7.1. Receipt of errors
 
@@ -229,7 +239,7 @@ SOCKET_ERROR
 VIDEO_ERROR
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
-UNKNOWN_ERROR 
+UNKNOWN_ERROR
 PERMISSION_DENIED
 ```
 
@@ -238,6 +248,7 @@ PERMISSION_DENIED
 ## 8. Customizing the component
 
 To customize the component, ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) must be called after initializing the videoIdController:
+
 ```
 let videoidController = VideoIdController(data: data, output: output, viewController: viewController)
 ThemeVideoIdManager.setup(theme: CustomThemeVideoId())
@@ -245,20 +256,21 @@ SDKController.launchVideoId(controller: videoidController)
 ```
 
 An example of the CustomThemeVideoId class would be this (you must implement ThemeVideoIdProtocol):
+
 ```
 class CustomThemeVideoId: ThemeVideoIdProtocol {
      var images: [R.Image: UIImage?] = [:]
-    
+
      var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
-    
+
      // var animations: [R.Animation: String] = [:]
-    
+
      var name: String {
          "custom"
      }
-    
+
      var fonts: [R.Font: String] = [:]
-    
+
      var dimensions: [R.Dimension: CGFloat] {
          [.fontBig: 8]
      }
@@ -266,7 +278,9 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 ```
 
 ### 8.1 Colors and images
+
 - The images initialize in the variable images , passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
+
 ```
 case ic_video_id_back_id
 case ic_video_id_check
@@ -289,10 +303,12 @@ case PrimaryButtonText
 case Button
 case CheckText
 case Primary
-``` 
+```
 
-### 8.2 Fonts 
+### 8.2 Fonts
+
 Fonts are similarly initialized in the `fonts` variable with a dictionary, having as value a **String** with the name of the desired **UIFont**.
+
 ```
 case regular
 case bold
@@ -301,6 +317,7 @@ case bold
 - The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
 
 ### 8.3 Customizing the time between screens
+
 To modify the time spent on each recording screen, the value of the time parameter (in ms) of the VideoIDConfigurationData must be modified:
 
 `VideoIDConfigurationData(time = TIME IN MS)`.
@@ -310,7 +327,9 @@ It will always be the minimum 5000.
 This object will be passed during the setup of the video ID.
 
 ### 8.4 Texts - Multi-Language
+
 #### 8.4.1 Default language settings
+
 If the package is installed via **SPM**, for text localization to work, the following needs to be added to the **Info.plist** file of the integrator app:
 
 **CFBundleAllowMixedLocalizations = YES**.
@@ -333,17 +352,15 @@ The language of the component is selected according to the language that the cel
 
 - For any other case, English will be used.
 
-
 #### 8.4.2 Customized Language Configuration
+
 The component allows the customization of texts according to the language, which as in the previous case, will be defined by the language that is selected on the device.
 
 This customization applies to new localizations as well as to the case of the default languages (es, en and pt-PT). It is done through the use of **Localizable.strings.** files.
 
- 
-
 #### 8.4.3 Keys for multi-languages
-The **Localizable.strings** file in the **es.lproj** folder of the component is the following:
 
+The **Localizable.strings** file in the **es.lproj** folder of the component is the following:
 
 ```
 "video_id_text_waiting_agent_title"="Video grabación";
@@ -370,7 +387,7 @@ The **Localizable.strings** file in the **es.lproj** folder of the component is 
 
 ```
 
-Thus, if you want to modify for example the text "*Finish*" of the key `video_id_finish_button` for the language **es-MX**, you must go to the file **Localizable.strings** in the folder **es-MX.lproj** if it exists (if not, you must create it) and there, add:
+Thus, if you want to modify for example the text "_Finish_" of the key `video_id_finish_button` for the language **es-MX**, you must go to the file **Localizable.strings** in the folder **es-MX.lproj** if it exists (if not, you must create it) and there, add:
 
 `"video_id_finish_button"="Finish";`.
 

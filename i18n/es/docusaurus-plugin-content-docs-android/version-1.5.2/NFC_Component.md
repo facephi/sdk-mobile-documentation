@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Android Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK).
 
 ---
 
@@ -46,10 +44,7 @@ son las siguientes:
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
+[Primeros Pasos](./Mobile_SDK) y seguir las instrucciones indicadas en dicho
 documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
@@ -83,10 +78,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>, en el que se detalla y explica en qué consiste
+consultar la documentación de [Primeros Pasos](./Mobile_SDK), en el que se detalla y explica en qué consiste
 este proceso.
 
 ---
@@ -373,10 +365,7 @@ Información del certificado X509 obtenido del documento ordenada por.
 ## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Android Mobile
-SDK</u></strong></a>), este componente en concreto permite la
+se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
 modificación de textos específicos.
 
 ### 8.1 Textos

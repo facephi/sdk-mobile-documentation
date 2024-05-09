@@ -9,9 +9,7 @@ case that is required, certain components must be installed. Its high
 level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
-For more information on the base configuration, go to the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section. 
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -20,6 +18,7 @@ data-linked-resource-type="page">Mobile SDK</a> section.
 The Component discussed in the current document is called **_Capture Component_**. It is responsible for the invoice capture and the capture and generation of QRs.
 
 ### 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
@@ -31,9 +30,7 @@ Minimum iOS version: **13**
 Before integrating this component, it is recommended to read the
 documentation related to:
 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a> and follow the instructions given in this document.
+[Getting Started](./Mobile_SDK) and follow the instructions given in this document.
 
 This section will explain step by step how to integrate the current
 component into an existing project.
@@ -46,16 +43,19 @@ Facephi libraries (_Widgets_), these must be completely removed before
 installing the **_SDKMobile_** components.
 
 #### Cocoapods
-- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+
 - To install the Capture component, the following entry must be included in the Podfile of the application:
+
 ```
   pod 'FPHISDKCaptureComponent', '~> 1.5.0'
 ```
+
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
 - In case of development with **xCode15** a post-installation script must be included:
@@ -63,7 +63,9 @@ installing the **_SDKMobile_** components.
 ![Image](/iOS/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
+
 In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
+
 ```
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
 ```
@@ -79,19 +81,17 @@ command must first be executed.
 This command must have been executed **prior to launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a> documentation, which details and explains what this process consists of.
+consult the [Getting Started](./Mobile_SDK) documentation, which details and explains what this process consists of.
 
 ---
 
 ## 4. Available controllers
 
-| **Controller**             | **Description**                         |
-| -------------------------- | --------------------------------------- |
-| PhacturasReaderController          | Invoice capture controller    |
-| QrReaderController | QR capture controller |
-| QrGeneratorController | QR generator controller |
+| **Controller**            | **Description**            |
+| ------------------------- | -------------------------- |
+| PhacturasReaderController | Invoice capture controller |
+| QrReaderController        | QR capture controller      |
+| QrGeneratorController     | QR generator controller    |
 
 ---
 
@@ -115,18 +115,23 @@ and what each of them is used for.
 Maximum extraction time
 
 ##### cameraSelected
+
 Camera selected: FRONT, BACK
 
 ##### vibrationEnabled
+
 Enable vibration during processing
 
 ##### cameraShape
-Shape of the mask to be displayed on the camera: 
-- SQUARE: Square 
+
+Shape of the mask to be displayed on the camera:
+
+- SQUARE: Square
 - CIRCULAR: Circle
 - RECTANGLE_TALL: Rectangle
 
 ##### showDiagnostic
+
 Show diagnostic screens at the end of the process
 
 #### 5.1.2 Advanced Settings
@@ -269,9 +274,9 @@ sent to the platform.
 ## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult format
--more details in the [1.5.X][EN] ***<a href="Mobile_SDK"
+-more details in the [1.5.X][EN] **_<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>***.	
+data-linked-resource-type="page">iOS Mobile SDK's</a>_**.
 
 ### 7.1. Error reception
 
@@ -291,6 +296,7 @@ with the SdkResult.Success.
 ---
 
 ## 8. Component customization
+
 ### 8.1. text
 
 ```java

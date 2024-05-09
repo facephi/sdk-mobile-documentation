@@ -10,9 +10,7 @@ modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
 For more information on the base configuration, go to the
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>
+[Getting Started](./Mobile_SDK)
 
 ---
 
@@ -48,10 +46,8 @@ The minimum iOS SDK version required is as follows:
 
 ## 2. Integration of the component
 
-Before integrating this component, it is recommended to read the documentation related to 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+Before integrating this component, it is recommended to read the documentation related to
+[Getting Started](./Mobile_SDK)
 and follow the instructions indicated in said document.
 
 This section will explain step by step how to integrate the component
@@ -64,21 +60,25 @@ the component in a project containing an old Facephi libraries
 (_Widgets_) version, these must be removed entirely before installing
 the **_SDKMobile_** components.
 
-- Currently FacePhi libraries are distributed remotely through 
-  different dependency managers, in this case Cocoapods. 
-  The **mandatory** dependencies that must have been previously installed 
+- Currently FacePhi libraries are distributed remotely through
+  different dependency managers, in this case Cocoapods.
+  The **mandatory** dependencies that must have been previously installed
   (adding them to the project's Podfile file) are:
 
 #### Cocoapods
 
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
+
 ```java
 pod 'FPHISDKMainComponent', '~> 1.4.0'
 ```
+
 To install the NFC component, the following entry must be included in the application's Podfile:
+
 ```java
 pod 'FPHISDKNFCComponent', '~>2.6.0'
 ```
+
 #### SPM
 
 The mandatory dependencies that must have been previously installed are:
@@ -90,7 +90,9 @@ https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 
 ```
+
 To install the NFC component, it must be included in the project modules:
+
 ```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-NFC_component-SPM.git
@@ -128,17 +130,15 @@ command must first be executed.
 This command must have been executed **before launch**.
 
 To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a> documentation, which details and explains what this process consists of.
+consult the [Getting Started](./Mobile_SDK) documentation, which details and explains what this process consists of.
 
 ---
 
 ## 4. Available drivers
 
-| **Controller** | **Description**                      |
-| --------------- | ------------------------------------ |
-| NFCController   | NFC reading main controller |
+| **Controller** | **Description**             |
+| -------------- | --------------------------- |
+| NFCController  | NFC reading main controller |
 
 ---
 
@@ -156,15 +156,19 @@ each is used for.
 #### 5.1.1. Basic Documentation
 
 ##### showTutorial
+
 Indicates if the component activates the tutorial screen. This view explains intuitively how the capture is performed.
 
-##### vibrationEnabled 
+##### vibrationEnabled
+
 iOS does not allow vibration to be added while taking NFC readings.
 
 ##### showDiagnostic
+
 If set to true, if an error or lack of permissions occurs, the sdk will display a screen with the error returned by the widget.
 
 ##### extractionTimeout
+
 Sets the maximum time the readout can be performed.
 
 #### 5.1.2. Advanced Documentation
@@ -208,10 +212,7 @@ Indicates the country of origin of the document to be read.
 
 ##### documentType
 
-Indicates the type of document to be read:
-    - ID_CARD
-    - PASSPORT
-    - FOREIGN_CARD
+Indicates the type of document to be read: - ID_CARD - PASSPORT - FOREIGN_CARD
 
 ##### readableTags
 
@@ -231,6 +232,7 @@ to launch the component:
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
+
 - **\[WITHOUT TRACKING\]** This call allows to launch the
   functionality of the component, but **no event will be tracked** to
   the _tracking_ server:
@@ -239,7 +241,6 @@ SDKController.shared.launch(controller: controller)
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 NFCController.shared.launchMethod(controller: controller)
 ```
- 
 
 The **launch** method must be used by **default**. This method allows
 **_tracking_** to be used if your component is enabled and will not be
@@ -251,7 +252,6 @@ certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
 
-
 ---
 
 ## 7. Receipt of the result
@@ -259,7 +259,7 @@ sent to the platform.
 The controllers will return the required information in SdkResult format
 -more details in the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>.	
+data-linked-resource-type="page">iOS Mobile SDK's</a>.
 
 ### 7.1. Receipt of errors
 
@@ -276,10 +276,10 @@ On the error side, **internally** we have the NFCPassportReaderError class. This
     SYSTEM_RESOURCE_UNAVAILABLE
 ```
 
-**NOTE**: `NFC_INVALID_MRZ_KEY` *implies that the connection could not be established because the configuration input data (documentNumber, birthDate, expiryDate) is not correct.
-All read launches for that NFC shall fail as long as a new NFCController is not initialised with the correct data.*.
+**NOTE**: `NFC_INVALID_MRZ_KEY` _implies that the connection could not be established because the configuration input data (documentNumber, birthDate, expiryDate) is not correct.
+All read launches for that NFC shall fail as long as a new NFCController is not initialised with the correct data._.
 
-### 7.2. Receiving successful execution - *data*
+### 7.2. Receiving successful execution - _data_
 
 In the _data_ part, we will have the _NfcResult_ class.
 
@@ -348,8 +348,6 @@ Document security data information sorted by:
 - documentSigningCertificateData
 - issuerSigningCertificateData
 
-
-
 #### 7.2.6. nfcValidations
 
 Information of the document validations sorted by:
@@ -379,6 +377,7 @@ Information of the document validations sorted by:
 - nfcKey
 - numSupport
 - mrz
+
 ---
 
 ## 8. Component customisation
@@ -441,7 +440,9 @@ public protocol ThemeNFCProtocol {
     var animations: [R.Animation: String] { get }
 }
 ```
+
 For example:
+
 ```java
 class CustomThemeNFC: ThemeNFCProtocol {
     public var name: String {
@@ -461,7 +462,9 @@ class CustomThemeNFC: ThemeNFCProtocol {
     ...
 }
 ```
+
 To apply this custom theme we must use the following instruction before launching the component:
+
 ```java
 ThemeNFCManager.setup(theme: CustomThemeNFC())
 ```

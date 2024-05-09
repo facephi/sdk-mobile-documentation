@@ -10,9 +10,7 @@ modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
 For more information on the base configuration, go to the
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> section.
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -31,9 +29,7 @@ in the SDK.
 Before integrating this component, it is recommended to read the
 documentation related to:
 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+[Getting Started](./Mobile_SDK)
 and follow the instructions in that document.
 
 This section will explain step by step how to integrate the current
@@ -60,24 +56,24 @@ beforehand.
 
 ## 4. Available controllers
 
-| **Controller**       | **Description**                                                            |
-| --------------------- | -------------------------------------------------------------------------- |
-| FlowController        | Flow main controller. Launch of published flows.           |
+| **Controller**        | **Description**                                           |
+| --------------------- | --------------------------------------------------------- |
+| FlowController        | Flow main controller. Launch of published flows.          |
 | FlowPreviewController | Driver for the release of flows to be published (testing) |
 
 ### 4.1. Available controllers for flow
 
-| **Controller**            | **Description**           |
-| -------------------------- | ------------------------- |
-| FSelphiController          | Facial recognition     |
-| FSelphIDController         | Document recognition |
-| FVoiceController           | Voice capture            |
-| FPhingersController        | Capture of footprints        |
-| FNfcController             | NFC            |
-| FQrReaderController        | QR Reader            |
+| **Controller**             | **Description**       |
+| -------------------------- | --------------------- |
+| FSelphiController          | Facial recognition    |
+| FSelphIDController         | Document recognition  |
+| FVoiceController           | Voice capture         |
+| FPhingersController        | Capture of footprints |
+| FNfcController             | NFC                   |
+| FQrReaderController        | QR Reader             |
 | FPhacturasReaderController | Invoice capture       |
-| FVideoIdController         | Video Identification      |
-| FVideoCallController       | Video Call          |
+| FVideoIdController         | Video Identification  |
+| FVideoCallController       | Video Call            |
 
 ---
 
@@ -198,9 +194,9 @@ The flow result will have 3 fields:
   step.
 
 - result: The controllers will return the required information in SdkResult format
--more details in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section-.
+  -more details in the Android Mobile SDK's <a
+  href="Mobile_SDK#6-result-return"
+  rel="nofollow">6. Result return</a> section-.
 
 - flowFinish: Flag indicating whether the process has finished.
 
