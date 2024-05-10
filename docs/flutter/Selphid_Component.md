@@ -35,7 +35,7 @@ main functionalities are the following:
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
--   Minimum Android version: **23 - JDK 11**
+-   Minimum Android version: **24 - JDK 11**
 
 -   Minimum iOS version: **13**
 
@@ -47,40 +47,35 @@ Regarding the architecture of the mobile device:
 
 The current plugin version can be checked as follows:
 
--   We look for the ***package.json*** file at the root of the plugin.
-
--   The KEY/TAG ***version*** indicates the version.
+- Look for the *pubspec.yaml* file at the root of the plugin.
+- The KEY/TAG **version** indicates the version.
 
 ---
 
-## 2. Component integration 
-
-Before integrating this component, it is **recommended** to read the
-documentation related to **<u>Core Component</u>** and follow the
-instructions indicated in said document.
-
+## 2. Component integration
 <div class="note">
 <span class="note">:information_source:</span>
+Before integrating this component, it is *recommended* to read the documentation related to *Core Component* and follow the instructions indicated in said document.
+</div>
+
+This section will explain step by step how to integrate the current component into an existing project. 
+
+<div class="warning">
+<span class="warning">:warning:</span>
+
 For this section, the following values ​​will be considered:
 
--   **\<%APPLICATION_PATH%\> -** Path to the root of the application
-    (example: /folder/example)
-
--   **\<%PLUGIN_CORE_PATH%\> -** Path to the root of the core plugin,
-    which is mandatory (example: /folder/sdk-core)
-
--   **\<%PLUGIN_SELPHID_PATH%\> -** Path to the root of the current
-    plugin (example: /folder/sdk-selphid)
+- **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
+- **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the Core plugin, which is required (example:/folder/sdk-core)
+- **\<%PLUGIN_SELPHI_FACE_PATH%\>** - Path to the root of the current plugin (example /folder/sdk-selphi)
 </div>
 
 ### 2.1. Plugin installation: Common
+The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-The plugin allows execution on **Android and iOS** platforms. This
-section explains the common steps to all platforms. To install the
-plugin, the following steps must be adopted:
+- Make sure **react-native is** installed.
 
--   Make sure **react-native** is installed.
--   Access **\<%APPLICATION_PATH%\>** at a terminal and run:
+- Access **APPLICATION_PATH** at a terminal and run:
 
 ``` java
 yarn add @facephi/sdk-core-react-native
@@ -293,7 +288,7 @@ configure the **SelphID** component:
 }
 ```
 
-Then, all the properties that can be defined in the ***SdkTracking***
+Then, all the properties that can be defined in the **SelphidConfiguration**
 object will be commented on:
 
 <div class="note">
@@ -304,12 +299,14 @@ All the configuration can be found in the component's ***src/index.tsx*** file.
 When making the call to the widget there is a series of parameters that
 must be included. They will be briefly discussed below.
 
-### 3.1 resourcesPath (*string*)
+### 3.1 resourcesPath
+
+**type:** *string*
 
 Sets the name of the resource file that the widget will use for its
 graphical configuration. This file is customisable and is located in the
 plugin in the ***src/main/assets*** folder for ***Android*** and in the
-***ios/Frameworks*** and Resources folder for iOS. Its installation is
+***ios/Frameworks*** and Resources folder for ***iOS***. Its installation is
 transparent to the user, it will simply be added to the respective
 platform's projects during plugin installation. More details about how
 this resource pack works and how to modify it are explained in
@@ -317,7 +314,9 @@ this resource pack works and how to modify it are explained in
 
 > **resourcesPath**: "fphi-selphid-widget-resources-sdk.zip"
 
-### 3.2 ShowResultAfterCapture (*boolean*)
+### 3.2 ShowResultAfterCapture
+
+**type:** *boolean*
 
 Indicates whether or not to display a screen with the captured image of
 the document after the analysis process. This screen gives the user the
@@ -326,31 +325,35 @@ document is not correct.
 
 > **showResultAfterCapture:** false
 
-### 3.3 ScanMode (*WidgetScanMode*)
+### 3.3 ScanMode
 
-This enumeration is defined in the *js/WidgetSelphidEnums.js* class.
+**type:** *WidgetScanMode*
+
+This enumeration is defined in the ***SdkSelphidEnum.tsx*** class.
 Indicates the OCR scanning mode of the documents. Depending on the
 choice, several types of documents or one in particular will be scanned
 and searched. This mode can be of three types:
 
--   **SelphIDScanMode.Generic:** The generic mode that allows you to
+-   ***SelphIDScanMode.Generic:*** The generic mode that allows you to
     scan any type of document regardless of the country or the type of
     document. The result of this mode is not as accurate as the
     following, but it allows you to scan various standard documents.
 
--   **SelphIDScanMode.Search**: The search mode will allow you to use a
+-   ***SelphIDScanMode.Search***: The search mode will allow you to use a
     whitelist and blacklist, and will search the documents that meet
     those conditions. These conditions are specified in the
     "specificData" variable. In this way it is possible to carry out the
     search limiting the number of templates, and making the search much
     more refined than in the generic case.
 
--   **SelphIDScanMode.Specific**: Search for a specific document. These
+-   ***SelphIDScanMode.Specific***: Search for a specific document. These
     conditions are indicated in the "specificData" property shown below.
 
-> **scanMode**: SdkSelphidEnums.SdkScanMode.Search;
+> ***scanMode***: SdkSelphidEnums.SdkScanMode.Search;
 
-### 3.4 SpecificData (*string*)
+### 3.4 SpecificData
+
+**type:** *string*
 
 This property allows you to define which documents will be scanned
 during the process in the event of declaring the scan mode (scanMode) to
@@ -362,14 +365,18 @@ nationality to be scanned would be the following:
 > **scanMode**: WidgetScanMode.Search;  
 > **specificData**: “ES\|\<ALL\>”; // Spanish ISO code(ES)
 
-### 3.5 FullScreen (\**bool*\*)
+### 3.5 FullScreen
+
+**type:** *boolean*
 
 Determines whether you wish the widget to start in full screen mode,
 hiding the status bar.
 
     **fullscreen**: true;
 
-### 3.6 Locale (\**String*\*)
+### 3.6 Locale
+
+**type:** *string*
 
 It is a string that allows the localisation and language of the widget
 to be changed. Examples of values ​​that they may have are the following:
@@ -390,10 +397,12 @@ to be incorporated into the widget.
 
 > **locale**: "es";
 
-### 3.7 DocumentType (*SdkDocumentType*)
+### 3.7 DocumentType
 
-This enumeration is defined in the *js/WidgetSelphidEnums.js* class.
-Specified in the ***WidgetDocumentType*** class:
+**type:** *string*
+
+This enumeration is defined in the *SdkSelphidEnums.tsx* class.
+Specified in the ***WidgetDocumentType** class:
 
 -   **IDCard**: Establishes that identity documents or cards will be
     captured.
@@ -415,7 +424,9 @@ Specified in the ***WidgetDocumentType*** class:
 
 >     **documentType**: SdkSelphidEnums.SdkDocumentType.IDCard;
 
-### 3.8 TokenImageQuality (*double*)
+### 3.8 TokenImageQuality
+
+**type:** *double*
 
 Specifies the compression quality of the tokenFaceImage.
 
@@ -425,26 +436,26 @@ result in a significant increase in device resource usage:
 
 >       **tokenFaceImage**: 0.9;
 
-### 3.9 generateRawImages (*boolean*)
+### 3.9 generateRawImages
+
+**type:** *boolean*
 
 This property configures the widget to return the full image from the
 camera that was used to capture the document:
 
--   **rawFrontDocument:** Front image of the raw document.
-
--   **rawBackDocument:** Rear image of the raw document.
-
--   **tokenRawFrontDocument:** Tokenisation of the front image of the
+-   rawFrontDocument: Front image of the raw document.
+-   rawBackDocument: Rear image of the raw document.
+-   tokenRawFrontDocument: Tokenisation of the front image of the
     raw document.
-
--   **tokenRawBackDocument:** Tokenisation of the rear image of the raw
+-   tokenRawBackDocument: Tokenisation of the rear image of the raw
     document.
 
-    **    generateRawImages: true;**
+> generateRawImages: true;**
 
->     **generateRawImages**: true;
 
-###  3.10 widgetTimeout (number)
+###  3.10 widgetTimeout
+
+**type:** *number*
 
 It is an enumerator that defines the timeout of the capture of one side
 of the document. It has 3 possible values:
@@ -455,7 +466,9 @@ of the document. It has 3 possible values:
 
 -   WidgetTimeout.Long: 25 segundos
 
-###  3.11 tutorialOnly (boolean)
+###  3.11 tutorialOnly
+
+**type:** *boolean*
 
 Establishes whether you wish to launch the widget in Tutorial mode. This
 allows you to show the previous widget tutorial, but WITHOUT performing
@@ -464,7 +477,9 @@ isolation.
 
 >     **tutorialOnly**: true;
 
-###  3.12 videoFilename (string)
+###  3.12 videoFilename
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -482,7 +497,9 @@ write processing unless a file path is specified using this method.
 
 >     **videoFilename**: “\<videofile-path\>“;
 
-###  3.13 documentModels (string)
+###  3.13 documentModels
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -502,7 +519,9 @@ of the component.
 
 >     **documentModels**: “\<document-models-content-string\>“;
 
-###  3.14 translationsContent (string)
+###  3.14 translationsContent
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -521,7 +540,9 @@ replace the current location of the component at run time.
 
 >     **translationsContent**: “\<translation-content-string\>“;
 
-###  3.15 viewsContent (string)
+###  3.15 viewsContent
+
+**type:** *string*
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -663,7 +684,7 @@ export interface SelphidResult {
 ```
 
 The result will be returned via a Promise containing an object of class
-***SelphidResult***. Information on these fields is expanded below.
+***SdkSelphidResult***. Information on these fields is expanded below.
 
 ### 5.1 finishStatus
 
@@ -734,12 +755,12 @@ values:
 -   **ComponentControllerError**: The exception that is thrown when the
     component cannot be instantiated.
 
-### 5.3 **errorMessage**
+### 5.3 errorMessage
 
 -   Indicates an additional error message if necessary. It is an
     optional value.
 
-### 5.4 **frontDocument/tokenFrontDocument**
+### 5.4 frontDocument/tokenFrontDocument
 
 ***frontDocument***: The front image of the document processed, cleaned
 and cropped by the edges and its corresponding token.
@@ -748,7 +769,7 @@ and cropped by the edges and its corresponding token.
 frontDocument, only it is encrypted, tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.5 **backDocument/tokenBackDocument**
+### 5.5 backDocument/tokenBackDocument
 
 ***backDocument***: The back image of the document processed, cleaned
 and cropped at the edges.
@@ -757,7 +778,7 @@ and cropped at the edges.
 backDocument, only it is encrypted, tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.6 **rawFrontDocument/tokenRawFrontDocument**
+### 5.6 rawFrontDocument/tokenRawFrontDocument
 
 ***rawFrontDocument*****:** The front image of the raw document, as
 obtained from the camera.
@@ -766,7 +787,7 @@ obtained from the camera.
 rawFrontDocument, only it is encrypted and tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.7 **rawBackDocument/tokenRawBackDocument**
+### 5.7 rawBackDocument/tokenRawBackDocument
 
 ***rawBackDocument***: The rear image of the raw document, as obtained
 from the camera.
@@ -775,7 +796,7 @@ from the camera.
 rawBackDocument, only it is encrypted and tokenised, and converted to
 stringBase64. This field can be detokenised in the SelphID service.
 
-### 5.8 **faceImage/tokenFaceImage**
+### 5.8 faceImage/tokenFaceImage
 
 ***faceImage***: The front image of the document processed, cleaned up,
 and cropped at the edges.
@@ -784,7 +805,7 @@ and cropped at the edges.
 only it is encrypted and tokenised, and converted to stringBase64. This
 field can be detokenised in the SelphID service.
 
-### 5.9 **documentData/tokenOCR**
+### 5.9 documentData/tokenOCR
 
 ***documentData***: The OCR data obtained during document capture. The
 information contained in this object will vary depending on the type of
@@ -794,7 +815,7 @@ document and the country of the document.
 encrypted and tokenised, and converted to stringBase64. This field can
 be detokenised in the SelphID service.
 
-### 5.10 **matchingSidesScore**
+### 5.10 matchingSidesScore
 
 This property returns a calculation of the similarity of the data read
 between the front and the back of the document. The calculation is
@@ -806,7 +827,7 @@ higher the value, the more similar the compared data are.
 If the calculation returns -1.0, it means that the document does not
 contain common fields or there is still no information on both sides.
 
-### 5.11 **captureProgress/timeoutStatus**
+### 5.11 captureProgress/timeoutStatus
 
 This property returns the status the search process was in when the
 widget terminated. These are the possible values:

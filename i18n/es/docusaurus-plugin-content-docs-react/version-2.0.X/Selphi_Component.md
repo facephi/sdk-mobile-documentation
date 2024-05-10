@@ -163,7 +163,6 @@ export interface SelphiConfiguration {
   debug?: boolean;
   fullscreen?: boolean;
   cropPercent?: number;
-  crop?: boolean;
   locale?: string;
   stabilizationMode?: boolean;
   templateRawOptimized?: boolean;
@@ -179,6 +178,8 @@ export interface SelphiConfiguration {
   qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
+  compressFormat?: SdkCompressFormat,
+  jpgQuality?: number
 }
 ```
 
@@ -200,19 +201,11 @@ Establece el nombre del archivo de recursos que utilizará el componente para su
 resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
-
-### 3.2. crop
-
-**type:** *boolean*
-
-Indica si las imágenes devueltas (en el parámetro images que se activa con *logImages = true*) en el evento de finalización contienen solo el área del rostro detectado, con una ampliación dada por *CropPercent* o si se devuelve la imagen completa.
-
-
 ```
 crop: false
 ```
 
-### 3.3. cropPercent
+### 3.2. cropPercent
 
 **type:** *float*
 
@@ -223,7 +216,7 @@ cropPercent: 1.0
 ```
 
 
-### 3.4. debug
+### 3.3. debug
 
 **type:** *boolean*
 
@@ -233,7 +226,7 @@ Establece el modo de depuración del componente.
 debug: false
 ```
 
-### 3.5. livenessMode
+### 3.4. livenessMode
 
 **type:** *SdkLivenessMode*
 
@@ -249,7 +242,7 @@ debug: false
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 ```
 
-### 3.6. stabilizationMode
+### 3.5. stabilizationMode
 
 **type:** *boolean*
 
@@ -259,7 +252,7 @@ Propiedad que permite activar o desactivar el modo estabilizado antes del proces
 stabilizationMode: true
 ```
 
-### 3.7. locale
+### 3.6. locale
 
 **type:** *string*
 
@@ -271,7 +264,7 @@ Este parámetro acepta tanto un código de idioma (por ejemplo, *en*) como un c�
 locale: 'ES'
 ```
 
-### 3.8. fullScreen
+### 3.7. fullScreen
 
 **type:** *string*
 
@@ -281,7 +274,7 @@ Establece si desea que el sdk se inicie en modo de pantalla completa, ocultando 
 fullscreen: true
 ```
 
-### 3.9. logImages
+### 3.8. logImages
 
 **type:** *string*
 
@@ -291,7 +284,7 @@ Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la e
 logImages: false
 ```
 
-### 3.10. templateRawOptimized
+### 3.9. templateRawOptimized
 
 **type:** *boolean*
 
@@ -301,7 +294,7 @@ Indica si el token del selfie obtenido debe estar optimizado o no.
 templateRawOptimized: false
 ```
 
-### 3.11. showDiagnostic
+### 3.10. showDiagnostic
 
 **type:** *boolean*
 
@@ -311,7 +304,7 @@ Muestra un pop-up con el diagnóstico en caso de que el proceso falle.
 showDiagnostic: true
 ```
 
-### 3.12 enableGenerateTemplateRaw
+### 3.11 enableGenerateTemplateRaw
 
 **type:** *boolean*
 
@@ -322,7 +315,7 @@ enableGenerateTemplateRaw: true
 ```
 
 
-###  3.13 showResultAfterCapture
+###  3.12 showResultAfterCapture
 
 **type:** *boolean*
 
@@ -333,7 +326,7 @@ showResultAfterCapture: false
 ```
 
 
-###  3.14 showTutorial
+###  3.13 showTutorial
 
 **type:** *boolean*
 
@@ -343,7 +336,32 @@ Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Despu
 showTutorial: true
 ```
 
-###  3.15 videoFilename
+###  3.14 compressFormat
+
+**type:** *SdkCompressFormat*
+
+Indica el formato de compresión de la imagen. Los valores posibles son:
+
+- PNG
+- JPG
+
+```
+compressFormat: "JPG“;
+```   
+
+
+###  3.15 jpgQuality
+
+**type:** *number*
+
+Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible establecer la calidad de compresión de la imagen. Este parámetro se ignorará si el valor de la propiedad ***compressFormat*** es **PNG**.   
+
+
+```
+jpgQuality: 95
+```   
+
+###  3.16 videoFilename
 
 **type:** *string*
 
@@ -359,7 +377,7 @@ videoFilename: “\<videofile-path\>“;
 ```
 
 
-###  3.16 translationsContent
+###  3.17 translationsContent
 
 **type:** *string*
 
@@ -374,7 +392,7 @@ translationsContent: “\<translation-content-string\>“;
 ```
 
 
-###  3.17 viewsContent
+###  3.18 viewsContent
 
 **type:** *string*
 

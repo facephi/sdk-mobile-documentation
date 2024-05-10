@@ -27,9 +27,9 @@ Regarding the architecture of the mobile device:
 
 The current plugin version can be checked as follows:
 
--   Look for the ***package.json*** file at the root of the plugin.
+Look for the *pubspec.yaml* file at the root of the plugin.
 
--   The KEY/TAG ***version*** indicates the version.
+The KEY/TAG **version** indicates the version.
   
   ---
 
@@ -39,46 +39,51 @@ This section will explain step by step how to integrate the current
 component into an existing project.
 
 <div class="note">
-<span class="note">:note:</span>
-
-Para esta sección, se considerarán los siguiente valores:
+<span class="note">:information_source:</span>
+For this section, the following values ​​will be considered:
 
 - **\<APPLICATION_PATH\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<PLUGIN_CORE_PATH\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-core) 
 </div>
 
 
-### 2.1. Añadir repositorio privado
+### 2.1. Adding private repository
+
+<div class="warning">
+<span class="warning">:information_source:</span>
+Access to our private repositories (Cocoapods) is required if you want to access our iOS native libraries.
+</div>
+
 For security and maintenance reasons, the new ***SDKMobile*** components
 are stored in private repositories requiring specific credentials. Those
 credentials must be obtained from the support team of **Facephi**.
 
-To configure the application and thus download the components in the
-repository, you have to access **APPLICATION_PATH**. In that path,
-you have to create a file with the following name:
+- First of all, we launch the command to install cocoapods with Artifactory.
 
 
 ```java
-.npmrc
+sudo gem install cocoapods-art
 ```
 
-Inside that file you have to add the following information provided by
-Facephi (**Credentials**):
+- It is necessary to add the repository credentials in the file called netrc. For this task, from a Terminal, you have to execute:
 
 ```java
-registry=https://registry.npmjs.org/
-@facephi:registry=https://facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:_password=<token-en-base64>
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:username=<username>
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:email=<user_email@***.com>
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:always-auth=true
+$ nano ~/.netrc
 ```
+
+And the following code snippet must be copied in that file:
+
+```
+machine facephicorp.jfrog.io
+  login <USERNAME>
+  password <TOKEN>
+```
+
+
 
 <div class="warning">
 <span class="warning">:warning:</span>
-For the project to correctly retrieve the dependencies, the
-**<u>credentials</u>** (**password, userame** and **email**) must be
-configured correctly
+It is essential to copy the previous fragment *exactly*. There is an indentation before the ***login*** and ***password*** words formed by *two spaces*.
 </div>
 
 #### 2.1.1. Add private iOS repository
@@ -88,8 +93,6 @@ configured correctly
 Access to our private repositories (**Cocoapods**) is required if you
 want to access our iOS native libraries.
 </div>
-
-Para tener acceso a nuestro repositorio privado en iOS, se requiere haber instalado previamente Cocoapods en la máquina.
 
 For security and maintenance reasons, the new ***SDKMobile*** components
 are stored in private repositories requiring specific credentials. The
@@ -118,27 +121,6 @@ If the issues still appear, try to uninstall Cocoapods and all the
 dependencies entirely and start a new clean installation.
 </div>
 
--   It is necessary to add the repository credentials in the file called **netrc**. For this task, from a Terminal, you have to execute:
-
-```
-nano ~/.netrc
-```
-
-And the following code snippet must be copied in that file:
-
-```
-machine facephicorp.jfrog.io
-  login <USERNAME>
-  password <TOKEN>
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-It is essential to copy the previous fragment **exactly**. There is an
-indentation before the ***login*** and ***password*** words formed
-by <u>two spaces</u>.
-</div>
-
 - The repository with the private dependencies must be downloaded
     locally:
 
@@ -154,17 +136,14 @@ pod repo-art update cocoa-pro-fphi
 
 ### 2.2. Plugin installation: Common
 
-The plugin allows execution on **Android and iOS** platforms. This
-section explains the common steps to all platforms. To install the
-plugin, the following steps must be adopted:
+The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
+- Make sure **Flutter** framework is installed.
 
-- Make sure **react-native** is installed.
-
-- Access **\<%APPLICATION_PATH%\>** at a terminal and run:
+- Access **<%APPLICATION_PATH%>** at a terminal and run:
 
 ```
-yarn add @facephi/sdk-core-react-native
+dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
 ```
 
 <div class="warning">
@@ -172,44 +151,25 @@ yarn add @facephi/sdk-core-react-native
 If executing a **pod** command occurs an error like the following:  
 *arch: Can't find any plists for install*
 
-It is recommended to launch every **pod** command with ***arch -x86_64*** before them, for example:
+It is recommended to launch every **pod** command with ***arch -x86_64 ***before them, for example:
 
 - **pod install**
 - **arch -x86_64 pod install**
 </div>
 
-- It is important to verify that the path to the plugin is correctly defined in **package.json**:
+- In addition, in **<%APPLICATION_PATH%>**, access the file *pubspec.yaml* and add:
 
 ```
-"dependencies": {
-  "@facephi/sdk-core-react-native": "^2.0.0",
-}
-```
-
-After running the above steps, you can start the app with the sdk/component installed.
-
-***From Terminal***
-
-For Android:
+fphi_sdkmobile_core:
+  hosted:
+    name: sdkcore
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.0.0
 
 ```
-npx react-native run-android 
-or 
-npx react-native run-android --active-arch-only
-```
-
-For iOS:
-
-```
-npx react-native run-ios
-```
-
-***From different IDEs***
-
-
- Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
 
 ### 2.3 Plugin installation: iOS
+
 #### 2.3.1 Project configuration
 
 For the iOS version, when adding our plugin to the final application,
@@ -308,9 +268,14 @@ maven {
 }
 ```
 
+<div class="warning">
+<span class="warning">:warning:</span>
 For the project to correctly retrieve the dependencies, the
-**<u>credentials</u>** (**Username** and **Token**) must be configured
+***credentials*** (**Username** and **Token**) must be configured
 correctly
+</div>
+
+
 
 
 #### 2.4.2 Set Android SDK version

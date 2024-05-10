@@ -52,33 +52,13 @@ El plugin permite la ejecución en platafoma Android y iOS. En esta sección se 
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-yarn add @facephi/sdk-core-react-native // SOLO EJECUTAR SI EL PLUGIN NO ESTA INSTALADO. YA QUE ÉSTE COMPONENTE ERA MANDATORIO.
-yarn add @facephi/sdk-selphi-react-native
+npm i @facephi/sdk-selphi-capacitor
+npm run build
+npx cap sync
+npx ionic capacitor build [android | ios]
 ```
 
-Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
-
-```
-"dependencies": {
-  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-selphi-react-native": <% PLUGIN_SELPHI_FACE_PATH %>
-}
-```
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
-Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
-Desde Terminal (Para Android):
-```
-npx react-native run-android 
-ó 
-npx react-native run-android --active-arch-only
-```
-
-Para iOS:
-```
-npx react-native run-ios
-```
-
-Desde diferentes IDE's, Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
+Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
 
 ### 2.2 Instalación plugin: iOS
 #### 2.2.1 Configuración del proyecto
@@ -154,7 +134,7 @@ Debido a que el componente de Tracking tiene opciones de geolocalización, es ne
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-selphi-react-native/src/index.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***dist/esm/definitions.d.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
 A continuación se muestra la clase **SelphiConfiguration**, que permite configurar el componente de Selphi:
 
@@ -163,7 +143,6 @@ export interface SelphiConfiguration {
   debug?: boolean;
   fullscreen?: boolean;
   cropPercent?: number;
-  crop?: boolean;
   locale?: string;
   stabilizationMode?: boolean;
   templateRawOptimized?: boolean;
@@ -179,13 +158,16 @@ export interface SelphiConfiguration {
   qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
+  compressFormat?: SdkCompressFormat,
+  jpgQuality?: number
 }
 ```
 
 A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphiConfiguration**:
+
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx del componente.
+Toda la configuración se podrá encontrar en el archivo ***dist/esm/definitions.d.ts*** del componente.
 </div>
 
 A la hora de realizar la llamada al componente existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
@@ -200,19 +182,7 @@ Establece el nombre del archivo de recursos que utilizará el componente para su
 resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
-
-### 3.2. crop
-
-**type:** *boolean*
-
-Indica si las imágenes devueltas (en el parámetro images que se activa con *logImages = true*) en el evento de finalización contienen solo el área del rostro detectado, con una ampliación dada por *CropPercent* o si se devuelve la imagen completa.
-
-
-```
-crop: false
-```
-
-### 3.3. cropPercent
+### 3.2. cropPercent
 
 **type:** *float*
 
@@ -223,7 +193,7 @@ cropPercent: 1.0
 ```
 
 
-### 3.4. debug
+### 3.3. debug
 
 **type:** *boolean*
 
@@ -233,7 +203,7 @@ Establece el modo de depuración del componente.
 debug: false
 ```
 
-### 3.5. livenessMode
+### 3.4. livenessMode
 
 **type:** *SdkLivenessMode*
 
@@ -249,7 +219,7 @@ debug: false
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 ```
 
-### 3.6. stabilizationMode
+### 3.5. stabilizationMode
 
 **type:** *boolean*
 
@@ -259,7 +229,7 @@ Propiedad que permite activar o desactivar el modo estabilizado antes del proces
 stabilizationMode: true
 ```
 
-### 3.7. locale
+### 3.6. locale
 
 **type:** *string*
 
@@ -271,7 +241,7 @@ Este parámetro acepta tanto un código de idioma (por ejemplo, *en*) como un c�
 locale: 'ES'
 ```
 
-### 3.8. fullScreen
+### 3.7. fullScreen
 
 **type:** *string*
 
@@ -281,7 +251,7 @@ Establece si desea que el sdk se inicie en modo de pantalla completa, ocultando 
 fullscreen: true
 ```
 
-### 3.9. logImages
+### 3.8. logImages
 
 **type:** *string*
 
@@ -291,7 +261,7 @@ Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la e
 logImages: false
 ```
 
-### 3.10. templateRawOptimized
+### 3.9. templateRawOptimized
 
 **type:** *boolean*
 
@@ -301,7 +271,7 @@ Indica si el token del selfie obtenido debe estar optimizado o no.
 templateRawOptimized: false
 ```
 
-### 3.11. showDiagnostic
+### 3.10. showDiagnostic
 
 **type:** *boolean*
 
@@ -311,7 +281,7 @@ Muestra un pop-up con el diagnóstico en caso de que el proceso falle.
 showDiagnostic: true
 ```
 
-### 3.12 enableGenerateTemplateRaw
+### 3.11 enableGenerateTemplateRaw
 
 **type:** *boolean*
 
@@ -322,7 +292,7 @@ enableGenerateTemplateRaw: true
 ```
 
 
-###  3.13 showResultAfterCapture
+###  3.12 showResultAfterCapture
 
 **type:** *boolean*
 
@@ -333,7 +303,7 @@ showResultAfterCapture: false
 ```
 
 
-###  3.14 showTutorial
+###  3.13 showTutorial
 
 **type:** *boolean*
 
@@ -343,7 +313,32 @@ Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Despu
 showTutorial: true
 ```
 
-###  3.15 videoFilename
+###  3.14 compressFormat
+
+**type:** *SdkCompressFormat*
+
+Indica el formato de compresión de la imagen. Los valores posibles son:
+
+- PNG
+- JPG
+
+```
+compressFormat: "JPG“;
+```   
+
+
+###  3.15 jpgQuality
+
+**type:** *number*
+
+Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible establecer la calidad de compresión de la imagen. Este parámetro se ignorará si el valor de la propiedad ***compressFormat*** es **PNG**.   
+
+
+```
+jpgQuality: 95
+```   
+
+###  3.16 videoFilename
 
 **type:** *string*
 
@@ -359,7 +354,7 @@ videoFilename: “\<videofile-path\>“;
 ```
 
 
-###  3.16 translationsContent
+###  3.17 translationsContent
 
 **type:** *string*
 
@@ -374,7 +369,7 @@ translationsContent: “\<translation-content-string\>“;
 ```
 
 
-###  3.17 viewsContent
+###  3.18 viewsContent
 
 **type:** *string*
 
@@ -389,7 +384,6 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 viewsContent: “\<views-content-string\>“;
 ```
 
----
 
 ## 4. Uso del componente
 A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
@@ -401,44 +395,24 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
-```
-const getSelphiConfiguration = () => {
-    let config: SelphiConfiguration = {
-      debug: false,
-      fullscreen: true,
-      livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode,
-      resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
-      //enableGenerateTemplateRaw: true,
-      logImages: true
-    };
-    return config;
-};
+``` java
+onLaunchSelphiProcess = async () => {
+    this.message = '';
+    await this.launchSelphiAuthentication()
+    .then((result: SelphiFaceResult) => this.onSuccessSelphiExtraction(result), (err: string) => this.onErrorSelphiExtraction(err));
+  }
 
-const startSelphi = async () => 
-{ 
-    try 
-    {
-      console.log("Starting startSelphi...");
-      clearAll();
 
-      return await SdkMobileSelphi.selphi(getSelphiConfiguration())
-      .then((result: any) => 
-      {
-        console.log("result", result);
-        processSelphiResult(result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End startSelphi...");
+launchSelphiAuthentication = async (): Promise<SelphiFaceResult> => {
+      console.log('Launching selphi widget...');
+      // SelphiFaceConfiguration
+      return SdkSelphi.startExtraction({
+        debug: false,
+        livenessMode: SelphiFaceLivenessMode.Passive,
+        resourcesPath: SELPHI_RESOURCES_PATH,
+        enableGenerateTemplateRaw: true,
       });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
+  }
 ```
 
 ---
@@ -446,40 +420,48 @@ const startSelphi = async () =>
 ## 5. Retorno de resultado
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto JSON a través de Promises, ya sea una operación exitosa o un error:
 
-```
-return await SdkMobileSelphi.selphi(getSelphiConfiguration())
-.then((result: any) => 
-{
-    console.log("result", result);
-})
-.catch((error: any) => 
-{
-    console.log(error);
-})
-.finally(()=> {
-    console.log("End startSelphi...");
-});
+``` java
+ onSuccessSelphiExtraction = (result: any) => {
+    console.log('Receiving selphi success event...');
+    if (result !== null && result) {
+      switch (result.finishStatus) {
+        case SdkFinishStatus.Ok: // OK
+          this.processSuccessResult(result); // Logging the info for debug purposes
+          this.bestImageCropped = this.URI_JPEG_HEADER + result.bestImageCropped;
+          this.bestImage        = result.bestImage;
+          break;
+
+        case SdkFinishStatus.Error: // Error
+          this.printError(result['errorType'])
+          break;
+      }
+      this.changeDetection.detectChanges();
+    }
+  }
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
-```
-export interface SelphiResult {
-  finishStatus?: number;
-  errorType?: string;
+``` java
+export interface SelphiFaceResult {
+   finishStatus: string;
   finishStatusDescription?: string;
+  errorType: string;
   errorMessage?: string;
+  templateRaw?: string;
+  qrData?: string;
   bestImage?: string;
   bestImageCropped?: string;
   bestImageTemplateRaw?: string;
-  qrData?: string;
-  templateRaw?: string;
+
 }
 ```
  
+<div class="note">
+<span class="note">:information_source:</span>
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SelphiResult***. A continuación se amplía información sobre esos campos.
+</div>
 
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SelphiResult. A continuación se amplía información sobre esos campos. 
-Se podrá encontrar en el archivo www/SdkSephiResult.js 
 
 
 ### 5.1 finishStatus
