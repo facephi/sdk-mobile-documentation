@@ -347,8 +347,7 @@ Indica el formato de compresión de la imagen. Los valores posibles son:
 
 ```
 compressFormat: "JPG“;
-```   
-
+```
 
 ###  3.15 jpgQuality
 
@@ -359,7 +358,7 @@ Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible 
 
 ```
 jpgQuality: 95
-```   
+```
 
 ###  3.16 videoFilename
 
@@ -419,7 +418,7 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
-```
+``` java
 const getSelphiConfiguration = () => {
     let config: SelphiConfiguration = {
       debug: false,

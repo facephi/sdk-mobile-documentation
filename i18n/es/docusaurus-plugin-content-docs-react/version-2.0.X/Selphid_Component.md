@@ -166,14 +166,14 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   debug?: boolean;
   fullScreen?: boolean;
   tokenImageQuality?: number;
-  widgetTimeout?: number;
+  timeout?: number;
   showResultAfterCapture?: boolean;
   showTutorial?: boolean;
   tutorialOnly?: boolean;
   scanMode?: string;
   specificData?: string;
   documentType?: string;
-  videoFilename?: stirng;
+  videoFilename?: string;
   locale?: string;
   documentModels?: string;
   generateRawImages?: boolean;
@@ -188,6 +188,8 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   imageQuality?: number,
 }
 ```
+
+
 
 A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphidConfiguration**:
 
@@ -204,7 +206,9 @@ A la hora de realizar la llamada al component existe una serie de parámetros qu
 
 Establece el nombre del archivo de recursos que utilizará el componente para su configuración gráfica. Éste archivo es personalizable y se encuentra en el complemento en la carpeta **src/main/assets** para ***Android*** y en **ios/Frameworks** y de la carpeta Resources para ***iOS***. Su instalación es transparente para el usuario, simplemente se agregará a los proyectos de las respectivas plataformas durante la instalación del complemento. Más detalles sobre cómo funciona este paquete de recursos y cómo modificarlo se explican en **apartado 6**.
 
-> resourcesPath: "fphi-selphid-widget-resources-sdk.zip"
+```
+resourcesPath: "fphi-selphid-widget-resources-sdk.zip"
+```
 
 ### 3.2 showResultAfterCapture
 
@@ -212,8 +216,9 @@ Establece el nombre del archivo de recursos que utilizará el componente para su
 
 Indica si mostrar o no una pantalla con la imagen capturada del documento después del proceso de análisis. En esta pantalla se le da al usuario la posibilidad de repetir el proceso de captura si la imagen que se obtuvo del documento no fuera correcta.
 
-> showResultAfterCapture: false
-
+```
+showResultAfterCapture: false
+```
 
 ### 3.3 scanMode
 
@@ -237,19 +242,37 @@ Esta propiedad permite definir qué documentos se escanearán durante el proceso
 
 Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:
 
-> scanMode: WidgetScanMode.Search;
-> specificData: “ES|<ALL>”; // Spanish ISO code(ES)
+```
+scanMode: WidgetScanMode.Search;
+specificData: “ES|\<ALL>”; // Spanish ISO code(ES)
+```
 
 
-### 3.5 fullScreen
+### 3.5 documentSide
+
+**type:** *string*
+
+Los valores permitidos son los siguientes:
+
+**SelphIDDocumentSide.FRONT:** El widget queda configurado para realizar la captura de la parte frontal del documento.
+
+**SelphIDDocumentSide.BACK:** El widget queda configurado para realizar la captura de la parte trasera del documento.
+
+```
+documentSide: SelphIDDocumentSide.FRONT
+```
+
+
+### 3.6 fullScreen
 
 **type:** *boolean*
 
 Establece si se desea que el componente se arranque en modo pantalla completa, ocultando el status bar.
+
 ```
 fullscreen: true;
 ```
-### 3.6 locale
+### 3.7 locale
 
 **type:** *string*
 
@@ -263,9 +286,11 @@ En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del 
 
 En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el componente.
 
-> locale: "es";
+```
+locale: "es";
+```
 
-### 3.7 documentType
+### 3.8 documentType
 
 **type:** *string*
 
@@ -278,10 +303,11 @@ Este enumerado se define en la clase `SdkSelphidEnums.tsx`. Especificado en el e
 - ***ForeignCard***: Establece que se capturarán tarjetas de identidad de Extranjeros.
 - ***Custom***: Engloba documentos que no se encuentran en ninguna de las categorías anteriores.
 
-> documentType: SdkSelphidEnums.SdkDocumentType.IDCard;
+```
+documentType: SdkSelphidEnums.SdkDocumentType.IDCard;
+```
 
-
-### 3.8 tokenImageQuality
+### 3.9 tokenImageQuality
 
 **type:** *double*
 
@@ -289,9 +315,11 @@ Especifica la calidad de compresión del tokenFaceImage.3.9 enableImages (boolea
 
 Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
 
+```
  tokenFaceImage: 0.9;
+```
 
-### 3.9 generateRawImages
+### 3.10 generateRawImages
 
 **type:** *boolean*
 
@@ -306,7 +334,7 @@ Esta propiedad configura el componente para devolver la imagen completa de la c�
 generateRawImages: true;
 ```
 
-### 3.10 widgetTimeout
+### 3.11 timeout
 
 **type:** *number*
 
@@ -316,16 +344,21 @@ Es un enumerado que define el timeout de la captura de un lado del documento. Ti
 - SdkTimeout.Medium: 20 segundos.
 - SdkTimeout.Long: 25 segundos
 
-### 3.11 tutorialOnly
+```
+timeout: SdkTimeout.Medium;
+```
+
+### 3.12 tutorialOnly
 
 **type:** *boolean*
 
 Establece si se desea lanzar el componente en modo Tutorial. Esto permite mostrar el tutorial del componente previo, pero SIN realizar el proceso posterior de captura. Útil en caso de que se desee mostrar el tutorial de forma aislada.
 
->     **tutorialOnly**: true;
+```
+tutorialOnly: true;
+```
 
-
-###  3.12 debug
+###  3.13 debug
 
 **type:** *boolean*
 
@@ -335,7 +368,7 @@ Establece el modo debug del componente.
 debug: false
 ```
 
-###  3.13 showTutorial
+###  3.14 showTutorial
 
 **type:** *boolean*
 
@@ -345,15 +378,18 @@ Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Despu
 showTutorial: true
 ```
 
-###  3.14 wizardMode
+###  3.15 wizardMode
 
 **type:** *boolean*
 
 Indica si el componente se configurará para capturar ambas partes del documento (frontal y dorso) una después de la otra. En este modo, el componente se lanzará sólo una vez, y capturará el dorso del documento justo después de capturar el frontal.
 
+```
+wizardMode: true
+```
 
 
-###  3.15 tokenPrevCaptureData
+###  3.16 tokenPrevCaptureData
 
 **type:** *string*
 
@@ -361,10 +397,11 @@ Cuando el documento se captura mediante dos pasos (para ello, ***wizardMode*** d
 
 Si ambos lado del documento se capturan en una única llamada al componente (***wizardMode*** debe establecerse a *true*), esto sería innecesario ya que el componente realiza este proceso internamente.
 
-> tokenPrevCaptureData: selphIDResult.tokenOCR
+```
+tokenPrevCaptureData: selphIDResult.tokenOCR
+```
 
-
-### 3.16. showDiagnostic
+### 3.17. showDiagnostic
 
 **type:** *boolean*
 
@@ -376,7 +413,7 @@ showDiagnostic: true
 
 
 
-###  3.17 compressFormat
+###  3.18 compressFormat
 
 **type:** *SdkCompressFormat*
 
@@ -385,19 +422,39 @@ Indica el formato de compresión de la imagen. Los valores posibles son:
 - PNG
 - JPG
 
->     **compressFormat**: "JPG“;
+```
+compressFormat: "JPG“;
+```
 
-
-###  3.18 imageQuality
+###  3.19 jpgQuality
 
 **type:** *number*
 
 Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible establecer la calidad de compresión de la imagen. Este parámetro se ignorará si el valor de la propiedad ***compressFormat*** es **PNG**.
 
->     **imageQuality**: 95
+```
+imageQuality: 95
+```
 
 
-### 3.19 videoFilename
+###  3.20 timeout
+
+**type:** *SelphIDTimeout*
+
+Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
+
+**SelphIDTimeout.SHORT:** 15 segundos.
+
+**SelphIDTimeout.MEDIUM:** 20 segundos.
+
+**SelphIDTimeout.LONG:** 25 segundos.
+
+```
+timeout: SelphIDTimeout.MEDIUM
+```
+
+
+### 3.21 videoFilename
 
 **type:** *string*
 
@@ -408,9 +465,11 @@ Esta es una propiedad avanzada, y que en la mayoría de casos no es necesario mo
 
 Establece la ruta absoluta del nombre del archivo en el que se grabará un video del proceso de captura. La aplicación es la responsable de solicitar los permisos necesarios al teléfono en caso de que esa ruta requiera de permisos adicionales. El componente, por defecto, no realizará ningún proceso de grabación a menos que se especifique una ruta de archivo mediante este método.
 
->     **videoFilename**: “\<videofile-path\>“;
+```
+vieoFilename: “\<videofile-path\>“;
+```
 
-### 3.20 documentModels
+### 3.22 documentModels
 
 **type:** *string*
 
@@ -421,9 +480,11 @@ Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario
 
 Esta propiedad permite, mediante una cadena en formato xml, configurar modelado de los documentos que el componente va a tratar de capturar. La definición de este modelado se puede encontrar, por defecto, en  un .xml de modelos dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, los modelados de los documentos actuales del componente.
 
->     **documentModels**: “\<document-models-content-string\>“;
+```
+documentModels: “\<document-models-content-string\>“;
+```
 
-### 3.21 translationsContent
+### 3.23 translationsContent
 
 **type:** *string*
 
@@ -434,9 +495,11 @@ Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario
 
 Esta propiedad permite, mediante una cadena en formato xml, configurar la localización actual del componente. La definición de este modelado se puede encontrar, por defecto, en una carpeta interna de traducciones  dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, la localización actual del componente.
 
->     **translationsContent**: “\<translation-content-string\>“;
+```
+translationsContent: “\<translation-content-string\>“;
+```
 
-### 3.22 viewsContent
+### 3.24 viewsContent
 
 **type:** *string*
 
@@ -448,8 +511,9 @@ Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario
 Esta propiedad permite, mediante una cadena en formato xml, configurar las vistas del componente actual. La definición de este modelado se puede encontrar, por defecto, en un fichero llamado widget.xml dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, el diseño de las pantallas internas del componente.
 
 
->     **viewsContent**: “<views-content-string\>“;
-
+```
+viewsContent: “\<views-content-string\>“;
+```
 
 ---
 

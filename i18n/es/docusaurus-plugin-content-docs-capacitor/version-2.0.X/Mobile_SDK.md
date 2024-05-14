@@ -16,25 +16,20 @@ Versión mínima iOS: **13**
 La versión del plugin actual se puede consultar de la siguiente forma:
 
 - Buscamos el archivo **package.json** en la raíz del plugin.
-
 - En el KEY/TAG ***version*** se indica la versión. 
 
 ## 2. Integración del componente
 En esta sección se explicará paso a paso cómo integrar el plugin actual en un proyecto ya existente. Se tratarán los siguientes puntos:
 
 - Configurar y añadir el repositorio privado para acceder a las dependencias de los componentes
-
 - Pasos de la instalación comunes a ambas plataformas (Android y iOS)
-
 - Pasos de la instalación específicos para iOS
-
 - Pasos de la instalación específicos para Android
-
 - Dependencias que se deben añadir al proyecto
 
 
 <div class="note">
-<span class="note">:note:</span>
+<span class="note">:information_source:</span>
 
 Para esta sección, se considerarán los siguiente valores:
 
@@ -72,10 +67,9 @@ Tal y como se muestra en el fragmento anterior, para que el proyecto obtenga cor
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Para acceder a las librerías nativas de iOS se requiere configurar el acceso a nuestros repositorios privados de Cocoapods.
+Para acceder a las librerías nativas de iOS se requiere configurar el acceso a nuestros repositorios privados de **Cocoapods**.
 </div>
 
-Para tener acceso a nuestro repositorio privado en iOS, se requiere haber instalado previamente Cocoapods en la máquina.
 
 Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la **SDKMobile** se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi. A continuación se indica como preparar el entorno para consumir los componentes:
 
@@ -129,57 +123,26 @@ pod repo-art update cocoa-pro-fphi
 ```
 
 ### 2.2. Instalación del plugin: Common
-El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que **react-native** esté instalado.
+El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
+
+- Acceda al **\<%PLUGIN_CORE_PATH%\>** en un terminal y ejecute:
+
+```
+npm run build
+```
 
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
-```
-yarn add @facephi/sdk-core-react-native
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-Si al ejecutar cualquier comando pod surge un error como el siguiente:
-arch: Can't find any plists for install
-
-Se recomienda ejecutar todos los comandos con ***arch -x86_64*** delante, por ejemplo:
-
-- **pod install**
-- **arch -x86_64 pod install**
-</div>
-
-- Es importante verificar que la ruta al complemento esté correctamente definida en **package.json**:
 
 ```
-"dependencies": {
-  "@facephi/sdk-core-react-native": "^2.0.0",
-}
+npm i @facephi/sdk-core-capacitor
+npm run build
+npx cap sync
+npx ionic capacitor build [android | ios]
 ```
 
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado. 
-Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
-
-***Desde Terminal***
-
-Para Android:
-
-```
-npx react-native run-android 
-ó 
-npx react-native run-android --active-arch-only
-```
-
-Para iOS:
-
-```
-npx react-native run-ios
-```
-
-***Desde diferentes IDE***
-
- Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
+Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
 
 ### 2.3 Instalación plugin: iOS
 #### 2.3.1 Configuración del proyecto
@@ -189,12 +152,6 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 - ***Deshabilitar el BITCODE***: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
 Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como **No**.
 
-- ***Añadir los permisos de cámara***: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
-
-```
-***<key>NSCameraUsageDescription</key>***
-***<string>$(PRODUCT_NAME) uses the camera</string>***
-```
 
 ### 2.3.2 Actualizar el Podfile
 
@@ -235,7 +192,7 @@ pod repo-art update cocoa-pro-fphi
 
 ### 2.4 Instalación plugin: Android
 #### 2.4.1 Configuración del proyecto
-Para instalar el plugin en el proyecto, el sdk se descarga de un repositorio remoto las dependencias necesarias para su correcto funcionamiento, para lo cual se deben ingresar unas credenciales. Para ello, hay que añadir en el fichero build.gradle lo siguiente (dentro de la sección repositories):
+Para instalar el plugin en el proyecto, el sdk se descarga de un repositorio remoto las dependencias necesarias para su correcto funcionamiento, para lo cual se deben ingresar unas credenciales. Para ello, hay que añadir en el fichero *build.gradle* lo siguiente (dentro de la sección repositories):
 
 ```
 maven {
@@ -250,18 +207,5 @@ maven {
         username = props["artifactory.user"] ?: System.getenv("USERNAME_ARTIFACTORY")
         password = props["artifactory.token"] ?: System.getenv("TOKEN_ARTIFACTORY")
     }
-}
-```
-
-En caso de que se quiera probar con las variables hardcodeadas, no solo se debe cambiar el username y password por el valor de las credenciales en la demo. También se debe cambiar en las dependencias. Esto se encuentra en la carpeta node_modules → @facephi y se modifica el build_gradle de la carpeta Android para añadir estos valores.
-
-### 2.4.2 Establecer la versión de Android SDK 
-En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es 24, por lo que si la aplicación tiene un SDK mínimo definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero build.gradle de la aplicación (ubicado en la carpeta android) y modifica el siguiente parámetro:
-
-```
-buildscript {
-  ext {
-    minSdkVersion = 24
-  }
 }
 ```

@@ -135,7 +135,7 @@ Permite establecer la licencia de los componentes. Esta licencia deberá ser pro
 license: "valid license“
 ```
 
-# 2.2.2 licenseUrl
+#### 2.2.2 licenseUrl
 
 **type:** *string*
 
@@ -145,7 +145,7 @@ Establece la url donde el componente Core valida la licencia de forma remota. Es
 licenseUrl: "https://***.***.pro"
 ```
 
-# 2.2.3 licenseApiKey
+#### 2.2.3 licenseApiKey
 
 **type:** *string*
 
@@ -298,12 +298,18 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
+### 5.5 sessionId
+Devuelve el identificador de la sesión actual. Cada vez que se ejecute un ***initSession*** se generará un nuevo *sessionId*.
 
-### **5.5 tokenized**
+### 5.6 operationId
+Devuelve el identificador de la operación actual. Cada vez que se ejecute un ***initOperation*** se generará un nuevo *operationId*.
+
+### 5.7 tokenized
 Parámetro opcional. Sólo se devuelve si se llama al método *Tokenized*. El plugin devolverá un valor de tipo ***string*** format. Más información en el **apartado 8.**
 
-### **5.6 data**: 
-Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
+### 5.8 data
+Parámetro opcional. Sólo se devuelve si se llama al método *GetExtraData*. El plugin devolverá un valor de tipo ***string*** format. Más información en e **section 7.**
+
 ---
 
 ## 6. Cierre de sesión

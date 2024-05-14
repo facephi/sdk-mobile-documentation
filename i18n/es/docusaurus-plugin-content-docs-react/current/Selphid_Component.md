@@ -238,7 +238,7 @@ Esta propiedad permite definir qué documentos se escanearán durante el proceso
 Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:
 
 > scanMode: WidgetScanMode.Search;
-> specificData: “ES|<ALL>”; // Spanish ISO code(ES)
+> specificData: “ES|\<ALL>”; // Spanish ISO code(ES)
 
 
 ### 3.5 fullScreen
@@ -447,9 +447,7 @@ Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario
 
 Esta propiedad permite, mediante una cadena en formato xml, configurar las vistas del componente actual. La definición de este modelado se puede encontrar, por defecto, en un fichero llamado widget.xml dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, el diseño de las pantallas internas del componente.
 
-
->     **viewsContent**: “<views-content-string\>“;
-
+>  **viewsContent**: “\<views-content-string\>“;
 
 ---
 

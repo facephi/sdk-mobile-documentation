@@ -41,7 +41,6 @@ This section will explain step by step how to integrate the current component in
 
 <div class="warning">
 <span class="warning">:warning:</span>
-
 For this section, the following values ​​will be considered:
 
 - **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
@@ -52,10 +51,14 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-- Make sure **react-native is** installed.
+- Access al **PLUGIN_CORE_PATH** at a terminal and run:
+
+```
+npm run build
+```
 
 - Access **APPLICATION_PATH** at a terminal and run:
-- 
+
 ```
 npm i @facephi/sdk-selphi-capacitor
 npm run build
@@ -144,7 +147,7 @@ Because the Tracking component has geolocation options, it is necessary to add t
 ---
 
 ## 3. Component configuration
-The actual component contains a number of Typescript methods and interfaces contained within the  ***node_modules/@facephi/sdk-selphi-react-native/src/index.ts*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
+The actual component contains a number of Typescript methods and interfaces contained within the  ***definitions.d.ts*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
 
 Below is the *SelphiConfiguration* class, which allows you to configure the Selphi component:
 
@@ -175,7 +178,7 @@ export interface SelphiConfiguration {
 
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's *dist/esm/definitions.ts* file.
+All the configuration can be found in the component's *definitions.ts* file.
 </div>
 
 When making the call to the component there is a series of parameters that must be included. They will be briefly discussed below.
@@ -330,7 +333,7 @@ Indicates the format compression of the image. The possible values are:
 
 ```
 compressFormat: "JPG“;
-```   
+```
 
 ###  3.15 jpgQuality
 
@@ -340,7 +343,8 @@ If the ***compressFormat*** property is configured as **JPG**, it is possible to
 
 ```
 jpgQuality: 95
-```   
+```
+
 
 ###  3.16 videoFilename
 
@@ -412,13 +416,13 @@ The following will show how to execute the functionality of the current componen
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Remember that in order to launch a certain component previously, you must **initialise the SDK** with its respective licence, and then **start a new operation**. For further information, consult the documentation of the Core Component.
+Remember that in order to launch a certain component previously, you must **initialise the SDK** with its respective licence, and then **start a new operation**. For further information, consult the documentation of the *Core Component*.
 </div>
 
 Once the component has been configured, to launch it, the following code must be executed:
 
 
-```
+```java
 onLaunchSelphiProcess = async () => {
     this.message = '';
     await this.launchSelphiAuthentication()
@@ -443,7 +447,7 @@ launchSelphiAuthentication = async (): Promise<SelphiFaceResult> => {
 ## 5. Return of result
 As shown in the example above, the result is returned in the form of a JSON object via Promises, whether it is a successful operation or an error:
 
-```
+``` java
  onSuccessSelphiExtraction = (result: any) => {
     console.log('Receiving selphi success event...');
     if (result !== null && result) {
@@ -466,7 +470,7 @@ As shown in the example above, the result is returned in the form of a JSON obje
 Regardless of whether the result is correct/erroneous, the result will have the following format:
 
 ``` java
-export interface SelphiResult {
+export interface SelphiFaceResult {
   finishStatus?: number;
   errorType?: string;
   finishStatusDescription?: string;
@@ -482,7 +486,7 @@ export interface SelphiResult {
  
 <div class="note">
 <span class="note">:information_source:</span>
-The result will be returned via a Promise containing an object of class SelphiResult. Information on these fields has been elaborated on below.
+The result will be returned via a Promise containing an object of class *SelphiFaceResult*. Information on these fields has been elaborated on below.
 </div>
 
 
@@ -497,7 +501,8 @@ The result will be returned via a Promise containing an object of class SelphiRe
 
  Returns the operation's global description. It is an optional value.
 
-### 5.3 errorMessage 
+ 
+### 5.3 errorMessage
   
 Indicates an additional error message if necessary. It is an optional value.
 

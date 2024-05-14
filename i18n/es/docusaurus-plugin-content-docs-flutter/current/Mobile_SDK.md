@@ -8,18 +8,16 @@
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-Versión mínima Android: **24 - JDK 11**
+Versión mínima Android: **24**
 
 Versión mínima iOS: **13**
 
 ### 1.2 Versión del plugin
-La versión del widget se puede consultar de la siguiente manera:
+La versión del plugin actual se puede consultar de la siguiente forma:
 
-Buscamos el fichero *pubspec.yaml* en la raíz del plugin.
+- Buscamos el archivo **package.json** en la raíz del plugin.
 
-En la etiqueta **version** se indica la versión.
-
----
+- En el KEY/TAG ***version*** se indica la versión. 
 
 ## 2. Integración del componente
 En esta sección se explicará paso a paso cómo integrar el plugin actual en un proyecto ya existente. Se tratarán los siguientes puntos:
@@ -46,46 +44,38 @@ Para esta sección, se considerarán los siguiente valores:
 
 
 ### 2.1. Añadir repositorio privado
-
-<div class="warning">
-<span class="warning">:information_source:</span>
-Para acceder a las librerías nativas de iOS se requiere configurar el acceso a nuestros repositorios privados de Cocoapods.
-</div>
-
 Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la SDKMobile se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de **Facephi**.
 
-- Primero instalamos el comando que nos dará acceso a usar cocoapods con Artifactory.
+Para configurar la aplicación y así poder usar estos componentes, se deberá acceder a **\<APPLICATION_PATH\>**. En esa ruta, se debe crear un archivo con el siguiente nombre: 
 
 ```java
-sudo gem install cocoapods-art
-```
-- Necesitaremos añadir el repositorio a la lista del fichero netrc. Para ello, desde un Terminal, se ejecuta el siguiente comando:
-
-```java
-$ nano ~/.netrc
+.npmrc
 ```
 
-- Y copiamos el siguiente fragmento con los datos correspondientes al final del fichero:
-
+Dentro de ese fichero se deberá agregar la información proporcionada por Facephi (**Credenciales**) para poder descargarse las librerías del repositorio privado:
 
 ```java
-machine facephicorp.jfrog.io
-  login <USERNAME>
-  password <TOKEN>
+registry=https://registry.npmjs.org/
+@facephi:registry=https://facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:_password=<token-en-base64>
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:username=<username>
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:email=<user_email@***.com>
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:always-auth=true
 ```
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Es importante copiar de manera exacta el anterior fragmento de código. El indentado previo a las palabras login y password está formado por dos espacios.
+Tal y como se muestra en el fragmento anterior, para que el proyecto obtenga correctamente las dependencias, se deberá rellenar la información necesaria de forma adecuada (**password**, **username** y **email**)
 </div>
 
-
-#### 2.1.1. Añadir repositorio privado: iOS
+### 2.1.1. Añadir repositorio privado: iOS
 
 <div class="warning">
 <span class="warning">:warning:</span>
 Para acceder a las librerías nativas de iOS se requiere configurar el acceso a nuestros repositorios privados de Cocoapods.
 </div>
+
+Para tener acceso a nuestro repositorio privado en iOS, se requiere haber instalado previamente Cocoapods en la máquina.
 
 Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la **SDKMobile** se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi. A continuación se indica como preparar el entorno para consumir los componentes:
 
@@ -107,6 +97,25 @@ sudo arch -arm64 gem install cocoapods-art
 En caso de tener problemas con la instalación, desinstalar completamente cocoapods y todas sus dependencias para hacer una instalación limpia.
 </div>
 
+- Necesitaremos añadir el repositorio a la lista del fichero **netrc**. Para ello, desde un Terminal, se ejecuta el siguiente comando:
+
+```
+nano ~/.netrc
+```
+
+Y copiamos el siguiente fragmento con los datos correspondientes al final del fichero:
+
+```
+machine facephicorp.jfrog.io
+  login <USERNAME>
+  password <TOKEN>
+```
+
+<div class="warning">
+<span class="warning">:warning:</span>
+Es importante copiar de manera exacta el anterior fragmento de código. El indentado previo a las palabras login y password está formado por dos espacios.
+</div>
+
 - Se añadirá el repositorio que contiene dependencias privada:
 
 ```
@@ -120,36 +129,26 @@ pod repo-art update cocoa-pro-fphi
 ```
 
 ### 2.2. Instalación del plugin: Common
-El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que el framework **Flutter** esté correctamente instalado.
+El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
+
+- Acceda al **\<%PLUGIN_CORE_PATH%\>** en un terminal y ejecute:
+
+```
+npm run build
+```
 
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
-```
-dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-Si al ejecutar cualquier comando pod surge un error como el siguiente:
-arch: Can't find any plists for install
-
-Se recomienda ejecutar todos los comandos con ***arch -x86_64*** delante, por ejemplo:
-
-- **pod install**
-- **arch -x86_64 pod install**
-</div>
-
-- Además, en **<%APPLICATION_PATH%>**, acceder al fichero *pubspec.yaml* y añadir:
 
 ```
-fphi_sdkmobile_core:
-  hosted:
-    name: sdkcore
-    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+npm i @facephi/sdk-core-capacitor
+npm run build
+npx cap sync
+npx ionic capacitor build [android | ios]
 ```
+
+Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
 
 ### 2.3 Instalación plugin: iOS
 #### 2.3.1 Configuración del proyecto
@@ -159,12 +158,6 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 - ***Deshabilitar el BITCODE***: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
 Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como **No**.
 
-- ***Añadir los permisos de cámara***: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
-
-```
-***<key>NSCameraUsageDescription</key>***
-***<string>$(PRODUCT_NAME) uses the camera</string>***
-```
 
 ### 2.3.2 Actualizar el Podfile
 
@@ -205,7 +198,7 @@ pod repo-art update cocoa-pro-fphi
 
 ### 2.4 Instalación plugin: Android
 #### 2.4.1 Configuración del proyecto
-Para instalar el plugin en el proyecto, el sdk se descarga de un repositorio remoto las dependencias necesarias para su correcto funcionamiento, para lo cual se deben ingresar unas credenciales. Para ello, hay que añadir en el fichero build.gradle lo siguiente (dentro de la sección repositories):
+Para instalar el plugin en el proyecto, el sdk se descarga de un repositorio remoto las dependencias necesarias para su correcto funcionamiento, para lo cual se deben ingresar unas credenciales. Para ello, hay que añadir en el fichero *build.gradle* lo siguiente (dentro de la sección repositories):
 
 ```
 maven {
@@ -220,23 +213,5 @@ maven {
         username = props["artifactory.user"] ?: System.getenv("USERNAME_ARTIFACTORY")
         password = props["artifactory.token"] ?: System.getenv("TOKEN_ARTIFACTORY")
     }
-}
-```
-
-
-<div class="warning">
-<span class="warning">:warning:</span>
-Para que el proyecto obtenga las dependencias correctamente, las **credenciales** deben estar configuradas correctamente (**Username** y **Token**) must be configured
-correctly
-</div>
-
-### 2.4.2 Establecer la versión de Android SDK 
-En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es **24**, por lo que si la aplicación tiene un *SDK mínimo* definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero ***build.gradle*** de la aplicación (ubicado en la carpeta ***android***) y modifica el siguiente parámetro:
-
-```
-buildscript {
-  ext {
-    minSdkVersion = 24
-  }
 }
 ```

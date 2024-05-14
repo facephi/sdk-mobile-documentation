@@ -224,7 +224,7 @@ const getInitOperationConfiguration = () =>
 ## 4. Launch of components
 <div class="note">
 <span class="note">:information_source:</span>
-Once the **new operation has been created (section 3)**, the different SDK controllers may be launched. To consult this information, you must access the documentation of **each of the specific components**.
+Once the **new operation has been created (section 3)**, the different SDK controllers may be launched. To consult this information, you must access the documentation of **each component**.
 </div>
 
 ---

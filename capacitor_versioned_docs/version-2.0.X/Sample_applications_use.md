@@ -2,6 +2,6 @@
 
 ## Introduction
 
-React-Native sample application can be found in the following GitHub repository:
+Capacitor sample application can be found in the following GitHub repository:
 
-[![React Native Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-react-native-samples/tree/master/2.0.0)<a href="https://github.com/facephi/sdk-mobile-react-native-samples/tree/master/2.0.0" rel="nofollow">React Native Repository</a>
+[![Repositorio de Capacitor](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-capacitor-samples/tree/master/2.0.0)<a href="https://github.com/facephi/sdk-mobile-capacitor-samples/tree/master/2.0.0" rel="nofollow">Capacitor Repository</a>

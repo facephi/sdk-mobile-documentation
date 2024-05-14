@@ -9,30 +9,26 @@ El Componente tratado en el documento actual recibe el nombre de Selphi Componen
 
 Generación de las plantillas con las características faciales y de la imagen de la cara del usuario para el proceso de detección de vivacidad (Liveness)
 
+### 1.1 Requisitos mínimos
 
-### 1.1 Minimum requirements
+La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-The minimum native version (Android and iOS) of the SDK are as follows:
+- Versión mínima Android: **24 - JDK 11**
+- Versión mínima iOS: **13**
 
-- Minimum Android version: **24 - JDK 11**
+En cuanto a la arquitectura del dispositivo móvil:
 
-- Minimum iOS version: **13**
-
-Regarding the architecture of the mobile device:
-
-- armeabi-v7, x86, arm64 y x64
+armeabi-v7, x86, arm64 y x64
 
 ### 1.2 Versión del plugin
+La versión del plugin actual se puede consultar de la siguiente forma:
 
-La versión del widget se puede consultar de la siguiente manera:
-
-- Buscamos el fichero *pubspec.yaml* en la raíz del plugin.
-- En la etiqueta **version** se indica la versión.
+- Buscamos el archivo package.json en la raíz del plugin.
+- En el KEY/TAG version se indica la versión.
 
 ---
 
 ## 2. Integración del componente 
-
 <div class="note">
 <span class="note">:information_source:</span>
 Antes de integrar este componente se recomienda leer la documentación relativa a Core Component y seguir las instrucciones indicadas en dicho documento.
@@ -50,36 +46,33 @@ Para esta sección, se considerarán los siguiente valores:
 </div>
 
 ### 2.1. Instalación del plugin: Common
+El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
-
-- Asegurarse de que **FLUTTER** esté instalado correctamente.
-- Acceda al **<%APPLICATION_PATH%>** en un terminal y ejecute:
-
+- Acceda al **\<%PLUGIN_CORE_PATH%\>** en un terminal y ejecute:
 
 ```
-dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
+npm run build
 ```
 
-- Además, en **<%APPLICATION_PATH%>**, acceder al fichero pubspec.yaml y añadir:
+- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-fphi_sdkmobile_selphi:
-  hosted:
-    name: sdkselphi
-    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
-
+npm i @facephi/sdk-selphi-capacitor
+npm run build
+npx cap sync
+npx ionic capacitor build [android | ios]
 ```
+
+Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
 
 ### 2.2 Instalación plugin: iOS
 #### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-***Deshabilitar el BITCODE***: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el **BITCODE debe estar desactivado**. 
+Deshabilitar el BITCODE: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
 Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como No.
 
-***Añadir los permisos de cámara***: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
+Añadir los permisos de cámara: Para utilizar el componente, es necesario habilitar el permiso de la cámara en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
 
 ```
 <key>NSCameraUsageDescription</key>
@@ -97,7 +90,7 @@ source 'https://cdn.cocoapods.org/'
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de Componente Core.
+Para saber más acerca de la configuración y uso de Cocoapods Artifactory, es necesario acceder al siguiente documento de Componente Core.
 </div>
 
 ### 2.2.3 Establecer la versión de Swift
@@ -114,16 +107,11 @@ Abrir la carpeta ios de la aplicación en un terminal. Ejecutar el siguiente com
 pod deintegrate
 ```
 
-- Eliminar el ***Podfile.lock***
+- Eliminar el Podfile.lock
 - Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
 
 ```
 pod install --repo-update
-```
-y
-
-```
-pod repo-art update cocoa-pro-fphi
 ```
 
 ### 2.3 Instalación plugin: Android
@@ -151,85 +139,76 @@ Debido a que el componente de Tracking tiene opciones de geolocalización, es ne
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***SelphiFaceConfiguration***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***definitions.d.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
 A continuación se muestra la clase **SelphiConfiguration**, que permite configurar el componente de Selphi:
 
-```dart
-class SelphiFaceConfiguration {
-  bool mDebug;
-  bool mFullscreen;
-  bool mCrop;
-  double mCropPercent;
-  bool mStabilizationMode;
-  bool mTemplateRawOptimized;
-  bool mEnableGenerateTemplateRaw;
-  SelphiFaceLivenessMode mLivenessMode;
-  bool mShowResultAfterCapture;
-  double mJPGQuality;
-  String mLocale;
-  String mTranslationsContent;
-  String mViewsContent;
-  String mVideoFilename;
-  bool? mShowDiagnostic;
-  bool? mShowTutorial;
-  bool mLogImages;
+```
+export interface SelphiConfiguration {
+  debug?: boolean;
+  fullscreen?: boolean;
+  cropPercent?: number;
+  locale?: string;
+  stabilizationMode?: boolean;
+  templateRawOptimized?: boolean;
+  resourcesPath?: string;
+  enableGenerateTemplateRaw?: boolean;
+  livenessMode?: SdkLivenessMode;
+  showResultAfterCapture?: boolean;
+  cameraFlashEnabled?: boolean;
+  translationsContent?: string;
+  viewsContent?: string;
+  showTutorial?: boolean;
+  videoFilename?: string;
+  qrMode?: boolean;
+  showDiagnostic?: boolean;
+  logImages?: boolean;
+  compressFormat?: SdkCompressFormat,
+  jpgQuality?: number
 }
-
 ```
 
 A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphiConfiguration**:
+
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx del componente.
+Toda la configuración se podrá encontrar en el archivo ***definitions.d.ts*** del componente.
 </div>
 
-A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
+A la hora de realizar la llamada al componente existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
 ### 3.1. resourcesPath 
 
 **type:** *string*
 
-Establece el nombre del archivo de recursos que utilizará el widget para su configuración gráfica. Éste archivo es personalizable y se encuentra en el complemento en la carpeta ***src/main/assets*** para **Android** y en ***ios/Frameworks*** y de la carpeta Resources para **iOS**. Su instalación es transparente para el usuario, simplemente se agregará a los proyectos de las respectivas plataformas durante la instalación del complemento. Más detalles sobre cómo funciona este paquete de recursos y cómo modificarlo se explican en ***apartado 6***.
+Establece el nombre del archivo de recursos que utilizará el componente para su configuración gráfica. Éste archivo es personalizable y se encuentra en el complemento en la carpeta ***src/main/assets*** para **Android** y en ***ios/Frameworks*** y de la carpeta Resources para **iOS**. Su instalación es transparente para el usuario, simplemente se agregará a los proyectos de las respectivas plataformas durante la instalación del complemento. Más detalles sobre cómo funciona este paquete de recursos y cómo modificarlo se explican en ***apartado 6***.
 
 ```
-mResourcesPath: "fphi-selphi-widget-resources-sdk.zip",
+resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
-
-### 3.2. crop
-
-**type:** *boolean*
-
-Indica si las imágenes devueltas (en el parámetro images que se activa con *logImages = true*) en el evento de finalización contienen solo el área del rostro detectado, con una ampliación dada por *CropPercent* o si se devuelve la imagen completa.
-
-
-```
-mCrop: false
-```
-
-### 3.3. cropPercent
+### 3.2. cropPercent
 
 **type:** *float*
 
 Especifica el porcentaje de ampliación del área del rostro detectado para componer la imagen que se devuelve.
 
 ```
-mCropPercent: 1.0
+cropPercent: 1.0
 ```
 
 
-### 3.4. debug
+### 3.3. debug
 
 **type:** *boolean*
 
-Establece el modo de depuración del widget.
+Establece el modo de depuración del componente.
 
 ```
-mDebug: false
+debug: false
 ```
 
-### 3.5. livenessMode
+### 3.4. livenessMode
 
 **type:** *SdkLivenessMode*
 
@@ -242,104 +221,129 @@ mDebug: false
 
 
 ```
-mLivenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
+livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 ```
 
-### 3.6. stabilizationMode
+### 3.5. stabilizationMode
 
 **type:** *boolean*
 
 Propiedad que permite activar o desactivar el modo estabilizado antes del proceso de detección de rostros. En el caso de estar activado dará unas pautas para saber si está correctamente ubicado o no.
 
 ```
-mStabilizationMode: true
+stabilizationMode: true
 ```
 
-### 3.7. locale
+### 3.6. locale
 
 **type:** *string*
 
 Obliga al sdk a usar la configuración del idioma indicada por el parámetro locale.
 
-Este parámetro acepta tanto un código de idioma (por ejemplo, *en*) como un código de identificación regional (por ejemplo, *en_US*). Si el archivo de recursos del widget no tiene una *configuración regional* para la configuración regional seleccionada, su configuración volverá al idioma predeterminado que es ES.
+Este parámetro acepta tanto un código de idioma (por ejemplo, *en*) como un código de identificación regional (por ejemplo, *en_US*). Si el archivo de recursos del componente no tiene una *configuración regional* para la configuración regional seleccionada, su configuración volverá al idioma predeterminado que es ES.
 
 ```
-mLocale: 'ES'
+locale: 'ES'
 ```
 
-### 3.8. fullScreen
+### 3.7. fullScreen
 
 **type:** *string*
 
 Establece si desea que el sdk se inicie en modo de pantalla completa, ocultando la barra de estado.
 
 ```
-mFullscreen: true
+fullscreen: true
 ```
 
-### 3.9. logImages
+### 3.8. logImages
 
 **type:** *string*
 
 Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
 
 ```
-mLogImages: false
+logImages: false
 ```
 
-### 3.10. templateRawOptimized
+### 3.9. templateRawOptimized
 
 **type:** *boolean*
 
 Indica si el token del selfie obtenido debe estar optimizado o no.
 
 ```
-mTemplateRawOptimized: false
+templateRawOptimized: false
 ```
 
-### 3.11. showDiagnostic
+### 3.10. showDiagnostic
 
 **type:** *boolean*
 
 Muestra un pop-up con el diagnóstico en caso de que el proceso falle.
 
 ```
-mShowDiagnostic: true
+showDiagnostic: true
 ```
 
-### 3.12 enableGenerateTemplateRaw
+### 3.11 enableGenerateTemplateRaw
 
 **type:** *boolean*
 
-Parámetro opcional. Visible sólo si el parámetro *enableGenerateTemplateRaw* está activado a **true**. El widget retornará el *bestImage* encriptado y en formato *stringBase64*.
+Parámetro opcional. Visible sólo si el parámetro *enableGenerateTemplateRaw* está activado a **true**. El componente retornará el *bestImage* encriptado y en formato *stringBase64*.
 
 ```
-mEnableGenerateTemplateRaw: true
+enableGenerateTemplateRaw: true
 ```
 
 
-###  3.13 showResultAfterCapture
+###  3.12 showResultAfterCapture
 
 **type:** *boolean*
 
 Indica si se debe mostrar o no la imagen capturada de la cara después del proceso. Esta pantalla le da al usuario la opción de repetir el proceso de captura si la imagen obtenida no es correcta.
 
 ```
-mShowResultAfterCapture: false
+showResultAfterCapture: false
 ```
 
 
-###  3.14 showTutorial
+###  3.13 showTutorial
 
 **type:** *boolean*
 
 Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Después de que termine el tutorial, el proceso continuará con normalidad.
 
 ```
-mShowTutorial: true
+showTutorial: true
 ```
 
-###  3.15 videoFilename
+###  3.14 compressFormat
+
+**type:** *SdkCompressFormat*
+
+Indica el formato de compresión de la imagen. Los valores posibles son:
+
+- PNG
+- JPG
+
+```
+compressFormat: "JPG“;
+```   
+
+
+###  3.15 jpgQuality
+
+**type:** *number*
+
+Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible establecer la calidad de compresión de la imagen. Este parámetro se ignorará si el valor de la propiedad ***compressFormat*** es **PNG**.   
+
+
+```
+jpgQuality: 95
+```   
+
+###  3.16 videoFilename
 
 **type:** *string*
 
@@ -351,11 +355,11 @@ Esta es una **propiedad avanzada**, y en la mayoría de casos de uso no es neces
 Establece la ruta absoluta del nombre del archivo en el que se grabará un video del proceso de captura. La aplicación es la responsable de solicitar los permisos necesarios al teléfono en caso de que esa ruta requiera de permisos adicionales. El componente, por defecto, no realizará ningún proceso de grabación a menos que se especifique una ruta de archivo mediante este método.
 
 ```
-mVideoFilename: “\<videofile-path\>“;
+videoFilename: “\<videofile-path\>“;
 ```
 
 
-###  3.16 translationsContent
+###  3.17 translationsContent
 
 **type:** *string*
 
@@ -364,13 +368,13 @@ mVideoFilename: “\<videofile-path\>“;
 Esta es una **propiedad avanzada**, y en la mayoría de casos de uso no es necesario modificarla. Su uso incorrecto puede provocar un funcionamiento incorrecto del componente.
 </div>
 
-Esta propiedad permite, mediante una cadena en formato xml, configurar la localización actual del widget. La definición de este modelado se puede encontrar, por defecto, en una carpeta interna de traducciones  dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, la localización actual del componente.
+Esta propiedad permite, mediante una cadena en formato xml, configurar la localización actual del componente. La definición de este modelado se puede encontrar, por defecto, en una carpeta interna de traducciones  dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, la localización actual del componente.
 ```
-mTranslationsContent: “\<translation-content-string\>“;
+translationsContent: “\<translation-content-string\>“;
 ```
 
 
-###  3.17 viewsContent
+###  3.18 viewsContent
 
 **type:** *string*
 
@@ -382,10 +386,9 @@ Esta es una **propiedad avanzada**, y en la mayoría de casos de uso no es neces
 
 Esta propiedad permite, mediante una cadena en formato xml, configurar las vistas del componente actual. La definición de este modelado se puede encontrar, por defecto, en un fichero llamado **widget.xml** dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, el diseño de las pantallas internas del componente.
 ```
-mViewsContent: “\<views-content-string\>“;
+viewsContent: “\<views-content-string\>“;
 ```
 
----
 
 ## 4. Uso del componente
 A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
@@ -397,44 +400,23 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
-```
-Future<Either<Exception, SelphiFaceResult>> launchSelphiAuthenticate(String resourcesPath) async
-  {
-    return launchSelphiAuthenticateWithConfiguration(resourcesPath, createStandardConfiguration());
+``` java
+onLaunchSelphiProcess = async () => {
+    this.message = '';
+    await this.launchSelphiAuthentication()
+    .then((result: SelphiFaceResult) => this.onSuccessSelphiExtraction(result), (err: string) => this.onErrorSelphiExtraction(err));
   }
 
-  Future<Either<Exception, SelphiFaceResult>>
-      launchSelphiAuthenticateWithConfiguration(
-          String resourcesPath, SelphiFaceConfiguration configuration) async {
-    try
-    {
-      FphiSdkmobileSelphi selphi = FphiSdkmobileSelphi();
-      final Map resultJson = await selphi.startSelphiFaceWidget(
-          resourcesPath: resourcesPath,
-          widgetConfigurationJSON: configuration);
 
-      if (resultJson != null)
-        return Right(SelphiFaceResult.fromMap(resultJson));
-      else
-        throw Exception('Plugin internal error');
-    }
-    on Exception catch (e) {
-      return (Left(e));
-    }
-  }
-
-  /// Sample of standard plugin configuration
-  SelphiFaceConfiguration createStandardConfiguration()
-  {
-    SelphiFaceConfiguration configurationWidget;
-    configurationWidget = SelphiFaceConfiguration();
-    configurationWidget.livenessMode = SelphiFaceLivenessMode.LM_PASSIVE; // Liveness mode
-    configurationWidget.fullscreen = true;
-    configurationWidget.enableImages = false;
-    configurationWidget.jpgQuality = 0.95;
-    configurationWidget.enableGenerateTemplateRaw = true;
-
-    return configurationWidget;
+launchSelphiAuthentication = async (): Promise<SelphiFaceResult> => {
+      console.log('Launching selphi widget...');
+      // SelphiFaceConfiguration
+      return SdkSelphi.startExtraction({
+        debug: false,
+        livenessMode: SelphiFaceLivenessMode.Passive,
+        resourcesPath: SELPHI_RESOURCES_PATH,
+        enableGenerateTemplateRaw: true,
+      });
   }
 ```
 
@@ -443,122 +425,110 @@ Future<Either<Exception, SelphiFaceResult>> launchSelphiAuthenticate(String reso
 ## 5. Retorno de resultado
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto JSON a través de Promises, ya sea una operación exitosa o un error:
 
-```
-  try
-    {
-      FphiSdkmobileSelphi selphi = FphiSdkmobileSelphi();
-      final Map resultJson = await selphi.startSelphiFaceWidget(
-          resourcesPath: resourcesPath,
-          widgetConfigurationJSON: configuration);
+``` java
+ onSuccessSelphiExtraction = (result: any) => {
+    console.log('Receiving selphi success event...');
+    if (result !== null && result) {
+      switch (result.finishStatus) {
+        case SdkFinishStatus.Ok: // OK
+          this.processSuccessResult(result); // Logging the info for debug purposes
+          this.bestImageCropped = this.URI_JPEG_HEADER + result.bestImageCropped;
+          this.bestImage        = result.bestImage;
+          break;
 
-      if (resultJson != null)
-        return Right(SelphiFaceResult.fromMap(resultJson));
-      else
-        throw Exception('Plugin internal error');
+        case SdkFinishStatus.Error: // Error
+          this.printError(result['errorType'])
+          break;
+      }
+      this.changeDetection.detectChanges();
     }
-    on Exception catch (e) {
-      return (Left(e));
-    }
+  }
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
-``` dart
-class SelphiFaceResult {
-  final SdkFinishStatus finishStatus;
-  final String finishStatusDescription;
-  final String errorDiagnostic;
-  final String? errorMessage;
-  final String? templateRaw;
-  final String? qrData;
-  final String? bestImage;
-  final String? bestImageCropped;
-  final String? bestImageTemplateRaw;
+``` java
+export interface SelphiFaceResult {
+   finishStatus: string;
+  finishStatusDescription?: string;
+  errorType: string;
+  errorMessage?: string;
+  templateRaw?: string;
+  qrData?: string;
+  bestImage?: string;
+  bestImageCropped?: string;
+  bestImageTemplateRaw?: string;
+
 }
 ```
  
+<div class="note">
+<span class="note">:information_source:</span>
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SelphiResult***. A continuación se amplía información sobre esos campos.
+</div>
 
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SelphiResult. A continuación se amplía información sobre esos campos. 
-Se podrá encontrar en el archivo www/SdkSephiResult.js 
+
 
 ### 5.1 finishStatus
 
-- **1**: The operation was successful.
-
-- **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
-
+    - **1**: La operación fue exitosa.
+    - **2**: Se ha producido un error, el cuál se indicará en el enumerado ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
 
 ### 5.2 finishStatusDescription
 
- Returns Devuelve una descripción global de la operación. Parámetro opcional.
+ Devuelve una descripción global de la operación. Parámetro opcional.
 
 ### 5.3 errorMessage 
   
-Indicates an additional error message if necessary. It is an optional value.
-
+  Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
 ### 5.4 errorType
-Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). They are defined in the `SdkErrorType` class. The values ​​it can have are the following:
 
-- **NoError**: No error has occurred. The process can continue.
+ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro `finishStatus` con el valor `Error`). Se definen en la clase `SdkErrorType`. Los valores que puede tener son los siguientes:
 
-- **UnknownError**: Unhandled error. Possibly caused by a bug in the resource bundle.
-
-- **CameraPermissionDenied**: The exception that is thrown when the sdk does not have permission to access the camera.
-
-- **SettingsPermissionDenied**: The exception that is thrown when the widget does not have permission to access system settings (*deprecated*).
-
-- **HardwareError**: Exception that occurs when there is a hardware problem with the device, usually caused by very few available resources.
-
-- **ExtractionLicenceError**: Exception that occurs when there has been a licencing problem on the server.
-
-- **UnexpectedCaptureError**: Exception that occurs during the capture of frames by the camera.
-
-- **ControlNotInitialisedError**: The widget configurator has not been initialised.
-
-- **BadExtractorConfiguration**: Problem arose during widget configuration.
-
-- **CancelByUser**: The exception that is thrown when the user stops the extraction manually.
-
-- **TimeOut**: Exception that is thrown when a maximum time elapses without successfully completing the extraction.
-
-- **InitProccessError**: Exception that is thrown when the sdk cannot process the captured images.
-
-- **NfcError**: The exception that is thrown when the sdk does not have permission to access the nfc.
-
-- **NetworkConnection**: The exception that is thrown when there are issues with the means the device uses to connect to the network.
-
-- **TokenError**: The exception that is thrown when an invalid token is passed as a parameter.
-
-- **InitSessionError**: The exception that is thrown when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
-
-- **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
-
+    - **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
+    - **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
+    - **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
+    - **SettingsPermissionDenied**: Excepción que se produce cuando el componente no tiene permiso de acceso a la configuración del sistema (*deprecated*).
+    - **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
+    - **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
+    - **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
+    - **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
+    - **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
+    - **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
+    - **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
+    - **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
+    - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
+    - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
+    - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
+    - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+    - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
+    - **errorMessage**: Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
 ### 5.5 templateRaw
 
-Returns the raw template that is generated after the extraction process.
+Devuelve la plantilla en bruto que se genera después del proceso de extracción.
 
 ### 5.6 bestImage
 
-Returns the best image extracted from the registration or authentication process. This image is the original size image extracted from the camera.
+ Devuelve la mejor imagen extraída del proceso de registro o autenticación. Esta imagen es la imagen con el tamaño original extraída de la cámara.
 
 ### 5.7 bestImageCropped
 
-Returns a cropped image centered on the user's face. This image is obtained from the bestImage. This is the image that should be used as the characteristic image of the user who carried out the registration or authentication process as an 'avatar'.
+Devuelve una imagen recortada centrada en la cara del usuario. Esta imagen se obtiene a partir de la “bestImage”. Ésta es la imagen que se deberá utilizar como imagen característica del usuario que realizó el proceso de registro o autenticación a modo de ‘avatar’.
 
 ### 5.8 qrData
 
-Returns the captured QR code data.
+Devuelve los datos del código QR capturado.
 
 ### 5.9 bestImageTemplateRaw
 
-Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The widget will return the *bestImage* encrypted and in stringBase64 format.
+Parámetro opcional. Solo visible si se setea el parámetro enableGenerateTemplateRaw en true. El componente devolverá el templateRaw en formato stringBase64.
 
 ---
 
 ## 6. Personalización de componente (Opcional)
-Este componente permite la personalización de textos, imágenes, fuentes de letra y colores. La personalización se realiza mediante el archivo .zip suministrado internamente. Este zip está compuesto de un fichero llamado widget.xml que contiene la definición de todas las pantallas del widget, cada una de ellas con una serie de elementos los cuales permiten realizar la personalización. El archivo zip también contiene una carpeta con recursos gráficos y otra carpeta con las traducciones de los textos.
+Este componente permite la personalización de textos, imágenes, fuentes de letra y colores. La personalización se realiza mediante el archivo .zip suministrado internamente. Este zip está compuesto de un fichero llamado widget.xml que contiene la definición de todas las pantallas del componente, cada una de ellas con una serie de elementos los cuales permiten realizar la personalización. El archivo zip también contiene una carpeta con recursos gráficos y otra carpeta con las traducciones de los textos.
 
 ### 6.1. Descripción básica
 #### 6.1.1. Personalización de textos
@@ -569,7 +539,7 @@ La personalización de textos se realiza editando los textos de los archivos de 
     /strings/strings.xml
 
 #### 6.1.2. Personalización de imágenes
-Para personalizar las imágenes que usa el widget se deben añadir las imágenes en el .zip de recursos. En el zip vienen 3 carpetas:
+Para personalizar las imágenes que usa el componente se deben añadir las imágenes en el .zip de recursos. En el zip vienen 3 carpetas:
 
     /resources/163dpi
     /resources/326dpi
@@ -577,12 +547,12 @@ Para personalizar las imágenes que usa el widget se deben añadir las imágenes
 
 Estas carpetas corresponden a las diferentes densidades de pantalla y se pueden crear tantas carpetas de densidad como se desee. En estas carpetas están las versiones de las imágenes para cada una de las resoluciones.
 
-Es necesario añadir las imágenes en todas las carpetas, ya que una vez determinada la resolución óptima para el dispositivo, el widget sólo carga imágenes de la carpeta con la resolución elegida.
+Es necesario añadir las imágenes en todas las carpetas, ya que una vez determinada la resolución óptima para el dispositivo, el componente sólo carga imágenes de la carpeta con la resolución elegida.
 
 Las imágenes son referenciadas desde el archivo `widget.xml`.
 
 #### 6.1.3. Personalización de colores
-La personalización de los colores de los botones se realiza desde el archivo `widget.xml`. En él se puede personalizar cualquier color de cualquier elemento gráfico que aparece en el widget. Simplemente basta con modificar el color de la propiedad deseada.
+La personalización de los colores de los botones se realiza desde el archivo `widget.xml`. En él se puede personalizar cualquier color de cualquier elemento gráfico que aparece en el componente. Simplemente basta con modificar el color de la propiedad deseada.
 
 #### 6.1.4. Personalización de tipo de fuente
 Los archivos de tipografía deben colocarse en la carpeta `/resources/163dpi` y una vez ahí pueden ser referenciados desde el archivo `widget.xml`. Para cambiar el tipo de letra de un elemento de texto bastaría con modificar la propiedad ‘font’ y poner el nombre del archivo correspondiente.
@@ -600,7 +570,7 @@ Esta carpeta contiene un fichero `strings.xml` por cada traducción que se desee
 
 Siendo (idioma) el código del idioma. Por ejemplo, `strings.es.xml` sería la traducción en castellano, `strings.en.xml` la traducción en inglés, `strings.es_ES.xml` el español de España o `strings.es_AR.xml` el español de Argentina.
 
-Se puede forzar el idioma o dejar que el widget lo escoja en función de la configuración del dispositivo. A la hora de decidir cuál es el idioma a aplicar se sigue el siguiente orden:
+Se puede forzar el idioma o dejar que el componente lo escoja en función de la configuración del dispositivo. A la hora de decidir cuál es el idioma a aplicar se sigue el siguiente orden:
 
 Buscar por código de localización (por ejemplo, “es_AR”).
 
@@ -611,7 +581,7 @@ Si tampoco existiese ningún resultado, entonces usaría el idioma por defecto.
 A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, “es” o “es_ES”).
 
 #### 6.2.3. Carpeta resources
-Contiene las carpetas con todos los recursos necesarios para poder modificarse, divididos en densidades. Es obligatorio generar las imágenes en todas las densidades ya que el widget espera encontrarlas en la carpeta correspondiente a la densidad del dispositivo. También se pueden crear nuevas carpetas con la densidad deseada.
+Contiene las carpetas con todos los recursos necesarios para poder modificarse, divididos en densidades. Es obligatorio generar las imágenes en todas las densidades ya que el componente espera encontrarlas en la carpeta correspondiente a la densidad del dispositivo. También se pueden crear nuevas carpetas con la densidad deseada.
 
 #### 6.2.4. Elemento BACKGROUND
 El elemento `background` se compone de 4 segmentos a los que se puede dar color independientemente:
@@ -658,7 +628,7 @@ mirror_color (Results): define el color de fondo del círculo que muestra los re
 **font_size**: Define el tamaño de la letra si el contenido del botón es un texto
 
 #### 6.2.6. Elemento TEXT
-Los elementos `text` se utilizan para definir el aspecto gráfico de los textos de cada una de las pantallas del widget. Estas son las propiedades que se pueden modificar:
+Los elementos `text` se utilizan para definir el aspecto gráfico de los textos de cada una de las pantallas del componente. Estas son las propiedades que se pueden modificar:
 
 **color**: define el color del texto.
 

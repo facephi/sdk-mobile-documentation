@@ -140,7 +140,7 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 
 - Make sure **Flutter** framework is installed.
 
-- Access **<%APPLICATION_PATH%>** at a terminal and run:
+- Access **APPLICATION_PATH** at a terminal and run:
 
 ```
 dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
@@ -157,7 +157,7 @@ It is recommended to launch every **pod** command with ***arch -x86_64 ***befor
 - **arch -x86_64 pod install**
 </div>
 
-- In addition, in **<%APPLICATION_PATH%>**, access the file *pubspec.yaml* and add:
+- In addition, in **APPLICATION_PATH**, access the file *pubspec.yaml* and add:
 
 ```
 fphi_sdkmobile_core:

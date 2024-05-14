@@ -156,55 +156,24 @@ section explains the common steps to all platforms. To install the
 plugin, the following steps must be adopted:
 
 
-- Make sure **react-native** is installed.
+- Access **\<%APPLICATION_PATH%\>** at a terminal and run:
+
+```
+npm run build
+```
+
 
 - Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ```
-yarn add @facephi/sdk-core-react-native
+npm i @facephi/sdk-core-capacitor
+npm run build
+npx cap sync
+npx ionic capacitor build [android | ios]
 ```
 
-<div class="warning">
-<span class="warning">:warning:</span>
-If executing a **pod** command occurs an error like the following:  
-*arch: Can't find any plists for install*
+After that, projects generated in the Android and iOS folders can be opened, compiled, and debugged using Android Studio and XCode, respectively.
 
-It is recommended to launch every **pod** command with ***arch -x86_64 ***before them, for example:
-
-- **pod install**
-- **arch -x86_64 pod install**
-</div>
-
-- It is important to verify that the path to the plugin is correctly defined in **package.json**:
-
-```
-"dependencies": {
-  "@facephi/sdk-core-react-native": "^2.0.0",
-}
-```
-
-After running the above steps, you can start the app with the sdk/component installed.
-
-***From Terminal***
-
-For Android:
-
-```
-npx react-native run-android 
-or 
-npx react-native run-android --active-arch-only
-```
-
-For iOS:
-
-```
-npx react-native run-ios
-```
-
-***From different IDEs***
-
-
- Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
 
 ### 2.3 Plugin installation: iOS
 

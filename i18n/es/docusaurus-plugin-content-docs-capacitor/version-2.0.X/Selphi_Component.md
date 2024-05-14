@@ -48,7 +48,12 @@ Para esta sección, se considerarán los siguiente valores:
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que React Native esté instalado.
+- Acceda al **PLUGIN_CORE_PATH** en un terminal y ejecute:
+
+```
+npm run build
+```
+
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
@@ -134,7 +139,7 @@ Debido a que el componente de Tracking tiene opciones de geolocalización, es ne
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***dist/esm/definitions.d.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***definitions.d.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
 A continuación se muestra la clase **SelphiConfiguration**, que permite configurar el componente de Selphi:
 
@@ -167,7 +172,7 @@ A continuación, se comentarán todas las propiedades que se pueden definir en e
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***dist/esm/definitions.d.ts*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***definitions.ts*** del componente.
 </div>
 
 A la hora de realizar la llamada al componente existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
@@ -324,8 +329,7 @@ Indica el formato de compresión de la imagen. Los valores posibles son:
 
 ```
 compressFormat: "JPG“;
-```   
-
+```
 
 ###  3.15 jpgQuality
 
@@ -336,7 +340,7 @@ Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible 
 
 ```
 jpgQuality: 95
-```   
+```
 
 ###  3.16 videoFilename
 

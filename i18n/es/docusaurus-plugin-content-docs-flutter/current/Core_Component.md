@@ -18,20 +18,17 @@ En cuanto a la arquitectura del dispositivo móvil:
 
 ### 1.2 Versión del plugin
 
-La versión del widget se puede consultar de la siguiente manera:
+La versión del plugin actual se puede consultar de la siguiente forma:
 
-Buscamos el fichero *pubspec.yaml* en la raíz del plugin.
-
-En la etiqueta **version** se indica la versión.
-
----
+- Buscamos el archivo **package.json** en la raíz del plugin.
+- En el **KEY/TAG** version se indica la versión.
 
 ## 2. Inicialización de la sesión
 ### 2.1 Inicialización
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/src/index.tsx* del componente.
+Toda la configuración se podrá encontrar en el archivo  ***definitions.ts*** del componente.
 </div>
 
 Antes de poder utilizar cualquier componente, se deberá inicializar la sesión de la SDK. Esta inicialización se debe hacer lo más pronto posible, preferentemente al inicio de la aplicación. Al mismo tiempo, una vez terminadas todas las operaciones con la SDK Mobile, deberá cerrarse igualmente la sesión (***apartado 6***)
@@ -41,14 +38,14 @@ Antes de poder utilizar cualquier componente, se deberá inicializar la sesión 
 Este controlador (SDKController) es el que se va a utilizar para lanzar todas las funciones del SDK.
 </div>
 
-Se puede inicializar el componente actual de dos formas, dependiendo de cómo desees inyectar la licencia.
+Se puede inicializar el componente actual de dos formas, dependiendo de cómo desees **inyectar la licencia**.
 
 <div class="note">
 <span class="note">:information_source:</span>
 El nuevo método de licenciamiento permite gestionar las licencias de forma transparente para el integrador. La licencia se puede inyectar de dos maneras:
 
-- a. Obteniendo la licencia a través de un servicio mediante una URL y API-KEY
-- b. Inyectando la licencia directamente como String
+- a. Online: Obteniendo la licencia a través de un servicio mediante una URL y API-KEY
+- b. Offline: Inyectando la licencia directamente como String
 </div>
 
 En ambos casos, el resultado se devolverá por medio de una Promise, la cual contiene un objeto de la clase **CoreResult**. Se dará más información sobre cómo funciona esta clase en el ***apartado 5***.
@@ -56,24 +53,19 @@ En ambos casos, el resultado se devolverá por medio de una Promise, la cual con
 **a. Inyectando la licencia como String**
 De esta forma se evitan problemas relacionados con la conexión y la petición al servicio de licencia. Se puede asignar la licencia directamente como un String de la siguiente manera:
 
-```dart
-Future<Either<Exception, CoreResult>> initSession() async
+```
+initSession = async (): Promise<CoreResult> => 
   {
-    try
-    {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
-      String lic    = (Platform.isAndroid) ? LICENSE_ANDROID : LICENSE_IOS;
+    console.log('Launching initSession...');
 
-      final Map resultJson = await core.initSession(widgetConfigurationJSON: CoreConfigurationInitSession(
-          mLicense: lic,
-          mEnableTracking: true
-      ));
+    let pluginLicense: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
+    let pluginLicenseApiKey: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
 
-      return Right(CoreResult.fromMap(resultJson));
-    } on Exception catch (e) {
-      return (Left(e));
-    }
-  }
+    const widgetConfig: InitSessionConfiguration = {
+      license: pluginLicense,
+      enableFlow: false,
+      enableTracking: true
+    };
 ```
 
 **b. Obteniendo la licencia a través de un servicio.**
@@ -81,27 +73,20 @@ A través de un servicio que simplemente requerirá una URL y un API-KEY. Esto e
 
 Para hacer uso de esta funcionalidad:
 
-
-```dart
-Future<Either<Exception, CoreResult>> initSession() async
+```
+initSession = async (): Promise<CoreResult> => 
   {
-    try
-    {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
+    console.log('Launching initSession...');
 
-      String apiKey = (Platform.isAndroid) ? LICENSE_APIKEY_ANDROID : LICENSE_APIKEY_IOS;
+    let pluginLicense: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
+    let pluginLicenseApiKey: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
 
-      final Map resultJson = await core.initSession(widgetConfigurationJSON: CoreConfigurationInitSession(
-          mLicenseUrl: "https://***.***.pro",
-          mLicenseApiKey: apiKey,
-          mEnableTracking: true
-      ));
-
-      return Right(CoreResult.fromMap(resultJson));
-    } on Exception catch (e) {
-      return (Left(e));
-    }
-  }
+    const widgetConfig: InitSessionConfiguration = {
+      licenseUrl: LICENSE_URL,
+      licenseApiKey: pluginLicenseApiKey,
+      enableFlow: false,
+      enableTracking: true
+    };
 ```
 
 ### 2.2 Configuración de inicio de sesión
@@ -114,7 +99,7 @@ Como se ha visto en el fragmento de código del apartado anterior, existe una cl
 Permite establecer la licencia de los componentes. Esta licencia deberá ser provista por Facephi.
 
 ```
-mLicense: "valid license“
+license: "valid license“
 ```
 
 # 2.2.2 licenseUrl
@@ -124,7 +109,7 @@ mLicense: "valid license“
 Establece la url donde el componente Core valida la licencia de forma remota. Este endpoint deberá ser provisto por Facephi.
 
 ```
-mLicenseUrl: "https://***.***.pro"
+licenseUrl: "https://***.***.pro"
 ```
 
 # 2.2.3 licenseApiKey
@@ -133,7 +118,7 @@ mLicenseUrl: "https://***.***.pro"
 
 Establece el apikey que se envía para obtener la licencia del servicio.
 ```
-mLicenseApiKey: "valid ApiKey"
+licenseApiKey: "valid ApiKey"
 ```
 
 #### 2.2.4 enableTracking
@@ -143,12 +128,10 @@ mLicenseApiKey: "valid ApiKey"
 Habilita o deshabilita el uso del componente de tracking. Esto permite ver la información de lo que hace el cliente en la plataforma de Facephi.  Este componente funciona en background mientras se ejecutan el resto de componentes instalados, y analiza el comportamiento del usuario durante el proceso actual. 
 
 ```
-mEnableTracking: true
+enableTracking: true
 ```
 
 El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SdkCoreResult. Más información sobre cómo funciona esta clase se añadirá en el ***apartado 6***.
-
----
 
 ## 3. Inicialización de la operación
 Cada vez que se desee iniciar el flujo de alguna operación nueva (ejemplos de operaciones serían: onboarding, authentication,…) es esencial indicarle al **SDKController** que ésta va a comenzar, y así la SDK sabrá que las próximas llamadas de **Componentes** (también llamados **Steps**) formarán parte de dicha operación. Esto es necesario para trackear a la plataforma la información global de esta operación de forma satisfactoria.
@@ -165,28 +148,29 @@ Este método tiene 2 parámetros de entrada:
 
 Para poder ejecutar el método **initOperation**, la llamada debe realizarse en la clase ***SdkMobileCore*** como se especifica a continuación:
 
-```dart
-  Future<Either<Exception, CoreResult>> initOperation() async
-  {
-    try
-    {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
-
-      final Map resultJson = await core.initOperation(
-        widgetConfigurationJSON: TrackingConfiguration(mCustomerId: CUSTOMER_ID, mType: TrackingOperationType.ONBOARDING),
-      );
-      if (resultJson != null) {
-        return Right(CoreResult.fromMap(resultJson));
-      } else {
-        throw Exception('Plugin internal error');
-      }
-    } on Exception catch (e) {
-      return (Left(e));
-    }
-  }
 ```
+ /**
+   * Method that launches the Tracking.
+   * @param type  Comment for parameter type.
+   * @param customerId  Comment for parameter customerId.
+   * @returns Promise with a JSON string.
+  */
+  initOperation = async (): Promise<CoreResult> => {
+    console.log('Launching launchInitOperation widget...');
 
----
+    const widgetConfig: InitOperationConfiguration = {
+      type: SdkOperationType.Onboarding,
+      customerId: CUSTOMER_ID,
+    };
+    return SdkCore.initOperation(widgetConfig);
+  }
+
+  closeSession = async (): Promise<CoreResult> => {
+    console.log('Launching closeSession...');
+
+    return SdkCore.closeSession();
+  };
+```
 
 ## 4. Lanzamiento de componentes
 
@@ -194,8 +178,6 @@ Para poder ejecutar el método **initOperation**, la llamada debe realizarse en 
 <span class="note">:information_source:</span>
 Una vez creada la nueva operación, se podrán lanzar los diferentes controladores de los componentes instalados en la SDK. Para consultar esta información se deberá acceder a la documentación de cada uno de los componentes específicos.
 </div>
-
----
 
 ## 5. Retorno del Resultado
 El resultado de cada componente será devuelto a través de la SDK manteniendo siempre la misma estructura:
@@ -251,9 +233,9 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
 
-  - **ControlNotInitializedError**: El configurador del widget no ha sido inicializado.
+  - **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
 
-  - **BadExtractorConfiguration**: Problema surgido durante la configuración del widget.
+  - **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
 
   - **CancelByUser**: Excepción que se produce cuando el usuario para la extracción de forma manual.
 
@@ -271,74 +253,62 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
+### 5.5 sessionId
+Devuelve el identificador de la sesión actual. Cada vez que se ejecute un ***initSession*** se generará un nuevo *sessionId*.
 
-### **5.5 tokenized**
+### 5.6 operationId
+Devuelve el identificador de la operación actual. Cada vez que se ejecute un ***initOperation*** se generará un nuevo *operationId*.
+
+### 5.7 tokenized
 Parámetro opcional. Sólo se devuelve si se llama al método *Tokenized*. El plugin devolverá un valor de tipo ***string*** format. Más información en el **apartado 8.**
 
-### **5.6 data**: 
-Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
+### 5.8 data
+Parámetro opcional. Sólo se devuelve si se llama al método *GetExtraData*. El plugin devolverá un valor de tipo ***string*** format. Más información en e **section 7.**
 
 ---
 
 ## 6. Cierre de sesión
-Antes de que la aplicación se vaya a destruir, se deberá cerrar la sesión de la SDK para así avisar a la plataforma de su finalización. Para ello, se ejecuta el siguiente fragmento de código:
+**Antes de que la aplicación se vaya a destruir**, se deberá cerrar la sesión de la SDK para así avisar a la plataforma de su finalización. Para ello, se ejecuta el siguiente fragmento de código:
 
-```dart
-Future<Either<Exception, CoreResult>> closeSession(SdkOperationEvent event) async
-  {
-    try {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
+```
+  closeSession = async (): Promise<CoreResult> => {
+    console.log('Launching closeSession...');
 
-      final Map resultJson = await core.closeSession();
-      return Right(CoreResult.fromMap(resultJson));
-    } on Exception catch (e) {
-      return (Left(e));
-    }
-  }
+    return SdkCore.closeSession();
+  };
+
 ``` 
 
 El resultado se devolverá por medio de una Promise, la cual contiene un objeto de la clase **CoreResult**. Para saber más sobre cómo funciona esta clase consultar el apartado 5.
 
----
-
 ## 7. Método ExtraData
-
 El método getExtraData permite generar los identificadores necesarios para una operación que deba continuar en el *Servicio de Validaciones de Facephi* (Backend). Esta situación suele darse en casos en los que, una vez obtenida la información necesaria en la aplicación del cliente, se deba enviar esa información a un determinado servicio para su posterior validación o análisis. En caso de que deban trackearse los resultados de esos procesos en la Plataforma, ésta deberá ser capaz de unificar la primera parte del proceso realizada en cliente con la última realizada en el servicio, ya que al final forman parte de la misma operación.
 
 Es por ello que a la hora de enviar la información capturada en una determinada operación al backend, deberá enviarse también un campo llamado extraData. Dicho campo se genera llamando al siguiente método:
 
-```dart
- Future<Either<Exception, CoreResult>> getExtraData() async
+```
+ getExtraData = async (): Promise<CoreResult> => 
   {
-    try
-    {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
-      final Map resultJson = await core.getExtraData();
-      return Right(CoreResult.fromMap(resultJson));
-    }
-    on Exception catch (e) {
-      return (Left(e));
-    }
+    console.log('Launching getExtraData...');
+
+    return SdkCore.getExtraData();
   }
 ```
-
----
 
 ## 8. Método Tokenize
 
 El método tratado en el documento actual recibe el nombre de Tokenize. Éste se encarga de codificar y tokenizar las imágenes obtenidas en cualquiera de los demás componentes, en caso de que sea necesario, para su posterior envío al *Servicio de Validaciones de Facephi* (Backend). En el este servicio se podrá descodificar y validar de forma segura.
 
-```dart
-  Future<Either<Exception, CoreResult>> tokenize() async
+```
+  tokenize = async (): Promise<CoreResult> => 
   {
-    try
-    {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
-      final Map resultJson = await core.tokenize(widgetConfigurationJSON: TokenizeConfiguration(mStringToTokenize: "Something to tokenize ..."));
-      return Right(CoreResult.fromMap(resultJson));
-    }
-    on Exception catch (e) {
-      return (Left(e));
-    }
+    console.log('Launching tokenize...');
+
+    const widgetConfig: TokenizeConfiguration = {
+      stringToTokenize: "something to tokenize...",
+    };
+
+    return SdkCore.tokenize(widgetConfig);
   }
+
 ```

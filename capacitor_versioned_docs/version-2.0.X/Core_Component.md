@@ -34,7 +34,7 @@ The current plugin version can be checked as follows:
 
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's *node_modules/@facephi/sdk-core-react-native/src/src/index.tsx* file.
+All the configuration can be found in the component's ***definitions.ts*** file.
 </div>
 
 Each component has a controller that will allow access to its functionality. Before they can be used, they must be properly initialised. This initialisation must be done as soon as possible, preferably at the application init. Moreover, once all the operations are finished, and the interaction with the SDK Mobile is over, the session must be closed (***section 6***).
@@ -50,8 +50,7 @@ There are currently two ways to **inject the licence**:
 <span class="note">:information_source:</span>
 
 - a. Online: Obtaining the licence through a service using a URL and a API-KEY
-- b. Offline: Injecting the licence as String
-  
+- b. Offline: Injecting the licence as String 
 </div>
 
 In both cases, the result will be returned through a ***Promise*** containing an object ***CoreResult***. More information will be added in ***section 5.***
@@ -61,35 +60,18 @@ In both cases, the result will be returned through a ***Promise*** containing an
 You can assign the licence directly as a String, as follows:
 
 ```
-const launchInitSession = async () => 
-{ 
-    try 
-    {
-        console.log("Starting initSession...");
-        let config: InitSessionConfiguration = {
-            license: Platform.OS === 'ios' ? JSON.stringify(<enter_your_lic_here>) : JSON.stringify(<enter_your_lic_here>),
-            //licenseUrl: LICENSE_URL,
-            //licenseApiKey: Platform.OS === 'ios' ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID
-        };
+initSession = async (): Promise<CoreResult> => 
+  {
+    console.log('Launching initSession...');
 
-        console.log(config);
-        return await SdkMobileCore.initSession(config)
-        .then((result: CoreResult) => 
-        {
-            console.log("result", result);
-        })
-        .catch((error: any) => 
-        {
-            console.log(error);
-        })
-        .finally(()=> {
-            console.log("End closeSession...");
-        });
-    } 
-    catch (error) {
-        setMessage(JSON.stringify(error));
-    }
-};
+    let pluginLicense: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
+    let pluginLicenseApiKey: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
+
+    const widgetConfig: InitSessionConfiguration = {
+      license: pluginLicense,
+      enableFlow: false,
+      enableTracking: true
+    };
 ```
 
 #### b. Obtaining the licence through a service
@@ -97,36 +79,21 @@ const launchInitSession = async () =>
 Through a service that will simply require a URL and an API-KEY as an identifier. This would avoid problems when manipulating the licence, as well as the constant substitution of said licences when a problem arises in this regard (malformation or improper modification, licence expiry...):
 
 ```
-const launchInitSession = async () => 
-{ 
-    try 
-    {
-        console.log("Starting initSession...");
-        let config: InitSessionConfiguration = {
-            //license: Platform.OS === 'ios' ? JSON.stringify(LICENSE_IOS_NEW) : JSON.stringify(LICENSE_ANDROID_NEW),
-            licenseUrl: "https://***.***.pro",
-            licenseApiKey: "<enter_your_apikey_here>",
-        };
+initSession = async (): Promise<CoreResult> => 
+  {
+    console.log('Launching initSession...');
 
-        console.log(config);
-        return await SdkMobileCore.initSession(config)
-        .then((result: CoreResult) => 
-        {
-            console.log("result", result);
-        })
-        .catch((error: any) => 
-        {
-            console.log(error);
-        })
-        .finally(()=> {
-            console.log("End closeSession...");
-        });
-    } 
-    catch (error) {
-        setMessage(JSON.stringify(error));
-    }
-};
+    let pluginLicense: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
+    let pluginLicenseApiKey: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
+
+    const widgetConfig: InitSessionConfiguration = {
+      licenseUrl: LICENSE_URL,
+      licenseApiKey: pluginLicenseApiKey,
+      enableFlow: false,
+      enableTracking: true
+    };
 ```
+
 
 ### 2.2 Init session configuration
 
@@ -183,39 +150,27 @@ To execute the **initOperation** method, the call must be done using the **SdkMo
 
 
 ```
-const initOperation = async () => 
-{ 
-    try 
-    {
-      console.log("Starting initOperation...");
+ /**
+   * Method that launches the Tracking.
+   * @param type  Comment for parameter type.
+   * @param customerId  Comment for parameter customerId.
+   * @returns Promise with a JSON string.
+  */
+  initOperation = async (): Promise<CoreResult> => {
+    console.log('Launching launchInitOperation widget...');
 
-      return await SdkMobileCore.initOperation(getInitOperationConfiguration())
-      .then((result: CoreResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End initOperation...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
-
-const getInitOperationConfiguration = () => 
-{
-    let config: InitOperationConfiguration = {
-      customerId: CUSTOMER_ID,
+    const widgetConfig: InitOperationConfiguration = {
       type: SdkOperationType.Onboarding,
+      customerId: CUSTOMER_ID,
     };
+    return SdkCore.initOperation(widgetConfig);
+  }
 
-    return config;
-};
+  closeSession = async (): Promise<CoreResult> => {
+    console.log('Launching closeSession...');
+
+    return SdkCore.closeSession();
+  };
 ```
 
 
@@ -224,7 +179,7 @@ const getInitOperationConfiguration = () =>
 ## 4. Launch of components
 <div class="note">
 <span class="note">:information_source:</span>
-Once the **new operation has been created (section 3)**, the different SDK controllers may be launched. To consult this information, you must access the documentation of **each of the specific components**.
+Once the **new operation has been created (section 3)**, the different SDK controllers may be launched. To consult this information, you must access the documentation of **each component**.
 </div>
 
 ---
@@ -319,12 +274,19 @@ Returns the type of error that occurred (if there was one, which is indicated by
 -   **ComponentControllerError**: The exception that is thrown when the
     component cannot be instantiated.
 
-### 5.5 tokenized
-Optional parameter. Only visible if the *Tokenized* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
+### 5.5 sessionId
+Returns the current session's identifier. Each time ***initSession*** method is executed, a new *sessionId* will be generated.
 
-### 5.6 data
+### 5.6 operationId
+Returns the current operation's identifier. Each time ***initOperation*** method is executed, a new *operationId* will be generated.
 
-Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
+
+### 5.7 tokenized
+Optional parameter. Only visible if the *Tokenized* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
+
+### 5.8 data
+
+Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
 
 ---
 
@@ -333,28 +295,12 @@ Optional parameter. Only visible if the *GetExtraData* method is called. The plu
 
 
 ```
-const launchCloseSession = async () => 
-{ 
-    try 
-    {
-      console.log("Starting closeSession...");
-      return await SdkMobileCore.closeSession()
-      .then((result: CoreResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End closeSession...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
+ closeSession = async (): Promise<CoreResult> => {
+    console.log('Launching closeSession...');
+
+    return SdkCore.closeSession();
+  };
+
 ``` 
 ---
 
@@ -362,39 +308,12 @@ const launchCloseSession = async () =>
 The *getExtraData* method generates the identifiers related to a specific operation. These identifiers are tokenized and prepared to be sent to the *Facephi Validation Service* (Backend). That Service needs these identifiers to know which operation the client is currently executing. Thus, all the process information generated in the client and server can be successfully gathered in the different services. 
 
 ```
-const getExtraData = async () => 
-{ 
-    try 
-    {
-      console.log("Starting getExtraData...");
+ getExtraData = async (): Promise<CoreResult> => 
+  {
+    console.log('Launching getExtraData...');
 
-      return await SdkMobileCore.getExtraData()
-      .then(async (result: CoreResult) => 
-      {
-        console.log("result", result);
-        if (result.finishStatus == SdkFinishStatus.Ok)
-        {
-          const params1 = {'extraData': result.data, 'image': bestImageApi};
-          const params2 = {'documentTemplate': tokenFaceImage, 'extraData': result.data, 'image1': bestImageApi};
-          
-          let r1: any = await apiPost('/v5/api/v1/selphid/passive-liveness/evaluate', params1);
-          console.log("r1", r1);
-          let r2: any = await apiPost('/v5/api/v1/selphid/authenticate-facial/document/face-image', params2);
-          console.log("r2", r2);
-        }
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End getExtraData...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
+    return SdkCore.getExtraData();
+  }
 ```
 
 ## 8. Tokenize Method
@@ -402,33 +321,15 @@ const getExtraData = async () =>
 The Tokenize method tokenizes and encrypts the images obtained from the different components of the SDK Mobile. Thus, these images can be sent to the *Facephi Validation Service* (Backend) securely. 
 
 ```
-const getTokenize = async () => 
-{ 
-  try 
+  tokenize = async (): Promise<CoreResult> => 
   {
-    console.log("Starting getTokenize...", getTokenizeConfiguration());
-    return await SdkMobileCore.tokenize(getTokenizeConfiguration())
-    .then((result: CoreResult) => 
-    {
-      console.log("result", result);
-    })
-    .catch((error: any) => 
-    {
-      console.log(error);
-    })
-    .finally(()=> {
-      console.log("End getTokenize...");
-    });
-  } 
-  catch (error) {
-    setMessage(JSON.stringify(error));
+    console.log('Launching tokenize...');
+
+    const widgetConfig: TokenizeConfiguration = {
+      stringToTokenize: "something to tokenize...",
+    };
+
+    return SdkCore.tokenize(widgetConfig);
   }
-};
-const getTokenizeConfiguration = () => 
-{
-  const sdkConfiguration: TokenizeConfiguration = {
-    stringToTokenize: "String to Tokenize ..."
-  };
-  return sdkConfiguration;
-};
+
 ```

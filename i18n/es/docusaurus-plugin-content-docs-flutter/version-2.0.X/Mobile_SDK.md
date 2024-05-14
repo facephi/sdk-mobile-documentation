@@ -141,7 +141,7 @@ Se recomienda ejecutar todos los comandos con ***arch -x86_64*** delante, por ej
 - **arch -x86_64 pod install**
 </div>
 
-- Además, en **<%APPLICATION_PATH%>**, acceder al fichero *pubspec.yaml* y añadir:
+- Además, en **APPLICATION_PATH**, acceder al fichero *pubspec.yaml* y añadir:
 
 ```
 fphi_sdkmobile_core:

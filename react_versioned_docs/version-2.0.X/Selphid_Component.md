@@ -367,16 +367,29 @@ nationality to be scanned would be the following:
 > **scanMode**: WidgetScanMode.Search;  
 > **specificData**: “ES\|\<ALL\>”; // Spanish ISO code(ES)
 
-### 3.5 FullScreen
+
+### 3.5 documentSide
+
+**type:** *SelphIDDocumentSide*
+
+The permitted values are as follows:
+
+- **SelphIDDocumentSide.FRONT**: The widget is configured to capture the front side of the document.
+
+- **SelphIDDocumentSide.BACK**: The widget is configured to capture the back side of the document.
+
+> **documentSide**: SelphIDDocumentSide.FRONT;  
+
+### 3.6 FullScreen
 
 **type:** *boolean*
 
 Determines whether you wish the component to start in full screen mode,
 hiding the status bar.
 
-    **fullscreen**: true;
+>    **fullscreen**: true;
 
-### 3.6 Locale
+### 3.7 Locale
 
 **type:** *string*
 
@@ -399,7 +412,7 @@ to be incorporated into the component.
 
 > **locale**: "es";
 
-### 3.7 DocumentType
+### 3.8 DocumentType
 
 **type:** *string*
 
@@ -426,7 +439,7 @@ Specified in the ***WidgetDocumentType** class:
 
 >     **documentType**: SdkSelphidEnums.SdkDocumentType.IDCard;
 
-### 3.8 TokenImageQuality
+### 3.9 TokenImageQuality
 
 **type:** *double*
 
@@ -438,7 +451,7 @@ result in a significant increase in device resource usage:
 
 >       **tokenFaceImage**: 0.9;
 
-### 3.9 generateRawImages
+### 3.10 generateRawImages
 
 **type:** *boolean*
 
@@ -452,10 +465,10 @@ camera that was used to capture the document:
 -   tokenRawBackDocument: Tokenisation of the rear image of the raw
     document.
 
-> generateRawImages: true;**
+> generateRawImages: true
 
 
-###  3.10 widgetTimeout
+###  3.11 timeout
 
 **type:** *number*
 
@@ -468,7 +481,9 @@ of the document. It has 3 possible values:
 
 -   WidgetTimeout.Long: 25 segundos
 
-###  3.11 tutorialOnly
+> timeout: WidgetTimeout.Medium
+
+###  3.12 tutorialOnly
 
 **type:** *boolean*
 
@@ -479,34 +494,33 @@ isolation.
 
 >     **tutorialOnly**: true;
 
-###  3.12 debug
+
+
+###  3.13 debug
 
 **type:** *boolean*
 
 Sets the debugging mode of the component.
 
-```
-debug: false
-```
+> debug: false
 
-###  3.13 showTutorial
+###  3.14 showTutorial
 
 **type:** *boolean*
 
 Indicates whether or not to display the tutorial before the process. After the tutorial finishes, the component process will continue as usual.
 
-```
-showTutorial: true
-```
+> showTutorial: true
 
-###  3.14 wizardMode
+###  3.15 wizardMode
 
 **type:** *boolean*
 
 Indicates whether the component is configured to capture both parts (front and back) of the document one after the other. In this mode, the component would only be launched once, and when it finishes capturing the front, it would continue with the back.
 
+> wizardMode: true
 
-###  3.15 tokenPrevCaptureData
+###  3.16 tokenPrevCaptureData
 
 **type:** *string*
 
@@ -517,19 +531,16 @@ If both sides of the document are captured in a single call (***wizardMode*** mu
 > tokenPrevCaptureData: selphIDResult.tokenOCR
 
 
-### 3.16. showDiagnostic
+### 3.17. showDiagnostic
 
 **type:** *boolean*
 
 Shows a pop-up with the component diagnostic if the process fails.
 
-```
-showDiagnostic: true
-```
+> showDiagnostic: true
 
 
-
-###  3.17 compressFormat
+###  3.18 compressFormat
 
 **type:** *SdkCompressFormat*
 
@@ -541,7 +552,7 @@ Indicates the format compression of the image. The possible values are:
 >     **compressFormat**: "JPG“;
 
 
-###  3.18 imageQuality
+###  3.19 imageQuality
 
 **type:** *number*
 
@@ -551,7 +562,7 @@ If the ***compressFormat*** property is configured as **JPG**, it is possible to
 
 
 
-###  3.19 videoFilename
+###  3.20 videoFilename
 
 **type:** *string*
 
@@ -569,7 +580,7 @@ write processing unless a file path is specified using this method.
 
 >     **videoFilename**: “\<videofile-path\>“;
 
-###  3.20 documentModels
+###  3.21 documentModels
 
 **type:** *string*
 
@@ -588,7 +599,7 @@ of the component.
 
 >     **documentModels**: “\<document-models-content-string\>“;
 
-###  3.21 translationsContent
+###  3.22 translationsContent
 
 **type:** *string*
 
@@ -606,7 +617,7 @@ replace the current location of the component at run time.
 
 >     **translationsContent**: “\<translation-content-string\>“;
 
-###  3.22 viewsContent
+###  3.23 viewsContent
 
 **type:** *string*
 
@@ -722,11 +733,12 @@ or an error:
 Regardless of whether the result is correct/erroneous, the result will
 have the following format:
 
+
 ``` java
 export interface SelphidResult {
   finishStatus: number;
   finishStatusDescription?: string;
-  errorType: number;
+  errorType: string;
   errorMessage?: string;
   frontDocumentImage?: string;
   backDocumentImage?: string;

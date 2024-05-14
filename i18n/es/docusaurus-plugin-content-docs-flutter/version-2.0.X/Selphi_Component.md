@@ -54,14 +54,14 @@ Para esta sección, se considerarán los siguiente valores:
 El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
 - Asegurarse de que **FLUTTER** esté instalado correctamente.
-- Acceda al **<%APPLICATION_PATH%>** en un terminal y ejecute:
+- Acceda al **APPLICATION_PATH** en un terminal y ejecute:
 
 
 ```
 dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
 ```
 
-- Además, en **<%APPLICATION_PATH%>**, acceder al fichero pubspec.yaml y añadir:
+- Además, en **APPLICATION_PATH**, acceder al fichero pubspec.yaml y añadir:
 
 ```
 fphi_sdkmobile_selphi:
@@ -352,7 +352,7 @@ Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible 
 
 ```
 jpgQuality: 95
-```   
+```
 
 ###  3.16 videoFilename
 
@@ -413,7 +413,7 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
-```
+``` java
 Future<Either<Exception, SelphiFaceResult>> launchSelphiAuthenticate(String resourcesPath) async
   {
     return launchSelphiAuthenticateWithConfiguration(resourcesPath, createStandardConfiguration());
@@ -439,7 +439,6 @@ Future<Either<Exception, SelphiFaceResult>> launchSelphiAuthenticate(String reso
     }
   }
 
-  /// Sample of standard plugin configuration
   SelphiFaceConfiguration createStandardConfiguration()
   {
     SelphiFaceConfiguration configurationWidget;

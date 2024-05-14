@@ -34,8 +34,7 @@ En esta sección se explicará paso a paso cómo integrar el plugin actual en un
 
 
 <div class="note">
-<span class="note">:note:</span>
-
+<span class="note">:information_source:</span>
 Para esta sección, se considerarán los siguiente valores:
 
 - **\<APPLICATION_PATH\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
@@ -192,8 +191,8 @@ Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Bu
 - ***Añadir los permisos de cámara***: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
 
 ```
-***<key>NSCameraUsageDescription</key>***
-***<string>$(PRODUCT_NAME) uses the camera</string>***
+<key>NSCameraUsageDescription</key>
+<string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
 ### 2.3.2 Actualizar el Podfile
