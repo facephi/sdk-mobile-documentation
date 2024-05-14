@@ -31,6 +31,9 @@
 
 .navbar.navbar--fixed-top
   .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(6),
+.navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
   > .navbar__item:nth-child(5),
 .navbar.navbar--fixed-top
   .navbar__items.navbar__items--right
@@ -81,6 +84,15 @@ html.docs-wrapper.plugin-id-react
   > .navbar__item:nth-child(5) {
   display: block;
 }
+
+
+html.docs-wrapper.plugin-id-capacitor
+  .navbar.navbar--fixed-top
+  .navbar__items.navbar__items--right
+  > .navbar__item:nth-child(6) {
+  display: block;
+}
+
 
 div.warning {
   background-color: #fff8e6;

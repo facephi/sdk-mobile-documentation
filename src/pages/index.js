@@ -28,6 +28,10 @@ const PlatformList = [
     title: "React Native",
     path: "/docs/react/Mobile_SDK",
   },
+  {
+    title: "Capacitor",
+    path: "/docs/capacitor/Mobile_SDK",
+  },
 ];
 
 function Platform({ title, path }) {
