@@ -197,7 +197,7 @@ export interface CoreResult {
 ```
 Los parámetros recibidos son los siguientes:
 
-### **5.1 finishStatus**
+### 5.1 finishStatus
 
 - **finishStatus**: Devuelve el diagnóstico global de la operación. Los valores posibles para el tipo de excepción son:
 
@@ -205,7 +205,7 @@ Los parámetros recibidos son los siguientes:
 
     - **2**: Se ha producido un error, el cuál se indicará en el enumerado errorType y, opcionalmente, se mostrará un mensaje de información extra en la propiedad errorMessage.
 
-### **5.2 finishStatusDescription**
+### 5.2 finishStatusDescription
 
 Devuelve una descripción global de la operación. Parámetro opcional.
 
@@ -213,11 +213,11 @@ Devuelve una descripción global de la operación. Parámetro opcional.
 
     - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el parámetro de salida errorType y, opcionalmente, se mostrará un mensaje de información extra en la propiedad errorMessage.
 
-### **5.3 errorMessage**
+### 5.3 errorMessage
 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
-### **5.4 errorType**
+### 5.4 errorType
 
 Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase SdkErrorType. Los valores que puede tener son los siguientes:
 
