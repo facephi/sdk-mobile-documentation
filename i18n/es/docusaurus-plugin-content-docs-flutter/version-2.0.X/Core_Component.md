@@ -201,16 +201,15 @@ Una vez creada la nueva operación, se podrán lanzar los diferentes controlador
 El resultado de cada componente será devuelto a través de la SDK manteniendo siempre la misma estructura:
 
 ```
-export interface CoreResult {
-  finishStatus: number;
-  finishStatusDescription?: string;
-  errorType: string;
-  errorMessage?: string;
-  tokenized?: string;
-  operationId?: string;
-  sessionId?: string;
-  data?: string;
-  flow?: string;
+class CoreResult {
+  final SdkFinishStatus finishStatus;
+  final String finishStatusDescription;
+  final String errorDiagnostic;
+  final String? errorMessage;
+  final String? flow;
+  final int timeoutStatus;
+  final String? tokenized;
+  final String? data;
 }
 ```
 Los parámetros recibidos son los siguientes:
@@ -220,24 +219,22 @@ Los parámetros recibidos son los siguientes:
 - **finishStatus**: Devuelve el diagnóstico global de la operación. Los valores posibles para el tipo de excepción son:
 
     - **1**: La operación ha finalizado satisfactoriamente.
-
-    - **2**: Se ha producido un error, el cuál se indicará en el enumerado errorType y, opcionalmente, se mostrará un mensaje de información extra en la propiedad errorMessage.
+    - **2**: Se ha producido un error, el cuál se indicará en el string errorDiagnostic y, opcionalmente, se mostrará un mensaje de información extra en la propiedad errorMessage.
 
 ### **5.2 finishStatusDescription**
 
 Devuelve una descripción global de la operación. Parámetro opcional.
 
     - **STATUS_OK**: La operación ha finalizado satisfactoriamente.
-
     - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el parámetro de salida errorType y, opcionalmente, se mostrará un mensaje de información extra en la propiedad errorMessage.
 
 ### **5.3 errorMessage**
 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
-### **5.4 errorType**
+### **5.4 errorDiagnostic**
 
-Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase SdkErrorType. Los valores que puede tener son los siguientes:
+Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Los valores que puede tener son los siguientes:
 
   - **UnknownError**. Error no gestionado.
 

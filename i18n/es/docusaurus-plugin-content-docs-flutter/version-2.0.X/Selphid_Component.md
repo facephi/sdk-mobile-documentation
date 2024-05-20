@@ -28,7 +28,7 @@ armeabi-v7, x86, arm64 y x64
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
 
-Buscamos el archivo ***package.json*** en la raíz del plugin.
+Buscamos el archivo ***pubspec.yaml*** en la raíz del plugin.
 
 En el ***KEY/TAG*** version se indica la versión.
 
@@ -47,38 +47,22 @@ Para esta sección, se considerarán los siguiente valores:
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que React Native esté instalado.
-- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
+- Asegurarse de que Flutter esté instalado.
+- Acceda al APPLICATION_PATH en un terminal y ejecute:
+```
+dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
+```
+- Acceda al **\<%APPLICATION_PATH%\>**, y en el fichero pubspec.yaml y añadir:
 
 ```
-yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-selphid-react-native
-```
-
-Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
-
-```
-"dependencies": {
-  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-selphid-cordova": <% PLUGIN_SELPHID_PATH %>
-}
+fphi_sdkmobile_selphid:
+  hosted:
+    name: sdkselphid
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.0.0
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
-Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
-
-***Desde Terminal***(Para Android):
-
-```
-npx react-native run-android 
-ó 
-npx react-native run-android --active-arch-only
-```
-Para iOS:
-```
-npx react-native run-ios
-```
-
 Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
 
 ## 2.2 Instalación plugin: iOS
@@ -156,48 +140,43 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-selphid-react-native/src/index.tsx***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_selphid_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *SelphidConfiguration*, que permite configurar el componente de **SelphID**:
+A continuación se muestra la clase *SelphIDConfiguration*, que permite configurar el componente de **SelphID**:
 
 ```java
- export interface SelphidConfiguration {
-  debug?: boolean;
-  fullScreen?: boolean;
-  frontalCameraPreferred?: boolean;
-  tokenImageQuality?: number;
-  widgetTimeout?: number;
-  showResultAfterCapture?: boolean;
-  showTutorial?: boolean;
-  tutorialOnly?: boolean;
-  scanMode?: string;
-  specificData?: string;
-  documentType?: string;
-  videoFilename?: string;
-  fullscreen?: boolean;
-  locale?: string;
-  documentModels?: string;
-  enableWidgetEventListener?: boolean;
-  generateRawImages?: boolean;
-  translationsContent?: string;
-  viewsContent?: string;
-  cameraId?: number;
-  params?: any;
-  resourcesPath?: string;
-  tokenPrevCaptureData?: string;
-  wizardMode?: boolean;
-  documentSide?: string;
-  showDiagnostic?: boolean;
-  compressFormat?: SdkCompressFormat,
-  imageQuality?: number,
+class SelphIDConfiguration
+{
+  bool mWizardMode;
+  bool mDebug;
+  bool mShowResultAfterCapture;
+  bool mShowTutorial;
+  bool mTutorialOnly;
+  SelphIDScanMode mScanMode;
+  SelphIDDocumentSide mDocumentSide;
+  String mSpecificData;
+  bool mFullscreen;
+  double mTokenImageQuality;
+  String mLocale;
+  SelphIDDocumentType mDocumentType;
+  SelphIDTimeout mTimeout;
+  bool mGenerateRawImages;
+  SelphIDCompressFormat mCompressFormat;
+  double mJPGQuality;
+  String mTranslationsContent;
+  String mViewsContent;
+  String mDocumentModels;
+  int? mCameraId;
+  dynamic mParams;
+  bool? mShowDiagnostic;
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphidConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphIDConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***src/index.tsx*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_selphid/fphi_sdkmobile_selphid_configuration.dart.*** del componente.
 </div>
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
@@ -221,16 +200,16 @@ Indica si mostrar o no una pantalla con la imagen capturada del documento despu�
 
 ### 3.3 ScanMode
 
-**type:** *WidgetScanMode*
+**type:** *SelphIDScanMode*
 
-Este enumerado se define en la clase ***SdkSelphidEnum.tsx***. Indica el modo de escaneo OCR de los documentos. Dependiendo de la elección, se escanearán y buscarán varios tipos de documentos o uno en concreto. Este modo puede ser de tres tipos:
+Este enumerado se define en la clase ***SelphIDScanMode***, dentro del fichero ***fphi_sdkmobile_selphid_scan_mode.dart***. Indica el modo de escaneo OCR de los documentos. Dependiendo de la elección, se escanearán y buscarán varios tipos de documentos o uno en concreto. Este modo puede ser de tres tipos:
 
-- ***SelphIDScanMode.Generic***: El modo genérico que permite escanear cualquier tipo de documento independiente del país o el tipo de documento. El resultado de este modo no es tan preciso como los siguientes pero permite escanear varios documentos estándar.
-- ***SelphIDScanMode.Search***: El modo de búsqueda permitirá utilizar una whitelist y blacklist, y buscará en los documentos que cumplan dichas condiciones. Estas condiciones se indican en la variable "specificData". De este modo se permite realizar la búsqueda acotando el número de plantillas, y haciendo que la búsqueda sea mucho más afinada que en el caso genérico.
-- ***SelphIDScanMode.Specific***: Búsqueda de un documento específico. Estas condiciones se indican en la propiedad "specificData" que se muestra en lo sucesivo.
+- ***SelphIDScanMode.CAP_MODE_GENERIC***: El modo genérico que permite escanear cualquier tipo de documento independiente del país o el tipo de documento. El resultado de este modo no es tan preciso como los siguientes pero permite escanear varios documentos estándar.
+- ***SelphIDScanMode.CAP_MODE_SEARCH***: El modo de búsqueda permitirá utilizar una whitelist y blacklist, y buscará en los documentos que cumplan dichas condiciones. Estas condiciones se indican en la variable "specificData". De este modo se permite realizar la búsqueda acotando el número de plantillas, y haciendo que la búsqueda sea mucho más afinada que en el caso genérico.
+- ***SelphIDScanMode.CAP_MODE_SPECIFIC***: Búsqueda de un documento específico. Estas condiciones se indican en la propiedad "specificData" que se muestra en lo sucesivo.
 
 ```
-scanMode: SdkSelphidEnums.SdkScanMode.Search;
+scanMode: SelphIDScanMode.CAP_MODE_SEARCH;
 ```
 
 ### 3.4 SpecificData
@@ -241,8 +220,9 @@ Esta propiedad permite definir qué documentos se escanearán durante el proceso
 
 Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:
 
-> scanMode: WidgetScanMode.Search;
-> specificData: “ES|\<ALL>”; // Spanish ISO code(ES)
+```
+specificData: “ES|\<ALL>”; // Spanish ISO code(ES)
+```
 
 
 ### 3.5 FullScreen
@@ -269,20 +249,22 @@ En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pue
 
 > locale: "es";
 
-### 3.7 DocumentType
+### 3.7 SelphIDDocumentType
 
 **type:** *string*
 
-Este enumerado se define en la clase `SdkSelphidEnums.tsx`. Especificado en el enum `SdkDocumentType`:
+Este enumerado se define en el fichero `fphi_sdkmobile_selphid_document_type.dart`. Especificado en el enum `SelphIDDocumentType`:
 
-- ***IDCard***: Establece que se capturarán documentos de identidad o tarjetas.
-- ***Passport***: Establece que se capturarán pasaportes. (Adicionamente habrá que setear el scanMode en SelphIDScanMode.Generic)
-- ***DriverLicense***: Establece que se capturarán licencias de conducir.
-- ***CreditCard***: Establece que se capturarán tarjetas de crédito.
-- ***ForeignCard***: Establece que se capturarán tarjetas de identidad de Extranjeros.
-- ***Custom***: Engloba documentos que no se encuentran en ninguna de las categorías anteriores.
+- ***DT_IDCard***: Establece que se capturarán documentos de identidad o tarjetas.
+- ***DT_Passport***: Establece que se capturarán pasaportes. (Adicionamente habrá que setear el scanMode en SelphIDScanMode.Generic)
+- ***DT_DriverLicense***: Establece que se capturarán licencias de conducir.
+- ***DT_CreditCard***: Establece que se capturarán tarjetas de crédito.
+- ***DT_ForeignCard***: Establece que se capturarán tarjetas de identidad de Extranjeros.
+- ***DT_Custom***: Engloba documentos que no se encuentran en ninguna de las categorías anteriores.
 
-> documentType: SdkSelphidEnums.SdkDocumentType.IDCard;
+```
+documentType: SelphIDDocumentType.DT_IDCARD;
+```
 
 
 ### 3.8 TokenImageQuality
@@ -292,8 +274,9 @@ Este enumerado se define en la clase `SdkSelphidEnums.tsx`. Especificado en el e
 Especifica la calidad de compresión del tokenFaceImage.3.9 enableImages (boolean)
 
 Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
-
- tokenFaceImage: 0.9;
+```
+tokenFaceImage: 0.9;
+```
 
 ### 3.9 generateRawImages
 
@@ -310,15 +293,19 @@ Esta propiedad configura el widget para devolver la imagen completa de la cámar
 generateRawImages: true;
 ```
 
-### 3.10 SdkTimeout
+### 3.10 SelphIDTimeout
 
 **type:** *number*
 
 Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
 
-- SdkTimeout.Short: 15 segundos.
-- SdkTimeout.Medium: 20 segundos.
-- SdkTimeout.Long: 25 segundos
+- SelphIDTimeout.Short: 15 segundos.
+- SelphIDTimeout.Medium: 20 segundos.
+- SelphIDTimeout.Long: 25 segundos
+
+```
+timeout = SelphIDTimeout.T_SHORT;
+```
 
 ### 3.11 tutorialOnly
 
@@ -326,7 +313,9 @@ Es un enumerado que define el timeout de la captura de un lado del documento. Ti
 
 Establece si se desea lanzar el widget en modo Tutorial. Esto permite mostrar el tutorial del widget previo, pero SIN realizar el proceso posterior de captura. Útil en caso de que se desee mostrar el tutorial de forma aislada.
 
->     **tutorialOnly**: true;
+```
+tutorialOnly: true;
+```
 
 ### 3.12 videoFilename
 
@@ -339,7 +328,9 @@ Esta es una propiedad avanzada, y que en la mayoría de casos no es necesario mo
 
 Establece la ruta absoluta del nombre del archivo en el que se grabará un video del proceso de captura. La aplicación es la responsable de solicitar los permisos necesarios al teléfono en caso de que esa ruta requiera de permisos adicionales. El componente, por defecto, no realizará ningún proceso de grabación a menos que se especifique una ruta de archivo mediante este método.
 
->     **videoFilename**: “\<videofile-path\>“;
+```
+videoFilename: “\<videofile-path\>“;
+```
 
 ### 3.13 documentModels
 
@@ -352,7 +343,9 @@ Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario
 
 Esta propiedad permite, mediante una cadena en formato xml, configurar modelado de los documentos que el widget va a tratar de capturar. La definición de este modelado se puede encontrar, por defecto, en  un .xml de modelos dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, los modelados de los documentos actuales del componente.
 
->     **documentModels**: “\<document-models-content-string\>“;
+```
+documentModels: “\<document-models-content-string\>“;
+```
 
 ### 3.14 translationsContent
 
@@ -365,7 +358,9 @@ Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario
 
 Esta propiedad permite, mediante una cadena en formato xml, configurar la localización actual del widget. La definición de este modelado se puede encontrar, por defecto, en una carpeta interna de traducciones  dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, la localización actual del componente.
 
->     **translationsContent**: “\<translation-content-string\>“;
+```
+translationsContent: “\<translation-content-string\>“;
+```
 
 ### 3.15 viewsContent
 
@@ -378,9 +373,9 @@ Esta es una propiedad avanzada, y en la mayoría de casos de uso no es necesario
 
 Esta propiedad permite, mediante una cadena en formato xml, configurar las vistas del componente actual. La definición de este modelado se puede encontrar, por defecto, en un fichero llamado widget.xml dentro del .zip de recursos. Con esta propiedad se permite a una aplicación actualizar y sustituir, en ejecución, el diseño de las pantallas internas del componente.
 
-
->     **viewsContent**: “\<views-content-string\>“;
-
+```
+viewsContent: “\<views-content-string\>“;
+```
 
 ---
 
@@ -396,57 +391,37 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ```
-const getSelphidConfiguration = () => {
-    let config: SelphidConfiguration = {
-      debug: false,
-      showResultAfterCapture: true,
-      showTutorial: false,
-      scanMode: SdkSelphidEnums.SdkScanMode.Search,
-      specificData: 'AR|<ALL>',
-      documentType: SdkSelphidEnums.SdkDocumentType.IdCard,
-      fullscreen: true,
-      locale: '',
-      resourcesPath: "fphi-selphid-widget-resources-sdk.zip",
-    };
-    return config;
-};
+Future<Either<Exception, SelphIDResult>> launchSelphIDCaptureWithConfiguration(String resourcesPath, SelphIDConfiguration configuration) async
+{
+  try
+  {
+    FphiSdkmobileSelphid selphid = FphiSdkmobileSelphid();
+    final Map resultJson = await selphid.startSelphIDWidget(
+        resourcesPath: resourcesPath,
+        widgetConfigurationJSON: configuration
+    );
 
-const startSelphid = async () => 
-{ 
-    try 
-    {
-      console.log("Starting startSelphid...");
-      clearAll();
- 
-      return await SdkMobileSelphid.selphid(getSelphidConfiguration())
-      .then((result: any) => 
-      {
-        let r: SelphidResult = result;
-        console.log("result parsed", r);
+    return Right(SelphIDResult.fromMap(resultJson));
+  }
+  on Exception catch (e) {
+    return (Left(e));
+  }
+}
 
-        console.log("result", result);
-        processSelphidResult(result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-        setMessage(JSON.stringify(error));
-        setFrontDocumentImage(null);
-        setBackDocumentImage(null);
-        setFaceImage(null);
-        setTokenFaceImage(null);
-        setOcrContent(null);
-        setShowError(true);
-        setTextColorMessage('#DE2222');
-      })
-      .finally(()=> {
-        console.log("End startSelphid...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
+/// Sample of standard plugin configuration 
+SelphIDConfiguration createStandardConfiguration() {
+  SelphIDConfiguration configurationWidget;
+  configurationWidget = SelphIDConfiguration();
+  configurationWidget.documentType            = SelphIDDocumentType.DT_IDCARD; // IDCard, Passport, DriverLic or ForeignCard
+  configurationWidget.fullscreen              = true;
+  configurationWidget.scanMode                = SelphIDScanMode.CAP_MODE_SEARCH;
+  configurationWidget.specificData            = 'AR|<ALL>';
+  configurationWidget.showResultAfterCapture  = true;
+  configurationWidget.timeout                 = SelphIDTimeout.T_SHORT;
+  configurationWidget.showDiagnostic          = true;
+  configurationWidget.wizardMode              = true;
+  return configurationWidget;
+}
 ```
 
 ---
@@ -455,55 +430,52 @@ const startSelphid = async () =>
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-facephi.plugins.sdkselphid.launchSelphID(config_id).then(
-    (result) => onSuccessSelphIDCapture(result),
-    (err) => onErrorSelphIDCapture(err)
-)
-.finally (() =>
-{
-    console.log("callSelphID finished...");
-    isStartingSDK = false
-});
+final Map resultJson = await selphid.startSelphIDWidget(
+    resourcesPath: resourcesPath,
+    widgetConfigurationJSON: configuration
+);
+return Right(SelphIDResult.fromMap(resultJson));
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
 ```
-SdkSelphidResult {
-  finishStatus: number;
-  finishStatusDescription?: string;
-  errorType: number;
-  errorMessage?: string;
-  frontDocumentImage?: string;
-  backDocumentImage?: string;
-  faceImage?: string;
-  signatureImage?: string;
-  fingerprintImage?: string;
-  documentData?: string;
-  tokenFrontDocumentImage?: string;
-  tokenBackDocumentImage?: string;
-  tokenFaceImage?: string;
-  tokenOCR?: string;
-  documentCaptured?: string;
-  captureProgress: number;
-  matchingSidesScore: number;
-  rawFrontDocument?: string;
-  rawBackDocument?: string;
-  tokenRawFrontDocument?: string;
-  tokenRawBackDocument?: string;
-  lastActionBeforeCapture?: string;
+class SelphIDResult
+{
+  final SdkFinishStatus finishStatus;
+  final String finishStatusDescription;
+  final String errorDiagnostic;
+  final String? errorMessage;
+  final String frontDocumentImage;
+  final String backDocumentImage;
+  final String rawBackDocument;
+  final String rawFrontDocument;
+  final String fingerprintImage;
+  final String faceImage;
+  final String signatureImage;
+  final String tokenFrontDocument;
+  final String tokenBackDocument;
+  final String tokenFaceImage;
+  final String documentData;
+  final String tokenOCR;
+  final String documentCaptured;
+  final double matchingSidesScore;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkSelphidResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SelphIDResult***. A continuación se amplía información sobre esos campos.
 </div>
 
-### 5.1 finishStatus
-- **SdkFinishStatus.Ok**: La operación fue exitosa.
-- **SdkFinishStatus.Error**: Se ha producido un error, el cuál se indicará en el enumerado `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
+### 5.0 finishStatus
+- **1**: La operación fue exitosa.
+- **2**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-### 5.2 errorType
+### 5.1 finishStatusDescription
+- **STATUS_OK**: La operación fue exitosa.
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
+
+### 5.2 errorDiagnostic
  Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
 
 - **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
