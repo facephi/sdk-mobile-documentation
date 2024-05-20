@@ -194,7 +194,7 @@ A la hora de realizar la llamada al widget existe una serie de parámetros que s
 Establece el nombre del archivo de recursos que utilizará el widget para su configuración gráfica. Éste archivo es personalizable y se encuentra en el complemento en la carpeta ***src/main/assets*** para **Android** y en ***ios/Frameworks*** y de la carpeta Resources para **iOS**. Su instalación es transparente para el usuario, simplemente se agregará a los proyectos de las respectivas plataformas durante la instalación del complemento. Más detalles sobre cómo funciona este paquete de recursos y cómo modificarlo se explican en ***apartado 6***.
 
 ```
-mResourcesPath: "fphi-selphi-widget-resources-sdk.zip",
+resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
 ### 3.2. cropPercent
@@ -204,7 +204,7 @@ mResourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 Especifica el porcentaje de ampliación del área del rostro detectado para componer la imagen que se devuelve.
 
 ```
-mCropPercent: 1.0
+cropPercent: 1.0
 ```
 
 
@@ -215,19 +215,18 @@ mCropPercent: 1.0
 Establece el modo de depuración del widget.
 
 ```
-mDebug: false
+debug: false
 ```
 
 ### 3.4. livenessMode
 
-**type:** *SdkLivenessMode*
+**type:** *SelphiLivenessMode*
 
  Establece el modo liveness del componente. Los valores posibles son:
 
 - **NoneMode**: Indica que no se debe habilitar el modo de fotodetección en los procesos de autenticación.
-
 - **PassiveMode**: Indica que se realiza la prueba de vida pasiva en el servidor, enviando la "BestImage" correspondiente para tal efecto
-
+- **MoveMode**: Indica que se realiza la prueba de vida pasiva en el servidor, enviando la "BestImage" correspondiente para tal efecto
 
 
 ```
@@ -241,7 +240,7 @@ mLivenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 Propiedad que permite activar o desactivar el modo estabilizado antes del proceso de detección de rostros. En el caso de estar activado dará unas pautas para saber si está correctamente ubicado o no.
 
 ```
-mStabilizationMode: true
+stabilizationMode: true
 ```
 
 ### 3.6. locale
@@ -253,7 +252,7 @@ Obliga al sdk a usar la configuración del idioma indicada por el parámetro loc
 Este parámetro acepta tanto un código de idioma (por ejemplo, *en*) como un código de identificación regional (por ejemplo, *en_US*). Si el archivo de recursos del widget no tiene una *configuración regional* para la configuración regional seleccionada, su configuración volverá al idioma predeterminado que es ES.
 
 ```
-mLocale: 'ES'
+locale: 'ES'
 ```
 
 ### 3.7. fullScreen
@@ -263,7 +262,7 @@ mLocale: 'ES'
 Establece si desea que el sdk se inicie en modo de pantalla completa, ocultando la barra de estado.
 
 ```
-mFullscreen: true
+fullscreen: true
 ```
 
 ### 3.8. logImages
@@ -273,7 +272,7 @@ mFullscreen: true
 Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
 
 ```
-mLogImages: false
+logImages: false
 ```
 
 ### 3.9. templateRawOptimized
@@ -283,7 +282,7 @@ mLogImages: false
 Indica si el token del selfie obtenido debe estar optimizado o no.
 
 ```
-mTemplateRawOptimized: false
+templateRawOptimized: false
 ```
 
 ### 3.10. showDiagnostic
@@ -293,7 +292,7 @@ mTemplateRawOptimized: false
 Muestra un pop-up con el diagnóstico en caso de que el proceso falle.
 
 ```
-mShowDiagnostic: true
+showDiagnostic: true
 ```
 
 ### 3.11 enableGenerateTemplateRaw
@@ -303,7 +302,7 @@ mShowDiagnostic: true
 Parámetro opcional. Visible sólo si el parámetro *enableGenerateTemplateRaw* está activado a **true**. El widget retornará el *bestImage* encriptado y en formato *stringBase64*.
 
 ```
-mEnableGenerateTemplateRaw: true
+enableGenerateTemplateRaw: true
 ```
 
 
@@ -314,7 +313,7 @@ mEnableGenerateTemplateRaw: true
 Indica si se debe mostrar o no la imagen capturada de la cara después del proceso. Esta pantalla le da al usuario la opción de repetir el proceso de captura si la imagen obtenida no es correcta.
 
 ```
-mShowResultAfterCapture: false
+showResultAfterCapture: false
 ```
 
 
@@ -325,23 +324,23 @@ mShowResultAfterCapture: false
 Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Después de que termine el tutorial, el proceso continuará con normalidad.
 
 ```
-mShowTutorial: true
+showTutorial: true
 ```
 
 
 ###  3.14 compressFormat
 
-**type:** *SdkCompressFormat*
+**type:** *SelphiCompressFormat*
 
 Indica el formato de compresión de la imagen. Los valores posibles son:
 
-- PNG
-- JPG
+- SelphiCompressFormat.T_JPNG
+- SelphiCompressFormat.T_JPEG
 
 ```
-compressFormat: "JPG“;
-```   
-
+compressFormat: SelphiCompressFormat.T_JPEG;
+```
+   
 
 ###  3.15 jpgQuality
 
@@ -351,7 +350,7 @@ Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible 
 
 
 ```
-jpgQuality: 95
+jpgQuality: 0.95
 ```
 
 ###  3.16 videoFilename
@@ -496,24 +495,23 @@ class SelphiFaceResult {
 El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SelphiResult. A continuación se amplía información sobre esos campos. 
 Se podrá encontrar en el archivo www/SdkSephiResult.js 
 
-### 5.1 finishStatus
+### 5.0 finishStatus
 
 - **1**: The operation was successful.
 
 - **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
 
+### 5.1 finishStatusDescription
+- **STATUS_OK**: La operación fue exitosa.
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-### 5.2 finishStatusDescription
-
- Returns Devuelve una descripción global de la operación. Parámetro opcional.
-
-### 5.3 errorMessage 
+### 5.2 errorDiagnostic 
   
 Indicates an additional error message if necessary. It is an optional value.
 
 
-### 5.4 errorType
-Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). They are defined in the `SdkErrorType` class. The values ​​it can have are the following:
+### 5.4 errorDiagnostic
+Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
 
 - **NoError**: No error has occurred. The process can continue.
 
