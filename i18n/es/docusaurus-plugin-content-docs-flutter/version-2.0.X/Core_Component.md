@@ -24,6 +24,24 @@ Buscamos el fichero *pubspec.yaml* en la raíz del plugin.
 
 En la etiqueta **version** se indica la versión.
 
+### 1.3. Instalación del plugin: Common
+El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
+
+Asegurarse de que FLUTTER esté instalado correctamente.
+Acceda al APPLICATION_PATH en un terminal y ejecute:
+```
+dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
+```
+
+Además, en APPLICATION_PATH, acceder al fichero pubspec.yaml y añadir:
+```
+fphi_sdkmobile_core:
+  hosted:
+    name: sdkcore
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.0.0
+```
+
 ---
 
 ## 2. Inicialización de la sesión

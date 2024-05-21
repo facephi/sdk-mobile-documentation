@@ -112,6 +112,7 @@ pod deintegrate
 - Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
 
 ```
+pod repo-art update cocoa-pro-fphi
 pod install --repo-update
 ```
 
