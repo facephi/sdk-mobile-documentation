@@ -20,7 +20,7 @@ En cuanto a la arquitectura del dispositivo móvil:
 
 La versión del plugin actual se puede consultar de la siguiente forma:
 
-- Buscamos el archivo **package.json** en la raíz del plugin.
+- Buscamos el archivo **package.json** ó **config.xml** en la raíz del plugin.
 - En el **KEY/TAG** version se indica la versión.
 
 ## 2. Inicialización de la sesión
