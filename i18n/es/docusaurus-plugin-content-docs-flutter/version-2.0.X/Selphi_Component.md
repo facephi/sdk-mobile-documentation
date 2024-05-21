@@ -118,12 +118,12 @@ pod deintegrate
 - Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
 
 ```
-pod install --repo-update
+pod repo-art update cocoa-pro-fphi
 ```
 y
 
 ```
-pod repo-art update cocoa-pro-fphi
+pod install --repo-update
 ```
 
 ### 2.3 Instalación plugin: Android
@@ -495,20 +495,18 @@ class SelphiFaceResult {
 El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SelphiResult. A continuación se amplía información sobre esos campos. 
 Se podrá encontrar en el archivo www/SdkSephiResult.js 
 
-### 5.0 finishStatus
+### 5.1 finishStatus
 
 - **1**: The operation was successful.
 
 - **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.1 finishStatusDescription
+### 5.2 finishStatusDescription
 - **STATUS_OK**: La operación fue exitosa.
 - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-### 5.2 errorDiagnostic 
-  
+### 5.3 errorMessage
 Indicates an additional error message if necessary. It is an optional value.
-
 
 ### 5.4 errorDiagnostic
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
