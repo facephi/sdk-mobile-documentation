@@ -782,8 +782,7 @@ Returns the finishStatus description. It is an optional value.
 ### 5.3 errorType
 
 Returns the type of error that occurred (if there was one, which is
-indicated in the *finishStatus* parameter with the value *Error*). They
-are defined in the *SdkErrorType* class. It may have the following
+indicated in the *finishStatus* parameter with the value *Error*). It may have the following
 values:
 
 -   **NoError:** No error has occurred. The process can continue.
