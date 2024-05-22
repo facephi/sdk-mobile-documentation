@@ -7,12 +7,12 @@ El Componente tratado en el documento actual recibe el nombre de ***VideoID Comp
 
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: 24 - JDK 11
-- Versión mínima iOS: 13
+- Versión mínima Android: **24 - JDK 11**
+- Versión mínima iOS: **13**
 
 En cuanto a la arquitectura del dispositivo móvil:
 
-armeabi-v7, x86, arm64 y x64
+- armeabi-v7, x86, arm64 y x64
 
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
@@ -48,8 +48,8 @@ Es importante verificar que la ruta al complemento esté correctamente definida 
 
 ```
 "dependencies": {
-  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-videoid-cordova": <% PLUGIN_VIDEOID_PATH %>
+  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-videoid-react-native": <% PLUGIN_VIDEOID_PATH %>
 }
 ```
 

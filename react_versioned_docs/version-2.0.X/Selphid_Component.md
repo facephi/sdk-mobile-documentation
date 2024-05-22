@@ -61,16 +61,16 @@ documentation related to **<u>Core Component</u>** and follow the
 instructions indicated in said document.
 </div>
 
-<div class="note">
-<span class="note">:information_source:</span>
+This section will explain step by step how to integrate the current component into an existing project. 
+
+<div class="warning">
+<span class="warning">:warning:</span>
 For this section, the following values ​​will be considered:
 
 -   **\<%APPLICATION_PATH%\> -** Path to the root of the application
     (example: /folder/example)
-
 -   **\<%PLUGIN_CORE_PATH%\> -** Path to the root of the core plugin,
     which is mandatory (example: /folder/sdk-core)
-
 -   **\<%PLUGIN_SELPHID_PATH%\> -** Path to the root of the current
     plugin (example: /folder/sdk-selphid)
 </div>
@@ -108,7 +108,7 @@ pod install
 }
 ```
 
-After running the above steps, you can start the app with the
+- After running the above steps, you can start the app with the
 sdk/component installed.
 
 -   Finally, to launch the projects, the following commands must be
@@ -730,7 +730,7 @@ or an error:
 })
 ```
 
-Regardless of whether the result is correct/erroneous, the result will
+Regardless of whether the result is correct/wrong, the result will
 have the following format:
 
 
@@ -757,17 +757,18 @@ export interface SelphidResult {
   tokenRawBackDocument?: string;
 }
 ```
-
+<div class="note">
+<span class="note">:information_source:</span>
 The result will be returned via a Promise containing an object of class
 ***SdkSelphidResult***. Information on these fields is expanded below.
+</div>
 
 ### 5.1 finishStatus
 
 Returns the global diagnostic of the process.
 
--   **SdkFinishStatus.Ok**: The operation was successful.
-
--   **SdkFinishStatus.Error**: An error has occurred, which will be
+- **1**: The operation was successful.
+- **2**: An error has occurred, which will be
     indicated in the ***errorType*** enumerated and, optionally, an
     extra information message will be displayed in the ***errorMessage***
     property.
@@ -776,7 +777,7 @@ Returns the global diagnostic of the process.
 
 ### 5.2 finishStatusDescription
 
-Returns the finishStatus description. It is an optional value.
+Returns the global diagnostic of the operation. It is an optional value.
 
 
 ### 5.3 errorType

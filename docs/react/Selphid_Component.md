@@ -2,14 +2,6 @@
 
 ## 1. Introduction
 
-**Mobile SDK** is a set of libraries (**Components**) that offers a
-series of functionalities and services, allowing its integration into a
-Mobile application in a simple, totally scalable way. Depending on the
-use case that is required, the installation of certain components must
-be carried out. Its high level of modularity allows that, in the future,
-other new components can be added without affecting at all those already
-integrated into the project.
-
 The Component addressed in the current document is named ***SelphID
 Component***. This is responsible for capturing documents and the
 subsequent extraction and analysis of the data obtained from them. Its
