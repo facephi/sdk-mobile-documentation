@@ -7,26 +7,32 @@ The Component discussed in the current document is called ***VideoID Component**
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
-- Minimum Android version: 24 - JDK 11
-- Minimum iOS version: 13
+-   Minimum Android version: **24 - JDK 11**
+-   Minimum iOS version: **13**
 
 Regarding the architecture of the mobile device:
 
-armeabi-v7, x86, arm64 y x64
+- armeabi-v7, x86, arm64 y x64
 
 ### 1.2 Plugin Version
+
 The current plugin version can be checked as follows:
 
-We look for the file ***package.json*** in the root of the plugin.
+- We look for the file ***package.json*** in the root of the plugin.
 
-The version is indicated in the ***KEY/TAG*** version.
+- The version is indicated in the ***KEY/TAG*** version.
 
 ## 2. Component Integration 
-Before integrating this component **it is recommended** to read the documentation related to **Core Component** and follow the instructions indicated in said document.
 
 <div class="note">
 <span class="note">:information_source:</span>
+Before integrating this component, it is *recommended* to read the documentation related to *Core Component* and follow the instructions indicated in said document.
+</div>
+
 This section will explain step by step how to integrate the current component into an existing project. 
+
+<div class="warning">
+<span class="warning">:warning:</span>
 For this section, the following values ​​will be considered:
 - **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the core plugin, which is required (example: /folder/sdk-core)
@@ -36,50 +42,67 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin Instalation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains common steps. To install the plugin you must follow the following steps:
 
-- Make sure React Native is installed.
+- Make sure **React Native** is installed.
 - Access **\<%APPLICATION_PATH%\>** in a terminal and run:
 
-```
+```java
 yarn add @facephi/sdk-core-react-native
 yarn add @facephi/sdk-videoid-react-native
+yarn install
 ```
 
-It is important to verify that the path to the plugin is correctly defined in package.json:
+- It is important to verify that the path to the plugin is correctly defined in package.json:
 
-```
+```java
 "dependencies": {
-  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-videoid-cordova": <% PLUGIN_VIDEOID_PATH %>
+  "sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
+  "sdk-videoid-react-native": <% PLUGIN_VIDEOID_PATH %>
 }
 ```
 
-After executing the above steps, you can launch the application with the sdk/component installed.
-Finally, to launch the projects, the following commands must be executed in two ways:
+- After executing the above steps, you can launch the application with the sdk/component installed.
+  
+- Finally, to launch the projects, the following commands must be executed in two ways:
 
-***From Terminal***(For Android):
+***From Terminal***
 
-```
+```java
 npx react-native run-android 
-ó 
+or
 npx react-native run-android --active-arch-only
 ```
 For iOS:
 ```
 npx react-native run-ios
 ```
-From different IDE's, projects generated in the Android and iOS folders can be opened, compiled and debugged using **Android Studio** and **XCode** respectively.
+***From different IDEs***
+
+Projects generated in the Android and iOS folders can be opened,
+compiled, and debugged using *Android Studio* and *XCode* respectively.
+
 
 ## 2.2 Plugin Instalation: iOS
 ### 2.2.1 Proyect Configuration
-For the iOS version, when adding our plugin to the final application, the following points must be taken into account beforehand:
 
-- **Disabled BITCODE**: If the application that is going to integrate the plugin has the BITCODE activated, it will give a compilation error. To prevent this from happening, **BITCODE must be disabled**. 
-Within XCODE simply by accessing *Build from Settings*, in the *Build Options* section, you must indicate the Enable Bitcode parameter as No.
+For the iOS version, when adding our plugin to the final application,
+the following points must be previously taken into account:
 
-- **Add camera permissions**: To use the component, it is necessary to enable the camera permission in the ***info.plist*** file of the application (included within the project in the *** folder ios***). You must edit the file with a text editor and add the following *key/value* pair:
+-   ***Disable the BITCODE:*** If the application that is going to
+    integrate the plugin has the BITCODE enabled, it will produce a
+    compilation error. To prevent this from happening, **the BITCODE
+    must be disabled**.  
+    Within the XCODE simply accessing *Build from Settings*, in the
+    *Build Options* section, you must indicate the *Enable Bitcode*
+    parameter as **No**.
 
-```
-<key>NSCameraUsageDescription</key>
+-   ***Add camera permissions:*** To use the component, you need to enable
+    the camera permission in the application's ***info.plist*** file
+    (included within the project in the ***ios*** folder). You will need
+    to edit the file with a text editor and add the following
+    *key/value* pair:
+
+``` java
+<key> NSCameraUsageDescription </key>
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
@@ -102,13 +125,13 @@ In *Xcode*, for the application and all its methods to work correctly, the minim
 
 - Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
 
-### 2.2.4 Possible incidents
+### 2.2.4 Possible issues
 If environmental problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the appropriate versions), it is recommended to run the following sequence instructions after launching the plugin:
 
 - Open the **ios** folder of the application in a terminal.
 - Run the following command:
 
-```
+```java
 pod deintegrate
 ```
 
@@ -132,9 +155,9 @@ buildscript {
 ```
 
 ### 2.3.2 Permissions for geolocation
-Because the **Tracking** component has geolocation options, it is necessary to add permissions for this. In the AndroidManifest add the following permissions:
+Because the **Tracking** component has geolocation options, it is necessary to add permissions for this. In the *AndroidManifest* add the following permissions:
 
-```
+```java
 <!-- Always include this permission -->
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <!-- Include only if your app benefits from precise location access. -->
@@ -185,7 +208,7 @@ sectionTime: 5000
 
 **type:** *number*
 
-Indicates the time that the component closes due to inactivity.
+Indicates the time that the component finishes due to inactivity.
 
 ```
 timeout: 10000
@@ -267,7 +290,8 @@ Indicates whether or not you want to enable vibration.
 
 ## 4. Component usage
 
-Below will be shown how to execute the functionality of the current component.
+The following will show how to execute the functionality of the current
+component.
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -315,7 +339,8 @@ const getVideoIdConfiguration = () =>
 ## 5. Result return
 
 As shown in the above example, the result is returned in the form of a **JSON** object through ***Promises***, whether it is a successful operation or an error:
-```
+
+```java
 return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
 .then((result: VideoIdResult) => 
 {
@@ -332,7 +357,7 @@ return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
 
 Regardless of whether the result is correct/wrong, the result will have the following format:
 
-```
+```java
 export interface VideoIdResult 
 {
   finishStatus: number;
@@ -357,10 +382,7 @@ Returns the global diagnosis of the operation.
 
 ### 5.2 finishStatusDescription
 
-Returns the global diagnosis of the operation.
-
-- **STATUS_OK**: The operation was successful.
-- **STATUS_ERROR**: An error has occurred, which will be indicated in the ***errorType*** enumeration and, optionally, an extra information message will be displayed in the ***errorMessage*** property.
+Returns the global diagnostic of the operation. It is an optional value.
 
 
 ### 5.3 errorType
