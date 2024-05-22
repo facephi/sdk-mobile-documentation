@@ -535,7 +535,7 @@ Indicates an additional error message if necessary. It is an optional value.
 
 
 ### 5.4 errorType
-Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). They are defined in the `SdkErrorType` class. The values ​​it can have are the following:
+Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
 
 - **NoError**: No error has occurred. The process can continue.
 
