@@ -36,6 +36,13 @@ const sidebars = {
         "Selphi_Component",
         "Selphid_Component",
         "Sample_applications_use",
+        {
+          type: "category",
+          label: "Migrations",
+          items: [
+            "migration_140_200"
+          ],
+        }
       ],
     },
   ],

@@ -26,13 +26,14 @@ const sidebars = {
         "Core_Component",
         "Selphi_Component",
         "Selphid_Component",
-        //"Phingers_Component",
-        //"Voice_Component",
-        //"NFC_Component",
-        //"Video_Call_Component",
-        //"Video_Id_Component",
-        //"Video_Recording_Component",
-        "Sample_applications_use"
+        "Sample_applications_use",
+        {
+          type: "category",
+          label: "Migrations",
+          items: [
+            "migration_140_200"
+          ],
+        }
       ],
     },
   ],

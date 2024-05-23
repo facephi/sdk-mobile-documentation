@@ -33,7 +33,14 @@ const sidebars = {
         //"Video_Call_Component",
         "VideoId_Component",
         //"Video_Recording_Component",
-        "Sample_applications_use"
+        "Sample_applications_use",
+        {
+          type: "category",
+          label: "Migrations",
+          items: [
+            "migration_140_200"
+          ],
+        }
       ],
     },
   ],

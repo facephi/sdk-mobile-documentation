@@ -8,7 +8,10 @@
         "Core_Component",
         "Selphi_Component",
         "Selphid_Component",
-        "Sample_applications_use"
+        "Sample_applications_use",
+        {
+          "Migrations": ["migration_140_200"]
+        }
       ]
     }
   ]
