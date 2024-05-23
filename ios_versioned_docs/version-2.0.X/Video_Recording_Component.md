@@ -1,4 +1,4 @@
-# Video recording component
+# Video Recording Component
 
 ## 0. Mobile SDK base requirements
 
