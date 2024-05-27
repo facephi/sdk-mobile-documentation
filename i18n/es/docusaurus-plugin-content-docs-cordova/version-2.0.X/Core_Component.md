@@ -54,34 +54,19 @@ En ambos casos, el resultado se devolverá por medio de una Promise, la cual con
 De esta forma se evitan problemas relacionados con la conexión y la petición al servicio de licencia. Se puede asignar la licencia directamente como un String de la siguiente manera:
 
 ```
-const launchInitSession = async () => 
-{ 
-    try 
-    {
-        console.log("Starting initSession...");
-        let config: InitSessionConfiguration = {
-            license: Platform.OS === 'ios' ? JSON.stringify(<enter_your_lic_here>) : JSON.stringify(<enter_your_lic_here>),
-            //licenseUrl: LICENSE_URL,
-            //licenseApiKey: Platform.OS === 'ios' ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID
-        };
+initSession = async (): Promise<CoreResult> => 
+{
+  console.log('Launching initSession...');
 
-        console.log(config);
-        return await SdkMobileCore.initSession(config)
-        .then((result: CoreResult) => 
-        {
-            console.log("result", result);
-        })
-        .catch((error: any) => 
-        {
-            console.log(error);
-        })
-        .finally(()=> {
-            console.log("End closeSession...");
-        });
-    } 
-    catch (error) {
-        setMessage(JSON.stringify(error));
-    }
+  let licenseByString: string = (Capacitor.getPlatform() === 'ios') ? "<enter_your_string_lic_here>" : "<enter_your_string_lic_here>";
+  let licenseApiKey: string   = (Capacitor.getPlatform() === 'ios') ? "<enter_your_apikey_here>" : "<enter_your_apikey_here>";
+
+  const widgetConfig: InitSessionConfiguration = {
+    license: licenseByString,
+    enableTracking: true
+  };
+
+  return SdkCore.initSession(widgetConfig);
 };
 ```
 
@@ -91,34 +76,20 @@ A través de un servicio que simplemente requerirá una URL y un API-KEY. Esto e
 Para hacer uso de esta funcionalidad:
 
 ```
-const launchInitSession = async () => 
-{ 
-    try 
-    {
-        console.log("Starting initSession...");
-        let config: InitSessionConfiguration = {
-            //license: Platform.OS === 'ios' ? JSON.stringify(LICENSE_IOS_NEW) : JSON.stringify(LICENSE_ANDROID_NEW),
-            licenseUrl: "https://***.***.pro",
-            licenseApiKey: "<enter_your_apikey_here>",
-        };
+initSession = async (): Promise<CoreResult> => 
+{
+  console.log('Launching initSession...');
 
-        console.log(config);
-        return await SdkMobileCore.initSession(config)
-        .then((result: CoreResult) => 
-        {
-            console.log("result", result);
-        })
-        .catch((error: any) => 
-        {
-            console.log(error);
-        })
-        .finally(()=> {
-            console.log("End closeSession...");
-        });
-    } 
-    catch (error) {
-        setMessage(JSON.stringify(error));
-    }
+  let licenseByString: string = (Capacitor.getPlatform() === 'ios') ? "<enter_your_string_lic_here>" : "<enter_your_string_lic_here>";
+  let licenseApiKey: string   = (Capacitor.getPlatform() === 'ios') ? "<enter_your_apikey_here>" : "<enter_your_apikey_here>";
+
+  const widgetConfig: InitSessionConfiguration = {
+    licenseUrl: "https://***.***.pro",
+    licenseApiKey:licenseApiKey,
+    enableTracking: true
+  };
+
+  return SdkCore.initSession(widgetConfig);
 };
 ```
 
@@ -182,39 +153,15 @@ Este método tiene 2 parámetros de entrada:
 Para poder ejecutar el método **initOperation**, la llamada debe realizarse en la clase ***SdkMobileCore*** como se especifica a continuación:
 
 ```
-const initOperation = async () => 
-{ 
-    try 
-    {
-      console.log("Starting initOperation...");
+initOperation = async (): Promise<CoreResult> => {
+  console.log('Launching launchInitOperation widget...');
 
-      return await SdkMobileCore.initOperation(getInitOperationConfiguration())
-      .then((result: CoreResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End initOperation...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
-
-const getInitOperationConfiguration = () => 
-{
-    let config: InitOperationConfiguration = {
-      customerId: CUSTOMER_ID,
-      type: SdkOperationType.Onboarding,
-    };
-
-    return config;
-};
+  const widgetConfig: InitOperationConfiguration = {
+    type: SdkOperationType.Onboarding,
+    customerId: CUSTOMER_ID,
+  };
+  return SdkCore.initOperation(widgetConfig);
+}
 ```
 
 ## 4. Lanzamiento de componentes

@@ -402,43 +402,17 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ```
-const getSelphiConfiguration = () => {
-    let config: SelphiConfiguration = {
-      debug: false,
-      fullscreen: true,
-      livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode,
-      resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
-      //enableGenerateTemplateRaw: true,
-      logImages: true
-    };
-    return config;
-};
-
-const startSelphi = async () => 
-{ 
-    try 
-    {
-      console.log("Starting startSelphi...");
-      clearAll();
-
-      return await SdkMobileSelphi.selphi(getSelphiConfiguration())
-      .then((result: any) => 
-      {
-        console.log("result", result);
-        processSelphiResult(result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End startSelphi...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
+launchSelphiAuthentication = async (): Promise<SelphiFaceResult> => {
+  console.log('Launching selphi widget...');
+  // SelphiFaceConfiguration
+  let config: SelphiFaceConfiguration = {
+    debug: false,
+    livenessMode: SelphiFaceLivenessMode.Passive,
+    resourcesPath: SELPHI_RESOURCES_PATH,
+    enableGenerateTemplateRaw: true
+  }
+  return SdkSelphi.startExtraction(config);
+}
 ```
 
 ---
