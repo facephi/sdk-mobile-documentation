@@ -26,6 +26,7 @@ const sidebars = {
         "Core_Component",
         "Selphi_Component",
         "Selphid_Component",
+        "VideoId_Component",
         "Sample_applications_use",
         {
           type: "category",
