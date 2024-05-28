@@ -151,7 +151,7 @@ A continuación, se comentarán todas las propiedades que se pueden definir en e
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***src/index.tsx*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***sdk-videoid/www/SdkVideoIdConfig.js*** del componente.
 </div>
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
