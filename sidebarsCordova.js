@@ -33,6 +33,13 @@ const sidebars = {
         "Selphid_Component",
         "VideoId_Component",
         "Sample_applications_use",
+        {
+          type: "category",
+          label: "Migrations",
+          items: [
+            "migration_140_200"
+          ],
+        }
       ],
     },
   ],
