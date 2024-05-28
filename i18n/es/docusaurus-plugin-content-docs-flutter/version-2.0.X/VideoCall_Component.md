@@ -1,7 +1,7 @@
-# VideoId Component
+# VideoCall Component
 
 ## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***VideoID Component***. Éste se encarga de realizar la grabación de un usuario identificándose, mostrando la cara y su documento de identidad.
+El Componente tratado en el documento actual recibe el nombre de ***VideoCall Component***. Éste se encarga de gestionar la comunicación entre un usuario y un agente de forma remota, a través de un canal de comunicación. Está orientado principalmente para casos de uso de videoasistencia.
 
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
@@ -29,7 +29,7 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videoid)
+- **\<%PLUGIN_VIDEOCALL_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videocall)
 </div>
 
 ### 2.1. Instalación del plugin: Common
@@ -43,9 +43,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 - Acceda al **\<%APPLICATION_PATH%\>**, y en el fichero pubspec.yaml y añadir:
 
 ```
-fphi_sdkmobile_videoid:
+fphi_sdkmobile_videocall:
   hosted:
-    name: sdkvideoid
+    name: sdkvideocall
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
   version: ^2.0.0
 ```
@@ -129,19 +129,17 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_videoid_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_videocall_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoID**:
+A continuación se muestra la clase *VideoCallConfiguration*, que permite configurar el componente de **VideoCall**:
 
 ```java
-class VideoIdConfiguration
+class VideoCallConfiguration
 {
-  VideoMode mMode;
-  int mTime;
-  bool mShowTutorial;
   String? mUrl;
   String? mApiKey;
   String? mTenantId;
+  String? mExtensionName;
   bool? mShowDiagnostic;
 }
 ```
@@ -150,46 +148,12 @@ A continuación, se comentarán todas las propiedades que se pueden definir en e
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_videoid/fphi_sdkmobile_videoid_configuration.dart.*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_videoid/fphi_sdkmobile_videocall_configuration.dart.*** del componente.
 </div>
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 mTime
-
-**type:** *number*
-
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
-
-```
-mTime: 5000
-```
-
-### 3.2 mode
-
-**type:** *VideoMode*
-
-Este enumerado se define en la clase **VideoMode** en ***fphi_sdkmobile_videoid_mode.dart***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
-
-```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
-```
-
-### 3.4 mShowTutorial
-
-**type:** *boolean*
-
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
-
-```
-mShowTutorial: true;
-```
-
-### 3.5 mUrl
+### 3.5 url
 
 **type:** *string*
 
@@ -199,7 +163,7 @@ Ruta al socket de video.
 mUrl: url_provided_by_Facephi
 ```
 
-### 3.6 mApiKey
+### 3.6 apiKey
 
 **type:** *string*
 
@@ -208,7 +172,7 @@ ApiKey necesaria para la conexión con el socket de video.
 ```
 mApiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 mTenantId
+### 3.7 tenantId
 
 **type:** *string*
 
@@ -241,28 +205,23 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ```
-Future<Either<Exception, VideoIdResult>>
-  launchVideoIdWithConfiguration(VideoIdConfiguration configuration) async {
+Future<Either<Exception, VideoCallResult>> launchVideoCall() async {
   try
   {
-    FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-    final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-    return Right(VideoIdResult.fromMap(resultJson));
+    FphiSdkmobileVideocall videoCall = FphiSdkmobileVideocall();
+
+    final Map resultJson = await videoCall.startVideoCallComponent(
+        widgetConfigurationJSON: VideoCallConfiguration(
+          mUrl: "wss://identityplatform.facephi.dev/api/video-assistance/",
+          mApiKey: "rS7ToqmNUMHL55tblCOQOfB8rPJIrMnKsp5SKDcl",
+          mTenantId:"e9b039fa-0a2f-4149-9acc-a7e20a46464e"
+        )
+    );
+    return Right(VideoCallResult.fromMap(resultJson));
   }
   on Exception catch (e) {
     return (Left(e));
   }
-}
-
-/// Sample of standard plugin configuration
-VideoIdConfiguration createStandardConfiguration()
-{
-  VideoIdConfiguration configurationWidget;
-  configurationWidget = VideoIdConfiguration();
-  configurationWidget.mTime         = 5000;
-  configurationWidget.mMode         = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
-  configurationWidget.mShowTutorial = false;
-  return configurationWidget;
 }
 ```
 
@@ -272,15 +231,20 @@ VideoIdConfiguration createStandardConfiguration()
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-return Right(VideoIdResult.fromMap(resultJson));
+final Map resultJson = await videoCall.startVideoCallComponent(
+    widgetConfigurationJSON: VideoCallConfiguration(
+      mUrl: "wss://identityplatform.facephi.dev/api/video-assistance/",
+      mApiKey: "rS7ToqmNUMHL55tblCOQOfB8rPJIrMnKsp5SKDcl",
+      mTenantId:"e9b039fa-0a2f-4149-9acc-a7e20a46464e"
+    )
+);
+return Right(VideoCallResult.fromMap(resultJson));
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
 ```
-class VideoIdResult
+class VideoCallResult
 {
   final SdkFinishStatus finishStatus;
   final String finishStatusDescription;

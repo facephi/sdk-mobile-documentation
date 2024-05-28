@@ -1,13 +1,14 @@
-# VideoId Component
+# VideoCall Component
 
 ## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***VideoID Component***. Éste se encarga de realizar la grabación de un usuario identificándose, mostrando la cara y su documento de identidad.
+El Componente tratado en el documento actual recibe el nombre de ***VideoCall Component***. Éste se encarga de gestionar la comunicación entre un usuario y un agente de forma remota, a través de un canal de comunicación. Está orientado principalmente para casos de uso de videoasistencia.
 
 ### 1.1 Requisitos mínimos
+
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: **24 - JDK 11**
-- Versión mínima iOS: **13**
+- Versión mínima Android: 24 - JDK 11
+- Versión mínima iOS: 13
 
 En cuanto a la arquitectura del dispositivo móvil:
 
@@ -16,7 +17,7 @@ armeabi-v7, x86, arm64 y x64
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
 
-Buscamos el archivo ***pubspec.yaml*** en la raíz del plugin.
+Buscamos el archivo ***package.json*** & ***config.xml*** en la raíz del plugin.
 
 En el ***KEY/TAG*** version se indica la versión.
 
@@ -29,25 +30,27 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videoid)
+- **\<%PLUGIN_VIDEOCALL_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videocall)
 </div>
 
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que Flutter esté instalado.
-- Acceda al APPLICATION_PATH en un terminal y ejecute:
-```
-dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
-```
-- Acceda al **\<%APPLICATION_PATH%\>**, y en el fichero pubspec.yaml y añadir:
+- Asegurarse de que React Native esté instalado.
+- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-fphi_sdkmobile_videoid:
-  hosted:
-    name: sdkvideoid
-    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+[ionic] cordova plugin add @facephi/sdk-core-react-native
+[ionic] cordova plugin add @facephi/sdk-videocall-react-native
+```
+
+Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
+
+```
+"dependencies": {
+  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-videocall-cordova": <% PLUGIN_VIDEOCALL_PATH %>
+}
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
@@ -60,7 +63,7 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 - **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, **el BITCODE debe estar desactivado**. 
 Dentro del XCODE simplemente accediendo a *Build from Settings*, en la sección *Build Options*, deberás indicar el parámetro Habilitar Bitcode como No.
 
-- **Añadir los permisos de cámara**: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
+- **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
 
 ```
 <key>NSCameraUsageDescription</key>
@@ -100,7 +103,6 @@ pod deintegrate
 - Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
 
 ```
-pod repo-art update cocoa-pro-fphi
 pod install --repo-update
 ```
 
@@ -129,103 +131,87 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_videoid_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***SdkVideoCallConfig.js***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoID**:
+A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoCall**:
 
 ```java
-class VideoIdConfiguration
-{
-  VideoMode mMode;
-  int mTime;
-  bool mShowTutorial;
-  String? mUrl;
-  String? mApiKey;
-  String? mTenantId;
-  bool? mShowDiagnostic;
+SdkVideoCallConfig = function () {
+    this.url;
+    this.apiKey;
+    this.tenantId;
+    this.showDiagnostic;
+    this.screenSharing;
+    this.vibration;
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VideoIdConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VideoCallConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_videoid/fphi_sdkmobile_videoid_configuration.dart.*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***sdk-videocall/www/SdkVideoCallConfig.js*** del componente.
 </div>
 
-A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
+A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 mTime
-
-**type:** *number*
-
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
-
-```
-mTime: 5000
-```
-
-### 3.2 mode
-
-**type:** *VideoMode*
-
-Este enumerado se define en la clase **VideoMode** en ***fphi_sdkmobile_videoid_mode.dart***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
-
-```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
-```
-
-### 3.4 mShowTutorial
+### 3.1 screenSharing
 
 **type:** *boolean*
 
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
+Indica si se desea compartir la pantalla del dispositivo con el operador.
 
 ```
-mShowTutorial: true;
+showTutorial: true;
 ```
 
-### 3.5 mUrl
+### 3.2 url
 
 **type:** *string*
 
 Ruta al socket de video.
 
 ```
-mUrl: url_provided_by_Facephi
+url: url_provided_by_Facephi
 ```
 
-### 3.6 mApiKey
+### 3.3 apiKey
 
 **type:** *string*
 
 ApiKey necesaria para la conexión con el socket de video.
 
 ```
-mApiKey: "apiKey_provided_by_Facephi";
+apiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 mTenantId
+### 3.4 tenantId
 
 **type:** *string*
 
 Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
 
 ```
-mTenantId: "TenantId_provided_by_Facephi";
+tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.8 mShowDiagnostic
+### 3.5 showDiagnostic
 
 **type:** *boolean*
 
 Indica si se desea mostrar un diagnostico en caso de falla.
 
 ```
-mShowDiagnostic: false;
+showDiagnostic: false;
+```
+
+### 3.6 vibration
+
+**type:** *boolean*
+
+Indica si se desea o no habilitar la vibración.
+
+```
+vibration: false;
 ```
 ---
 
@@ -240,29 +226,40 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
-```
-Future<Either<Exception, VideoIdResult>>
-  launchVideoIdWithConfiguration(VideoIdConfiguration configuration) async {
-  try
-  {
-    FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-    final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-    return Right(VideoIdResult.fromMap(resultJson));
-  }
-  on Exception catch (e) {
-    return (Left(e));
-  }
-}
+``` java
+var videoCallResponse = null;
 
-/// Sample of standard plugin configuration
-VideoIdConfiguration createStandardConfiguration()
+function callVideoCall()
 {
-  VideoIdConfiguration configurationWidget;
-  configurationWidget = VideoIdConfiguration();
-  configurationWidget.mTime         = 5000;
-  configurationWidget.mMode         = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
-  configurationWidget.mShowTutorial = false;
-  return configurationWidget;
+    if (typeof facephi.plugins.sdkvideocall === "undefined") {
+        showErrorUI("Cordova Videocall Sdk is not installed...");
+        return;
+    }
+
+    console.log('callVideoCall started...');
+    $("#messageResult").html("Starting proccess...").addClass("blink").css("color", "#000000").css("text-align","center").show();
+
+    if (isStartingSDK) {
+        console.log("A process is running...");
+        return false;
+    }
+    if (!isStartingSDK) {
+        isStartingSDK = true;
+    }
+
+    videoCallResponse = null;
+    //var config = new SdkVideoCallConfig();
+    facephi.plugins.sdkvideocall.launchVideoCall({})
+    .then(
+        (result) => console.log(result),
+        (err) => console.log(err),
+    )
+    .finally (() =>
+    {
+        console.log("callVideoCall finished...");
+        $("#messageResult").html("").removeClass("blink").css("color", "#ff0000").css("text-align", "center").show();
+        isStartingSDK = false
+    });
 }
 ```
 
@@ -272,48 +269,55 @@ VideoIdConfiguration createStandardConfiguration()
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-return Right(VideoIdResult.fromMap(resultJson));
+facephi.plugins.sdkvideocall.launchVideoCall({})
+.then(
+    (result) => console.log(result),
+    (err) => console.log(err),
+)
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
 ```
-class VideoIdResult
-{
-  final SdkFinishStatus finishStatus;
-  final String finishStatusDescription;
-  final String errorDiagnostic;
-  final String? errorMessage;
-  final String data;
+VideoCallResult {
+    finishStatus: number;
+    finishStatusDescription?: string;
+    errorType: string;
+    errorMessage?: string;
+    data?: string;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VideoIdResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkSelphidResult***. A continuación se amplía información sobre esos campos.
 </div>
 
-### 5.0 finishStatus
+### 5.1 finishStatus
+
+Devuelve el diagnóstico global de la operación.
+
 - **1**: La operación fue exitosa.
-- **2**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
+- **2**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
-### 5.1 finishStatusDescription
-- **STATUS_OK**: La operación fue exitosa.
-- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-### 5.2 errorDiagnostic
- Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Los valores que puede tener son los siguientes:
+### 5.2 finishStatusDescription
+
+Devuelve la descripción de finishStatus.
+- **Status_Ok**: La operación fue exitosa.
+- **Status_Error**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+
+### 5.3 errorType
+ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
 
 - **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
 - **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
 - **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
-- **SettingsPermissionDenied**: Excepción que se produce cuando el widget no tiene permiso de acceso a la configuración del sistema (*deprecated*).
+- **SettingsPermissionDenied**: Excepción que se produce cuando el componente no tiene permiso de acceso a la configuración del sistema (*deprecated*).
 - **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
 - **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
 - **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
-- **ControlNotInitializedError**: El configurador del widget no ha sido inicializado.
-- **BadExtractorConfiguration**: Problema surgido durante la configuración del widget.
+- **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
+- **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
 - **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
 - **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
 - **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
@@ -323,5 +327,5 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-### 5.3 errorMessage: 
+### 5.4 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
