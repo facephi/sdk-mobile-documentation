@@ -28,7 +28,7 @@ const sidebars = {
         "Selphid_Component",
         //"Phingers_Component",
         //"Voice_Component",
-        //"NFC_Component",
+        "Nfc_Component",
         "VideoCall_Component",
         "VideoId_Component",
         "Sample_applications_use",
