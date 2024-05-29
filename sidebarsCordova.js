@@ -26,7 +26,7 @@ const sidebars = {
         "Core_Component",
         //"Phingers_Component",
         //"Voice_Component",
-        //"NFC_Component",
+        "Nfc_Component",
         "Selphi_Component",
         "Selphid_Component",
         "VideoCall_Component",
