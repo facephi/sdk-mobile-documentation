@@ -332,7 +332,7 @@ VideoIdResult {
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkSelphidResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkVideoIdResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.1 finishStatus

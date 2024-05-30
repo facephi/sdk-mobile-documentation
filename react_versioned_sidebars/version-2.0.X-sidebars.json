@@ -11,6 +11,7 @@
         "Nfc_Component",
         "VideoCall_Component",
         "VideoId_Component",
+        "Voice_Component",
         "Sample_applications_use",
         {
           "Migrations": ["migration_140_200"]
