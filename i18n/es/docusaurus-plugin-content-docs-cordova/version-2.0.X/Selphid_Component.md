@@ -465,57 +465,25 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ``` java
-const getSelphidConfiguration = () => {
-    let config: SelphidConfiguration = {
-      debug: false,
-      showResultAfterCapture: true,
-      showTutorial: false,
-      scanMode: SdkSelphidEnums.SdkScanMode.Search,
-      specificData: 'AR|<ALL>',
-      documentType: SdkSelphidEnums.SdkDocumentType.IdCard,
-      fullscreen: true,
-      locale: '',
-      resourcesPath: "fphi-selphid-widget-resources-sdk.zip",
-    };
-    return config;
-};
+launchSelphidCapture = async (): Promise<SelphIDResult> => 
+{
+  console.log('Preparing selphID configuration...');
 
-const startSelphid = async () => 
-{ 
-    try 
-    {
-      console.log("Starting startSelphid...");
-      clearAll();
- 
-      return await SdkMobileSelphid.selphid(getSelphidConfiguration())
-      .then((result: any) => 
-      {
-        let r: SelphidResult = result;
-        console.log("result parsed", r);
+  let widgetConfig: SelphIDConfiguration = {
+    //documentSide: SelphIDDocumentSide.Front,
+    resourcesPath: SELPHID_RESOURCES_PATH,
+    showResultAfterCapture: true,
+    scanMode: SelphIDScanMode.Search,
+    documentType: SelphIDDocumentType.IDCard,
+    showTutorial: false,
+    generateRawImages: false,
+    specificData: `AR|<ALL>`,
+    wizardMode: true,
+  };
 
-        console.log("result", result);
-        processSelphidResult(result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-        setMessage(JSON.stringify(error));
-        setFrontDocumentImage(null);
-        setBackDocumentImage(null);
-        setFaceImage(null);
-        setTokenFaceImage(null);
-        setOcrContent(null);
-        setShowError(true);
-        setTextColorMessage('#DE2222');
-      })
-      .finally(()=> {
-        console.log("End startSelphid...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
+  console.log('Launching selphID widget...');
+  return SdkSelphid.startCapture(widgetConfig);
+}
 ```
 
 ---

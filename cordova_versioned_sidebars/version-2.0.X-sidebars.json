@@ -8,7 +8,13 @@
         "Core_Component",
         "Selphi_Component",
         "Selphid_Component",
-        "Sample_applications_use"
+        "Nfc_Component",
+        "VideoCall_Component",
+        "VideoId_Component",
+        "Sample_applications_use",
+        {
+          "Migrations": ["migration_140_200"]
+        }
       ]
     }
   ]

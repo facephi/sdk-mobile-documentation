@@ -334,33 +334,6 @@ const getVideoIdConfiguration = () =>
 };
 ```
 
-### 4.1 Signature mode method
-
-``` java
-const launchSignatureVideoId = async () => 
-  { 
-    try 
-    {
-      console.log("Starting launchVideoId...");
-      return await SdkMobileVideoid.signatureVideoid(getVideoIdConfiguration())
-      .then((result: VideoIdResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End launchVideoId...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-  };
-```
-
 ---
 
 ## 5. Result return
