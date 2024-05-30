@@ -25,12 +25,12 @@ const sidebars = {
         "Mobile_SDK",
         "Core_Component",
         //"Phingers_Component",
-        //"Voice_Component",
         "Nfc_Component",
         "Selphi_Component",
         "Selphid_Component",
         "VideoCall_Component",
         "VideoId_Component",
+        "Voice_Component",
         "Sample_applications_use",
         {
           type: "category",

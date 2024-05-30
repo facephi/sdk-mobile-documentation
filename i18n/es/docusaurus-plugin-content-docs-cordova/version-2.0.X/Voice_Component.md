@@ -1,7 +1,15 @@
-# VideoCall Component
+# Voice Component
 
 ## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***VideoCall Component***. Éste se encarga de gestionar la comunicación entre un usuario y un agente de forma remota, a través de un canal de comunicación. Está orientado principalmente para casos de uso de videoasistencia.
+El Componente tratado en el documento actual recibe el nombre de ***Voice Component***. Éste se encarga de realizar la captura de voz del usuario y la posterior extracción de las plantillas correspondientes. Sus principales funcionalidades son las siguientes:
+
+- Entrada de cierto número de frases para posteriormente leer cada una en un paso.
+- Gestión interna del micrófono.
+- Gestión de permisos.
+- Análisis de los silencios.
+- Análisis del progreso.
+- Asistente en los procesos de captura.
+- Generación de las plantillas con las características de la voz y puntuaciones.
 
 ### 1.1 Requisitos mínimos
 
@@ -30,7 +38,7 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOCALL_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videocall)
+- **\<%PLUGIN_VOICE_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-voice)
 </div>
 
 ### 2.1. Instalación del plugin: Common
@@ -41,7 +49,7 @@ El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección
 
 ```
 [ionic] cordova plugin add @facephi/sdk-core-react-native
-[ionic] cordova plugin add @facephi/sdk-videocall-react-native
+[ionic] cordova plugin add @facephi/sdk-voice-react-native
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
@@ -49,7 +57,7 @@ Es importante verificar que la ruta al complemento esté correctamente definida 
 ```
 "dependencies": {
   "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-videocall-cordova": <% PLUGIN_VIDEOCALL_PATH %>
+  "@facephi/sdk-voice-cordova": <% PLUGIN_VOICE_PATH %>
 }
 ```
 
@@ -131,80 +139,61 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***SdkVideoCallConfig.js***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***SdkVoiceConfig.js***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoCall**:
+A continuación se muestra la clase *VoiceConfiguration*, que permite configurar el componente de **Voice**:
 
 ```java
-SdkVideoCallConfig = function () {
-    this.url;
-    this.apiKey;
-    this.tenantId;
+SdkVoiceConfig = function () 
+{
+    this.vibrationEnabled = true;
+    this.showTutorial = true;
+    this.phrases = "";
+    this.timeout = 30000;
     this.showDiagnostic;
-    this.screenSharing;
-    this.vibration;
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VideoCallConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VoiceConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***sdk-videocall/www/SdkVideoCallConfig.js*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***sdk-voice/www/SdkVoiceConfig.js*** del componente.
 </div>
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 screenSharing
+### 3.1 phrases
+
+**type:** *string*
+
+Frases que se tienen que decir en la app para validar la identidad.
+
+```
+phrases: 'hola mundo|hola voice component|hola Facephi',
+```
+
+### 3.2 timeout
+
+**type:** *number*
+
+Se setea el timeout del plugin.
+
+```
+timeout: 10000;
+```
+
+### 3.3 showTutorial
 
 **type:** *boolean*
 
-Indica si se desea compartir la pantalla del dispositivo con el operador.
+Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
 
 ```
 showTutorial: true;
 ```
 
-### 3.2 url
-
-**type:** *string*
-
-Ruta al socket de video.
-
-```
-url: url_provided_by_Facephi
-```
-
-### 3.3 apiKey
-
-**type:** *string*
-
-ApiKey necesaria para la conexión con el socket de video.
-
-```
-apiKey: "apiKey_provided_by_Facephi";
-```
-### 3.4 tenantId
-
-**type:** *string*
-
-Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
-
-```
-tenantId: "TenantId_provided_by_Facephi";
-```
-
-### 3.5 showDiagnostic
-
-**type:** *boolean*
-
-Indica si se desea mostrar un diagnostico en caso de falla.
-
-```
-showDiagnostic: false;
-```
-
-### 3.6 vibration
+### 3.4 vibration
 
 **type:** *boolean*
 
@@ -227,16 +216,14 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ``` java
-var videoCallResponse = null;
-
-function callVideoCall()
+function callVoice()
 {
-    if (typeof facephi.plugins.sdkvideocall === "undefined") {
-        showErrorUI("Cordova Videocall Sdk is not installed...");
+    if (typeof facephi.plugins.sdkvoice === "undefined") {
+        showErrorUI("Cordova Voice Sdk is not installed...");
         return;
     }
 
-    console.log('callVideoCall started...');
+    console.log('callVoice started...');
     $("#messageResult").html("Starting proccess...").addClass("blink").css("color", "#000000").css("text-align","center").show();
 
     if (isStartingSDK) {
@@ -247,18 +234,22 @@ function callVideoCall()
         isStartingSDK = true;
     }
 
-    videoCallResponse = null;
-    //var config = new SdkVideoCallConfig();
-    facephi.plugins.sdkvideocall.launchVideoCall({})
+    var config = new SdkVoiceConfig();
+    config.setPhrases("Hola Facephi Component|Hello world|Desarrollo del componente Voice")
+    config.setVibrationEnabled(true);
+    config.setShowTutorial(true);
+
+    voiceResponse = null;
+    facephi.plugins.sdkvoice.launchVoice(config)
     .then(
         (result) => console.log(result),
         (err) => console.log(err),
     )
     .finally (() =>
     {
-        console.log("callVideoCall finished...");
+        isStartingSDK = false;
+        console.log("callVoice finished...");
         $("#messageResult").html("").removeClass("blink").css("color", "#ff0000").css("text-align", "center").show();
-        isStartingSDK = false
     });
 }
 ```
@@ -269,27 +260,32 @@ function callVideoCall()
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-facephi.plugins.sdkvideocall.launchVideoCall({})
+facephi.plugins.sdkvoice.launchVoice(config)
 .then(
     (result) => console.log(result),
     (err) => console.log(err),
 )
+.finally (() =>
+{
+    isStartingSDK = false;
+    console.log("callVoice finished...");
+    $("#messageResult").html("").removeClass("blink").css("color", "#ff0000").css("text-align", "center").show();
+});
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
 ```
-VideoCallResult {
+VoiceResult {
     finishStatus: number;
     finishStatusDescription?: string;
     errorType: string;
     errorMessage?: string;
-    data?: string;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkVideoCallResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkSelphidResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.1 finishStatus
