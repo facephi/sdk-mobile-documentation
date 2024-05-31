@@ -1,113 +1,117 @@
-# VideoId Component
+# NFC Component
 
-## 1. Introduction
-The Component discussed in the current document is called ***VideoID Component***. This is responsible for recording a user identifying themselves, showing their face and their identity document.
+## 1. Introducción
+El Componente tratado en el documento actual recibe el nombre de ***NFC Component***. La autenticación pasiva del chip NFC de un documento comprueba si realmente ha sido expedido por una autoridad certificada. La autenticación pasiva nos permite validar que:
 
-### 1.1 Minimum requirements
+- El documento ha sido expedido por la autoridad certificadora del país al que pertenece.
+- El documento no ha sido alterado.
+- El documento no es una copia o un documento clonado.
 
-The minimum native version (Android and iOS) of the SDK are as follows:
+### 1.1 Requisitos mínimos
 
--   Minimum Android version: **24 - JDK 11**
--   Minimum iOS version: **13**
+La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-Regarding the architecture of the mobile device:
+- Versión mínima Android: **24 - JDK 11**
+- Versión mínima iOS: **13**
+
+En cuanto a la arquitectura del dispositivo móvil:
 
 - armeabi-v7, x86, arm64 y x64
 
-### 1.2 Plugin Version
+### 1.2 Versión del plugin
+La versión del plugin actual se puede consultar de la siguiente forma:
 
-The current plugin version can be checked as follows:
+Buscamos el archivo ***package.json*** en la raíz del plugin.
 
-- We look for the file ***package.json*** in the root of the plugin.
+En el ***KEY/TAG*** version se indica la versión.
 
-- The version is indicated in the ***KEY/TAG*** version.
-
-## 2. Component Integration 
+## 2. Integración del componente 
+Antes de integrar este componente **se recomienda** leer la documentación relativa a **Core Component** y seguir las instrucciones indicadas en dicho documento.
 
 <div class="note">
 <span class="note">:information_source:</span>
-Before integrating this component, it is *recommended* to read the documentation related to *Core Component* and follow the instructions indicated in said document.
+En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente. 
+Para esta sección, se considerarán los siguiente valores:
+- **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
+- **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
+- **\<%PLUGIN_NFC_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-nfc)
 </div>
 
-This section will explain step by step how to integrate the current component into an existing project. 
+### 2.1. Instalación del plugin: Common
+El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
 
-<div class="warning">
-<span class="warning">:warning:</span>
-For this section, the following values ​​will be considered:
-- **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
-- **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the core plugin, which is required (example: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path to the root of the current plugin (example: /folder/sdk-videoid)
-</div>
+- Asegurarse de que React Native esté instalado.
+- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
-### 2.1. Plugin Instalation: Common
-The plugin allows execution on **Android and iOS** platforms. This section explains common steps. To install the plugin you must follow the following steps:
-
-- Make sure **React Native** is installed.
-- Access **\<%APPLICATION_PATH%\>** in a terminal and run:
-
-```java
+```
 yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-videoid-react-native
-yarn install
+yarn add @facephi/sdk-nfc-react-native
 ```
 
-- It is important to verify that the path to the plugin is correctly defined in package.json:
+Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
 
-```java
+```
 "dependencies": {
-  "sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "sdk-videoid-react-native": <% PLUGIN_VIDEOID_PATH %>
+  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-nfc-react-native": <% PLUGIN_NFC_PATH %>
 }
 ```
 
-- After executing the above steps, you can launch the application with the sdk/component installed.
-  
-- Finally, to launch the projects, the following commands must be executed in two ways:
+Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
+Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
 
-***From Terminal***
+***Desde Terminal***(Para Android):
 
-```java
+```
 npx react-native run-android 
-or
+ó 
 npx react-native run-android --active-arch-only
 ```
-For iOS:
+Para iOS:
 ```
 npx react-native run-ios
 ```
-***From different IDEs***
 
-Projects generated in the Android and iOS folders can be opened,
-compiled, and debugged using *Android Studio* and *XCode* respectively.
+Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
 
+## 2.2 Instalación plugin: iOS
+### 2.2.1 Configuración del proyecto
+Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-## 2.2 Plugin Instalation: iOS
-### 2.2.1 Proyect Configuration
+- **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, **el BITCODE debe estar desactivado**. 
+Dentro del XCODE simplemente accediendo a *Build from Settings*, en la sección *Build Options*, deberás indicar el parámetro Habilitar Bitcode como No.
 
-For the iOS version, when adding our plugin to the final application,
-the following points must be previously taken into account:
+- **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
 
--   ***Disable the BITCODE:*** If the application that is going to
-    integrate the plugin has the BITCODE enabled, it will produce a
-    compilation error. To prevent this from happening, **the BITCODE
-    must be disabled**.  
-    Within the XCODE simply accessing *Build from Settings*, in the
-    *Build Options* section, you must indicate the *Enable Bitcode*
-    parameter as **No**.
-
--   ***Add camera permissions:*** To use the component, you need to enable
-    the camera permission in the application's ***info.plist*** file
-    (included within the project in the ***ios*** folder). You will need
-    to edit the file with a text editor and add the following
-    *key/value* pair:
-
-``` java
-<key> NSCameraUsageDescription </key>
+```
+<key>NSCameraUsageDescription</key>
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
+- **Añadir Privacy - NFC Scan Usage Description**:  Para utilizar el widget, es necesario habilitar el permiso de nfc en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios).
+```
+<key>NFCReaderUsageDescription</key>
+<string>The app needs this permission for the correct usage.</string>
+```
+Añadir ISO7816 application identifiers for NFC Tag Reader Session: Para utilizar el widget, es necesario habilitar el permiso de nfc en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
+```
+<array>
+    <string>A0000002471001</string>
+    <string>A0000002472001</string>
+    <string>00000000000000</string>
+</array>
+```
+- **Añadir el Capability Near field Communication Tag Reading**
 
-### 2.2.2 Update Podfile
-In the project podfile it will be necessary to add the information of the private repository (see section 2.1). To do this, the following lines must be added to the beginning of the file:
+Open image-20230214-141106.png
+image-20230214-141106.png
+
+- **Añadir el Entitlements Near Field Communication Tag Reader Session Formats**:
+
+Open image-20230214-141753.png
+image-20230214-141753.png
+
+### 2.2.2 Actualizar el Podfile
+En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
 
 ```
 platform :ios, '13.0' //MIN VERSION
@@ -117,34 +121,34 @@ source 'https://cdn.cocoapods.org/'
 
 <div class="note">
 <span class="note">:information_source:</span>
-To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following *Core Component* document.
+Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de *Componente Core*.
 </div>
 
-### 2.2.3 Set Swift version 
-In *Xcode*, for the application and all its methods to work correctly, the minimum version of swift must be set to version 5. Changes can be made by following these steps:
+### 2.2.3 Establecer la versión de Swift
+En *Xcode*, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
 
 - Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
 
-### 2.2.4 Possible issues
-If environmental problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the appropriate versions), it is recommended to run the following sequence instructions after launching the plugin:
+### 2.2.4 Posibles incidencias
+Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
 
-- Open the **ios** folder of the application in a terminal.
-- Run the following command:
+- Abrir la carpeta **ios** de la aplicación en un terminal.
+- Ejecutar el siguiente comando:
 
-```java
+```
 pod deintegrate
 ```
 
-- Remove ***Podfile.lock***
-- Run the following command (or open the project with Xcode and run it):
+- Eliminar el ***Podfile.lock***
+- Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
 
 ```
 pod install --repo-update
 ```
 
-## 2.3 Plugin installation: Android
-### 2.3.1 Set Android SDK version
-For Android, the minimum SDK version required by our native libraries is **24**, so if your app has a *minimum SDK* defined lower than this, it will need to be modified to avoid a build error. To do this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
+## 2.3 Instalación plugin: Android
+### 2.3.1 Establecer la versión de Android SDK
+En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es **24**, por lo que si la aplicación tiene un *SDK mínimo* definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero ***build.gradle*** de la aplicación (ubicado en la carpeta ***android***) y modifica el siguiente parámetro:
 
 ```
 buildscript {
@@ -154,10 +158,10 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permissions for geolocation
-Because the **Tracking** component has geolocation options, it is necessary to add permissions for this. In the *AndroidManifest* add the following permissions:
+### 2.3.2 Permisos para geolocalización
+Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
 
-```java
+```
 <!-- Always include this permission -->
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <!-- Include only if your app benefits from precise location access. -->
@@ -166,157 +170,178 @@ Because the **Tracking** component has geolocation options, it is necessary to a
 
 ---
 
-## 3. Component Configuration
-The current component contains a series of Typescript methods and interfaces included within the file ***node_modules/@facephi/sdk-videoid-react-native/src/index.tsx***. In this file you can find the API necessary for communication between the application and the native functionality of the component. The purpose of each of those listed and the other properties that affect the operation of the component are explained below.
+## 3. Configuración del componente
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-nfc-react-native/src/index.tsx***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-Below is the *VideoIdConfiguration* class, which allows you to configure the **VideoID** component:
+A continuación se muestra la clase *NfcConfiguration*, que permite configurar el componente de **Nfc**:
 
 ```java
-export interface VideoIdConfiguration {
-  sectionTime?: number;
-  timeout?: number;
-  mode?: VideoMode;
+export interface NfcConfiguration {
+  docNumber: string;
+  birthDay: string;
+  issuer?: string;
+  expirationDay: string;
+  extractionTimeout?: number;
+  docType?: NfcDocumentType;
   showTutorial?: boolean;
-  url?: string;
-  apiKey?: string;
-  tenantId?: string;
+  vibrationEnabled?: boolean;
+  skipPACE?: boolean;
+  debug?: boolean;
   showDiagnostic?: boolean;
-  vibration?: boolean;
 }
 ```
 
-Next, all the properties that can be defined in the **VideoIdConfiguration** object will be discussed:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **NfcConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-All configuration can be found in the component's ***src/index.tsx*** file.
+Toda la configuración se podrá encontrar en el archivo ***src/index.tsx*** del componente.
 </div>
 
-When calling the component, there are a series of parameters that must be included. They will be briefly discussed below.
+A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 sectionTime
+### 3.1 docNumber
+
+**type:** *string*
+
+Número de documento que se pretende scanear.
+
+```
+docNumber: 2115000
+```
+
+### 3.2 birthDay
+
+**type:** *string*
+
+Fecha de nacimiento que figura en el documento que se pretende scanear.
+
+```
+birthDay: dd/mm/yyyy;
+```
+
+### 3.3 expirationDay
 
 **type:** *number*
 
-Time that will remain on each screen of the process in ms.
+Fecha de expiración que figura en el documento que se pretende scanear.
 
 ```
-sectionTime: 5000
+expirationDay: dd/mm/yyyy;
 ```
 
-### 3.2 timeout
+### 3.4 extractionTimeout
 
 **type:** *number*
 
-Indicates the time that the component finishes due to inactivity.
+Tiempo de espera en el que el plugin deja de scanear de manera automática en caso de no obtener resultados.
 
 ```
-timeout: 10000
+extractionTimeout: 5000;
 ```
 
-### 3.3 mode
+### 3.5 issuer
 
-**type:** *VideoMode*
+**type:** *string*
 
-This enumeration is defined in the class ***SdkVideoIdEnum.tsx***. Mode to be applied for recording. The possible VideoIdMode values ​​will be:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: You have to show the face and front of the document.
-- ***VideoMode.ONLY_FACE***: You just have to show your face during the process.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+Código del país que se desea scanear.
 
 ```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
+issuer: 
 ```
 
-### 3.4 showTutorial
+### 3.6 docType
+
+**type:** *NfcDocumentType*
+
+Tipo de documento que se pretende scanear.
+
+```
+docType: ;
+```
+### 3.7 showTutorial
 
 **type:** *boolean*
 
-Indicates whether you want to show the complete tutorial of the process or just the simplified version.
+Habilita o no que se muestre un tutorial previa a la acción de lectura del documento.
 
 ```
-showTutorial: true;
-```
-
-### 3.5 url
-
-**type:** *string*
-
-Path to the video socket.
-
-```
-url: url_provided_by_Facephi
-```
-
-### 3.6 apiKey
-
-**type:** *string*
-
-ApiKey required for connection to the video socket.
-
-```
-apiKey: "apiKey_provided_by_Facephi";
-```
-### 3.7 tenantId
-
-**type:** *string*
-
-Tenant identifier that refers to the current client, necessary for the connection to the video service.
-
-```
-tenantId: "TenantId_provided_by_Facephi";
+showTutorial: ;
 ```
 
 ### 3.8 showDiagnostic
 
 **type:** *boolean*
 
-Indicates whether you want to show a diagnosis in case of failure.
+Indica si se desea mostrar un diagnostico en caso de falla.
 
 ```
 showDiagnostic: false;
 ```
 
-### 3.9 vibration
+### 3.9 vibrationEnabled
 
 **type:** *boolean*
 
-Indicates whether or not you want to enable vibration.
+Indica si se desea o no habilitar la vibración.
 
 ```
- vibration: true;
+vibrationEnabled: false;
+```
+
+### 3.10 skipPACE
+
+**type:** *boolean*
+
+.
+
+```
+skipPACE: false;
+```
+
+### 3.11 debug
+
+**type:** *boolean*
+
+Habilita o no que se muestren datos de debug en pantalla.
+
+```
+debug: false;
 ```
 ---
 
-## 4. Component usage
+## 4. Uso del componente
 
-The following will show how to execute the functionality of the current
-component.
+A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Remember that to launch a previously determined component you will have to initialize the SDK with its respective license, and then start a new operation. For more information consult the Core Component documentation.
+Se recuerda que para lanzar un componente determinado previamente habrá que inicializar el SDK con su respectiva licencia, y después iniciar una nueva operación. Para más información consulte la documentación del Componente Core.
 </div>
 
-Once the component is configured, to launch it the following code must be executed:
+Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ``` java
-const launchVideoId = async () => 
+const startNfc = async () => 
 { 
   try 
   {
-    console.log("Starting launchVideoId...");
-    return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
-    .then((result: VideoIdResult) => 
+    console.log("Starting startNfc...");
+
+    return await SdkMobileNfc.nfc(getNfcConfiguration())
+    .then((result: NfcResult) => 
     {
       console.log("result", result);
+      if (result.finishStatus == SdkFinishStatus.Error) {
+        drawError(setMessage, result);
+      }
     })
     .catch((error: any) => 
     {
       console.log(error);
     })
     .finally(()=> {
-      console.log("End launchVideoId...");
+      console.log("End startNfc...");
     });
   } 
   catch (error) {
@@ -324,52 +349,25 @@ const launchVideoId = async () =>
   }
 };
 
-const getVideoIdConfiguration = () => 
-{
-  let config: VideoIdConfiguration = {
-    sectionTime: 5000,
-    mode: VideoMode.FACE_DOCUMENT_FRONT,
+const getNfcConfiguration = () => {
+  let config: NfcConfiguration = {
+    docNumber: "AAA439684", 
+    birthDay: "16/08/1979", 
+    expirationDay: "29/11/2022", 
+    extractionTimeout: 50000
   };
   return config;
 };
 ```
 
-### 4.1 Signature mode method
-
-``` java
-const launchSignatureVideoId = async () => 
-  { 
-    try 
-    {
-      console.log("Starting launchVideoId...");
-      return await SdkMobileVideoid.signatureVideoid(getVideoIdConfiguration())
-      .then((result: VideoIdResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End launchVideoId...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-  };
-```
-
 ---
 
-## 5. Result return
+## 5. Retorno de resultado
 
-As shown in the above example, the result is returned in the form of a **JSON** object through ***Promises***, whether it is a successful operation or an error:
-
-```java
-return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
-.then((result: VideoIdResult) => 
+Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
+```
+return await SdkMobileNfc.nfc(getNfcConfiguration())
+.then((result: NfcResult) => 
 {
   console.log("result", result);
 })
@@ -378,95 +376,74 @@ return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
   console.log(error);
 })
 .finally(()=> {
-  console.log("End launchVideoId...");
+  console.log("End startNfc...");
 });
 ```
 
-Regardless of whether the result is correct/wrong, the result will have the following format:
+Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
-```java
-export interface VideoIdResult 
+```
+export interface NfcResult 
 {
   finishStatus: number;
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  data?: string;
+  nfcDocumentInformation?: any;
+  nfcPersonalInformation?: any;
+  nfcValidations?: any;
+  facialImage?: string;
+  fingerprintImage?: string;
+  signatureImage?: string;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-The result will be returned through a Promise that contains an object of the class ***VideoIdResult***. Below is more information about these fields.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***NfcResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.1 finishStatus
 
-Returns the global diagnosis of the operation.
+Devuelve el diagnóstico global de la operación.
 
-- **1**: The operation was successful.
-- **2**: An error has occurred, which will be indicated in the ***errorType*** enumeration and, optionally, an extra information message will be displayed in the ***errorMessage*** property.
+- **1**: La operación fue exitosa.
+- **2**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 
 ### 5.2 finishStatusDescription
 
-Returns the global diagnostic of the operation. It is an optional value.
+Devuelve el diagnóstico global de la operación.
+
+- **STATUS_OK**: La operación fue exitosa.
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 
 ### 5.3 errorType
-Returns the type of error that occurred (if there was one, which is indicated in the finishStatus parameter with the value Error). The values ​​it can have are the following:
+ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
 
--   **NoError:** No error has occurred. The process can continue.
-
--   **UnknownError:** Unhandled error. Possibly caused by a bug in the
-    resource bundle.
-
--   **CameraPermissionDenied:** The exception that is thrown when the
-    sdk does not have permission to access the camera.
-
--   **SettingsPermissionDenied**: The exception that is thrown when the
-    component does not have permission to access system settings
-    (\*deprecated\*).
-
--   **HardwareError**: Exception that occurs when there is a hardware
-    problem with the device, usually caused by very few available
-    resources.
-
--   **ExtractionLicenceError**: Exception that occurs when there has
-    been a licencing problem on the server.
-
--   **UnexpectedCaptureError**: Exception that occurs during the capture
-    of frames by the camera.
-
--   **ControlNotInitialisedError**: The component configurator has not been
-    initialised.
-
--   **BadExtractorConfiguration**: Problem arose during component
-    configuration.
-
--   **CancelByUser**: The exception that is thrown when the user stops
-    the extraction manually.
-
--   **TimeOut**: Exception that is thrown when a maximum time elapses
-    without successfully completing the extraction.
-
--   **InitProccessError**: Exception that is thrown when the sdk cannot
-    process the captured images.
-
--   **NfcError:** The exception that is thrown when the sdk does not
-    have permission to access the nfc.
-
--   **NetworkConnection**: The exception that is thrown when there are
-    issues with the means the device uses to connect to the network.
-
--   **TokenError:** The exception that is thrown when an invalid token
-    is passed as a parameter.
-
--   **InitSessionError**: The exception that is thrown when session
-    cannot be initialised. The normal thing is that it happens because
-    the \`SdkCore\` was not called when calling any other component.
-
--   **ComponentControllerError**: The exception that is thrown when the
-    component cannot be instantiated.
+- **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
+- **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
+- **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
+- **SettingsPermissionDenied**: Excepción que se produce cuando el componente no tiene permiso de acceso a la configuración del sistema (*deprecated*).
+- **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
+- **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
+- **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
+- **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
+- **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
+- **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
+- **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
+- **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
+- **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
+- **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
+- **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.4 errorMessage: 
-Indicates an additional error message if necessary. It is an optional value.
+Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+### 5.5 nfcDocumentInformation
+### 5.6 nfcPersonalInformation
+### 5.7 nfcValidations
+### 5.8 facialImage
+### 5.9 fingerprintImage
+### 5.10 signatureImage
