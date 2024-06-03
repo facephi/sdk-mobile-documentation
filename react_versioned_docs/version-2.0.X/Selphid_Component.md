@@ -274,7 +274,7 @@ configure the **SelphID** component:
   scanMode?: string;
   specificData?: string;
   documentType?: string;
-  videoFilename?: stirng;
+  videoFilename?: string;
   locale?: string;
   documentModels?: string;
   generateRawImages?: boolean;

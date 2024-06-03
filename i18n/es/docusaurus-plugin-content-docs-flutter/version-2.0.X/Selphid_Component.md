@@ -222,7 +222,7 @@ Esta propiedad permite definir qué documentos se escanearán durante el proceso
 Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:
 
 ```
-specificData: “ES|\<ALL>”; // Spanish ISO code(ES)
+specificData: “ES|&lt;ALL>”; // Spanish ISO code(ES)
 ```
 
 
@@ -272,9 +272,8 @@ documentType: SelphIDDocumentType.DT_IDCARD;
 
 **type:** *double*
 
-Especifica la calidad de compresión del tokenFaceImage.3.9 enableImages (boolean)
+Especifica la calidad de compresión del tokenFaceImage.
 
-Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
 ```
 tokenFaceImage: 0.9;
 ```

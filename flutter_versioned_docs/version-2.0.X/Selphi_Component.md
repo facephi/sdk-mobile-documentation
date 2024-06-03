@@ -52,7 +52,7 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-- Make sure **react-native** is installed.
+- Make sure **Flutter** is installed.
 - Access **APPLICATION_PATH** at a terminal and run:
 
 ```
@@ -154,15 +154,14 @@ Because the Tracking component has geolocation options, it is necessary to add t
 ---
 
 ## 3. Component configuration
-The actual component contains a number of Typescript methods and interfaces contained within the  ***node_modules/@facephi/sdk-selphi-react-native/src/index.ts*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
+The actual component contains a number of Dart methods and interfaces contained within the  ***SelphiFaceConfiguration*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
 
-Below is the *SelphiConfiguration* class, which allows you to configure the Selphi component:
+Below is the *SelphiFaceConfiguration* class, which allows you to configure the Selphi component:
 
 ``` dart
 class SelphiFaceConfiguration {
-  bool mDebug;
+   bool mDebug;
   bool mFullscreen;
-  bool mCrop;
   double mCropPercent;
   bool mStabilizationMode;
   bool mTemplateRawOptimized;
@@ -177,12 +176,14 @@ class SelphiFaceConfiguration {
   bool? mShowDiagnostic;
   bool? mShowTutorial;
   bool mLogImages;
+  double mJPGQuality;
+  SelphiCompressFormat mCompressFormat;
 }
 ```
 
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's *node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx* file.
+All the configuration can be found in the component's *SelphiFaceConfiguration* class.
 </div>
 
 When making the call to the widget there is a series of parameters that must be included. They will be briefly discussed below.
@@ -232,7 +233,7 @@ debug: false
 
 ### 3.5. livenessMode
 
-**type:** *SdkLivenessMode*
+**type:** *SelphiFaceLivenessMode*
 
 Sets the liveness mode of the component. The possible values are:
 
@@ -338,7 +339,23 @@ Indicates whether or not to display the tutorial before the process. After the t
 showTutorial: true
 ```
 
-###  3.15 videoFilename
+
+
+###  3.15 compressFormat
+
+**type:** *boolean*
+
+Indicates the image format compression. The possible values are:
+
+- SelphiCompressFormat.T_PNG
+- SelphiCompressFormat.T_JPEG
+
+```
+compressFormat: SelphiCompressFormat.T_JPEG;
+```
+
+
+###  3.16 videoFilename
 
 **type:** *string*
 
@@ -359,7 +376,7 @@ videoFilename: “\<videofile-path\>“;
 ```
 
 
-###  3.16 translationsContent
+###  3.17 translationsContent
 
 **type:** *string*
 
@@ -380,7 +397,7 @@ translationsContent: “\<translation-content-string\>“;
 ```
 
 
-###  3.17 viewsContent
+###  3.18 viewsContent
 
 **type:** *string*
 
@@ -558,7 +575,7 @@ Returns a cropped image centered on the user's face. This image is obtained from
 Returns the captured QR code data.
 
 ### 5.8 bestImageTemplateRaw
-Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The widget will return the *bestImage* encrypted and in stringBase64 format.
+Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The widget will return the *bestImage* encrypted and in stringBase64 format. 
 
 ---
 
