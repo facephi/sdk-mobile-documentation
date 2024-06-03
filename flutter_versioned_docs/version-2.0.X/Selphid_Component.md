@@ -2,15 +2,7 @@
 
 ## 1. Introduction
 
-**Mobile SDK** is a set of libraries (**Components**) that offers a
-series of functionalities and services, allowing its integration into a
-Mobile application in a simple, totally scalable way. Depending on the
-use case that is required, the installation of certain components must
-be carried out. Its high level of modularity allows that, in the future,
-other new components can be added without affecting at all those already
-integrated into the project.
-
-The Component addressed in the current document is named ***SelphID
+The Component addressed in the current document is name ***SelphID
 Component***. This is responsible for capturing documents and the
 subsequent extraction and analysis of the data obtained from them. Its
 main functionalities are the following:
@@ -63,7 +55,7 @@ This section will explain step by step how to integrate the current component in
 <div class="warning">
 <span class="warning">:warning:</span>
 
-For this section, the following values ​​will be considered:
+For this section, the following values will be considered:
 
 - **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the Core plugin, which is required (example:/folder/sdk-core)
@@ -73,59 +65,28 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-- Make sure **react-native is** installed.
+- Make sure **Flutter** is installed.
 
 - Access **APPLICATION_PATH** at a terminal and run:
 
 ``` java
-yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-selphid-react-native
-yarn install
+dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
 ```
 
--   In addition, to install the plugin on iOS, the following must also
-    be executed:
+It is possible that you have to type the *credential token* after the previous command.
+
+
+-   Access to the \<APPLICATION_PATH\> and add int he ***pubspec.yaml*** file:
 
 ``` java
-cd ios
-pod install
+fphi_sdkmobile_selphid:
+  hosted:
+    name: sdkselphid
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.0.0
 ```
 
--   It is important to verify that the path to the plugin is correctly
-    defined in **package.json**:
-
-``` java
-"dependencies": {
-  "sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "sdk-selphid-react-native": <% PLUGIN_SELPHID_PATH %>
-}
-```
-
-After running the above steps, you can start the app with the
-sdk/component installed.
-
--   Finally, to launch the projects, the following commands must be
-    executed in two ways:
-
-***From Terminal***
-
-For Android:
-
-``` java
-npx react-native run-android 
-or
-npx react-native run-android --active-arch-only
-```
-
-For iOS:
-
-``` java
-npx react-native run-ios
-```
-
-***From different IDEs***
-
-Projects generated in the Android and iOS folders can be opened,
+After running the above steps, projects generated in the Android and iOS folders can be opened,
 compiled, and debugged using *Android Studio* and *XCode* respectively.
 
 ### 2.2 Plugin installation: iOS
@@ -225,8 +186,6 @@ buildscript {
 }
 ```
 
- 
-
 #### 2.3.2 Permissions for geolocation
 
 Because the **Tracking** component has geolocation options, it is
@@ -245,8 +204,8 @@ the following permissions:
 
 ## 3. Component configuration
 
-The current component contains a number of Typescript methods and
-interfaces contained within the ***node_modules/@facephi/sdk-selphid-react-native/src/index.tsx*** file. ** In this file
+The current component contains a number of *Dart* methods and
+interfaces contained within the ***fphi_sdkmobile_selphid/fphi_sdkmobile_selphid_configuration.dart*** file. ** In this file
 you can find the necessary API for the communication between the
 application and the native functionality of the component. It is then
 explained what each one of those listed is for and the other properties
@@ -256,35 +215,28 @@ The following is the *SelphIDConfiguration* class, which allows you to
 configure the **SelphID** component:
 
 ``` java
- export interface SelphidConfiguration {
-  debug?: boolean;
-  fullScreen?: boolean;
-  frontalCameraPreferred?: boolean;
-  tokenImageQuality?: number;
-  widgetTimeout?: number;
-  showResultAfterCapture?: boolean;
-  showTutorial?: boolean;
-  tutorialOnly?: boolean;
-  scanMode?: string;
-  specificData?: string;
-  documentType?: string;
-  videoFilename?: string;
-  fullscreen?: boolean;
-  locale?: string;
-  documentModels?: string;
-  enableWidgetEventListener?: boolean;
-  generateRawImages?: boolean;
-  translationsContent?: string;
-  viewsContent?: string;
-  cameraId?: number;
-  params?: any;
-  resourcesPath?: string;
-  tokenPrevCaptureData?: string;
-  wizardMode?: boolean;
-  documentSide?: string;
-  showDiagnostic?: boolean;
-  compressFormat?: SdkCompressFormat,
-  imageQuality?: number,
+ class SelphIDConfiguration
+{
+  bool mWizardMode;
+  bool mDebug;
+  bool mShowResultAfterCapture;
+  bool mShowTutorial;
+  bool mTutorialOnly;
+  SelphIDScanMode mScanMode;
+  SelphIDDocumentSide mDocumentSide;
+  String mSpecificData;
+  bool mFullscreen;
+  double mTokenImageQuality;
+  String mLocale;
+  SelphIDDocumentType mDocumentType;
+  SelphIDTimeout mTimeout;
+  bool mGenerateRawImages;
+  SelphIDCompressFormat mCompressFormat;
+  double mJPGQuality;
+  String mTranslationsContent;
+  String mViewsContent;
+  String mDocumentModels;
+  bool? mShowDiagnostic;
 }
 ```
 
@@ -293,7 +245,7 @@ object will be commented on:
 
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's ***src/index.tsx*** file.
+All the configuration can be found in the component's ***fphi_sdkmobile_selphid/fphi_sdkmobile_selphid_configuration.dart*** file.
 </div>
 
 When making the call to the widget there is a series of parameters that
@@ -303,7 +255,7 @@ must be included. They will be briefly discussed below.
 
 **type:** *string*
 
-Sets the name of the resource file that the widget will use for its
+Sets the name of the resource file that the component will use for its
 graphical configuration. This file is customisable and is located in the
 plugin in the ***src/main/assets*** folder for ***Android*** and in the
 ***ios/Frameworks*** and Resources folder for ***iOS***. Its installation is
@@ -329,7 +281,7 @@ document is not correct.
 
 **type:** *WidgetScanMode*
 
-This enumeration is defined in the ***SdkSelphidEnum.tsx*** class.
+This enumeration is defined in the ***fphi_sdkmobile_selphid_scan_mode.dart*** class.
 Indicates the OCR scanning mode of the documents. Depending on the
 choice, several types of documents or one in particular will be scanned
 and searched. This mode can be of three types:
@@ -349,7 +301,7 @@ and searched. This mode can be of three types:
 -   ***SelphIDScanMode.Specific***: Search for a specific document. These
     conditions are indicated in the "specificData" property shown below.
 
-> ***scanMode***: SdkSelphidEnums.SdkScanMode.Search;
+> ***scanMode***: SelphIDScanMode.CAP_MODE_SEARCH;
 
 ### 3.4 SpecificData
 
@@ -363,23 +315,36 @@ An example of a configuration that allows all documents of Spanish
 nationality to be scanned would be the following:
 
 > **scanMode**: WidgetScanMode.Search;  
-> **specificData**: “ES\|\<ALL\>”; // Spanish ISO code(ES)
+> **specificData**: “ES|&lt;ALL>”; // Spanish ISO code(ES)
 
-### 3.5 FullScreen
+
+### 3.5 documentSide
+
+**type:** *SelphIDDocumentSide*
+
+The permitted values are as follows:
+
+- **SelphIDDocumentSide.FRONT**: The widget is configured to capture the front side of the document.
+
+- **SelphIDDocumentSide.BACK**: The widget is configured to capture the back side of the document.
+
+> **documentSide**: SelphIDDocumentSide.FRONT;  
+
+### 3.6 FullScreen
 
 **type:** *boolean*
 
-Determines whether you wish the widget to start in full screen mode,
+Determines whether you wish the component to start in full screen mode,
 hiding the status bar.
 
-    **fullscreen**: true;
+> **fullscreen**: true;
 
-### 3.6 Locale
+### 3.7 Locale
 
 **type:** *string*
 
-It is a string that allows the localisation and language of the widget
-to be changed. Examples of values ​​that they may have are the following:
+It is a string that allows the localisation and language of the component
+to be changed. Examples of values that they may have are the following:
 
 -   “es” for Spanish.
 
@@ -393,17 +358,16 @@ strings-fr.xml).
 
 In the resource zip, which is located inside the strings folder, you can
 add the strings-xx.xml files corresponding to each location that needs
-to be incorporated into the widget.
+to be incorporated into the component.
 
 > **locale**: "es";
 
-### 3.7 DocumentType
+### 3.8 DocumentType
 
 **type:** *string*
 
-This enumeration is defined in the *SdkSelphidEnums.tsx* class.
-Specified in the ***WidgetDocumentType** class:
-
+This enumeration is defined in the *fphi_sdkmobile_selphid_document_type.dart* class.
+Specified in the ***SelphIDDocumentType** class:
 -   **IDCard**: Establishes that identity documents or cards will be
     captured.
 
@@ -422,9 +386,9 @@ Specified in the ***WidgetDocumentType** class:
 -   **Custom:** Includes documents that are not in any of the above
     categories.
 
->     **documentType**: SdkSelphidEnums.SdkDocumentType.IDCard;
+> **documentType**: SelphIDDocumentType.DT_IDCARD;;
 
-### 3.8 TokenImageQuality
+### 3.9 TokenImageQuality
 
 **type:** *double*
 
@@ -434,13 +398,13 @@ Indicates whether the sdk returns to the application the images used
 during extraction or not. It should be noted that returning images can
 result in a significant increase in device resource usage:
 
->       **tokenFaceImage**: 0.9;
+> **tokenFaceImage**: 0.9;
 
-### 3.9 generateRawImages
+### 3.10 generateRawImages
 
 **type:** *boolean*
 
-This property configures the widget to return the full image from the
+This property configures the component to return the full image from the
 camera that was used to capture the document:
 
 -   rawFrontDocument: Front image of the raw document.
@@ -450,10 +414,10 @@ camera that was used to capture the document:
 -   tokenRawBackDocument: Tokenisation of the rear image of the raw
     document.
 
-> generateRawImages: true;**
+> generateRawImages: true
 
 
-###  3.10 widgetTimeout
+###  3.11 timeout
 
 **type:** *number*
 
@@ -466,18 +430,76 @@ of the document. It has 3 possible values:
 
 -   WidgetTimeout.Long: 25 segundos
 
-###  3.11 tutorialOnly
+> timeout: SelphIDTimeout.T_SHORT;
+
+###  3.12 tutorialOnly
 
 **type:** *boolean*
 
-Establishes whether you wish to launch the widget in Tutorial mode. This
-allows you to show the previous widget tutorial, but WITHOUT performing
+Establishes whether you wish to launch the component in Tutorial mode. This
+allows you to show the previous component tutorial, but WITHOUT performing
 the post capture process. Useful if you wish to show the tutorial in
 isolation.
 
->     **tutorialOnly**: true;
+> **tutorialOnly**: true;
 
-###  3.12 videoFilename
+
+###  3.13 debug
+
+**type:** *boolean*
+
+Sets the debugging mode of the component.
+
+> debug: false
+
+###  3.14 showTutorial
+
+**type:** *boolean*
+
+Indicates whether or not to display the tutorial before the process. After the tutorial finishes, the component process will continue as usual.
+
+> showTutorial: true
+
+###  3.15 wizardMode
+
+**type:** *boolean*
+
+Indicates whether the component is configured to capture both parts (front and back) of the document one after the other. In this mode, the component would only be launched once, and when it finishes capturing the front, it would continue with the back.
+
+> wizardMode: true
+
+
+### 3.16. showDiagnostic
+
+**type:** *boolean*
+
+Shows a pop-up with the component diagnostic if the process fails.
+
+> showDiagnostic: true
+
+
+###  3.17 compressFormat
+
+**type:** *SdkCompressFormat*
+
+Indicates the format compression of the image. The possible values are:
+
+- PNG
+- JPG
+
+> **compressFormat**: "JPG“;
+
+
+###  3.18 imageQuality
+
+**type:** *number*
+
+If the ***compressFormat*** property is configured as **JPG**, it is possible to set the image's *quality compression*. However, this parameter will be ignored if the ***compressFormat*** is **PNG**.
+
+> **imageQuality**: 95
+
+
+###  3.19 documentModels
 
 **type:** *string*
 
@@ -486,40 +508,17 @@ isolation.
 This is an **advanced property**, and in most use cases you don't need
 to modify it. Incorrect use may cause component malfunction.
 </div>
-This is an **advanced property**, and in most cases you don't need to
-modify it. Incorrect use may cause component malfunction.
-
-Sets the absolute path of the file name in which a video of the capture
-process will be recorded. The application is responsible for requesting
-the necessary permissions to the phone in case that route requires
-additional permissions. The component, by default, will not perform any
-write processing unless a file path is specified using this method.
-
->     **videoFilename**: “\<videofile-path\>“;
-
-###  3.13 documentModels
-
-**type:** *string*
-
-<div class="warning">
-<span class="warning">:warning:</span>
-This is an **advanced property**, and in most use cases you don't need
-to modify it. Incorrect use may cause component malfunction.
-</div>
-
-This is an **advanced property**, and in most use cases you don't need
-to modify it. Incorrect use may cause component malfunction.
 
 This property allows, through a string in xml format, to configure the
-modelling of the documents that the widget will try to capture. The
+modelling of the documents that the component will try to capture. The
 definition of this modelling can be found, by default, in .xml models
 within the resources .zip. With this property an application is allowed
 to update and replace, in execution, the models of the current documents
 of the component.
 
->     **documentModels**: “\<document-models-content-string\>“;
+> **documentModels**: “\<document-models-content-string\>“;
 
-###  3.14 translationsContent
+###  3.20 translationsContent
 
 **type:** *string*
 
@@ -529,18 +528,15 @@ This is an **advanced property**, and in most use cases you don't need
 to modify it. Incorrect use may cause component malfunction.
 </div>
 
-This is an **advanced property**, and in most use cases you don't need
-to modify it. Incorrect use may cause component malfunction.
-
 This property allows, through a string in xml format, to configure the
-current location of the widget. The definition of this model can be
+current location of the component. The definition of this model can be
 found, by default, in an internal translations folder within the
 resources .zip. This property allows an application to update and
 replace the current location of the component at run time.
 
->     **translationsContent**: “\<translation-content-string\>“;
+> **translationsContent**: “\<translation-content-string\>“;
 
-###  3.15 viewsContent
+###  3.21 viewsContent
 
 **type:** *string*
 
@@ -557,7 +553,7 @@ found, by default, in a file called **widget.xml** inside the resources
 .zip. This property allows an application to update and override the
 layout of the component's internal screens whilst running.
 
->     **viewsContent**: “\<views-content-string\>“;
+> **viewsContent**: “\<views-content-string\>“;
 
 ---
 
@@ -580,57 +576,37 @@ Once the component has been configured, to launch it, the following code
 must be executed:
 
 ``` java
-const getSelphidConfiguration = () => {
-    let config: SelphidConfiguration = {
-      debug: false,
-      showResultAfterCapture: true,
-      showTutorial: false,
-      scanMode: SdkSelphidEnums.SdkScanMode.Search,
-      specificData: 'AR|<ALL>',
-      documentType: SdkSelphidEnums.SdkDocumentType.IdCard,
-      fullscreen: true,
-      locale: '',
-      resourcesPath: "fphi-selphid-widget-resources-sdk.zip",
-    };
-    return config;
-};
+Future<Either<Exception, SelphIDResult>> launchSelphIDCaptureWithConfiguration(String resourcesPath, SelphIDConfiguration configuration) async
+{
+  try
+  {
+    FphiSdkmobileSelphid selphid = FphiSdkmobileSelphid();
+    final Map resultJson = await selphid.startSelphIDWidget(
+        resourcesPath: resourcesPath,
+        widgetConfigurationJSON: configuration
+    );
 
-const startSelphid = async () => 
-{ 
-    try 
-    {
-      console.log("Starting startSelphid...");
-      clearAll();
- 
-      return await SdkMobileSelphid.selphid(getSelphidConfiguration())
-      .then((result: any) => 
-      {
-        let r: SelphidResult = result;
-        console.log("result parsed", r);
+    return Right(SelphIDResult.fromMap(resultJson));
+  }
+  on Exception catch (e) {
+    return (Left(e));
+  }
+}
 
-        console.log("result", result);
-        processSelphidResult(result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-        setMessage(JSON.stringify(error));
-        setFrontDocumentImage(null);
-        setBackDocumentImage(null);
-        setFaceImage(null);
-        setTokenFaceImage(null);
-        setOcrContent(null);
-        setShowError(true);
-        setTextColorMessage('#DE2222');
-      })
-      .finally(()=> {
-        console.log("End startSelphid...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-};
+/// Sample of standard plugin configuration 
+SelphIDConfiguration createStandardConfiguration() {
+  SelphIDConfiguration configurationWidget;
+  configurationWidget = SelphIDConfiguration();
+  configurationWidget.documentType            = SelphIDDocumentType.DT_IDCARD; // IDCard, Passport, DriverLic or ForeignCard
+  configurationWidget.fullscreen              = true;
+  configurationWidget.scanMode                = SelphIDScanMode.CAP_MODE_SEARCH;
+  configurationWidget.specificData            = 'AR|<ALL>';
+  configurationWidget.showResultAfterCapture  = true;
+  configurationWidget.timeout                 = SelphIDTimeout.T_SHORT;
+  configurationWidget.showDiagnostic          = true;
+  configurationWidget.wizardMode              = true;
+  return configurationWidget;
+}
 
 ```
 
@@ -643,44 +619,39 @@ As shown in the example above, the result is returned in the form of a
 or an error:
 
 ``` java
-.then((result: SelphidResult) => 
-{
-  console.log("result", result);
-})
-.catch((error: any) => 
-{
-  console.log(error);
-})
+final Map resultJson = await selphid.startSelphIDWidget(
+    resourcesPath: resourcesPath,
+    widgetConfigurationJSON: configuration
+);
+return Right(SelphIDResult.fromMap(resultJson));
 ```
 
 Regardless of whether the result is correct/erroneous, the result will
 have the following format:
 
 ``` java
-export interface SelphidResult {
-  finishStatus: number;
-  finishStatusDescription?: string;
-  errorType: number;
-  errorMessage?: string;
-  frontDocumentImage?: string;
-  backDocumentImage?: string;
-  faceImage?: string;
-  signatureImage?: string;
-  fingerprintImage?: string;
-  documentData?: string;
-  tokenFrontDocumentImage?: string;
-  tokenBackDocumentImage?: string;
-  tokenFaceImage?: string;
-  tokenOCR?: string;
-  documentCaptured?: string;
-  captureProgress: number;
-  matchingSidesScore: number;
-  rawFrontDocument?: string;
-  rawBackDocument?: string;
-  tokenRawFrontDocument?: string;
-  tokenRawBackDocument?: string;
-  lastActionBeforeCapture?: string;
+class SelphIDResult
+{
+  final SdkFinishStatus finishStatus;
+  final String finishStatusDescription;
+  final String errorDiagnostic;
+  final String? errorMessage;
+  final String frontDocumentImage;
+  final String backDocumentImage;
+  final String rawBackDocument;
+  final String rawFrontDocument;
+  final String fingerprintImage;
+  final String faceImage;
+  final String signatureImage;
+  final String tokenFrontDocument;
+  final String tokenBackDocument;
+  final String tokenFaceImage;
+  final String documentData;
+  final String tokenOCR;
+  final String documentCaptured;
+  final double matchingSidesScore;
 }
+
 ```
 
 The result will be returned via a Promise containing an object of class
@@ -695,7 +666,7 @@ The result will be returned via a Promise containing an object of class
     extra information message will be displayed in the \`errorMessage\`
     property.
 
-### 5.2 errorType
+### 5.2 errorDiagnostic
 
 Returns the type of error that occurred (if there was one, which is
 indicated in the *finishStatus* parameter with the value *Error*). They
@@ -833,21 +804,21 @@ This property returns the status the search process was in when the
 widget terminated. These are the possible values:
 
 ``` java
-        Front_Detection_None = 0
+ Front_Detection_None = 0
 
-        Front_Detection_Uncertain = 1
+ Front_Detection_Uncertain = 1
 
-        Front_Detection_Completed = 2
+ Front_Detection_Completed = 2
 
-        Front_Document_Analyzed = 3
+ Front_Document_Analyzed = 3
 
-        Back_Detection_None = 4
+ Back_Detection_None = 4
 
-        Back_Detection_Uncertain = 5
+ Back_Detection_Uncertain = 5
 
-        Back_Detection_Completed = 6
+ Back_Detection_Completed = 6
 
-        Back_Document_Analyzed = 7
+ Back_Document_Analyzed = 7
 ```
 
 This property returns the status the search process was in when the
@@ -946,7 +917,7 @@ properties that can be modified.
 This folder contains a *strings.xml* file for each translation you want
 to support. The name must be formed as follows:
 
->     strings.(language).xml
+> strings.(language).xml
 
 Where (language) is the language code. For example, \`strings.es.xml\`
 would be the Spanish translation, *strings.en.xml* the English

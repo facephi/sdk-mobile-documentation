@@ -151,9 +151,9 @@ Debido a que el componente de Tracking tiene opciones de geolocalización, es ne
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***SelphiFaceConfiguration***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Dart incluidos dentro del archivo ***SelphiFaceConfiguration***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase **SelphiConfiguration**, que permite configurar el componente de Selphi:
+A continuación se muestra la clase **SelphiFaceConfiguration**, que permite configurar el componente de Selphi:
 
 ```dart
 class SelphiFaceConfiguration {
@@ -179,7 +179,7 @@ class SelphiFaceConfiguration {
 
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphiConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphiFaceConfiguration**:
 <div class="note">
 <span class="note">:information_source:</span>
 Toda la configuración se podrá encontrar en el archivo node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx del componente.
@@ -220,7 +220,7 @@ debug: false
 
 ### 3.4. livenessMode
 
-**type:** *SelphiLivenessMode*
+**type:** *SelphiFaceLivenessMode*
 
  Establece el modo liveness del componente. Los valores posibles son:
 
@@ -334,7 +334,7 @@ showTutorial: true
 
 Indica el formato de compresión de la imagen. Los valores posibles son:
 
-- SelphiCompressFormat.T_JPNG
+- SelphiCompressFormat.T_PNG
 - SelphiCompressFormat.T_JPEG
 
 ```

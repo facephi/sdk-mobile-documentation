@@ -1,7 +1,7 @@
-# Example Application
+# Aplicaciones de ejemplo
 
 ## Introducción
 
-Flutter sample application can be found in the following GitHub repository:
+Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub:
 
-[![Flutter Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-flutter-samples/tree/master/2.0.0)<a href="https://github.com/facephi/sdk-mobile-flutter-samples/tree/master/2.0.0" rel="nofollow">Flutter Repository</a>
+[![Repositorio de Flutter](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-flutter-samples/tree/master/2.0.0)<a href="https://github.com/facephi/sdk-mobile-flutter-samples/tree/master/2.0.0" rel="nofollow">Repositorio de Flutter</a>
