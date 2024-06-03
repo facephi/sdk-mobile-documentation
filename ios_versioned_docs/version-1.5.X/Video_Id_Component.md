@@ -22,13 +22,14 @@ The _Component_ discussed in the current document is called
 **_VideoID Component_**. This is responsible for recording a
 user identifying themselves, showing their face and their identity document.
 
-##1.1 Minimum requirements
+## 1.1 Minimum requirements
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
+
 ---
 
-## 2. Integration of the component
+## 2. Component integration
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
