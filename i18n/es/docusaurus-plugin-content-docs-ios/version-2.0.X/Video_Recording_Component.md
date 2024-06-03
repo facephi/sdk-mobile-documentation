@@ -176,8 +176,8 @@ Debemos luego añadirlo también al target de la app en General → Framework, L
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
-<div class="warning">
-<span class="warning">:warning:</span>
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe ejecutarse siempre. Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de Core Component, en el que se detalla y explica en qué consiste este proceso.
 </div>
 
