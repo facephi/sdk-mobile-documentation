@@ -34,7 +34,7 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videoid)
+- **\<%PLUGIN_NFC_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-nfc)
 </div>
 
 ### 2.1. Instalación del plugin: Common
@@ -45,7 +45,7 @@ El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección
 
 ```
 yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-videoid-react-native
+yarn add @facephi/sdk-nfc-react-native
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
@@ -53,7 +53,7 @@ Es importante verificar que la ruta al complemento esté correctamente definida 
 ```
 "dependencies": {
   "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-videoid-react-native": <% PLUGIN_VIDEOID_PATH %>
+  "@facephi/sdk-nfc-react-native": <% PLUGIN_NFC_PATH %>
 }
 ```
 
@@ -191,7 +191,7 @@ export interface NfcConfiguration {
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VideoIdConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **NfcConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>

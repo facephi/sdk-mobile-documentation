@@ -33,7 +33,7 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videoid)
+- **\<%PLUGIN_NFC_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-nfc)
 </div>
 
 ### 2.1. Instalación del plugin: Common
@@ -47,9 +47,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 - Acceda al **\<%APPLICATION_PATH%\>**, y en el fichero pubspec.yaml y añadir:
 
 ```
-fphi_sdkmobile_videoid:
+fphi_sdkmobile_nfc:
   hosted:
-    name: sdkvideoid
+    name: sdknfc
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
   version: ^2.0.0
 ```
@@ -181,7 +181,7 @@ A continuación, se comentarán todas las propiedades que se pueden definir en e
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_videoid/fphi_sdkmobile_nfc_configuration.dart.*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_nfc/fphi_sdkmobile_nfc_configuration.dart.*** del componente.
 </div>
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
@@ -374,7 +374,7 @@ class NfcResult
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VideoIdResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***NfcdResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.0 finishStatus
