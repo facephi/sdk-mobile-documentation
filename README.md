@@ -1,5 +1,11 @@
 # Facephi
 
+Para ejecutar el proyecto lo primero es instalar los paquetes.
+
+```
+npm install
+```
+
 Iniciar localmente el servicio (http://localhost:3000)
 
 ```

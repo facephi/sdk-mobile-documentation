@@ -66,21 +66,45 @@ Esto genera la siguiente estructura:
 
 ![Image](/iOS/videoRecording-004.png)
 
-Donde SampleHandler es la clase principal de la extensión.
+Por defecto, un archivo llamado `SampleHandler` es creado. Este archivo contiene la clase principal de la extensión.
+
+Para hacer uso de la funcionalidad de Facephi para compartir pantalla debemos modificar la clave `NSExtensionPrincipalClass` del Info.plist y asignar en su lugar:
+
+```
+videoRecordingComponent.VideoRecordingHandler
+```
+
+![Image](/iOS/videoRecording-2.1.InfoPList.png)
 
 **NOTA: Es importante tener en cuenta que el número de la version (MARKETING_VERSION) y el número de versión del proyecto debe ser siempre el mismo en ambos targets:**
 
 ![Image](/iOS/videoRecording-005.png)
 
-### 2.2 Creando el App Group compartido
+### 2.2 Asignando el NSMicrophoneUsageDescription
 
-Si no lo tenemos ya en nuestra app, podemos crear una nueva Capability de tipo App Group.
+La funcionalidad de Video Recording también puede compartir los datos recogidos por el micrófono del dispositivo. Por esa razón, es necesario añadir:
+
+```
+NSMicrophoneUsageDescription
+```
+
+Al Info.plist de nuestra app, detallando por qué es necesario que el usuario permita el acceso al micrófono.
+
+### 2.3 Crando el App Group compartido
+
+Ahora necesitamos crear una nueva capability de tipo `App Group`.
 
 Esto servirá para crear el contenedor compartido entre nuestra extensión y el target de la aplicación.
 
 ![Image](/iOS/videoRecording-006.png)
 
-Asignamos un nombre al nuevo App Group después de hacer click sobre el icono +:
+Tras hacer click en el icono `+` para añadir.
+
+**Es importante que el valor asignado al App Group sea siempre:**
+
+```
+group.com.facephi.videoRecording
+```
 
 ![Image](/iOS/videoRecording-007.png)
 
@@ -92,7 +116,7 @@ XCode generará o actualizará automáticamente los archivos de tipo entitlement
 
 ![Image](/iOS/videoRecording-009.png)
 
-### 2.3 Dependencias requeridas para la integración
+### 2.4 Dependencias requeridas para la integración
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -101,7 +125,7 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias.
 
-### 2.3.1 Cocoapods
+### 2.4.1 Cocoapods
 
 Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
@@ -136,7 +160,7 @@ end
 
 NOTA: Hay que tener cuidado de poner el target de la extensión fuera del target de la aplicación. De no hacerlo así, los pods de la aplicación se compilarían también en la extensión, dando como resultado problemas colaterales.
 
-#### 2.3.2 SPM
+#### 2.4.2 SPM
 
 Añadimos nuestra dependencia al proyecto y la asignamos al target de VideoRecording:
 
@@ -146,131 +170,14 @@ Debemos luego añadirlo también al target de la app en General → Framework, L
 
 ![Image](/iOS/videoRecording-011.png)
 
-### 2.4 Implementar la extensión
-
-En este punto se debe desarrollar la funcionalidad en nuestro recién creado SampleHandler.swift. Para ello, copiamos/sustituimos el siguiente código:
-
-```java
-class SampleHandler: RPBroadcastSampleHandler {
-    var bufferCopy: CMSampleBuffer?
-    var lastSendTs = Int64(Date().timeIntervalSince1970 * 1000)
-    var timer: Timer?
-    // Shared info between app and extension
-    private let kAppGroupName = "group.com.facephi.sdk.demo" // SET YOUR APP_GROUP_NAME, you can get it from your entitlements' file
-    override func broadcastStarted(withSetupInfo setupInfo: [String: NSObject]?) {
-        // Load shared info from app
-        let sharedContainer = UserDefaults(suiteName: kAppGroupName)!
-        let uid = sharedContainer.string(forKey: "UID")!
-        let token = sharedContainer.string(forKey: "TOKEN")!
-        let channel = sharedContainer.string(forKey: "CHANNEL")!
-        // Passing data to app
-        sharedContainer.setValue(true, forKey: "BROADCASTSTARTED")
-        sharedContainer.synchronize()
-        print("uid: \(uid)")
-        print("token: \(token)")
-        print("channelName: \(channel)")
-        // In-App Screen Capture
-        AgoraUploader.startBroadcast(uid: uid, token: token, channel: channel)
-        AgoraUploader.sharedAgoraEngine.delegate = self
-        DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] (_: Timer) in
-                guard let weakSelf = self else { return }
-                let elapse = Int64(Date().timeIntervalSince1970 * 1000) - weakSelf.lastSendTs
-                print("elapse: \(elapse)")
-                // if frame stopped sending for too long time, resend the last frame
-                // to avoid stream being frozen when viewed from remote
-                if elapse > 300 {
-                    if let buffer = weakSelf.bufferCopy {
-                        weakSelf.processSampleBuffer(buffer, with: .video)
-                    }
-                }
-            }
-        }
-    }
-    override func broadcastPaused() {
-        // User has requested to pause the broadcast. Samples will stop being delivered.
-    }
-    override func broadcastResumed() {
-        // User has requested to resume the broadcast. Samples delivery will resume.
-    }
-    override func broadcastFinished() {
-        timer?.invalidate()
-        timer = nil
-        AgoraUploader.stopBroadcast()
-    }
-    override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
-        DispatchQueue.main.async { [weak self] in
-            switch sampleBufferType {
-            case .video:
-                if let weakSelf = self {
-                    weakSelf.bufferCopy = sampleBuffer
-                    weakSelf.lastSendTs = Int64(Date().timeIntervalSince1970 * 1000)
-                }
-                AgoraUploader.sendVideoBuffer(sampleBuffer)
-            @unknown default:
-                break
-            }
-        }
-    }
-}
-```
-
-**NOTA: Hay que asegurarse de introducir el App Group Name correcto en la linea 6. En nuestro ejemplo era group.com.facephi.demosdk-videoRecording.**
-
-Opcionalmente puedes escuchar los distintos eventos que ocurren cuando el usuario interacciona con la funcionalidad de grabación si haces que la clase SampleHandler extienda `AgoraRtcEngineDelegate`:
-
-```java
-import AgoraRtcKit
-
-extension SampleHandler: AgoraRtcEngineDelegate {
-    /// callback when warning occured for agora sdk, warning can usually be ignored, still it's nice to check out
-    /// what is happening
-    /// Warning code description can be found at:
-    /// en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraWarningCode.html
-    /// cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraWarningCode.html
-    /// @param warningCode warning code of the problem
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {}
-    
-    /// callback when error occured for agora sdk, you are recommended to display the error descriptions on demand
-    /// to let user know something wrong is happening
-    /// Error code description can be found at:
-    /// en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-    /// cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-    /// @param errorCode error code of the problem
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {}
-    
-    /// callback when the local user joins a specified channel.
-    /// @param channel
-    /// @param uid uid of local user
-    /// @param elapsed time elapse since current sdk instance join the channel in ms
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {}
-    
-    /// callback when a remote user is joinning the channel, note audience in live broadcast mode will NOT trigger this event
-    /// @param uid uid of remote joined user
-    /// @param elapsed time elapse since current sdk instance join the channel in ms
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {}
-    
-    /// callback when a remote user is leaving the channel, note audience in live broadcast mode will NOT trigger this event
-    /// @param uid uid of remote joined user
-    /// @param reason reason why this user left, note this event may be triggered when the remote user
-    /// become an audience in live broadcasting profile
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
-        // Replace domain's value with your Bundle Identifier
-        let error = NSError(domain: "com.facephi.demosdk-videoRecording", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Call ended", comment: "")])
-        
-        finishBroadcastWithError(error)
-    }
-}
-```
-
 ---
 
 ## 3. Iniciar nueva operación
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
-<div class="warning">
-<span class="warning">:warning:</span>
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe ejecutarse siempre. Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de Core Component, en el que se detalla y explica en qué consiste este proceso.
 </div>
 
@@ -278,13 +185,41 @@ Este comando debe ejecutarse siempre. Para saber más acerca de cómo iniciar un
 
 ## 4. Uso de componente
 
-Una vez iniciado el componente y creada una nueva operación (apartado 3) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar el componente:
+### 4.1 Creando la instancia
 
+Esta funcionalidad es configurada y lanzada gracias a la clase `VideoRecordingController`.
+
+Para crear una instancia utilizamos su método `init()`:
+
+```swift
+init(data: VideoRecordingConfigurationData?, extensionName: String?, output: @escaping (SdkResult<String>) -> Void)
+```
+
+- `data`: El objeto de configuración
+- `extensionName`: El nombre que le pusimos a la `Broadcast Upload Extension` que creamos anteriormente.
+- `output`: El *callback* al que se llama cuando el inicio de la instancia se resuelve (ya sea con un éxito o un fracaso). En el caso de este componente, el éxito es reportado cuando se consigue establecer una conexión con el backend y se está compartiendo la pantalla.
+
+### 4.2 Configurando la instancia
+
+Se puede modificar el comportamiento de la instancia a través de la clase (*VideoRecordingConfigurationData*):
+
+- **Parámetros opcionales que normalmente se incluyen dentro de la licencia**
+     - **url**: dirección del socket de video.
+     - **apiKey**: clave requerida para la conexión con socket de video.
+     - **tenantId**: identificador que referencia al cliente que está lanzando la funcionalidad.
+     - **extractionTimeout**: Tiempo en milisegundos que tarda el componente en devolver un error de tipo `TIMEOUT`si no se establece conexión con el socket.
+     - **showDiagnostic**: Booleano que indica si se desea que el usuario vea una pantalla de diagnóstico cuando ocurre un error antes de llamar al `output`.
+
+### 4.3 Lanzando el componente
+
+Una vez hemos tenemos una operación válida ([Sección 3](#3-start-new-operation)) y hemos generado una instancia de nuestro controlador, podemos lanzarlo.
+
+Hay dos formas de hacerlo:
 - **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero **no se trackeará** ningún evento al servidor de tracking:
 
 
-```java
-let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), appGroupName: "group.com.facephi.demosdk-videoRecording", extensionName: "VideoRecording", output: { _ in })
+```swift
+let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), extensionName: "VideoRecording", output: { _ in })
 SDKController.shared.launchMethod(controller: controller)
 ```
  
@@ -292,10 +227,12 @@ SDKController.shared.launchMethod(controller: controller)
 - **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de tracking:
 
 
-```java
-let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), appGroupName: "group.com.facephi.demosdk-videoRecording", extensionName: "VideoRecording", output: { _ in })
+```swift
+let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), extensionName: "VideoRecording", output: { _ in })
 SDKController.shared.launch(controller: controller)
 ```
+
+**Nota:**
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -305,14 +242,6 @@ Por el contrario, el método **launchMethod** cubre un caso especial, en el cual
 </div>
 
 En los datos de configuración (*VideoRecordingConfigurationData*) también se podrán modificar:
-
-- **Datos opcionales que normalmente se incluyen dentro de la licencia**
-
-    -   **url**: Ruta al socket de video.
-    -   **apiKey**: ApiKey necesaria para la conexión con el socket de video.
-    -   **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
-    -   **extractionTimeout**: Cuanto tiempo (milisegundos) se quedará el componente esperando al socket antes de generar un error de timeout.
-    -   **showDiagnostic**: En caso de que ocurra algún error el error se mostrará por pantalla además de enviarlo con el output.
 
 ## 5. Personalización del componente
 

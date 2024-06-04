@@ -1,6 +1,6 @@
-# Video recording component
+# Video Recording Component
 
-## 0. Mobile SDK base requirements
+## 0. SDK Mobile baseline requirements
 
 **SDK Mobile** is a set of libraries (**Components**) that offers
 a series of functionalities and services, allowing in turn its
@@ -12,7 +12,7 @@ new components without affecting in any way those already integrated into the
 project.
 
 For more information on the base configuration, go to the section
-<a href='ES_Mobile_SDK'
+<a href='Mobile_SDK'
 linked-data-resource-id='2605285492' linked-data-resource-version='11'
 data-linked-resource-type='page'>Mobile SDK</a>.
 
@@ -34,16 +34,18 @@ Minimum iOS version: **13**
 
 ## 2. Component integration
 
-Before integrating this component, it is recommended to read the documentation
-Relative to:
+<div class="warning">
+<span class="warning">:warning:</span>
+Before integrating this component, it is recommended to read the
+documentation related to:
 
 <a href="Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Mobile SDK</u></strong></a>
-and follow the instructions indicated in said document.
-
-This section will explain step by step how to integrate the component
-current in an existing project.
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+and follow the instructions in that document.
+</div>
+This section will explain step by step how to integrate the current
+component into an existing project.
 
 ### 2.1 Creating the extension
 
@@ -95,7 +97,7 @@ XCode will automatically generate or update the entitlement files involved to ad
 
 <div class="warning">
 <span class="warning">:warning:</span>
-To avoid conflicts and compatibility problems, if you want to install the component in a project that contains an old version of the Facephi libraries (Widgets), these must be completely removed before installing the SDKMobile components.
+To avoid conflicts and compatibility problems, if you want to install the component in a project that contains an old version of the Facephi libraries (Widgets), these must be completely removed before installing the **_SDKMobile_** components.
 </div>
 
 Currently FacePhi libraries are distributed remotely through different dependency managers.
@@ -266,11 +268,18 @@ extension SampleHandler: AgoraRtcEngineDelegate {
 
 ## 3. Start new operation
 
-When you want to perform a certain operation, to generate the associated information correctly on the platform, the **newOperation** command must be previously executed.
+When you want to perform a specific operation, in order to generate the
+associated information correctly in the platform, the **newOperation**
+command must first be executed.
+<div class="note">
+<span class="note">:information_source:</span>
+This command must have been executed **prior to launch**.
 
-<div class="warning">
-<span class="warning">:warning:</span>
-This command must always be executed. To learn more about how to start a new operation, it is recommended to consult the Core Component documentation, which details and explains what this process entails.
+To learn more about how to start a new operation, it is recommended to
+consult the <a href="Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+documentation, which details and explains what this process consists of.
 </div>
 ---
 
