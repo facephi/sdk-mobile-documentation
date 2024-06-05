@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.4.0">
 <title data-rh="true">SelphID Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/flutter/next/Voice_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-flutter-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-flutter-current"><meta data-rh="true" property="og:title" content="SelphID Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/flutter/next/Voice_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/flutter/next/Voice_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/flutter/next/Voice_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/flutter/next/Voice_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.23867890.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.beb3800a.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.814f0881.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.f2bd08fe.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -115,22 +115,11 @@ compiled, and debugged using <em>Android Studio</em> and <em>XCode</em> respecti
 <p>For the iOS version, when adding our plugin to the final application,
 the following points must be previously taken into account:</p>
 <ul>
-<li>
-<p><em><strong>Disable the BITCODE:</strong></em> If the application that is going to
-integrate the plugin has the BITCODE enabled, it will produce a
-compilation error. To prevent this from happening, <strong>the BITCODE
-must be disabled</strong>.<br>
-<!-- -->Within the XCODE simply accessing <em>Build from Settings</em>, in the
-<em>Build Options</em> section, you must indicate the <em>Enable Bitcode</em>
-parameter as <strong>No</strong>.</p>
-</li>
-<li>
-<p><em><strong>Add camera permissions:</strong></em> To use the widget, you need to enable
+<li><em><strong>Add camera permissions:</strong></em> To use the widget, you need to enable
 the camera permission in the application&#x27;s <em><strong>info.plist</strong></em> file
 (included within the project in the <em><strong>ios</strong></em> folder). You will need
 to edit the file with a text editor and add the following
-<em>key/value</em> pair:</p>
-</li>
+<em>key/value</em> pair:</li>
 </ul>
 <div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">&lt;key&gt; NSCameraUsageDescription &lt;/key&gt;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;string&gt;$(PRODUCT_NAME) uses the camera&lt;/string&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copiar código al portapapeles" title="Copiar" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="222-podfile-update">2.2.2 Podfile Update<a class="hash-link" aria-label="Enlace directo al 2.2.2 Podfile Update" title="Enlace directo al 2.2.2 Podfile Update" href="/sdk-mobile-documentation/es/docs/flutter/next/Voice_Component#222-podfile-update">​</a></h4>
@@ -140,14 +129,6 @@ lines must be added at the beginning of the file:</p>
 <div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">platform :ios, &#x27;13.0&#x27; //MIN VERSION</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">plugin &#x27;cocoapods-art&#x27;, :sources =&gt; [&#x27;cocoa-pro-fphi&#x27;]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">source &#x27;https://cdn.cocoapods.org/&#x27;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copiar código al portapapeles" title="Copiar" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <div class="note"><p><span class="note">ℹ️</span>
 To know more about the configuration and use of <strong>Cocoapods Artifactory</strong>, it is necessary to access the following document of <strong>Core Component</strong>.</p></div>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="223-set-swift-version">2.2.3 Set Swift version<a class="hash-link" aria-label="Enlace directo al 2.2.3 Set Swift version" title="Enlace directo al 2.2.3 Set Swift version" href="/sdk-mobile-documentation/es/docs/flutter/next/Voice_Component#223-set-swift-version">​</a></h4>
-<p>In <em>Xcode</em>, for the application and all its methods to work correctly,
-the minimum version of swift must be set to version 5. Changes can be
-made by following these steps:</p>
-<blockquote>
-<p>Target -&gt; Project -&gt; Build Settings -&gt; Swift Compiler - Language
--&gt; Swift Language Version -&gt; Choose Swift 5.</p>
-</blockquote>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="224-possible-issues">2.2.4 Possible issues<a class="hash-link" aria-label="Enlace directo al 2.2.4 Possible issues" title="Enlace directo al 2.2.4 Possible issues" href="/sdk-mobile-documentation/es/docs/flutter/next/Voice_Component#224-possible-issues">​</a></h4>
 <p>If environmental problems occur or the plugin is not updated after
 making new changes (for example, problems occurred due to the bundle not
