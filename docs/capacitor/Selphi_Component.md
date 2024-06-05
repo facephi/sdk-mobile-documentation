@@ -93,9 +93,6 @@ Projects generated in the Android and iOS folders can be opened, compiled, and d
 
 For the iOS version, when adding our plugin to the final application, the following points must be previously taken into account:
 
-- ***Disable the BITCODE***: If the application that is going to integrate the plugin has the BITCODE enabled, it will produce a compilation error. To prevent this from happening, **the BITCODE must be disabled**. 
-Within the XCODE simply accessing Build from Settings, in the *Build Options* section, you must indicate the Enable Bitcode parameter as **No**.
-
 - ***Add camera permissions***: To use the widget, you need to enable the camera permission in the application's ***info.plist*** file (included within the project in the ios folder). You will need to edit the file with a text editor and add the following *key/value* pair:
 
 ```
@@ -116,12 +113,6 @@ source 'https://cdn.cocoapods.org/'
 <span class="warning">:warning:</span>
 To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
-
-#### 2.2.3 Set Swift version
-In *Xcode*, for the application and all its methods to work correctly, the minimum version of swift must be set to version 5. Changes can be made by following these steps:
-
-- Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
-  
 
 #### 2.2.4 Possible issues
 If environment problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the correct versions), it is recommended to execute the following sequence of instructions after launching the plugin:

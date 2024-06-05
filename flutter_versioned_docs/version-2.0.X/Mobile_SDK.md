@@ -175,14 +175,6 @@ fphi_sdkmobile_core:
 For the iOS version, when adding our plugin to the final application,
 the following points must be previously taken into account:
 
--   ***Disable the BITCODE:*** If the application that is going to
-    integrate the plugin has the BITCODE enabled, it will produce a
-    compilation error. To prevent this from happening, **the BITCODE
-    must be disabled**.  
-    Within the XCODE simply accessing *Build from Settings*, in the
-    *Build Options* section, you must indicate the *Enable Bitcode*
-    parameter as **No**.
-
 -   ***Add camera permissions:*** To use the widget, you need to enable
     the camera permission in the application's ***info.plist*** file
     (included within the project in the ***ios*** folder). You will need
@@ -206,15 +198,6 @@ platform :ios, '13.0' //MIN VERSION
 plugin 'cocoapods-art', :sources => ['cocoa-pro-fphi']
 source 'https://cdn.cocoapods.org/'
 ```
-
-#### 2.3.3 Set Swift version
-
-In *Xcode*, for the application and all its methods to work correctly,
-the minimum version of swift must be set to version 5. Changes can be
-made by following these steps:
-
-> Target -\> Project -\> Build Settings -\> Swift Compiler - Language
-> -\> Swift Language Version -\> Choose Swift 5.
 
 #### 2.3.4 Possible issues
 #### 2.3.4.1 Cocoapods issues
@@ -276,6 +259,13 @@ correctly
 </div>
 
 
+#### 2.4.2 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
+Open the .zshrc & .bash_profile files and put the credentials provided by Facephi:
+
+```
+export USERNAME_ARTIFACTORY=username@facephi.es
+export TOKEN_ARTIFACTORY=token_provided_by_facephi
+```
 
 
 #### 2.4.2 Set Android SDK version

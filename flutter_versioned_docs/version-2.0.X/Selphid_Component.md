@@ -28,7 +28,6 @@ main functionalities are the following:
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 11**
-
 -   Minimum iOS version: **13**
 
 Regarding the architecture of the mobile device:
@@ -59,7 +58,7 @@ For this section, the following values will be considered:
 
 - **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the Core plugin, which is required (example:/folder/sdk-core)
-- **\<%PLUGIN_SELPHI_FACE_PATH%\>** - Path to the root of the current plugin (example /folder/sdk-selphi)
+- **\<%PLUGIN_SELPHID_PATH%\>** - Path to the root of the current plugin (example /folder/sdk-selphid)
 </div>
 
 ### 2.1. Plugin installation: Common
@@ -96,14 +95,6 @@ compiled, and debugged using *Android Studio* and *XCode* respectively.
 For the iOS version, when adding our plugin to the final application,
 the following points must be previously taken into account:
 
--   ***Disable the BITCODE:*** If the application that is going to
-    integrate the plugin has the BITCODE enabled, it will produce a
-    compilation error. To prevent this from happening, **the BITCODE
-    must be disabled**.  
-    Within the XCODE simply accessing *Build from Settings*, in the
-    *Build Options* section, you must indicate the *Enable Bitcode*
-    parameter as **No**.
-
 -   ***Add camera permissions:*** To use the widget, you need to enable
     the camera permission in the application's ***info.plist*** file
     (included within the project in the ***ios*** folder). You will need
@@ -133,16 +124,6 @@ source 'https://cdn.cocoapods.org/'
 To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
 
-
-#### 2.2.3 Set Swift version
-
-In *Xcode*, for the application and all its methods to work correctly,
-the minimum version of swift must be set to version 5. Changes can be
-made by following these steps:
-
-> Target -\> Project -\> Build Settings -\> Swift Compiler - Language
-> -\> Swift Language Version -\> Choose Swift 5.
-
 #### 2.2.4 Possible issues
 
 If environmental problems occur or the plugin is not updated after
@@ -170,7 +151,7 @@ pod install --repo-update
 
 ### 2.3 Plugin installation: Android
 
-#### 2.3.1 Set Android SDK version
+#### 2.3.0 Set Android SDK version
 
 For Android, the minimum SDK version required by our native libraries is
 **24**, so if your app has a *Minimum SDK* defined less than this, it
@@ -186,7 +167,42 @@ buildscript {
 }
 ```
 
-#### 2.3.2 Permissions for geolocation
+#### 2.3.1 Set Android SDK credentials
+
+For security and maintenance reasons, the new ***SDKMobile*** components
+are stored in private repositories requiring specific credentials. For
+that reason, those credentials must be added to the **build.gradle**
+file (inside the **repositories** section):
+
+
+```
+maven {
+    name = "external"
+    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+    credentials {
+        username = System.getenv("USERNAME_ARTIFACTORY")
+        password =  System.getenv("TOKEN_ARTIFACTORY")
+    }
+}
+```
+
+<div class="warning">
+<span class="warning">:warning:</span>
+For the project to correctly retrieve the dependencies, the
+***credentials*** (**Username** and **Token**) must be configured
+correctly
+</div>
+
+
+#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
+Open the .zshrc & .bash_profile files and put the credentials provided by Facephi:
+
+```
+export USERNAME_ARTIFACTORY=username@facephi.es
+export TOKEN_ARTIFACTORY=token_provided_by_facephi
+```
+
+#### 2.3.4 Permissions for geolocation
 
 Because the **Tracking** component has geolocation options, it is
 necessary to add the permissions for it. In the *AndroidManifest* add
@@ -655,13 +671,22 @@ class SelphIDResult
 ```
 
 The result will be returned via a Promise containing an object of class
-***SdkSelphidResult***. Information on these fields is expanded below.
+***SelphIDResult***. Information on these fields is expanded below.
 
-### 5.1 finishStatus
+### 5.0 finishStatus
 
--   **SdkFinishStatus.Ok**: The operation was successful.
+-   **1**: The operation was successful.
 
--   **SdkFinishStatus.Error**: An error has occurred, which will be
+-   **2**: An error has occurred, which will be
+    indicated in the \`errorDiagnostic\` enumerated and, optionally, an
+    extra information message will be displayed in the \`errorMessage\`
+    property.
+
+### 5.1 finishStatusDescription
+
+-   **STATUS_Ok**: The operation was successful.
+
+-   **STATUS_Error**: An error has occurred, which will be
     indicated in the \`errorDiagnostic\` enumerated and, optionally, an
     extra information message will be displayed in the \`errorMessage\`
     property.

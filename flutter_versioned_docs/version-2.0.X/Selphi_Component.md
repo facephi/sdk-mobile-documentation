@@ -41,7 +41,6 @@ This section will explain step by step how to integrate the current component in
 
 <div class="warning">
 <span class="warning">:warning:</span>
-
 For this section, the following values ​​will be considered:
 
 - **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
@@ -74,9 +73,6 @@ fphi_sdkmobile_selphi:
 
 For the iOS version, when adding our plugin to the final application, the following points must be previously taken into account:
 
-- ***Disable the BITCODE***: If the application that is going to integrate the plugin has the BITCODE enabled, it will produce a compilation error. To prevent this from happening, **the BITCODE must be disabled**. 
-Within the XCODE simply accessing Build from Settings, in the *Build Options* section, you must indicate the Enable Bitcode parameter as **No**.
-
 - ***Add camera permissions***: To use the widget, you need to enable the camera permission in the application's ***info.plist*** file (included within the project in the ios folder). You will need to edit the file with a text editor and add the following *key/value* pair:
 
 ```
@@ -97,12 +93,6 @@ source 'https://cdn.cocoapods.org/'
 <span class="warning">:warning:</span>
 To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
-
-#### 2.2.3 Set Swift version
-In *Xcode*, for the application and all its methods to work correctly, the minimum version of swift must be set to version 5. Changes can be made by following these steps:
-
-- Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
-  
 
 #### 2.2.4 Possible issues
 If environment problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the correct versions), it is recommended to execute the following sequence of instructions after launching the plugin:
@@ -129,9 +119,9 @@ pod repo-art update cocoa-pro-fphi
 ```
 
 ### 2.3  Plugin installation: Android
-#### 2.3.1 Set Android SDK version
+#### 2.3.0 Set Android SDK version
 
-For Android, the minimum SDK version required by our native libraries is **23**, so if your app has a Minimum SDK defined less than this, it will need to be modified to avoid a compile error. To do this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
+For Android, the minimum SDK version required by our native libraries is **24**, so if your app has a Minimum SDK defined less than this, it will need to be modified to avoid a compile error. To do this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
 
 ```
 buildscript {
@@ -141,7 +131,42 @@ buildscript {
 }
 ```
 
-#### 2.3.2 Permissions for geolocation (optional)
+#### 2.3.1 Set Android SDK credentials
+
+For security and maintenance reasons, the new ***SDKMobile*** components
+are stored in private repositories requiring specific credentials. For
+that reason, those credentials must be added to the **build.gradle**
+file (inside the **repositories** section):
+
+
+```
+maven {
+    name = "external"
+    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+    credentials {
+        username = System.getenv("USERNAME_ARTIFACTORY")
+        password =  System.getenv("TOKEN_ARTIFACTORY")
+    }
+}
+```
+
+<div class="warning">
+<span class="warning">:warning:</span>
+For the project to correctly retrieve the dependencies, the
+***credentials*** (**Username** and **Token**) must be configured
+correctly
+</div>
+
+
+#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
+Open the .zshrc & .bash_profile files and put the credentials provided by Facephi:
+
+```
+export USERNAME_ARTIFACTORY=username@facephi.es
+export TOKEN_ARTIFACTORY=token_provided_by_facephi
+```
+
+#### 2.3.4 Permissions for geolocation (optional)
 Because the Tracking component has geolocation options, it is necessary to add the permissions for it. In the AndroidManifest add the following permissions:
 
 ```
@@ -160,24 +185,25 @@ Below is the *SelphiFaceConfiguration* class, which allows you to configure the 
 
 ``` dart
 class SelphiFaceConfiguration {
-   bool mDebug;
+  bool mDebug;
   bool mFullscreen;
-  double mCropPercent;
+  bool mLogImages;
   bool mStabilizationMode;
   bool mTemplateRawOptimized;
   bool mEnableGenerateTemplateRaw;
-  SelphiFaceLivenessMode mLivenessMode;
+  bool mQRMode;
   bool mShowResultAfterCapture;
+  double mCropPercent;
   double mJPGQuality;
+  SelphiCompressFormat mCompressFormat;
   String mLocale;
   String mTranslationsContent;
   String mViewsContent;
-  String mVideoFilename;
+  int? mCameraId;
+  dynamic mParams;
+  SelphiFaceLivenessMode mLivenessMode;
   bool? mShowDiagnostic;
   bool? mShowTutorial;
-  bool mLogImages;
-  double mJPGQuality;
-  SelphiCompressFormat mCompressFormat;
 }
 ```
 
@@ -238,8 +264,8 @@ debug: false
 Sets the liveness mode of the component. The possible values are:
 
 - **NoneMode**: Indicates that the photodetection mode should not be enabled in authentication processes.
-
 - **PassiveMode**: Indicates that the passive life test is carried out on the server, sending the corresponding "BestImage" for this purpose
+- **MoveMode**
 
 ```
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
@@ -476,20 +502,15 @@ As shown in the example above, the result is returned in the form of a JSON obje
 
 ``` dart
   try
-    {
+  {
       FphiSdkmobileSelphi selphi = FphiSdkmobileSelphi();
-      final Map resultJson = await selphi.startSelphiFaceWidget(
-          resourcesPath: resourcesPath,
-          widgetConfigurationJSON: configuration);
+      final Map resultJson = await selphi.startSelphiFaceWidget(resourcesPath: resourcesPath, widgetConfigurationJSON: configuration);
 
-      if (resultJson != null)
-        return Right(SelphiFaceResult.fromMap(resultJson));
-      else
-        throw Exception('Plugin internal error');
-    }
-    on Exception catch (e) {
+      return Right(SelphiFaceResult.fromMap(resultJson));
+  }
+  on Exception catch (e) {
       return (Left(e));
-    }
+  }
 ```
 
 Regardless of whether the result is correct/erroneous, the result will have the following format:
@@ -515,13 +536,17 @@ The result will be returned via a Promise containing an object of class SelphiRe
 </div>
 
 
-### 5.1 finishStatus
+### 5.0 finishStatus
 
-- **SdkFinishStatus.Ok**: The operation was successful.
+- **1**: The operation was successful.
+- **2**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-- **SdkFinishStatus.Error**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
+### 5.1 finishStatusDescription
 
-### 5.2 errorType
+- **STATUS_Ok**: The operation was successful.
+- **STATUS_Error**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
+
+### 5.2 errorDiagnostic
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). They are defined in the `SdkErrorType` class. The values ​​it can have are the following:
 
 - **NoError**: No error has occurred. The process can continue.

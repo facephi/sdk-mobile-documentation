@@ -108,11 +108,6 @@ source 'https://cdn.cocoapods.org/'
 Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de *Componente Core*.
 </div>
 
-### 2.2.3 Establecer la versión de Swift
-En *Xcode*, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
-
-- Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
-
 ### 2.2.4 Posibles incidencias
 Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
 
@@ -132,7 +127,7 @@ pod install --repo-update
 ```
 
 ## 2.3 Instalación plugin: Android
-### 2.3.1 Establecer la versión de Android SDK
+### 2.3.0 Establecer la versión de Android SDK
 En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es **24**, por lo que si la aplicación tiene un *SDK mínimo* definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero ***build.gradle*** de la aplicación (ubicado en la carpeta ***android***) y modifica el siguiente parámetro:
 
 ```
@@ -143,7 +138,42 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
+#### 2.3.1 Set Android SDK credentials
+
+For security and maintenance reasons, the new ***SDKMobile*** components
+are stored in private repositories requiring specific credentials. For
+that reason, those credentials must be added to the **build.gradle**
+file (inside the **repositories** section):
+
+
+```
+maven {
+    name = "external"
+    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+    credentials {
+        username = System.getenv("USERNAME_ARTIFACTORY")
+        password =  System.getenv("TOKEN_ARTIFACTORY")
+    }
+}
+```
+
+<div class="warning">
+<span class="warning">:warning:</span>
+For the project to correctly retrieve the dependencies, the
+***credentials*** (**Username** and **Token**) must be configured
+correctly
+</div>
+
+
+#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
+Open the .zshrc & .bash_profile files and put the credentials provided by Facephi:
+
+```
+export USERNAME_ARTIFACTORY=username@facephi.es
+export TOKEN_ARTIFACTORY=token_provided_by_facephi
+```
+
+### 2.3.4 Permisos para geolocalización
 Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
 
 ```
