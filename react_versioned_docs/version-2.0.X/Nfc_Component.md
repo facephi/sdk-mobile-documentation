@@ -1,98 +1,128 @@
 # NFC Component
 
-## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***NFC Component***. La autenticación pasiva del chip NFC de un documento comprueba si realmente ha sido expedido por una autoridad certificada. La autenticación pasiva nos permite validar que:
+## 1. Introduction
+The Component addressed in the current document is called the ***NFC Component***. This is responsible for capturing a selfie of the user and the subsequent extraction of the most important facial characteristics. Its main functionalities are the following:
 
-- El documento ha sido expedido por la autoridad certificadora del país al que pertenece.
-- El documento no ha sido alterado.
-- El documento no es una copia o un documento clonado.
+- Internal camera management.
 
-### 1.1 Requisitos mínimos
+- Permissions management.
 
-La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
+- Assists the processes of capturing the user's face.
 
-- Versión mínima Android: **24 - JDK 11**
-- Versión mínima iOS: **13**
+- Generation of templates with the facial characteristics and the image of the user's face for the Liveness detection process
 
-En cuanto a la arquitectura del dispositivo móvil:
+### 1.1 Minimum requirements
+
+The minimum native version (Android and iOS) of the SDK are as follows:
+
+- Minimum Android version: **24 - JDK 11**
+
+- Minimum iOS version: **13**
+
+Regarding the architecture of the mobile device:
 
 - armeabi-v7, x86, arm64 y x64
 
-### 1.2 Versión del plugin
-La versión del plugin actual se puede consultar de la siguiente forma:
-
-Buscamos el archivo ***package.json*** en la raíz del plugin.
-
-En el ***KEY/TAG*** version se indica la versión.
-
-## 2. Integración del componente 
-Antes de integrar este componente **se recomienda** leer la documentación relativa a **Core Component** y seguir las instrucciones indicadas en dicho documento.
-
-<div class="note">
-<span class="note">:information_source:</span>
-En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente. 
-Para esta sección, se considerarán los siguiente valores:
-- **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
-- **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_NFC_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-nfc)
+<div class="warning">
+<span class="warning">:warning:</span>
+This component needs to update to ***React Native 0.72 version*** due to internal dependencies, or at least to update ***Android Build Tools*** to ***8.0*** or more
 </div>
 
-### 2.1. Instalación del plugin: Common
-El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que React Native esté instalado.
-- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
+### 1.2 Plugin version
+
+The current plugin version can be checked as follows:
+
+- Look for the ***package.json*** file at the root of the plugin.
+- The KEY/TAG version indicates the version.
+
+---
+
+## 2. Component integration
+<div class="note">
+<span class="note">:information_source:</span>
+Before integrating this component, it is *recommended* to read the documentation related to *Core Component* and follow the instructions indicated in said document.
+</div>
+
+This section will explain step by step how to integrate the current component into an existing project. 
+
+<div class="warning">
+<span class="warning">:warning:</span>
+
+For this section, the following values ​​will be considered:
+
+- **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
+- **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the Core plugin, which is required (example: /folder/sdk-core)
+- **\<%PLUGIN_NFC_PATH%\>** - Path to the root of the current plugin (example: /folder/sdk-nfc)
+</div>
+
+### 2.1. Plugin installation: Common
+The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
+
+- Make sure **react-native is** installed.
+
+- Access **APPLICATION_PATH** at a terminal and run:
 
 ```
 yarn add @facephi/sdk-core-react-native
 yarn add @facephi/sdk-nfc-react-native
 ```
 
-Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
+-   In addition, to install the plugin on iOS, the following must also
+    be executed:
 
+``` java
+cd ios
+pod install
 ```
+
+- It is important to verify that the path to the plugin is correctly defined in **package.json**:
+
+```java
 "dependencies": {
   "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
   "@facephi/sdk-nfc-react-native": <% PLUGIN_NFC_PATH %>
 }
 ```
 
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
-Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
+After running the above steps, you can start the app with the sdk/component installed.
 
-***Desde Terminal***(Para Android):
+- Finally, to launch the projects, the following commands must be executed in two ways:
 
+***From Terminal (For Android):***
 ```
 npx react-native run-android 
-ó 
+or 
 npx react-native run-android --active-arch-only
 ```
-Para iOS:
+
+***From Terminal (For iOS):***
 ```
 npx react-native run-ios
 ```
 
-Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
+***From different IDEs***
 
-## 2.2 Instalación plugin: iOS
-### 2.2.1 Configuración del proyecto
-Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
+Projects generated in the Android and iOS folders can be opened, compiled, and debugged using *Android Studio* and *XCode*, respectively.
 
-- **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, **el BITCODE debe estar desactivado**. 
-Dentro del XCODE simplemente accediendo a *Build from Settings*, en la sección *Build Options*, deberás indicar el parámetro Habilitar Bitcode como No.
+### 2.2 Plugin installation: iOS
+#### 2.2.1 Project configuration
 
-- **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
+For the iOS version, when adding our plugin to the final application, the following points must be previously taken into account:
 
-```
+- ***Add camera permissions***: To use the component, you need to enable the camera permission in the application's ***info.plist*** file (included within the project in the ios folder). You will need to edit the file with a text editor and add the following *key/value* pair:
+
+```java
 <key>NSCameraUsageDescription</key>
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
-- **Añadir Privacy - NFC Scan Usage Description**:  Para utilizar el widget, es necesario habilitar el permiso de nfc en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios).
+
+- ***Add Privacy - NFC Scan Usage Description***  To use the component, you need to enable the NFC permission in the application's ***info.plist*** file (included within the project in the ios folder).
 ```
 <key>NFCReaderUsageDescription</key>
 <string>The app needs this permission for the correct usage.</string>
 ```
-Añadir ISO7816 application identifiers for NFC Tag Reader Session: Para utilizar el widget, es necesario habilitar el permiso de nfc en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
+- ***Add ISO7816 application identifiers for NFC Tag Reader Session***: Finally, you have to edit *info.plist* file with a Text Editor, and  add the following key/value/pair:
 ```
 <array>
     <string>A0000002471001</string>
@@ -100,18 +130,18 @@ Añadir ISO7816 application identifiers for NFC Tag Reader Session: Para utiliza
     <string>00000000000000</string>
 </array>
 ```
-- **Añadir el Capability Near field Communication Tag Reading**
+- **Add the Capability Near field Communication Tag Reading**
 
 Open image-20230214-141106.png
 image-20230214-141106.png
 
-- **Añadir el Entitlements Near Field Communication Tag Reader Session Formats**:
+- **Add the Entitlements Near Field Communication Tag Reader Session Formats**:
 
 Open image-20230214-141753.png
 image-20230214-141753.png
 
-### 2.2.2 Actualizar el Podfile
-En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
+#### 2.2.2 Update the Podfile
+In the project podfile it will be necessary to add the information from the private repository (see section 2.1). To do this, the following lines must be added at the beginning of the file:
 
 ```
 platform :ios, '13.0' //MIN VERSION
@@ -119,36 +149,39 @@ plugin 'cocoapods-art', :sources => ['cocoa-pro-fphi']
 source 'https://cdn.cocoapods.org/'
 ```
 
-<div class="note">
-<span class="note">:information_source:</span>
-Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de *Componente Core*.
+<div class="warning">
+<span class="warning">:warning:</span>
+To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
 
-### 2.2.3 Establecer la versión de Swift
-En *Xcode*, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
+#### 2.2.3 Set Swift version
+In *Xcode*, for the application and all its methods to work correctly, the minimum version of swift must be set to version 5. Changes can be made by following these steps:
 
 - Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
+  
 
-### 2.2.4 Posibles incidencias
-Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
+#### 2.2.4 Possible issues
+If environment problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the correct versions), it is recommended to execute the following sequence of instructions after launching the plugin:
 
-- Abrir la carpeta **ios** de la aplicación en un terminal.
-- Ejecutar el siguiente comando:
+Open the application's ios folder at a terminal.
+
+Run the following command:
 
 ```
 pod deintegrate
 ```
 
-- Eliminar el ***Podfile.lock***
-- Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
+- Remove the ***Podfile.lock***
+- Run the following command (or open the project with Xcode and run it):
 
 ```
 pod install --repo-update
 ```
 
-## 2.3 Instalación plugin: Android
-### 2.3.1 Establecer la versión de Android SDK
-En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es **24**, por lo que si la aplicación tiene un *SDK mínimo* definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero ***build.gradle*** de la aplicación (ubicado en la carpeta ***android***) y modifica el siguiente parámetro:
+### 2.3  Plugin installation: Android
+#### 2.3.1 Set Android SDK version
+For Android, the minimum SDK version required by our native libraries is **24**, so if your app has a Minimum SDK defined less than this, it will need to be modified to avoid a compile error. To do this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
+
 
 ```
 buildscript {
@@ -158,8 +191,8 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
+#### 2.3.2 Permissions for geolocation (optional)
+Because the Tracking component has geolocation options, it is necessary to add the permissions for it. In the AndroidManifest add the following permissions:
 
 ```
 <!-- Always include this permission -->
@@ -167,7 +200,6 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 <!-- Include only if your app benefits from precise location access. -->
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
-
 ---
 
 ## 3. Configuración del componente

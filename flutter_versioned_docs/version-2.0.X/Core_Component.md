@@ -207,7 +207,7 @@ Once the **new operation has been created (section 3)**, the different SDK contr
 ## 5.  Return of result
 The result of each component will be returned through the SDK always maintaining the same structure:
 
-```
+```dart
 class CoreResult {
   final SdkFinishStatus finishStatus;
   final String finishStatusDescription;
@@ -215,6 +215,8 @@ class CoreResult {
   final String? errorMessage;
   final String? flow;
   final int timeoutStatus;
+  final String? operationId;
+  final String? sessionId;
   final String? tokenized;
   final String? data;
 }
@@ -301,6 +303,12 @@ Optional parameter. Only visible if the *Tokenized* method is called. The plugin
 ### 5.6 data
 
 Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
+
+### 5.7 sessionId
+Returns the current session's identifier. Each time ***initSession*** method is executed, a new *sessionId* will be generated.
+
+### 5.8 operationId
+Returns the current operation's identifier. Each time ***initOperation*** method is executed, a new *operationId* will be generated.
 
 ---
 
