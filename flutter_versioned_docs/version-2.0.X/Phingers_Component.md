@@ -1,7 +1,15 @@
-# VideoId Component
+# Phingers Component
 
 ## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***VideoID Component***. Éste se encarga de realizar la grabación de un usuario identificándose, mostrando la cara y su documento de identidad.
+El Componente tratado en el documento actual recibe el nombre de ***Voice Component***. Éste se encarga de realizar la captura de voz del usuario y la posterior extracción de las plantillas correspondientes. Sus principales funcionalidades son las siguientes:
+
+- Entrada de cierto número de frases para posteriormente leer cada una en un paso.
+- Gestión interna del micrófono.
+- Gestión de permisos.
+- Análisis de los silencios.
+- Análisis del progreso.
+- Asistente en los procesos de captura.
+- Generación de las plantillas con las características de la voz y puntuaciones.
 
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
@@ -29,7 +37,7 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videoid)
+- **\<%PLUGIN_VOICE_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-voice)
 </div>
 
 ### 2.1. Instalación del plugin: Common
@@ -43,9 +51,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 - Acceda al **\<%APPLICATION_PATH%\>**, y en el fichero pubspec.yaml y añadir:
 
 ```
-fphi_sdkmobile_videoid:
+fphi_sdkmobile_voice:
   hosted:
-    name: sdkvideoid
+    name: sdkvoice
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
   version: ^2.0.0
 ```
@@ -97,7 +105,7 @@ pod install --repo-update
 ```
 
 ## 2.3 Instalación plugin: Android
-### 2.3.1 Establecer la versión de Android SDK
+### 2.3.0 Establecer la versión de Android SDK
 En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es **24**, por lo que si la aplicación tiene un *SDK mínimo* definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero ***build.gradle*** de la aplicación (ubicado en la carpeta ***android***) y modifica el siguiente parámetro:
 
 ```
@@ -108,7 +116,42 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
+#### 2.3.1 Set Android SDK credentials
+
+For security and maintenance reasons, the new ***SDKMobile*** components
+are stored in private repositories requiring specific credentials. For
+that reason, those credentials must be added to the **build.gradle**
+file (inside the **repositories** section):
+
+
+```
+maven {
+    name = "external"
+    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+    credentials {
+        username = System.getenv("USERNAME_ARTIFACTORY")
+        password =  System.getenv("TOKEN_ARTIFACTORY")
+    }
+}
+```
+
+<div class="warning">
+<span class="warning">:warning:</span>
+For the project to correctly retrieve the dependencies, the
+***credentials*** (**Username** and **Token**) must be configured
+correctly
+</div>
+
+
+#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
+Open the .zshrc & .bash_profile files and put the credentials provided by Facephi:
+
+```
+export USERNAME_ARTIFACTORY=username@facephi.es
+export TOKEN_ARTIFACTORY=token_provided_by_facephi
+```
+
+### 2.3.4 Permisos para geolocalización
 Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
 
 ```
@@ -121,103 +164,68 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_videoid_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_voice_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoID**:
+A continuación se muestra la clase *VoiceConfiguration*, que permite configurar el componente de **Voice**:
 
 ```java
-class VideoIdConfiguration
+class VoiceConfiguration
 {
-  VideoMode mMode;
-  int mTime;
-  bool mShowTutorial;
-  String? mUrl;
-  String? mApiKey;
-  String? mTenantId;
+  String mPhrases;
+  int? mTimeout;
   bool? mShowDiagnostic;
+  bool? mShowTutorial;
+  bool? mVibrationEnabled;
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VideoIdConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VoiceConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_videoid/fphi_sdkmobile_videoid_configuration.dart.*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_voice/fphi_sdkmobile_voice_configuration.dart.*** del componente.
 </div>
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 mTime
+### 3.1 phrases
+
+**type:** *string*
+
+Frases que se tienen que decir en la app para validar la identidad.
+
+```
+phrases: 'hola mundo|hola voice component|hola Facephi',
+```
+
+### 3.2 timeout
 
 **type:** *number*
 
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
+Se setea el timeout del plugin.
 
 ```
-mTime: 5000
+timeout: 10000;
 ```
 
-### 3.2 mode
-
-**type:** *VideoMode*
-
-Este enumerado se define en la clase **VideoMode** en ***fphi_sdkmobile_videoid_mode.dart***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
-
-```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
-```
-
-### 3.4 mShowTutorial
+### 3.3 showTutorial
 
 **type:** *boolean*
 
 Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
 
 ```
-mShowTutorial: true;
+showTutorial: true;
 ```
 
-### 3.5 mUrl
-
-**type:** *string*
-
-Ruta al socket de video.
-
-```
-mUrl: url_provided_by_Facephi
-```
-
-### 3.6 mApiKey
-
-**type:** *string*
-
-ApiKey necesaria para la conexión con el socket de video.
-
-```
-mApiKey: "apiKey_provided_by_Facephi";
-```
-### 3.7 mTenantId
-
-**type:** *string*
-
-Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
-
-```
-mTenantId: "TenantId_provided_by_Facephi";
-```
-
-### 3.8 mShowDiagnostic
+### 3.4 vibration
 
 **type:** *boolean*
 
-Indica si se desea mostrar un diagnostico en caso de falla.
+Indica si se desea o no habilitar la vibración.
 
 ```
-mShowDiagnostic: false;
+vibration: false;
 ```
 ---
 
@@ -233,13 +241,17 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ```
-Future<Either<Exception, VideoIdResult>>
-  launchVideoIdWithConfiguration(VideoIdConfiguration configuration) async {
+Future<Either<Exception, VoiceResult>> launchVoice() async {
+  return launchVoiceWithConfiguration(createStandardConfiguration());
+}
+
+Future<Either<Exception, VoiceResult>> launchVoiceWithConfiguration(VoiceConfiguration configuration) async {
   try
   {
-    FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-    final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-    return Right(VideoIdResult.fromMap(resultJson));
+    FphiSdkmobileVoice voice = FphiSdkmobileVoice();
+    final Map resultJson = await voice.startVoiceComponent(widgetConfigurationJSON: configuration);
+
+    return Right(VoiceResult.fromMap(resultJson));
   }
   on Exception catch (e) {
     return (Left(e));
@@ -247,13 +259,14 @@ Future<Either<Exception, VideoIdResult>>
 }
 
 /// Sample of standard plugin configuration
-VideoIdConfiguration createStandardConfiguration()
+VoiceConfiguration createStandardConfiguration()
 {
-  VideoIdConfiguration configurationWidget;
-  configurationWidget = VideoIdConfiguration();
-  configurationWidget.mTime         = 5000;
-  configurationWidget.mMode         = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
-  configurationWidget.mShowTutorial = false;
+  VoiceConfiguration configurationWidget;
+  configurationWidget = VoiceConfiguration();
+  configurationWidget.mVibrationEnabled = true;
+  configurationWidget.mShowTutorial     = true;
+  configurationWidget.mPhrases          = "Hola hello world|Chau voice component|Hola voice component";
+
   return configurationWidget;
 }
 ```
@@ -264,26 +277,26 @@ VideoIdConfiguration createStandardConfiguration()
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-return Right(VideoIdResult.fromMap(resultJson));
+FphiSdkmobileVoice voice = FphiSdkmobileVoice();
+final Map resultJson = await voice.startVoiceComponent(widgetConfigurationJSON: configuration);
+
+return Right(VoiceResult.fromMap(resultJson));
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
 ```
-class VideoIdResult
+class VoiceResult
 {
   final SdkFinishStatus finishStatus;
   final String finishStatusDescription;
   final String errorDiagnostic;
   final String? errorMessage;
-  final String data;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VideoIdResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VoiceResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.0 finishStatus

@@ -1,18 +1,25 @@
-# VideoId Component
+# Phingers Component
 
 ## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***VideoID Component***. Éste se encarga de realizar la grabación de un usuario identificándose, mostrando la cara y su documento de identidad.
+El Componente tratado en el documento actual recibe el nombre de ***Phingers Component***. Éste se encarga de realizar la captura de las huellas de los dedos (fingerprints) del usuario y la posterior extracción de las plantillas de las huellas posteriores. Sus principales funcionalidades son las siguientes:
+
+- Dos modos de funcionamiento: extracción de los cuatro dedos de la mano (excepto el pulgar), o extracción únicamente del pulgar.
+- Gestión interna de cámara.
+- Gestión de permisos.
+- Detección de vivacidad incorporada.
+- Asistente en los procesos de captura de las huellas.
+- Generación de las plantillas con las características de las huellas, imágenes y puntuaciones.
 
 ### 1.1 Requisitos mínimos
 
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: 24 - JDK 11
-- Versión mínima iOS: 13
+- Versión mínima Android: **24 - JDK 11**
+- Versión mínima iOS: **13**
 
 En cuanto a la arquitectura del dispositivo móvil:
 
-armeabi-v7, x86, arm64 y x64
+- armeabi-v7, x86, arm64 y x64
 
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
@@ -21,46 +28,54 @@ Buscamos el archivo ***package.json*** en la raíz del plugin.
 
 En el ***KEY/TAG*** version se indica la versión.
 
----
-
 ## 2. Integración del componente 
+Antes de integrar este componente **se recomienda** leer la documentación relativa a **Core Component** y seguir las instrucciones indicadas en dicho documento.
 
 <div class="note">
 <span class="note">:information_source:</span>
-Antes de integrar este componente **se recomienda** leer la documentación relativa a **Core Component** y seguir las instrucciones indicadas en dicho documento.
-</div>
-
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente. 
-
-<div class="warning">
-<span class="warning">:warning:</span>
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videoid)
+- **\<%PLUGIN_PHINGERS_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-phingers)
 </div>
 
 ### 2.1. Instalación del plugin: Common
-El plugin permite la ejecución en plataforma Android y iOS. En esta sección se explica. Se deben seguir los siguientes pasos:
+El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
 
-- Acceda al **PLUGIN_CORE_PATH** en un terminal y ejecute:
+- Asegurarse de que React Native esté instalado.
+- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
-``` java
-npm run build
+```
+yarn add @facephi/sdk-core-react-native
+yarn add @facephi/sdk-phingers-react-native
 ```
 
-- Acceder a **APPLICATION_PATH** y lanzar:
+Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
 
-``` java
-npm i @facephi/sdk-videoid-capacitor
-npm run build
-npx cap sync
-npx ionic capacitor build [android | ios]
+```
+"dependencies": {
+  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-phingers-react-native": <% PLUGIN_VOICE_PATH %>
+}
 ```
 
-Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
+Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
+Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
 
+***Desde Terminal***(Para Android):
 
+```
+npx react-native run-android 
+ó 
+npx react-native run-android --active-arch-only
+```
+Para iOS:
+```
+npx react-native run-ios
+```
+
+Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
 
 ## 2.2 Instalación plugin: iOS
 ### 2.2.1 Configuración del proyecto
@@ -115,136 +130,146 @@ buildscript {
   }
 }
 ```
-
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***definitions.ts*** En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-phingers-react-native/src/index.tsx***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoId**:
+A continuación se muestra la clase *PhingersConfiguration*, que permite configurar el componente de **Phingers**:
 
-``` java
-export interface VideoIdConfiguration {
-  mode?: VideoMode;
-  time?: number;
+```java
+export interface PhingersConfiguration 
+{
+  reticleOrientation: ReticleOrientation;
+  returnFullFrameImage?: boolean;
+  returnProcessedImage?: boolean;
+  returnRawImage?: boolean;
+  useFlash?: boolean;
+  useLiveness?: boolean;
   showTutorial?: boolean;
-  url?: string;
-  apiKey?: string;
-  tenantId?: string;
-  vibrationEnabled?: boolean;
+  extractionTimeout?: number;
+  vibration?: boolean;
+  showDiagnostic?: boolean;
+  threshold?: number;
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VideoIdConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **PhingersConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***definitions.ts*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***src/index.tsx*** del componente.
 </div>
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 time
+### 3.0 reticleOrientation
 
-**type:** *number*
+**type:** *PhingersReticleOrientation*
 
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
-
-```
-time: 5000
-```
-
-### 3.2 mode
-
-**type:** *VideoMode*
-
-Este enumerado se define en la clase **VideoMode** en ***definitions.ts***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
+.
 
 ```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
+reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
 ```
 
-### 3.3 extractionTimeout
-
-**type:** *number*
-
-Se setea el timeout del plugin.
-
-```
-extractionTimeout: 10000;
-```
-
-### 3.4 showTutorial
+### 3.1 returnFullFrameImage
 
 **type:** *boolean*
 
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
+.
 
 ```
-showTutorial: true;
+returnFullFrameImage: true,
 ```
 
-### 3.5 Url
-
-**type:** *string*
-
-Ruta al socket de video.
-
-```
-url: url_provided_by_Facephi
-```
-
-### 3.6 ApiKey
-
-**type:** *string*
-
-ApiKey necesaria para la conexión con el socket de video.
-
-```
-apiKey: "apiKey_provided_by_Facephi";
-```
-### 3.7 TenantId
-
-**type:** *string*
-
-Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
-
-```
-tenantId: "TenantId_provided_by_Facephi";
-```
-
-### 3.8 showDiagnostic
+### 3.2 returnProcessedImage
 
 **type:** *boolean*
 
-Indica si se desea mostrar un diagnostico en caso de falla.
+.
+
+```
+returnProcessedImage: true;
+```
+
+### 3.3 returnRawImage
+
+**type:** *boolean*
+
+.
+
+```
+mReturnRawImage: true;
+```
+
+### 3.4 useFlash
+
+**type:** *boolean*
+
+.
+
+```
+useFlash: false;
+```
+
+### 3.5 useLiveness
+
+**type:** *boolean*
+
+.
+
+```
+useLiveness: false;
+```
+
+### 3.6 showTutorial
+
+**type:** *boolean*
+
+.
+
+```
+showTutorial: false;
+```
+
+### 3.7 vibration
+
+**type:** *boolean*
+
+.
+
+```
+vibration: false;
+```
+
+### 3.8 extractionTimeout
+
+**type:** *int*
+
+.
+
+```
+extractionTimeout: false;
+```
+
+### 3.9 showDiagnostic
+
+**type:** *boolean*
+
+.
 
 ```
 showDiagnostic: false;
 ```
+### 3.10 threshold
 
-### 3.9 vibrationEnabled
+**type:** *double*
 
-**type:** *boolean*
-
-Indica si se desea o no habilitar la vibración.
+.
 
 ```
-vibrationEnabled: false;
+threshold: 0.8;
 ```
 ---
 
@@ -260,26 +285,47 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ``` java
-/**
- * Method that launches the plugin.
- * @param mode  Comment for parameter mode.
- * @param time  Comment for parameter time.
- * @returns Promise with a JSON string.
- */
-launchVideoId = async (): Promise<VideoIdResult> => 
-{
-  console.log('Launching videoId widget...');
-  return SdkVideoId.startVideoId(this.getVideoIdConfiguration());
-}
+const startPhingers = async () => 
+{ 
+  try 
+  {
+    console.log("Starting startPhingers...");
 
-getVideoIdConfiguration() 
+    return await SdkMobilePhingers.phingers(getPhingersConfiguration())
+    .then((result: PhingersResult) => 
+    {
+      console.log("result", result);
+      if (result.finishStatus == SdkFinishStatus.Error) {
+        drawError(setMessage, result);
+      }
+    })
+    .catch((error: any) => 
+    {
+      console.log(error);
+    })
+    .finally(()=> {
+      console.log("End startPhingers...");
+    });
+  } 
+  catch (error) {
+    setMessage(JSON.stringify(error));
+  }
+};
+
+const getPhingersConfiguration = () => 
 {
-  let config: VideoIdConfiguration = {
-    mode: VideoMode.FACE_DOCUMENT_FRONT,
-    time: 5000,
+  let config: PhingersConfiguration = 
+  {
+    reticleOrientation: ReticleOrientation.Left,
+    returnFullFrameImage: true,
+    returnProcessedImage: true,
+    returnRawImage: true,
+    useFlash: true,
+    useLiveness: true,
   };
+
   return config;
-}
+};
 ```
 
 ---
@@ -288,26 +334,48 @@ getVideoIdConfiguration()
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-return SdkVideoId.startVideoId(this.getVideoIdConfiguration());le.log(_message);
+return await SdkMobilePhingers.phingers(getPhingersConfiguration())
+.then((result: PhingersResult) => 
+{
+  console.log("result", result);
+  if (result.finishStatus == SdkFinishStatus.Error) {
+    drawError(setMessage, result);
+  }
+})
+.catch((error: any) => 
+{
+  console.log(error);
+})
+.finally(()=> {
+  console.log("End startPhingers...");
+});
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
-``` java
-export interface VideoIdResult {
-    finishStatus: number;
-    finishStatusDescription?: string;
-    errorType: string;
-    errorMessage?: string;
-    data?: string;
+```
+export interface PhingersResult 
+{
+  finishStatus: number;
+  finishStatusDescription?: string;
+  errorType: string;
+  errorMessage?: string;
+  template?: any;
+  processedFingers?: any;
+  rawFingers?: any;
+  wsq?: any;
+  focusQuality?: any;
+  nfiqMetricsTransactionId?: any;
+  livenessConfidence?: any;
+  fullFrameImage?: any;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VideoIdResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VoiceResult***. A continuación se amplía información sobre esos campos.
 </div>
 
-### 5.1 finishStatus
+### 5.0 finishStatus
 
 Devuelve el diagnóstico global de la operación.
 
@@ -315,14 +383,16 @@ Devuelve el diagnóstico global de la operación.
 - **2**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 
-### 5.2 finishStatusDescription
+### 5.1 finishStatusDescription
 
-Devuelve la descripción de finishStatus.
-- **Status_Ok**: La operación fue exitosa.
-- **Status_Error**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+Devuelve el diagnóstico global de la operación.
 
-### 5.3 errorType
- Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Los valores que puede tener son los siguientes:
+- **STATUS_OK**: La operación fue exitosa.
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+
+
+### 5.2 errorType
+ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
 
 - **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
 - **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
@@ -342,5 +412,12 @@ Devuelve la descripción de finishStatus.
 - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-### 5.4 errorMessage: 
+### 5.3 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+
+### 5.4 fullFrameImage
+### 5.5 focusQuality;
+### 5.6 livenessConfidence;
+### 5.7 processedFingers;
+### 5.8 rawImages;
+### 5.9 wsq;

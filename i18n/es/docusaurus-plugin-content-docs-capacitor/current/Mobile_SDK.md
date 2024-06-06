@@ -154,10 +154,6 @@ Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE corres
 
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-- ***Deshabilitar el BITCODE***: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
-Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como **No**.
-
-
 ### 2.3.2 Actualizar el Podfile
 
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
@@ -167,11 +163,6 @@ platform :ios, '13.0' //MIN VERSION
 plugin 'cocoapods-art', :sources => ['cocoa-pro-fphi']
 source 'https://cdn.cocoapods.org/'
 ```
-
-### 2.3.3 Establecer la versión de Swift
-En *Xcode*, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
-
-- Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
 
 ### 2.3.4 Posibles incidencias
 #### 2.3.4.1 Incidencias con Cocoapods

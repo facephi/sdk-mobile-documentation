@@ -186,9 +186,6 @@ npx react-native run-ios
 
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-- ***Deshabilitar el BITCODE***: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, el BITCODE debe estar desactivado. 
-Dentro del XCODE simplemente accediendo a Build from Settings, en la sección Build Options, deberás indicar el parámetro Habilitar Bitcode como **No**.
-
 - ***Añadir los permisos de cámara***: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
 
 ```
@@ -205,11 +202,6 @@ platform :ios, '13.0' //MIN VERSION
 plugin 'cocoapods-art', :sources => ['cocoa-pro-fphi']
 source 'https://cdn.cocoapods.org/'
 ```
-
-### 2.3.3 Establecer la versión de Swift
-En *Xcode*, para que la aplicación y todos sus métodos funcionen correctamente, se debe establecer la versión mínima de swift a la versión 5. Los cambios se podrán realizar siguiendo estos pasos:
-
-- Target -> Project -> Build Settings -> Swift Compiler - Language -> Swift Language Version -> Choose Swift 5.
 
 ### 2.3.4 Posibles incidencias
 #### 2.3.4.1 Incidencias con Cocoapods
