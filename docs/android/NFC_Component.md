@@ -166,6 +166,14 @@ reader.
 
 Display diagnostic screens at the end of the process
 
+#### 5.1.11. extractFacialImage
+
+Indicates if you want to extract the image of the face.
+
+#### 5.1.12. extractSignatureImage
+
+Indicates if you want to extract the signature image.
+
 ---
 
 ## 6. Component use

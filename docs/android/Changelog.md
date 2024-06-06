@@ -28,6 +28,7 @@
   - Improvements and fixes
   - Corrected "Tag lost error"
   - Improvements in reconnection
+  - Now you can choose whether you want to extract the image of the face and the signature.
 
 - VideoRecording
   - Adjustments and improvements in stopping the service

@@ -28,6 +28,7 @@
   - Mejoras y correcciones
   - Corregido "Tag lost error"
   - Mejoras en la reconexión
+  - Ahora se puede escoger si se quiere extraer la imagen de la cara y la firma
 
 - VideoRecording
   - Ajustes y mejoras en la parada del Servicio
