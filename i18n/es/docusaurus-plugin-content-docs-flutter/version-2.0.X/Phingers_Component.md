@@ -1,7 +1,14 @@
-# VideoId Component
+# Phingers Component
 
 ## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***VideoID Component***. Éste se encarga de realizar la grabación de un usuario identificándose, mostrando la cara y su documento de identidad.
+El Componente tratado en el documento actual recibe el nombre de ***Phingers Component***. Éste se encarga de realizar la captura de las huellas de los dedos (fingerprints) del usuario y la posterior extracción de las plantillas de las huellas posteriores. Sus principales funcionalidades son las siguientes:
+
+- Dos modos de funcionamiento: extracción de los cuatro dedos de la mano (excepto el pulgar), o extracción únicamente del pulgar.
+- Gestión interna de cámara.
+- Gestión de permisos.
+- Detección de vivacidad incorporada.
+- Asistente en los procesos de captura de las huellas.
+- Generación de las plantillas con las características de las huellas, imágenes y puntuaciones.
 
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
@@ -29,7 +36,7 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-videoid)
+- **\<%PLUGIN_PHINGERS_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-phingers)
 </div>
 
 ### 2.1. Instalación del plugin: Common
@@ -43,9 +50,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 - Acceda al **\<%APPLICATION_PATH%\>**, y en el fichero pubspec.yaml y añadir:
 
 ```
-fphi_sdkmobile_videoid:
+fphi_sdkmobile_phingers:
   hosted:
-    name: sdkvideoid
+    name: sdkphingers
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
   version: ^2.0.0
 ```
@@ -108,116 +115,181 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
+#### 2.3.2 Set Android SDK credentials
+
+For security and maintenance reasons, the new ***SDKMobile*** components
+are stored in private repositories requiring specific credentials. For
+that reason, those credentials must be added to the **build.gradle**
+file (inside the **repositories** section):
+
 
 ```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+maven {
+    name = "external"
+    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+    credentials {
+        username = System.getenv("USERNAME_ARTIFACTORY")
+        password =  System.getenv("TOKEN_ARTIFACTORY")
+    }
+}
+```
+
+<div class="warning">
+<span class="warning">:warning:</span>
+For the project to correctly retrieve the dependencies, the
+***credentials*** (**Username** and **Token**) must be configured
+correctly
+</div>
+
+
+#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
+Open the .zshrc & .bash_profile files and put the credentials provided by Facephi:
+
+```
+export USERNAME_ARTIFACTORY=username@facephi.es
+export TOKEN_ARTIFACTORY=token_provided_by_facephi
 ```
 
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_videoid_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de ***dart*** incluidos dentro del archivo ***fphi_sdkmobile_phingers_configuration.dart***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoID**:
+A continuación se muestra la clase *PhingersConfiguration*, que permite configurar el componente de **Phingers**:
 
 ```java
-class VideoIdConfiguration
+class PhingersConfiguration
 {
-  VideoMode mMode;
-  int mTime;
+  PhingersReticleOrientation mReticleOrientation;
+  bool mReturnFullFrameImage;
+  bool mReturnProcessedImage;
+  bool mReturnRawImage;
+  bool mUseFlash;
+  bool mUseLiveness;
   bool mShowTutorial;
-  String? mUrl;
-  String? mApiKey;
-  String? mTenantId;
+  bool mVibration;
+  int mExtractionTimeout;
   bool? mShowDiagnostic;
+  double? mThreshold;
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VideoIdConfiguration**:
+A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **PhingersConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_videoid/fphi_sdkmobile_videoid_configuration.dart.*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_voice/fphi_sdkmobile_phingers_configuration.dart.*** del componente.
 </div>
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 mTime
+### 3.0 reticleOrientation
 
-**type:** *number*
+**type:** *PhingersReticleOrientation*
 
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
-
-```
-mTime: 5000
-```
-
-### 3.2 mode
-
-**type:** *VideoMode*
-
-Este enumerado se define en la clase **VideoMode** en ***fphi_sdkmobile_videoid_mode.dart***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
+.
 
 ```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
+reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
 ```
 
-### 3.4 mShowTutorial
+### 3.1 returnFullFrameImage
 
 **type:** *boolean*
 
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
+.
 
 ```
-mShowTutorial: true;
+returnFullFrameImage: true,
 ```
 
-### 3.5 mUrl
-
-**type:** *string*
-
-Ruta al socket de video.
-
-```
-mUrl: url_provided_by_Facephi
-```
-
-### 3.6 mApiKey
-
-**type:** *string*
-
-ApiKey necesaria para la conexión con el socket de video.
-
-```
-mApiKey: "apiKey_provided_by_Facephi";
-```
-### 3.7 mTenantId
-
-**type:** *string*
-
-Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
-
-```
-mTenantId: "TenantId_provided_by_Facephi";
-```
-
-### 3.8 mShowDiagnostic
+### 3.2 returnProcessedImage
 
 **type:** *boolean*
 
-Indica si se desea mostrar un diagnostico en caso de falla.
+.
 
 ```
-mShowDiagnostic: false;
+returnProcessedImage: true;
+```
+
+### 3.3 returnRawImage
+
+**type:** *boolean*
+
+.
+
+```
+mReturnRawImage: true;
+```
+
+### 3.4 useFlash
+
+**type:** *boolean*
+
+.
+
+```
+useFlash: false;
+```
+
+### 3.5 useLiveness
+
+**type:** *boolean*
+
+.
+
+```
+useLiveness: false;
+```
+
+### 3.6 showTutorial
+
+**type:** *boolean*
+
+.
+
+```
+showTutorial: false;
+```
+
+### 3.7 vibration
+
+**type:** *boolean*
+
+.
+
+```
+vibration: false;
+```
+
+### 3.8 extractionTimeout
+
+**type:** *int*
+
+.
+
+```
+extractionTimeout: false;
+```
+
+### 3.9 showDiagnostic
+
+**type:** *boolean*
+
+.
+
+```
+showDiagnostic: false;
+```
+### 3.10 threshold
+
+**type:** *double*
+
+.
+
+```
+threshold: 0.8;
 ```
 ---
 
@@ -233,29 +305,37 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ```
-Future<Either<Exception, VideoIdResult>>
-  launchVideoIdWithConfiguration(VideoIdConfiguration configuration) async {
-  try
-  {
-    FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-    final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-    return Right(VideoIdResult.fromMap(resultJson));
+  Future<Either<Exception, PhingersResult>> launchPhingers() async {
+    return launchPhingersWithConfiguration(createStandardConfiguration());
   }
-  on Exception catch (e) {
-    return (Left(e));
-  }
-}
 
-/// Sample of standard plugin configuration
-VideoIdConfiguration createStandardConfiguration()
-{
-  VideoIdConfiguration configurationWidget;
-  configurationWidget = VideoIdConfiguration();
-  configurationWidget.mTime         = 5000;
-  configurationWidget.mMode         = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
-  configurationWidget.mShowTutorial = false;
-  return configurationWidget;
-}
+  Future<Either<Exception, PhingersResult>>
+    launchPhingersWithConfiguration(PhingersConfiguration configuration) async {
+    try
+    {
+      FphiSdkmobilePhingers phingers = FphiSdkmobilePhingers();
+      Map? resultJson = await phingers.startPhingersComponent(widgetConfigurationJSON: configuration);
+
+      return Right(PhingersResult.fromMap(resultJson));
+    } on Exception catch (e) {
+      return (Left(e));
+    }
+  }
+
+  /// Sample of standard plugin configuration 
+  PhingersConfiguration createStandardConfiguration() {
+    PhingersConfiguration configurationWidget;
+    configurationWidget = PhingersConfiguration();
+    configurationWidget.mReticleOrientation   = PhingersReticleOrientation.DT_LEFT; // LEFT, RIGHT or THUMB
+    configurationWidget.mReturnFullFrameImage = true;
+    configurationWidget.mReturnProcessedImage = true;
+    configurationWidget.mReturnRawImage       = true;
+    configurationWidget.mUseFlash             = true;
+    configurationWidget.mUseLiveness          = true;
+    configurationWidget.mExtractionTimeout    = 5000;
+    configurationWidget.mShowTutorial         = false;
+    return configurationWidget;
+  }
 ```
 
 ---
@@ -264,26 +344,27 @@ VideoIdConfiguration createStandardConfiguration()
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-FphiSdkmobileVideoid videoId = FphiSdkmobileVideoid();
-final Map resultJson = await videoId.startVideoIdComponent(widgetConfigurationJSON: configuration);
-return Right(VideoIdResult.fromMap(resultJson));
+FphiSdkmobilePhingers phingers = FphiSdkmobilePhingers();
+Map? resultJson = await phingers.startPhingersComponent(widgetConfigurationJSON: configuration);
+
+return Right(PhingersResult.fromMap(resultJson));
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
 ```
-class VideoIdResult
+class CaptureResult
 {
   final SdkFinishStatus finishStatus;
-  final String finishStatusDescription;
+  final String? finishStatusDescription;
   final String errorDiagnostic;
-  final String? errorMessage;
+  final String errorMessage;
   final String data;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VideoIdResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VoiceResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.0 finishStatus
@@ -317,3 +398,10 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 
 ### 5.3 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+
+### 5.4 fullFrameImage
+### 5.5 focusQuality;
+### 5.6 livenessConfidence;
+### 5.7 processedFingers;
+### 5.8 rawImages;
+### 5.9 wsq;

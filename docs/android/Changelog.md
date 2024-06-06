@@ -2,6 +2,37 @@
 
 ## Versions
 
+### 2.0.2
+
+- General
+
+  - Tutorial improvements
+  - UX/UI improvements
+  - Kotlin updated from 1.9.24 to 2.0.0 with K2 compiler
+  - Android Gradle Plugin updated from 8.3.2 to 8.4.1
+  - Minor dependencies update
+
+- SelphID
+
+  - New version 1.24.4
+
+- Tracking
+
+  - Added APIKEY connection
+  - Version 2 in events
+  - Adjustments of stepSucceed prior to assets
+  - Improvements in connection loss logic
+
+- NFC
+
+  - Improvements and fixes
+  - Corrected "Tag lost error"
+  - Improvements in reconnection
+  - Now you can choose whether you want to extract the image of the face and the signature.
+
+- VideoRecording
+  - Adjustments and improvements in stopping the service
+
 ### 2.0.1
 
 - General
@@ -27,9 +58,11 @@
   - Updated Timeout image
 
 - Phingers
+
   - Simplified ConfigurationData
 
 - Tokenizer
+
   - New core version 2.0.7
 
 - Verification
