@@ -2,6 +2,36 @@
 
 ## Versiones
 
+### 2.0.2
+
+- General
+
+  - Mejoras en los tutoriales
+  - Mejoras en UX/UI
+  - Kotlin Actualizado de 1.9.24 a 2.0.0 con K2 compiler
+  - Android Gradle Plugin Actualizado de 8.3.2 a 8.4.1
+  - Actualización de dependencias menores
+
+- SelphID
+
+  - Nueva versión 1.24.4
+
+- Tracking
+
+  - Añadida conexión por APIKEY
+  - Version 2 en los eventos
+  - Ajustes de stepSucceed previo a los assets
+  - Mejoras en la lógica de perdidas de conexión
+
+- NFC
+
+  - Mejoras y correcciones
+  - Corregido "Tag lost error"
+  - Mejoras en la reconexión
+
+- VideoRecording
+  - Ajustes y mejoras en la parada del Servicio
+
 ### 2.0.1
 
 - General
@@ -27,9 +57,11 @@
   - Imagen de Timeout actualizada
 
 - Phingers
+
   - Simplificado ConfigurationData
 
 - Tokenizer
+
   - Nueva versión de core 2.0.7
 
 - Verification
