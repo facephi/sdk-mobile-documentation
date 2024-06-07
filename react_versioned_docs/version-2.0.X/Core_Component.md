@@ -326,6 +326,12 @@ Optional parameter. Only visible if the *Tokenized* method is called. The plugin
 
 Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
 
+### 5.7 sessionId
+Returns the current session's identifier. Each time ***initSession*** method is executed, a new *sessionId* will be generated.
+
+### 5.8 operationId
+Returns the current operation's identifier. Each time ***initOperation*** method is executed, a new *operationId* will be generated.
+
 ---
 
 ## 6. Close Session

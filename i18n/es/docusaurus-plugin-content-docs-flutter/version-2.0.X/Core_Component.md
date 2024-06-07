@@ -226,31 +226,33 @@ class CoreResult {
   final String? errorMessage;
   final String? flow;
   final int timeoutStatus;
+  final String? operationId;
+  final String? sessionId;
   final String? tokenized;
   final String? data;
 }
 ```
 Los parámetros recibidos son los siguientes:
 
-### **5.1 finishStatus**
+### 5.1 finishStatus
 
 - **finishStatus**: Devuelve el diagnóstico global de la operación. Los valores posibles para el tipo de excepción son:
 
     - **1**: La operación ha finalizado satisfactoriamente.
     - **2**: Se ha producido un error, el cuál se indicará en el string errorDiagnostic y, opcionalmente, se mostrará un mensaje de información extra en la propiedad errorMessage.
 
-### **5.2 finishStatusDescription**
+### 5.2 finishStatusDescription
 
 Devuelve una descripción global de la operación. Parámetro opcional.
 
     - **STATUS_OK**: La operación ha finalizado satisfactoriamente.
     - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el parámetro de salida errorType y, opcionalmente, se mostrará un mensaje de información extra en la propiedad errorMessage.
 
-### **5.3 errorMessage**
+### 5.3 errorMessage
 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
-### **5.4 errorDiagnostic**
+### 5.4 errorDiagnostic
 
 Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Los valores que puede tener son los siguientes:
 
@@ -287,11 +289,17 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
   - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 
-### **5.5 tokenized**
+### 5.5 tokenized
 Parámetro opcional. Sólo se devuelve si se llama al método *Tokenized*. El plugin devolverá un valor de tipo ***string*** format. Más información en el **apartado 8.**
 
-### **5.6 data**: 
+### 5.6 data: 
 Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
+
+### 5.7 sessionId
+Devuelve el identificador de la sesión actual. Cada vez que se ejecute un ***initSession*** se generará un nuevo *sessionId*.
+
+### 5.8 operationId
+Devuelve el identificador de la operación actual. Cada vez que se ejecute un ***initOperation*** se generará un nuevo *operationId*.
 
 ---
 

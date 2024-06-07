@@ -505,7 +505,7 @@ export interface SelphiResult {
  
 <div class="note">
 <span class="note">:information_source:</span>
-The result will be returned via a Promise containing an object of class SelphiResult. Information on these fields has been elaborated on below.
+The result will be returned via a Promise containing an object of class ***SelphiResult***. Information on these fields has been elaborated on below.
 </div>
 
 
