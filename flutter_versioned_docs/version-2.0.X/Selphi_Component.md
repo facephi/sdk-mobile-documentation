@@ -543,11 +543,11 @@ The result will be returned via a Promise containing an object of class SelphiRe
 
 ### 5.1 finishStatusDescription
 
-- **STATUS_Ok**: The operation was successful.
-- **STATUS_Error**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
+- **STATUS_OK**: The operation was successful.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.2 errorDiagnostic
-Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). They are defined in the `SdkErrorType` class. The values ​​it can have are the following:
+Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
 
 - **NoError**: No error has occurred. The process can continue.
 

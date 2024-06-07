@@ -126,7 +126,7 @@ buildscript {
 ## 3. Configuración del componente
 El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***definitions.ts*** En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VoiceConfiguration*, que permite configurar el componente de **Phingers**:
+A continuación se muestra la clase *PhingersConfiguration*, que permite configurar el componente de **Phingers**:
 
 ``` java
 export interface PhingersConfiguration 
@@ -325,7 +325,7 @@ export interface PhingersResult {
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VoiceResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***PhingersResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.0 finishStatus
