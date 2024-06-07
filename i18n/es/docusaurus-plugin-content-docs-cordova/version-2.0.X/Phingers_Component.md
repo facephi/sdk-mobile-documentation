@@ -37,7 +37,7 @@ En esta sección se explicará paso a paso cómo integrar el componente actual e
 Para esta sección, se considerarán los siguiente valores:
 - **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VOICE_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-voice)
+- **\<%PLUGIN_PHINGERS_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-phingers)
 </div>
 
 ### 2.1. Instalación del plugin: Common
@@ -47,8 +47,8 @@ El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-[ionic] cordova plugin add @facephi/sdk-core-react-native
-[ionic] cordova plugin add @facephi/sdk-voice-react-native
+[ionic] cordova plugin add @facephi/sdk-core-cordova
+[ionic] cordova plugin add @facephi/sdk-phingers-cordova
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
@@ -122,7 +122,7 @@ buildscript {
 ## 3. Configuración del componente
 El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***SdkPhingersConfig.js***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VoiceConfiguration*, que permite configurar el componente de **Phingers**:
+A continuación se muestra la clase *SdkPhingersConfig*, que permite configurar el componente de **Phingers**:
 
 ```java
 SdkPhingersConfig = function () {
@@ -145,7 +145,7 @@ A continuación, se comentarán todas las propiedades que se pueden definir en e
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***sdk-voice/www/SdkPhingersConfig.js*** del componente.
+Toda la configuración se podrá encontrar en el archivo ***sdk-phingers/www/SdkPhingersConfig.js*** del componente.
 </div>
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
@@ -351,7 +351,7 @@ PhingersResult {
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkSelphidResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***PhingersResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.0 finishStatus

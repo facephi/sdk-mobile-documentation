@@ -484,13 +484,13 @@ The result will be returned via a Promise containing an object of class *SelphiF
 ### 5.1 finishStatus
 
 - **1**: The operation was successful.
-
-- **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
+- **2**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 
 ### 5.2 finishStatusDescription
 
- Returns the operation's global description. It is an optional value.
+- **STATUS_OK**: The operation was successful.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
  
 ### 5.3 errorMessage
@@ -502,39 +502,22 @@ Indicates an additional error message if necessary. It is an optional value.
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). They are defined in the `SdkErrorType` class. The values ​​it can have are the following:
 
 - **NoError**: No error has occurred. The process can continue.
-
 - **UnknownError**: Unhandled error. Possibly caused by a bug in the resource bundle.
-
 - **CameraPermissionDenied**: The exception that is thrown when the sdk does not have permission to access the camera.
-
 - **SettingsPermissionDenied**: The exception that is thrown when the component does not have permission to access system settings (*deprecated*).
-
 - **HardwareError**: Exception that occurs when there is a hardware problem with the device, usually caused by very few available resources.
-
 - **ExtractionLicenceError**: Exception that occurs when there has been a licencing problem on the server.
-
 - **UnexpectedCaptureError**: Exception that occurs during the capture of frames by the camera.
-
 - **ControlNotInitialisedError**: The component configurator has not been initialised.
-
 - **BadExtractorConfiguration**: Problem arose during component configuration.
-
 - **CancelByUser**: The exception that is thrown when the user stops the extraction manually.
-
 - **TimeOut**: Exception that is thrown when a maximum time elapses without successfully completing the extraction.
-
 - **InitProccessError**: Exception that is thrown when the sdk cannot process the captured images.
-
 - **NfcError**: The exception that is thrown when the sdk does not have permission to access the nfc.
-
 - **NetworkConnection**: The exception that is thrown when there are issues with the means the device uses to connect to the network.
-
 - **TokenError**: The exception that is thrown when an invalid token is passed as a parameter.
-
 - **InitSessionError**: The exception that is thrown when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
-
 - **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
-
 
 ### 5.5 templateRaw
 

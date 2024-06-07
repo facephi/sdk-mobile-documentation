@@ -56,7 +56,7 @@ Es importante verificar que la ruta al complemento esté correctamente definida 
 ```
 "dependencies": {
   "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-phingers-react-native": <% PLUGIN_VOICE_PATH %>
+  "@facephi/sdk-phingers-react-native": <% PLUGIN_PHINGERS_PATH %>
 }
 ```
 
@@ -372,7 +372,7 @@ export interface PhingersResult
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***VoiceResult***. A continuación se amplía información sobre esos campos.
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***PhingersResult***. A continuación se amplía información sobre esos campos.
 </div>
 
 ### 5.0 finishStatus
