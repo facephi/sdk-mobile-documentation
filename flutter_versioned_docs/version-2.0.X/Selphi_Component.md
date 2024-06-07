@@ -58,7 +58,7 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
 ```
 
-- It is important to verify that the path to the plugin is correctly defined in package.json:
+- Access to **\<%APPLICATION_PATH%\>** folder, and in the pubspec.yaml file add:
 
 ```
 fphi_sdkmobile_selphi:
@@ -94,7 +94,7 @@ source 'https://cdn.cocoapods.org/'
 To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
 
-#### 2.2.4 Possible issues
+#### 2.2.3 Possible issues
 If environment problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the correct versions), it is recommended to execute the following sequence of instructions after launching the plugin:
 
 Open the application's ios folder at a terminal.
