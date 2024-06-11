@@ -679,15 +679,14 @@ The result will be returned via a Promise containing an object of class
 -   **SdkFinishStatus.Ok**: The operation was successful.
 
 -   **SdkFinishStatus.Error**: An error has occurred, which will be
-    indicated in the \`errorDiagnostic\` enumerated and, optionally, an
+    indicated in the \`errorDiagnostic\` string and, optionally, an
     extra information message will be displayed in the \`errorMessage\`
     property.
 
 ### 5.2 errorType
 
 Returns the type of error that occurred (if there was one, which is
-indicated in the *finishStatus* parameter with the value *Error*). They
-are defined in the *SdkErrorType* class. It may have the following
+indicated in the *finishStatus* parameter with the value *Error*). It may have the following
 values:
 
 -   **NoError:** No error has occurred. The process can continue.

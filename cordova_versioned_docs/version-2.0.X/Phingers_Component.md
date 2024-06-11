@@ -313,17 +313,6 @@ function callPhingers()
         return;
     }
 
-    console.log('callPhingers started...');
-    $("#messageResult").html("Starting proccess...").addClass("blink").css("color", "#000000").css("text-align","center").show();
-
-    if (isStartingSDK) {
-        console.log("A process is running...");
-        return false;
-    }
-    if (!isStartingSDK) {
-        isStartingSDK = true;
-    }
-
     phingersResponse    = null;
     var config          = new SdkPhingersConfig();
     // SdkPhingersCaptureOrientation capture orientation.
@@ -342,8 +331,6 @@ function callPhingers()
     .finally (() =>
     {
         console.log("callPhingers finished...");
-        $("#messageResult").html("").removeClass("blink").css("color", "#ff0000").css("text-align", "center").show();
-        isStartingSDK = false
     });
 }
 ```
@@ -391,12 +378,12 @@ The result will be returned through a Promise that contains an object of the cla
 ### 5.0 finishStatus
 
 - **1**: The operation was successful.
-- **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
+- **2**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.1 finishStatusDescription
 
 - **STATUS_OK**: The operation was successful.
-- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.2 errorType
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:

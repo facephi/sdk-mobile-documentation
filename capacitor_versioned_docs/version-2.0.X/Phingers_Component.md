@@ -366,7 +366,6 @@ The result will be returned through a Promise that contains an object of the cla
 - **1**: The operation was successful.
 - **2**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-
 ### 5.2 finishStatusDescription
 - **STATUS_OK**: The operation was successful.
 - **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.

@@ -402,12 +402,12 @@ The result will be returned via a Promise containing an object of class SelphiRe
 ### 5.0 finishStatus
 
 - **1**: The operation was successful.
-- **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
+- **2**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.1 finishStatusDescription
 
 - **STATUS_OK**: The operation was successful.
-- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.2 errorType
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
