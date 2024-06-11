@@ -1,58 +1,58 @@
 # Voice Component
 
-## 1. Introducción
-El Componente tratado en el documento actual recibe el nombre de ***Voice Component***. Éste se encarga de realizar la captura de voz del usuario y la posterior extracción de las plantillas correspondientes. Sus principales funcionalidades son las siguientes:
+## 1. Introduction
+The Component discussed in the current document is called ***Voice Component***. This is responsible for capturing the user's voice and subsequently extracting the corresponding templates. Its main functionalities are the following:
 
-- Entrada de cierto número de frases para posteriormente leer cada una en un paso.
-- Gestión interna del micrófono.
-- Gestión de permisos.
-- Análisis de los silencios.
-- Análisis del progreso.
-- Asistente en los procesos de captura.
-- Generación de las plantillas con las características de la voz y puntuaciones.
+- Entry of a certain number of sentences to later read each one in one step.
+- Internal microphone management.
+- Permit management.
+- Analysis of silences.
+- Analysis of progress.
+- Assistant in the capture processes.
+- Generation of templates with voice characteristics and scores.
 
-### 1.1 Requisitos mínimos
+### 1.1 Minimum requirements
 
-La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
+The minimum native version (Android and iOS) of the SDK are as follows:
 
-- Versión mínima Android: 24 - JDK 11
-- Versión mínima iOS: 13
+- Minimum Android version: 24 - JDK 11
+- Minimum iOS version: 13
 
-En cuanto a la arquitectura del dispositivo móvil:
+Regarding the architecture of the mobile device:
 
-armeabi-v7, x86, arm64 y x64
+armeabi-v7, x86, arm64 and x64
 
-### 1.2 Versión del plugin
-La versión del plugin actual se puede consultar de la siguiente forma:
+### 1.2 Plugin version
+The current plugin version can be checked as follows:
 
-Buscamos el archivo ***package.json*** & ***config.xml*** en la raíz del plugin.
+We look for the ***package.json*** & ***config.xml*** file in the root of the plugin.
 
-En el ***KEY/TAG*** version se indica la versión.
+The version is indicated in the ***KEY/TAG*** version.
 
-## 2. Integración del componente 
-Antes de integrar este componente **se recomienda** leer la documentación relativa a **Core Component** y seguir las instrucciones indicadas en dicho documento.
+## 2. Component integration 
+Before integrating this component **it is recommended** to read the documentation related to **Core Component** and follow the instructions indicated in said document.
 
 <div class="note">
 <span class="note">:information_source:</span>
-En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente. 
-Para esta sección, se considerarán los siguiente valores:
-- **\<%APPLICATION_PATH%\>** - Path a la raíz de la aplicación (ejemplo: /folder/example)
-- **\<%PLUGIN_CORE_PATH%\>** - Path a la raíz del plugin core, que es obligatorio (ejemplo: /folder/sdk-core)
-- **\<%PLUGIN_VOICE_PATH%\>** - Path a la raíz del plugin actual (ejemplo: /folder/sdk-voice)
+This section will explain step by step how to integrate the current component into an existing project. 
+For this section, the following values ​​will be considered:
+- **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
+- **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the core plugin, which is required (example: /folder/sdk-core)
+- **\<%PLUGIN_VOICE_PATH%\>** - Path to the root of the current plugin (example: /folder/sdk-voice)
 </div>
 
-### 2.1. Instalación del plugin: Common
-El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
+### 2.1. Plugin installation: Common
+The plugin allows execution on **Android and iOS** platforms. This section explains common steps. To install the plugin you must follow the following steps:
 
-- Asegurarse de que React Native esté instalado.
-- Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
+- Make sure **Cordova** is installed.
+- Access **\<%APPLICATION_PATH%\>** in a terminal and execute:
 
 ```
-[ionic] cordova plugin add @facephi/sdk-core-react-native
-[ionic] cordova plugin add @facephi/sdk-voice-react-native
+[ionic] cordova plugin add @facephi/sdk-core-cordova
+[ionic] cordova plugin add @facephi/sdk-voice-cordova
 ```
 
-Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
+It is important to verify that the path to the plugin is correctly defined in package.json:
 
 ```
 "dependencies": {
@@ -61,22 +61,22 @@ Es importante verificar que la ruta al complemento esté correctamente definida 
 }
 ```
 
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
-Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
+After executing the above steps, you can launch the application with the sdk/component installed.
+From different IDE's, projects generated in the Android and iOS folders can be opened, compiled and debugged using **Android Studio** and **XCode** respectively.
 
-## 2.2 Instalación plugin: iOS
-### 2.2.1 Configuración del proyecto
-Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
+## 2.2 Plugin installation: iOS
+### 2.2.1 Project configuration
+For the iOS version, when adding our plugin to the final application, the following points must be taken into account beforehand:
 
-- **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
+- **Add camera permissions**: To use the component, it is necessary to enable the camera permission in the ***info.plist*** file of the application (included within the project in the *** folder ios***). You must edit the file with a text editor and add the following *key/value* pair:
 
 ```
 <key>NSCameraUsageDescription</key>
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
-### 2.2.2 Actualizar el Podfile
-En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
+### 2.2.2 Update the Podfile
+In the project podfile it will be necessary to add the information of the private repository (see section 2.1). To do this, the following lines must be added to the beginning of the file:
 
 ```
 platform :ios, '13.0' //MIN VERSION
@@ -86,29 +86,29 @@ source 'https://cdn.cocoapods.org/'
 
 <div class="note">
 <span class="note">:information_source:</span>
-Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de *Componente Core*.
+To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following *Core Component* document.
 </div>
 
-### 2.2.4 Posibles incidencias
-Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
+### 2.2.4 Possible incidents
+If environmental problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the appropriate versions), it is recommended to run the following sequence instructions after launching the plugin:
 
-- Abrir la carpeta **ios** de la aplicación en un terminal.
-- Ejecutar el siguiente comando:
+- Open the **ios** folder of the application in a terminal.
+- Run the following command:
 
 ```
 pod deintegrate
 ```
 
-- Eliminar el ***Podfile.lock***
-- Ejecutar el siguiente comando (o abrir el proyecto con Xcode y ejecutarlo):
+- Remove ***Podfile.lock***
+- Run the following command (or open the project with Xcode and run it):
 
 ```
 pod install --repo-update
 ```
 
-## 2.3 Instalación plugin: Android
-### 2.3.1 Establecer la versión de Android SDK
-En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es **24**, por lo que si la aplicación tiene un *SDK mínimo* definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero ***build.gradle*** de la aplicación (ubicado en la carpeta ***android***) y modifica el siguiente parámetro:
+## 2.3 Plugin installation: Android
+### 2.3.1 Set Android SDK version
+For Android, the minimum SDK version required by our native libraries is **24**, so if your app has a *minimum SDK* defined lower than this, it will need to be modified to avoid a build error. To do this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
 
 ```
 buildscript {
@@ -118,22 +118,12 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
 ---
 
-## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***SdkVoiceConfig.js***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+## 3. Component configuration
+The current component contains a series of Typescript methods and interfaces included within the ***SdkVoiceConfig.js*** file. In this file you can find the API necessary for communication between the application and the native functionality of the component. The purpose of each of those listed and the other properties that affect the operation of the component are explained below.
 
-A continuación se muestra la clase *VoiceConfiguration*, que permite configurar el componente de **Voice**:
+Below is the *VoiceConfiguration* class, which allows you to configure the **Voice** component:
 
 ```java
 SdkVoiceConfig = function () 
@@ -146,20 +136,20 @@ SdkVoiceConfig = function ()
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **VoiceConfiguration**:
+Next, all the properties that can be defined in the **VoiceConfiguration** object will be discussed:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***sdk-voice/www/SdkVoiceConfig.js*** del componente.
+All configuration can be found in the component's ***sdk-voice/www/SdkVoiceConfig.js*** file.
 </div>
 
-A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
+When calling the component, there are a series of parameters that must be included. They will be briefly discussed below.
 
 ### 3.1 phrases
 
 **type:** *string*
 
-Frases que se tienen que decir en la app para validar la identidad.
+Phrases that have to be said in the app to validate identity.
 
 ```
 phrases: 'hola mundo|hola voice component|hola Facephi',
@@ -169,7 +159,7 @@ phrases: 'hola mundo|hola voice component|hola Facephi',
 
 **type:** *number*
 
-Se setea el timeout del plugin.
+The plugin timeout is set.
 
 ```
 timeout: 10000;
@@ -179,7 +169,7 @@ timeout: 10000;
 
 **type:** *boolean*
 
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
+Indicates whether you want to show the complete tutorial of the process or just the simplified version.
 
 ```
 showTutorial: true;
@@ -189,23 +179,22 @@ showTutorial: true;
 
 **type:** *boolean*
 
-Indica si se desea o no habilitar la vibración.
-
+Indicates whether or not you want to enable vibration.
 ```
 vibration: false;
 ```
 ---
 
-## 4. Uso del componente
+## 4. Use of the component
 
-A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
+Below will be shown how to execute the functionality of the current component.
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Se recuerda que para lanzar un componente determinado previamente habrá que inicializar el SDK con su respectiva licencia, y después iniciar una nueva operación. Para más información consulte la documentación del Componente Core.
+Remember that to launch a previously determined component you will have to initialize the SDK with its respective license, and then start a new operation. For more information consult the Core Component documentation.
 </div>
 
-Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
+Once the component is configured, to launch it the following code must be executed:
 
 ``` java
 function callVoice()
@@ -213,17 +202,6 @@ function callVoice()
     if (typeof facephi.plugins.sdkvoice === "undefined") {
         showErrorUI("Cordova Voice Sdk is not installed...");
         return;
-    }
-
-    console.log('callVoice started...');
-    $("#messageResult").html("Starting proccess...").addClass("blink").css("color", "#000000").css("text-align","center").show();
-
-    if (isStartingSDK) {
-        console.log("A process is running...");
-        return false;
-    }
-    if (!isStartingSDK) {
-        isStartingSDK = true;
     }
 
     var config = new SdkVoiceConfig();
@@ -239,18 +217,16 @@ function callVoice()
     )
     .finally (() =>
     {
-        isStartingSDK = false;
         console.log("callVoice finished...");
-        $("#messageResult").html("").removeClass("blink").css("color", "#ff0000").css("text-align", "center").show();
     });
 }
 ```
 
 ---
 
-## 5. Retorno de resultado
+## 5. Return result
 
-Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
+As shown in the above example, the result is returned in the form of a **JSON** object through ***Promises***, whether it is a successful operation or an error:
 ```
 facephi.plugins.sdkvoice.launchVoice(config)
 .then(
@@ -259,13 +235,11 @@ facephi.plugins.sdkvoice.launchVoice(config)
 )
 .finally (() =>
 {
-    isStartingSDK = false;
     console.log("callVoice finished...");
-    $("#messageResult").html("").removeClass("blink").css("color", "#ff0000").css("text-align", "center").show();
 });
 ```
 
-Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
+Regardless of whether the result is correct/wrong, the result will have the following format:
 
 ```
 VoiceResult {
@@ -277,43 +251,40 @@ VoiceResult {
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SdkSelphidResult***. A continuación se amplía información sobre esos campos.
+The result will be returned through a Promise that contains an object of the class ***SdkVoiceResult***. Below is more information about these fields.
 </div>
 
 ### 5.1 finishStatus
 
-Devuelve el diagnóstico global de la operación.
-
-- **1**: La operación fue exitosa.
-- **2**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
-
+- **1**: The operation was successful.
+- **2**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.2 finishStatusDescription
 
-Devuelve la descripción de finishStatus.
-- **Status_Ok**: La operación fue exitosa.
-- **Status_Error**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+- **STATUS_OK**: The operation was successful.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
+ 
+### 5.3 errorMessage
+  
+Indicates an additional error message if necessary. It is an optional value.
 
-### 5.3 errorType
- Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
+### 5.4 errorType
+Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
 
-- **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
-- **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
-- **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
-- **SettingsPermissionDenied**: Excepción que se produce cuando el componente no tiene permiso de acceso a la configuración del sistema (*deprecated*).
-- **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
-- **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
-- **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
-- **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
-- **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
-- **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
-- **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
-- **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
-- **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
-- **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
-- **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
-- **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
-
-### 5.4 errorMessage: 
-Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+- **NoError**: No error has occurred. The process can continue.
+- **UnknownError**: Unhandled error. Possibly caused by a bug in the resource bundle.
+- **CameraPermissionDenied**: The exception that is thrown when the sdk does not have permission to access the camera.
+- **SettingsPermissionDenied**: The exception that is thrown when the component does not have permission to access system settings (*deprecated*).
+- **HardwareError**: Exception that occurs when there is a hardware problem with the device, usually caused by very few available resources.
+- **ExtractionLicenceError**: Exception that occurs when there has been a licencing problem on the server.
+- **UnexpectedCaptureError**: Exception that occurs during the capture of frames by the camera.
+- **ControlNotInitialisedError**: The component configurator has not been initialised.
+- **BadExtractorConfiguration**: Problem arose during component configuration.
+- **CancelByUser**: The exception that is thrown when the user stops the extraction manually.
+- **TimeOut**: Exception that is thrown when a maximum time elapses without successfully completing the extraction.
+- **InitProccessError**: Exception that is thrown when the sdk cannot process the captured images.
+- **NfcError**: The exception that is thrown when the sdk does not have permission to access the nfc.
+- **NetworkConnection**: The exception that is thrown when there are issues with the means the device uses to connect to the network.
+- **TokenError**: The exception that is thrown when an invalid token is passed as a parameter.
+- **InitSessionError**: The exception that is thrown when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
+- **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.

@@ -352,13 +352,18 @@ return Right(PhingersResult.fromMap(resultJson));
 Regardless of whether the result is correct/wrong, the result will have the following format:
 
 ```
-class CaptureResult
+class PhingersResult
 {
   final SdkFinishStatus finishStatus;
-  final String? finishStatusDescription;
+  final String finishStatusDescription;
   final String errorDiagnostic;
-  final String errorMessage;
-  final String data;
+  final String? errorMessage;
+  final String? fullFrameImage;
+  final dynamic focusQuality;
+  final dynamic livenessConfidence;
+  final dynamic processedFingers;
+  final dynamic rawImages;
+  final dynamic wsq;
 }
 ```
 <div class="note">

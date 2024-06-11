@@ -480,7 +480,6 @@ export interface SelphiFaceResult {
 The result will be returned via a Promise containing an object of class *SelphiFaceResult*. Information on these fields has been elaborated on below.
 </div>
 
-
 ### 5.1 finishStatus
 
 - **1**: The operation was successful.
