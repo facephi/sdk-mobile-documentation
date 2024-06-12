@@ -58,7 +58,7 @@ completo antes de la instalación de los componentes de la
 ```
 - Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```
-	pod 'VideoIdController', '~> 2.0.0'
+	pod 'FPHISDKVideoIDComponent', '~> 2.0.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
