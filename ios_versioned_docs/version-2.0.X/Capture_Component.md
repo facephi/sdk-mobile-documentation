@@ -8,9 +8,9 @@ integration in a Mobile application in a simple and fully scalable way.
 scalable. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project.
 
 For more information on the base configuration, go to the section on
-<a href=‘Mobile_SDK’
-data-linked-resource-id=‘2605285492’ data-linked-resource-version=‘11’
-data-linked-resource-type=‘page’>Mobile SDK</a>.
+<a href='Mobile_SDK'
+data-linked-resource-id='2605285492' data-linked-resource-version='11'
+data-linked-resource-type='page'>Mobile SDK</a>.
 
 Translated with DeepL.com (free version)
 
@@ -30,7 +30,7 @@ Minimum iOS version: **14**
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Before integrating this component, it is recommended to read the <a href="ES_Mobile_SDK" documentation
+Before integrating this component, it is recommended to read the <a href="Mobile_SDK" documentation
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a> and follow the instructions indicated in said document.
 </div>
