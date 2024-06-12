@@ -497,5 +497,3 @@ The image of the fingeprint obtained during the capture.
 ### 5.10 signatureImage
 
 The image of the signature obtained during the capture.
-
-### 5.11 signatureImage

@@ -183,7 +183,7 @@ Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_voice
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.0 reticleOrientation
+### 3.1 reticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
@@ -193,7 +193,7 @@ A la hora de realizar la llamada al widget existe una serie de parámetros que s
 reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
 ```
 
-### 3.1 returnFullFrameImage
+### 3.2 returnFullFrameImage
 
 **type:** *boolean*
 
@@ -203,7 +203,7 @@ reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
 returnFullFrameImage: true,
 ```
 
-### 3.2 returnProcessedImage
+### 3.3 returnProcessedImage
 
 **type:** *boolean*
 
@@ -213,7 +213,7 @@ returnFullFrameImage: true,
 returnProcessedImage: true;
 ```
 
-### 3.3 returnRawImage
+### 3.4 returnRawImage
 
 **type:** *boolean*
 
@@ -223,7 +223,7 @@ returnProcessedImage: true;
 mReturnRawImage: true;
 ```
 
-### 3.4 useFlash
+### 3.5 useFlash
 
 **type:** *boolean*
 
@@ -233,7 +233,7 @@ mReturnRawImage: true;
 useFlash: false;
 ```
 
-### 3.5 useLiveness
+### 3.6 useLiveness
 
 **type:** *boolean*
 
@@ -243,7 +243,7 @@ useFlash: false;
 useLiveness: false;
 ```
 
-### 3.6 showTutorial
+### 3.7 showTutorial
 
 **type:** *boolean*
 
@@ -253,7 +253,7 @@ useLiveness: false;
 showTutorial: false;
 ```
 
-### 3.7 vibration
+### 3.8 vibration
 
 **type:** *boolean*
 
@@ -263,7 +263,7 @@ showTutorial: false;
 vibration: false;
 ```
 
-### 3.8 extractionTimeout
+### 3.9 extractionTimeout
 
 **type:** *int*
 

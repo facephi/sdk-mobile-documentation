@@ -466,20 +466,20 @@ The result will be returned via a Promise containing an object of class ***NfcRe
 
  Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
 
-- NfcError.ACTIVITY_RESULT_ERROR
-- NfcError.CANCEL_BY_USER
-- NfcError.INITIALIZATION_ERROR
-- NfcError.NFC_ERROR
-- NfcError.NFC_ERROR_DATA
-- NfcError.NFC_ERROR_DISABLED
-- NfcError.NFC_ERROR_ILLEGAL_ARGUMENT
-- NfcError.NFC_ERROR_IO
-- NfcError.NFC_ERROR_NOT_SUPPORTED
-- NfcError.NFC_ERROR_READING
-- NfcError.NFC_ERROR_TAG_LOST
-- NfcError.NO_DATA_ERROR
-- NfcError.TIMEOUT
-- NfcError.LAST_COMMAND_EXPECTED
+- ACTIVITY_RESULT_ERROR
+- CANCEL_BY_USER
+- INITIALIZATION_ERROR
+- NFC_ERROR
+- NFC_ERROR_DATA
+- NFC_ERROR_DISABLED
+- NFC_ERROR_ILLEGAL_ARGUMENT
+- NFC_ERROR_IO
+- NFC_ERROR_NOT_SUPPORTED
+- NFC_ERROR_READING
+- NFC_ERROR_TAG_LOST
+- NO_DATA_ERROR
+- TIMEOUT
+- LAST_COMMAND_EXPECTED
 
 ### 5.4 errorMessage: 
 
