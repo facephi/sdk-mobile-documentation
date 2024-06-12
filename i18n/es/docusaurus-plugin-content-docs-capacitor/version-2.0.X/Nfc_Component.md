@@ -172,15 +172,14 @@ A continuación se muestra la clase *NfcConfiguration*, que permite configurar e
 ``` java
 export interface NfcConfiguration {
     docNumber: string;
-    birthDay: string;
-    expirationDay: string;
+    birthDate: string;
+    expirationDate: string;
     extractionTimeout?: number;
-    issuer?: string;
-    docType?: NfcDocumentType;
     showTutorial?: boolean;
     vibrationEnabled?: boolean;
     skipPACE?: boolean;
     debug?: boolean;
+    showDiagnostic?: boolean;
 }
 ```
 
@@ -348,18 +347,21 @@ return SdkNfc.startNfc(this.getNFCConfiguration());
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
-``` java
-export interface NfcResult {
-    finishStatus: number;
-    finishStatusDescription?: string;
-    errorType: string;
-    errorMessage?: string;
-    nfcDocumentInformation?: any;
-    nfcPersonalInformation?: any;
-    nfcValidations?: any;
-    facialImage?: string;
-    fingerprintImage?: string;
-    signatureImage?: string;
+```java
+export interface NfcResult 
+{
+  finishStatus: number;
+  finishStatusDescription?: string;
+  errorType: string;
+  errorMessage?: string;
+  nfcDocumentInformation?: any;
+  nfcPersonalInformation?: any;
+  nfcValidations?: any;
+  nfcRawData?: any;
+  nfcSecurityData?: any;
+  facialImage?: string;
+  fingerprintImage?: string;
+  signatureImage?: string;
 }
 ```
 <div class="note">

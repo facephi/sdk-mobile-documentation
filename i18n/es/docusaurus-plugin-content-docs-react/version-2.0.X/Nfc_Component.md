@@ -78,9 +78,6 @@ Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS
 ### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-- **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, **el BITCODE debe estar desactivado**. 
-Dentro del XCODE simplemente accediendo a *Build from Settings*, en la sección *Build Options*, deberás indicar el parámetro Habilitar Bitcode como No.
-
 - **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
 
 ```
@@ -100,15 +97,9 @@ Añadir ISO7816 application identifiers for NFC Tag Reader Session: Para utiliza
     <string>00000000000000</string>
 </array>
 ```
-- **Añadir el Capability Near field Communication Tag Reading**
+- **Añadir el Capability Near field Communication Tag Reading**:
 
-Open image-20230214-141106.png
-image-20230214-141106.png
-
-- **Añadir el Entitlements Near Field Communication Tag Reader Session Formats**:
-
-Open image-20230214-141753.png
-image-20230214-141753.png
+Es necesario añadir en el apartado **Signing & Capabilities** del *target* la opción ***Near Field Communication Tag Reading***.
 
 ### 2.2.2 Actualizar el Podfile
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
@@ -178,9 +169,8 @@ A continuación se muestra la clase *NfcConfiguration*, que permite configurar e
 ```java
 export interface NfcConfiguration {
   docNumber: string;
-  birthDay: string;
-  issuer?: string;
-  expirationDay: string;
+  birthDate: string;
+  expirationDate: string;
   extractionTimeout?: number;
   docType?: NfcDocumentType;
   showTutorial?: boolean;
@@ -204,82 +194,79 @@ A la hora de realizar la llamada al component existe una serie de parámetros qu
 
 **type:** *string*
 
-Número de documento que se pretende scanear.
+Indica el número de documento o número de soporte dependiendo del documento a realizar la lectura.
+
+Éste campo es obligatorio.
 
 ```
 docNumber: 2115000
 ```
 
-### 3.2 birthDay
+### 3.2 birthDate
 
 **type:** *string*
 
-Fecha de nacimiento que figura en el documento que se pretende scanear.
+Indica la fecha de nacimiento que aparece en el documento ("dd/MM/yyyy").
+
+Éste campo es obligatorio.
 
 ```
-birthDay: dd/mm/yyyy;
+birthDate: dd/mm/yyyy;
 ```
 
-### 3.3 expirationDay
+### 3.3 expirationDate
 
 **type:** *number*
 
-Fecha de expiración que figura en el documento que se pretende scanear.
+Indica la fecha de expiración que aparece en el documento ("dd/MM/yyyy").
+
+Éste campo es obligatorio.
 
 ```
-expirationDay: dd/mm/yyyy;
+expirationDate: dd/mm/yyyy;
 ```
 
 ### 3.4 extractionTimeout
 
 **type:** *number*
 
-Tiempo de espera en el que el plugin deja de scanear de manera automática en caso de no obtener resultados.
+Establece el tiempo máximo que se puede realizar la lectura.
 
 ```
 extractionTimeout: 5000;
 ```
 
-### 3.5 issuer
-
-**type:** *string*
-
-Código del país que se desea scanear.
-
-```
-issuer: 
-```
-
-### 3.6 docType
+### 3.5 docType
 
 **type:** *NfcDocumentType*
 
-Tipo de documento que se pretende scanear.
+Tipo de documento que se pretende escanear.
 
 ```
-docType: ;
+docType: NfcDocumentType;
 ```
-### 3.7 showTutorial
+### 3.6 showTutorial
 
 **type:** *boolean*
 
-Habilita o no que se muestre un tutorial previa a la acción de lectura del documento.
+Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.
+
 
 ```
-showTutorial: ;
+showTutorial: true;
 ```
 
-### 3.8 showDiagnostic
+### 3.7 showDiagnostic
 
 **type:** *boolean*
 
-Indica si se desea mostrar un diagnostico en caso de falla.
+Mostrar pantallas de diagnóstico al final del proceso.
 
 ```
 showDiagnostic: false;
 ```
 
-### 3.9 vibrationEnabled
+### 3.8 vibrationEnabled
 
 **type:** *boolean*
 
@@ -289,17 +276,17 @@ Indica si se desea o no habilitar la vibración.
 vibrationEnabled: false;
 ```
 
-### 3.10 skipPACE
+### 3.9 skipPACE
 
 **type:** *boolean*
 
-.
+Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura con información más simple y rápida que permite la lectura de más variedad de documentos.
 
 ```
 skipPACE: false;
 ```
 
-### 3.11 debug
+### 3.10 debug
 
 **type:** *boolean*
 
@@ -316,7 +303,7 @@ A continuación se mostrará la manera de ejecutar la funcionalidad del componen
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Se recuerda que para lanzar un componente determinado previamente habrá que inicializar el SDK con su respectiva licencia, y después iniciar una nueva operación. Para más información consulte la documentación del Componente Core.
+Se recuerda que para lanzar un componente determinado previamente habrá que inicializar el SDK con su respectiva licencia, y después iniciar una nueva operación. Para más información consulte la documentación del *Componente Core.*
 </div>
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
@@ -421,29 +408,91 @@ Devuelve el diagnóstico global de la operación.
 ### 5.3 errorType
  Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
 
-- **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
-- **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
-- **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
-- **SettingsPermissionDenied**: Excepción que se produce cuando el componente no tiene permiso de acceso a la configuración del sistema (*deprecated*).
-- **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
-- **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
-- **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
-- **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
-- **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
-- **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
-- **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
-- **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
-- **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
-- **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
-- **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
-- **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
+```
+    ACTIVITY_RESULT_ERROR
+    CANCEL_BY_USER
+    INITIALIZATION_ERROR
+    NFC_ERROR
+    NFC_ERROR_DATA
+    NFC_ERROR_DISABLED
+    NFC_ERROR_ILLEGAL_ARGUMENT
+    NFC_ERROR_IO
+    NFC_ERROR_NOT_SUPPORTED
+    NFC_ERROR_READING
+    NFC_ERROR_TAG_LOST
+    NO_DATA_ERROR
+    TIMEOUT
+    LAST_COMMAND_EXPECTED
+```
 
 ### 5.4 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+
 ### 5.5 nfcDocumentInformation
+
+Información obtenida del documento ordenada por:
+
+- documentNumber
+
+- expirationDate
+
+- issuer
+
+- mrzString
+
+- type
+
+
 ### 5.6 nfcPersonalInformation
+
+Información obtenida del documento ordenada por:
+
+- address
+
+- birthdate
+
+- city
+
+- gender
+
+- name
+
+- nationality
+
+- personalNumber
+
+- placeOfBirth
+
+- surname
+
+
 ### 5.7 nfcValidations
+
+Información de las validaciones del documento ordenada por:
+
+- accessType
+
+- activeAuthenticationSupported
+
+- activeAuthenticationValidation
+
+- chipAuthenticationValidation
+
+- dataGroupsHashesValidation
+
+- documentSigningValidation
+
+- issuerSigningValidation
+
 ### 5.8 facialImage
+
+Información de la imagen de la cara obtenida del documento.
+
+
 ### 5.9 fingerprintImage
+
+Información de la imagen de la huella dactilar obtenida del documento.
+
 ### 5.10 signatureImage
+
+Información de la imagen de la firma obtenida del documento.

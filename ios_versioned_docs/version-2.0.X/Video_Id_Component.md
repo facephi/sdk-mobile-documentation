@@ -197,11 +197,11 @@ In the configuration data (VideoIDConfigurationData) you can also modify:
 
 - **mode**: Mode that will be applied for recording. The possible VideoIdMode values will be:
 
-- ONLY_FACE: You only have to show your face during the process.
+  - ONLY_FACE: You only have to show your face during the process.
 
-- FACE_DOCUMENT_FRONT: You have to show the face and front of the document.
+  - FACE_DOCUMENT_FRONT: You have to show the face and front of the document.
 
-- FACE_DOCUMENT_FRONT_BACK: You have to show the face, front and back of the document.
+  - FACE_DOCUMENT_FRONT_BACK: You have to show the face, front and back of the document.
 
 - **showCompletedTutorial**: Indicates whether you want to show the complete tutorial of the process or only the simplified version.
 
