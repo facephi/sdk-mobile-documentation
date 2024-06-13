@@ -11,8 +11,9 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
+Para más información sobre la configuración base, vaya a la sección de
+<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a>.
 
 ---
@@ -22,135 +23,167 @@ data-linked-resource-type="page">Mobile SDK</a>.
 El _Componente_ tratado en el documento actual recibe el nombre de
 **_Capture Component_**. Éste se encarga de realizar la captura de facturas y la captura y generación de QRs.
 
-### 1.1 Requisitos mínimos
+## 1.1 Requisitos mínimos
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
-Versión mínima de iOS: **13**
-
+Versión mínima de iOS: **14**
 ---
 
 ## 2. Integración del componente
-
-Antes de integrar este componente se recomienda leer la documentación
-relativa a: 
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
+<div class="warning">
+<span class="warning">:warning:</span>
+Antes de integrar este componente se recomienda leer la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho documento.
-
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
-
+<div class="warning">
+<span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
 instalar el componente en un proyecto que contenga una versión antigua
 de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
-
+</div>
 #### Cocoapods
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-
 ```
-  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.0.0'
 ```
-- Para instalar el componente de capture deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+- Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```
-  pod 'FPHISDKCaptureComponent', '~> 1.5.0'
+	pod 'FPHISDKCaptureComponent', '~> 2.0.4'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
-
 ![Image](/iOS/fix_ldClassic.png)
 
-### 2.2 Permisos y configuraciones
-En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero info.plist
+## 2.2 Permisos y configuraciones
+En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **info.plist**
 ```
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
-
 ---
 
 ## 3. Iniciar nueva operación
 
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
+Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+<div class="note">
+<span class="note">:information_source:</span>
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del
-componente**.
-
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste
-este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste este proceso.
+</div>
 
 ---
 
 ## 4. Controladores disponibles
 
-| **Controlador**            | **Descripción**                                    |
-| -------------------------- | -------------------------------------------------- |
-| InvoiceReaderController  | Controlador para la captura de facturas      |
-| QrReaderController | Controlador para la captura de QRs |
-| QrGeneratorController | Controlador para la generación de QRs |
+| **Controlador**           | **Descripción**                         |
+| ------------------------- | --------------------------------------- |
+| InvoiceReaderController   | Controlador para la captura de facturas |
+| QrReaderController        | Controlador para la captura de QRs      |
+| QrGeneratorController     | Controlador para la generación de QRs   |
 
 ---
 
 ## 5. Configuración del componente
 
-Para configurar el componente actual, una vez inicializado, se deberá
-crear un objeto _CaptureConfigurationData_ y pasarlo como parámetro al SDKController durante el lanzamiento del componente para capturas.
+Los tres controladores tienen funcionalidades independientes por lo que sus configuraciones también lo son:
 
-_QrGeneratorConfiguration_ y pasarlo como parámetro al SDKController
-durante el lanzamiento del componente para generación de QRs.
+- _InvoiceCaptureConfigurationData_ y pasarlo como parámetro al SDKController durante el lanzamiento del componente para Invoice.
+
+- _QrCaptureConfigurationData_ y pasarlo como parámetro al SDKController durante el lanzamiento del componente de captura de QR
+
+- _QrGeneratorConfiguration_ y pasarlo como parámetro al SDKController durante el lanzamiento del componente para generación de QRs.
 
 En el siguiente apartado se mostrarán los campos que forman parte de
 estas clased y para qué se utiliza cada uno de ellos.
 
-### 5.1. Class CaptureConfigurationData
-#### 5.1.1 Configuración Básica
+### 5.1. Class InvoiceCaptureConfigurationData
 
-##### cameraSelected
-Cámara seleccionada: FRONT, BACK
+#### 5.1.1 vibrationEnabled
 
-##### vibrationEnabled
 Habilitar vibración durante el proceso
 
-##### cameraShape
-Forma de la máscara que se quiere mostrar sobre la cámara: 
-- SQUARE: Cuadrado 
+#### 5.1.2 showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso y en caso de error
+
+#### 5.1.3 showTutorial
+
+Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.
+
+#### 5.1.4 timePreview
+
+Se define el tiempo en milisegundos que dura la preview tras la captura, por defecto está en 2000
+
+#### 5.1.5 numUploadPhoto
+
+Número de imagenes que se pueden añadir desde la galería, por defecto está en 5
+
+#### 5.1.6 previewAfterCapture
+
+Se habilita la preview tras la captura
+
+### 5.2. Class QrCaptureConfigurationData
+
+#### 5.1.1. extractionTimeout
+
+Tiempo de extracción máximo
+
+#### 5.1.2. cameraSelected
+
+Cámara seleccionada: FRONT, BACK
+
+#### 5.1.3. cameraShape
+
+Forma de la máscara que se quiere mostrar sobre la cámara:
+
+- SQUARE: Cuadrado
 - CIRCULAR: Círculo
 - RECTANGLE_TALL: Rectángulo
 
-##### showDiagnostic
-Mostrar pantallas de diagnóstico al final del proceso
+#### 5.1.4. vibrationEnabled
 
-##### extractionTimeout
-Tiempo de extracción máximo
+Habilitar vibración durante el proceso
 
+#### 5.1.5. showStroke
 
-#### 5.1.2 Configuración Avanzada
-
-##### showStroke
 Mostrar una línea como borde de la cámara
 
-##### transparentBackground
+#### 5.1.6. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso y en caso de error
+
+#### 5.1.7. transparentBackground
+
 Máscara sobre la cámara semitransparente
 
-### 5.2. Class QrGeneratorConfiguration
+### 5.3. Class QrGeneratorConfiguration
 
-##### source
+#### 5.2.1. source
+
 Texto que se va a incluir en el QR
 
-##### width
+#### 5.2.2. width
+
 Ancho del QR generado
 
-##### height
+#### 5.2.3. height
+
 Alto del QR generado
+
+#### 5.2.4 showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso y en caso de error
 
 ---
 
@@ -167,9 +200,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-   let controller = InvoiceReaderController(output: output, viewController: viewController)
-   SDKController.shared.launch(controller: controller)
-)
+let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -177,11 +209,12 @@ el componente:
   evento al servidor de _tracking_:
 
 ```java
-   let controller = InvoiceReaderController(output: output, viewController: viewController)
-   SDKController.shared.launchMethod(controller: controller)
-)
+let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
+<div class="warning">
+<span class="warning">:warning:</span>
 El método **launch** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
 usará cuando esté desactivado (o no se encuentre el componente
@@ -192,6 +225,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+</div>
 
 ### 6.2 Captura de QR
 
@@ -204,9 +238,10 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-        let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
-        SDKController.shared.launch(controller: controller)
-)
+  let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+
+  SDKController.shared.launch(controller: controller)
+
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -214,10 +249,13 @@ el componente:
   evento al servidor de _tracking_:
 
 ```java
-        let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
-        SDKController.shared.launchMethod(controller: controller)
+  let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+  SDKController.shared.launchMethod(controller: controller)
+
 ```
 
+<div class="warning">
+<span class="warning">:warning:</span>
 El método **launch** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
 usará cuando esté desactivado (o no se encuentre el componente
@@ -228,6 +266,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+</div>
 
 ### 6.3 Generación de QR
 
@@ -240,8 +279,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
-        SDKController.shared.launch(controller: controller)
+  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+  SDKController.shared.launch(controller: controller)
 
 ```
 
@@ -250,10 +289,12 @@ el componente:
   evento al servidor de _tracking_:
 
 ```java
-        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
-        SDKController.shared.launchMethod(controller: controller)
+  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+  SDKController.shared.launchMethod(controller: controller)
 ```
 
+<div class="warning">
+<span class="warning">:warning:</span>
 El método **launch** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
 usará cuando esté desactivado (o no se encuentre el componente
@@ -264,24 +305,32 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+</div>
 
 ---
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>
-  
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [<a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page">Mobile SDK</a>.
+
 ### 7.1. Recepción de errores
 
+En la parte del error, dispondremos de la clase _CaptureError_.
+
 ```java
-NO_OPERATION_CREATED_ERROR
-CAMERA_PERMISSION_DENIED
-CANCEL_BY_USER
-TIMEOUT
-INTERNAL_ERROR
+ NO_DATA_ERROR
+ TIMEOUT
+ CANCEL_BY_USER
+ CANCEL_LAUNCH
+ CAMERA_ERROR
+ QR_GENERATION_ERROR
+ ACTIVITY_RESULT_ERROR
+ QR_CAPTURE_ERROR
+ PHACTURAS_CAPTURE_ERROR
+ CAMERA_PERMISSION_DENIED
+ INITIALIZATION_ERROR
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -289,12 +338,34 @@ INTERNAL_ERROR
 En la ejecución correcta, simplemente se informa de que todo ha ido bien
 con el SdkResult.Success.
 
+#### 7.2.1 Result InvoiceReader
+
+##### ScannedDocs
+
+Array de documentos escaneados:
+
+  - image: UIImage.
+
+  - date: Date.
+
 ---
 
 ## 8. Personalización del componente
+
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605285492" data-linked-resource-version="11"
+data-linked-resource-type="page"><strong><u> Mobile
+SDK</u></strong></a>), este componente en concreto permite la
+modificación de textos específicos.
+
 ### 8.1. Textos
 
-```java
+Si se desea modificar los textos de la SDK habría que incluir el
+siguiente fichero XML en la aplicación del cliente, y modificar el valor
+de cada _String_ por el deseado.
+
+```xml
 "qr_reader_component_exit_alert_question"="Are you sure you will finish the process?";
 "qr_reader_component_camera_message_circle"="Keep the QR inside the circle";
 "qr_reader_component_camera_message_square"="Keep the QR inside the square";
@@ -312,5 +383,12 @@ con el SdkResult.Success.
 "capture_component_end_confirmation_title" = "Are you sure you will finish the process?";
 "capture_component_text_results_finish_button" = "Finish";
 "capture_component_agree" = "Accept";
+"capture_component_finish" = "FINISH";
+"capture_component_remove_confirmation_title" = "Do you want to delete this document?";
+"capture_component_image" = "Image ";
+"capture_component_retry" = "NO, I WANT TO REPEAT THE PHOTOGRAPH";
+"capture_component_tutorial_tittle" = "Scan your documents"; 
+"capture_component_tutorial_description" = "Take a picture of the document, or upload an image. /n You can scan several documents before finishing";
+"capture_component_tutorial_button" = "CONTINUE";
 
 ```
