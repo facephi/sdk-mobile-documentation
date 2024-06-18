@@ -92,7 +92,7 @@ source 'https://cdn.cocoapods.org/'
 To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following *Core Component* document.
 </div>
 
-### 2.2.4 Possible incidents
+### 2.2.3 Possible issues
 If environmental problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the appropriate versions), it is recommended to run the following sequence instructions after launching the plugin:
 
 - Open the **ios** folder of the application in a terminal.

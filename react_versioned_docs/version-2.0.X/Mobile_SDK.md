@@ -237,7 +237,7 @@ plugin 'cocoapods-art', :sources => ['cocoa-pro-fphi']
 source 'https://cdn.cocoapods.org/'
 ```
 
-#### 2.3.4 Possible issues
+#### 2.3.3 Possible issues
 
 If environmental problems occur or the plugin is not updated after
 making new changes (for example, problems occurred due to the bundle not
@@ -289,9 +289,54 @@ maven {
 }
 ```
 
-For the project to correctly retrieve the dependencies, the
-**<u>credentials</u>** (**Username** and **Token**) must be configured
-correctly
+The credentials (*Username* and *Token*) must be correctly configured for the project to retrieve the dependencies correctly.
+
+There are several ways to configure the repository access credentials:
+
+- As environmental variables. For this purpose, you should launch from a Terminal the following commands (**RECOMMENDED**):
+
+```
+export USERNAME_ARTIFACTORY=YOUR_CREDENTIALS_USERNAME
+export TOKEN_ARTIFACTORY=YOUR_CREDENTIALS_TOKEN
+```
+
+If the dependencies are not recognized when *synchronising* the environment, they must be included as environmental variables in the file:
+
+> ~/.zshrc
+
+or 
+
+> ~/.bashrc
+
+or
+
+Your *script shell* default file.
+
+
+- Included in the ***local.properties*** file with the following structure:
+
+```
+artifactory.user=YOUR_CREDENTIALS_USERNAME
+artifactory.token=YOUR_CREDENTIALS_TOKEN
+```
+
+- Directly included in the *build.gradle* (**NOT RECOMMENDED**)
+
+```
+maven {
+    Properties props = new Properties()
+    def propsFile = new File('local.properties')
+    if(propsFile.exists()){
+        props.load(new FileInputStream(propsFile))
+    }
+    name = "external"
+    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+    credentials {
+        username = YOUR_CREDENTIALS_USERNAME
+        password = YOUR_CREDENTIALS_TOKEN
+    }
+}
+```
 
 
 #### 2.4.2 Set Android SDK version

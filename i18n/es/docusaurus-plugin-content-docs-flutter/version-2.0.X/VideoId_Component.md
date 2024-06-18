@@ -20,6 +20,8 @@ Buscamos el archivo ***pubspec.yaml*** en la raíz del plugin.
 
 En el ***KEY/TAG*** version se indica la versión.
 
+--
+
 ## 2. Integración del componente 
 Antes de integrar este componente **se recomienda** leer la documentación relativa a **Core Component** y seguir las instrucciones indicadas en dicho documento.
 
@@ -53,8 +55,8 @@ fphi_sdkmobile_videoid:
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
 Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
 
-## 2.2 Instalación plugin: iOS
-### 2.2.1 Configuración del proyecto
+### 2.2 Instalación plugin: iOS
+#### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
 - **Añadir los permisos de cámara**: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
@@ -64,7 +66,7 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
-### 2.2.2 Actualizar el Podfile
+#### 2.2.2 Actualizar el Podfile
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
 
 ```
@@ -78,7 +80,7 @@ source 'https://cdn.cocoapods.org/'
 Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de *Componente Core*.
 </div>
 
-### 2.2.4 Posibles incidencias
+#### 2.2.3 Posibles incidencias
 Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
 
 - Abrir la carpeta **ios** de la aplicación en un terminal.
