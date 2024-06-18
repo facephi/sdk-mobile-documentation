@@ -34,7 +34,7 @@ En esta sección se explicará paso a paso cómo integrar el plugin actual en un
 
 
 <div class="note">
-<span class="note">:note:</span>
+<span class="note">:information_source:</span>
 
 Para esta sección, se considerarán los siguiente valores:
 
@@ -68,7 +68,7 @@ registry=https://registry.npmjs.org/
 Tal y como se muestra en el fragmento anterior, para que el proyecto obtenga correctamente las dependencias, se deberá rellenar la información necesaria de forma adecuada (**password**, **username** y **email**)
 </div>
 
-### 2.1.1. Añadir repositorio privado: iOS
+#### 2.1.1. Añadir repositorio privado: iOS
 
 <div class="warning">
 <span class="warning">:warning:</span>
@@ -193,7 +193,7 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 ***<string>$(PRODUCT_NAME) uses the camera</string>***
 ```
 
-### 2.3.2 Actualizar el Podfile
+#### 2.3.2 Actualizar el Podfile
 
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
 
@@ -203,8 +203,8 @@ plugin 'cocoapods-art', :sources => ['cocoa-pro-fphi']
 source 'https://cdn.cocoapods.org/'
 ```
 
-### 2.3.4 Posibles incidencias
-#### 2.3.4.1 Incidencias con Cocoapods
+#### 2.3.3 Posibles incidencias
+
 Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
 
 - Abrir la carpeta ios de la aplicación en un terminal.
@@ -227,7 +227,7 @@ pod repo-art update cocoa-pro-fphi
 
 ### 2.4 Instalación plugin: Android
 #### 2.4.1 Configuración del proyecto
-Para instalar el plugin en el proyecto, el sdk se descarga de un repositorio remoto las dependencias necesarias para su correcto funcionamiento, para lo cual se deben ingresar unas credenciales. Para ello, hay que añadir en el fichero build.gradle lo siguiente (dentro de la sección repositories):
+Para instalar el plugin en el proyecto, el sdk descarga de un repositorio remoto las dependencias necesarias para su correcto funcionamiento, para lo cual se deben ingresar unas credenciales. Para ello, hay que añadir en el fichero *build.gradle* lo siguiente (dentro de la sección *repositories*):
 
 ```
 maven {
@@ -245,9 +245,56 @@ maven {
 }
 ```
 
-En caso de que se quiera probar con las variables hardcodeadas, no solo se debe cambiar el username y password por el valor de las credenciales en la demo. También se debe cambiar en las dependencias. Esto se encuentra en la carpeta node_modules → @facephi y se modifica el build_gradle de la carpeta Android para añadir estos valores.
+Las credenciales (*Username* and *Token*) deben estar correctamente configuradas para poder obtener las dependencias de los repositorios.
 
-### 2.4.2 Establecer la versión de Android SDK 
+Hay varias formas de configurar estas credenciales:
+
+- Como variables de entorno. Para ello, se deberá lanzar desde un Terminal (**RECOMENDADO**):
+
+```
+export USERNAME_ARTIFACTORY=YOUR_CREDENTIALS_USERNAME
+export TOKEN_ARTIFACTORY=YOUR_CREDENTIALS_TOKEN
+```
+
+Si al *sincronizar* las dependencias no se reconocen, se recomienda incluirlas directamente como variables de entorno en el fichero *shell*:
+
+> ~/.zshrc
+
+o 
+
+> ~/.bashrc
+
+o
+
+> el *script shell* que se encuentre configurado por defecto.
+
+
+- Incluyéndolo en el fichero ***local.properties*** con la siguiente estructura:
+
+```
+artifactory.user=YOUR_CREDENTIALS_USERNAME
+artifactory.token=YOUR_CREDENTIALS_TOKEN
+```
+
+- Directamente incluido como *build.gradle* (**NO RECOMENDADO**)
+
+```
+maven {
+    Properties props = new Properties()
+    def propsFile = new File('local.properties')
+    if(propsFile.exists()){
+        props.load(new FileInputStream(propsFile))
+    }
+    name = "external"
+    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
+    credentials {
+        username = YOUR_CREDENTIALS_USERNAME
+        password = YOUR_CREDENTIALS_TOKEN
+    }
+}
+```
+
+#### 2.4.2 Establecer la versión de Android SDK 
 En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es 24, por lo que si la aplicación tiene un SDK mínimo definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero build.gradle de la aplicación (ubicado en la carpeta android) y modifica el siguiente parámetro:
 
 ```

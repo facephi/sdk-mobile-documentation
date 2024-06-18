@@ -31,7 +31,7 @@ Regarding the architecture of the mobile device:
 
 <div class="warning">
 <span class="warning">:warning:</span>
-This component needs to update to ***React Native 0.72 version*** due to internal dependencies, or at least to update ***Android Build Tools*** to ***8.0*** or more
+This component needs to update to ***React Native 0.72 version*** due to internal dependencies, or updating ***Android Build Tools*** to ***8.0*** or more
 </div>
 
 
