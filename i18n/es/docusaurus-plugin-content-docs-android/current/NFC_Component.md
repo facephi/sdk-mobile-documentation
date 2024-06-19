@@ -174,6 +174,18 @@ variedad de documentos.
 
 Mostrar pantallas de diagnóstico al final del proceso
 
+#### 5.1.11. extractFacialImage
+
+Indica si quiere extraer la imagen de la cara.
+
+#### 5.1.12. extractSignatureImage
+
+Indica si quiere extraer la imagen de la firma.
+
+#### 5.1.13. documentType
+
+Campo utilizado para cambiar la vista de tutorial y que muestre los diferentes documentos.
+
 ---
 
 ## 6. Uso del componente

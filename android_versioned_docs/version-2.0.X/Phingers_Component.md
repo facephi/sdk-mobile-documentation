@@ -310,9 +310,7 @@ from the camera. Valid for the liveness process.
 
 ##### 7.1.4 livenessConfidence
 
-Returns the best image extracted from the authentication process in
-Bitmap format. This image is the original size image extracted from the
-camera. Valid for the liveness process.
+Returns an indicator of the confidence level of the catch.
 
 ---
 
