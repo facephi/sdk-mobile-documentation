@@ -306,9 +306,7 @@ user who performed the process as the _avatar_.
 
 #### 7.2.3 _livenessConfidence_
 
-Returns the best image extracted from the authentication process in
-Bitmap format. This image is the original size image extracted from the camera.
-from the camera. Valid for the **liveness** process.
+Returns an indicator of the confidence level of the catch.
 
 #### 7.2.4 _fingersResult_.
 
