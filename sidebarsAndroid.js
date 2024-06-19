@@ -34,7 +34,6 @@ const sidebars = {
         "Video_Recording_Component",
         "Capture_Component",
         "Flow_Component",
-        "Verification_Component",
         "Changelog",
         "FAQ",
         "Sample_applications_use",

@@ -9,12 +9,13 @@
   - Mejoras en los tutoriales
   - Mejoras en UX/UI
   - Kotlin Actualizado de 1.9.24 a 2.0.0 con K2 compiler
-  - Android Gradle Plugin Actualizado de 8.3.2 a 8.4.1
+  - Android Gradle Plugin Actualizado de 8.3.2 a 8.5.0
   - Actualización de dependencias menores
+  - Vistas horizontales para tablets
 
 - SelphID
 
-  - Nueva versión 1.24.4
+  - Nueva versión 1.25.0
 
 - Tracking
 
@@ -29,8 +30,12 @@
   - Corregido "Tag lost error"
   - Mejoras en la reconexión
   - Ahora se puede escoger si se quiere extraer la imagen de la cara y la firma
+  - Se añade un parámetro para cambiar la vista de tutorial y que muestre los diferentes documentos
 
 - VideoRecording
+  - Ajustes y mejoras en la parada del Servicio
+
+- VideoCall
   - Ajustes y mejoras en la parada del Servicio
 
 ### 2.0.1
@@ -65,8 +70,6 @@
 
   - Nueva versión de core 2.0.7
 
-- Verification
-  - Se añaden nuevos servicios
 
 ### 2.0.0
 

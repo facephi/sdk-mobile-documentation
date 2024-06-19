@@ -2,6 +2,42 @@
 
 ## Versions
 
+### 2.0.2
+
+- General
+
+  - Tutorial improvements
+  - UX/UI improvements
+  - Kotlin updated from 1.9.24 to 2.0.0 with K2 compiler
+  - Android Gradle Plugin updated from 8.3.2 to 8.5.0
+  - Minor dependencies update
+  - Horizontal views for tablets
+
+- SelphID
+
+  - New version 1.25.0
+
+- Tracking
+
+  - Added APIKEY connection
+  - Version 2 in events
+  - Adjustments of stepSucceed prior to assets
+  - Improvements in connection loss logic
+
+- NFC
+
+  - Improvements and fixes
+  - Corrected "Tag lost error"
+  - Improvements in reconnection
+  - Now you can choose whether you want to extract the image of the face and the signature.
+  - A parameter is added to change the tutorial view to show the different documents.
+
+- VideoRecording
+  - Adjustments and improvements in stopping the service
+
+- VideoCall
+  - Adjustments and improvements in stopping the service
+
 ### 2.0.1
 
 - General
@@ -32,8 +68,6 @@
 - Tokenizer
   - New core version 2.0.7
 
-- Verification
-  - Add new services
 
 ### 2.0.0
 

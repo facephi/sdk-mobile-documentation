@@ -9,12 +9,13 @@
   - Tutorial improvements
   - UX/UI improvements
   - Kotlin updated from 1.9.24 to 2.0.0 with K2 compiler
-  - Android Gradle Plugin updated from 8.3.2 to 8.4.1
+  - Android Gradle Plugin updated from 8.3.2 to 8.5.0
   - Minor dependencies update
+  - Horizontal views for tablets
 
 - SelphID
 
-  - New version 1.24.4
+  - New version 1.25.0
 
 - Tracking
 
@@ -31,6 +32,9 @@
   - Now you can choose whether you want to extract the image of the face and the signature.
 
 - VideoRecording
+  - Adjustments and improvements in stopping the service
+
+- VideoCall
   - Adjustments and improvements in stopping the service
 
 ### 2.0.1
@@ -64,9 +68,6 @@
 - Tokenizer
 
   - New core version 2.0.7
-
-- Verification
-  - Add new services
 
 ### 2.0.0
 
