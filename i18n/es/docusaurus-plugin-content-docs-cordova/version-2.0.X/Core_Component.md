@@ -9,7 +9,6 @@ El Componente tratado en el documento actual recibe el nombre de Core Component.
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 - Versión mínima Android: **24 - JDK 11**
-
 - Versión mínima iOS: **13**
 
 En cuanto a la arquitectura del dispositivo móvil:
@@ -22,6 +21,17 @@ La versión del plugin actual se puede consultar de la siguiente forma:
 
 - Buscamos el archivo **package.json** ó **config.xml** en la raíz del plugin.
 - En el **KEY/TAG** version se indica la versión.
+
+### 1.3 Instalación plugin: Android
+#### 1.3.1 Permisos para geolocalización
+Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
+
+```
+<!-- Always include this permission -->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<!-- Include only if your app benefits from precise location access. -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
 
 ## 2. Inicialización de la sesión
 ### 2.1 Inicialización

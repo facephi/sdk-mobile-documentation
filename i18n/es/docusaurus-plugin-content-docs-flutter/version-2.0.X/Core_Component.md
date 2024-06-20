@@ -9,7 +9,6 @@ El Componente tratado en el documento actual recibe el nombre de Core Component.
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 - Versión mínima Android: **24 - JDK 11**
-
 - Versión mínima iOS: **13**
 
 En cuanto a la arquitectura del dispositivo móvil:
@@ -40,6 +39,17 @@ fphi_sdkmobile_core:
     name: sdkcore
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
   version: ^2.0.0
+```
+
+### 1.3 Instalación plugin: Android
+#### 1.3.1 Permisos para geolocalización
+Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
+
+```
+<!-- Always include this permission -->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<!-- Include only if your app benefits from precise location access. -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ---

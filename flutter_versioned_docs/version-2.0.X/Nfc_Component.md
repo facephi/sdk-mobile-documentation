@@ -22,7 +22,6 @@ The Component addressed in the current document is called the ***NFC Component**
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 - Minimum Android version: **24 - JDK 11**
-
 - Minimum iOS version: **13**
 
 
@@ -146,6 +145,23 @@ buildscript {
     minSdkVersion = 24
   }
 }
+```
+
+The minimun android.tools(AGP) is ***8.3.0***. To set this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
+
+```
+dependencies {
+    classpath "com.android.tools.build:gradle:8.3.0"
+}
+```
+
+In the same file its mandatory to add this:
+
+```
+android {
+    packagingOptions {
+        pickFirst("META-INF/versions/9/OSGI-INF/MANIFEST.MF") // NFC
+    }
 ```
 
 #### 2.3.2 Set Android SDK credentials

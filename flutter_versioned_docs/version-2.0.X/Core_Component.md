@@ -12,7 +12,6 @@ sdk, as well as allowing the use of more specific components.
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 11**
-
 -   Minimum iOS version: **13**
 
 Regarding the architecture of the mobile device:
@@ -26,6 +25,16 @@ The current plugin version can be checked as follows:
 - Look for the *pubspec.yaml* file at the root of the plugin.
 - The KEY/TAG **version** indicates the version.
   
+### 1.3 Plugin installation: Android
+#### 1.3.1 Permissions for geolocation
+Because the **Tracking** component has geolocation options, it is necessary to add permissions for this. In the AndroidManifest add the following permissions:
+
+```
+<!-- Always include this permission -->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<!-- Include only if your app benefits from precise location access. -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
 
 ---
 
