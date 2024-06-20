@@ -78,7 +78,7 @@ source 'https://cdn.cocoapods.org/'
 Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de *Componente Core*.
 </div>
 
-### 2.2.4 Posibles incidencias
+### 2.2.3 Posibles incidencias
 Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
 
 - Abrir la carpeta **ios** de la aplicación en un terminal.
@@ -145,7 +145,7 @@ Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_video
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.5 url
+### 3.1 url
 
 **type:** *string*
 
@@ -155,7 +155,7 @@ Ruta al socket de video.
 mUrl: url_provided_by_Facephi
 ```
 
-### 3.6 apiKey
+### 3.2 apiKey
 
 **type:** *string*
 
@@ -164,7 +164,7 @@ ApiKey necesaria para la conexión con el socket de video.
 ```
 mApiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 tenantId
+### 3.3 tenantId
 
 **type:** *string*
 
@@ -174,7 +174,7 @@ Identificador del tenant que hace referencia al cliente actual, necesario para l
 mTenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.8 mShowDiagnostic
+### 3.4 mShowDiagnostic
 
 **type:** *boolean*
 

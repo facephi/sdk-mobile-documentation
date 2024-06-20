@@ -41,8 +41,8 @@ fphi_sdkmobile_core:
   version: ^2.0.0
 ```
 
-### 1.3 Instalación plugin: Android
-#### 1.3.1 Permisos para geolocalización
+### 1.4 Instalación plugin: Android
+#### 1.4.1 Permisos para geolocalización
 Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
 
 ```
@@ -145,7 +145,7 @@ Permite establecer la licencia de los componentes. Esta licencia deberá ser pro
 mLicense: "valid license“
 ```
 
-# 2.2.2 licenseUrl
+#### 2.2.2 licenseUrl
 
 **type:** *string*
 
@@ -155,7 +155,7 @@ Establece la url donde el componente Core valida la licencia de forma remota. Es
 mLicenseUrl: "https://***.***.pro"
 ```
 
-# 2.2.3 licenseApiKey
+#### 2.2.3 licenseApiKey
 
 **type:** *string*
 

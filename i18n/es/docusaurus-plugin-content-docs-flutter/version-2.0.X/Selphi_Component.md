@@ -10,17 +10,17 @@ El Componente tratado en el documento actual recibe el nombre de Selphi Componen
 Generación de las plantillas con las características faciales y de la imagen de la cara del usuario para el proceso de detección de vivacidad (Liveness)
 
 
-### 1.1 Minimum requirements
+### 1.1 Requisitos mínimos
 
-The minimum native version (Android and iOS) of the SDK are as follows:
+La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Minimum Android version: **24 - JDK 11**
+- Versión mínima Android: **24 - JDK 11**
+- Versión mínima iOS: **13**
 
-- Minimum iOS version: **13**
-
-Regarding the architecture of the mobile device:
+En cuanto a la arquitectura del dispositivo móvil:
 
 - armeabi-v7, x86, arm64 y x64
+
 
 ### 1.2 Versión del plugin
 
@@ -83,7 +83,7 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
-### 2.2.2 Actualizar el Podfile
+#### 2.2.2 Actualizar el Podfile
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
 
 ```
@@ -97,7 +97,7 @@ source 'https://cdn.cocoapods.org/'
 Para saber más acerca de la configuración y uso de **Cocoapods Artifactory**, es necesario acceder al siguiente documento de Componente Core.
 </div>
 
-### 2.2.4 Posibles incidencias
+#### 2.2.3 Posibles incidencias
 Si ocurren problemas de entorno o no se actualiza el plugin tras realizar nuevos cambios (por ejemplo, problemas ocurridos debido a que no se genera correctamente el bundle, o no se actualizan las librerías a las versiones adecuadas), se recomienda ejecutar la siguiente secuencia de instrucciones tras lanzar el plugin:
 
 Abrir la carpeta ios de la aplicación en un terminal. Ejecutar el siguiente comando:
@@ -130,7 +130,7 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización(Sólo si se usa tracking)
+#### 2.3.2 Permisos para geolocalización (sólo si se usa tracking)
 Debido a que el componente de Tracking tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
 
 ```
