@@ -98,6 +98,17 @@ the following points must be previously taken into account:
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
+-   ***Add microphone permissions:*** To use the component, you need to enable
+    the camera permission in the application's ***info.plist*** file
+    (included within the project in the ***ios*** folder). You will need
+    to edit the file with a text editor and add the following
+    *key/value* pair:
+
+``` java
+<key>NSMicrophoneUsageDescription</key>
+<string>This app needs microphone access</string>
+```
+
 ### 2.2.2 Update Podfile
 In the project podfile it will be necessary to add the information of the private repository (see section 2.1). To do this, the following lines must be added to the beginning of the file:
 
