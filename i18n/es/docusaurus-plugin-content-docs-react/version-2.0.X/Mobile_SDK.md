@@ -69,7 +69,7 @@ registry=https://registry.npmjs.org/
 Tal y como se muestra en el fragmento anterior, para que el proyecto obtenga correctamente las dependencias, se deberá rellenar la información necesaria de forma adecuada (**password**, **username** y **email**)
 </div>
 
-### 2.1.1. Añadir repositorio privado: iOS
+#### 2.1.1. Añadir repositorio privado: iOS
 
 <div class="warning">
 <span class="warning">:warning:</span>
