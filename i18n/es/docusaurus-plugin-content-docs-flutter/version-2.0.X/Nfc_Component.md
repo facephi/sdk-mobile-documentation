@@ -143,14 +143,21 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
+La versión mínima del android.tools(AGP) es ***8.3.0***. Para modificarlo, en caso de ser necesario, se deberá modificar el archivo ***build.gradle*** (ubicado en la carpeta ***android***) y modificar lo siguiente:
 
 ```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+dependencies {
+    classpath "com.android.tools.build:gradle:8.3.0"
+}
+```
+
+En el mismo archivo, es obligatorio agregar lo siguiente:
+
+```
+android {
+    packagingOptions {
+        pickFirst("META-INF/versions/9/OSGI-INF/MANIFEST.MF") // NFC
+    }
 ```
 
 ---

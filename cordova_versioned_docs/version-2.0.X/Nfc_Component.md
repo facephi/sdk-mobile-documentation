@@ -135,6 +135,24 @@ buildscript {
   }
 }
 ```
+
+The minimun android.tools(AGP) is ***8.3.0***. To set this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
+
+```
+dependencies {
+    classpath "com.android.tools.build:gradle:8.3.0"
+}
+```
+
+In the same file its mandatory to add this:
+
+```
+android {
+    packagingOptions {
+        pickFirst("META-INF/versions/9/OSGI-INF/MANIFEST.MF") // NFC
+    }
+```
+
 ---
 
 ## 3. Component configuration
