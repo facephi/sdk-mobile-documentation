@@ -66,6 +66,13 @@ Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación fi
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
 
+- **Agregar permisos de micrófono:** Para usar el componente, debe habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***) . Necesitará editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
+
+``` java
+<key>NSMicrophoneUsageDescription</key>
+<string>This app needs microphone access</string>
+```
+
 #### 2.2.2 Actualizar el Podfile
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
 
@@ -109,17 +116,6 @@ buildscript {
   }
 }
 ```
-
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
 ---
 
 ## 3. Configuración del componente
