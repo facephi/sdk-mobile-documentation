@@ -61,6 +61,14 @@ the **_SDKMobile_** components.
   implementation "com.facephi.androidsdk:selphid_component:$sdk_selphid_component_version"
   ```
 
+### 2.1. Resources zip file
+
+Table of sdk versions and associated resource versions (Found in the **Resources** section):
+
+| **SDK version** | **Selphi resources version**            |
+| -------------- | -------------------------- |
+| 2.0.2  | 1.25.0 |
+
 ---
 
 ## 3. Start a new operation

@@ -56,6 +56,14 @@ distributed remotely through different dependency managers.
   implementation "com.facephi.androidsdk:selphi_component:$sdk_selphi_component_version"
   ```
 
+### 2.1. Resources zip file
+
+Table of sdk versions and associated resource versions (Found in the **Resources** section):
+
+| **SDK version** | **Selphi resources version**            |
+| -------------- | -------------------------- |
+| 2.0.2  | 5.12.6 |
+
 ---
 
 ## 3. Start a new operation

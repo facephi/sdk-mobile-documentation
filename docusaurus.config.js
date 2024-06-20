@@ -125,6 +125,12 @@ const config = {
             docsPluginId: "capacitor",
           },
           {
+            type: "docsVersion",
+            position: "left",
+            label: "Resources",
+            docsPluginId: "resources",
+          },
+          {
             type: "docsVersionDropdown",
             docsPluginId: "android",
             position: "right",
@@ -235,6 +241,16 @@ const config = {
         path: "docs/capacitor",
         routeBasePath: "docs/capacitor",
         sidebarPath: "./sidebarsCapacitor.js",
+        // ... other options
+      },
+    ],
+    [ 
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "resources",
+        path: "docs/resources",
+        routeBasePath: "docs/resources",
+        sidebarPath: "./sidebarsResources.js",
         // ... other options
       },
     ],
