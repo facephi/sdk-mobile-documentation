@@ -5,7 +5,6 @@
 ### 2.0.2
 
 - General
-
   - Tutorial improvements
   - UX/UI improvements
   - Kotlin updated from 1.9.24 to 2.0.0 with K2 compiler
@@ -14,18 +13,15 @@
   - Horizontal views for tablets
 
 - SelphID
-
   - New version 1.25.0
 
 - Tracking
-
   - Added APIKEY connection
   - Version 2 in events
   - Adjustments of stepSucceed prior to assets
   - Improvements in connection loss logic
 
 - NFC
-
   - Improvements and fixes
   - Corrected "Tag lost error"
   - Improvements in reconnection
@@ -37,10 +33,12 @@
 - VideoCall
   - Adjustments and improvements in stopping the service
 
+- Selphi
+  - New version 5.12.6
+
 ### 2.0.1
 
 - General
-
   - Fixed text in SdkConfigurationData from "iaModels" to "aiModels"
   - Internal improvements to PreviousTips
   - Updated key dependencies:
@@ -49,42 +47,32 @@
     - kotlinAndroidGradlePlugin = 1.9.23
 
 - Selphi
-
   - New version 5.12.3
   - Add bestImageTokenized
 
 - SelphID
-
   - New version 1.24.2
 
 - VideoCall
-
   - Updated Timeout image
 
 - Phingers
-
   - Simplified ConfigurationData
 
 - Tokenizer
-
   - New core version 2.0.7
 
 ### 2.0.0
 
 - General
-
   - All SDKController functions, from having output with lambda, become suspend functions and return the result synchronously.
     To consume it now it will be necessary to use a Coroutine.
     If called from a ViewModel, you can use viewModelScore.launch, otherwise CoroutineScope(Dispatchers.IO).launch.
-
   - The SDK initialisation now has an SDKConfigurationData with the data to be filled in.
-
   - In the SDKConfigurationData you can choose between LicensingOnline or LicensingOffline.
-
   - All ConfigurationData with images inside was changed to refactor the name of params (Image)
 
 - Tracking
-
   - Settings and improvements
 
 - Voice
@@ -102,6 +90,7 @@
 - General
   - Security settings and improvements
   - Selphi and Selphid internal image improved management
+
 - NFC
   - Fix Personal Number
 
@@ -110,8 +99,10 @@
 - General
   - Security settings and improvements
   - Layout adjustments to fullscreen tutorial views
+
 - Selphi
   - New version 5.12.1
+
 - SelphID
   - New version 1.23.1
 
@@ -124,27 +115,35 @@
     - Dynamic theme
     - Preview controller to development
     - Improvements
+
 - Selphi
   - Version updated to 5.12.0
   - Tutorial adjusts
   - Full frame tracking adjust
+
 - SelphID
   - Version updated to 1.22.3
+
 - Phingers
   - Added haptic feedback with vibration
   - Improvements in tutorial
+
 - NFC
   - Improvements
+
 - VideoId
   - Adjust bugfixes
   - UX adjusts
+
 - VideoCall
   - New Feature - ScreenSharing
   - Adjust bugfixes
+
 - VideoRecording
   - New State managements to get more control in client layer
   - Adjust bugfixes
   - Know Issue: API 34 Android
+
 - Capture QR
   - QR format adjusts
 
@@ -155,12 +154,16 @@
   - New SelphiSignController
   - New VideoIdSignController
   - New SDKImage handler and SDKApplication
+
 - NFC
   - Improvements
+
 - SelphID
   - 1.21.1
+
 - Selphi
   - 5.11.2
+
 - Voice
   - Library size improvement
 
@@ -168,12 +171,15 @@
 
 - General
   - Improvements and bug fixes
+
 - Voice
   - Internal library update
   - Calibration adjustments
   - Return tokenized audios
+
 - Phingers
   - WSQ tracking
+  
 - Behaviour
   - Internal library update
   - Enhancements and fixes
