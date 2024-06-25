@@ -118,16 +118,6 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización(Sólo si se usa tracking)
-Debido a que el componente de Tracking tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
 ---
 
 ## 3. Configuración del componente
@@ -458,16 +448,17 @@ export interface SelphiFaceResult {
 El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SelphiResult***. A continuación se amplía información sobre esos campos.
 </div>
 
-
-
 ### 5.1 finishStatus
 
-    - **1**: La operación fue exitosa.
-    - **2**: Se ha producido un error, el cuál se indicará en el enumerado ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
+  - **1**: La operación fue exitosa.
+  - **2**: Se ha producido un error, el cuál se indicará en el enumerado ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
 
 ### 5.2 finishStatusDescription
 
  Devuelve una descripción global de la operación. Parámetro opcional.
+
+  - **STATUS_OK**: La operación fue exitosa.
+  - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el enumerado ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
 
 ### 5.3 errorMessage 
   

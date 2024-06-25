@@ -335,7 +335,6 @@ Devuelve el diagnóstico global de la operación.
 - **1**: La operación fue exitosa.
 - **2**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
-
 ### 5.1 finishStatusDescription
 
 Devuelve la descripción de finishStatus.

@@ -202,41 +202,6 @@ android {
     }
 ```
 
-#### 2.3.2 Set Android SDK credentials
-
-For security and maintenance reasons, the new ***SDKMobile*** components
-are stored in private repositories requiring specific credentials. For
-that reason, those credentials must be added to the **build.gradle**
-file (inside the **repositories** section):
-
-
-```
-maven {
-    name = "external"
-    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
-    credentials {
-        username = System.getenv("USERNAME_ARTIFACTORY")
-        password =  System.getenv("TOKEN_ARTIFACTORY")
-    }
-}
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-For the project to correctly retrieve the dependencies, the
-***credentials*** (**Username** and **Token**) must be configured
-correctly
-</div>
-
-
-#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
-Open the .zshrc or .bash_profile files and put the credentials provided by Facephi:
-
-```
-export USERNAME_ARTIFACTORY=username@facephi.es
-export TOKEN_ARTIFACTORY=token_provided_by_facephi
-```
-
 ---
 
 ## 3. Component configuration

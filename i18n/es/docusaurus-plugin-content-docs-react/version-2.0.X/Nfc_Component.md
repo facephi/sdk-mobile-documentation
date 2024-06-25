@@ -407,7 +407,7 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 Devuelve el diagnóstico global de la operación.
 
 - **1**: La operación fue exitosa.
-- **2**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+- **2**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 
 ### 5.2 finishStatusDescription
@@ -415,7 +415,7 @@ Devuelve el diagnóstico global de la operación.
 Devuelve el diagnóstico global de la operación.
 
 - **STATUS_OK**: La operación fue exitosa.
-- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 
 ### 5.3 errorType

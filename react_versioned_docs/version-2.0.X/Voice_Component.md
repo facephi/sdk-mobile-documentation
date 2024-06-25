@@ -1,7 +1,15 @@
 # Voice Component
 
 ## 1. Introduction
-The Component discussed in the current document is called ***VideoID Component***. This is responsible for recording a user identifying themselves, showing their face and their identity document.
+The Component discussed in the current document is called ***Voice Component***. This is responsible for capturing the user's voice and subsequently extracting the corresponding templates. Its main functionalities are the following:
+
+- Entry of a certain number of sentences to later read each one in one step.
+- Internal microphone management.
+- Permit management.
+- Analysis of silences.
+- Analysis of progress.
+- Assistant in the capture processes.
+- Generation of templates with voice characteristics and scores.
 
 ### 1.1 Minimum requirements
 
@@ -36,7 +44,7 @@ This section will explain step by step how to integrate the current component in
 For this section, the following values ​​will be considered:
 - **\<%APPLICATION_PATH%\>** - Path to the root of the application (example: /folder/example)
 - **\<%PLUGIN_CORE_PATH%\>** - Path to the root of the core plugin, which is required (example: /folder/sdk-core)
-- **\<%PLUGIN_VIDEOID_PATH%\>** - Path to the root of the current plugin (example: /folder/sdk-videoid)
+- **\<%PLUGIN_VOICE_PATH%\>** - Path to the root of the current plugin (example: /folder/sdk-voice)
 </div>
 
 ### 2.1. Plugin Instalation: Common
@@ -47,7 +55,7 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 
 ```java
 yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-videoid-react-native
+yarn add @facephi/sdk-voice-react-native
 yarn install
 ```
 
@@ -56,7 +64,7 @@ yarn install
 ```java
 "dependencies": {
   "sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "sdk-videoid-react-native": <% PLUGIN_VIDEOID_PATH %>
+  "sdk-voice-react-native": <% PLUGIN_VOICE_PATH %>
 }
 ```
 
@@ -154,25 +162,21 @@ Because the **Tracking** component has geolocation options, it is necessary to a
 ---
 
 ## 3. Component Configuration
-The current component contains a series of Typescript methods and interfaces included within the file ***node_modules/@facephi/sdk-videoid-react-native/src/index.tsx***. In this file you can find the API necessary for communication between the application and the native functionality of the component. The purpose of each of those listed and the other properties that affect the operation of the component are explained below.
+The current component contains a series of Typescript methods and interfaces included within the file ***node_modules/@facephi/sdk-voice-react-native/src/index.tsx***. In this file you can find the API necessary for communication between the application and the native functionality of the component. The purpose of each of those listed and the other properties that affect the operation of the component are explained below.
 
-Below is the *VideoIdConfiguration* class, which allows you to configure the **VideoID** component:
+Below is the *VoiceConfiguration* class, which allows you to configure the **VOICEID** component:
 
 ```java
-export interface VideoIdConfiguration {
-  sectionTime?: number;
+export interface VoiceConfiguration {
+  vibrationEnabled: boolean;
+  showTutorial: boolean;
+  phrases: string;
   timeout?: number;
-  mode?: VideoMode;
-  showTutorial?: boolean;
-  url?: string;
-  apiKey?: string;
-  tenantId?: string;
   showDiagnostic?: boolean;
-  vibration?: boolean;
 }
 ```
 
-Next, all the properties that can be defined in the **VideoIdConfiguration** object will be discussed:
+Next, all the properties that can be defined in the **VoiceConfiguration** object will be discussed:
 
 <div class="note">
 <span class="note">:information_source:</span>
@@ -181,14 +185,14 @@ All configuration can be found in the component's ***src/index.tsx*** file.
 
 When calling the component, there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1 sectionTime
+### 3.1 vibrationEnabled
 
-**type:** *number*
+**type:** *boolean*
 
-Time that will remain on each screen of the process in ms.
+.
 
 ```
-sectionTime: 5000
+vibrationEnabled: true
 ```
 
 ### 3.2 timeout
@@ -201,18 +205,14 @@ Indicates the time that the component finishes due to inactivity.
 timeout: 10000
 ```
 
-### 3.3 mode
+### 3.3 phrases
 
-**type:** *VideoMode*
+**type:** *string*
 
-This enumeration is defined in the class ***SdkVideoIdEnum.tsx***. Mode to be applied for recording. The possible VideoIdMode values ​​will be:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: You have to show the face and front of the document.
-- ***VideoMode.ONLY_FACE***: You just have to show your face during the process.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+Phrases that have to be said in the app to validate identity.
 
 ```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
+phrases: 'hola mundo|hola voice component|hola Facephi',
 ```
 
 ### 3.4 showTutorial
@@ -225,35 +225,6 @@ Indicates whether you want to show the complete tutorial of the process or just 
 showTutorial: true;
 ```
 
-### 3.5 url
-
-**type:** *string*
-
-Path to the video socket.
-
-```
-url: url_provided_by_Facephi
-```
-
-### 3.6 apiKey
-
-**type:** *string*
-
-ApiKey required for connection to the video socket.
-
-```
-apiKey: "apiKey_provided_by_Facephi";
-```
-### 3.7 tenantId
-
-**type:** *string*
-
-Tenant identifier that refers to the current client, necessary for the connection to the video service.
-
-```
-tenantId: "TenantId_provided_by_Facephi";
-```
-
 ### 3.8 showDiagnostic
 
 **type:** *boolean*
@@ -264,15 +235,6 @@ Indicates whether you want to show a diagnosis in case of failure.
 showDiagnostic: false;
 ```
 
-### 3.9 vibration
-
-**type:** *boolean*
-
-Indicates whether or not you want to enable vibration.
-
-```
- vibration: true;
-```
 ---
 
 ## 4. Component usage
@@ -288,22 +250,26 @@ Remember that to launch a previously determined component you will have to initi
 Once the component is configured, to launch it the following code must be executed:
 
 ``` java
-const launchVideoId = async () => 
+const launchVoice = async () => 
 { 
   try 
   {
-    console.log("Starting launchVideoId...");
-    return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
-    .then((result: VideoIdResult) => 
+    console.log("Starting launchVoice...", getVoiceConfiguration());
+
+    return await SdkMobileVoice.voice(getVoiceConfiguration())
+    .then((result: VoiceResult) => 
     {
       console.log("result", result);
+      if (result.finishStatus == SdkFinishStatus.Error) {
+        drawError(setMessage, result);
+      }
     })
     .catch((error: any) => 
     {
       console.log(error);
     })
     .finally(()=> {
-      console.log("End launchVideoId...");
+      console.log("End launchVoice...");
     });
   } 
   catch (error) {
@@ -311,41 +277,16 @@ const launchVideoId = async () =>
   }
 };
 
-const getVideoIdConfiguration = () => 
+const getVoiceConfiguration = () => 
 {
-  let config: VideoIdConfiguration = {
-    sectionTime: 5000,
-    mode: VideoMode.FACE_DOCUMENT_FRONT,
+  const sdkConfiguration: VoiceConfiguration = {
+    phrases: "hola que tal|hola que tal prueba",
+    showTutorial: true,
+    vibrationEnabled: true,
   };
-  return config;
+
+  return sdkConfiguration;
 };
-```
-
-### 4.1 Signature mode method
-
-``` java
-const launchSignatureVideoId = async () => 
-  { 
-    try 
-    {
-      console.log("Starting launchVideoId...");
-      return await SdkMobileVideoid.signatureVideoid(getVideoIdConfiguration())
-      .then((result: VideoIdResult) => 
-      {
-        console.log("result", result);
-      })
-      .catch((error: any) => 
-      {
-        console.log(error);
-      })
-      .finally(()=> {
-        console.log("End launchVideoId...");
-      });
-    } 
-    catch (error) {
-      setMessage(JSON.stringify(error));
-    }
-  };
 ```
 
 ---
@@ -355,24 +296,27 @@ const launchSignatureVideoId = async () =>
 As shown in the above example, the result is returned in the form of a **JSON** object through ***Promises***, whether it is a successful operation or an error:
 
 ```java
-return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
-.then((result: VideoIdResult) => 
+return await SdkMobileVoice.voice(getVoiceConfiguration())
+.then((result: VoiceResult) => 
 {
   console.log("result", result);
+  if (result.finishStatus == SdkFinishStatus.Error) {
+    drawError(setMessage, result);
+  }
 })
 .catch((error: any) => 
 {
   console.log(error);
 })
 .finally(()=> {
-  console.log("End launchVideoId...");
+  console.log("End launchVoice...");
 });
 ```
 
 Regardless of whether the result is correct/wrong, the result will have the following format:
 
 ```java
-export interface VideoIdResult 
+export interface VoiceResult 
 {
   finishStatus: number;
   finishStatusDescription?: string;
@@ -383,7 +327,7 @@ export interface VideoIdResult
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-The result will be returned through a Promise that contains an object of the class ***VideoIdResult***. Below is more information about these fields.
+The result will be returned through a Promise that contains an object of the class ***VoiceResult***. Below is more information about these fields.
 </div>
 
 ### 5.1 finishStatus
@@ -391,13 +335,13 @@ The result will be returned through a Promise that contains an object of the cla
 Returns the global diagnosis of the operation.
 
 - **1**: The operation was successful.
-- **2**: An error has occurred, which will be indicated in the ***errorType*** enumeration and, optionally, an extra information message will be displayed in the ***errorMessage*** property.
-
+- **2**: An error has occurred, which will be indicated in the ***errorType*** string and, optionally, an extra information message will be displayed in the ***errorMessage*** property.
 
 ### 5.2 finishStatusDescription
 
 Returns the global diagnostic of the operation. It is an optional value.
-
+- **STATUS_OK**: The operation was successful.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the ***errorType*** string and, optionally, an extra information message will be displayed in the ***errorMessage*** property.
 
 ### 5.3 errorType
 Returns the type of error that occurred (if there was one, which is indicated in the finishStatus parameter with the value Error). The values ​​it can have are the following:
