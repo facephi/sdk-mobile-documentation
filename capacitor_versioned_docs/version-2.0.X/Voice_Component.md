@@ -253,9 +253,8 @@ The result will be returned through a Promise that contains an object of the cla
 
 Returns the global diagnostic of the process.
 
--   **SdkFinishStatus.Ok**: The operation was successful.
-
--   **SdkFinishStatus.Error**: An error has occurred, which will be
+-   **1**: The operation was successful.
+-   **2**: An error has occurred, which will be
     indicated in the ***errorType*** string and, optionally, an
     extra information message will be displayed in the ***errorMessage***
     property.
@@ -264,7 +263,13 @@ Returns the global diagnostic of the process.
 
 ### 5.2 finishStatusDescription
 
-Returns the finishStatus description. It is an optional value.
+Returns the finishStatus description. 
+
+-   **STATUS_OK**: The operation was successful.
+-   **STATUS_ERROR**: An error has occurred, which will be
+    indicated in the ***errorType*** string and, optionally, an
+    extra information message will be displayed in the ***errorMessage***
+    property.
 
 
 ### 5.3 errorType

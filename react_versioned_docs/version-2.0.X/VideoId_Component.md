@@ -19,7 +19,6 @@ Regarding the architecture of the mobile device:
 The current plugin version can be checked as follows:
 
 - We look for the file ***package.json*** in the root of the plugin.
-
 - The version is indicated in the ***KEY/TAG*** version.
 
 ## 2. Component Integration 
@@ -150,16 +149,6 @@ buildscript {
     minSdkVersion = 24
   }
 }
-```
-
-### 2.3.2 Permissions for geolocation
-Because the **Tracking** component has geolocation options, it is necessary to add permissions for this. In the *AndroidManifest* add the following permissions:
-
-```java
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ---

@@ -15,7 +15,6 @@ Generación de las plantillas con las características faciales y de la imagen d
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 - Minimum Android version: **24 - JDK 11**
-
 - Minimum iOS version: **13**
 
 Regarding the architecture of the mobile device:
@@ -120,7 +119,7 @@ pod install --repo-update
 
 ### 2.3 Instalación plugin: Android
 #### 2.3.1 Establecer la versión de Android SDK
-En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es 23, por lo que si la aplicación tiene un SDK mínimo definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero build.gradle de la aplicación (ubicado en la carpeta android) y modifica el siguiente parámetro:
+En el caso de Android, la versión mínima de SDK requerida por nuestras bibliotecas nativas es 24, por lo que si la aplicación tiene un SDK mínimo definido menor que éste, deberá modificarse para evitar un error de compilación. Para ello accede al fichero build.gradle de la aplicación (ubicado en la carpeta android) y modifica el siguiente parámetro:
 
 ```
 buildscript {
@@ -128,16 +127,6 @@ buildscript {
     minSdkVersion = 24
   }
 }
-```
-
-### 2.3.2 Permisos para geolocalización(Sólo si se usa tracking)
-Debido a que el componente de Tracking tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ---
@@ -391,7 +380,6 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 viewsContent: “\<views-content-string\>“;
 ```
 
-
 ---
 
 ## 4. Uso del componente
@@ -483,60 +471,40 @@ class SelphiFaceResult {
 }
 ```
  
-
 El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SelphiResult. A continuación se amplía información sobre esos campos. 
 Se podrá encontrar en el archivo www/SdkSephiResult.js 
 
-### 5.1 finishStatus
+### 5.0 finishStatus
+- **1**: La operación fue exitosa.
+- **2**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-- **1**: The operation was successful.
-
-- **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
-
-### 5.2 finishStatusDescription
+### 5.1 finishStatusDescription
 - **STATUS_OK**: La operación fue exitosa.
 - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-### 5.3 errorMessage
-Indicates an additional error message if necessary. It is an optional value.
+### 5.2 errorDiagnostic
+ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Los valores que puede tener son los siguientes:
 
-### 5.4 errorDiagnostic
-Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
+- **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
+- **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
+- **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
+- **SettingsPermissionDenied**: Excepción que se produce cuando el widget no tiene permiso de acceso a la configuración del sistema (*deprecated*).
+- **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
+- **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
+- **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
+- **ControlNotInitializedError**: El configurador del widget no ha sido inicializado.
+- **BadExtractorConfiguration**: Problema surgido durante la configuración del widget.
+- **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
+- **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
+- **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
+- **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
+- **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
+- **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-- **NoError**: No error has occurred. The process can continue.
-
-- **UnknownError**: Unhandled error. Possibly caused by a bug in the resource bundle.
-
-- **CameraPermissionDenied**: The exception that is thrown when the sdk does not have permission to access the camera.
-
-- **SettingsPermissionDenied**: The exception that is thrown when the widget does not have permission to access system settings (*deprecated*).
-
-- **HardwareError**: Exception that occurs when there is a hardware problem with the device, usually caused by very few available resources.
-
-- **ExtractionLicenceError**: Exception that occurs when there has been a licencing problem on the server.
-
-- **UnexpectedCaptureError**: Exception that occurs during the capture of frames by the camera.
-
-- **ControlNotInitialisedError**: The widget configurator has not been initialised.
-
-- **BadExtractorConfiguration**: Problem arose during widget configuration.
-
-- **CancelByUser**: The exception that is thrown when the user stops the extraction manually.
-
-- **TimeOut**: Exception that is thrown when a maximum time elapses without successfully completing the extraction.
-
-- **InitProccessError**: Exception that is thrown when the sdk cannot process the captured images.
-
-- **NfcError**: The exception that is thrown when the sdk does not have permission to access the nfc.
-
-- **NetworkConnection**: The exception that is thrown when there are issues with the means the device uses to connect to the network.
-
-- **TokenError**: The exception that is thrown when an invalid token is passed as a parameter.
-
-- **InitSessionError**: The exception that is thrown when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
-
-- **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
-
+### 5.3 errorMessage: 
+Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
 ### 5.5 templateRaw
 

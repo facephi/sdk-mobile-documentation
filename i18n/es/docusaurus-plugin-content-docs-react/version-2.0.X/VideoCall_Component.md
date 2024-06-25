@@ -124,34 +124,21 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-videoid-react-native/src/index.tsx***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-videocall-react-native/src/index.tsx***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
-A continuación se muestra la clase *VideoIdConfiguration*, que permite configurar el componente de **VideoID**:
+A continuación se muestra la clase *VideoCallConfiguration*, que permite configurar el componente de **VideoCall**:
 
 ```java
-export interface VideoIdConfiguration {
-  sectionTime?: number;
-  timeout?: number;
-  mode?: VideoMode;
-  showTutorial?: boolean;
+export interface VideoCallConfiguration {
   url?: string;
   apiKey?: string;
   tenantId?: string;
+  extensionName?: string;
   showDiagnostic?: boolean;
-  vibration?: boolean;
+  screenSharing?: boolean;
 }
 ```
 
@@ -164,51 +151,7 @@ Toda la configuración se podrá encontrar en el archivo ***src/index.tsx*** del
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 sectionTime
-
-**type:** *number*
-
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
-
-```
-sectionTime: 5000
-```
-
-### 3.2 timeout
-
-**type:** *number*
-
-Indica el tiempo que el componente se cierra por inactividad.
-
-```
-timeout: 10000
-```
-
-### 3.3 mode
-
-**type:** *VideoMode*
-
-Este enumerado se define en la clase ***SdkVideoIdEnum.tsx***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
-
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
-
-```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
-```
-
-### 3.4 showTutorial
-
-**type:** *boolean*
-
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
-
-```
-showTutorial: true;
-```
-
-### 3.5 url
+### 3.1 url
 
 **type:** *string*
 
@@ -218,7 +161,7 @@ Ruta al socket de video.
 url: url_provided_by_Facephi
 ```
 
-### 3.6 apiKey
+### 3.2 apiKey
 
 **type:** *string*
 
@@ -227,7 +170,7 @@ ApiKey necesaria para la conexión con el socket de video.
 ```
 apiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 tenantId
+### 3.3 tenantId
 
 **type:** *string*
 
@@ -237,7 +180,7 @@ Identificador del tenant que hace referencia al cliente actual, necesario para l
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.8 showDiagnostic
+### 3.4 showDiagnostic
 
 **type:** *boolean*
 
@@ -247,14 +190,24 @@ Indica si se desea mostrar un diagnostico en caso de falla.
 showDiagnostic: false;
 ```
 
-### 3.9 vibration
+### 3.5 screenSharing
 
 **type:** *boolean*
 
-Indica si se desea habilitar o no la vibración.
+Indica si se desea habilitar o no el compartir la pantalla del dispositivo.
 
 ```
- vibration: true;
+ screenSharing: true;
+```
+
+### 3.6 extensionName
+
+**type:** *string*
+
+.
+
+```
+ extensionName: ;
 ```
 ---
 
@@ -270,22 +223,26 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
 ``` java
-const launchVideoId = async () => 
+const startVideoCall = async () => 
 { 
   try 
   {
-    console.log("Starting launchVideoId...");
-    return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
-    .then((result: VideoIdResult) => 
+    console.log("Starting startVideoCall...");
+
+    return await SdkMobileVideocall.videocall(getVideoCallConfiguration())
+    .then((result: VideoCallResult) => 
     {
       console.log("result", result);
+      if (result.finishStatus == SdkFinishStatus.Error) {
+        drawError(setMessage, result);
+      }
     })
     .catch((error: any) => 
     {
       console.log(error);
     })
     .finally(()=> {
-      console.log("End launchVideoId...");
+      console.log("End startVideoCall...");
     });
   } 
   catch (error) {
@@ -293,12 +250,9 @@ const launchVideoId = async () =>
   }
 };
 
-const getVideoIdConfiguration = () => 
+const getVideoCallConfiguration = () => 
 {
-  let config: VideoIdConfiguration = {
-    sectionTime: 5000,
-    mode: VideoMode.FACE_DOCUMENT_FRONT,
-  };
+  let config: VideoCallConfiguration = { apiKey: "", tenantId: "", url: "", screenSharing: screenSharing };
   return config;
 };
 ```
@@ -309,17 +263,20 @@ const getVideoIdConfiguration = () =>
 
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
-return await SdkMobileVideoid.videoid(getVideoIdConfiguration())
-.then((result: VideoIdResult) => 
+return await SdkMobileVideocall.videocall(getVideoCallConfiguration())
+.then((result: VideoCallResult) => 
 {
   console.log("result", result);
+  if (result.finishStatus == SdkFinishStatus.Error) {
+    drawError(setMessage, result);
+  }
 })
 .catch((error: any) => 
 {
   console.log(error);
 })
 .finally(()=> {
-  console.log("End launchVideoId...");
+  console.log("End startVideoCall...");
 });
 ```
 

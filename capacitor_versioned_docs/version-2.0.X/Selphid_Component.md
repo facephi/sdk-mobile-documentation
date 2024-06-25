@@ -173,23 +173,6 @@ buildscript {
   }
 }
 ```
-
- 
-
-#### 2.3.2 Permissions for geolocation
-
-Because the **Tracking** component has geolocation options, it is
-necessary to add the permissions for it. In the *AndroidManifest* add
-the following permissions:
-
-``` java
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
-
 ---
 
 ## 3. Component configuration
@@ -745,19 +728,21 @@ The result will be returned via a Promise containing an object of class
 
 Returns the global diagnostic of the process.
 
--   **SdkFinishStatus.Ok**: The operation was successful.
-
--   **SdkFinishStatus.Error**: An error has occurred, which will be
+-   **1**: The operation was successful.
+-   **2**: An error has occurred, which will be
     indicated in the ***errorType*** enumerated and, optionally, an
     extra information message will be displayed in the ***errorMessage***
     property.
 
-
-
 ### 5.2 finishStatusDescription
 
-Returns the finishStatus description. It is an optional value.
+Returns the finishStatus description.
 
+-   **STATUS_OK**: The operation was successful.
+-   **STATUS_ERROR**: An error has occurred, which will be
+    indicated in the ***errorType*** enumerated and, optionally, an
+    extra information message will be displayed in the ***errorMessage***
+    property.
 
 ### 5.3 errorType
 

@@ -674,11 +674,20 @@ export interface SelphidResult {
 The result will be returned via a Promise containing an object of class
 ***SdkSelphidResult***. Information on these fields is expanded below.
 
-### 5.1 finishStatus
+### 5.0 finishStatus
 
--   **SdkFinishStatus.Ok**: The operation was successful.
+-   **1**: The operation was successful.
 
--   **SdkFinishStatus.Error**: An error has occurred, which will be
+-   **2**: An error has occurred, which will be
+    indicated in the \`errorDiagnostic\` string and, optionally, an
+    extra information message will be displayed in the \`errorMessage\`
+    property.
+
+### 5.1 finishStatusDescription
+
+-   **STATUS_OK**: The operation was successful.
+
+-   **STATUS_ERROR**: An error has occurred, which will be
     indicated in the \`errorDiagnostic\` string and, optionally, an
     extra information message will be displayed in the \`errorMessage\`
     property.

@@ -72,8 +72,6 @@ npx ionic capacitor build [android | ios]
 
 Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
 
-
-
 ## 2.2 Instalación plugin: iOS
 ### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
@@ -126,16 +124,6 @@ buildscript {
     minSdkVersion = 24
   }
 }
-```
-
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ---
@@ -593,14 +581,15 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 
 Devuelve el diagnóstico global de la operación.
 
-- **SdkFinishStatus.Ok**: La operación fue exitosa.
-- **SdkFinishStatus.Error**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
-
+- **1**: La operación fue exitosa.
+- **2**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 ### 5.2 finishStatusDescription
 
 Devuelve la descripción de finishStatus. Es un valor opcional.
 
+- **STATUS_OK**: La operación fue exitosa.
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 ### 5.3 errorType
  Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:

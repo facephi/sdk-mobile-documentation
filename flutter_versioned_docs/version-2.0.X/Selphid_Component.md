@@ -167,55 +167,6 @@ buildscript {
 }
 ```
 
-#### 2.3.1 Set Android SDK credentials
-
-For security and maintenance reasons, the new ***SDKMobile*** components
-are stored in private repositories requiring specific credentials. For
-that reason, those credentials must be added to the **build.gradle**
-file (inside the **repositories** section):
-
-
-```
-maven {
-    name = "external"
-    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
-    credentials {
-        username = System.getenv("USERNAME_ARTIFACTORY")
-        password =  System.getenv("TOKEN_ARTIFACTORY")
-    }
-}
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-For the project to correctly retrieve the dependencies, the
-***credentials*** (**Username** and **Token**) must be configured
-correctly
-</div>
-
-
-#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
-Open the .zshrc & .bash_profile files and put the credentials provided by Facephi:
-
-```
-export USERNAME_ARTIFACTORY=username@facephi.es
-export TOKEN_ARTIFACTORY=token_provided_by_facephi
-```
-
-#### 2.3.4 Permissions for geolocation
-
-Because the **Tracking** component has geolocation options, it is
-necessary to add the permissions for it. In the *AndroidManifest* add
-the following permissions:
-
-``` java
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
-
 ---
 
 ## 3. Component configuration

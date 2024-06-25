@@ -214,22 +214,6 @@ buildscript {
 }
 ```
 
- 
-
-#### 2.3.2 Permissions for geolocation
-
-Because the **Tracking** component has geolocation options, it is
-necessary to add the permissions for it. In the *AndroidManifest* add
-the following permissions:
-
-``` java
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
-
 ---
 
 ## 3. Component configuration

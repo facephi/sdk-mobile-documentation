@@ -51,7 +51,6 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 <!-- Include only if your app benefits from precise location access. -->
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
-
 ---
 
 ## 2. Inicialización de la sesión

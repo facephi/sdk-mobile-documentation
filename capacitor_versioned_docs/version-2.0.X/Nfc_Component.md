@@ -175,41 +175,6 @@ android {
     }
 ```
 
-#### 2.3.2 Set Android SDK credentials
-
-For security and maintenance reasons, the new ***SDKMobile*** components
-are stored in private repositories requiring specific credentials. For
-that reason, those credentials must be added to the **build.gradle**
-file (inside the **repositories** section):
-
-
-```
-maven {
-    name = "external"
-    url = uri("https://facephicorp.jfrog.io/artifactory/maven-pro-fphi")
-    credentials {
-        username = System.getenv("USERNAME_ARTIFACTORY")
-        password =  System.getenv("TOKEN_ARTIFACTORY")
-    }
-}
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-For the project to correctly retrieve the dependencies, the
-***credentials*** (**Username** and **Token**) must be configured
-correctly
-</div>
-
-
-#### 2.3.3 Set USERNAME_ARTIFACTORY & TOKEN_ARTIFACTORY
-Open the .zshrc or .bash_profile files and put the credentials provided by Facephi:
-
-```
-export USERNAME_ARTIFACTORY=username@facephi.es
-export TOKEN_ARTIFACTORY=token_provided_by_facephi
-```
-
 ---
 
 ## 3. Component configuration
@@ -414,14 +379,15 @@ The result will be returned via a Promise containing an object of class ***NfcRe
 ### 5.1 finishStatus
 
 - **1**: The operation was successful.
-
 - **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
 
 
 ### 5.2 finishStatusDescription
 
- Returns the operation's global description. It is an optional value.
+Returns the operation's global description. It is an optional value.
 
+- **STATUS_OK**: The operation was successful.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.3 errorType
 

@@ -35,7 +35,6 @@ Because the **Tracking** component has geolocation options, it is necessary to a
 <!-- Include only if your app benefits from precise location access. -->
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
-
 ---
 
 ## 2. Session initialisation

@@ -14,7 +14,6 @@ The Component addressed in the current document is called the Selphi Component. 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 - Minimum Android version: **24 - JDK 11**
-
 - Minimum iOS version: **13**
 
 Regarding the architecture of the mobile device:
@@ -152,16 +151,6 @@ buildscript {
     minSdkVersion = 24
   }
 }
-```
-
-#### 2.3.2 Permissions for geolocation (optional)
-Because the Tracking component has geolocation options, it is necessary to add the permissions for it. In the AndroidManifest add the following permissions:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ---
