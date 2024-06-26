@@ -133,6 +133,8 @@ SdkVoiceConfig = function ()
     this.phrases = "";
     this.timeout = 30000;
     this.showDiagnostic;
+    this.returnAudios;
+    this.returnTokenizedAudios;
 }
 ```
 
@@ -179,10 +181,32 @@ showTutorial: true;
 
 **type:** *boolean*
 
-Indica si se desea o no habilitar la vibración.
+Indica si se desea o no habilitar la vibración del plugin.
+
+### 3.5 showDiagnostic
+
+**type:** *boolean*
+
+Indica si se desea o no mostrar la pantalla de errores del plugin.
+
+### 3.6 returnAudios
+
+**type:** *boolean*
+
+Indica si se desea o no retornar los audios grabados al final del proceso.
 
 ```
-vibration: false;
+returnAudios: false;
+```
+
+### 3.7 returnTokenizedAudios
+
+**type:** *boolean*
+
+Indica si se desea o no retornar los audios tokenizados grabados al final del proceso.
+
+```
+returnTokenizedAudios: false;
 ```
 ---
 
@@ -263,6 +287,8 @@ VoiceResult {
     finishStatusDescription?: string;
     errorType: string;
     errorMessage?: string;
+    audios?: any;
+    tokenizedAudios?: any;
 }
 ```
 <div class="note">
@@ -306,3 +332,9 @@ Devuelve la descripción de finishStatus.
 
 ### 5.4 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+
+### 5.5 audios:
+Devuelve los audios grabados. Sólo si el parámetro returnAudios se estableció en verdadero.
+
+### 5.6 tokenizedAudios
+Devuelve los audios grabados tokenizados. Sólo si el parámetro returnTokenizedAudios se estableció en verdadero.

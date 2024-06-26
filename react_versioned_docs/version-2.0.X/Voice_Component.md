@@ -149,16 +149,6 @@ buildscript {
 }
 ```
 
-### 2.3.2 Permissions for geolocation
-Because the **Tracking** component has geolocation options, it is necessary to add permissions for this. In the *AndroidManifest* add the following permissions:
-
-```java
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
 ---
 
 ## 3. Component Configuration
@@ -173,6 +163,8 @@ export interface VoiceConfiguration {
   phrases: string;
   timeout?: number;
   showDiagnostic?: boolean;
+  returnAudios?: boolean;
+  returnTokenizedAudios?: boolean;
 }
 ```
 
@@ -189,20 +181,20 @@ When calling the component, there are a series of parameters that must be includ
 
 **type:** *boolean*
 
-.
+Enable or disable the plugin's vibration option.
 
 ```
 vibrationEnabled: true
 ```
 
-### 3.2 timeout
+### 3.2 showTutorial
 
-**type:** *number*
+**type:** *boolean*
 
-Indicates the time that the component finishes due to inactivity.
+Indicates whether you want to show the complete tutorial of the process or just the simplified version.
 
 ```
-timeout: 10000
+showTutorial: true;
 ```
 
 ### 3.3 phrases
@@ -215,17 +207,17 @@ Phrases that have to be said in the app to validate identity.
 phrases: 'hola mundo|hola voice component|hola Facephi',
 ```
 
-### 3.4 showTutorial
+### 3.4 timeout
 
-**type:** *boolean*
+**type:** *number*
 
-Indicates whether you want to show the complete tutorial of the process or just the simplified version.
+Indicates the time that the component finishes due to inactivity.
 
 ```
-showTutorial: true;
+timeout: 10000
 ```
 
-### 3.8 showDiagnostic
+### 3.5 showDiagnostic
 
 **type:** *boolean*
 
@@ -235,6 +227,25 @@ Indicates whether you want to show a diagnosis in case of failure.
 showDiagnostic: false;
 ```
 
+### 3.6 returnAudios
+
+**type:** *boolean*
+
+Enable or disable the option to return recorded audios.
+
+```
+returnAudios: false;
+```
+
+### 3.7 returnTokenizedAudios
+
+**type:** *boolean*
+
+Enable or disable the option to return tokenized recorded audios.
+
+```
+returnTokenizedAudios: false;
+```
 ---
 
 ## 4. Component usage
@@ -322,7 +333,8 @@ export interface VoiceResult
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  data?: string;
+  audios?: any;
+  tokenizedAudios?: any;
 }
 ```
 <div class="note">
@@ -401,3 +413,9 @@ Returns the type of error that occurred (if there was one, which is indicated in
 
 ### 5.4 errorMessage: 
 Indicates an additional error message if necessary. It is an optional value.
+
+### 5.5 audios:
+Returns the recorded audios. Only if the param returnAudios was setted in true.
+
+### 5.6 tokenizedAudios
+Returns the tokenized recorded audios. Only if the param returnTokenizedAudios was setted in true.
