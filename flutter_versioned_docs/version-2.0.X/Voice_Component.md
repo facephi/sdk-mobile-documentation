@@ -131,6 +131,8 @@ class VoiceConfiguration
   bool? mShowDiagnostic;
   bool? mShowTutorial;
   bool? mVibrationEnabled;
+  bool? mReturnAudios;
+  bool? mReturnTokenizedAudios;
 }
 ```
 
@@ -143,27 +145,17 @@ All configuration can be found in the component's ***fphi_sdkmobile_voice/fphi_s
 
 When calling the widget there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1 phrases
+### 3.1 vibrationEnabled
 
-**type:** *string*
+**type:** *boolean*
 
-Phrases that have to be said in the app to validate identity.
-
-```
-phrases: 'hola mundo|hola voice component|hola Facephi',
-```
-
-### 3.2 timeout
-
-**type:** *number*
-
-The plugin timeout is set.
+Enable or disable the plugin's vibration option.
 
 ```
-timeout: 10000;
+vibrationEnabled: true
 ```
 
-### 3.3 showTutorial
+### 3.2 showTutorial
 
 **type:** *boolean*
 
@@ -173,14 +165,54 @@ Indicates whether you want to show the complete tutorial of the process or just 
 showTutorial: true;
 ```
 
-### 3.4 vibration
+### 3.3 phrases
+
+**type:** *string*
+
+Phrases that have to be said in the app to validate identity.
+
+```
+phrases: 'hola mundo|hola voice component|hola Facephi',
+```
+
+### 3.4 timeout
+
+**type:** *number*
+
+Indicates the time that the component finishes due to inactivity.
+
+```
+timeout: 10000
+```
+
+### 3.5 showDiagnostic
 
 **type:** *boolean*
 
-Indicates whether or not you want to enable vibration.
+Indicates whether you want to show a diagnosis in case of failure.
 
 ```
-vibration: false;
+showDiagnostic: false;
+```
+
+### 3.6 returnAudios
+
+**type:** *boolean*
+
+Enable or disable the option to return recorded audios.
+
+```
+returnAudios: false;
+```
+
+### 3.7 returnTokenizedAudios
+
+**type:** *boolean*
+
+Enable or disable the option to return tokenized recorded audios.
+
+```
+returnTokenizedAudios: false;
 ```
 ---
 
@@ -247,6 +279,8 @@ class VoiceResult
   final String finishStatusDescription;
   final String errorDiagnostic;
   final String? errorMessage;
+  final dynamic? audios;
+  final dynamic? tokenizedAudios;
 }
 ```
 <div class="note">
@@ -302,5 +336,10 @@ Returns the type of error that occurred (if there was one, which is indicated by
 - **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
 
 ### 5.3 errorMessage
-
 Indicates an additional error message if necessary. It is an optional value.
+
+### 5.5 audios:
+Returns the recorded audios. Only if the param returnAudios was setted in true.
+
+### 5.6 tokenizedAudios
+Returns the tokenized recorded audios. Only if the param returnTokenizedAudios was setted in true.

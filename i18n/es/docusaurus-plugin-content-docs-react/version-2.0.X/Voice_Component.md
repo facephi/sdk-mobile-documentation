@@ -131,17 +131,6 @@ buildscript {
   }
 }
 ```
-
-### 2.3.2 Permisos para geolocalización
-Debido a que el componente de **Tracking** tiene opciones de geolocalización, es necesario añadir los permisos para ello. En el AndroidManifest agregar los siguientes permisos:
-
-```
-<!-- Always include this permission -->
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!-- Include only if your app benefits from precise location access. -->
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-```
-
 ---
 
 ## 3. Configuración del componente
@@ -155,6 +144,9 @@ export interface VoiceConfiguration {
   showTutorial: boolean;
   phrases: string;
   timeout?: number;
+  showDiagnostic:? boolean;
+  returnAudios:? boolean;
+  returnTokenizedAudios?: boolean;
 }
 ```
 
@@ -201,10 +193,32 @@ showTutorial: true;
 
 **type:** *boolean*
 
-Indica si se desea o no habilitar la vibración.
+Indica si se desea o no habilitar la vibración del plugin.
+
+### 3.5 showDiagnostic
+
+**type:** *boolean*
+
+Indica si se desea o no mostrar la pantalla de errores del plugin.
+
+### 3.6 returnAudios
+
+**type:** *boolean*
+
+Indica si se desea o no retornar los audios grabados al final del proceso.
 
 ```
-vibration: false;
+returnAudios: false;
+```
+
+### 3.7 returnTokenizedAudios
+
+**type:** *boolean*
+
+Indica si se desea o no retornar los audios tokenizados grabados al final del proceso.
+
+```
+returnTokenizedAudios: false;
 ```
 ---
 
@@ -288,6 +302,8 @@ export interface VoiceResult
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
+  audios?: any;
+  tokenizedAudios?: any;
 }
 ```
 <div class="note">
@@ -300,16 +316,14 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 Devuelve el diagnóstico global de la operación.
 
 - **1**: La operación fue exitosa.
-- **2**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
-
+- **2**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 ### 5.2 finishStatusDescription
 
 Devuelve el diagnóstico global de la operación.
 
 - **STATUS_OK**: La operación fue exitosa.
-- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el enumerado ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
-
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 ### 5.3 errorType
  Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:
@@ -334,3 +348,9 @@ Devuelve el diagnóstico global de la operación.
 
 ### 5.4 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+
+### 5.5 audios:
+Devuelve los audios grabados. Sólo si el parámetro returnAudios se estableció en verdadero.
+
+### 5.6 tokenizedAudios
+Devuelve los audios grabados tokenizados. Sólo si el parámetro returnTokenizedAudios se estableció en verdadero.
