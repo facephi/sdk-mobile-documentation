@@ -13,7 +13,7 @@
   - Horizontal views for tablets
 
 - SelphID
-  - New version 1.25.0
+  - New version 1.25.1
 
 - Tracking
   - Added APIKEY connection
@@ -34,7 +34,8 @@
   - Adjustments and improvements in stopping the service
 
 - Selphi
-  - New version 5.12.6
+  - New version 5.13.0
+  - A parameter is added in the response: livenessDiagnostic
 
 ### 2.0.1
 

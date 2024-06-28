@@ -69,7 +69,7 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 
 | **Versión SDK** | **Selphi versión de recursos**            |
 | -------------- | -------------------------- |
-| 2.0.2  | 5.12.6 |
+| 2.0.2  | 5.13.0 |
 
 ---
 
