@@ -313,7 +313,6 @@ export interface PhingersResult {
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  template?: any;
   processedFingers?: any;
   rawFingers?: any;
   wsq?: any;
