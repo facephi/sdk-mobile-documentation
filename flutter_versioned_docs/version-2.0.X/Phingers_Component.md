@@ -148,110 +148,133 @@ All configuration can be found in the component's ***fphi_sdkmobile_voice/fphi_s
 
 When calling the widget there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.0 reticleOrientation
+### 3.1 reticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
-.
+
+Sets the fingerprint detection mode and indicates which fingers are to
+be detected during the process. The allowed values are:
+
+- **DT_LEFT**: Enables the capture of the **four** **fingers** of the
+  **left** **hand**.
+
+- **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
+  **left** **hand**.
+
+- **DT_THUMB**: The capture of a **thumb** is activated.
+
 
 ```
 reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
 ```
 
-### 3.1 returnFullFrameImage
+### 3.2 returnFullFrameImage
 
 **type:** *boolean*
 
-.
+Specifies whether to return the full image of the camera in which the
+fingers have been detected.
 
 ```
 returnFullFrameImage: true,
 ```
 
-### 3.2 returnProcessedImage
+### 3.3 returnProcessedImage
 
 **type:** *boolean*
 
-.
+If set to **true** it will return in the result the images in the same
+form as they have been captured.
 
 ```
 returnProcessedImage: true;
 ```
 
-### 3.3 returnRawImage
+### 3.4 returnRawImage
 
 **type:** *boolean*
 
-.
+
+If set to **true** it will return in the result the images in the same
+form as they have been captured.
 
 ```
 mReturnRawImage: true;
 ```
 
-### 3.4 useFlash
+### 3.5 useFlash
 
 **type:** *boolean*
 
-.
+Enables or disables the camera flash during the fingerprint capture
+process. Default is set to **true**.
+
 
 ```
 useFlash: false;
 ```
 
-### 3.5 useLiveness
+### 3.6 useLiveness
 
 **type:** *boolean*
 
-.
+Enables or disables the liveness detector during the fingerprint capture
+process. Default is set to **true**.
 
 ```
 useLiveness: false;
 ```
 
-### 3.6 showTutorial
+### 3.7 showTutorial
 
 **type:** *boolean*
 
-.
+Indicates whether the component activates the tutorial screen. This view
+intuitively explains how the capture is performed.
 
 ```
 showTutorial: false;
 ```
 
-### 3.7 vibration
+### 3.8 vibration
 
 **type:** *boolean*
 
-.
+Enables the vibration during the process.
 
 ```
 vibration: false;
 ```
 
-### 3.8 extractionTimeout
+### 3.9 extractionTimeout
 
 **type:** *int*
 
-.
+Sets a stabilisation mode prior to any authentication process in the
+widget. This mode forces the widget not to start any process if the user
+is not facing forward and not moving his head.
+
 
 ```
 extractionTimeout: false;
 ```
 
-### 3.9 showDiagnostic
+### 3.10 showDiagnostic
 
 **type:** *boolean*
 
-.
+Display diagnostic screens at the end of the process
 
 ```
 showDiagnostic: false;
 ```
-### 3.10 threshold
+### 3.11 threshold
 
 **type:** *double*
 
-.
+The parameter configures a captureQualityThreshold, to define a quality
+threshold to perform the capture.
 
 ```
 threshold: 0.8;
@@ -336,60 +359,51 @@ class PhingersResult
 The result will be returned through a Promise that contains an object of the class ***PhingersResult***. Below is more information about these fields.
 </div>
 
-### 5.0 finishStatus
+#### 5.1 finishStatus
 
 - **1**: The operation was successful.
-- **2**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
+- **2**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.1 finishStatusDescription
+
+### 5.2 finishStatusDescription
 
 - **STATUS_OK**: The operation was successful.
-- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.2 errorDiagnostic
-Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
-
-- **NoError**: No error has occurred. The process can continue.
-
-- **UnknownError**: Unhandled error. Possibly caused by a bug in the resource bundle.
-
-- **CameraPermissionDenied**: The exception that is thrown when the sdk does not have permission to access the camera.
-
-- **SettingsPermissionDenied**: The exception that is thrown when the widget does not have permission to access system settings (*deprecated*).
-
-- **HardwareError**: Exception that occurs when there is a hardware problem with the device, usually caused by very few available resources.
-
-- **ExtractionLicenceError**: Exception that occurs when there has been a licencing problem on the server.
-
-- **UnexpectedCaptureError**: Exception that occurs during the capture of frames by the camera.
-
-- **ControlNotInitialisedError**: The widget configurator has not been initialised.
-
-- **BadExtractorConfiguration**: Problem arose during widget configuration.
-
-- **CancelByUser**: The exception that is thrown when the user stops the extraction manually.
-
-- **TimeOut**: Exception that is thrown when a maximum time elapses without successfully completing the extraction.
-
-- **InitProccessError**: Exception that is thrown when the sdk cannot process the captured images.
-
-- **NfcError**: The exception that is thrown when the sdk does not have permission to access the nfc.
-
-- **NetworkConnection**: The exception that is thrown when there are issues with the means the device uses to connect to the network.
-
-- **TokenError**: The exception that is thrown when an invalid token is passed as a parameter.
-
-- **InitSessionError**: The exception that is thrown when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
-
-- **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
-
-### 5.3 errorMessage
-
+### 5.3 errorMessage 
+  
 Indicates an additional error message if necessary. It is an optional value.
 
-### 5.4 fullFrameImage
-### 5.5 focusQuality;
-### 5.6 livenessConfidence;
-### 5.7 processedFingers;
-### 5.8 rawImages;
-### 5.9 wsq;
+
+### 5.4 errorDiagnostic
+Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). 
+
+
+### 5.5 fullFrameImage
+
+Returns the raw, unmodified image of the current fingerprint.
+
+### 5.6 focusQuality
+
+Returns the best image extracted from the authentication process in Base64 string format. This image is the original size image extracted from the camera. Valid for the liveness process.
+
+### 5.7 livenessConfidence
+
+Returns the best image extracted from the authentication process in Bitmap format. This image is the original size image extracted from the camera. Valid for the liveness process.
+
+### 5.8 processedFingers
+
+Returns the processed fingerprint image.
+
+### 5.9 rawImages
+
+Returns the raw, unmodified image of the current fingerprint.
+
+### 5.10 wsq
+
+The fingerprint captured in WSQ format are returned.
+
+
+### 5.11 nfiqMetrics
+
+The fingerprint captured in WSQ format are returned.
