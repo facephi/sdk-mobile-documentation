@@ -544,7 +544,9 @@ SDKController.launch(TrackingErrorController {
 ### 9.2. Activation of General Debugging Logs
 
 ```java
-SDKController.enableDebugMode()
+ if (BuildConfig.DEBUG) {
+  SDKController.enableDebugMode()
+ }
 ```
 
 ---

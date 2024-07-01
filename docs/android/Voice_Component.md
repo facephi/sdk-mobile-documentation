@@ -120,6 +120,10 @@ Sets the maximum time that the capture can be performed.
 
 Display diagnostic screens at the end of the process
 
+#### 5.1.6. enableQualityCheck
+
+Enable or disable audio quality checking. It is recommended to always keep it enabled.
+
 ---
 
 ## 6. Component use

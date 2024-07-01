@@ -556,7 +556,9 @@ SDKController.launch(TrackingErrorController {
 ### 9.2. Activación de Logs de depuración general
 
 ```java
-SDKController.enableDebugMode()
+ if (BuildConfig.DEBUG) {
+  SDKController.enableDebugMode()
+ }
 ```
 
 ---
