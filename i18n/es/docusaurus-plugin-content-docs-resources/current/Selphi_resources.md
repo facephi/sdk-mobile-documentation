@@ -15,6 +15,7 @@ El fichero de recursos se puede obtener de los siguientes enlaces:
 | **Versión de Selphi** | **Enlace**            |
 | -------------- | -------------------------- |
 | 5.12.6  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.12.6/fphi-selphi-widget-resources-selphi-live-5.12.6.zip" rel="nofollow"> Recursos v.5.12.6</a> |
+| 5.13.1  | <a href="hhttps://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.13.1/fphi-selphi-widget-resources-selphi-live-5.13.1.zip" rel="nofollow"> Recursos v.5.13.1</a> |
 
 ---
 
