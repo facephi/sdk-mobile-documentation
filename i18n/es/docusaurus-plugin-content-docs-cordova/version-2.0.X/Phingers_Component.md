@@ -344,7 +344,6 @@ PhingersResult {
     rawFingers?: any;
     wsq?: any;
     focusQuality?: any;
-    nfiqMetricsTransactionId?: any;
     livenessConfidence?: any;
     fullFrameImage?: any;
 }
