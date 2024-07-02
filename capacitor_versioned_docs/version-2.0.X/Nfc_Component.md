@@ -64,9 +64,10 @@ For this section, the following values ​​will be considered:
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
 
-- Access **PLUGIN_CORE_PATH** at a terminal and run:
+- Access **PLUGIN_NFC_PATH** at a terminal and run:
 
 ``` java
+npm i
 npm run build
 ```
 
@@ -74,6 +75,7 @@ npm run build
 - Access **APPLICATION_PATH** at a terminal and run:
 
 ``` java
+npm i @facephi/sdk-core-capacitor
 npm i @facephi/sdk-nfc-capacitor
 npm run build
 npx cap sync
@@ -375,12 +377,10 @@ export interface NfcResult
 The result will be returned via a Promise containing an object of class ***NfcResult***. Information on these fields has been elaborated on below.
 </div>
 
-
 ### 5.1 finishStatus
 
 - **1**: The operation was successful.
 - **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
-
 
 ### 5.2 finishStatusDescription
 

@@ -129,6 +129,7 @@ El plugin permite la ejecución en platafoma Android y iOS. En esta sección se 
 - Acceda al **\<%PLUGIN_CORE_PATH%\>** en un terminal y ejecute:
 
 ```
+npm i
 npm run build
 ```
 

@@ -51,15 +51,17 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-- Access al **PLUGIN_CORE_PATH** at a terminal and run:
+- Access al **PLUGIN_SELPHI_PATH** at a terminal and run:
 
 ```
+npm i
 npm run build
 ```
 
 - Access **APPLICATION_PATH** at a terminal and run:
 
 ```
+npm i @facephi/sdk-core-capacitor
 npm i @facephi/sdk-selphi-capacitor
 npm run build
 npx cap sync
@@ -326,7 +328,6 @@ If the ***compressFormat*** property is configured as **JPG**, it is possible to
 jpgQuality: 95
 ```
 
-
 ###  3.16 videoFilename
 
 **type:** *string*
@@ -346,7 +347,6 @@ write processing unless a file path is specified using this method.
 ```
 videoFilename: “\<videofile-path\>“;
 ```
-
 
 ###  3.17 translationsContent
 
@@ -464,7 +464,6 @@ export interface SelphiFaceResult {
 }
 ```
 
- 
 <div class="note">
 <span class="note">:information_source:</span>
 The result will be returned via a Promise containing an object of class *SelphiFaceResult*. Information on these fields has been elaborated on below.
@@ -475,12 +474,10 @@ The result will be returned via a Promise containing an object of class *SelphiF
 - **1**: The operation was successful.
 - **2**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-
 ### 5.2 finishStatusDescription
 
 - **STATUS_OK**: The operation was successful.
 - **STATUS_ERROR**: An error has occurred, which will be indicated in the errorDiagnostic string and, optionally, an extra information message will be displayed in the errorMessage property.
-
  
 ### 5.3 errorMessage
   

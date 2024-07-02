@@ -159,6 +159,7 @@ plugin, the following steps must be adopted:
 - Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ```
+npm i
 npm run build
 ```
 
