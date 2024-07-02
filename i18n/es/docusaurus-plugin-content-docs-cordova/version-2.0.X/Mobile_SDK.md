@@ -131,12 +131,12 @@ pod repo-art update cocoa-pro-fphi
 ### 2.2. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que **react-native** esté instalado.
+- Asegurarse de que **Cordova** esté instalado.
 
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-yarn add @facephi/sdk-core-react-native
+[ionic] cordova plugin add @facephi/sdk-core-cordova
 ```
 
 <div class="warning">
@@ -154,28 +154,12 @@ Se recomienda ejecutar todos los comandos con ***arch -x86_64*** delante, por ej
 
 ```
 "dependencies": {
-  "@facephi/sdk-core-react-native": "^2.0.0",
+  "@facephi/sdk-core-cordova": "^2.0.0",
 }
 ```
 
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado. 
-Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
-
-***Desde Terminal***
-
-Para Android:
-
-```
-npx react-native run-android 
-ó 
-npx react-native run-android --active-arch-only
-```
-
-Para iOS:
-
-```
-npx react-native run-ios
-```
+Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
+Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
 
 ***Desde diferentes IDE***
 

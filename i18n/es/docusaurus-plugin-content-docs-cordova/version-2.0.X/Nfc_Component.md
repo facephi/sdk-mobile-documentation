@@ -40,12 +40,12 @@ Para esta sección, se considerarán los siguiente valores:
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que React Native esté instalado.
+- Asegurarse de que Cordova esté instalado.
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-[ionic] cordova plugin add @facephi/sdk-core-react-native
-[ionic] cordova plugin add @facephi/sdk-videoid-react-native
+[ionic] cordova plugin add @facephi/sdk-core-cordova
+[ionic] cordova plugin add @facephi/sdk-videoid-cordova
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
@@ -63,9 +63,6 @@ Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS
 ## 2.2 Instalación plugin: iOS
 ### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
-
-- **Deshabilitar el BITCODE**: Si la aplicación que va a integrar el plugin tiene activado el BITCODE dará error de compilación. Para evitar que esto suceda, **el BITCODE debe estar desactivado**. 
-Dentro del XCODE simplemente accediendo a *Build from Settings*, en la sección *Build Options*, deberás indicar el parámetro Habilitar Bitcode como No.
 
 - **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
 
