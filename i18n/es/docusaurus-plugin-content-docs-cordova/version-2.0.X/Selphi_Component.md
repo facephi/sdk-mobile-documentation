@@ -48,34 +48,21 @@ Para esta sección, se considerarán los siguiente valores:
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que React Native esté instalado.
+- Asegurarse de que ***Cordova*** esté instalado.
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-yarn add @facephi/sdk-core-react-native // SOLO EJECUTAR SI EL PLUGIN NO ESTA INSTALADO. YA QUE ÉSTE COMPONENTE ERA MANDATORIO.
-yarn add @facephi/sdk-selphi-react-native
+[ionic] cordova plugin add @facephi/sdk-core-cordova // SOLO EJECUTAR SI EL PLUGIN NO ESTA INSTALADO. YA QUE ÉSTE COMPONENTE ERA MANDATORIO.
+[ionic] cordova plugin add @facephi/sdk-selphi-cordova
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
 
 ```
 "dependencies": {
-  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-selphi-react-native": <% PLUGIN_SELPHI_FACE_PATH %>
+  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-selphi-cordova": <% PLUGIN_SELPHI_FACE_PATH %>
 }
-```
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
-Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
-Desde Terminal (Para Android):
-```
-npx react-native run-android 
-ó 
-npx react-native run-android --active-arch-only
-```
-
-Para iOS:
-```
-npx react-native run-ios
 ```
 
 Desde diferentes IDE's, Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
@@ -136,7 +123,7 @@ buildscript {
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-selphi-react-native/src/index.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-selphi-cordova/src/index.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
 A continuación se muestra la clase **SelphiConfiguration**, que permite configurar el componente de Selphi:
 
@@ -167,7 +154,7 @@ export interface SelphiConfiguration {
 A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphiConfiguration**:
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx del componente.
+Toda la configuración se podrá encontrar en el archivo sdk-selphi/www/SdkSelphiConfig.js del componente.
 </div>
 
 A la hora de realizar la llamada al componente existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.

@@ -48,12 +48,12 @@ Para esta sección, se considerarán los siguiente valores:
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma **Android y iOS**. En esta sección se explican los pasos comunes. Para instalar el plugin se deben seguir los siguientes pasos:
 
-- Asegurarse de que React Native esté instalado.
+- Asegurarse de que ***Cordova*** esté instalado.
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-selphid-react-native
+[ionic] cordova plugin add @facephi/sdk-core-cordova
+[ionic] cordova add @facephi/sdk-selphid-cordova
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
@@ -63,21 +63,6 @@ Es importante verificar que la ruta al complemento esté correctamente definida 
   "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
   "@facephi/sdk-selphid-cordova": <% PLUGIN_SELPHID_PATH %>
 }
-```
-
-Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
-Finalmente, para lanzar los proyectos, se deberá ejecutar los siguientes comandos de dos maneras:
-
-***Desde Terminal***(Para Android):
-
-```
-npx react-native run-android 
-ó 
-npx react-native run-android --active-arch-only
-```
-Para iOS:
-```
-npx react-native run-ios
 ```
 
 Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
@@ -138,7 +123,7 @@ buildscript {
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-selphid-react-native/src/index.tsx***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***sdk-selphid/www/SdkSelphidConfig.js***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
 A continuación se muestra la clase *SelphidConfiguration*, que permite configurar el componente de **SelphID**:
 
@@ -147,7 +132,7 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   debug?: boolean;
   fullScreen?: boolean;
   tokenImageQuality?: number;
-  widgetTimeout?: number;
+  timeout?: SelphIDTimeout;
   showResultAfterCapture?: boolean;
   showTutorial?: boolean;
   tutorialOnly?: boolean;
@@ -528,8 +513,8 @@ Devuelve el diagnóstico global de la operación.
 
 Devuelve la descripción de finishStatus. Es un valor opcional.
 
-- **1**: La operación fue exitosa.
-- **2**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
+- **STATUS_OK**: La operación fue exitosa.
+- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string ***errorType*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***errorMessage***.
 
 ### 5.3 errorType
  Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Se definen en la clase *SdkErrorType*. Los valores que puede tener son los siguientes:

@@ -111,3 +111,27 @@ Now it’s an String in the 2.0.0 version:
 ```
 final String errorDiagnostic;
 ```
+
+### 2.4 Compose + Kotlin version
+#### Error
+
+```
+java.lang.NoClassDefFoundError: Failed resolution of: Landroidx/compose/ui/platform/ComposeView;
+```
+
+#### Solution
+In the build.gradle(android) add:
+
+```
+    dependencies {
+      classpath "com.android.tools.build:gradle:7.4.2"
+      classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0" // ADD THIS LINE
+    }
+```
+
+And in the build.gradle(app) add:
+
+```
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android' // ADD THIS LINE
+```
