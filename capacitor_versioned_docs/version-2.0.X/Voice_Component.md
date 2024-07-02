@@ -51,14 +51,16 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on Android and iOS platforms. This section explains it. The following steps must be followed:
 
-- Access **PLUGIN_CORE_PATH** in a terminal and run:
+- Access **PLUGIN_VOICE_PATH** in a terminal and run:
 
 ``` java
+npm i
 npm run build
 ```
 - Access **APPLICATION_PATH** and launch:
 
 ``` java
+npm i @facephi/sdk-core-capacitor
 npm i @facephi/sdk-voice-capacitor
 npm run build
 npx cap sync

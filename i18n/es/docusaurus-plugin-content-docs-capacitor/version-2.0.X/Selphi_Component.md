@@ -48,15 +48,17 @@ Para esta sección, se considerarán los siguiente valores:
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
-- Acceda al **PLUGIN_CORE_PATH** en un terminal y ejecute:
+- Acceda al **PLUGIN_SELPHI_PATH** en un terminal y ejecute:
 
 ```
+npm i
 npm run build
 ```
 
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
+npm i @facephi/sdk-core-capacitor
 npm i @facephi/sdk-selphi-capacitor
 npm run build
 npx cap sync

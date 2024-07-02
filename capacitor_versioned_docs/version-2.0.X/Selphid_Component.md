@@ -79,14 +79,16 @@ For this section, the following values ​​will be considered:
 
 The plugin allows execution on Android and iOS platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-Access **PLUGIN_CORE_PATH** at a terminal and run:
+Access **PLUGIN_SELPHID_PATH** at a terminal and run:
 
 ``` java
+npm i
 npm run build
 ```
 Access **APPLICATION_PATH** and run:
 
 ``` java
+npm i @facephi/sdk-core-capacitor
 npm i @facephi/sdk-selphid-capacitor
 npm run build
 npx cap sync
