@@ -174,6 +174,10 @@ Indicates if you want to extract the image of the face.
 
 Indicates if you want to extract the signature image.
 
+#### 5.1.13. documentType
+
+Field used to change the tutorial view to show the different documents.
+
 ---
 
 ## 6. Component use

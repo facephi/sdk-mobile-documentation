@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "SNAPSHOT 🚧",
+    "description": "The label for version current"
+  },
+  "sidebar.reactSidebar.category.React Native": {
+    "message": "React Native",
+    "description": "The label for category React Native in sidebar reactSidebar"
+  }
+}

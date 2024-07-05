@@ -11,8 +11,7 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK).
+Para más información sobre la configuración base, vaya a la sección de [Primeros Pasos](./Mobile_SDK).
 
 ---
 
@@ -62,7 +61,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de [Primeros Pasos](./Mobile_SDK), en el que se detalla y explica en qué consiste
+consultar la documentación de [Primeros Pasos](./Mobile_SDK) , en el que se detalla y explica en qué consiste
 este proceso.
 
 ---

@@ -68,6 +68,14 @@ completo antes de la instalación de los componentes de la
   implementation "com.facephi.androidsdk:selphid_component:$sdk_selphid_component_version"
   ```
 
+### 2.1. Fichero zip de recursos
+
+Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar en el apartado de **Resources**):
+
+| **Versión SDK** | **Selphi versión de recursos**            |
+| -------------- | -------------------------- |
+| 2.0.2  | 1.25.1 |
+
 ---
 
 ## 3. Iniciar nueva operación

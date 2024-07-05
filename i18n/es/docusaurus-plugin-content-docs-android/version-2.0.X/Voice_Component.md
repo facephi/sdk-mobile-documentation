@@ -128,6 +128,10 @@ Establece el tiempo máximo que se puede realizar la captura.
 
 Mostrar pantallas de diagnóstico al final del proceso
 
+#### 5.1.6. enableQualityCheck
+
+Activa o desactiva la comprobación de calidad del audio. Se recomienda tenerla siempre activa.
+
 ---
 
 ## 6. Uso del componente

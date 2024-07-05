@@ -112,6 +112,8 @@ connection to the video service.
 Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched.
 
+**IMPORTANT**: The client application must control the lifecycle of the application and call the stop method of the service when it considers (Example: When the application is put in the background). If the service is not stopped, it continues recording the screen.
+
 Recording controllers shall return statuses to indicate the progress of the process.
 
 There are two ways to launch the component:

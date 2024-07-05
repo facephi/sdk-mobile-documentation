@@ -2,6 +2,47 @@
 
 ## Versions
 
+### 2.0.2
+
+- General
+
+  - Tutorial improvements
+  - UX/UI improvements
+  - Kotlin updated from 1.9.24 to 2.0.0 with K2 compiler
+  - Android Gradle Plugin updated from 8.3.2 to 8.5.0
+  - Minor dependencies update
+  - Horizontal views for tablets
+
+- SelphID
+
+  - New version 1.25.1
+
+- Tracking
+
+  - Added APIKEY connection
+  - Version 2 in events
+  - Adjustments of stepSucceed prior to assets
+  - Improvements in connection loss logic
+
+- NFC
+
+  - Improvements and fixes
+  - Corrected "Tag lost error"
+  - Improvements in reconnection
+  - Now you can choose whether you want to extract the image of the face and the signature.
+
+- VideoRecording
+
+  - Adjustments and improvements in stopping the service
+
+- VideoCall
+
+  - Adjustments and improvements in stopping the service
+
+- Selphi
+  - New version 5.13.1
+  - A parameter is added in the response: livenessDiagnostic
+
 ### 2.0.1
 
 - General
@@ -27,13 +68,11 @@
   - Updated Timeout image
 
 - Phingers
+
   - Simplified ConfigurationData
 
 - Tokenizer
   - New core version 2.0.7
-
-- Verification
-  - Add new services
 
 ### 2.0.0
 
@@ -42,11 +81,8 @@
   - All SDKController functions, from having output with lambda, become suspend functions and return the result synchronously.
     To consume it now it will be necessary to use a Coroutine.
     If called from a ViewModel, you can use viewModelScore.launch, otherwise CoroutineScope(Dispatchers.IO).launch.
-
   - The SDK initialisation now has an SDKConfigurationData with the data to be filled in.
-
   - In the SDKConfigurationData you can choose between LicensingOnline or LicensingOffline.
-
   - All ConfigurationData with images inside was changed to refactor the name of params (Image)
 
 - Tracking
@@ -66,78 +102,112 @@
 ### 1.5.5
 
 - General
+
   - Security settings and improvements
   - Selphi and Selphid internal image improved management
+
 - NFC
   - Fix Personal Number
 
 ### 1.5.4
 
 - General
+
   - Security settings and improvements
   - Layout adjustments to fullscreen tutorial views
+
 - Selphi
+
   - New version 5.12.1
+
 - SelphID
   - New version 1.23.1
 
 ### 1.5.3
 
 - General
+
   - Diagnostic screens with retry
   - Flow
     - New Feature
     - Dynamic theme
     - Preview controller to development
     - Improvements
+
 - Selphi
+
   - Version updated to 5.12.0
   - Tutorial adjusts
   - Full frame tracking adjust
+
 - SelphID
+
   - Version updated to 1.22.3
+
 - Phingers
+
   - Added haptic feedback with vibration
   - Improvements in tutorial
+
 - NFC
+
   - Improvements
+
 - VideoId
+
   - Adjust bugfixes
   - UX adjusts
+
 - VideoCall
+
   - New Feature - ScreenSharing
   - Adjust bugfixes
+
 - VideoRecording
+
   - New State managements to get more control in client layer
   - Adjust bugfixes
   - Know Issue: API 34 Android
+
 - Capture QR
   - QR format adjusts
 
 ### 1.5.2
 
 - General
+
   - Improvement in smaller screens
   - New SelphiSignController
   - New VideoIdSignController
   - New SDKImage handler and SDKApplication
+
 - NFC
+
   - Improvements
+
 - SelphID
+
   - 1.21.1
+
 - Selphi
+
   - 5.11.2
+
 - Voice
   - Library size improvement
 
 ### 1.5.1
 
 - General
+
   - Improvements and bug fixes
+
 - Voice
+
   - Internal library update
   - Calibration adjustments
   - Return tokenized audios
+
 - Phingers
   - WSQ tracking
 - Behaviour

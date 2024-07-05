@@ -56,6 +56,14 @@ distributed remotely through different dependency managers.
   implementation "com.facephi.androidsdk:selphi_component:$sdk_selphi_component_version"
   ```
 
+### 2.1. Resources zip file
+
+Table of sdk versions and associated resource versions (Found in the **Resources** section):
+
+| **SDK version** | **Selphi resources version**            |
+| -------------- | -------------------------- |
+| 2.0.2  | 5.13.1 |
+
 ---
 
 ## 3. Start a new operation
@@ -166,7 +174,7 @@ should be optimized or not.
 Sets whether or not to activate QR reading before the authentication
 process.
 
-#### 5.1.12 _videoFilename_
+#### 5.1.13 _videoFilename_
 
 Sets the absolute path to the filename where a video of the capture
 process will be recorded. The application is responsible for requesting
@@ -174,14 +182,14 @@ the necessary permissions from the phone if that path requires
 additional permissions. The widget, by default, will not perform any
 recording process unless a file path is specified using this method.
 
-#### 5.1.13 _viewsContent_
+#### 5.1.14 _viewsContent_
 
 This advanced property allows, through a string in XML format, to
 configure the widget views.
 
 Note: This property does not alter the content of the resource file.
 
-#### 5.1.14. _showDiagnostic_
+#### 5.1.15. _showDiagnostic_
 
 Display diagnostic screens at the end of the process
 

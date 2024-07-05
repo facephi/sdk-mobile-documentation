@@ -266,9 +266,7 @@ formato string Base64. Esta imagen es la imagen con el tamaño original
 extraída de la cámara. Válido para el proceso de **liveness**.
 
 #### 7.2.1.3 _livenessConfidence_
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato Bitmap. Esta imagen es la imagen con el tamaño original extraída
-de la cámara. Válido para el proceso de **liveness**.
+Devuelve un indicador del nivel de confianza de la captura.
 
 ##### 7.2.1.4. rawFingerprintImage
 
