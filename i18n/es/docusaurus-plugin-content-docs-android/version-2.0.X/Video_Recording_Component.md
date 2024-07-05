@@ -120,6 +120,8 @@ necesario para la conexión con el servicio de video.
 Una vez iniciado el componente y creada una nueva operación (**apartado
 3**) se podrán lanzar los componentes del SDK.
 
+**IMPORTANTE**: La aplicación cliente debe controlar el ciclo de vida de la aplicación y llamar al método de parada del servicio cuando considere (Ejemplo: Al ponerse la aplicación en segundo plano). El servicio si no se realiza la parada, sigue grabando la pantalla.
+
 Los controladores de grabación devolverán estados para indicar la evolución del proceso.
 
 Hay dos formas de lanzar el componente:

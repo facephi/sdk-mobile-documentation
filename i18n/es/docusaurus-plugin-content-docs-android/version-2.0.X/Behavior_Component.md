@@ -11,8 +11,7 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK).
+Para más información sobre la configuración base, vaya a la sección de [Primeros Pasos](./Mobile_SDK).
 
 ---
 
@@ -89,9 +88,7 @@ este proceso.
 
 ## 5. Configuración del componente
 
-Para configurar el componente actual, se realiza en el _initSdk_,
-revisar el apartado de inicialización en
-[Primeros Pasos](./Mobile_SDK).
+Para configurar el componente actual, se realiza en el _initSdk_, revisar el apartado de inicialización en [Primeros Pasos](./Mobile_SDK).
 
 ### 5.1. Configuración de BehaviorController
 

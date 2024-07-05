@@ -93,7 +93,75 @@ repositorio:
   artifactory.token=YOUR_CREDENTIALS_TOKEN
   ```
 
-### 2.2. Dependencias requeridas para la integración básica
+### 2.2. Integración y uso de Facephi SDK Plugin de Gradle
+
+El SDK Plugin de gradle, permite la gestión de las versiones de cada uno de los componentes del SDK.
+Para hacer uso del plugin, debemos incluir el repositorio privado del punto 2.1 en el pluginManagement de los settings gradle.
+
+Se debe incluir en el build.gradle del proyecto y de la applicación.
+
+#### 2.2.1 Integración Estilo clásico
+
+Build gradle del proyecto en los classpath:
+
+```gradle
+    dependencies { classpath 'com.facephi.plugin.sdk.dependencies:com.facephi.plugin.sdk.dependencies.gradle.plugin:<THE VERSION>' }
+```
+
+```gradle
+plugins {
+  id 'com.facephi.plugin.sdk.dependencies'
+}
+```
+
+#### 2.2.2 Nuevo estilo con TOML versions
+
+```toml
+[versions]
+facephiSdkPluginVersion    = "THE VERSION"
+
+[plugins]
+facephi-sdk-plugin = { id = "com.facephi.plugin.sdk.dependencies", version.ref = "facephiSdkPluginVersion" }
+```
+
+Project build.gradle.kts
+
+```kotlin
+plugins {
+    alias(libs.plugins.facephi.sdk.plugin).apply(false)
+}
+```
+
+App build.gradle.kts
+
+```kotlin
+plugins {
+    alias(libs.plugins.facephi.sdk.plugin)
+}
+```
+
+#### 2.2.3 Uso de Facephi Plugin gradle
+
+Gracias al plugin ahora tenemos un objeto facephi que contiene las dependencias de los componentes.
+Agrupa todas las versiones en una única versión en el plugin para simplificar su integración.
+
+```kotlin
+    implementation(facephi.dependencies.sdk)
+    implementation(facephi.dependencies.core)
+    implementation(facephi.dependencies.tracking)
+    implementation(facephi.dependencies.selphi)
+    implementation(facephi.dependencies.selphid)
+    implementation(facephi.dependencies.nfc)
+    implementation(facephi.dependencies.phingers)
+    implementation(facephi.dependencies.capture)
+    implementation(facephi.dependencies.voice)
+    implementation(facephi.dependencies.videocall)
+    implementation(facephi.dependencies.videoid)
+    implementation(facephi.dependencies.videorecording)
+    implementation(facephi.dependencies.behavior)
+```
+
+### 2.3. Dependencias requeridas para la integración básica
 
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
 instalar el componente en un proyecto que contenga una versión antigua
