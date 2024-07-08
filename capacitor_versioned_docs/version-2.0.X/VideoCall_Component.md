@@ -43,13 +43,6 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on Android and iOS platforms. This section explains it. The following steps must be followed:
 
-- Access **PLUGIN_VIDEOCALL_PATH** in a terminal and run:
-
-``` java
-npm i
-npm run build
-```
-
 - Access **APPLICATION_PATH** and launch:
 
 ``` java

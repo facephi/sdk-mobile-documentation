@@ -155,15 +155,6 @@ The plugin allows execution on **Android and iOS** platforms. This
 section explains the common steps to all platforms. To install the
 plugin, the following steps must be adopted:
 
-
-- Access **\<%APPLICATION_PATH%\>** at a terminal and run:
-
-```
-npm i
-npm run build
-```
-
-
 - Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ```
