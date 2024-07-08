@@ -159,8 +159,6 @@ Los valores permitidos son los siguientes:
 
 - **SelphIDDocumentType.FOREIGN_CARD:** El widget queda configurado para realizar la captura de documentos extranjeros.
 
-- **SelphIDDocumentType.CREDIT_CARD:** El widget queda configurado para realizar la captura de tarjetas de crédito.
-
 - **SelphIDDocumentType.CUSTOM:** El widget queda configurado para realizar la captura de otro tipo de documentos que no corresponden a ninguna de las categorias anteriores.
 
 ##### ShowDiagnostic

@@ -226,9 +226,6 @@ The permitted values are as follows:
 - **SelphIDDocumentType.FOREIGN_CARD**: The widget is configured to
   capture foreign documents.
 
-- **SelphIDDocumentType.CREDIT_CARD**: The widget is configured to
-  capture credit cards.
-
 - **SelphIDDocumentType.CUSTOM**: The widget is configured to capture
   other types of documents that do not fall into the above categories.
 

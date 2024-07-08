@@ -241,7 +241,6 @@ Este enumerado se define en el fichero `fphi_sdkmobile_selphid_document_type.dar
 - ***DT_IDCard***: Establece que se capturarán documentos de identidad o tarjetas.
 - ***DT_Passport***: Establece que se capturarán pasaportes. (Adicionamente habrá que setear el scanMode en SelphIDScanMode.Generic)
 - ***DT_DriverLicense***: Establece que se capturarán licencias de conducir.
-- ***DT_CreditCard***: Establece que se capturarán tarjetas de crédito.
 - ***DT_ForeignCard***: Establece que se capturarán tarjetas de identidad de Extranjeros.
 - ***DT_Custom***: Engloba documentos que no se encuentran en ninguna de las categorías anteriores.
 

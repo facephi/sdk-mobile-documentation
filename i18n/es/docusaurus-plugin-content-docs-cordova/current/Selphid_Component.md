@@ -270,7 +270,6 @@ Este enumerado se define en la clase `SdkSelphidEnums.tsx`. Especificado en el e
 - ***IDCard***: Establece que se capturarán documentos de identidad o tarjetas.
 - ***Passport***: Establece que se capturarán pasaportes. (Adicionamente habrá que setear el scanMode en SelphIDScanMode.Generic)
 - ***DriverLicense***: Establece que se capturarán licencias de conducir.
-- ***CreditCard***: Establece que se capturarán tarjetas de crédito.
 - ***ForeignCard***: Establece que se capturarán tarjetas de identidad de Extranjeros.
 - ***Custom***: Engloba documentos que no se encuentran en ninguna de las categorías anteriores.
 

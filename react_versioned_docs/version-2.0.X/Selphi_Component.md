@@ -242,6 +242,8 @@ Sets the liveness mode of the component. The possible values are:
 
 - **PassiveMode**: Indicates that the passive life test is carried out on the server, sending the corresponding "BestImage" for this purpose
 
+- **MoveMode**: Indicates that the liveness test is active by displaying instructions during the capture, and returning the corresponding result of the process.
+
 ```
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 ```
