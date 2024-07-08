@@ -149,7 +149,7 @@ A la hora de realizar la llamada al widget existe una serie de parámetros que s
 
 **type:** *string*
 
-Frases que se tienen que decir en la app para validar la identidad.
+Indica la(s) frase(s) requerida(s) para capturar. Si se utiliza más de una frase, estará separada por el símbolo de barra vertical (|).
 
 ```
 phrases: 'hola mundo|hola voice component|hola Facephi',
