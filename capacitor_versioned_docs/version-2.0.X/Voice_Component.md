@@ -169,7 +169,7 @@ showTutorial: true;
 
 **type:** *string*
 
-Phrases that have to be said in the app to validate identity.
+Indicates the phrase(s) required to capture. If more than one phrase is used, it will be separated by the pipe(|) symbol.
 
 ```
 phrases: 'hola mundo|hola voice component|hola Facephi',
