@@ -88,7 +88,7 @@ https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 
-- To install the NFC component, it must be included in the project modules:
+- To install the Selphi component, it must be included in the project modules:
 
 ```java
 //HTTPS
