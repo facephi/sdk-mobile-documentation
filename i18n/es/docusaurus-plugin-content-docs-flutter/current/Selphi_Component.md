@@ -210,7 +210,7 @@ debug: false
 
 - **PassiveMode**: Indica que se realiza la prueba de vida pasiva en el servidor, enviando la "BestImage" correspondiente para tal efecto
 
-
+- **MoveMode**: Indica que el test de liveness es activo, mostrando unas instrucciones durante la captura, y devolviendo el correspondiente resultado del proceso.
 
 ```
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode

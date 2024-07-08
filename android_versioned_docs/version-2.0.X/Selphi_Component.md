@@ -141,6 +141,10 @@ Sets the liveness mode of the widget. Allowed values are:
   performed in the server, sending the corresponding "BestImage" or
   "TemplateRaw" for this purpose.
 
+- LIVENESS_MOVE: Indicates that the liveness test is active 
+  by displaying instructions during the capture, 
+  and returning the corresponding result of the process.
+
 #### 5.1.6. _stabilizationMode_
 
 Sets a stabilization mode before any authentication process in the

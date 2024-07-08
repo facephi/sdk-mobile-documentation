@@ -402,8 +402,6 @@ Specified in the ***WidgetDocumentType** class:
 -   **DriverLicence**: Establishes that driver's licences will be
     captured.
 
--   **CreditCard**: Sets that credit cards will be captured.
-
 -   **ForeignCard:** It establishes that Foreigners' identity cards will
     be captured.
 

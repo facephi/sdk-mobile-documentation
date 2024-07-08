@@ -207,8 +207,7 @@ debug: false
 
 - **NoneMode**: Indica que no se debe habilitar el modo de fotodetección en los procesos de autenticación.
 - **PassiveMode**: Indica que se realiza la prueba de vida pasiva en el servidor, enviando la "BestImage" correspondiente para tal efecto
-- **MoveMode**: Indica que se realiza la prueba de vida pasiva en el servidor, enviando la "BestImage" correspondiente para tal efecto
-
+- **MoveMode**: Indica que el test de liveness es activo, mostrando unas instrucciones durante la captura, y devolviendo el correspondiente resultado del proceso.
 
 ```
 mLivenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode

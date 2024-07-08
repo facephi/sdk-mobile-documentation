@@ -151,6 +151,10 @@ Establece el modo liveness del widget. Los valores permitidos son:
   el servidor, enviando para tal fin la “BestImage” o el “TemplateRaw”
   correspondiente.
 
+- LIVENESS_MOVE: Indica que el test de liveness es activo, mostrando 
+  unas instrucciones durante la captura, y devolviendo el correspondiente 
+  resultado del proceso.
+
 #### 5.1.6. _stabilizationMode_
 
 Establece un modo de estabilización previo a cualquier proceso de

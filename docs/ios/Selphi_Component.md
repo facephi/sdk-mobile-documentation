@@ -194,6 +194,8 @@ Sets the liveness mode of the widget. Allowed values are:
 
 - **SelphiFaceLivenessMode.PASSIVE**: Indicates that the passive liveness test is performed on the server, by sending the corresponding "BestImage" or "TemplateRaw" for this purpose.
 
+- **SelphiFaceLivenessMode.MOVE**: Indicates that the liveness test is active by displaying instructions during the capture, and returning the corresponding result of the process.
+
 ##### stabilizationMode
 
 Sets a stabilisation mode prior to any authentication process in the widget. This mode forces the widget not to start any process if the user is not facing forward and not moving his head.
