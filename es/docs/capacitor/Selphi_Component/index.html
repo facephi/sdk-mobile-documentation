@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.4.0">
 <title data-rh="true">Selphi Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/capacitor/Selphi_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="2.0.X"><meta data-rh="true" name="docusaurus_tag" content="docs-capacitor-2.0.X"><meta data-rh="true" name="docsearch:version" content="2.0.X"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-capacitor-2.0.X"><meta data-rh="true" property="og:title" content="Selphi Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. Introducción"><meta data-rh="true" property="og:description" content="1. Introducción"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/capacitor/Selphi_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/capacitor/Selphi_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/capacitor/Selphi_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/capacitor/Selphi_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.23867890.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.aaf1c630.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.475464a2.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.cf3a839d.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -108,6 +108,9 @@ Toda la configuración se podrá encontrar en el archivo <em><strong>definitions
 </li>
 <li>
 <p><strong>PassiveMode</strong>: Indica que se realiza la prueba de vida pasiva en el servidor, enviando la &quot;BestImage&quot; correspondiente para tal efecto</p>
+</li>
+<li>
+<p><strong>MoveMode</strong>: Indica que el test de liveness es activo, mostrando unas instrucciones durante la captura, y devolviendo el correspondiente resultado del proceso.</p>
 </li>
 </ul>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copiar código al portapapeles" title="Copiar" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
@@ -250,7 +253,7 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 <p>/resources/163dpi
 /resources/326dpi
 /resources/489dpi</p>
-<p>Estas carpetas corresponden a las diferentes densidades de pantalla y se pueden crear tantas carpetas de densidad como se desee. En estas carpetas están las versiones de las imágenes para cada una de las resoluciones.</p>
+<p>Estas carpetas corresponden a las diferentes densidades de pantalla y se pueden crear tantas carpetas de densidad como se desee. En estas carpetas est án las versiones de las imágenes para cada una de las resoluciones.</p>
 <p>Es necesario añadir las imágenes en todas las carpetas, ya que una vez determinada la resolución óptima para el dispositivo, el componente sólo carga imágenes de la carpeta con la resolución elegida.</p>
 <p>Las imágenes son referenciadas desde el archivo <code>widget.xml</code>.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="613-personalización-de-colores">6.1.3. Personalización de colores<a class="hash-link" aria-label="Enlace directo al 6.1.3. Personalización de colores" title="Enlace directo al 6.1.3. Personalización de colores" href="/sdk-mobile-documentation/es/docs/capacitor/Selphi_Component#613-personalización-de-colores">​</a></h4>
@@ -269,7 +272,7 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 <p>Buscar por código de localización (por ejemplo, “es_AR”).</p>
 <p>Si no encuentra ninguna que coincida, buscaría uno para el idioma genérico (es decir, en este caso sería “es”).</p>
 <p>Si tampoco existiese ningún resultado, entonces usaría el idioma por defecto.</p>
-<p>A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, “es ” o “es_ES”).</p>
+<p>A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, “es” o “es_ES”).</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="623-carpeta-resources">6.2.3. Carpeta resources<a class="hash-link" aria-label="Enlace directo al 6.2.3. Carpeta resources" title="Enlace directo al 6.2.3. Carpeta resources" href="/sdk-mobile-documentation/es/docs/capacitor/Selphi_Component#623-carpeta-resources">​</a></h4>
 <p>Contiene las carpetas con todos los recursos necesarios para poder modificarse, divididos en densidades. Es obligatorio generar las imágenes en todas las densidades ya que el componente espera encontrarlas en la carpeta correspondiente a la densidad del dispositivo. También se pueden crear nuevas carpetas con la densidad deseada.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="624-elemento-background">6.2.4. Elemento BACKGROUND<a class="hash-link" aria-label="Enlace directo al 6.2.4. Elemento BACKGROUND" title="Enlace directo al 6.2.4. Elemento BACKGROUND" href="/sdk-mobile-documentation/es/docs/capacitor/Selphi_Component#624-elemento-background">​</a></h4>
