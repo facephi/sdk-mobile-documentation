@@ -520,4 +520,31 @@ easier to search:
   the read sides of the document. It corresponds to the
   matchingSidesScore property.
 
+#### 7.2.8 _timeoutDiagnostic_
+
+This property returns a text string explaining why the widget has timed out. 
+This string can be used in a later timeout screen where the main application can 
+give more information to the user about what happened during the document capture. 
+
+
 ---
+
+## 8. Customizing the component
+
+Apart from the changes that can be made at the SDK level (explained in
+the [Getting Started](./Mobile_SDK)
+document), this particular component allows the modification of specific
+texts.
+
+### 8.1 Texts
+
+If you want to modify the SDK texts, you would have to include the
+following XML file in the client application and change the value of
+each String to the desired one.
+
+```xml
+    <string name="selphid_component_timeout_title">Time exceeded</string>
+    <string name="selphid_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="selphid_component_internal_error_title">There was a technical problem</string>
+    <string name="selphid_component_internal_error_desc">We apologize. The capture could not be made</string>
+```
