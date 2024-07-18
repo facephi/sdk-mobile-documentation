@@ -119,8 +119,7 @@ process. Default is set to **true**.
 
 #### 5.1.3. returnProcessedImage
 
-If set to **true** it will return in the result the images in the same
-form as they have been captured.
+If set to **true** it will return in the result the processed images.
 
 #### 5.1.4. returnRawImage
 
@@ -139,9 +138,7 @@ fingers have been detected.
 
 #### 5.1.7. extractionTimeout
 
-Sets a stabilisation mode prior to any authentication process in the
-widget. This mode forces the widget not to start any process if the user
-is not facing forward and not moving his head.
+Set an extraction time.
 
 #### 5.1.8. showTutorial
 

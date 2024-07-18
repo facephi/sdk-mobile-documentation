@@ -125,8 +125,7 @@ de huellas. Por defecto se encuentra a **true**.
 
 #### 5.1.3. returnProcessedImage
 
-Si se establece a **true** se devolverá en el resultado las imágenes de
-la misma forma en que se han capturado.
+Si se establece a **true** se devolverá en el resultado las imágenes procesadas.
 
 #### 5.1.4. returnRawImage
 
@@ -145,10 +144,7 @@ se han detectado los dedos.
 
 #### 5.1.7. extractionTimeout
 
-Establece un modo de estabilización previo a cualquier proceso de
-autenticación en el widget. Con este modo se obliga al widget a no
-empezar ningún proceso si el usuario no se encuentra con la cabeza
-mirando al frente y sin moverla.
+Establece un tiempo de extracción.
 
 #### 5.1.8. showTutorial
 
