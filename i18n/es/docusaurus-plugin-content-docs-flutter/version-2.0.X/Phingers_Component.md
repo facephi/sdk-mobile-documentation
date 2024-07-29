@@ -148,91 +148,107 @@ Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_voice
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 reticleOrientation
+### 3.0 reticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
-.
+Establece el modo de detección de huellas dactilares e indica qué dedos deben
+ser detectado durante el proceso. Los valores permitidos son:
+
+- **LEFT**: Permite la captura de los **cuatro** **dedos** del
+  **mano izquierda**.
+
+- **RIGHT**: Permite la captura de los **cuatro** **dedos** del
+  **mano derecha**.
+
+- **THUMB**: Se activa la captura de un **pulgar**.
 
 ```
 reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
 ```
 
-### 3.2 returnFullFrameImage
+### 3.1 returnFullFrameImage
 
 **type:** *boolean*
 
-.
+Especifica si se debe devolver la imagen completa de la cámara en la que se
+Se han detectado dedos.
 
 ```
 returnFullFrameImage: true,
 ```
 
-### 3.3 returnProcessedImage
+### 3.2 returnProcessedImage
 
 **type:** *boolean*
 
-.
+Si se establece en **true** devolverá en el resultado las imágenes del mismo
+forma tal como han sido capturados.
 
 ```
 returnProcessedImage: true;
 ```
 
-### 3.4 returnRawImage
+### 3.3 returnRawImage
 
 **type:** *boolean*
 
-.
+Si se establece en **true** devolverá en el resultado las imágenes del mismo
+forma tal como han sido capturados.
 
 ```
 mReturnRawImage: true;
 ```
 
-### 3.5 useFlash
+### 3.4 useFlash
 
 **type:** *boolean*
 
-.
+Activa o desactiva el flash de la cámara durante la captura de huellas dactilares.
+proceso. El valor predeterminado está establecido en **true**.
 
 ```
 useFlash: false;
 ```
 
-### 3.6 useLiveness
+### 3.5 useLiveness
 
 **type:** *boolean*
 
-.
+Activa o desactiva el detector de vida durante la captura de huellas dactilares.
+proceso. El valor predeterminado está establecido en **true**.
 
 ```
 useLiveness: false;
 ```
 
-### 3.7 showTutorial
+### 3.6 showTutorial
 
 **type:** *boolean*
 
-.
+Indica si el componente activa la pantalla del tutorial. Esta vista
+Explica intuitivamente cómo se realiza la captura.
 
 ```
 showTutorial: false;
 ```
 
-### 3.8 vibration
+### 3.7 vibration
 
 **type:** *boolean*
 
-.
+Indica si se desea feedback de vibración al final del
+proceso.
 
 ```
 vibration: false;
 ```
 
-### 3.9 extractionTimeout
+### 3.8 extractionTimeout
 
 **type:** *int*
 
-.
+Establece el tiempo máximo que se puede realizar la lectura.
 
 ```
 extractionTimeout: false;
@@ -242,7 +258,7 @@ extractionTimeout: false;
 
 **type:** *boolean*
 
-.
+Mostrar pantallas de diagnóstico al final del proceso.
 
 ```
 showDiagnostic: false;
@@ -251,7 +267,8 @@ showDiagnostic: false;
 
 **type:** *double*
 
-.
+El parámetro configura un captureQualityThreshold, para definir una calidad
+umbral para realizar la captura.
 
 ```
 threshold: 0.8;
@@ -364,9 +381,41 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 ### 5.3 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
-### 5.4 fullFrameImage
-### 5.5 focusQuality;
-### 5.6 livenessConfidence;
-### 5.7 processedFingers;
-### 5.8 rawImages;
-### 5.9 wsq;
+##### 5.4 fullFrameImage
+
+Devuelve una imagen recortada centrada en la cara del usuario en una cadena Base64.
+formato. Esta imagen se obtiene de bestImage. Esta es la imagen para
+utilizarse como imagen característica del usuario que realizó la
+procesar como avatar.
+
+##### 5.5 focusQuality
+
+Devuelve la mejor imagen extraída del proceso de autenticación en
+Formato de cadena Base64. Esta imagen es la imagen en tamaño original extraída.
+desde la cámara. Válido para el proceso de viveza.
+
+##### 5.6 livenessConfidence
+
+Devuelve un indicador del nivel de confianza de la captura.
+
+##### 5.7 processedFingers
+
+Devuelve la imagen de la huella digital procesada.
+
+##### 5.8 rawImages
+
+Devuelve la imagen sin editar y sin modificar de la huella digital actual.
+
+##### 5.9 wsq
+
+Se devuelve la captura de huellas en formato WSQ.
+
+##### 5.10 nfiqMetrics
+
+Estas son las métricas de la captura. Actualmente el siguiente valor es
+devuelto:
+
+- nfiqMetric: Este es un valor entero, entre 1 y 5 (inclusive),
+  indica la calidad de la captura de huellas dactilares, donde 1 indica
+  la de mayor calidad y 5 la de peor calidad. Huellas dactilares
+  con este último valor generalmente se descartan para una mayor validación.

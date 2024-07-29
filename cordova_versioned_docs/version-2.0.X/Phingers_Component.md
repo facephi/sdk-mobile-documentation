@@ -362,51 +362,58 @@ PhingersResult {
 The result will be returned through a Promise that contains an object of the class ***PhingersResult***. Below is more information about these fields.
 </div>
 
-### 5.1 finishStatus
+### 5.0 finishStatus
 
 - **1**: The operation was successful.
 - **2**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-
-### 5.2 finishStatusDescription
+### 5.1 finishStatusDescription
 
 - **STATUS_OK**: The operation was successful.
 - **STATUS_ERROR**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.3 errorMessage 
+### 5.2 errorMessage 
   
 Indicates an additional error message if necessary. It is an optional value.
 
-
-### 5.4 errorType
+### 5.3 errorType
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). 
 
+##### 5.4 fullFrameImage
 
-### 5.5 fullFrameImage
+Returns a cropped image centred on the user's face in Base64 string
+format. This image is obtained from the bestImage. This is the image to
+be used as the characteristic image of the user who performed the
+process as avatar.
 
-Returns the raw, unmodified image of the current fingerprint.
+##### 5.5 focusQuality
 
-### 5.6 focusQuality
+Returns the best image extracted from the authentication process in
+Base64 string format. This image is the original size image extracted
+from the camera. Valid for the liveness process.
 
-Returns the best image extracted from the authentication process in Base64 string format. This image is the original size image extracted from the camera. Valid for the liveness process.
+##### 5.6 livenessConfidence
 
-### 5.7 livenessConfidence
+Returns an indicator of the confidence level of the catch.
 
-Returns the best image extracted from the authentication process in Bitmap format. This image is the original size image extracted from the camera. Valid for the liveness process.
-
-### 5.8 processedFingers
+##### 5.7 processedFingers
 
 Returns the processed fingerprint image.
 
-### 5.9 rawFingers
+##### 5.8 rawImages
 
 Returns the raw, unmodified image of the current fingerprint.
 
-### 5.10 wsq
+##### 5.9 wsq
 
-The fingerprint captured in WSQ format are returned.
+The fingerprint capture in WSQ format is returned.
 
+##### 5.10 nfiqMetrics
 
-### 5.11 nfiqMetrics
+These are the metrics of the capture. Currently the following value is
+returned:
 
-The fingerprint captured in WSQ format are returned.
+- nfiqMetric: This is an integer value, between 1 and 5 (inclusive),
+  indicating the quality of the fingerprint capture, with 1 indicating
+  the highest quality and 5 indicating the worst quality. Fingerprints
+  with the latter value are usually discarded for further validation.
