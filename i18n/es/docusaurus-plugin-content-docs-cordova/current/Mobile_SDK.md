@@ -61,6 +61,7 @@ registry=https://registry.npmjs.org/
 //facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:username=<username>
 //facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:email=<user_email@***.com>
 //facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:always-auth=true
+save-prefix='~'
 ```
 
 <div class="warning">
