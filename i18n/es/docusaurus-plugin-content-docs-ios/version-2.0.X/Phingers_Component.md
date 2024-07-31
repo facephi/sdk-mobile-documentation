@@ -257,17 +257,14 @@ los siguientes:
 #### 7.2.1 _fingersResult_
 
 ##### 7.2.1.1 _fullFrameImage_
-Devuelve una imagen recortada centrada en la cara del usuarioen formato
-string Base64. Esta imagen se obtiene a partir de la _bestImage_. Ésta
-es la imagen que se deberá utilizar como imagen característica del
-usuario que realizó el proceso a modo de _avatar_.
 
-#### 7.2.1.2 _focusQuality_
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato string Base64. Esta imagen es la imagen con el tamaño original
-extraída de la cámara. Válido para el proceso de **liveness**.
+Devuelve la imagen completa capturada por la cámara. No se ha aplicado todavía ningún proceso sobre ella.
 
-#### 7.2.1.3 _livenessConfidence_
+##### 7.2.1.2 _focusQuality_
+
+Devuelve el nivel de calidad focal. Un valor bajo puede afectar al proceso de captura.
+
+##### 7.2.1.3 _livenessConfidence_
 Devuelve un indicador del nivel de confianza de la captura.
 
 ##### 7.2.1.4. rawFingerprintImage

@@ -292,16 +292,11 @@ the following:
 
 #### 7.2.1 _focusQuality_.
 
-Returns the best image extracted from the authentication process in
-Base64 string format. This image is the original size image
-extracted from the camera. Valid for the **liveness** process.
+Returns the camera focus quality. A low value can affect the capture process.
 
 #### 7.2.2 _fullFrameImage_
 
-Returns a cropped image centred on the user's face in Base64 string format.
-string Base64 format. This image is obtained from the _bestImage_. This
-is the image that shall be used as the characteristic image of the
-user who performed the process as the _avatar_.
+Returns the full image captured by the camera. No processes are applied to this image yet.
 
 #### 7.2.3 _livenessConfidence_
 

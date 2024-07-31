@@ -294,16 +294,12 @@ returned:
 
 ##### 7.1.2 fullFrameImage
 
-Returns a cropped image centred on the user's face in Base64 string
-format. This image is obtained from the bestImage. This is the image to
-be used as the characteristic image of the user who performed the
-process as avatar.
+
+Returns the full image captured by the camera. No processes are applied to this image yet.
 
 ##### 7.1.3 focusQuality
 
-Returns the best image extracted from the authentication process in
-Base64 string format. This image is the original size image extracted
-from the camera. Valid for the liveness process.
+Returns the camera focus quality. A low value can affect the capture process.
 
 ##### 7.1.4 livenessConfidence
 
