@@ -68,6 +68,8 @@ Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de [Primeros Pasos](./Mobile_SDK), en el que se detalla y explica en qué consiste
 este proceso.
 
+### **Importante:** El identificador de llamada se corresponde con el OPERATION_ID
+
 ---
 
 ## 4. Controladores disponibles

@@ -63,6 +63,8 @@ To learn more about how to start a new operation, it is recommended to
 consult the [Getting Started](./Mobile_SDK)
 documentation, which details and explains what this process consists of.
 
+### **Important:** The call identifier corresponds to the OPERATION_ID
+
 ---
 
 ## 4. Available controllers
