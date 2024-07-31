@@ -122,8 +122,15 @@ message is displayed.
 
 #### 5.1.6. showCompletedTutorial
 
-Indicates if you want to show the complete initial tutorial. If not, a
-progress indicator will be shown.
+Indicates whether to show the complete initial tutorial. If not, a progress indicator will be shown. This setting is useful for providing a better user experience by guiding them through the necessary steps in a clear and comprehensive manner. Enabling this option allows users to see the full tutorial, which can reduce confusion and errors during the process. If disabled, a progress indicator will be displayed to show the current state of the tutorial, allowing users to proceed more quickly if they are already familiar with the process.
+
+#### 5.1.7. timeoutServerConnection
+
+Defines the maximum wait time for the server connection. If the connection exceeds this time, a timeout error will occur. This parameter is crucial to ensure the application does not hang indefinitely waiting for a server response. By setting a reasonable time limit, the user experience is improved, as they can receive a timely error message and decide whether to retry the operation. The appropriate configuration of this value depends on the network environment and server capacity, and it must balance the need for sufficient time to complete valid operations with avoiding excessive wait times that affect the application's usability.
+
+#### 5.1.8. timeoutFaceDetection
+
+Defines the maximum allowable time for face detection during the identity verification process. If the system cannot detect a face within this period, a timeout error will be generated. This setting is crucial to ensure that the face detection process does not extend indefinitely, thereby improving efficiency and user experience. An appropriate timeout value allows the user to quickly know if there is an issue with the detection, enabling them to take necessary actions, such as adjusting the camera position or lighting.
 
 ---
 

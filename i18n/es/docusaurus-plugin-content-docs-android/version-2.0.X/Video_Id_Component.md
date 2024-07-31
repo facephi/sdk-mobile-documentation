@@ -128,8 +128,15 @@ mensaje de grabación.
 
 #### 5.1.6. showCompletedTutorial
 
-Indica si se quiere mostrar el tutorial inicial completo. Si no, se
-mostrará un progress indicator.
+Indica si se quiere mostrar el tutorial inicial completo. Si no, se mostrará un indicador de progreso. Esta configuración es útil para proporcionar una mejor experiencia de usuario al guiarles a través de los pasos necesarios de una manera clara y completa. Al activar esta opción, los usuarios podrán ver el tutorial completo, lo que puede reducir la confusión y errores durante el proceso. Si se desactiva, se presentará un indicador de progreso que muestra el estado actual del tutorial, permitiendo a los usuarios continuar de manera más rápida si ya están familiarizados con el proceso.
+
+#### 5.1.7. timeoutServerConnection
+
+Define el tiempo máximo de espera para la conexión con el servidor. Si la conexión excede este tiempo, se producirá un error de timeout. Este parámetro es crucial para garantizar que la aplicación no quede colgada indefinidamente esperando una respuesta del servidor. Al establecer un tiempo límite razonable, se mejora la experiencia del usuario, ya que pueden recibir un mensaje de error oportuno y decidir si desean reintentar la operación. La configuración adecuada de este valor depende del entorno de red y la capacidad del servidor, y debe equilibrar la necesidad de tiempo suficiente para completar operaciones válidas y evitar tiempos de espera excesivos que afecten la usabilidad de la aplicación.
+
+#### 5.1.8. timeoutFaceDetection
+
+Define el tiempo máximo permitido para la detección facial durante el proceso de verificación de identidad. Si el sistema no puede detectar una cara dentro de este periodo, se generará un error de timeout. Esta configuración es crucial para garantizar que el proceso de detección facial no se prolongue indefinidamente, mejorando así la eficiencia y experiencia del usuario. Un valor de tiempo de espera adecuado permite al usuario saber rápidamente si hay un problema con la detección, permitiéndole tomar las medidas necesarias, como ajustar la posición de la cámara o la iluminación.
 
 ---
 
