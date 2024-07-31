@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.4.0">
 <title data-rh="true">Phingers Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/docs/ios/Phingers_Component"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="es"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="2.0.X"><meta data-rh="true" name="docusaurus_tag" content="docs-ios-2.0.X"><meta data-rh="true" name="docsearch:version" content="2.0.X"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-ios-2.0.X"><meta data-rh="true" property="og:title" content="Phingers Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="0. SDK Mobile base requirements"><meta data-rh="true" property="og:description" content="0. SDK Mobile base requirements"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/docs/ios/Phingers_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/ios/Phingers_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/ios/Phingers_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/ios/Phingers_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/assets/css/styles.23867890.css">
-<script src="/sdk-mobile-documentation/assets/js/runtime~main.c7ac56f0.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/assets/js/runtime~main.0e565c9d.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/assets/js/main.811e242b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -221,14 +221,9 @@ convert the images to <strong>Base64</strong> as follows:</p>
 the result has been returned. In the case of this component, the returned fields are
 the following:</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="721-focusquality">7.2.1 <em>focusQuality</em>.<a class="hash-link" aria-label="Direct link to 721-focusquality" title="Direct link to 721-focusquality" href="/sdk-mobile-documentation/docs/ios/Phingers_Component#721-focusquality">​</a></h4>
-<p>Returns the best image extracted from the authentication process in
-Base64 string format. This image is the original size image
-extracted from the camera. Valid for the <strong>liveness</strong> process.</p>
+<p>Returns the camera focus quality. A low value can affect the capture process.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="722-fullframeimage">7.2.2 <em>fullFrameImage</em><a class="hash-link" aria-label="Direct link to 722-fullframeimage" title="Direct link to 722-fullframeimage" href="/sdk-mobile-documentation/docs/ios/Phingers_Component#722-fullframeimage">​</a></h4>
-<p>Returns a cropped image centred on the user&#x27;s face in Base64 string format.
-string Base64 format. This image is obtained from the <em>bestImage</em>. This
-is the image that shall be used as the characteristic image of the
-user who performed the process as the <em>avatar</em>.</p>
+<p>Returns the full image captured by the camera. No processes are applied to this image yet.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="723-livenessconfidence">7.2.3 <em>livenessConfidence</em><a class="hash-link" aria-label="Direct link to 723-livenessconfidence" title="Direct link to 723-livenessconfidence" href="/sdk-mobile-documentation/docs/ios/Phingers_Component#723-livenessconfidence">​</a></h4>
 <p>Returns an indicator of the confidence level of the catch.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="724-fingersresult">7.2.4 <em>fingersResult</em>.<a class="hash-link" aria-label="Direct link to 724-fingersresult" title="Direct link to 724-fingersresult" href="/sdk-mobile-documentation/docs/ios/Phingers_Component#724-fingersresult">​</a></h4>
