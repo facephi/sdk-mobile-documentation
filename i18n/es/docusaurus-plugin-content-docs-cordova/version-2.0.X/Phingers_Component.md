@@ -404,39 +404,35 @@ Devuelve la descripción de finishStatus.
 - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-### 5.3 errorMessage: 
+### 5.3 errorMessage
+
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
-##### 5.4 fullFrameImage
+### 5.4 fullFrameImage
 
-Devuelve una imagen recortada centrada en la cara del usuario en una cadena Base64.
-formato. Esta imagen se obtiene de bestImage. Esta es la imagen para
-utilizarse como imagen característica del usuario que realizó la
-procesar como avatar.
+Devuelve la imagen completa capturada por la cámara. No se ha aplicado todavía ningún proceso sobre ella.
 
-##### 5.5 focusQuality
+### 5.5 focusQuality
 
-Devuelve la mejor imagen extraída del proceso de autenticación en
-Formato de cadena Base64. Esta imagen es la imagen en tamaño original extraída.
-desde la cámara. Válido para el proceso de viveza.
+Devuelve el nivel de calidad focal. Un valor bajo puede afectar al proceso de captura.
 
-##### 5.6 livenessConfidence
+### 5.6 livenessConfidence
 
 Devuelve un indicador del nivel de confianza de la captura.
 
-##### 5.7 processedFingers
+### 5.7 processedFingers
 
 Devuelve la imagen de la huella digital procesada.
 
-##### 5.8 rawImages
+### 5.8 rawImages
 
 Devuelve la imagen sin editar y sin modificar de la huella digital actual.
 
-##### 5.9 wsq
+### 5.9 wsq
 
 Se devuelve la captura de huellas en formato WSQ.
 
-##### 5.10 nfiqMetrics
+### 5.10 nfiqMetrics
 
 Estas son las métricas de la captura. Actualmente el siguiente valor es
 devuelto:
