@@ -8,9 +8,9 @@
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-Versión mínima Android: **24 - JDK 11**
-
-Versión mínima iOS: **13**
+-   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima iOS: **13**
+-   Versión mínima Flutter: **3.0**
 
 ### 1.2 Versión del plugin
 La versión del widget se puede consultar de la siguiente manera:

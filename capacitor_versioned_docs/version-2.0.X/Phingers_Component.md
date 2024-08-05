@@ -14,8 +14,9 @@ The Component discussed in the current document is called ***Phingers Component*
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
-- Minimum Android version: 24 - JDK 11
+- Minimum Android version: 24 - JDK 17
 - Minimum iOS version: 13
+- Minimum Capacitor version: **5**
 
 Regarding the architecture of the mobile device:
 
