@@ -8,9 +8,9 @@
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-Versión mínima Android: **24**
-
-Versión mínima iOS: **13**
+-   Versión mínima Android: **24** & **JAVA 17**
+-   Versión mínima iOS: **13**
+-   Versión mínima ReactNative: **0.73.0**
 
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:

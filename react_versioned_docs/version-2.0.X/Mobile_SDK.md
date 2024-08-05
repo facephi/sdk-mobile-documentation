@@ -15,9 +15,9 @@ integrated into the project.
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
--   Minimum Android version: **24 - JDK 11**
-
+-   Minimum Android version: **24 - JDK 17**
 -   Minimum iOS version: **13**
+-   Minimum ReactNative version: **0.73.0**
 
 Regarding the architecture of the mobile device:
 

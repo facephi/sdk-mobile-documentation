@@ -14,8 +14,9 @@ Generación de las plantillas con las características faciales y de la imagen d
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
-- Minimum Android version: **24 - JDK 11**
-- Minimum iOS version: **13**
+-   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima iOS: **13**
+-   Versión mínima Flutter: **3.0**
 
 Regarding the architecture of the mobile device:
 

@@ -21,9 +21,9 @@ The Component addressed in the current document is called the ***NFC Component**
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
-- Minimum Android version: **24 - JDK 11**
-- Minimum iOS version: **13**
-
+-   Minimum Android version: **24 - JDK 17**
+-   Minimum iOS version: **13**
+-   Minimum Flutter version: **3.0**
 
 ### 1.2 Plugin version
 
