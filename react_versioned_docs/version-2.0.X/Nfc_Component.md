@@ -431,18 +431,15 @@ export interface NfcResult
 The result will be returned via a Promise containing an object of class ***NfcResult***. Information on these fields has been elaborated on below.
 </div>
 
-
 ### 5.1 finishStatus
 
 - **1**: The operation was successful.
-
-- **2**: An error has occurred, which will be indicated in the errorDiagnostic enumerated and, optionally, an extra information message will be displayed in the errorMessage property.
-
+- **2**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.2 finishStatusDescription
 
- Returns the operation's global description. It is an optional value.
-
+- **STATUS_OK**: The operation was successful.
+- **STATUS_ERROR**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
 ### 5.3 errorType
 
@@ -468,7 +465,6 @@ The result will be returned via a Promise containing an object of class ***NfcRe
 It is an optional value. This parameter it is an extra message explaining the current error.
 
 ### 5.5 nfcDocumentInformation
-
 
 Information obtained from the document ordered by:
 
