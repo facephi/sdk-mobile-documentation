@@ -456,7 +456,6 @@ Información obtenida del documento ordenada por:
 
 - type
 
-
 ### 5.6 nfcPersonalInformation
 
 Información obtenida del documento ordenada por:
@@ -501,7 +500,6 @@ Información de las validaciones del documento ordenada por:
 ### 5.8 facialImage
 
 Información de la imagen de la cara obtenida del documento.
-
 
 ### 5.9 fingerprintImage
 

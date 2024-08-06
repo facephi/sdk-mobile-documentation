@@ -393,8 +393,67 @@ Returns the type of error that occurred (if there was one, which is indicated by
 - **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
 
 ### 5.5 nfcDocumentInformation
+
+Information obtained from the document ordered by:
+
+- documentNumber
+
+- expirationDate
+
+- issuer
+
+- mrzString
+
+- type
+
 ### 5.6 nfcPersonalInformation
+
+Information obtained from the document ordered by:
+
+- address
+
+- birthdate
+
+- city
+
+- gender
+
+- name
+
+- nationality
+
+- personalNumber
+
+- placeOfBirth
+
+- surname
+
 ### 5.7 nfcValidations
+
+Document validation information sorted by:
+
+- accessType
+
+- activeAuthenticationSupported
+
+- activeAuthenticationValidation
+
+- chipAuthenticationValidation
+
+- dataGroupsHashesValidation
+
+- documentSigningValidation
+
+- issuerSigningValidation
+
 ### 5.8 facialImage
+
+The image of the face obtained during the capture.
+
 ### 5.9 fingerprintImage
+
+The image of the fingeprint obtained during the capture.
+
 ### 5.10 signatureImage
+
+The image of the signature obtained during the capture.

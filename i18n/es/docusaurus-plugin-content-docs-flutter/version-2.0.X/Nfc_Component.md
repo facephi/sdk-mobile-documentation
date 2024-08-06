@@ -417,8 +417,67 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 ### 5.3 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 ### 5.5 nfcDocumentInformation
+
+Información obtenida del documento ordenada por:
+
+- documentNumber
+
+- expirationDate
+
+- issuer
+
+- mrzString
+
+- type
+
 ### 5.6 nfcPersonalInformation
+
+Información obtenida del documento ordenada por:
+
+- address
+
+- birthdate
+
+- city
+
+- gender
+
+- name
+
+- nationality
+
+- personalNumber
+
+- placeOfBirth
+
+- surname
+
 ### 5.7 nfcValidations
+
+Información de las validaciones del documento ordenada por:
+
+- accessType
+
+- activeAuthenticationSupported
+
+- activeAuthenticationValidation
+
+- chipAuthenticationValidation
+
+- dataGroupsHashesValidation
+
+- documentSigningValidation
+
+- issuerSigningValidation
+
 ### 5.8 facialImage
+
+La imagen del rostro obtenida durante la captura.
+
 ### 5.9 fingerprintImage
+
+La imagen de la huella dactilar obtenida durante la captura.
+
 ### 5.10 signatureImage
+
+La imagen de la firma obtenida durante la captura.
