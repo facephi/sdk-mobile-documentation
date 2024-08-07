@@ -349,6 +349,22 @@ When launching the component an error may appear in the Starscream dependency:
 
 ![Image](/iOS/videoRecording-014.png)
 
-***Workaround*** - Upload the minimum Pod version from iOS11 to iOS12:
+***Solution*** - Upload the minimum Pod version from iOS11 to iOS12:
 
 ![Image](/iOS/videoRecording-015.png)
+
+
+#### 6.2.2 QuickTime Player
+
+When launching the component, if the iPhone is connected and already sharing screen through a QuickTime Player recording session, it won't work.
+
+***Solution*** - Close the QuickTime Player session.
+
+
+#### 6.2.3 Screen Sharing doesn't get started
+
+When launching the component, we can't see the native prompt for screen sharing or we see it but it doesn't get started.
+
+Possible Cause: The extension created in your app has a Bundle Identifier. If that identifier has changed, maybe the old one is still persisted in the cache.
+
+***Possible Solution*** - Remove the app, and install it again. Restart the device if needed.

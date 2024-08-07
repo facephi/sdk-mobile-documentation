@@ -268,6 +268,21 @@ Al lanzar el componente puede aparecer un error en la dependencia Starscream:
 
 ![Image](/iOS/videoRecording-014.png)
 
-***Workaround*** - Subir la versión del Pod mínima de iOS11 a iOS12:
+***Solución*** - Subir la versión del Pod mínima de iOS11 a iOS12:
 
 ![Image](/iOS/videoRecording-015.png)
+
+#### 6.2.2 QuickTime Player
+
+Al lanzar el componente, si el iPhone está ya conectado y compartiendo la pantalla con una sesión de QuickTime Player, la videograbación no funcionará.
+
+***Solución*** - Cerrar QuickTime Player, la aplicación y volver a iniciar el proceso.
+
+
+#### 6.2.3 La videograbación no comienza
+
+Lanzando el componente, no podemos ver el modal nativo de videograbación o lo vemos pero al iniciar la grabación no comienza.
+
+Posible Causa: La extensión creada en la aplicación tiene un "Bundle Identifier". Si este identificador ha sido modificado, el dispositivo puede tener cacheado el valor antiguo.
+
+***Posible Solución*** - Desinstalar la app, instalarla de nuevo. Reiniciar si es necesario.
