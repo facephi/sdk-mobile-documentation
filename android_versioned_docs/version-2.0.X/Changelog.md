@@ -2,6 +2,43 @@
 
 ## Versions
 
+### 2.0.3
+
+- General
+
+  - Accesibility improvements
+  - Controller coroutines improvements
+  - UI for tablets
+  - Add custom views
+
+- NFC
+
+  - Security provider fix
+  - Date fix
+
+- Video Call
+
+  - Add timeout
+
+- Video ID
+
+  - Control network error
+  - Add timeouts
+  - Detect face
+
+- SelphID
+
+  - New version 1.25.1
+  - Add tutorial
+
+- Selphi
+
+  - New version 5.13.3
+
+- Tracking
+
+  - Add tracking widget
+
 ### 2.0.2
 
 - General
@@ -40,6 +77,7 @@
   - Adjustments and improvements in stopping the service
 
 - Selphi
+
   - New version 5.13.1
   - A parameter is added in the response: livenessDiagnostic
 
@@ -72,6 +110,7 @@
   - Simplified ConfigurationData
 
 - Tokenizer
+
   - New core version 2.0.7
 
 ### 2.0.0
@@ -90,6 +129,7 @@
   - Settings and improvements
 
 - Voice
+
   - Updated widget library to 3.13.0
   - Improved UX/UI
   - Improved verifications results
@@ -97,6 +137,7 @@
 ### 1.5.6
 
 - Selphi
+
   - Updated widget version to 5.12.3
 
 ### 1.5.5
@@ -107,6 +148,7 @@
   - Selphi and Selphid internal image improved management
 
 - NFC
+
   - Fix Personal Number
 
 ### 1.5.4
@@ -121,6 +163,7 @@
   - New version 5.12.1
 
 - SelphID
+
   - New version 1.23.1
 
 ### 1.5.3
