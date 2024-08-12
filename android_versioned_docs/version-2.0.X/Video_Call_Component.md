@@ -100,6 +100,14 @@ ApiKey needed for connection to the video socket
 Tenant identifier referring to the current client, required for the
 connection to the video service.
 
+#### 5.1.4. activateScreenSharing
+
+Activate the screen sharing option in the call.
+
+#### 5.1.5. timeout
+
+Waiting time for an agent to pick up the call (ms)
+
 ---
 
 ## 6. Component use

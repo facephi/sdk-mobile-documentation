@@ -115,6 +115,10 @@ necesario para la conexión con el servicio de video.
 
 Activar la opción de compartir pantalla en la llamada.
 
+#### 5.1.5. timeout
+
+Tiempo de espera para que un agente coja la llamada (ms)
+
 ---
 
 ## 6. Uso del componente
