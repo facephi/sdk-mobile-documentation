@@ -429,3 +429,7 @@ de cada _String_ por el deseado.
     <string name="nfc_component_read_not_finish_desc">Mantén la posición hasta que finalice la lectura.</string>
 
 ```
+
+## 9. Logs
+
+Para visualizar en consola los logs de este componente se podrá usar el filtro: "NFC:"

@@ -242,3 +242,7 @@ de cada _String_ por el deseado.
     <string name="video_id_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
 
 ```
+
+## 9. Logs
+
+Para visualizar en consola los logs de este componente se podrá usar el filtro: "VIDEO_ID:"

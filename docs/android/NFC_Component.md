@@ -421,3 +421,7 @@ each String to the desired one.
     <string name="nfc_component_read_not_finish_desc">Hold the position until the end of the reading</string>
 
 ```
+
+## 9. Logs
+
+To display the logs of this component on the console, you can use the filter: "NFC:"

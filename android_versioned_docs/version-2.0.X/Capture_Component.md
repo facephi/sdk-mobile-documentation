@@ -325,3 +325,7 @@ each String to the desired one.
     <string name="capture_component_internal_error_desc">We apologize. The capture could not be made</string>
 
 ```
+
+## 9. Logs
+
+To display the logs of this component on the console, you can use the filter: "CAPTURE:"

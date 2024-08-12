@@ -282,3 +282,7 @@ each String to the desired one.
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
+
+## 10. Logs
+
+To display the logs of this component on the console, you can use the filter: "VIDEO_CALL:"

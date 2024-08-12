@@ -295,3 +295,7 @@ de cada _String_ por el deseado.
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
+
+## 10. Logs
+
+Para visualizar en consola los logs de este componente se podrá usar el filtro: "VIDEO_CALL:"

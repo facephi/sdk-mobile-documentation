@@ -335,5 +335,8 @@ each String to the desired one.
     <string name="phingers_component_internal_error_title">There was a technical problem</string>
     <string name="phingers_component_internal_error_desc">We apologize. The capture could not be made</string>
 
-
 ```
+
+## 9. Logs
+
+To display the logs of this component on the console, you can use the filter: "PHINGERS:"
