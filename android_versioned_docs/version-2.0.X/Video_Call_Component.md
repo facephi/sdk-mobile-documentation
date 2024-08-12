@@ -283,6 +283,29 @@ each String to the desired one.
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
 
+### 9.3 External custom views
+
+It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
+
+Error diagnosis screen:
+
+```kotlin
+
+interface IVideoCallErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: VideoCallError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
+
+---
+
 ## 10. Logs
 
 To display the logs of this component on the console, you can use the filter: "VIDEO_CALL:"

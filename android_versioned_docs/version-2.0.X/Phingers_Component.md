@@ -337,6 +337,8 @@ each String to the desired one.
 
 ```
 
+---
+
 ## 9. Logs
 
 To display the logs of this component on the console, you can use the filter: "PHINGERS:"

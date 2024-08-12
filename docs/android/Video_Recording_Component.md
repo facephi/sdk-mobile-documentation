@@ -233,3 +233,7 @@ Recording controllers shall return statuses to indicate the evolution of the pro
 Where SHARING indicates that the screen is being recorded and FINISH indicates that the process is finished.
 
 ---
+
+## 8. Logs
+
+To display the logs of this component on the console, you can use the filter: "VIDEO_RECORDING:"
