@@ -265,7 +265,7 @@ videoCallScreenSharingManager.stopScreenSharingService()
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
 se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
-modificación de textos específicos.
+modificación de su interfaz.
 
 ### 9.1. Textos
 
@@ -295,6 +295,29 @@ de cada _String_ por el deseado.
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
+
+### 9.3 Vistas externas
+
+Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
+
+Pantalla de diagnóstico de error:
+
+```kotlin
+
+interface IVideoCallErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: VideoCallError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Una vez creadas las clases que implementan los interfaces, en el lanzamiento del componente se podrá añadir el parámetro "customViews" para que se utilicen en el SDK.
+
+---
 
 ## 10. Logs
 

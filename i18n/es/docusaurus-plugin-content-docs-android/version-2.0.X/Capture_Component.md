@@ -335,6 +335,8 @@ de cada _String_ por el deseado.
 
 ```
 
+---
+
 ## 9. Logs
 
 Para visualizar en consola los logs de este componente se podrá usar el filtro: "CAPTURE:"

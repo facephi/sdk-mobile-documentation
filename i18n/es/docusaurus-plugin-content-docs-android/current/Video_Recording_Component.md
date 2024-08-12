@@ -244,3 +244,7 @@ Los controladores de grabación devolverán estados para indicar la evolución d
 Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
 
 ---
+
+## 8. Logs
+
+Para visualizar en consola los logs de este componente se podrá usar el filtro: "VIDEO_RECORDING:"
