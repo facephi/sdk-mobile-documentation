@@ -284,6 +284,7 @@ On the error side, we will have the _NfcError_ class.
     NfcError.NO_DATA_ERROR
     NfcError.TIMEOUT
     NfcError.LAST_COMMAND_EXPECTED
+    NfcError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Receipt of correct execution - _data_

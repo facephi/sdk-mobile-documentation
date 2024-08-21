@@ -211,6 +211,7 @@ ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
 UNKNOWN_ERROR
 PERMISSION_DENIED
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

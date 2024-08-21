@@ -13,8 +13,9 @@
 
 - NFC
 
-  - Security provider fix
-  - Date fix
+  - Correción del Security provider 
+  - Correción de fechas
+  - Captura de excepciones
 
 - Video Call
 
@@ -38,6 +39,10 @@
 - Tracking
 
   - Añadir tracking widget
+
+- Capture
+
+  - Nueva captura de documentos
 
 ### 2.0.2
 

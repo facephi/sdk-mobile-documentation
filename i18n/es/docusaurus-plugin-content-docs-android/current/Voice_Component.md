@@ -201,6 +201,7 @@ CANCEL_LAUNCH
 PERMISSION_DENIED
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

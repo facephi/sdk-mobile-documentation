@@ -392,6 +392,7 @@ En la parte del error, dispondremos de la clase SelphIdError.
     is SelphIDError.TIMEOUT
     SelphIDError.UNEXPECTED_CAPTURE_ERROR
     SelphIDError.UNKNOWN_ERROR
+    SelphIDError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

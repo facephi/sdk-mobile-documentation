@@ -178,6 +178,7 @@ VIDEO_ERROR
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
 UNKNOWN_ERROR
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Receipt of correct execution - data\_

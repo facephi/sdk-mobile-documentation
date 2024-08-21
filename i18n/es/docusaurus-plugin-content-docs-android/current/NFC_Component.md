@@ -293,6 +293,7 @@ En la parte del error, dispondremos de la clase NfcError.
     NfcError.NO_DATA_ERROR
     NfcError.TIMEOUT
     NfcError.LAST_COMMAND_EXPECTED
+    NfcError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

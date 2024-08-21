@@ -15,6 +15,7 @@
 
   - Security provider fix
   - Date fix
+  - Exception handler
 
 - Video Call
 
@@ -38,6 +39,10 @@
 - Tracking
 
   - Add tracking widget
+
+- Capture
+
+  - New document scann
 
 ### 2.0.2
 

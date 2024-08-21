@@ -297,6 +297,7 @@ En la parte del error, dispondremos de la clase SelphiError.
     SelphiError.TIMEOUT
     SelphiError.UNEXPECTED_CAPTURE_ERROR
     SelphiError.UNKNOWN_ERROR
+    SelphiError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

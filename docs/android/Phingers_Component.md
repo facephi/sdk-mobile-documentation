@@ -248,6 +248,7 @@ PHINGERS_CAMERA_FAILURE
 PHINGERS_CAPTURE_FAILURE
 PHINGERS_LICENSING_FAILURE
 INITIALIZATION_ERROR -> it.error // More info
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.1. Receipt of correct execution - _data_
