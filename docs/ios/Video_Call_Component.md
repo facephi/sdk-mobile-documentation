@@ -139,6 +139,13 @@ If set to true, vibration is enabled on errors and if the widget response is OK.
 ---
 
 ## 6. Use of the component
+<div class="warning">
+<span class="warning">:warning:</span>
+For version 2.0.2 or higher, you must include the parameter extensionName: ‘’.
+This new parameter is for screen sharing, if not used it must be an empty string.
+
+let videocallController = VideoCallController(data: data, extensionName: "videoRecording", output: output, viewController: viewController)
+</div>
 
 Once the component has been started and a new operation has been created (**section
 3**) the SDK components can be launched. There are two ways to launch
@@ -150,16 +157,8 @@ the component:
   tracking is installed and active:
 
 ```java
-SDKController.launchMethod(
-     VideoCallController(VideoCallConfigurationData()) {
-         when (it.finishStatus) {
-             FinishStatus.STATUS_OK -> {
-                 //VideoCall OK
-             }
-             FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
-         }
-     }
-)
+let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 - **\[NO TRACKING\]** This call allows launching the functionality
@@ -167,18 +166,10 @@ SDKController.launchMethod(
   event to the _tracking_ server in case the
   tracking:
 
-  ```java
-  SDKController.launch(
-      VideoCallController(VideoCallConfigurationData()) {
-          when (it.finishStatus) {
-              FinishStatus.STATUS_OK -> {
-                  //VideoCall OK
-              }
-              FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
-          }
-      }
-  )
-  ```
+```java
+let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+SDKController.shared.launch(controller: controller)
+```
 
 The **launch** method should be used **by default**. This method allows
 use **_tracking_** if its component is activated, and do not
