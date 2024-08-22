@@ -142,6 +142,14 @@ If set to true, vibration is enabled on errors and if the widget response is OK.
 ---
 
 ## 6. Use of the component
+<div class="warning">
+<span class="warning">:warning:</span>
+For version 2.0.2 or higher, you must include the parameter extensionName: ‘’.
+This new parameter is for screen sharing, if not used it must be an empty string.
+
+let videocallController = VideoCallController(data: data, extensionName: "videoRecording", output: output, viewController: viewController)
+</div>
+
 
 Once the component has been started and a new operation has been created (**section
 3**) the SDK components can be launched. There are two ways to launch
@@ -152,18 +160,9 @@ the component:
    internal to the _tracking_ server in the event that the component
    tracking is installed and active:
 
-```java
-SDKController.launchMethod(
-     VideoCallController(VideoCallConfigurationData()) {
-         when (it.finishStatus) {
-             FinishStatus.STATUS_OK -> {
-                 //VideoCall OK
-             }
-             FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
-         }
-     }
-)
-```
+    ```java
+    SDKController.shared.launch(controller: videocallController)
+    ```
 
 - **\[NO TRACKING\]** This call allows launching the functionality
    of the component normally, but **will not be tracked** any
@@ -171,16 +170,7 @@ SDKController.launchMethod(
    tracking:
 
    ```java
-   SDKController.launch(
-       VideoCallController(VideoCallConfigurationData()) {
-           when (it.finishStatus) {
-               FinishStatus.STATUS_OK -> {
-                   //VideoCall OK
-               }
-               FinishStatus.STATUS_ERROR -> //VideoCall OK: it.errorType.name
-           }
-       }
-   )
+   SDKController.shared.launchMethod(controller: videocallController)
    ```
 <div class="warning">
 <span class="warning">:warning:</span>

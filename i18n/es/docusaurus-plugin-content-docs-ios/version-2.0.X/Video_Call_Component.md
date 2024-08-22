@@ -154,6 +154,14 @@ Si se le da valor true, se activa la vibración en errores y si la respuesta del
 
 ## 6. Uso del componente
 
+<div class="warning">
+<span class="warning">:warning:</span>
+Para la version 2.0.2 o superior, se debe incluir el parametro extensionName: "".
+Este nuevo parametro es para poder compartir pantalla, en caso de no usarse debe ir con un string vacio.
+
+let videocallController = VideoCallController(data: data, extensionName: "videoRecording", output: output, viewController: viewController)
+</div>
+
 Una vez iniciado el componente y creada una nueva operación (**apartado
 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
