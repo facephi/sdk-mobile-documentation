@@ -132,6 +132,10 @@ Mostrar pantallas de diagnóstico al final del proceso
 
 Activa o desactiva la comprobación de calidad del audio. Se recomienda tenerla siempre activa.
 
+#### 5.1.7. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 ---
 
 ## 6. Uso del componente

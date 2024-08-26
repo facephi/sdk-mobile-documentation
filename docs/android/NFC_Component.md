@@ -178,6 +178,10 @@ Indicates if you want to extract the signature image.
 
 Field used to change the tutorial view to show the different documents.
 
+#### 5.1.14. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ---
 
 ## 6. Component use

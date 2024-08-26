@@ -124,6 +124,10 @@ Display diagnostic screens at the end of the process
 
 Enable or disable audio quality checking. It is recommended to always keep it enabled.
 
+#### 5.1.7. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ---
 
 ## 6. Component use

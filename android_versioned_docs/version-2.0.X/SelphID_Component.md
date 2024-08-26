@@ -305,6 +305,10 @@ configure the widget views.
 
 Display diagnostic screens at the end of the process
 
+#### 5.1.20. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ---
 
 ## 6. Component use

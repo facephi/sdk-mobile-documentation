@@ -317,6 +317,10 @@ Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
 Mostrar pantallas de diagnóstico al final del proceso
 
+#### 5.1.20. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 ---
 
 ## 6. Uso del componente

@@ -201,6 +201,10 @@ Display diagnostic screens at the end of the process
 
 When activated, a list of the 5 best images taken of the user is returned.
 
+#### 5.1.16. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ---
 
 ## 6. Component use

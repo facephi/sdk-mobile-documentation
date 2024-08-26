@@ -125,6 +125,10 @@ Muestra la pantalla de tutorial al inicio del proceso (Sólo modo QR)
 
 Máscara sobre la cámara semitransparente
 
+#### 5.1.9. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 ### 5.2. Class QrGeneratorConfiguration
 
 #### 5.2.1. source
@@ -156,6 +160,10 @@ Mostrar pantallas de diagnóstico al final del procesos
 #### 5.3.4. showTutorial
 
 Muestra la pantalla de tutorial al inicio del proceso (Sólo modo QR)
+
+#### 5.1.5. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
 
 ---
 

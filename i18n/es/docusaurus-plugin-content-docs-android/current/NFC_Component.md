@@ -186,6 +186,10 @@ Indica si quiere extraer la imagen de la firma.
 
 Campo utilizado para cambiar la vista de tutorial y que muestre los diferentes documentos.
 
+#### 5.1.14. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 ---
 
 ## 6. Uso del componente

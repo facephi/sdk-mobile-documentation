@@ -118,6 +118,10 @@ Display tutorial screen at the start of the process (only QR mode)
 
 Semi-transparent mask
 
+#### 5.1.9. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ### 5.2. Class QrGeneratorConfiguration
 
 #### 5.2.1. source
@@ -146,9 +150,9 @@ Enable in-process vibration
 
 Display diagnostic screens at the end of the process
 
-#### 5.3.4. showTutorial
+#### 5.3.4. showPreviousTip
 
-Display tutorial screen at the start of the process (only QR mode)
+Displays a pre-launch screen with information about the process to be performed and a launch button.
 
 ---
 
