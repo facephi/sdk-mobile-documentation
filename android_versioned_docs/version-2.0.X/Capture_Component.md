@@ -154,6 +154,10 @@ Display diagnostic screens at the end of the process
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
 
+#### 5.3.5. maxScannedDocs
+
+Maximum number of documents to scan.
+
 ---
 
 ## 6. Component use

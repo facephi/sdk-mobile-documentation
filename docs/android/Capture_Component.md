@@ -150,13 +150,13 @@ Enable in-process vibration
 
 Display diagnostic screens at the end of the process
 
-#### 5.3.4. showTutorial
-
-Display tutorial screen at the start of the process (only QR mode)
-
-#### 5.3.5. showPreviousTip
+#### 5.3.4. showPreviousTip
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 5.3.5. maxScannedDocs
+
+Maximum number of documents to scan.
 
 ---
 

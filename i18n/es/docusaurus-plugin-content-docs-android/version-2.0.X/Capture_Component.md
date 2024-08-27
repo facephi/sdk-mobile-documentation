@@ -139,6 +139,12 @@ Ancho del QR generado
 
 Alto del QR generado
 
+### 5.3. Class InvoiceCaptureConfigurationData
+
+#### 5.3.1. extractionTimeout
+
+Tiempo de extracción máximo
+
 #### 5.3.2. vibrationEnabled
 
 Habilitar vibración durante el proceso
@@ -147,9 +153,13 @@ Habilitar vibración durante el proceso
 
 Mostrar pantallas de diagnóstico al final del procesos
 
-#### 5.3.4. showTutorial
+#### 5.1.4. showPreviousTip
 
-Muestra la pantalla de tutorial al inicio del proceso (Sólo modo QR)
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 5.3.5. maxScannedDocs
+
+Numero máximo de documentos a escanear.
 
 ---
 

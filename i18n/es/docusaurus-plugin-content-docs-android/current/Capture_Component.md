@@ -157,13 +157,13 @@ Habilitar vibración durante el proceso
 
 Mostrar pantallas de diagnóstico al final del procesos
 
-#### 5.3.4. showTutorial
-
-Muestra la pantalla de tutorial al inicio del proceso (Sólo modo QR)
-
-#### 5.1.5. showPreviousTip
+#### 5.1.4. showPreviousTip
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 5.3.5. maxScannedDocs
+
+Numero máximo de documentos a escanear.
 
 ---
 
