@@ -29,7 +29,7 @@
 
 - SelphID
 
-  - New version 1.25.1
+  - New version 1.26.0.
   - Add tutorial
 
 - Selphi

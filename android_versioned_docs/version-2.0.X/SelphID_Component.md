@@ -68,6 +68,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | **SDK version** | **Selphi resources version**            |
 | -------------- | -------------------------- |
 | 2.0.2  | 1.25.1 |
+| 2.0.3  | 1.26.0 |
 
 ---
 
