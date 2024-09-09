@@ -29,12 +29,13 @@
 
 - SelphID
 
-  - New version 1.26.0.
+  - New version 1.26.0
   - Add tutorial
 
 - Selphi
 
-  - New version 5.13.3
+  - New version 5.13.4
+  - New param cropImageDebug
 
 - Tracking
 
@@ -43,7 +44,7 @@
 - Capture
 
   - New document scann
-  
+
 ### 2.0.2
 
 - General

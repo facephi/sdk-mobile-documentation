@@ -60,9 +60,10 @@ distributed remotely through different dependency managers.
 
 Table of sdk versions and associated resource versions (Found in the **Resources** section):
 
-| **SDK version** | **Selphi resources version**            |
-| -------------- | -------------------------- |
-| 2.0.2  | 5.13.1 |
+| **SDK version** | **Selphi resources version** |
+| --------------- | ---------------------------- |
+| 2.0.2           | 5.13.1                       |
+| 2.0.3           | 5.13.4                       |
 
 ---
 
@@ -119,18 +120,22 @@ This name will fetch the file from the assets path.
 Allows you to change the percentage of cropping of the face. The higher
 the number, the more the rectangle is cropped concerning the face.
 
-#### 5.1.3. _showResultAfterCapture_
+#### 5.1.3. _cropImageDebug_
+
+Allows debug mode to check the percentage of cropping of the face.
+
+#### 5.1.4. _showResultAfterCapture_
 
 Indicates whether or not to display a screen with the captured image
 after the analysis process. This screen allows the user to repeat the
 capture process if the image obtained is incorrect.
 
-#### 5.1.4. _showTutorial_
+#### 5.1.5. _showTutorial_
 
 Indicates whether the widget activates the tutorial screen. This view
 intuitively explains how the capture is performed.
 
-#### 5.1.5. _livenessMode_
+#### 5.1.6. _livenessMode_
 
 Sets the liveness mode of the widget. Allowed values are:
 
@@ -141,21 +146,21 @@ Sets the liveness mode of the widget. Allowed values are:
   performed in the server, sending the corresponding "BestImage" or
   "TemplateRaw" for this purpose.
 
-- LIVENESS_MOVE: Indicates that the liveness test is active 
-  by displaying instructions during the capture, 
-  and returning the corresponding result of the process.
+- LIVENESS_MOVE: Indicates that the liveness test is active
+  by displaying instructions during the capture, and returning
+  the corresponding result of the process.
 
-#### 5.1.6. _stabilizationMode_
+#### 5.1.7. _stabilizationMode_
 
 Sets a stabilization mode before any authentication process in the
 widget. This mode forces the widget not to start any process if the user
 is not facing forward and not moving his head.
 
-#### 5.1.7. _cameraFlashEnabled_
+#### 5.1.8. _cameraFlashEnabled_
 
 Indicates whether the device's camera flash is activated.
 
-#### 5.1.8 _locale_
+#### 5.1.9 _locale_
 
 Forces the widget to use the language setting indicated by the locale
 parameter. This parameter accepts a language code (e.g. 'en') and a
@@ -163,17 +168,17 @@ regional identification code (e.g. 'en_US'). If the widget resource file
 does not have a locale for the selected 'locale', its configuration will
 fall back to the default language.
 
-#### 5.1.9 _fullscreen_
+#### 5.1.10 _fullscreen_
 
 Indicates whether the view will prioritize for full-screen display if
 the system allows it.
 
-#### 5.1.10. _templateRawOptimized_
+#### 5.1.11. _templateRawOptimized_
 
 Indicates whether the template (templateRaw) generated after the selfie
 should be optimized or not.
 
-#### 5.1.11. _qrMode_
+#### 5.1.12. _qrMode_
 
 Sets whether or not to activate QR reading before the authentication
 process.
@@ -197,11 +202,11 @@ Note: This property does not alter the content of the resource file.
 
 Display diagnostic screens at the end of the process
 
-#### 5.1.15. _logImages_
+#### 5.1.16. _logImages_
 
 When activated, a list of the 5 best images taken of the user is returned.
 
-#### 5.1.16. showPreviousTip
+#### 5.1.17. showPreviousTip
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
 

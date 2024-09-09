@@ -34,7 +34,8 @@
 
 - Selphi
 
-  - New version 5.13.3
+  - New version 5.13.4
+  - New param cropImageDebug
 
 - Tracking
 

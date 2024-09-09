@@ -13,7 +13,7 @@
 
 - NFC
 
-  - Correción del Security provider 
+  - Correción del Security provider
   - Correción de fechas
   - Captura de excepciones
 
@@ -34,7 +34,8 @@
 
 - Selphi
 
-  - Nueva versión 5.13.3
+  - Nueva versión 5.13.4
+  - Nuevo campo cropImageDebug
 
 - Tracking
 

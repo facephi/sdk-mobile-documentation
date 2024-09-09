@@ -2,7 +2,7 @@
 
 ## 0. Selphi requirements
 
-**Selphi legacy widget** is a Facephi product contained by Selphi Component. 
+**Selphi legacy widget** is a Facephi product contained by Selphi Component.
 
 For proper functionality, it requires a zip file of resources that is updated for the various software versions.
 
@@ -12,11 +12,12 @@ For proper functionality, it requires a zip file of resources that is updated fo
 
 The resource zip file can be downloaded from the following link:
 
-| **Selphi version** | **Link**            |
-| -------------- | -------------------------- |
-| 5.12.6  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.12.6/fphi-selphi-widget-resources-selphi-live-5.12.6.zip" rel="nofollow"> Resources v.5.12.6</a> |
-| 5.13.1  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.13.1/fphi-selphi-widget-resources-selphi-live-5.13.1.zip" rel="nofollow"> Resources v.5.13.1</a> |
-| 5.13.3  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.13.3/fphi-selphi-widget-resources-selphi-live-5.13.3.zip" rel="nofollow"> Resources v.5.13.3</a> |
+| **Selphi version** | **Link**                                                                                                                                                                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 5.12.6             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.12.6/fphi-selphi-widget-resources-selphi-live-5.12.6.zip" rel="nofollow"> Resources v.5.12.6</a> |
+| 5.13.1             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.13.1/fphi-selphi-widget-resources-selphi-live-5.13.1.zip" rel="nofollow"> Resources v.5.13.1</a> |
+| 5.13.3             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.13.3/fphi-selphi-widget-resources-selphi-live-5.13.3.zip" rel="nofollow"> Resources v.5.13.3</a> |
+| 5.13.4             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.13.4/fphi-selphi-widget-resources-selphi-live-5.13.4.zip" rel="nofollow"> Resources v.5.13.4</a> |
 
 ---
 
@@ -34,7 +35,7 @@ The resource zip must be included in the application's assets folder.
 
 This file allows the customization of texts, images, fonts and
 colours. Customization is done using the internally supplied **.zip
-file**. This zip is made up of a file called ***widget.xml*** that
+file**. This zip is made up of a file called **_widget.xml_** that
 contains the definition of all the widget screens, each one of them with
 a series of elements which allow customization. The zip file also
 contains a folder with graphic resources and another folder with the
@@ -47,9 +48,9 @@ translations of the texts.
 Text customization is carried out by editing the texts of the existing
 translation files in the resource .zip.
 
->     /strings/strings.es.xml
+> /strings/strings.es.xml
 >
->     /strings/strings.xml
+> /strings/strings.xml
 
 ---
 
@@ -58,11 +59,11 @@ translation files in the resource .zip.
 To customize the images used by the widget, you must add the images to
 the resource .zip. In the zip there are 3 folders:
 
->     /resources/163dpi
+> /resources/163dpi
 >
->     /resources/326dpi
+> /resources/326dpi
 >
->     /resources/489dpi
+> /resources/489dpi
 
 These folders correspond to the different screen densities and you can
 create as many density folders as you want. These folders contain the
@@ -72,15 +73,15 @@ It is necessary to add the images in all the folders, since once the
 optimal resolution for the device has been determined, the widget only
 loads images from the folder with the chosen resolution.
 
-The images are referenced from the *widget.xml* file.
+The images are referenced from the _widget.xml_ file.
 
-#### 3.1.3. Colour 
+#### 3.1.3. Colour
 
-Button colour customization is carried out from the *widget.xml* file.
+Button colour customization is carried out from the _widget.xml_ file.
 In it you can customize any colour of any graphic element that appears
 in the widget. Simply modify the colour of the desired property.
 
-#### 3.1.4. Font type 
+#### 3.1.4. Font type
 
 Font files should be placed in the \`/resources/163dpi\` folder and once
 there they can be referenced from the \`widget.xml\` file. To change the
@@ -101,27 +102,27 @@ properties that can be modified.
 
 #### 3.2.2. Strings folder
 
-This folder contains a *strings.xml* file for each translation you want
+This folder contains a _strings.xml_ file for each translation you want
 to support. The name must be formed as follows:
 
->     strings.(language).xml
+> strings.(language).xml
 
 Where (language) is the language code. For example, \`strings.es.xml\`
-would be the Spanish translation, *strings.en.xml* the English
-translation, *strings.es_ES.xml* the Spanish of Spain or
-*strings.es_AR.xml* the Spanish of Argentina.
+would be the Spanish translation, _strings.en.xml_ the English
+translation, _strings.es_ES.xml_ the Spanish of Spain or
+_strings.es_AR.xml_ the Spanish of Argentina.
 
 You can force the language or let the widget choose it based on device
 settings. When deciding which language to apply, the following order is
 followed:
 
--   Search by location code (for example, “es_AR”).
+- Search by location code (for example, “es_AR”).
 
--   If it doesn't find a match, it would look for one for the generic
-    language (i.e., in this case it would be "es").
+- If it doesn't find a match, it would look for one for the generic
+  language (i.e., in this case it would be "es").
 
--   If there were no results either, then it would use the default
-    language.
+- If there were no results either, then it would use the default
+  language.
 
 At the code level it is possible to select the localisation using the
 locale property. This parameter accepts a string with the language code
@@ -137,88 +138,88 @@ density can also be created.
 
 #### 3.2.4. BACKGROUND element
 
-The *background* element is made up of 4 segments that can be coloured
+The _background_ element is made up of 4 segments that can be coloured
 independently:
 
--   **top**: Defines the background colour of the top segment or panel.
+- **top**: Defines the background colour of the top segment or panel.
 
--   **middle_top**: defines the background colour of the segment or
-    panel where the camera image is located.
+- **middle_top**: defines the background colour of the segment or
+  panel where the camera image is located.
 
--   **middle_bottom**: defines the background colour of the segment or
-    panel below the camera image.
+- **middle_bottom**: defines the background colour of the segment or
+  panel below the camera image.
 
--   **bottom**: defines the background colour of the bottom segment or
-    panel.
+- **bottom**: defines the background colour of the bottom segment or
+  panel.
 
 You can also set certain properties that are used only on specific
 screens. We have listed them below referring to the screens on which
 they are used:
 
--   **pagination_separator (RegistrationTips, FaceMovementTips)**:
-    Defines the colour of the separation between the bottom panel and
-    the panel below the camera.
+- **pagination_separator (RegistrationTips, FaceMovementTips)**:
+  Defines the colour of the separation between the bottom panel and
+  the panel below the camera.
 
--   **mirror_border_colour (RegistrationTips, FaceMovementTips**):
-    Defines the colour of the border of the circle around the camera or
-    video image of the registration tips. This element is also called a
-    mirror.
+- **mirror_border_colour (RegistrationTips, FaceMovementTips**):
+  Defines the colour of the border of the circle around the camera or
+  video image of the registration tips. This element is also called a
+  mirror.
 
--   **mirror_border_width (RegistrationTips, FaceMovementTips)**:
-    Defines the width of the border of the circle around the camera or
-    video image of the registration tips. If we didn't want to display a
-    border, we would have to assign a value of 0.0 to this property.
+- **mirror_border_width (RegistrationTips, FaceMovementTips)**:
+  Defines the width of the border of the circle around the camera or
+  video image of the registration tips. If we didn't want to display a
+  border, we would have to assign a value of 0.0 to this property.
 
--   **mirror_mist_colour (StartExtractor)**: Defines the colour of the
-    centre circle on the pre-extraction screen. This colour should
-    always have a transparency value since we must show the image of the
-    camera so that the user can position himself correctly before
-    starting the extraction. The colour format when a transparency value
-    is included is RGBA (The alpha value will be indicated with the last
-    byte).
+- **mirror_mist_colour (StartExtractor)**: Defines the colour of the
+  centre circle on the pre-extraction screen. This colour should
+  always have a transparency value since we must show the image of the
+  camera so that the user can position himself correctly before
+  starting the extraction. The colour format when a transparency value
+  is included is RGBA (The alpha value will be indicated with the last
+  byte).
 
--   **mirror_colour (Results)**: defines the background colour of the
-    circle that displays the results of the registration process.
+- **mirror_colour (Results)**: defines the background colour of the
+  circle that displays the results of the registration process.
 
 #### 3.2.5. BUTTON element
 
--   **background**: defines the background colour of the button
+- **background**: defines the background colour of the button
 
--   **decorator**: defines the colour of the button's shadow
+- **decorator**: defines the colour of the button's shadow
 
--   **foreground**: defines the colour of the button font in case the
-    content is text
+- **foreground**: defines the colour of the button font in case the
+  content is text
 
--   **content_type**: defines the content type of the button. There are
-    2 different types:
+- **content_type**: defines the content type of the button. There are
+  2 different types:
 
--   **resource_id:** Content must contain the name of a file in the
-    resource bundle
+- **resource_id:** Content must contain the name of a file in the
+  resource bundle
 
--   **text_id:** Content must contain the identifier of a literal from
-    the translations file of the resource bundle
+- **text_id:** Content must contain the identifier of a literal from
+  the translations file of the resource bundle
 
--   **content**: defines the content of the button. It can be either an
-    image or the identifier of a literal.
+- **content**: defines the content of the button. It can be either an
+  image or the identifier of a literal.
 
--   **align:** Defines the alignment of the button content, be it an
-    image or a text
+- **align:** Defines the alignment of the button content, be it an
+  image or a text
 
--   **font:** Defines the font used if the button content is text
+- **font:** Defines the font used if the button content is text
 
--   **font_size**: Defines the font size if the button content is text
+- **font_size**: Defines the font size if the button content is text
 
 #### 3.2.6. TEXT element
 
-The *text* elements are used to define the graphic aspect of the texts
+The _text_ elements are used to define the graphic aspect of the texts
 of each of the widget's screens. These are the properties that can be
 modified:
 
--   **colour**: defines the colour of the text.
+- **colour**: defines the colour of the text.
 
--   **font**: defines the type of font used to display the text.
+- **font**: defines the type of font used to display the text.
 
--   **font_size**: defines the font size.
+- **font_size**: defines the font size.
 
 It must be borne in mind that on the registration results screen, the
 two texts that define the quality of the registration have their colour
@@ -226,21 +227,18 @@ forced to the colour of the bar that indicates the score.
 
 #### 3.2.7. IMAGE element
 
--   **value**: defines the name of the file that contains the image to
-    display.
+- **value**: defines the name of the file that contains the image to
+  display.
 
-*image* elements only have the property that defines the file where the
+_image_ elements only have the property that defines the file where the
 image is physically located in the resource bundle. The images are
 obtained from the bundle by looking in the appropriate folder according
 to the density of the device.
 
 #### 3.2.8. VIDEO element
 
--   **value**: defines the name of the file that contains the video to
-    display.
+- **value**: defines the name of the file that contains the video to
+  display.
 
-*Video* elements only have the property that defines the file when the
+_Video_ elements only have the property that defines the file when the
 video is physically located in the resource bundle.
-
-
-
