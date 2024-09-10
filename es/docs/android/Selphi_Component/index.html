@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.5.2">
 <title data-rh="true">Selphi Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/Selphi_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="2.0.X"><meta data-rh="true" name="docusaurus_tag" content="docs-android-2.0.X"><meta data-rh="true" name="docsearch:version" content="2.0.X"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-android-2.0.X"><meta data-rh="true" property="og:title" content="Selphi Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="0. Requisitos base de SDK Mobile"><meta data-rh="true" property="og:description" content="0. Requisitos base de SDK Mobile"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/Selphi_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/Selphi_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/Selphi_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/Selphi_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.613f93dd.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.894f09d7.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.2dd3b702.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.5710408e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -67,7 +67,7 @@ a través de diferentes gestores de dependencias. Las dependencias
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="21-fichero-zip-de-recursos">2.1. Fichero zip de recursos<a href="#21-fichero-zip-de-recursos" class="hash-link" aria-label="Enlace directo al 2.1. Fichero zip de recursos" title="Enlace directo al 2.1. Fichero zip de recursos">​</a></h3>
 <p>Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar en el apartado de <strong>Resources</strong>):</p>
-<table><thead><tr><th><strong>Versión SDK</strong></th><th><strong>Selphi versión de recursos</strong></th></tr></thead><tbody><tr><td>2.0.2</td><td>5.13.1</td></tr></tbody></table>
+<table><thead><tr><th><strong>Versión SDK</strong></th><th><strong>Selphi versión de recursos</strong></th></tr></thead><tbody><tr><td>2.0.2</td><td>5.13.1</td></tr><tr><td>2.0.3</td><td>5.13.4</td></tr></tbody></table>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-iniciar-nueva-operación">3. Iniciar nueva operación<a href="#3-iniciar-nueva-operación" class="hash-link" aria-label="Enlace directo al 3. Iniciar nueva operación" title="Enlace directo al 3. Iniciar nueva operación">​</a></h2>
 <p>Cuando se desea realizar una determinada operación, para generar la
@@ -100,15 +100,17 @@ esta clase y para qué se utiliza cada uno de ellos.</p>
 <p>Permite modificar el porcentaje de recortado de la cara. Cuanto mayor
 sea el número mayor será el recorte del rectángulo con respecto a la
 cara.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="513-showresultaftercapture">5.1.3. <em>showResultAfterCapture</em><a href="#513-showresultaftercapture" class="hash-link" aria-label="Enlace directo al 513-showresultaftercapture" title="Enlace directo al 513-showresultaftercapture">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="513-cropimagedebug">5.1.3. <em>cropImageDebug</em><a href="#513-cropimagedebug" class="hash-link" aria-label="Enlace directo al 513-cropimagedebug" title="Enlace directo al 513-cropimagedebug">​</a></h4>
+<p>Permite al modo de depuración comprobar el porcentaje de recorte de la cara.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="514-showresultaftercapture">5.1.4. <em>showResultAfterCapture</em><a href="#514-showresultaftercapture" class="hash-link" aria-label="Enlace directo al 514-showresultaftercapture" title="Enlace directo al 514-showresultaftercapture">​</a></h4>
 <p>Indica si mostrar o no una pantalla con la imagen capturada después del
 proceso de análisis. En esta pantalla se le da al usuario la posibilidad
 de repetir el proceso de captura si la imagen que se obtuvo no fuera
 correcta.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="514-showtutorial">5.1.4. <em>showTutorial</em><a href="#514-showtutorial" class="hash-link" aria-label="Enlace directo al 514-showtutorial" title="Enlace directo al 514-showtutorial">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="515-showtutorial">5.1.5. <em>showTutorial</em><a href="#515-showtutorial" class="hash-link" aria-label="Enlace directo al 515-showtutorial" title="Enlace directo al 515-showtutorial">​</a></h4>
 <p>Indica si el widget activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="515-livenessmode">5.1.5. <em>livenessMode</em><a href="#515-livenessmode" class="hash-link" aria-label="Enlace directo al 515-livenessmode" title="Enlace directo al 515-livenessmode">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="516-livenessmode">5.1.6. <em>livenessMode</em><a href="#516-livenessmode" class="hash-link" aria-label="Enlace directo al 516-livenessmode" title="Enlace directo al 516-livenessmode">​</a></h4>
 <p>Establece el modo liveness del widget. Los valores permitidos son:</p>
 <ul>
 <li>
@@ -126,49 +128,51 @@ unas instrucciones durante la captura, y devolviendo el correspondiente
 resultado del proceso.</p>
 </li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="516-stabilizationmode">5.1.6. <em>stabilizationMode</em><a href="#516-stabilizationmode" class="hash-link" aria-label="Enlace directo al 516-stabilizationmode" title="Enlace directo al 516-stabilizationmode">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="517-stabilizationmode">5.1.7. <em>stabilizationMode</em><a href="#517-stabilizationmode" class="hash-link" aria-label="Enlace directo al 517-stabilizationmode" title="Enlace directo al 517-stabilizationmode">​</a></h4>
 <p>Establece un modo de estabilización previo a cualquier proceso de
 autenticación en el widget. Con este modo se obliga al widget a no
 empezar ningún proceso si el usuario no se encuentra con la cabeza,
 mirando al frente y sin moverla.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="517-cameraflashenabled">5.1.7. <em>cameraFlashEnabled</em><a href="#517-cameraflashenabled" class="hash-link" aria-label="Enlace directo al 517-cameraflashenabled" title="Enlace directo al 517-cameraflashenabled">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="518-cameraflashenabled">5.1.8. <em>cameraFlashEnabled</em><a href="#518-cameraflashenabled" class="hash-link" aria-label="Enlace directo al 518-cameraflashenabled" title="Enlace directo al 518-cameraflashenabled">​</a></h4>
 <p>Indica si se activa el flash de la cámara del dispositivo.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="518-locale">5.1.8 <em>locale</em><a href="#518-locale" class="hash-link" aria-label="Enlace directo al 518-locale" title="Enlace directo al 518-locale">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="519-locale">5.1.9 <em>locale</em><a href="#519-locale" class="hash-link" aria-label="Enlace directo al 519-locale" title="Enlace directo al 519-locale">​</a></h4>
 <p>Fuerza al widget a utilizar la configuración de idioma indicado por el
 parámetro locale. Este parámetro acepta tanto un código de idioma (p.
 ej. ‘en’) como un código de identificación regional (p. ej. ‘en_US’). Si
 el archivo de recursos del widget no tuviera una localización para el
 ‘locale’ seleccionado su configuración pasaría a utilizar el idioma por
 defecto.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="519-fullscreen">5.1.9 <em>fullscreen</em><a href="#519-fullscreen" class="hash-link" aria-label="Enlace directo al 519-fullscreen" title="Enlace directo al 519-fullscreen">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5110-fullscreen">5.1.10 <em>fullscreen</em><a href="#5110-fullscreen" class="hash-link" aria-label="Enlace directo al 5110-fullscreen" title="Enlace directo al 5110-fullscreen">​</a></h4>
 <p>Indica si la vista va a tener prioridad para mostrarse en pantalla
 completa, si el sistema lo permite.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5110-templaterawoptimized">5.1.10. <em>templateRawOptimized</em><a href="#5110-templaterawoptimized" class="hash-link" aria-label="Enlace directo al 5110-templaterawoptimized" title="Enlace directo al 5110-templaterawoptimized">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5111-templaterawoptimized">5.1.11. <em>templateRawOptimized</em><a href="#5111-templaterawoptimized" class="hash-link" aria-label="Enlace directo al 5111-templaterawoptimized" title="Enlace directo al 5111-templaterawoptimized">​</a></h4>
 <p>Indica si el template (templateRaw) generado tras el selfie debe
 optimizarse o no.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5111-qrmode">5.1.11. <em>qrMode</em><a href="#5111-qrmode" class="hash-link" aria-label="Enlace directo al 5111-qrmode" title="Enlace directo al 5111-qrmode">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5112-qrmode">5.1.12. <em>qrMode</em><a href="#5112-qrmode" class="hash-link" aria-label="Enlace directo al 5112-qrmode" title="Enlace directo al 5112-qrmode">​</a></h4>
 <p>Booleano que indica si se quiere o no activar la lectura de QR previo al
 proceso de autenticación.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5112-videofilename">5.1.12 <em>videoFilename</em><a href="#5112-videofilename" class="hash-link" aria-label="Enlace directo al 5112-videofilename" title="Enlace directo al 5112-videofilename">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5113-videofilename">5.1.13 <em>videoFilename</em><a href="#5113-videofilename" class="hash-link" aria-label="Enlace directo al 5113-videofilename" title="Enlace directo al 5113-videofilename">​</a></h4>
 <p>Establece la ruta absoluta del nombre del archivo en el que se grabará
 un video del proceso de captura. La aplicación es la responsable de
 solicitar los permisos necesarios al teléfono en caso de que esa ruta
 requiera de permisos adicionales. El widget, por defecto, no realizará
 ningún proceso de grabación a menos que se especifique una ruta de
 archivo mediante este método.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5113-translationscontent">5.1.13 <em>translationsContent</em><a href="#5113-translationscontent" class="hash-link" aria-label="Enlace directo al 5113-translationscontent" title="Enlace directo al 5113-translationscontent">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5114-translationscontent">5.1.14 <em>translationsContent</em><a href="#5114-translationscontent" class="hash-link" aria-label="Enlace directo al 5114-translationscontent" title="Enlace directo al 5114-translationscontent">​</a></h4>
 <p>Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar la traducción de los literales que se muestran durante el
 proceso.</p>
 <p>Nota: Esta propiedad no altera el contenido del archivo de recursos.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5114-viewscontent">5.1.14 <em>viewsContent</em><a href="#5114-viewscontent" class="hash-link" aria-label="Enlace directo al 5114-viewscontent" title="Enlace directo al 5114-viewscontent">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5115-viewscontent">5.1.15 <em>viewsContent</em><a href="#5115-viewscontent" class="hash-link" aria-label="Enlace directo al 5115-viewscontent" title="Enlace directo al 5115-viewscontent">​</a></h4>
 <p>Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.</p>
 <p>Nota: Esta propiedad no altera el contenido del archivo de recursos.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5115-showdiagnostic">5.1.15. <em>showDiagnostic</em><a href="#5115-showdiagnostic" class="hash-link" aria-label="Enlace directo al 5115-showdiagnostic" title="Enlace directo al 5115-showdiagnostic">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5116-showdiagnostic">5.1.16. <em>showDiagnostic</em><a href="#5116-showdiagnostic" class="hash-link" aria-label="Enlace directo al 5116-showdiagnostic" title="Enlace directo al 5116-showdiagnostic">​</a></h4>
 <p>Mostrar pantallas de diagnóstico al final del proceso</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5115-logimages">5.1.15. <em>logImages</em><a href="#5115-logimages" class="hash-link" aria-label="Enlace directo al 5115-logimages" title="Enlace directo al 5115-logimages">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5117-logimages">5.1.17. <em>logImages</em><a href="#5117-logimages" class="hash-link" aria-label="Enlace directo al 5117-logimages" title="Enlace directo al 5117-logimages">​</a></h4>
 <p>Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5118-showprevioustip">5.1.18. showPreviousTip<a href="#5118-showprevioustip" class="hash-link" aria-label="Enlace directo al 5.1.18. showPreviousTip" title="Enlace directo al 5.1.18. showPreviousTip">​</a></h4>
+<p>Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.</p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="6-uso-del-componente">6. Uso del componente<a href="#6-uso-del-componente" class="hash-link" aria-label="Enlace directo al 6. Uso del componente" title="Enlace directo al 6. Uso del componente">​</a></h2>
 <p>Una vez iniciado el componente y creada una nueva operación (<strong>apartado
@@ -201,7 +205,7 @@ a la plataforma.</p>
 SdkResult. Más información en la sección de <a href="Mobile_SDK#6-retorno-de-resultado" rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="71-recepción-de-errores">7.1. Recepción de errores<a href="#71-recepción-de-errores" class="hash-link" aria-label="Enlace directo al 7.1. Recepción de errores" title="Enlace directo al 7.1. Recepción de errores">​</a></h3>
 <p>En la parte del error, dispondremos de la clase SelphiError.</p>
-<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.ACTIVITY_RESULT_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.BAD_EXTRACTOR_CONFIGURATION_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CAMERA_PERMISSION_DENIED</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CANCEL_BY_USER</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CONTROL_NOT_INITIALIZATED_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.EXTRACTION_LICENSE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.HARDWARE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    is SelphiError.INITIALIZATION_ERROR -&gt; it.error //Para más detalles</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.NO_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.RESOURCES_NOT_FOUND</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.SETTINGS_PERMISSION_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.TIMEOUT</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.UNEXPECTED_CAPTURE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.UNKNOWN_ERROR</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copiar código al portapapeles" title="Copiar" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.ACTIVITY_RESULT_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.BAD_EXTRACTOR_CONFIGURATION_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CAMERA_PERMISSION_DENIED</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CANCEL_BY_USER</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CONTROL_NOT_INITIALIZATED_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.EXTRACTION_LICENSE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.HARDWARE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.INITIALIZATION_ERROR -&gt; it.error //Para más detalles</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.NO_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.RESOURCES_NOT_FOUND</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.SETTINGS_PERMISSION_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.TIMEOUT</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.UNEXPECTED_CAPTURE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.UNKNOWN_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.FETCH_DATA_ERROR -&gt; it.error</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copiar código al portapapeles" title="Copiar" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="72-recepción-de-ejecución-correcta---data">7.2. Recepción de ejecución correcta - <em>data</em><a href="#72-recepción-de-ejecución-correcta---data" class="hash-link" aria-label="Enlace directo al 72-recepción-de-ejecución-correcta---data" title="Enlace directo al 72-recepción-de-ejecución-correcta---data">​</a></h3>
 <p>En la parte de <em>data</em>, dispondremos de la clase SelphiResult.</p>
 <p>El resultado devuelve las imágenes en formato <strong>Bitmap</strong>, es posible
