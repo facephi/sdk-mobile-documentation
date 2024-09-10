@@ -131,6 +131,14 @@ mensaje de grabación.
 Indica si se quiere mostrar el tutorial inicial completo. Si no, se
 mostrará un progress indicator.
 
+#### 5.1.7. timeoutServerConnection
+
+Tiempo de espera en ms para la respuesta del servidor.
+
+#### 5.1.8. timeoutFaceDetection
+
+Tiempo de espera en ms para detectar si hay una cara y comenzar la grabación.
+
 ---
 
 ## 6. Uso del componente
@@ -203,6 +211,7 @@ ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
 UNKNOWN_ERROR
 PERMISSION_DENIED
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -216,7 +225,7 @@ con el SdkResult.Success.
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
 se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
-modificación de textos específicos.
+modificación de su interfaz.
 
 ### 8.1. Textos
 
@@ -242,3 +251,30 @@ de cada _String_ por el deseado.
     <string name="video_id_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
 
 ```
+
+### 8.2 Vistas externas
+
+Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
+
+Pantalla de diagnóstico de error:
+
+```kotlin
+
+interface IVideoIdErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: VideoIdError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Una vez creadas las clases que implementan los interfaces, en el lanzamiento del componente se podrá añadir el parámetro "customViews" para que se utilicen en el SDK.
+
+---
+
+## 9. Logs
+
+Para visualizar en consola los logs de este componente se podrá usar el filtro: "VIDEO_ID:"

@@ -67,9 +67,10 @@ completo antes de la instalación de los componentes de la
 
 Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar en el apartado de **Resources**):
 
-| **Versión SDK** | **Selphi versión de recursos**            |
-| -------------- | -------------------------- |
-| 2.0.2  | 5.13.1 |
+| **Versión SDK** | **Selphi versión de recursos** |
+| --------------- | ------------------------------ |
+| 2.0.2           | 5.13.1                         |
+| 2.0.3           | 5.13.4                         |
 
 ---
 
@@ -128,19 +129,23 @@ Permite modificar el porcentaje de recortado de la cara. Cuanto mayor
 sea el número mayor será el recorte del rectángulo con respecto a la
 cara.
 
-#### 5.1.3. _showResultAfterCapture_
+#### 5.1.3. _cropImageDebug_
+
+Permite al modo de depuración comprobar el porcentaje de recorte de la cara.
+
+#### 5.1.4. _showResultAfterCapture_
 
 Indica si mostrar o no una pantalla con la imagen capturada después del
 proceso de análisis. En esta pantalla se le da al usuario la posibilidad
 de repetir el proceso de captura si la imagen que se obtuvo no fuera
 correcta.
 
-#### 5.1.4. _showTutorial_
+#### 5.1.5. _showTutorial_
 
 Indica si el widget activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-#### 5.1.5. _livenessMode_
+#### 5.1.6. _livenessMode_
 
 Establece el modo liveness del widget. Los valores permitidos son:
 
@@ -151,22 +156,22 @@ Establece el modo liveness del widget. Los valores permitidos son:
   el servidor, enviando para tal fin la “BestImage” o el “TemplateRaw”
   correspondiente.
 
-- LIVENESS_MOVE: Indica que el test de liveness es activo, mostrando 
-  unas instrucciones durante la captura, y devolviendo el correspondiente 
+- LIVENESS_MOVE: Indica que el test de liveness es activo, mostrando
+  unas instrucciones durante la captura, y devolviendo el correspondiente
   resultado del proceso.
 
-#### 5.1.6. _stabilizationMode_
+#### 5.1.7. _stabilizationMode_
 
 Establece un modo de estabilización previo a cualquier proceso de
 autenticación en el widget. Con este modo se obliga al widget a no
 empezar ningún proceso si el usuario no se encuentra con la cabeza,
 mirando al frente y sin moverla.
 
-#### 5.1.7. _cameraFlashEnabled_
+#### 5.1.8. _cameraFlashEnabled_
 
 Indica si se activa el flash de la cámara del dispositivo.
 
-#### 5.1.8 _locale_
+#### 5.1.9 _locale_
 
 Fuerza al widget a utilizar la configuración de idioma indicado por el
 parámetro locale. Este parámetro acepta tanto un código de idioma (p.
@@ -175,22 +180,22 @@ el archivo de recursos del widget no tuviera una localización para el
 ‘locale’ seleccionado su configuración pasaría a utilizar el idioma por
 defecto.
 
-#### 5.1.9 _fullscreen_
+#### 5.1.10 _fullscreen_
 
 Indica si la vista va a tener prioridad para mostrarse en pantalla
 completa, si el sistema lo permite.
 
-#### 5.1.10. _templateRawOptimized_
+#### 5.1.11. _templateRawOptimized_
 
 Indica si el template (templateRaw) generado tras el selfie debe
 optimizarse o no.
 
-#### 5.1.11. _qrMode_
+#### 5.1.12. _qrMode_
 
 Booleano que indica si se quiere o no activar la lectura de QR previo al
 proceso de autenticación.
 
-#### 5.1.12 _videoFilename_
+#### 5.1.13 _videoFilename_
 
 Establece la ruta absoluta del nombre del archivo en el que se grabará
 un video del proceso de captura. La aplicación es la responsable de
@@ -199,7 +204,7 @@ requiera de permisos adicionales. El widget, por defecto, no realizará
 ningún proceso de grabación a menos que se especifique una ruta de
 archivo mediante este método.
 
-#### 5.1.13 _translationsContent_
+#### 5.1.14 _translationsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar la traducción de los literales que se muestran durante el
@@ -207,20 +212,24 @@ proceso.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 5.1.14 _viewsContent_
+#### 5.1.15 _viewsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 5.1.15. _showDiagnostic_
+#### 5.1.16. _showDiagnostic_
 
 Mostrar pantallas de diagnóstico al final del proceso
 
-#### 5.1.15. _logImages_
+#### 5.1.17. _logImages_
 
 Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
+
+#### 5.1.18. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
 
 ---
 
@@ -290,13 +299,14 @@ En la parte del error, dispondremos de la clase SelphiError.
     SelphiError.CONTROL_NOT_INITIALIZATED_ERROR
     SelphiError.EXTRACTION_LICENSE_ERROR
     SelphiError.HARDWARE_ERROR
-    is SelphiError.INITIALIZATION_ERROR -> it.error //Para más detalles
+    SelphiError.INITIALIZATION_ERROR -> it.error //Para más detalles
     SelphiError.NO_ERROR
     SelphiError.RESOURCES_NOT_FOUND
     SelphiError.SETTINGS_PERMISSION_ERROR
     SelphiError.TIMEOUT
     SelphiError.UNEXPECTED_CAPTURE_ERROR
     SelphiError.UNKNOWN_ERROR
+    SelphiError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

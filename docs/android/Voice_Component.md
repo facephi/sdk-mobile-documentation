@@ -124,6 +124,10 @@ Display diagnostic screens at the end of the process
 
 Enable or disable audio quality checking. It is recommended to always keep it enabled.
 
+#### 5.1.7. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ---
 
 ## 6. Component use
@@ -192,6 +196,7 @@ CANCEL_LAUNCH
 PERMISSION_DENIED
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.1. Receipt of correct execution - _data_
@@ -242,3 +247,90 @@ each String to the desired one.
     <string name="voice_component_internal_error_desc">We apologize. The capture could not be made</string>
 
 ```
+
+### 8.2 External custom views
+
+It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
+
+Previous tip screen:
+
+```kotlin
+
+interface IVoicePreviousTipView {
+    @Composable
+    fun Content(
+        onContinue: () -> Unit,
+        onClose: () -> Unit
+    )
+}
+
+```
+
+Error diagnosis screen:
+
+```kotlin
+
+interface IVoiceErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: VoiceError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Enroll screens:
+
+```kotlin
+
+interface IVoiceEnrollRecordingView {
+    @Composable
+    fun Content(
+        phrase: String,
+        numberRecordedPhrases: Int,
+        numberTotalPhrases: Int,
+        voiceAmplitude: Float,
+        recordingProgress: Int,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+```kotlin
+
+interface IVoiceEnrollSuccessView {
+    @Composable
+    fun Content(
+        phrase: String,
+        numberRecordedPhrases: Int,
+        numberTotalPhrases: Int,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+```kotlin
+
+interface IVoiceEnrollErrorView {
+    @Composable
+    fun Content(
+        phrase: String,
+        numberRecordedPhrases: Int,
+        numberTotalPhrases: Int,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
+
+---
+
+## 9. Logs
+
+To display the logs of this component on the console, you can use the filter: "VOICE:"

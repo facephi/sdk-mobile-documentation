@@ -14,8 +14,9 @@ El fichero de recursos se puede obtener de los siguientes enlaces:
 
 | **Versión de SelphID** | **Enlace**            |
 | -------------- | -------------------------- |
-| 1.25.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.0/fphi-selphid-widget-resources-selphid-1.25.0.zip" rel="nofollow"> Recursoss v.1.25.0</a> |
-
+| 1.25.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.0/fphi-selphid-widget-resources-selphid-1.25.0.zip" rel="nofollow"> Recursos v.1.25.0</a> |
+| 1.25.1  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.1/fphi-selphid-widget-resources-selphid-1.25.1.zip" rel="nofollow"> Recursos v.1.25.1</a> |
+| 1.26.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.26.0/fphi-selphid-widget-resources-selphid-1.26.0.zip" rel="nofollow"> Recursos v.1.26.0</a> |
 ---
 
 ## 2. Integración del fichero zip

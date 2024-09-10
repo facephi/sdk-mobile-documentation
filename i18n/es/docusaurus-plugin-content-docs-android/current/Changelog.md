@@ -2,6 +2,49 @@
 
 ## Versiones
 
+### 2.0.3
+
+- General
+
+  - Mejoras de accesibilidad
+  - Mejoras en las corutinas de los controladores
+  - UI para tablets
+  - Creación de pantallas personalizables
+
+- NFC
+
+  - Correción del Security provider
+  - Correción de fechas
+  - Captura de excepciones
+
+- Video Call
+
+  - Añadir timeout
+
+- Video ID
+
+  - Control de error de red
+  - Añadir timeouts
+  - Detección de cara al iniciar
+
+- SelphID
+
+  - Nueva versión 1.26.0.
+  - Añadir tutorial
+
+- Selphi
+
+  - Nueva versión 5.13.4
+  - Nuevo campo cropImageDebug
+
+- Tracking
+
+  - Añadir tracking widget
+
+- Capture
+
+  - Nueva captura de documentos
+
 ### 2.0.2
 
 - General

@@ -186,6 +186,10 @@ Indica si quiere extraer la imagen de la firma.
 
 Campo utilizado para cambiar la vista de tutorial y que muestre los diferentes documentos.
 
+#### 5.1.14. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 ---
 
 ## 6. Uso del componente
@@ -293,6 +297,7 @@ En la parte del error, dispondremos de la clase NfcError.
     NfcError.NO_DATA_ERROR
     NfcError.TIMEOUT
     NfcError.LAST_COMMAND_EXPECTED
+    NfcError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -397,7 +402,7 @@ Información del certificado X509 obtenido del documento ordenada por.
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
 se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
-modificación de textos específicos.
+modificación de su interfaz.
 
 ### 8.1 Textos
 
@@ -429,3 +434,93 @@ de cada _String_ por el deseado.
     <string name="nfc_component_read_not_finish_desc">Mantén la posición hasta que finalice la lectura.</string>
 
 ```
+
+### 8.2 Vistas externas
+
+Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
+
+Pantalla de tip previo:
+
+```kotlin
+
+interface INfcPreviousTipView {
+    @Composable
+    fun Content(
+        onContinue: () -> Unit,
+        onClose: () -> Unit,
+        onInfo: () -> Unit,
+    )
+}
+
+```
+
+Pantalla de diagnóstico de error:
+
+```kotlin
+
+interface INfcErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: NfcError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Pantallas del diálogo de lectura:
+
+```kotlin
+
+interface INfcWaitingBottomView {
+    @Composable
+    fun Content(
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+```kotlin
+
+interface INfcReadingBottomView {
+    @Composable
+    fun Content(
+        state: NfcReadState,
+        onClose: () -> Unit
+    )
+}
+
+```
+
+```kotlin
+
+interface INfcSuccessBottomView {
+    @Composable
+    fun Content(
+        onContinue: () -> Unit,
+    )
+}
+
+```
+
+```kotlin
+
+interface INfcErrorBottomView {
+    @Composable
+    fun Content(
+        error: NfcError,
+        onContinue: () -> Unit,
+    )
+}
+
+```
+
+Una vez creadas las clases que implementan los interfaces, en el lanzamiento del componente se podrá añadir el parámetro "customViews" para que se utilicen en el SDK.
+
+---
+
+## 9. Logs
+
+Para visualizar en consola los logs de este componente se podrá usar el filtro: "NFC:"

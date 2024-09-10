@@ -3,7 +3,7 @@
 ## Latest available version
 
 ```text
-2.0.2
+2.0.3
 ```
 
 ## 1. Introduction
@@ -581,6 +581,7 @@ hex (RGB) value of each primary colour:
     <color name="sdkNeutralColor">#202C4B</color>
     <color name="sdkAccentColor">#EA7547</color>
     <color name="sdkTopIconsColor">#243760</color>
+    <color name="sdkButtonTextColor">#FFFFFF</color>
     <!-- SDK BUTTONS -->
     <dimen name="sdk_buttons_corner_dimen">32dp</dimen>
     <!-- SDK LOGO -->

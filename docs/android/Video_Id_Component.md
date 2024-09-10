@@ -194,6 +194,7 @@ SOCKET_ERROR
 VIDEO_ERROR
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
+FETCH_DATA_ERROR -> it.error
 UNKNOWN_ERROR
 PERMISSION_DENIED
 ```
@@ -236,3 +237,30 @@ each String to the desired one.
     <string name="video_id_component_internal_error_desc">We apologize. The capture could not be made</string>
 
 ```
+
+### 8.2 External custom views
+
+It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
+
+Error diagnosis screen:
+
+```kotlin
+
+interface IVideoIdErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: VideoIdError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
+
+---
+
+## 9. Logs
+
+To display the logs of this component on the console, you can use the filter: "VIDEO_ID:"

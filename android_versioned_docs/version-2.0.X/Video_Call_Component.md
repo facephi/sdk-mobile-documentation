@@ -100,6 +100,14 @@ ApiKey needed for connection to the video socket
 Tenant identifier referring to the current client, required for the
 connection to the video service.
 
+#### 5.1.4. activateScreenSharing
+
+Activate the screen sharing option in the call.
+
+#### 5.1.5. timeout
+
+Waiting time for an agent to pick up the call (ms)
+
 ---
 
 ## 6. Component use
@@ -170,6 +178,7 @@ VIDEO_ERROR
 ACTIVITY_RESULT_ERROR
 INITIALIZATION_ERROR -> it.error
 UNKNOWN_ERROR
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Receipt of correct execution - data\_
@@ -274,3 +283,30 @@ each String to the desired one.
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
+
+### 9.3 External custom views
+
+It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
+
+Error diagnosis screen:
+
+```kotlin
+
+interface IVideoCallErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: VideoCallError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
+
+---
+
+## 10. Logs
+
+To display the logs of this component on the console, you can use the filter: "VIDEO_CALL:"

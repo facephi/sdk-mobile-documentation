@@ -68,6 +68,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | **SDK version** | **Selphi resources version**            |
 | -------------- | -------------------------- |
 | 2.0.2  | 1.25.1 |
+| 2.0.3  | 1.26.0 |
 
 ---
 
@@ -305,6 +306,10 @@ configure the widget views.
 
 Display diagnostic screens at the end of the process
 
+#### 5.1.20. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ---
 
 ## 6. Component use
@@ -379,6 +384,7 @@ On the error side, we will have the SelphIdError class.
     is SelphIDError.TIMEOUT
     SelphIDError.UNEXPECTED_CAPTURE_ERROR
     SelphIDError.UNKNOWN_ERROR
+    SelphIDError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Receipt of correct execution - _data_

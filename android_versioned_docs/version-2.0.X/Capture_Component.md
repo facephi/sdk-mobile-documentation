@@ -66,7 +66,7 @@ documentation, which details and explains what this process consists of.
 
 | **Controller**            | **Description**            |
 | ------------------------- | -------------------------- |
-| PhacturasReaderController | Invoice capture controller |
+| InvoiceReaderController   | Invoice capture controller |
 | QrReaderController        | QR capture controller      |
 | QrGeneratorController     | QR generator controller    |
 
@@ -80,7 +80,7 @@ A _QrGeneratorConfiguration_ object shall be created and passed as a parameter t
 
 The following section will show the fields that are part of this class and what each of them is used for.
 
-### 5.1. Class CaptureConfigurationData
+### 5.1. Class QrCaptureConfigurationData
 
 #### 5.1.1. extractionTimeout
 
@@ -118,6 +118,10 @@ Display tutorial screen at the start of the process (only QR mode)
 
 Semi-transparent mask
 
+#### 5.1.9. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ### 5.2. Class QrGeneratorConfiguration
 
 #### 5.2.1. source
@@ -131,6 +135,28 @@ Width of the generated QR
 #### 5.2.3. height
 
 Height of the generated QR
+
+### 5.3. Class InvoiceCaptureConfigurationData
+
+#### 5.3.1. extractionTimeout
+
+Maximum extraction time
+
+#### 5.3.2. vibrationEnabled
+
+Enable in-process vibration
+
+#### 5.3.3. showDiagnostic
+
+Display diagnostic screens at the end of the process
+
+#### 5.3.4. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 5.3.5. maxScannedDocs
+
+Maximum number of documents to scan.
 
 ---
 
@@ -148,11 +174,11 @@ to launch the component:
 
 ```java
 val result = SDKController.launch(
-    PhacturasReaderController(CaptureConfigurationData())
+    InvoiceReaderController(InvoiceCaptureConfigurationData())
 )
 when (result) {
-    is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("PhacturasReader OK: ${result.data}")
+    is SdkResult.Error -> Napier.d("InvoiceReader: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("InvoiceReader OK: ${result.data}")
 }
 ```
 
@@ -162,11 +188,11 @@ when (result) {
 
 ```java
 val result = SDKController.launchMethod(
-    PhacturasReaderController(CaptureConfigurationData())
+    InvoiceReaderController(InvoiceCaptureConfigurationData())
 )
 when (result) {
-    is SdkResult.Error -> Napier.d("PhacturasReader: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("PhacturasReader OK: ${result.data}")
+    is SdkResult.Error -> Napier.d("InvoiceReader: KO - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("InvoiceReader OK: ${result.data}")
 }
 ```
 
@@ -192,7 +218,7 @@ to launch the component:
 
 ```java
 val result = SDKController.launch(
-    QrReaderController(CaptureConfigurationData())
+    QrReaderController(QrCaptureConfigurationData())
 )
 when (result) {
     is SdkResult.Error -> Napier.d("QR: KO - ${result.error.name}")
@@ -206,7 +232,7 @@ when (result) {
 
 ```java
 val result = SDKController.launchMethod(
-    QrReaderController(CaptureConfigurationData())
+    QrReaderController(QrCaptureConfigurationData())
 )
 when (result) {
     is SdkResult.Error -> Napier.d("QR: KO - ${result.error.name}")
@@ -292,7 +318,8 @@ On the error side, we will have the _CaptureError_ class.
  QR_CAPTURE_ERROR
  PHACTURAS_CAPTURE_ERROR
  CAMERA_PERMISSION_DENIED
- INITIALIZATION_ERROR
+ INITIALIZATION_ERROR -> it.error
+ FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.1. _Receipt of correct execution - data_
@@ -325,3 +352,9 @@ each String to the desired one.
     <string name="capture_component_internal_error_desc">We apologize. The capture could not be made</string>
 
 ```
+
+---
+
+## 9. Logs
+
+To display the logs of this component on the console, you can use the filter: "CAPTURE:"

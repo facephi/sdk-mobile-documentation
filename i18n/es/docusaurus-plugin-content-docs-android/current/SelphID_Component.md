@@ -75,6 +75,7 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 | **Versión SDK** | **Selphi versión de recursos**            |
 | -------------- | -------------------------- |
 | 2.0.2  | 1.25.1 |
+| 2.0.3  | 1.26.0 |
 
 ---
 
@@ -317,6 +318,10 @@ Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
 Mostrar pantallas de diagnóstico al final del proceso
 
+#### 5.1.20. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 ---
 
 ## 6. Uso del componente
@@ -392,6 +397,7 @@ En la parte del error, dispondremos de la clase SelphIdError.
     is SelphIDError.TIMEOUT
     SelphIDError.UNEXPECTED_CAPTURE_ERROR
     SelphIDError.UNKNOWN_ERROR
+    SelphIDError.FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

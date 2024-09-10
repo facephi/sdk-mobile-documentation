@@ -170,6 +170,10 @@ Indicates the relation to perform a cropping of the capture.
 
 Display diagnostic screens at the end of the process
 
+#### 5.1.15. showPreviousTip
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
 ---
 
 ## 6. Component use
@@ -248,6 +252,7 @@ PHINGERS_CAMERA_FAILURE
 PHINGERS_CAPTURE_FAILURE
 PHINGERS_LICENSING_FAILURE
 INITIALIZATION_ERROR -> it.error // More info
+FETCH_DATA_ERROR -> it.error
 ```
 
 ### 7.1. Receipt of correct execution - _data_
@@ -339,5 +344,45 @@ each String to the desired one.
     <string name="phingers_component_internal_error_title">There was a technical problem</string>
     <string name="phingers_component_internal_error_desc">We apologize. The capture could not be made</string>
 
+```
+
+### 8.2 External custom views
+
+It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
+
+Previous tip screen:
+
+```kotlin
+
+interface IPhingersPreviousTipView {
+    @Composable
+    fun Content(
+        onContinue: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
 
 ```
+
+Error diagnosis screen:
+
+```kotlin
+
+interface IPhingersErrorDiagnosticView {
+    @Composable
+    fun Content(
+        error: PhingersError,
+        onRetry: () -> Unit,
+        onClose: () -> Unit,
+    )
+}
+
+```
+
+Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
+
+---
+
+## 9. Logs
+
+To display the logs of this component on the console, you can use the filter: "PHINGERS:"

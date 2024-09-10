@@ -3,7 +3,7 @@
 ## Latest available version
 
 ```text
-2.0.2
+2.0.3
 ```
 
 ## 1. Introduction
@@ -88,74 +88,6 @@ There are several ways to configure the repository access credentials:
   artifactory.user=YOUR_CREDENTIALS_USERNAME
   artifactory.token=YOUR_CREDENTIALS_TOKEN
   ```
-
-### 2.2. Integration and use of Facephi SDK Plugin of Gradle
-
-The Gradle SDK Plugin allows the management of the versions of each of the SDK components.
-To use the plugin, we must include the private repository of point 2.1 in the pluginManagement of the gradle settings.
-
-It must be included in the build.gradle of the project and of the application.
-
-#### 2.2.1 Classic style integration
-
-Build gradle of the project in the classpath:
-
-```gradle
-    dependencies { classpath 'com.facephi.plugin.sdk.dependencies:com.facephi.plugin.sdk.dependencies.gradle.plugin:<THE VERSION>' }
-```
-
-```gradle
-plugins {
-  id 'com.facephi.plugin.plugin.sdk.dependencies'
-}
-```
-
-#### 2.2.2 New styling with TOML versions
-
-```toml
-[versions]
-facephiSdkPluginVersion = "THE VERSION"
-
-[plugins]
-facephi-sdk-plugin = { id = "com.facephi.plugin.sdk.dependencies", version.ref = "facephiSdkPluginVersion" }
-```
-
-Project build.gradle.kts
-
-```kotlin
-plugins {
-    alias(libs.plugins.facephi.sdk.plugin).apply(false)
-}
-```
-
-App build.gradle.kts
-
-```kotlin
-plugins {
-    alias(libs.plugins.facephi.sdk.plugin)
-}
-```
-
-#### 2.2.3 Facephi Plugin gradle usage
-
-Thanks to the plugin we now have a facephi object that contains the component dependencies.
-It groups all versions into a single version in the plugin to simplify integration.
-
-```kotlin
-    implementation(facephi.dependencies.sdk)
-    implementation(facephi.dependencies.core)
-    implementation(facephi.dependencies.tracking)
-    implementation(facephi.dependencies.selphi)
-    implementation(facephi.dependencies.selphid)
-    implementation(facephi.dependencies.nfc)
-    implementation(facephi.dependencies.phingers)
-    implementation(facephi.dependencies.capture)
-    implementation(facephi.dependencies.voice)
-    implementation(facephi.dependencies.videocall)
-    implementation(facephi.dependencies.videoid)
-    implementation(facephi.dependencies.videorecording)
-    implementation(facephi.dependencies.behavior)
-```
 
 ### 2.2. Dependencies required for basic integration
 
@@ -649,6 +581,7 @@ hex (RGB) value of each primary colour:
     <color name="sdkNeutralColor">#202C4B</color>
     <color name="sdkAccentColor">#EA7547</color>
     <color name="sdkTopIconsColor">#243760</color>
+    <color name="sdkButtonTextColor">#FFFFFF</color>
     <!-- SDK BUTTONS -->
     <dimen name="sdk_buttons_corner_dimen">32dp</dimen>
     <!-- SDK LOGO -->
