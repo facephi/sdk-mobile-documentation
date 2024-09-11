@@ -131,3 +131,17 @@ value: define el nombre del archivo que contiene el video a mostrar.
 Los elementos *`video`* solo tienen la propiedad que define el archivo donde se encuentra el video físicamente en el bundle de recursos.
 
 
+## 4. Bases de datos (SOLO PARA LA DEPENDENCIA RG)
+
+Si el equipo de Facephi indica que la dependencia de SelphID necesita una base de datos, se podrá elegir entre las siguientes:
+
+| **Base de datos** | **Enlace**            |
+| -------------- | -------------------------- |
+| Europa  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/eur/db.dat" rel="nofollow"> Base de datos</a> |
+| Africa  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/africa/db.dat" rel="nofollow"> Base de datos</a> |
+| Oriente Medio  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/middle-east/db.dat" rel="nofollow"> Base de datos</a> |
+
+
+La base de datos "db.dat" tiene que tener siempre el mismo nombre y se guardará en la carpeta **assets/Regula/** de la aplicación.
+
+Sólo se puede incluir un fichero de base de datos.
