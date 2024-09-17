@@ -3,7 +3,7 @@
 ## Última versión disponible
 
 ```text
-2.0.3
+2.1.0-SNAPSHOT
 ```
 
 ## 1. Introducción
@@ -104,11 +104,10 @@ completo antes de la instalación de los componentes de la
 Actualmente las librerías de FacePhi se distribuyen de forma remota a
 través de diferentes gestores de dependencias.
 
-Las dependencias base **obligatorias** para el uso del SDK son:
+La dependencia base **obligatorias** para el uso del SDK es:
 
 ```java
 implementation "com.facephi.androidsdk:sdk:$sdk_version"
-implementation "com.facephi.androidsdk:core:$core_version"
 ```
 
 ---
