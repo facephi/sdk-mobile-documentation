@@ -3,7 +3,7 @@
 ## Latest available version
 
 ```text
-2.0.3
+2.1.0-SNAPSHOT
 ```
 
 ## 1. Introduction
@@ -97,12 +97,11 @@ the component in a project containing an old Facephi libraries
 the **SDKMobile** components.
 
 Currently, FacePhi libraries are distributed remotely through different
-dependency managers. The **mandatory dependencies** that must be
+dependency managers. The **mandatory dependency** that must be
 installed:
 
 ```java
 implementation "com.facephi.androidsdk:sdk:$sdk_version"
-implementation "com.facephi.androidsdk:core:$core_version"
 ```
 
 ---

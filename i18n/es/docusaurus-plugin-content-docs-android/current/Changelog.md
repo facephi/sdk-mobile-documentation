@@ -2,6 +2,18 @@
 
 ## Versiones
 
+### 2.1.0-SNAPSHOT
+
+- General
+
+  - Mejoras y correcciones internas
+  - Mejoras de seguridad
+  - Mejoras en la gestión de dependencias internas
+
+- Flow
+
+  - Mejoras y correcciones internas
+
 ### 2.0.3
 
 - General
