@@ -240,3 +240,17 @@ to the density of the device.
 *Video* elements only have the property that defines the file when the
 video is physically located in the resource bundle.
 
+## 4. Databases (ONLY FOR RG DEPENDENCY)
+
+If the Facephi team indicates that the SelphID dependency needs a database, one of the following databases can be downloaded:
+
+| **Database** | **Link**            |
+| -------------- | -------------------------- |
+| Europa  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/eur/db.dat" rel="nofollow"> Base de datos</a> |
+| Africa  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/africa/db.dat" rel="nofollow"> Base de datos</a> |
+| Middle East  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/middle-east/db.dat" rel="nofollow"> Base de datos</a> |
+
+The database "db.dat" must always have the same name and shall be stored in the **assets/Regula/** folder of the application.
+
+Only one database file can be included.
+
