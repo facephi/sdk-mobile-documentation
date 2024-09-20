@@ -310,7 +310,6 @@ Listado de errores:
   - INITIALIZATION_ERROR: Error de inicialización.
   - MANAGER_NOT_INITIALIZED: Los managers son nulos.
   - NO_DATA_ERROR: Los datos de entrada son nulos.
-  - NO_ERROR:
   - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
   - RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos.
   - SETTINGS_PERMISSION_ERROR: Widget: Error de permisos.

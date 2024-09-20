@@ -288,7 +288,6 @@ Error list:
   - INITIALIZATION_ERROR: Initialisation error.
   - MANAGER_NOT_INITIALIZED: Managers are null.
   - NO_DATA_ERROR: Input data is null.
-  - NO_ERROR:
   - OPERATION_NOT_CREATED: No operation is in progress.
   - RESOURCES_NOT_FOUND: Resource zip not found.
   - SETTINGS_PERMISSION_ERROR: Widget: Permission error.
