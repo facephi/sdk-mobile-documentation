@@ -196,17 +196,24 @@ SdkResult. Más información en la sección de <a
 
 En la parte del error, dispondremos de la clase VoiceError.
 
-```java
-NO_DATA_ERROR
-TIMEOUT
-INTERNAL_LICENSE_ERROR
-CANCEL_BY_USER
-CANCEL_LAUNCH
-PERMISSION_DENIED
-ACTIVITY_RESULT_ERROR
-INITIALIZATION_ERROR -> it.error
-FETCH_DATA_ERROR -> it.error
-```
+Listado de errores:
+
+  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto
+  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo
+  - CANCEL_BY_USER: El usuario ha cancelado el proceso
+  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK
+  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta
+  - EMPTY_LICENSE: El String de licencia está vacío
+  - FETCH_DATA_ERROR: Error en la recogida del resultado
+  - FLOW_ERROR: Error en el proceso de flow
+  - INITIALIZATION_ERROR: Error de inicialización
+  - INTERNAL_LICENSE_ERROR: Error interno relacionado con la licencia
+  - MANAGER_NOT_INITIALIZED: Los managers son nulos
+  - NO_DATA_ERROR: Los datos de entrada son nulos
+  - OPERATION_NOT_CREATED: No hay ninguna operación en curso
+  - PERMISSION_DENIED: El usuario ha rechazado los permisos
+  - TIMEOUT: Timeout en el proceso
+  
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
