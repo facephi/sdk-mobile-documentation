@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.5.2">
 <title data-rh="true">Phingers Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Phingers_Component"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="es"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-android-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-android-current"><meta data-rh="true" property="og:title" content="Phingers Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="0. SDK Mobile baseline requirements"><meta data-rh="true" property="og:description" content="0. SDK Mobile baseline requirements"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Phingers_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Phingers_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Phingers_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Phingers_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/assets/css/styles.613f93dd.css">
-<script src="/sdk-mobile-documentation/assets/js/runtime~main.0eff9353.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/assets/js/runtime~main.6d6d5eec.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/assets/js/main.bd7d9b40.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -168,7 +168,35 @@ sent to the platform.</p>
 format. More information in the Android Mobile SDK&#x27;s <a href="Mobile_SDK#6-result-return" rel="nofollow">6. Result return</a> section.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="71-receipt-of-errors">7.1. Receipt of errors<a href="#71-receipt-of-errors" class="hash-link" aria-label="Direct link to 7.1. Receipt of errors" title="Direct link to 7.1. Receipt of errors">​</a></h3>
 <p>On the error side, we will have the PhingersError class.</p>
-<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">INTERNAL_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">TIMEOUT</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">CANCEL_BY_USER</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">CANCEL_LAUNCH</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PERMISSION_DENIED</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ACTIVITY_RESULT_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_FINGERPRINT_CAPTURE_FAILURE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">LOW_QUALITY</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_LIVENESS_FAILURE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_CONFIGURATION_FAILURE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_NO_FINGERS_DETECTED</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_AUTOFOCUS_FAILURE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_CAMERA_FAILURE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_CAPTURE_FAILURE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">PHINGERS_LICENSING_FAILURE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">INITIALIZATION_ERROR -&gt; it.error // More info</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">FETCH_DATA_ERROR -&gt; it.error</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Error list:</p>
+<ul>
+<li>ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.</li>
+<li>ACTIVITY_RESULT_MSG_ERROR: The result of the activity in the msg is incorrect.</li>
+<li>APPLICATION_CONTEXT_ERROR: The required application context is null.</li>
+<li>CANCEL_BY_USER: The user has cancelled the process.</li>
+<li>CANCEL_LAUNCH: A general cancellation of the SDK has been made.</li>
+<li>COMPONENT_LICENSE_ERROR: The component license is not correct.</li>
+<li>EMPTY_LICENSE: The licence string is empty.</li>
+<li>FETCH_DATA_ERROR: Error in the result retrieval.</li>
+<li>FLOW_ERROR: Error in the flow process.</li>
+<li>INITIALIZATION_ERROR: Initialisation error.</li>
+<li>INTERNAL_ERROROR: Internal error.</li>
+<li>LOW_QUALITY: Low image quality.</li>
+<li>MANAGER_NOT_INITIALIZED: Managers are null.</li>
+<li>OPERATION_NOT_CREATED: No operation is in progress.</li>
+<li>PERMISSION_DENIED: User has denied permissions.</li>
+<li>PHINGERS_AUTOFOCUS_FAILURE: Autofocus failure.</li>
+<li>PHINGERS_CAMERA_FAILURE: Camera failure.</li>
+<li>PHINGERS_CAPTURE_FAILURE: Image capture failure.</li>
+<li>PHINGERS_CONFIGURATION_FAILURE: Configuration error.</li>
+<li>PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.</li>
+<li>PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: IO failure.</li>
+<li>PHINGERS_LICENSING_FAILURE: Licensing Error</li>
+<li>PHINGERS_LIVENESS_FAILURE: Life test error</li>
+<li>PHINGERS_NO_FINGERS_DETECTED: Error in fingerprint detection</li>
+<li>PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: User not specified.</li>
+<li>TIMEOUT: Timeout in the process.</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="71-receipt-of-correct-execution---data">7.1. Receipt of correct execution - <em>data</em><a href="#71-receipt-of-correct-execution---data" class="hash-link" aria-label="Direct link to 71-receipt-of-correct-execution---data" title="Direct link to 71-receipt-of-correct-execution---data">​</a></h3>
 <p>In the data part, we have the <em>PhingersResult</em> class.</p>
 <p>The result returns the images in <strong>Bitmap</strong> format, it is possible to

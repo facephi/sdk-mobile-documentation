@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.5.2">
 <title data-rh="true">Selphi Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Selphi_Component"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="es"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-android-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-android-current"><meta data-rh="true" property="og:title" content="Selphi Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="0. SDK Mobile baseline requirements"><meta data-rh="true" property="og:description" content="0. SDK Mobile baseline requirements"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Selphi_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Selphi_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Selphi_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Selphi_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/assets/css/styles.613f93dd.css">
-<script src="/sdk-mobile-documentation/assets/js/runtime~main.0eff9353.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/assets/js/runtime~main.6d6d5eec.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/assets/js/main.bd7d9b40.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -187,7 +187,34 @@ sent to the platform.</p>
 format. -more details in the Android Mobile SDK&#x27;s <a href="Mobile_SDK#6-result-return" rel="nofollow">6. Result return</a> section-.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="71-receipt-of-errors">7.1. Receipt of errors<a href="#71-receipt-of-errors" class="hash-link" aria-label="Direct link to 7.1. Receipt of errors" title="Direct link to 7.1. Receipt of errors">​</a></h3>
 <p>On the error side, we will have the SelphiError class.</p>
-<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.ACTIVITY_RESULT_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.BAD_EXTRACTOR_CONFIGURATION_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CAMERA_PERMISSION_DENIED</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CANCEL_BY_USER</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.CONTROL_NOT_INITIALIZATED_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.EXTRACTION_LICENSE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.HARDWARE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    is SelphiError.INITIALIZATION_ERROR -&gt; it.error // More info</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.NO_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.RESOURCES_NOT_FOUND</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.SETTINGS_PERMISSION_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.TIMEOUT</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.UNEXPECTED_CAPTURE_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.UNKNOWN_ERROR</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    SelphiError.FETCH_DATA_ERROR -&gt; it.error</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Error list:</p>
+<ul>
+<li>ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.</li>
+<li>ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.</li>
+<li>APPLICATION_CONTEXT_ERROR: The required application context is null.</li>
+<li>BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration.</li>
+<li>CAMERA_PERMISSION_DENIED: User has rejected permissions.</li>
+<li>CANCEL_BY_USER: The user has cancelled the process.</li>
+<li>CANCEL_LAUNCH: A general cancellation of the SDK has been done.</li>
+<li>COMPONENT_LICENSE_ERROR: The component license is not correct.</li>
+<li>CONTROL_NOT_INITIALIZATED_ERROR: Widget: Initialisation error.</li>
+<li>EMPTY_LICENSE: The license string is empty.</li>
+<li>EXTRACTION_LICENSE_ERROR: Widget: License error.</li>
+<li>FETCH_DATA_ERROR: Error in the collection of the result.</li>
+<li>FLOW_ERROR: Error in the flow process.</li>
+<li>HARDWARE_ERROR: Widget: Hardware error.</li>
+<li>INITIALIZATION_ERROR: Initialisation error.</li>
+<li>MANAGER_NOT_INITIALIZED: Managers are null.</li>
+<li>NO_DATA_ERROR: Input data is null.</li>
+<li>OPERATION_NOT_CREATED: No operation is in progress.</li>
+<li>RESOURCES_NOT_FOUND: Resource zip not found.</li>
+<li>SETTINGS_PERMISSION_ERROR: Widget: Permission error.</li>
+<li>TEMPLATE_ERROR:</li>
+<li>TIMEOUT: Timeout in process.</li>
+<li>UNEXPECTED_CAPTURE_ERROR: Widget: Capture error.</li>
+<li>UNKNOWN_ERROR: Unknown error.</li>
+<li>WIDGET_RESULT_DATA_ERROR: Error in widget output data.</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="72-receipt-of-correct-execution---data">7.2. Receipt of correct execution - <em>data</em><a href="#72-receipt-of-correct-execution---data" class="hash-link" aria-label="Direct link to 72-receipt-of-correct-execution---data" title="Direct link to 72-receipt-of-correct-execution---data">​</a></h3>
 <p>In the data part, we have the SelphiResult class.</p>
 <p>The result returns the images in <strong>Bitmap</strong> format. It is possible to
