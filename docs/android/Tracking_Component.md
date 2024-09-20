@@ -103,7 +103,7 @@ The callback can be configured to control tracking errors:
 ```java
 SDKController.launch(
      TrackingErrorController {
-        Napier.d("Tracking Error: ${it.name}")
+        Napier.d("Tracking Error: ${it.name} - ${it.error} - ${it.stepType}")
      }
 )
 ```
@@ -142,25 +142,30 @@ running.
 
 ### 7.1. Receipt of errors
 
-In the error part, we will have the TrackingError class.
+In the error part, we will have the TrackingError class. The class will return 3 fields:
 
-```java
-INIT_IDS_ERROR,
-LICENSE_ERROR,
-APPLICATION_CONTEXT_ERROR,
-OPERATION_RESULT,
-OPERATION_ID,
-SESSION_ID,
-CUSTOMER_ID,
-STEP_CHANGE,
-ASSET_LINK,
-ASSET_UPLOAD,
-OCR_DATA,
-INIT_OPERATION,
-NO_OPERATION_CREATED_ERROR,
-TOKEN_ERROR,
-NETWORK_CONNECTION,
-SEND_BYTEARRAY
-```
+  - name: String with the name of the error
+  - error: Additional information in case it is necessary.
+  - stepType: SDK component in which the sending of the event has failed.
+
+Error list:
+
+  - INIT_IDS_ERROR: Error in the input data
+  - LICENSE_ERROR: Licence error
+  - APPLICATION_CONTEXT_ERROR: Error in the initialisation of the context
+  - OPERATION_RESULT: Error in sending event se 
+  - OPERATION_ID: Operation ID is null
+  - SESSION_ID: Session ID is null
+  - CUSTOMER_ID: Error sending customer ID
+  - STEP_CHANGE: Failed to send component change event
+  - ASSET_LINK: Error when sending resource link
+  - ASSET_UPLOAD: Error when sending a resource to the platform
+  - OCR_DATA: Error when sending OCR data
+  - INIT_OPERATION: Error when sending new operation events
+  - NO_OPERATION_CREATED_ERROROR: No operation in progress
+  - TOKEN_ERROR: Error in obtaining the connection token
+  - NETWORK_CONNECTION: Error in the internet connection
+  - SEND_BYTEARRAY: Error sending the resource
+
 
 ---

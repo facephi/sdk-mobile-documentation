@@ -30,7 +30,7 @@ The resource zip must be included in the application's assets folder.
 
 ---
 
-## 6. Zip Customization 
+## 3. Zip Customization 
 
 This component allows the customization of texts, images, fonts and
 colours. Customization is done using the internally supplied **.zip
@@ -40,9 +40,9 @@ a series of elements which allow customization. The zip file also
 contains a folder with graphic resources and another folder with the
 translations of the texts.
 
-### 6.1. Basic description
+### 3.1. Basic description
 
-#### 6.1.1. Text customization
+#### 3.1.1. Text customization
 
 Text customization is carried out by editing the texts of the existing
 translation files in the resource .zip.
@@ -51,7 +51,7 @@ translation files in the resource .zip.
 >
 >     /strings/strings.xml
 
-#### 6.1.2. Image customization
+#### 3.1.2. Image customization
 
 To customize the images used by the widget, you must add the images to
 the resource .zip. In the zip there are 3 folders:
@@ -72,13 +72,13 @@ loads images from the folder with the chosen resolution.
 
 The images are referenced from the *widget.xml* file.
 
-#### 6.1.3. Colour 
+#### 3.1.3. Colour 
 
 Button colour customization is carried out from the *widget.xml* file.
 In it you can customize any colour of any graphic element that appears
 in the widget. Simply modify the colour of the desired property.
 
-#### 6.1.4. Font type customization
+#### 3.1.4. Font type customization
 
 Font files should be placed in the \`/resources/163dpi\` folder and once
 there they can be referenced from the \`widget.xml\` file. To change the
@@ -88,16 +88,16 @@ and put the name of the corresponding file.
 In the next section, the information about the content of the resource
 bundle and the way to modify it will be elaborated on.
 
-### 6.2. Advanced description
+### 3.2. Advanced description
 
-#### 6.2.1. Widget.xml
+#### 3.2.1. Widget.xml
 
 This file contains the definition of all the properties that are
 configurable in the authentication and registration processes. It is
 divided by navigation screens and within each screen label are all the
 properties that can be modified.
 
-#### 6.2.2. Strings folder
+#### 3.2.2. Strings folder
 
 This folder contains a *strings.xml* file for each translation you want
 to support. The name must be formed as follows:
@@ -125,7 +125,7 @@ At the code level it is possible to select the localisation using the
 locale property. This parameter accepts a string with the language code
 to be used (for example, "es" or "es_ES").
 
-#### 6.2.3. Resources folder
+#### 3.2.3. Resources folder
 
 It contains the folders with all the necessary resources to be able to
 be modified, divided into densities. It is mandatory to generate the
@@ -133,7 +133,7 @@ images in all densities as the widget expects to find them in the folder
 corresponding to the density of the device. New folders with the desired
 density can also be created.
 
-#### 6.2.4. BACKGROUND element
+#### 3.2.4. BACKGROUND element
 
 The *background* element is made up of 4 segments that can be coloured
 independently:
@@ -178,7 +178,7 @@ they are used:
 -   **mirror_colour (Results)**: defines the background colour of the
     circle that displays the results of the registration process.
 
-#### 6.2.5. BUTTON element
+#### 3.2.5. BUTTON element
 
 -   **background**: defines the background colour of the button
 
@@ -206,7 +206,7 @@ they are used:
 
 -   **font_size**: Defines the font size if the button content is text
 
-#### 6.2.6. TEXT element
+#### 3.2.6. TEXT element
 
 The *text* elements are used to define the graphic aspect of the texts
 of each of the widget's screens. These are the properties that can be
@@ -222,7 +222,7 @@ It must be borne in mind that on the registration results screen, the
 two texts that define the quality of the registration have their colour
 forced to the colour of the bar that indicates the score.
 
-#### 6.2.7. IMAGE element
+#### 3.2.7. IMAGE element
 
 -   **value**: defines the name of the file that contains the image to
     display.
@@ -232,7 +232,7 @@ image is physically located in the resource bundle. The images are
 obtained from the bundle by looking in the appropriate folder according
 to the density of the device.
 
-#### 6.2.8. VIDEO element
+#### 3.2.8. VIDEO element
 
 -   **value**: defines the name of the file that contains the video to
     display.
