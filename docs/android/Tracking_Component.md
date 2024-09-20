@@ -150,22 +150,22 @@ In the error part, we will have the TrackingError class. The class will return 3
 
 Error list:
 
-  - INIT_IDS_ERROR: Error in the input data
-  - LICENSE_ERROR: Licence error
   - APPLICATION_CONTEXT_ERROR: Error in the initialisation of the context
-  - OPERATION_RESULT: Error in sending event se 
-  - OPERATION_ID: Operation ID is null
-  - SESSION_ID: Session ID is null
-  - CUSTOMER_ID: Error sending customer ID
-  - STEP_CHANGE: Failed to send component change event
   - ASSET_LINK: Error when sending resource link
   - ASSET_UPLOAD: Error when sending a resource to the platform
-  - OCR_DATA: Error when sending OCR data
+  - CUSTOMER_ID: Error sending customer ID
+  - INIT_IDS_ERROR: Error in the input data
   - INIT_OPERATION: Error when sending new operation events
-  - NO_OPERATION_CREATED_ERROROR: No operation in progress
-  - TOKEN_ERROR: Error in obtaining the connection token
+  - LICENSE_ERROR: Licence error
   - NETWORK_CONNECTION: Error in the internet connection
+  - NO_OPERATION_CREATED_ERROROR: No operation in progress
+  - OCR_DATA: Error when sending OCR data
+  - OPERATION_ID: Operation ID is null
+  - OPERATION_RESULT: Error in sending event se
   - SEND_BYTEARRAY: Error sending the resource
+  - SESSION_ID: Session ID is null
+  - STEP_CHANGE: Failed to send component change event
+  - TOKEN_ERROR: Error in obtaining the connection token
 
 
 ---

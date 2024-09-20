@@ -164,22 +164,22 @@ En la parte del error, dispondremos de la clase TrackingError. La clase devolver
 
 Listado de errores:
 
-  - INIT_IDS_ERROR: Error en los datos de entrada
-  - LICENSE_ERROR: Error en la licencia
   - APPLICATION_CONTEXT_ERROR: Error en la inicialización del contexto
-  - OPERATION_RESULT: Error al enviar el evento se 
-  - OPERATION_ID: El ID de operación es nulo
-  - SESSION_ID: El ID de sesión es nulo
-  - CUSTOMER_ID: Error al enviar el ID de cliente
-  - STEP_CHANGE: Error al enviar el evento de cambio de componente
   - ASSET_LINK: Error al enviar el link del recurso
   - ASSET_UPLOAD: error al enviar un recurso a la plataforma
-  - OCR_DATA: Error al enviar los datos del OCR
+  - CUSTOMER_ID: Error al enviar el ID de cliente
+  - INIT_IDS_ERROR: Error en los datos de entrada
   - INIT_OPERATION: Error en el envío de eventos de nueva operación
-  - NO_OPERATION_CREATED_ERROR: No hay ninguna operación en curso
-  - TOKEN_ERROR: Error al obtener el token de conexión
+  - LICENSE_ERROR: Error en la licencia
   - NETWORK_CONNECTION: Error en la conexión a internet
+  - NO_OPERATION_CREATED_ERROR: No hay ninguna operación en curso
+  - OCR_DATA: Error al enviar los datos del OCR
+  - OPERATION_ID: El ID de operación es nulo
+  - OPERATION_RESULT: Error al enviar el evento se
   - SEND_BYTEARRAY: Error al enviar el recurso
+  - SESSION_ID: El ID de sesión es nulo
+  - STEP_CHANGE: Error al enviar el evento de cambio de componente
+  - TOKEN_ERROR: Error al obtener el token de conexión
 
 
 ---
