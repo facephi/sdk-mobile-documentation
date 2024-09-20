@@ -382,25 +382,33 @@ SdkResult. Más información en la sección de <a
 
 En la parte del error, dispondremos de la clase SelphIdError.
 
-```java
-    SelphIDError.ACTIVITY_RESULT_ERROR
-    SelphIDError.BAD_EXTRACTOR_CONFIGURATION_ERROR
-    SelphIDError.CAMERA_PERMISSION_DENIED
-    SelphIDError.CANCEL_BY_USER
-    SelphIDError.CONTROL_NOT_INITIALIZATED_ERROR
-    SelphIDError.EXTRACTION_LICENSE_ERROR
-    SelphIDError.HARDWARE_ERROR
-    is SelphIDError.INITIALIZATION_ERROR -> it.error // Para más detalles
-    SelphIDError.NO_ERROR
-    SelphIDError.RESOURCES_NOT_FOUND
-    SelphIDError.SETTINGS_PERMISSION_ERROR
-    is SelphIDError.TIMEOUT
-    SelphIDError.UNEXPECTED_CAPTURE_ERROR
-    SelphIDError.UNKNOWN_ERROR
-    SelphIDError.FETCH_DATA_ERROR -> it.error
-```
+Listado de errores:
 
-### 7.2. Recepción de ejecución correcta - _data_
+  - ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
+  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad recibido en el msg es incorrecto.
+  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+  - BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Configuración del extractor incorrecta
+  - CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
+  - CANCEL_BY_USER: El usuario ha cancelado el proceso.
+  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+  - CONTROL_NOT_INITIALIZATED_ERROR: Widget: Error de inicialización
+  - EMPTY_LICENSE: El String de licencia está vacío.
+  - EXTRACTION_LICENSE_ERROR: Widget: Error de licencia
+  - FETCH_DATA_ERROR: Error en la recogida del resultado.
+  - FLOW_ERROR: Error en el proceso de flow.
+  - HARDWARE_ERROR: Widget: Error de hardware
+  - INITIALIZATION_ERROR: Error de inicialización.
+  - MANAGER_NOT_INITIALIZED: Los managers son nulos.
+  - NO_DATA_ERROR: Los datos de entrada son nulos.
+  - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+  - RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos
+  - SETTINGS_PERMISSION_ERROR: Widget: Error de permisos
+  - TIMEOUT: Timeout en el proceso.
+  - UNEXPECTED_CAPTURE_ERROR: Widget: Error en la captura
+  - UNKNOWN_ERROR: Error desconocido
+  - WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget
+
 
 En la parte de _data_, dispondremos de la clase SelphIdResult.
 
