@@ -187,17 +187,24 @@ rel="nofollow">6. Result return</a> section.
 
 On the error side, we will have the _VoiceError_ class.
 
-```java
-NO_DATA_ERROR
-TIMEOUT
-INTERNAL_LICENSE_ERROR
-CANCEL_BY_USER
-CANCEL_LAUNCH
-PERMISSION_DENIED
-ACTIVITY_RESULT_ERROR
-INITIALIZATION_ERROR -> it.error
-FETCH_DATA_ERROR -> it.error
-```
+Error list:
+
+  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
+  - APPLICATION_CONTEXT_ERROR: Required application context is null.
+  - CANCEL_BY_USER: User has cancelled the process.
+  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+  - COMPONENT_LICENSE_ERROR: The license of the component is not correct.
+  - EMPTY_LICENSE: License String is empty.
+  - FETCH_DATA_ERROR: Error in the result collection.
+  - FLOW_ERROR: Error in the flow process.
+  - INITIALIZATION_ERROR: Initialisation error.
+  - INTERNAL_LICENSE_ERROR: Internal error related to the component license
+  - MANAGER_NOT_INITIALIZED: Managers are nil.
+  - NO_DATA_ERROR: Input data is null.
+  - OPERATION_NOT_CREATED: No operation in progress.
+  - PERMISSION_DENIED: User has denied permissions.
+  - TIMEOUT: Timeout in the process.
+
 
 ### 7.1. Receipt of correct execution - _data_
 

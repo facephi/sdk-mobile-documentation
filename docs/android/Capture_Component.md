@@ -307,20 +307,27 @@ rel="nofollow">6. Result return</a> section.
 
 On the error side, we will have the _CaptureError_ class.
 
-```java
- NO_DATA_ERROR
- TIMEOUT
- CANCEL_BY_USER
- CANCEL_LAUNCH
- CAMERA_ERROR
- QR_GENERATION_ERROR
- ACTIVITY_RESULT_ERROR
- QR_CAPTURE_ERROR
- PHACTURAS_CAPTURE_ERROR
- CAMERA_PERMISSION_DENIED
- INITIALIZATION_ERROR
- FETCH_DATA_ERROR -> it.error
-```
+Error list:
+
+  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
+  - APPLICATION_CONTEXT_ERROR: The required application context is null.
+  - CAMERA_ERROROR: Error in launching the camera.
+  - CAMERA_PERMISSION_DENIED: The user has rejected the permissions.
+  - CANCEL_BY_USER: The user has cancelled the process.
+  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+  - COMPONENT_LICENSE_ERROR: The component license is not correct.
+  - EMPTY_LICENSE: The licence string is empty.
+  - FETCH_DATA_ERROR: Error in the result retrieval.
+  - FLOW_ERROR: Error in the flow process.
+  - INITIALIZATION_ERROR: Initialisation error.
+  - INVOICE_CAPTURE_ERROR: Error in the capture of invoices.
+  - MANAGER_NOT_INITIALIZED: Managers are null.
+  - NO_DATA_ERROR: Input data is null.
+  - OPERATION_NOT_CREATED: No operation is in progress.
+  - QR_CAPTURE_ERROR: Error in the QR capture.
+  - QR_GENERATION_ERROR: Error in the QR code generation.
+  - TIMEOUT: Timeout in the process.
+
 
 ### 7.1. _Receipt of correct execution - data_
 

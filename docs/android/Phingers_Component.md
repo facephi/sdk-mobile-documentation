@@ -233,27 +233,35 @@ rel="nofollow">6. Result return</a> section.
 
 On the error side, we will have the PhingersError class.
 
-```java
-INTERNAL_ERROR
-TIMEOUT
-CANCEL_BY_USER
-CANCEL_LAUNCH
-PERMISSION_DENIED
-ACTIVITY_RESULT_ERROR
-PHINGERS_FINGERPRINT_CAPTURE_FAILURE
-LOW_QUALITY
-PHINGERS_LIVENESS_FAILURE
-PHINGERS_CONFIGURATION_FAILURE
-PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR
-PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED
-PHINGERS_NO_FINGERS_DETECTED
-PHINGERS_AUTOFOCUS_FAILURE
-PHINGERS_CAMERA_FAILURE
-PHINGERS_CAPTURE_FAILURE
-PHINGERS_LICENSING_FAILURE
-INITIALIZATION_ERROR -> it.error // More info
-FETCH_DATA_ERROR -> it.error
-```
+Error list:
+
+ - ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+ - ACTIVITY_RESULT_MSG_ERROR: The result of the activity in the msg is incorrect.
+ - APPLICATION_CONTEXT_ERROR: The required application context is null.
+ - CANCEL_BY_USER: The user has cancelled the process.
+ - CANCEL_LAUNCH: A general cancellation of the SDK has been made.
+ - COMPONENT_LICENSE_ERROR: The component license is not correct.
+ - EMPTY_LICENSE: The licence string is empty.
+ - FETCH_DATA_ERROR: Error in the result retrieval.
+ - FLOW_ERROR: Error in the flow process.
+ - INITIALIZATION_ERROR: Initialisation error.
+ - INTERNAL_ERROROR: Internal error.
+ - LOW_QUALITY: Low image quality.
+ - MANAGER_NOT_INITIALIZED: Managers are null.
+ - OPERATION_NOT_CREATED: No operation is in progress.
+ - PERMISSION_DENIED: User has denied permissions.
+ - PHINGERS_AUTOFOCUS_FAILURE: Autofocus failure.
+ - PHINGERS_CAMERA_FAILURE: Camera failure.
+ - PHINGERS_CAPTURE_FAILURE: Image capture failure.
+ - PHINGERS_CONFIGURATION_FAILURE: Configuration error.
+ - PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.
+ - PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: IO failure.
+ - PHINGERS_LICENSING_FAILURE: Licensing Error
+ - PHINGERS_LIVENESS_FAILURE: Life test error
+ - PHINGERS_NO_FINGERS_DETECTED: Error in fingerprint detection
+ - PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: User not specified.
+ - TIMEOUT: Timeout in the process.
+
 
 ### 7.1. Receipt of correct execution - _data_
 

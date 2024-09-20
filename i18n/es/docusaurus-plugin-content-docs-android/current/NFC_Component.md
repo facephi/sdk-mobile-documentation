@@ -282,23 +282,27 @@ SdkResult. Más información en la sección de <a
 
 En la parte del error, dispondremos de la clase NfcError.
 
-```java
-    NfcError.ACTIVITY_RESULT_ERROR
-    NfcError.CANCEL_BY_USER
-    NfcError.INITIALIZATION_ERROR -> it.error // Para más detalles
-    NfcError.NFC_ERROR
-    NfcError.NFC_ERROR_DATA
-    NfcError.NFC_ERROR_DISABLED
-    NfcError.NFC_ERROR_ILLEGAL_ARGUMENT
-    NfcError.NFC_ERROR_IO
-    NfcError.NFC_ERROR_NOT_SUPPORTED
-    NfcError.NFC_ERROR_READING
-    NfcError.NFC_ERROR_TAG_LOST
-    NfcError.NO_DATA_ERROR
-    NfcError.TIMEOUT
-    NfcError.LAST_COMMAND_EXPECTED
-    NfcError.FETCH_DATA_ERROR -> it.error
-```
+Listado de errores:
+
+  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+  - CANCEL_BY_USER: El usuario ha cancelado el proceso.
+  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+  - EMPTY_LICENSE: El String de licencia está vacío.
+  - FETCH_DATA_ERROR: Error en la recogida del resultado.
+  - FLOW_ERROR: Error en el proceso de flow.
+  - INITIALIZATION_ERROR: Error de inicialización.
+  - LAST_COMMAND_EXPECTED: Error en el comando de finalización
+  - MANAGER_NOT_INITIALIZED: Los managers son nulos.
+  - NFC_ERROR: Error general
+  - NFC_ERROR_DATA: Error en los datos de entrada
+  - NFC_ERROR_DISABLED: NFC deshabilitado
+  - NFC_ERROR_ILLEGAL_ARGUMENT: NFC con un tag incorrecto
+  - NFC_ERROR_IO: Error de entrada/salida
+  - NFC_ERROR_NOT_SUPPORTED: NFC no somportado
+  - NFC_ERROR_TAG_LOST: Conexión perdida
+  - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+  - TIMEOUT: Timeout en el proceso.
 
 ### 7.2. Recepción de ejecución correcta - _data_
 

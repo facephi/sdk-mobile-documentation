@@ -240,27 +240,35 @@ SdkResult. Más información en la sección de <a
 
 En la parte del error, dispondremos de la clase PhingersError.
 
-```java
-INTERNAL_ERROR
-TIMEOUT
-CANCEL_BY_USER
-CANCEL_LAUNCH
-PERMISSION_DENIED
-ACTIVITY_RESULT_ERROR
-PHINGERS_FINGERPRINT_CAPTURE_FAILURE
-LOW_QUALITY
-PHINGERS_LIVENESS_FAILURE
-PHINGERS_CONFIGURATION_FAILURE
-PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR
-PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED
-PHINGERS_NO_FINGERS_DETECTED
-PHINGERS_AUTOFOCUS_FAILURE
-PHINGERS_CAMERA_FAILURE
-PHINGERS_CAPTURE_FAILURE
-PHINGERS_LICENSING_FAILURE
-INITIALIZATION_ERROR -> it.error // More info
-FETCH_DATA_ERROR -> it.error
-```
+Listado de errores:
+
+  - ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
+  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad en el msg es incorrecto.
+  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+  - CANCEL_BY_USER: El usuario ha cancelado el proceso.
+  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+  - EMPTY_LICENSE: El String de licencia está vacío.
+  - FETCH_DATA_ERROR: Error en la recogida del resultado.
+  - FLOW_ERROR: Error en el proceso de flow.
+  - INITIALIZATION_ERROR: Error de inicialización.
+  - INTERNAL_ERROR: Error interno.
+  - LOW_QUALITY: Baja calidad de la imagen.
+  - MANAGER_NOT_INITIALIZED: Los managers son nulos.
+  - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+  - PERMISSION_DENIED: El usuario ha rechazado los permisos.
+  - PHINGERS_AUTOFOCUS_FAILURE: Fallo del autofocus.
+  - PHINGERS_CAMERA_FAILURE: Fallo de la cámara.
+  - PHINGERS_CAPTURE_FAILURE: Fallo en la captura de la imagen.
+  - PHINGERS_CONFIGURATION_FAILURE: Error de configuración.
+  - PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fallo en la captura de huellas.
+  - PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: Fallo IO
+  - PHINGERS_LICENSING_FAILURE: Error de licencia
+  - PHINGERS_LIVENESS_FAILURE: Error en la prueba de vida
+  - PHINGERS_NO_FINGERS_DETECTED: Error en la detección de huellas
+  - PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: Usuario no especificado.
+  - TIMEOUT: Timeout en el proceso.
+
 
 ### 7.2. Recepción de ejecución correcta - _data_
 

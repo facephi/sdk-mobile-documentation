@@ -184,22 +184,29 @@ rel="nofollow">6. Result return</a> section.
 
 On the error side, we will have the _VideoIdError_ class.
 
-```java
-NO_DATA_ERROR
-TIMEOUT
-CANCEL_BY_USER
-CANCEL_LAUNCH
-NETWORK_CONNECTION
-SOCKET_ERROR
-VIDEO_ERROR
-ACTIVITY_RESULT_ERROR
-INITIALIZATION_ERROR -> it.error
-FETCH_DATA_ERROR -> it.error
-UNKNOWN_ERROR
-PERMISSION_DENIED
-```
+Error list:
 
-### 7.2. Receipt of correct execution - data\_
+  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
+  - APPLICATION_CONTEXT_ERROR: Required application context is null
+  - CANCEL_BY_USER: User has cancelled the process
+  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+  - COMPONENT_LICENSE_ERROR: The license of the component is not correct
+  - EMPTY_LICENSE: License String is empty
+  - FACE_DETECTION_TIMEOUT: No face detected
+  - FETCH_DATA_ERROR: Error in the result collection
+  - FLOW_ERROR: Error in the flow process
+  - INITIALIZATION_ERROR: Initialisation error
+  - MANAGER_NOT_INITIALIZED: Managers are nil
+  - NETWORK_CONNECTION: Error in internet connection
+  - NO_DATA_ERROR: Input data is null
+  - OPERATION_NOT_CREATED: No operation in progress
+  - PERMISSION_DENIED: User has denied permissions
+  - SOCKET_ERROR: Error in the connection of services
+  - TIMEOUT: Timeout in the process
+  - VIDEO_ERROR: Error in video processing
+
+
+### 7.2. Receipt of correct execution - _data_
 
 On successful execution, it simply reports that everything went well
 with the SdkResult.Success.

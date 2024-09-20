@@ -365,22 +365,32 @@ rel="nofollow">6. Result return</a> section-.
 
 On the error side, we will have the SelphIdError class.
 
-```java
-    SelphIDError.ACTIVITY_RESULT_ERROR
-    SelphIDError.BAD_EXTRACTOR_CONFIGURATION_ERROR
-    SelphIDError.CAMERA_PERMISSION_DENIED
-    SelphIDError.CANCEL_BY_USER
-    SelphIDError.CONTROL_NOT_INITIALIZATED_ERROR
-    SelphIDError.EXTRACTION_LICENSE_ERROR
-    SelphIDError.HARDWARE_ERROR
-    is SelphIDError.INITIALIZATION_ERROR -> it.error // More info
-    SelphIDError.NO_ERROR
-    SelphIDError.RESOURCES_NOT_FOUND
-    SelphIDError.SETTINGS_PERMISSION_ERROR
-    is SelphIDError.TIMEOUT
-    SelphIDError.UNEXPECTED_CAPTURE_ERROR
-    SelphIDError.UNKNOWN_ERROR
-```
+Error list:
+
+  - ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
+  - APPLICATION_CONTEXT_ERROR: The required application context is null.
+  - BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration
+  - CAMERA_PERMISSION_DENIED: User has rejected permissions.
+  - CANCEL_BY_USER: The user has cancelled the process.
+  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+  - COMPONENT_LICENSE_ERROR: The component license is not correct.
+  - CONTROL_NOT_INITIALIZATED_ERROROR: Widget: Initialisation error
+  - EMPTY_LICENSE: The license string is empty.
+  - EXTRACTION_LICENSE_ERROR: Widget: License error
+  - FETCH_DATA_ERROR: Error in the collection of the result.
+  - FLOW_ERROR: Error in the flow process.
+  - HARDWARE_ERROR: Widget: Hardware error
+  - INITIALIZATION_ERROR: Initialisation error.
+  - MANAGER_NOT_INITIALIZED: Managers are null.
+  - NO_DATA_ERROR: Input data is null.
+  - OPERATION_NOT_CREATED: No operation is in progress.
+  - RESOURCES_NOT_FOUND: Resource zip not found.
+  - SETTINGS_PERMISSION_ERROR: Widget: Permission error
+  - TIMEOUT: Timeout in process.
+  - UNEXPECTED_CAPTURE_ERROR: Widget: Capture error
+  - UNKNOWN_ERROR: Unknown Error
+  - WIDGET_RESULT_DATA_ERROR: Error in widget output data
 
 ### 7.2. Receipt of correct execution - _data_
 
