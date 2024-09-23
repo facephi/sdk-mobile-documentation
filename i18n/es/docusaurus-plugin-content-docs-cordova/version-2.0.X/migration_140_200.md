@@ -1,12 +1,12 @@
 # Migrate from 1.4.X to 2.0.X
-## 1. Introduction
+## 1. Introducción
 
 <div class="warning">
 <span class="warning">:warning:</span>
-The following document contains different issues that can appear during the migration from SDK Mobile ***1.4.X version*** to the SDK Mobile ***2.0.X version***. Depending on the developer application and its configuration. 
+El siguiente documento contiene diferentes problemas que pueden aparecer durante la migración de SDK Mobile ***1.4.X versión*** a SDK Mobile ***2.0.X versión***. Dependiendo de la aplicación del desarrollador y su configuración.
 </div>
 
-## 2. Possible issues
+## 2. Posibles issues
 
 ### 2.1 Upgrading compileSDKVersion
 #### Error
@@ -33,7 +33,7 @@ Compilation target for module ':app' is 'android-33'
 ```
 
 
-#### Solution
+#### Solución
 
 Change in your application the minimum SDK version to 24:
 
@@ -68,7 +68,7 @@ defaultConfig {
   AGPBI: {"kind":"error","text":"com.android.tools.r8.internal.YI0: Sealed classes are not supported as program classes","sources":[{"file":"/Users/username/.gradle/caches/transforms-3/e7c35f0a55ff407d71f0751a9bab00dd/transformed/jetified-lottie-compose-6.4.0-runtime.jar"}],"tool":"D8"}
 ```
 
-#### Solution
+#### Solución
 
 In android/build.gradle file, change de gradle.build.tools to 7.4.0 or more:
 
@@ -99,7 +99,7 @@ In gradle-wrapper.properties file:
 ```
 
 ### 2.3 Changing result diagnostics
-#### Solution
+#### Solución
 
 This parameter errorDiagnostic:
 
@@ -119,7 +119,7 @@ final String errorDiagnostic;
 java.lang.NoClassDefFoundError: Failed resolution of: Landroidx/compose/ui/platform/ComposeView;
 ```
 
-#### Solution
+#### Solución
 In the build.gradle(android) add:
 
 ```
@@ -146,7 +146,7 @@ apply plugin: 'kotlin-android' // ADD THIS LINE
   Suggestion: add 'tools:replace="android:usesCleartextTraffic"' to <application> element at AndroidManifest.xml:5:5-8:50 to override.
 ```
 
-#### Solution
+#### Solución
 
 In the AndroidManifest.xml, add:
 
@@ -175,7 +175,7 @@ Caused by: com.android.builder.merge.DuplicateRelativeFileException: 2 files fou
 Adding a packaging block may help, please refer to
 ```
 
-#### Solution:
+#### Solución:
 ```
 packagingOptions {
     pickFirst("**/*.so") // SELPHI + VOICE
@@ -197,7 +197,7 @@ OR
 Class 'com.facephi.core.data.SdkImage' was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.0.0, expected version is 1.8.0.
 The class is loaded from /Users/lariel/.gradle/caches/transforms-3/d1de7231ad1ef5869b273e5abac6ceb3/transformed/jetified-core-2.0.2-api.jar!/com/facephi/core/data/SdkImage.class
 ```
-#### Solution
+#### Solución
 
 ```
   "AGP_VERSION": ">= 8.1.4"
@@ -211,7 +211,7 @@ The class is loaded from /Users/lariel/.gradle/caches/transforms-3/d1de7231ad1ef
 supertypes of the following classes cannot be resolved. please make sure you have the required dependencies in the classpath androix.activity.ComponentActivity, unresolved supertypes: androidx.core.app.OnUserLeaveHintProvider adding -Xextended:
 ```
 
-#### Solution:
+#### Solución:
 ```
 El plugin cordova-plugin-camera al momento de instalar genera el error relacionado con androidx.core:core:1.6.+ (adjunto el log) y esto se soluciona agregando las siguientes líneas de código dentro de build.gradle(app):
 configurations.all {

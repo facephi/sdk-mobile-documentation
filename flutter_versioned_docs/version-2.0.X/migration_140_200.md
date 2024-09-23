@@ -135,3 +135,71 @@ And in the build.gradle(app) add:
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android' // ADD THIS LINE
 ```
+
+### 2.5 android:usesCleartextTraffic
+#### Error
+
+```
+/Users/lariel/proyects/sdkMobile/react-native/cocoapods-license-antonio/qashio/android/app/src/debug/AndroidManifest.xml:6:9-44 Error:
+  Attribute application@usesCleartextTraffic value=(true) from AndroidManifest.xml:6:9-44
+  is also present at [com.facephi.androidsdk:selphi_component:2.0.1] AndroidManifest.xml:8:18-54 value=(false).
+  Suggestion: add 'tools:replace="android:usesCleartextTraffic"' to <application> element at AndroidManifest.xml:5:5-8:50 to override.
+```
+
+#### Solution
+
+In the AndroidManifest.xml, add:
+
+```
+  <?xml version='1.0' encoding='utf-8'?>
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" --> ADD THIS
+    >
+
+    <application
+      android:allowBackup="true"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:supportsRtl="true"
+      android:theme="@style/AppTheme"
+      android:usesCleartextTraffic="true" --> ADD THIS
+      tools:replace="android:usesCleartextTraffic"> --> ADD THIS
+  ```
+
+  ### 2.6 DuplicateRelativeFileException(SELPHI + VOICE // NFC)
+
+#### Error:
+```
+Caused by: com.android.builder.merge.DuplicateRelativeFileException: 2 files found with path 'META-INF/versions/9/OSGI-INF/MANIFEST.MF'.
+Adding a packaging block may help, please refer to
+```
+
+#### Solution:
+```
+packagingOptions {
+    pickFirst("**/*.so") // SELPHI + VOICE
+    pickFirst("META-INF/versions/9/OSGI-INF/MANIFEST.MF") // NFC
+}
+```
+
+### 2.7 Upgrading Gradle Build Tools 2
+#### Error:
+```
+java.lang.NullPointerException: Cannot invoke "String.length()" because "<parameter1>" is null
+
+OR
+
+AGPBI: {"kind":"error","text":"java.lang.NullPointerException","sources":[{"file":"/Users/lariel/.gradle/caches/transforms-3/96df14071dd10ba319cee1b058e64410/transformed/lifecycle-livedata-core-2.8.3-runtime.jar"}],"tool":"D8"}
+
+OR
+
+Class 'com.facephi.core.data.SdkImage' was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.0.0, expected version is 1.8.0.
+The class is loaded from /Users/lariel/.gradle/caches/transforms-3/d1de7231ad1ef5869b273e5abac6ceb3/transformed/jetified-core-2.0.2-api.jar!/com/facephi/core/data/SdkImage.class
+```
+#### Solution
+
+```
+  "AGP_VERSION": ">= 8.1.4"
+  "KOTLIN_VERSION": ">= 1.9.0"
+```
