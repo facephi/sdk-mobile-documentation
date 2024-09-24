@@ -68,11 +68,11 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-| **Controlador**           | **Descripción**                         |
-| ------------------------- | --------------------------------------- |
-| InvoiceReaderController   | Controlador para la captura de facturas |
-| QrReaderController        | Controlador para la captura de QRs      |
-| QrGeneratorController     | Controlador para la generación de QRs   |
+| **Controlador**         | **Descripción**                         |
+| ----------------------- | --------------------------------------- |
+| InvoiceReaderController | Controlador para la captura de facturas |
+| QrReaderController      | Controlador para la captura de QRs      |
+| QrGeneratorController   | Controlador para la generación de QRs   |
 
 ---
 
@@ -319,24 +319,24 @@ En la parte del error, dispondremos de la clase _CaptureError_.
 
 Listado de errores:
 
-  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto.
-  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-  - CAMERA_ERROR: Error en el lanzamiento de la cámara.
-  - CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
-  - CANCEL_BY_USER: El usuario ha cancelado el proceso.
-  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-  - EMPTY_LICENSE: El String de licencia está vacío.
-  - FETCH_DATA_ERROR: Error en la recogida del resultado.
-  - FLOW_ERROR: Error en el proceso de flow.
-  - INITIALIZATION_ERROR: Error de inicialización.
-  - INVOICE_CAPTURE_ERROR: Error en la captura de facturas.
-  - MANAGER_NOT_INITIALIZED: Los managers son nulos.
-  - NO_DATA_ERROR: Los datos de entrada son nulos.
-  - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-  - QR_CAPTURE_ERROR: Error en la captura de QR
-  - QR_GENERATION_ERROR: Error en la generación de código QR
-  - TIMEOUT: Timeout en el proceso.
+- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto.
+- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- CAMERA_ERROR: Error en el lanzamiento de la cámara.
+- CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
+- CANCEL_BY_USER: El usuario ha cancelado el proceso.
+- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+- EMPTY_LICENSE: El String de licencia está vacío.
+- FETCH_DATA_ERROR: Error en la recogida del resultado.
+- FLOW_ERROR: Error en el proceso de flow.
+- INITIALIZATION_ERROR: Error de inicialización.
+- INVOICE_CAPTURE_ERROR: Error en la captura de facturas.
+- MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- NO_DATA_ERROR: Los datos de entrada son nulos.
+- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+- QR_CAPTURE_ERROR: Error en la captura de QR
+- QR_GENERATION_ERROR: Error en la generación de código QR
+- TIMEOUT: Timeout en el proceso.
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
@@ -366,6 +366,16 @@ de cada _String_ por el deseado.
     <string name="capture_component_internal_error_title">Hubo un problema técnico</string>
     <string name="capture_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
 
+```
+
+### 8.2. Animaciones
+
+Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+
+```text
+phactura_anim_tip.json
+qr_anim_tip_1.json
+qr_anim_tip_2.json
 ```
 
 ---

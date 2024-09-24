@@ -627,6 +627,15 @@ los componentes.
 Los componentes de Selphi y SelphID lleva su zip de recursos asociados
 que se mantiene ajeno a esta característica del SDK.
 
+### 10.1.1. Animaciones
+
+Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+
+```text
+anim_cancelled.json
+anim_success.json
+```
+
 ### 10.2. Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el

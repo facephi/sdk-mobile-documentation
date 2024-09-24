@@ -181,25 +181,25 @@ En la parte del error, dispondremos de la clase _VideoCallError_.
 
 Lista de errores:
 
-  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto
-  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo
-  - CANCEL_BY_USER: El usuario ha cancelado el proceso
-  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK
-  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta
-  - EMPTY_LICENSE: El String de licencia está vacío
-  - FACE_DETECTION_TIMEOUT: No se ha detectado cara
-  - FETCH_DATA_ERROR: Error en la recogida del resultado
-  - FLOW_ERROR: Error en el proceso de flow
-  - INITIALIZATION_ERROR: Error de inicialización
-  - MANAGER_NOT_INITIALIZED: Los managers son nulos
-  - NETWORK_CONNECTION: Error en la conexión a internet
-  - NO_DATA_ERROR: Los datos de entrada son nulos
-  - OPERATION_NOT_CREATED: No hay ninguna operación en curso
-  - PERMISSION_DENIED: El usuario ha rechazado los permisos
-  - SOCKET_ERROR: Error en la conexiónde los servicios
-  - TIMEOUT: Timeout en el proceso
-  - VIDEO_ERROR: Error en el procesamiento del vídeo
-  - UNKNOWN_ERROR: Error desconocido
+- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto
+- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo
+- CANCEL_BY_USER: El usuario ha cancelado el proceso
+- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK
+- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta
+- EMPTY_LICENSE: El String de licencia está vacío
+- FACE_DETECTION_TIMEOUT: No se ha detectado cara
+- FETCH_DATA_ERROR: Error en la recogida del resultado
+- FLOW_ERROR: Error en el proceso de flow
+- INITIALIZATION_ERROR: Error de inicialización
+- MANAGER_NOT_INITIALIZED: Los managers son nulos
+- NETWORK_CONNECTION: Error en la conexión a internet
+- NO_DATA_ERROR: Los datos de entrada son nulos
+- OPERATION_NOT_CREATED: No hay ninguna operación en curso
+- PERMISSION_DENIED: El usuario ha rechazado los permisos
+- SOCKET_ERROR: Error en la conexiónde los servicios
+- TIMEOUT: Timeout en el proceso
+- VIDEO_ERROR: Error en el procesamiento del vídeo
+- UNKNOWN_ERROR: Error desconocido
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
@@ -305,7 +305,15 @@ de cada _String_ por el deseado.
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
 
-### 9.3 Vistas externas
+### 9.3. Animaciones
+
+Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+
+```text
+video_call_anim_waiting.json
+```
+
+### 9.4 Vistas externas
 
 Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
 

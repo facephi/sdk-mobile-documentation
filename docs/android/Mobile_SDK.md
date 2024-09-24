@@ -616,6 +616,15 @@ Changing any of them will affect the animations of the components.
 The Selphi and SelphID components carry their associated resource zip,
 which is kept outside this feature of the SDK.
 
+### 10.1.1. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+anim_cancelled.json
+anim_success.json
+```
+
 ### 10.2. Texts
 
 If you want to modify the SDK texts, you would have to include the

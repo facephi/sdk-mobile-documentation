@@ -275,26 +275,26 @@ On the error side, we will have the _NfcError_ class.
 
 Error list:
 
-  - APPLICATION_CONTEXT_ERROR: The required application context is null.
-  - CANCEL_BY_USER: The user has cancelled the process.
-  - CANCEL_LAUNCH: A general cancellation of the SDK has been made.
-  - COMPONENT_LICENSE_ERROR: The component license is not correct.
-  - EMPTY_LICENSE: The licence string is empty.
-  - FETCH_DATA_ERROR: Error in the result retrieval.
-  - FLOW_ERROR: Error in the flow process.
-  - INITIALIZATION_ERROR: Initialisation error.
-  - LAST_COMMAND_EXPECTED: Error in the completion command.
-  - MANAGER_NOT_INITIALIZED: Managers are null.
-  - NFC_ERROR: General error
-  - NFC_ERROR_DATA: Error in input data
-  - NFC_ERROR_DISABLED: NFC disabled
-  - NFC_ERROR_ILLEGAL_ARGUMENT: NFC with wrong tag
-  - NFC_ERROR_IO: Input/output error
-  - NFC_ERROR_NOT_SUPPORTED: NFC not supported
-  - NFC_ERROR_TAG_LOST: Lost connection
-  - OPERATION_NOT_CREATED: No operation in progress.
-  - TIMEOUT: Timeout in the process.
-
+- APPLICATION_CONTEXT_ERROR: The required application context is null.
+- CANCEL_BY_USER: The user has cancelled the process.
+- CANCEL_LAUNCH: A general cancellation of the SDK has been made.
+- COMPONENT_LICENSE_ERROR: The component license is not correct.
+- EMPTY_LICENSE: The licence string is empty.
+- EXTRACT_DATA_ERROR: Error in data extracted.
+- FETCH_DATA_ERROR: Error in the result retrieval.
+- FLOW_ERROR: Error in the flow process.
+- INITIALIZATION_ERROR: Initialisation error.
+- LAST_COMMAND_EXPECTED: Error in the completion command.
+- MANAGER_NOT_INITIALIZED: Managers are null.
+- NFC_ERROR: General error
+- NFC_ERROR_DATA: Error in input data
+- NFC_ERROR_DISABLED: NFC disabled
+- NFC_ERROR_ILLEGAL_ARGUMENT: NFC with wrong tag
+- NFC_ERROR_IO: Input/output error
+- NFC_ERROR_NOT_SUPPORTED: NFC not supported
+- NFC_ERROR_TAG_LOST: Lost connection
+- OPERATION_NOT_CREATED: No operation in progress.
+- TIMEOUT: Timeout in the process.
 
 ### 7.2. Receipt of correct execution - _data_
 
@@ -431,7 +431,21 @@ each String to the desired one.
 
 ```
 
-### 8.2 External custom views
+### 8.2. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+nfc_anim_reader.json
+nfc_anim_tuto_1.json
+nfc_anim_tuto_2.json
+nfc_anim_tuto_3.json
+nfc_anim_tuto_3_pass.json
+nfc_anim_tuto_id.json
+nfc_anim_tuto_passport.json
+```
+
+### 8.3 External custom views
 
 It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
 

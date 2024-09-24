@@ -271,32 +271,31 @@ On the error side, we will have the SelphiError class.
 
 Error list:
 
-  - ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
-  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
-  - APPLICATION_CONTEXT_ERROR: The required application context is null.
-  - BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration.
-  - CAMERA_PERMISSION_DENIED: User has rejected permissions.
-  - CANCEL_BY_USER: The user has cancelled the process.
-  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
-  - COMPONENT_LICENSE_ERROR: The component license is not correct.
-  - CONTROL_NOT_INITIALIZATED_ERROR: Widget: Initialisation error.
-  - EMPTY_LICENSE: The license string is empty.
-  - EXTRACTION_LICENSE_ERROR: Widget: License error.
-  - FETCH_DATA_ERROR: Error in the collection of the result.
-  - FLOW_ERROR: Error in the flow process.
-  - HARDWARE_ERROR: Widget: Hardware error.
-  - INITIALIZATION_ERROR: Initialisation error.
-  - MANAGER_NOT_INITIALIZED: Managers are null.
-  - NO_DATA_ERROR: Input data is null.
-  - OPERATION_NOT_CREATED: No operation is in progress.
-  - RESOURCES_NOT_FOUND: Resource zip not found.
-  - SETTINGS_PERMISSION_ERROR: Widget: Permission error.
-  - TEMPLATE_ERROR:
-  - TIMEOUT: Timeout in process.
-  - UNEXPECTED_CAPTURE_ERROR: Widget: Capture error.
-  - UNKNOWN_ERROR: Unknown error.
-  - WIDGET_RESULT_DATA_ERROR: Error in widget output data.
-
+- ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+- ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
+- APPLICATION_CONTEXT_ERROR: The required application context is null.
+- BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration.
+- CAMERA_PERMISSION_DENIED: User has rejected permissions.
+- CANCEL_BY_USER: The user has cancelled the process.
+- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- COMPONENT_LICENSE_ERROR: The component license is not correct.
+- CONTROL_NOT_INITIALIZATED_ERROR: Widget: Initialisation error.
+- EMPTY_LICENSE: The license string is empty.
+- EXTRACTION_LICENSE_ERROR: Widget: License error.
+- FETCH_DATA_ERROR: Error in the collection of the result.
+- FLOW_ERROR: Error in the flow process.
+- HARDWARE_ERROR: Widget: Hardware error.
+- INITIALIZATION_ERROR: Initialisation error.
+- MANAGER_NOT_INITIALIZED: Managers are null.
+- NO_DATA_ERROR: Input data is null.
+- OPERATION_NOT_CREATED: No operation is in progress.
+- RESOURCES_NOT_FOUND: Resource zip not found.
+- SETTINGS_PERMISSION_ERROR: Widget: Permission error.
+- TEMPLATE_ERROR:
+- TIMEOUT: Timeout in process.
+- UNEXPECTED_CAPTURE_ERROR: Widget: Capture error.
+- UNKNOWN_ERROR: Unknown error.
+- WIDGET_RESULT_DATA_ERROR: Error in widget output data.
 
 ### 7.2. Receipt of correct execution - _data_
 
@@ -384,4 +383,12 @@ each String to the desired one.
     <string name="selphi_component_tutorial_title">Take a selfie</string>
     <string name="selphi_component_tutorial_button">Continue</string>
 
+```
+
+### 9.2. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+selphi_anim_tuto.json
 ```
