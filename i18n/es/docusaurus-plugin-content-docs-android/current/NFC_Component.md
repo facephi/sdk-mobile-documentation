@@ -284,25 +284,26 @@ En la parte del error, dispondremos de la clase NfcError.
 
 Listado de errores:
 
-  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-  - CANCEL_BY_USER: El usuario ha cancelado el proceso.
-  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-  - EMPTY_LICENSE: El String de licencia está vacío.
-  - FETCH_DATA_ERROR: Error en la recogida del resultado.
-  - FLOW_ERROR: Error en el proceso de flow.
-  - INITIALIZATION_ERROR: Error de inicialización.
-  - LAST_COMMAND_EXPECTED: Error en el comando de finalización
-  - MANAGER_NOT_INITIALIZED: Los managers son nulos.
-  - NFC_ERROR: Error general
-  - NFC_ERROR_DATA: Error en los datos de entrada
-  - NFC_ERROR_DISABLED: NFC deshabilitado
-  - NFC_ERROR_ILLEGAL_ARGUMENT: NFC con un tag incorrecto
-  - NFC_ERROR_IO: Error de entrada/salida
-  - NFC_ERROR_NOT_SUPPORTED: NFC no somportado
-  - NFC_ERROR_TAG_LOST: Conexión perdida
-  - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-  - TIMEOUT: Timeout en el proceso.
+- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- CANCEL_BY_USER: El usuario ha cancelado el proceso.
+- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+- EMPTY_LICENSE: El String de licencia está vacío.
+- EXTRACT_DATA_ERROR: Error en los datos extraídos.
+- FETCH_DATA_ERROR: Error en la recogida del resultado.
+- FLOW_ERROR: Error en el proceso de flow.
+- INITIALIZATION_ERROR: Error de inicialización.
+- LAST_COMMAND_EXPECTED: Error en el comando de finalización
+- MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- NFC_ERROR: Error general
+- NFC_ERROR_DATA: Error en los datos de entrada
+- NFC_ERROR_DISABLED: NFC deshabilitado
+- NFC_ERROR_ILLEGAL_ARGUMENT: NFC con un tag incorrecto
+- NFC_ERROR_IO: Error de entrada/salida
+- NFC_ERROR_NOT_SUPPORTED: NFC no somportado
+- NFC_ERROR_TAG_LOST: Conexión perdida
+- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+- TIMEOUT: Timeout en el proceso.
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
@@ -439,7 +440,21 @@ de cada _String_ por el deseado.
 
 ```
 
-### 8.2 Vistas externas
+### 8.2. Animaciones
+
+Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+
+```text
+nfc_anim_reader.json
+nfc_anim_tuto_1.json
+nfc_anim_tuto_2.json
+nfc_anim_tuto_3.json
+nfc_anim_tuto_3_pass.json
+nfc_anim_tuto_id.json
+nfc_anim_tuto_passport.json
+```
+
+### 8.3 Vistas externas
 
 Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
 

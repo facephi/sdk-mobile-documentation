@@ -242,33 +242,32 @@ En la parte del error, dispondremos de la clase PhingersError.
 
 Listado de errores:
 
-  - ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
-  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad en el msg es incorrecto.
-  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-  - CANCEL_BY_USER: El usuario ha cancelado el proceso.
-  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-  - EMPTY_LICENSE: El String de licencia está vacío.
-  - FETCH_DATA_ERROR: Error en la recogida del resultado.
-  - FLOW_ERROR: Error en el proceso de flow.
-  - INITIALIZATION_ERROR: Error de inicialización.
-  - INTERNAL_ERROR: Error interno.
-  - LOW_QUALITY: Baja calidad de la imagen.
-  - MANAGER_NOT_INITIALIZED: Los managers son nulos.
-  - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-  - PERMISSION_DENIED: El usuario ha rechazado los permisos.
-  - PHINGERS_AUTOFOCUS_FAILURE: Fallo del autofocus.
-  - PHINGERS_CAMERA_FAILURE: Fallo de la cámara.
-  - PHINGERS_CAPTURE_FAILURE: Fallo en la captura de la imagen.
-  - PHINGERS_CONFIGURATION_FAILURE: Error de configuración.
-  - PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fallo en la captura de huellas.
-  - PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: Fallo IO
-  - PHINGERS_LICENSING_FAILURE: Error de licencia
-  - PHINGERS_LIVENESS_FAILURE: Error en la prueba de vida
-  - PHINGERS_NO_FINGERS_DETECTED: Error en la detección de huellas
-  - PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: Usuario no especificado.
-  - TIMEOUT: Timeout en el proceso.
-
+- ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
+- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad en el msg es incorrecto.
+- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- CANCEL_BY_USER: El usuario ha cancelado el proceso.
+- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+- EMPTY_LICENSE: El String de licencia está vacío.
+- FETCH_DATA_ERROR: Error en la recogida del resultado.
+- FLOW_ERROR: Error en el proceso de flow.
+- INITIALIZATION_ERROR: Error de inicialización.
+- INTERNAL_ERROR: Error interno.
+- LOW_QUALITY: Baja calidad de la imagen.
+- MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+- PERMISSION_DENIED: El usuario ha rechazado los permisos.
+- PHINGERS_AUTOFOCUS_FAILURE: Fallo del autofocus.
+- PHINGERS_CAMERA_FAILURE: Fallo de la cámara.
+- PHINGERS_CAPTURE_FAILURE: Fallo en la captura de la imagen.
+- PHINGERS_CONFIGURATION_FAILURE: Error de configuración.
+- PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fallo en la captura de huellas.
+- PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: Fallo IO
+- PHINGERS_LICENSING_FAILURE: Error de licencia
+- PHINGERS_LIVENESS_FAILURE: Error en la prueba de vida
+- PHINGERS_NO_FINGERS_DETECTED: Error en la detección de huellas
+- PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: Usuario no especificado.
+- TIMEOUT: Timeout en el proceso.
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
@@ -360,7 +359,17 @@ de cada _String_ por el deseado.
 
 ```
 
-### 8.2 Vistas externas
+### 8.2. Animaciones
+
+Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+
+```text
+phingers_anim_left.json
+phingers_anim_right.json
+phingers_anim_thumb.json
+```
+
+### 8.3 Vistas externas
 
 Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
 

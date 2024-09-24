@@ -64,11 +64,11 @@ documentation, which details and explains what this process consists of.
 
 ## 4. Available controllers
 
-| **Controller**            | **Description**            |
-| ------------------------- | -------------------------- |
-| InvoiceReaderController   | Invoice capture controller |
-| QrReaderController        | QR capture controller      |
-| QrGeneratorController     | QR generator controller    |
+| **Controller**          | **Description**            |
+| ----------------------- | -------------------------- |
+| InvoiceReaderController | Invoice capture controller |
+| QrReaderController      | QR capture controller      |
+| QrGeneratorController   | QR generator controller    |
 
 ---
 
@@ -309,25 +309,24 @@ On the error side, we will have the _CaptureError_ class.
 
 Error list:
 
-  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
-  - APPLICATION_CONTEXT_ERROR: The required application context is null.
-  - CAMERA_ERROROR: Error in launching the camera.
-  - CAMERA_PERMISSION_DENIED: The user has rejected the permissions.
-  - CANCEL_BY_USER: The user has cancelled the process.
-  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
-  - COMPONENT_LICENSE_ERROR: The component license is not correct.
-  - EMPTY_LICENSE: The licence string is empty.
-  - FETCH_DATA_ERROR: Error in the result retrieval.
-  - FLOW_ERROR: Error in the flow process.
-  - INITIALIZATION_ERROR: Initialisation error.
-  - INVOICE_CAPTURE_ERROR: Error in the capture of invoices.
-  - MANAGER_NOT_INITIALIZED: Managers are null.
-  - NO_DATA_ERROR: Input data is null.
-  - OPERATION_NOT_CREATED: No operation is in progress.
-  - QR_CAPTURE_ERROR: Error in the QR capture.
-  - QR_GENERATION_ERROR: Error in the QR code generation.
-  - TIMEOUT: Timeout in the process.
-
+- ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
+- APPLICATION_CONTEXT_ERROR: The required application context is null.
+- CAMERA_ERROROR: Error in launching the camera.
+- CAMERA_PERMISSION_DENIED: The user has rejected the permissions.
+- CANCEL_BY_USER: The user has cancelled the process.
+- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- COMPONENT_LICENSE_ERROR: The component license is not correct.
+- EMPTY_LICENSE: The licence string is empty.
+- FETCH_DATA_ERROR: Error in the result retrieval.
+- FLOW_ERROR: Error in the flow process.
+- INITIALIZATION_ERROR: Initialisation error.
+- INVOICE_CAPTURE_ERROR: Error in the capture of invoices.
+- MANAGER_NOT_INITIALIZED: Managers are null.
+- NO_DATA_ERROR: Input data is null.
+- OPERATION_NOT_CREATED: No operation is in progress.
+- QR_CAPTURE_ERROR: Error in the QR capture.
+- QR_GENERATION_ERROR: Error in the QR code generation.
+- TIMEOUT: Timeout in the process.
 
 ### 7.1. _Receipt of correct execution - data_
 
@@ -358,6 +357,16 @@ each String to the desired one.
     <string name="capture_component_internal_error_title">There was a technical problem</string>
     <string name="capture_component_internal_error_desc">We apologize. The capture could not be made</string>
 
+```
+
+### 8.2. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+phactura_anim_tip.json
+qr_anim_tip_1.json
+qr_anim_tip_2.json
 ```
 
 ---

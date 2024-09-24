@@ -235,33 +235,32 @@ On the error side, we will have the PhingersError class.
 
 Error list:
 
- - ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
- - ACTIVITY_RESULT_MSG_ERROR: The result of the activity in the msg is incorrect.
- - APPLICATION_CONTEXT_ERROR: The required application context is null.
- - CANCEL_BY_USER: The user has cancelled the process.
- - CANCEL_LAUNCH: A general cancellation of the SDK has been made.
- - COMPONENT_LICENSE_ERROR: The component license is not correct.
- - EMPTY_LICENSE: The licence string is empty.
- - FETCH_DATA_ERROR: Error in the result retrieval.
- - FLOW_ERROR: Error in the flow process.
- - INITIALIZATION_ERROR: Initialisation error.
- - INTERNAL_ERROROR: Internal error.
- - LOW_QUALITY: Low image quality.
- - MANAGER_NOT_INITIALIZED: Managers are null.
- - OPERATION_NOT_CREATED: No operation is in progress.
- - PERMISSION_DENIED: User has denied permissions.
- - PHINGERS_AUTOFOCUS_FAILURE: Autofocus failure.
- - PHINGERS_CAMERA_FAILURE: Camera failure.
- - PHINGERS_CAPTURE_FAILURE: Image capture failure.
- - PHINGERS_CONFIGURATION_FAILURE: Configuration error.
- - PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.
- - PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: IO failure.
- - PHINGERS_LICENSING_FAILURE: Licensing Error
- - PHINGERS_LIVENESS_FAILURE: Life test error
- - PHINGERS_NO_FINGERS_DETECTED: Error in fingerprint detection
- - PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: User not specified.
- - TIMEOUT: Timeout in the process.
-
+- ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+- ACTIVITY_RESULT_MSG_ERROR: The result of the activity in the msg is incorrect.
+- APPLICATION_CONTEXT_ERROR: The required application context is null.
+- CANCEL_BY_USER: The user has cancelled the process.
+- CANCEL_LAUNCH: A general cancellation of the SDK has been made.
+- COMPONENT_LICENSE_ERROR: The component license is not correct.
+- EMPTY_LICENSE: The licence string is empty.
+- FETCH_DATA_ERROR: Error in the result retrieval.
+- FLOW_ERROR: Error in the flow process.
+- INITIALIZATION_ERROR: Initialisation error.
+- INTERNAL_ERROROR: Internal error.
+- LOW_QUALITY: Low image quality.
+- MANAGER_NOT_INITIALIZED: Managers are null.
+- OPERATION_NOT_CREATED: No operation is in progress.
+- PERMISSION_DENIED: User has denied permissions.
+- PHINGERS_AUTOFOCUS_FAILURE: Autofocus failure.
+- PHINGERS_CAMERA_FAILURE: Camera failure.
+- PHINGERS_CAPTURE_FAILURE: Image capture failure.
+- PHINGERS_CONFIGURATION_FAILURE: Configuration error.
+- PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.
+- PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: IO failure.
+- PHINGERS_LICENSING_FAILURE: Licensing Error
+- PHINGERS_LIVENESS_FAILURE: Life test error
+- PHINGERS_NO_FINGERS_DETECTED: Error in fingerprint detection
+- PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: User not specified.
+- TIMEOUT: Timeout in the process.
 
 ### 7.1. Receipt of correct execution - _data_
 
@@ -354,7 +353,17 @@ each String to the desired one.
 
 ```
 
-### 8.2 External custom views
+### 8.2. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+phingers_anim_left.json
+phingers_anim_right.json
+phingers_anim_thumb.json
+```
+
+### 8.3 External custom views
 
 It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
 

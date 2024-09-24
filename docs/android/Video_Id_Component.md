@@ -186,25 +186,24 @@ On the error side, we will have the _VideoIdError_ class.
 
 Error list:
 
-  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
-  - APPLICATION_CONTEXT_ERROR: Required application context is null
-  - CANCEL_BY_USER: User has cancelled the process
-  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
-  - COMPONENT_LICENSE_ERROR: The license of the component is not correct
-  - EMPTY_LICENSE: License String is empty
-  - FACE_DETECTION_TIMEOUT: No face detected
-  - FETCH_DATA_ERROR: Error in the result collection
-  - FLOW_ERROR: Error in the flow process
-  - INITIALIZATION_ERROR: Initialisation error
-  - MANAGER_NOT_INITIALIZED: Managers are nil
-  - NETWORK_CONNECTION: Error in internet connection
-  - NO_DATA_ERROR: Input data is null
-  - OPERATION_NOT_CREATED: No operation in progress
-  - PERMISSION_DENIED: User has denied permissions
-  - SOCKET_ERROR: Error in the connection of services
-  - TIMEOUT: Timeout in the process
-  - VIDEO_ERROR: Error in video processing
-
+- ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
+- APPLICATION_CONTEXT_ERROR: Required application context is null
+- CANCEL_BY_USER: User has cancelled the process
+- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- COMPONENT_LICENSE_ERROR: The license of the component is not correct
+- EMPTY_LICENSE: License String is empty
+- FACE_DETECTION_TIMEOUT: No face detected
+- FETCH_DATA_ERROR: Error in the result collection
+- FLOW_ERROR: Error in the flow process
+- INITIALIZATION_ERROR: Initialisation error
+- MANAGER_NOT_INITIALIZED: Managers are nil
+- NETWORK_CONNECTION: Error in internet connection
+- NO_DATA_ERROR: Input data is null
+- OPERATION_NOT_CREATED: No operation in progress
+- PERMISSION_DENIED: User has denied permissions
+- SOCKET_ERROR: Error in the connection of services
+- TIMEOUT: Timeout in the process
+- VIDEO_ERROR: Error in video processing
 
 ### 7.2. Receipt of correct execution - _data_
 
@@ -245,7 +244,17 @@ each String to the desired one.
 
 ```
 
-### 8.2 External custom views
+### 8.2. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+video_id_anim_doc_and_face.json
+video_id_anim_face.json
+video_id_anim_loading.json
+```
+
+### 8.3 External custom views
 
 It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
 

@@ -198,22 +198,21 @@ En la parte del error, dispondremos de la clase VoiceError.
 
 Listado de errores:
 
-  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto
-  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo
-  - CANCEL_BY_USER: El usuario ha cancelado el proceso
-  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK
-  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta
-  - EMPTY_LICENSE: El String de licencia está vacío
-  - FETCH_DATA_ERROR: Error en la recogida del resultado
-  - FLOW_ERROR: Error en el proceso de flow
-  - INITIALIZATION_ERROR: Error de inicialización
-  - INTERNAL_LICENSE_ERROR: Error interno relacionado con la licencia
-  - MANAGER_NOT_INITIALIZED: Los managers son nulos
-  - NO_DATA_ERROR: Los datos de entrada son nulos
-  - OPERATION_NOT_CREATED: No hay ninguna operación en curso
-  - PERMISSION_DENIED: El usuario ha rechazado los permisos
-  - TIMEOUT: Timeout en el proceso
-  
+- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto
+- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo
+- CANCEL_BY_USER: El usuario ha cancelado el proceso
+- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK
+- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta
+- EMPTY_LICENSE: El String de licencia está vacío
+- FETCH_DATA_ERROR: Error en la recogida del resultado
+- FLOW_ERROR: Error en el proceso de flow
+- INITIALIZATION_ERROR: Error de inicialización
+- INTERNAL_LICENSE_ERROR: Error interno relacionado con la licencia
+- MANAGER_NOT_INITIALIZED: Los managers son nulos
+- NO_DATA_ERROR: Los datos de entrada son nulos
+- OPERATION_NOT_CREATED: No hay ninguna operación en curso
+- PERMISSION_DENIED: El usuario ha rechazado los permisos
+- TIMEOUT: Timeout en el proceso
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
@@ -263,7 +262,18 @@ de cada _String_ por el deseado.
 
 ```
 
-### 8.2 Vistas externas
+### 8.2. Animaciones
+
+Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+
+```text
+voice_anim_enroll_ko.json
+voice_anim_enroll_ok.json
+voice_anim_enroll_progress.json
+voice_anim_intro.json
+```
+
+### 8.3 Vistas externas
 
 Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
 

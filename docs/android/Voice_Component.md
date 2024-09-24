@@ -189,22 +189,21 @@ On the error side, we will have the _VoiceError_ class.
 
 Error list:
 
-  - ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
-  - APPLICATION_CONTEXT_ERROR: Required application context is null.
-  - CANCEL_BY_USER: User has cancelled the process.
-  - CANCEL_LAUNCH: A general cancellation of the SDK has been done.
-  - COMPONENT_LICENSE_ERROR: The license of the component is not correct.
-  - EMPTY_LICENSE: License String is empty.
-  - FETCH_DATA_ERROR: Error in the result collection.
-  - FLOW_ERROR: Error in the flow process.
-  - INITIALIZATION_ERROR: Initialisation error.
-  - INTERNAL_LICENSE_ERROR: Internal error related to the component license
-  - MANAGER_NOT_INITIALIZED: Managers are nil.
-  - NO_DATA_ERROR: Input data is null.
-  - OPERATION_NOT_CREATED: No operation in progress.
-  - PERMISSION_DENIED: User has denied permissions.
-  - TIMEOUT: Timeout in the process.
-
+- ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
+- APPLICATION_CONTEXT_ERROR: Required application context is null.
+- CANCEL_BY_USER: User has cancelled the process.
+- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- COMPONENT_LICENSE_ERROR: The license of the component is not correct.
+- EMPTY_LICENSE: License String is empty.
+- FETCH_DATA_ERROR: Error in the result collection.
+- FLOW_ERROR: Error in the flow process.
+- INITIALIZATION_ERROR: Initialisation error.
+- INTERNAL_LICENSE_ERROR: Internal error related to the component license
+- MANAGER_NOT_INITIALIZED: Managers are nil.
+- NO_DATA_ERROR: Input data is null.
+- OPERATION_NOT_CREATED: No operation in progress.
+- PERMISSION_DENIED: User has denied permissions.
+- TIMEOUT: Timeout in the process.
 
 ### 7.1. Receipt of correct execution - _data_
 
@@ -255,7 +254,18 @@ each String to the desired one.
 
 ```
 
-### 8.2 External custom views
+### 8.2. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+voice_anim_enroll_ko.json
+voice_anim_enroll_ok.json
+voice_anim_enroll_progress.json
+voice_anim_intro.json
+```
+
+### 8.3 External custom views
 
 It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
 

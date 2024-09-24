@@ -72,10 +72,10 @@ completo antes de la instalación de los componentes de la
 
 Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar en el apartado de **Resources**):
 
-| **Versión SDK** | **Selphi versión de recursos**            |
-| -------------- | -------------------------- |
-| 2.0.2  | 1.25.1 |
-| 2.0.3  | 1.26.0 |
+| **Versión SDK** | **Selphi versión de recursos** |
+| --------------- | ------------------------------ |
+| 2.0.2           | 1.25.1                         |
+| 2.0.3           | 1.26.0                         |
 
 ---
 
@@ -384,31 +384,30 @@ En la parte del error, dispondremos de la clase SelphIdError.
 
 Listado de errores:
 
-  - ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
-  - ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad recibido en el msg es incorrecto.
-  - APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-  - BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Configuración del extractor incorrecta
-  - CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
-  - CANCEL_BY_USER: El usuario ha cancelado el proceso.
-  - CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-  - COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-  - CONTROL_NOT_INITIALIZATED_ERROR: Widget: Error de inicialización
-  - EMPTY_LICENSE: El String de licencia está vacío.
-  - EXTRACTION_LICENSE_ERROR: Widget: Error de licencia
-  - FETCH_DATA_ERROR: Error en la recogida del resultado.
-  - FLOW_ERROR: Error en el proceso de flow.
-  - HARDWARE_ERROR: Widget: Error de hardware
-  - INITIALIZATION_ERROR: Error de inicialización.
-  - MANAGER_NOT_INITIALIZED: Los managers son nulos.
-  - NO_DATA_ERROR: Los datos de entrada son nulos.
-  - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-  - RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos
-  - SETTINGS_PERMISSION_ERROR: Widget: Error de permisos
-  - TIMEOUT: Timeout en el proceso.
-  - UNEXPECTED_CAPTURE_ERROR: Widget: Error en la captura
-  - UNKNOWN_ERROR: Error desconocido
-  - WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget
-
+- ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
+- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad recibido en el msg es incorrecto.
+- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Configuración del extractor incorrecta
+- CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
+- CANCEL_BY_USER: El usuario ha cancelado el proceso.
+- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+- CONTROL_NOT_INITIALIZATED_ERROR: Widget: Error de inicialización
+- EMPTY_LICENSE: El String de licencia está vacío.
+- EXTRACTION_LICENSE_ERROR: Widget: Error de licencia
+- FETCH_DATA_ERROR: Error en la recogida del resultado.
+- FLOW_ERROR: Error en el proceso de flow.
+- HARDWARE_ERROR: Widget: Error de hardware
+- INITIALIZATION_ERROR: Error de inicialización.
+- MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- NO_DATA_ERROR: Los datos de entrada son nulos.
+- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+- RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos
+- SETTINGS_PERMISSION_ERROR: Widget: Error de permisos
+- TIMEOUT: Timeout en el proceso.
+- UNEXPECTED_CAPTURE_ERROR: Widget: Error en la captura
+- UNKNOWN_ERROR: Error desconocido
+- WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget
 
 En la parte de _data_, dispondremos de la clase SelphIdResult.
 
@@ -551,3 +550,69 @@ fácil su búsqueda:
   matchingSidesScore.
 
 ---
+
+## 8. Personalización del componente
+
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
+modificación de textos específicos.
+
+### 8.1 Textos
+
+Si se desea modificar los textos de la SDK habría que incluir el
+siguiente fichero XML en la aplicación del cliente, y modificar el valor
+de cada _String_ por el deseado.
+
+```xml
+    <string name="selphid_component_timeout_title">Tiempo superado</string>
+    <string name="selphid_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="selphid_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="selphid_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <!-- WIDGET -->
+    <string name="button_repeat">INTENTAR DE NUEVO</string>
+    <string name="button_finish">ACEPTAR</string>
+    <string name="button_skip">OMITIR</string>
+    <string name="button_ready">LISTO</string>
+    <string name="CaptureTipFront">Pon el FRENTE del \n documento</string>
+    <string name="CaptureInfoFront">Pon el FRENTE \n del documento</string>
+    <string name="CaptureTipFrontID">Pon el FRENTE del \n documento</string>
+    <string name="CaptureInfoFrontID">Pon el FRENTE \n del documento</string>
+    <string name="CaptureTipFrontPP">Pon el PASAPORTE dentro \n del recuadro</string>
+    <string name="CaptureInfoFrontPP">Pon el PASAPORTE \n dentro del recuadro</string>
+    <string name="CaptureTipFrontDL">Pon el FRENTE del \n carnet de conducir</string>
+    <string name="CaptureInfoFrontDL">Pon el FRENTE \n del carnet de conducir</string>
+    <string name="CaptureTipBack">Pon el REVERSO del \n documento</string>
+    <string name="CaptureInfoBack">Pon el REVERSO \n del documento</string>
+    <string name="CaptureTipBackID">Pon el REVERSO del \n documento</string>
+    <string name="CaptureInfoBackID">Pon el REVERSO \n del documento</string>
+    <string name="CaptureTipBackPP">Pon el PASAPORTE dentro \n del recuadro</string>
+    <string name="CaptureInfoBackPP">Pon el PASAPORTE \n dentro del recuadro</string>
+    <string name="CaptureTipBackDL">Pon el REVERSO del \n carnet de conducir</string>
+    <string name="CaptureInfoBackDL">Pon el REVERSO \n del carnet de conducir</string>
+    <string name="CaptureSuccessFront">¡El escaneado \n ha sido exitoso!</string>
+    <string name="CaptureSuccessBack">¡El escaneado \n ha sido exitoso!</string>
+    <string name="CaptureError">Analizando documento...</string>
+    <string name="CaptureErrorLight">No hay \n suficiente luz</string>
+    <string name="Tutorial1">Busca un fondo \n con buen contraste</string>
+    <string name="Tutorial2">Coloca el documento \n dentro del recuadro</string>
+    <string name="Tutorial3">Evita brillos que dificulten \n la lectura del documento</string>
+    <string name="Tutorial1_PP">Busca un fondo \n con buen contraste</string>
+    <string name="Tutorial2_PP">Coloca el pasaporte \n dentro del recuadro</string>
+    <string name="Tutorial3_PP">Evita brillos que dificulten \n la lectura del pasaporte</string>
+    <string name="selphid_component_tutorial_title">Foto del documento</string>
+    <string name="selphid_component_tutorial_button">Comenzar</string>
+    <string name="selphid_component_tutorial_message">Enfoca tu documento dentro del recuadro. La foto se hará automáticamente.</string>
+
+```
+
+### 8.2. Animaciones
+
+Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+
+```text
+selphid_anim_tip_driver_h.json
+selphid_anim_tip_health.json
+selphid_anim_tip_id_h.json
+selphid_anim_tip_mrz.json
+selphid_anim_tip_pass_h.json
+```
