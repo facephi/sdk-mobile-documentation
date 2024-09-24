@@ -87,13 +87,7 @@ Add ISO7816 application identifiers for NFC Tag Reader Session: To use the widge
 ```
 - **Add the Capability Near field Communication Tag Reading**
 
-Open image-20230214-141106.png
-image-20230214-141106.png
-
-- **Add the Entitlements Near Field Communication Tag Reader Session Formats**:
-
-Open image-20230214-141753.png
-image-20230214-141753.png
+![Image](/img/near_field_communication_tag_reader.png)
 
 ### 2.2.2 Update the Podfile
 In the project podfile it will be necessary to add the information of the private repository (see section 2.1). To do this, the following lines must be added to the beginning of the file:
