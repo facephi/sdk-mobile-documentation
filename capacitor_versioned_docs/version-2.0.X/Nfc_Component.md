@@ -105,8 +105,9 @@ For the iOS version, when adding our plugin to the final application, the follow
 ```
 - **Add the Capability Near field Communication Tag Reading**
 
-It is necessary to add the **Near Field Communication Tag Reading** option in the ***Signing & Capabilities*** section of the target
+![Image](/img/near_field_communication_tag_reader.png)
 
+It is necessary to add the **Near Field Communication Tag Reading** option in the ***Signing & Capabilities*** section of the target
 
 #### 2.2.2 Update the Podfile
 In the project podfile it will be necessary to add the information from the private repository (see section 2.1). To do this, the following lines must be added at the beginning of the file:
