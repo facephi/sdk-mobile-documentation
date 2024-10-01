@@ -268,9 +268,8 @@ extension SampleHandler: AgoraRtcEngineDelegate {
 
 ## 3. Start new operation
 
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
+In order to generate the associated information correctly in the platform, the **newOperation** command must be executed first.
+
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **prior to launch**.

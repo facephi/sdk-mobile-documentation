@@ -374,13 +374,7 @@ SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output:
 
 ## 4. Start a new operation
 
-Every time you want to start the flow of a new operation (examples of
-operations would be _onboarding, authentication, videoCall_, etc.), it
-is essential to tell the **SDKController** that it is going to start so
-the SDK will know that the following **Component** calls (also called
-**Steps**) will be part of that operation. This is necessary _to track_
-the global information of this operation on the platform in a
-satisfactory way.
+To start the flow of a new operation (examples of operations would be _onboarding, authentication, videoCall_, etc.), it is essential to tell the **SDKController** that it is going to start so the SDK will know that the following **Component** calls (also called **Steps**) will be part of that operation. This is necessary _to track_ the global information of this operation on the platform in a satisfactory way.
 
 When starting a process or flow, **always** call the **newOperation**
 method

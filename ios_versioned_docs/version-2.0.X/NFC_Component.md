@@ -123,9 +123,8 @@ It is necessary to add the Near Field Communication Tag Reading option in the Si
 
 ## 3. Start a new operation
 
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
+In order to generate the associated information correctly in the platform, the **newOperation** command must be executed first.
+
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
