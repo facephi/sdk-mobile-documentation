@@ -52,19 +52,19 @@ Para el ejemplo documentado se ha utilizado una app con SwiftUI pero el componen
 
 En nuestro proyecto añadimos un nuevo target de tipo ***Broadcast Upload Extension:***
 
-![Image](/iOS/videoRecording-001.png)
+![Image](/iOS/VideoRecording/videoRecording-001.png)
 
 Configuramos el nombre de la extensión, en este ejemplo será VideoRecording:
 
-![Image](/iOS/videoRecording-002.png)
+![Image](/iOS/VideoRecording/videoRecording-002.png)
 
 Si aparece el siguiente modal, pulsamos en activate:
 
-![Image](/iOS/videoRecording-003.png)
+![Image](/iOS/VideoRecording/videoRecording-003.png)
 
 Esto genera la siguiente estructura:
 
-![Image](/iOS/videoRecording-004.png)
+![Image](/iOS/VideoRecording/videoRecording-004.png)
 
 Por defecto, un archivo llamado `SampleHandler` es creado. Este archivo contiene la clase principal de la extensión.
 
@@ -74,11 +74,11 @@ Para hacer uso de la funcionalidad de Facephi para compartir pantalla debemos mo
 videoRecordingComponent.VideoRecordingHandler
 ```
 
-![Image](/iOS/videoRecording-2.1.InfoPList.png)
+![Image](/iOS/VideoRecording/videoRecording-2.1.InfoPList.png)
 
 **NOTA: Es importante tener en cuenta que el número de la version (MARKETING_VERSION) y el número de versión del proyecto debe ser siempre el mismo en ambos targets:**
 
-![Image](/iOS/videoRecording-005.png)
+![Image](/iOS/VideoRecording/videoRecording-005.png)
 
 ### 2.2 Asignando el NSMicrophoneUsageDescription
 
@@ -96,7 +96,7 @@ Ahora necesitamos crear una nueva capability de tipo `App Group`.
 
 Esto servirá para crear el contenedor compartido entre nuestra extensión y el target de la aplicación.
 
-![Image](/iOS/videoRecording-006.png)
+![Image](/iOS/VideoRecording/videoRecording-006.png)
 
 Tras hacer click en el icono `+` para añadir.
 
@@ -106,15 +106,15 @@ Tras hacer click en el icono `+` para añadir.
 group.com.facephi.videoRecording
 ```
 
-![Image](/iOS/videoRecording-007.png)
+![Image](/iOS/VideoRecording/videoRecording-007.png)
 
 Seleccionamos el mismo identificador en nuestra extensión. De este modo ambos tendrán chequeado el App Group que acabamos de crear:
 
-![Image](/iOS/videoRecording-008.png)
+![Image](/iOS/VideoRecording/videoRecording-008.png)
 
 XCode generará o actualizará automáticamente los archivos de tipo entitlement implicados para añadir la capability a cada target:
 
-![Image](/iOS/videoRecording-009.png)
+![Image](/iOS/VideoRecording/videoRecording-009.png)
 
 ### 2.4 Dependencias requeridas para la integración
 
@@ -164,11 +164,11 @@ NOTA: Hay que tener cuidado de poner el target de la extensión fuera del target
 
 Añadimos nuestra dependencia al proyecto y la asignamos al target de VideoRecording:
 
-![Image](/iOS/videoRecording-010.png)
+![Image](/iOS/VideoRecording/videoRecording-010.png)
 
 Debemos luego añadirlo también al target de la app en General → Framework, Libraries and Embedded Content:
 
-![Image](/iOS/videoRecording-011.png)
+![Image](/iOS/VideoRecording/videoRecording-011.png)
 
 ---
 
@@ -254,11 +254,11 @@ Ahora mismo no existen recursos que configurar en el componente.
 #### 6.1.1 Permisos de escritura - Sandbox: rsync.samba(67364) deny(1) file-write-create 
 Si aparece un error de compilación en referencia a permisos de escritura:
 
-![Image](/iOS/videoRecording-012.png)
+![Image](/iOS/VideoRecording/videoRecording-012.png)
 
 Revisar el estado en Build Settings del parámetro **ENABLE_USER_SCRIPT_SANDBOXING**, su valor debe ser **NO**.
 
-![Image](/iOS/videoRecording-013.png)
+![Image](/iOS/VideoRecording/videoRecording-013.png)
 
 ### 6.2 En tiempo de ejecución
 
@@ -266,11 +266,11 @@ Revisar el estado en Build Settings del parámetro **ENABLE_USER_SCRIPT_SANDBOXI
 
 Al lanzar el componente puede aparecer un error en la dependencia Starscream:
 
-![Image](/iOS/videoRecording-014.png)
+![Image](/iOS/VideoRecording/videoRecording-014.png)
 
 ***Solución*** - Subir la versión del Pod mínima de iOS11 a iOS12:
 
-![Image](/iOS/videoRecording-015.png)
+![Image](/iOS/VideoRecording/videoRecording-015.png)
 
 #### 6.2.2 QuickTime Player
 
@@ -286,3 +286,4 @@ Lanzando el componente, no podemos ver el modal nativo de videograbación o lo v
 Posible Causa: La extensión creada en la aplicación tiene un "Bundle Identifier". Si este identificador ha sido modificado, el dispositivo puede tener cacheado el valor antiguo.
 
 ***Posible Solución*** - Desinstalar la app, instalarla de nuevo. Reiniciar si es necesario.
+ 

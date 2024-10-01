@@ -53,19 +53,19 @@ For the documented example, an app with SwiftUI has been used, but the component
 
 In our project we add a new target of type ***Broadcast Upload Extension:***
 
-![Image](/iOS/videoRecording-001.png)
+![Image](/iOS/VideoRecording/videoRecording-001.png)
 
 We configure the name of the extension, in this example it will be VideoRecording:
 
-![Image](/iOS/videoRecording-002.png)
+![Image](/iOS/VideoRecording/videoRecording-002.png)
 
 If the following modal appears, click activate:
 
-![Image](/iOS/videoRecording-003.png)
+![Image](/iOS/VideoRecording/videoRecording-003.png)
 
 This generates the following structure:
 
-![Image](/iOS/videoRecording-004.png)
+![Image](/iOS/VideoRecording/videoRecording-004.png)
 
 By default, a file called `SampleHandler` is created. This file contains the main class of the extension.
 
@@ -75,11 +75,11 @@ To make use of Facephi's screen sharing functionality we should modify the key `
 videoRecordingComponent.VideoRecordingHandler
 ```
 
-![Image](/iOS/videoRecording-2.1.InfoPList.png)
+![Image](/iOS/VideoRecording/videoRecording-2.1.InfoPList.png)
 
 **NOTE: It is important to keep in mind that the version number (MARKETING_VERSION) and the project version number must always be the same in both targets:**
 
-![Image](/iOS/videoRecording-005.png)
+![Image](/iOS/VideoRecording/videoRecording-005.png)
 
 ### 2.2 Setting the NSMicrophoneUsageDescription
 
@@ -98,7 +98,7 @@ Now we need to create a new App Group's Capability.
 
 This will serve to create the shared container between our extension and the application target.
 
-![Image](/iOS/videoRecording-006.png)
+![Image](/iOS/VideoRecording/videoRecording-006.png)
 
 After clicking on the + icon.
 
@@ -109,15 +109,15 @@ group.com.facephi.videoRecording
 ```
 
 
-![Image](/iOS/videoRecording-007.png)
+![Image](/iOS/VideoRecording/videoRecording-007.png)
 
 We select the same identifier in our extension. In this way both will have checked the App Group that we just created:
 
-![Image](/iOS/videoRecording-008.png)
+![Image](/iOS/VideoRecording/videoRecording-008.png)
 
 XCode will automatically generate or update the entitlement files involved to add the capability to each target:
 
-![Image](/iOS/videoRecording-009.png)
+![Image](/iOS/VideoRecording/videoRecording-009.png)
 
 ### 2.4 Dependencies required for integration
 
@@ -168,11 +168,11 @@ NOTE: You have to be careful to put the extension target outside the application
 
 We add our dependency to the project and assign it to the VideoRecording target:
 
-![Image](/iOS/videoRecording-010.png)
+![Image](/iOS/VideoRecording/videoRecording-010.png)
 
 We must then also add it to the target of the app in General → Framework, Libraries and Embedded Content:
 
-![Image](/iOS/videoRecording-011.png)
+![Image](/iOS/VideoRecording/videoRecording-011.png)
 
 ---
 
@@ -203,11 +203,11 @@ The functionality is configured and launched with a class called `VideoRecording
 To create an instance we need to use its `init()` method:
 
 ```swift
-init(data: VideoRecordingConfigurationData?, extensionName: String?, output: @escaping (SdkResult<String>) -> Void)
+init(data: VideoRecordingConfigurationData?, extensionIdentifier: String?, output: @escaping (SdkResult<String>) -> Void)
 ```
 
 - `data`: The configuration object
-- `extensionName`: The name of the `Broadcast Upload Extension` we created.
+- `extensionIdentifier`: The Bundle Identifier of the `Broadcast Upload Extension` target we created.
 - `output`: The callback that is called when the instance's start is resolved (either with success or failure). For this component, the success is called when the connection with the backend is established and the screenshare has started.
 
 ### 4.2 Configuring the instance
@@ -261,23 +261,28 @@ Right now there are no resources to configure in the component.
 #### 6.1.1 Write permissions - Sandbox: rsync.samba(67364) deny(1) file-write-create
 If you see a compilation error regarding write permissions:
 
-![Image](/iOS/videoRecording-012.png)
+![Image](/iOS/VideoRecording/videoRecording-012.png)
 
 Check the status in Build Settings of the parameter **ENABLE_USER_SCRIPT_SANDBOXING**, its value must be **NO**.
 
-![Image](/iOS/videoRecording-013.png)
+![Image](/iOS/VideoRecording/videoRecording-013.png)
 
 ### 6.2 At runtime
+
+#### 6.2.0 Debug an extension (.appex)
+
+To debug an extension, we need to attach it to a launchable target. In this case, that would be our main app's target.
+
 
 #### 6.2.1 Starscream - EXC_BAD_ACCESS
 
 When launching the component an error may appear in the Starscream dependency:
 
-![Image](/iOS/videoRecording-014.png)
+![Image](/iOS/VideoRecording/videoRecording-014.png)
 
 ***Workaround*** - Upload the minimum Pod version from iOS11 to iOS12:
 
-![Image](/iOS/videoRecording-015.png)
+![Image](/iOS/VideoRecording/videoRecording-015.png)
 
 #### 6.2.2 QuickTime Player
 
@@ -293,3 +298,19 @@ When launching the component, we can't see the native prompt for screen sharing 
 Possible Cause: The extension created in your app has a Bundle Identifier. If that identifier has changed, maybe the old one is still persisted in the cache.
 
 ***Possible Solution*** - Remove the app, and install it again. Restart the device if needed.
+
+Possible Cause: The device already has a extension with the same Bundle Identifier.
+
+***Possible Solution*** - Make sure the extension's Bundle Identifier is unique
+
+Possible Cause: The device already has a extension with the same Name.
+
+***Possible Solution*** - Make sure that you are launching/selecting the correct screensharing extension. It is recommended to use (in development at least) unique names to avoid misunderstandings.
+
+Possible Cause: The extensionName's string value injected in the VideoRecordingController initialization isn't correct.
+
+***Possible Solution*** - Make sure that you initialize send 
+
+Possible Cause: The extension's target is not referenced or doesn't install the FPHISDKVideoRecordingComponent dependency in the Podfile.
+
+***Possible Solution*** - Check [Cocoapods Section](#2.4.1-cocoapods)
