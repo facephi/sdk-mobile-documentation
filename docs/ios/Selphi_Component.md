@@ -107,8 +107,7 @@ command must first be executed.
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
-
-To learn more about how to start a new operation, it is recommended to consult the [Mobile SDK](./Mobile_SDK) documentation, which details and explains what this process consists of.
+To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
 
 ---
@@ -379,7 +378,7 @@ SDKController.shared.launch(controller: selphiController)
 
 #### 9.1.1 Animations guide
 
-- selphi_anim_tip
+- ***selphi_anim_tip***
 This animation is shown if the livenessMode configuration parameter is PASSIVE.
 
 ```
@@ -390,7 +389,7 @@ configSelphi.livenessMode = SelphiFaceLivenessMode.PASSIVE
 
 ![Image](/iOS/Selphi/selphi_tips-002.png)
 
-- selphi_anim_tip_move
+- ***selphi_anim_tip_move***
 This animation is shown if the livenessMode configuration parameter is MOVE.
 
 ```
@@ -401,15 +400,15 @@ configSelphi.livenessMode = SelphiFaceLivenessMode.MOVE
 
 ![Image](/iOS/Selphi/selphi_tips-002.png)
 
-- selphi_anim_tuto_1
+- ***selphi_anim_tuto_1***
 
 ![Image](/iOS/Selphi/selphi_tutorial-001.png)
 
-- selphi_anim_tuto_2
+- ***selphi_anim_tuto_2***
 
 ![Image](/iOS/Selphi/selphi_tutorial-002.png)
 
-- selphi_anim_tuto_3
+- ***selphi_anim_tuto_3***
 
 ![Image](/iOS/Selphi/selphi_tutorial-003.png)
 

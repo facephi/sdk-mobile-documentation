@@ -91,16 +91,13 @@ installing the **_SDKMobile_** components.
 When you want to perform a specific operation, in order to generate the
 associated information correctly in the platform, the **newOperation**
 command must first be executed.
+
 <div class="note">
 <span class="note">:information_source:</span>
-This command must have been executed **prior to launch**.
-
-To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
-documentation, which details and explains what this process consists of.
+This command must have been executed **before launch**.
+To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
+
 ---
 
 ## 4. Available controllers
