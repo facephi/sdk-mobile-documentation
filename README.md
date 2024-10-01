@@ -57,9 +57,9 @@ This is the folder where all the resources are located. Those resources could be
 
 ### src/
 
-Contiene la página Home de la documentación.
+Contains the documentation's Home page.
 
-En *css/* estan los style que hacen referencia a las clases que dan estilos a los carteles de advertencia. Estos carteles se pueden crear de la siguiente forma:
+The folder *css/* contains the styles used on the project. For example, we use them to customize the warning's appearance:
 
 ```
 <div class="warning">
