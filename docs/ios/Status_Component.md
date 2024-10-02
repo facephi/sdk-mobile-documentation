@@ -4,8 +4,6 @@
 
 The _Component_ dealt with in the current document is called **_StatusComponent_**. It is in charge of the common UI used in the components. This _Component_ can is completely customizable. The elements you can override/change are:
 
-- Animations
-
 - Colors
 
 - Images
@@ -118,14 +116,18 @@ enum Color: String, CaseIterable {
     case sdkBackgroundColor
     case sdkTitleTextColor
     case sdkBodyTextColor
-    case sdkPrimaryVariantColor
     case sdkTopIconsColor
+    case sdkButtonTextColor
     case sdkErrorColor
     case sdkSuccessColor
     case sdkNeutralColor
     case sdkAccentColor
 }
 ```
+
+By default:
+
+![Image](/iOS/Status/status_colors-001.png)
 
 #### 4.1.1 Customize colors with xcassets
 
@@ -171,8 +173,15 @@ enum Image: String, CaseIterable {
     case ic_status_success
     case ic_status_dot_primary
     case ic_status_dot_variant
+    case ic_sdk_pager_back
+    case ic_sdk_pager_forward
 }
 ```
+
+By default:
+
+![Image](/iOS/Status/status_images-001.png)
+
 
 #### 4.2.1 Customize images with xcassets
 
@@ -209,6 +218,21 @@ enum Font: String {
 }
 ```
 
+By default:
+
+```
+public var fonts: [R.Font: String] {
+    [.bold: "Poppins-SemiBold",
+     .regular: "Poppins-Regular"]
+}
+```
+
+***Poppins-Regular***
+![Image](/iOS/Status/status_fonts-001.png)
+
+***Poppins-SemiBold***
+![Image](/iOS/Status/status_fonts-002.png)
+
 #### 4.3.1 Customize fonts
 
 The fonts can be customized with the creation of a Theme class:
@@ -225,6 +249,11 @@ class CustomThemeStatus: ThemeStatusProtocol {
 }
 ```
 
+<div class="warning">
+<span class="warning">:warning:</span>
+***If using a custom font:*** The font needs to be registered before launching the component. Every ThemeManager registers its fonts, but this operation is asynchronous and can cause race conditions. While using custom fonts, it's advised to call to the ThemeManager.setup(...) as soon as possible.
+</div>
+
 ### 4.4 Dimensions
 
 Available dimensions to customize:
@@ -240,6 +269,20 @@ enum Dimension: CGFloat {
     case radiusCornerSmall
     case outlinedBorderWidth
 }
+```
+
+By default:
+
+```
+public var dimensions: [R.Dimension : CGFloat] {
+        [.fontExtraSmall: 16,
+         .fontSmall: 18,
+         .fontRegular: 20,
+         .fontLarge: 24,
+         .fontExtraLarge: 32,
+         .radiusCorner: 30,
+         .radiusCornerSmall: 12,
+         .outlinedBorderWidth: 1]
 ```
 
 #### 4.4.1 Customize dimensions
@@ -294,9 +337,50 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Once implemented, we set the instance of our custom theme like this:
 
-````
+```
 import statusComponent
 ...
 ThemeStatusManager.setup(theme: CustomThemeStatus())
 ...
 ```
+
+---
+
+## 5 Working Example 
+
+There are four different views inside Status that can be configured.
+
+Aside from using a theme, the customization can be done with the assets approach. In this example, we can see the result of creating the following keys and values:
+
+![Image](/iOS/Status/status_assets_customization-001.png)
+
+### 5.1 Tip View
+
+The tip is activated by default but can be skipped with the controller's configuration parameter *showTutorial*.
+
+Usually it's the first page the user will see after launching the Controller.
+
+![Image](/iOS/Status/status_tips-001.png)
+
+
+### 5.2 Tutorial Views
+
+The tutorial is accessed by the ***More Information*** button in the Tip. It's a set of views that further explain the process to the user.
+
+![Image](/iOS/Status/status_tutorial-001.png)
+
+### 5.3 Diagnostic View
+
+The Diagnostic view is shown to the user when there is information needed to continue the process.
+
+![Image](/iOS/Status/status_diagnostic-001.png)
+
+### 5.4 Permission View
+
+Similar to Diagnostic view. It's shown when the capture process needs the user's approval to access some of the device's features. The difference is that this view contains a button that navigates to the device settings.
+
+***Missing Camera Permissions***
+![Image](/iOS/Status/status_permissions-001.png)
+
+***Missing Microphone Permissions***
+![Image](/iOS/Status/status_permissions-002.png)

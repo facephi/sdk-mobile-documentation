@@ -383,11 +383,11 @@ Information of the document validations sorted by:
 
 ---
 
-## 8. Component customisation
+## 8. Component customization
 
 The NFC component has parameterisable visual resources that modify the interface, animations, texts and translations,...
 
-The customisation system is based on themes. By default, the component has a theme called ThemeNFC.
+The customization system is based on themes. By default, the component has a theme called ThemeNFC.
 
 To modify the visual interface (UX/UI) you can create a new CustomTheme that extends the following protocol:
 

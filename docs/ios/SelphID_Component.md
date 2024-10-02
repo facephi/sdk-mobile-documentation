@@ -430,3 +430,215 @@ Additionally, keys of the results object itself are added to make it easier to s
 - **DocumentCaptured**: Value of the document template that has been captured according to the .xml of templates. Corresponds to the documentCaptured property.
 
 - **MatchingSidesScore**: Value that indicates the correspondence between the read sides of the document. It corresponds to the matchingSidesScore property.
+
+---
+
+## 8. Customizing the component
+
+Apart from the changes that can be made at SDK level (which are explained in the [Mobile SDK](./Mobile_SDK) document), this particular component allows the modification of specific animations.
+
+### 8.1 Customizing the animations
+
+The SelphID Component uses these animations:
+
+```
+    enum Animation: String, CaseIterable {
+        case selphid_anim_tip
+        case selphid_anim_tip_id_male
+        case selphid_anim_tip_id_female
+        case selphid_anim_tip_pass_male
+        case selphid_anim_tip_pass_female
+        case selphid_anim_tip_driver_male
+        case selphid_anim_tip_driver_female
+        case selphid_anim_tip_custom
+        case selphid_anim_tuto_id_1
+        case selphid_anim_tuto_id_2
+        case selphid_anim_tuto_id_3
+        case selphid_anim_tuto_pass_1
+        case selphid_anim_tuto_pass_2
+        case selphid_anim_tuto_pass_3
+        case selphid_anim_tuto_driving_1
+        case selphid_anim_tuto_driving_2
+        case selphid_anim_tuto_driving_3
+        case selphid_anim_tuto_custom_1
+        case selphid_anim_tuto_custom_2
+        case selphid_anim_tuto_custom_3
+}
+```
+
+The default animations can be overrided by creating a file with the same name and extension (.json for animations) in the app's project.
+
+In addition, the animations can also be decided dynamically on runtime. To do this, you need to create a custom "theme" class that implements ThemeSelphIDProtocol's interface:
+
+```
+import selphidComponent
+class CustomThemeSelphID: ThemeSelphIDProtocol {
+  var name: String = "custom"
+
+  public var customBoolean: Bool = true
+  var animations: [selphidComponent.R.Animation : String] {
+    [.selphid_anim_tuto_id_1: "animation_step_id_card_first",
+    .selphid_anim_tuto_id_2: "animation_step_id_card_second",
+    .selphid_anim_tuto_id_3: "animation_step_id_card_third"
+    ]
+  }
+}
+```
+
+To customise the component, ThemeSelphIDManager.setup(theme:CustomThemeSelphID() ) must be called after initialising the selphidController:
+
+```
+let selphidController = SelphIDController(data: SelphIDConfigurationData(), output: output, viewController: viewController)
+ThemeSelphIDManager.setup(theme: CustomThemeSelphID())
+SDKController.shared.launch(controller: selphidController)
+```
+
+##### 8.1.1 Main Tip Page
+
+- ***selphid_anim_tip***
+This animation is shown if the documentType configuration parameter is *FOREIGN_CARD* or *CREDIT_CARD*.
+
+```
+var configSelphID = SelphIDConfigurationData()
+...
+configSelphi.documentType = SelphIDDocumentType.FOREIGN_CARD
+```
+
+![Image](/iOS/Selphi/selphid_tips-001.png)
+
+- ***selphid_anim_tip_id_male & selphid_anim_tip_id_female***
+Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
+This animation is shown if the documentType configuration parameter is *ID_CARD*.
+
+```
+var configSelphID = SelphIDConfigurationData()
+...
+configSelphi.documentType = SelphIDDocumentType.ID_CARD
+```
+
+- ***selphid_anim_tip_pass_male & selphid_anim_tip_pass_female***
+Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
+This animation is shown if the documentType configuration parameter is *PASSPORT*.
+
+```
+var configSelphID = SelphIDConfigurationData()
+...
+configSelphi.documentType = SelphIDDocumentType.PASSPORT
+```
+
+- ***selphid_anim_tip_driver_male & selphid_anim_tip_driver_female***
+Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
+This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*.
+
+```
+var configSelphID = SelphIDConfigurationData()
+...
+configSelphi.documentType = SelphIDDocumentType.DRIVERS_LICENSE
+```
+
+- ***selphid_anim_tip_custom***
+Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
+This animation is shown if the documentType configuration parameter is *CUSTOM*.
+
+```
+var configSelphID = SelphIDConfigurationData()
+...
+configSelphi.documentType = SelphIDDocumentType.CUSTOM
+```
+
+##### 8.1.2 More Information - Tutorial's steps pages
+The view that contains these animations is accessed by clicking on the More Information button of the Tip view.
+
+- ***selphid_anim_tuto_id_1***
+This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
+
+![Image](/iOS/Selphi/selphid_tutorial-001.png)
+
+- ***selphid_anim_tuto_id_2***
+This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
+
+![Image](/iOS/Selphi/selphid_tutorial-002.png)
+
+- ***selphid_anim_tuto_id_3***
+This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
+
+![Image](/iOS/Selphi/selphid_tutorial-003.png)
+
+- ***selphid_anim_tuto_pass_1***
+This animation is shown if the documentType configuration parameter is *PASSPORT*. It is the first tutorial's step.
+
+- ***selphid_anim_tuto_pass_2***
+This animation is shown if the documentType configuration parameter is *PASSPORT*. It is the second tutorial's step.
+
+- ***selphid_anim_tuto_pass_3***
+This animation is shown if the documentType configuration parameter is *PASSPORT*. It is the third tutorial's step.
+
+- ***selphid_anim_tuto_driving_1***
+This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*. It is the first tutorial's step.
+
+- ***selphid_anim_tuto_driving_2***
+This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*. It is the second tutorial's step.
+
+- ***selphid_anim_tuto_driving_3***
+This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*. It is the third tutorial's step.
+
+- ***selphid_anim_tuto_custom_1***
+This animation is shown if the documentType configuration parameter is *CUSTOM*. It is the first tutorial's step.
+
+- ***selphid_anim_tuto_custom_2***
+This animation is shown if the documentType configuration parameter is *CUSTOM*. It is the second tutorial's step.
+
+- ***selphid_anim_tuto_custom_3***
+This animation is shown if the documentType configuration parameter is *CUSTOM*. It is the third tutorial's step.
+
+### 8.2 Colors, images, dimensions and fonts
+
+The customization of the other elements from previous images is done inside the [Status Component](./Status_Component). 
+
+### 8.3 Texts
+
+The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an ***_alt*** suffix are the accesibility label's needed for the ***voice over*** functionality to work.
+
+```
+"selphid_component_tutorial_1_desc"="Look for a background with good contrast.";
+"selphid_component_tutorial_2_desc"="Place the document inside the box.";
+"selphid_component_tutorial_3_desc"="Avoid glare that makes the document difficult to read.";
+"selphid_component_tip_desc"="**Focus** your document **inside the box.** The photo will be taken automatically.";
+"selphid_component_tip_title"="Document photo";
+"selphid_component_tip_button_message"="START";
+"selphid_component_tip_return_message"="RETURN";
+"selphid_component_tip_id_alt" = "Animation of a mobile phone taking a photo of an identity document. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the app takes a photo.";
+"selphid_component_tip_passport_alt" = "Animation of a mobile phone taking a photo of a passport. The document appears horizontally, open to the page where the photo appears. The mobile phone in a vertical position. A box appears on the mobile screen. When the page of the passport fits inside the box, the application takes a photo.";
+"selphid_component_tip_driving_alt" = "Animation of a mobile phone taking a photo of a driving license. The document appears horizontally, and the mobile phone vertically. A box appears on the mobile screen. When the document fits inside the box, the app takes a photo.";
+"selphid_component_tutorial_1_id_alt"="A white ID document is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
+"selphid_component_tutorial_2_id_alt"="A mobile phone takes a photo of an identity document. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application takes a picture.";
+"selphid_component_tutorial_3_id_alt"="An identity document, seen from the front. When tilted, reflections appear on the document.";
+"selphid_component_tutorial_1_passport_alt"="A white passport is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
+"selphid_component_tutorial_2_passport_alt"="A mobile phone takes a photo of a passport. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application takes a photo ";
+"selphid_component_tutorial_3_passport_alt"="A passport, seen from the front. When tilted, reflections appear on the document.";
+"selphid_component_tutorial_1_driving_alt"="A white driving license is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
+"selphid_component_tutorial_2_driving_alt"="A mobile phone takes a photo of a driving license. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application does a picture.";
+"selphid_component_tutorial_3_driving_alt"="A driving license, seen from the front. When tilted, reflections appear on the document.";
+"selphid_component_tip_health_mad_alt"="Animation of a mobile phone taking a photo of a health card. The document appears horizontally, and the mobile phone in a vertical position. A box appears on the mobile screen. When the document fits inside the box, the application takes a photo.";
+"selphid_component_tutorial_1_health_mad_alt"="A white health card is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
+"selphid_component_tutorial_2_health_mad_alt"="A mobile phone takes a photo of a health card. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application makes a photo.";
+"selphid_component_tutorial_3_health_mad_alt"="A health card, seen from the front. When tilted, reflections appear on the document.";
+"selphid_component_tip_custom_alt" = "";
+"selphid_component_tutorial_1_custom_alt" = "";
+"selphid_component_tutorial_2_custom_alt" = "";
+"selphid_component_tutorial_3_custom_alt" = "";
+"selphid_component_timeout_title" = "Time exceeded";
+"selphid_component_timeout_front_desc" = "Check that the front of the document is inside the box and the data are visible.";
+"selphid_component_timeout_back_desc" = "Check that the back of the document is inside the box and the data are visible.";
+"selphid_component_timeout_generic_desc" = "Check that the document is inside the box and the data is visible.";
+```
+
+
+### 8.4 Widget  Customization
+
+SelphID has two different parts, the first one is the tips and tutorial pages as stated in previous sections.
+The second one is the capture widget.
+
+![Image](/iOS/Selphi/selphid_capture-001.png)
+
+This widget can also be customized by following the instructions inside [SelphID Resources](./../resources/SelphID_resources.md).

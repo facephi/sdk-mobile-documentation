@@ -115,7 +115,8 @@ To learn more about how to start a new operation, it is recommended to consult t
 | **Controller**            | **Description**                                |
 | ------------------------- | ---------------------------------------------- |
 | SelphiController          | Facial recognition main controller             |
-| RawTemplateController     | Driver to generate a RawTemplate from an image |
+| RawTemplateWidgetController     | Driver to generate a RawTemplate from an image with the Selphi Widget's function |
+| RawTemplateController     | Driver to generate a RawTemplate from an image with the FPBTokenizer function |
 | SignatureSelphiController | Driver to sign a process with a Capture        |
 
 ---
@@ -294,7 +295,7 @@ Returns the information from the QR reading in String format.
 
 ## 8. Additional Drivers
 
-### 8.1. RawTemplateController
+### 8.1. RawTemplateController & RawTemplateWidgetController
 
 Controller to generate a RawTemplate, you can use both the image in base64 and in data .
 
@@ -377,7 +378,7 @@ SDKController.shared.launch(controller: selphiController)
 #### 9.1.1 Animations guide
 
 - ***selphi_anim_tip***
-This animation is shown if the livenessMode configuration parameter is PASSIVE.
+This animation is shown if the livenessMode configuration parameter is **not** MOVE.
 
 ```
 var configSelphi = SelphiConfigurationData()

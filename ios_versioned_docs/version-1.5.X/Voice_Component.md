@@ -230,7 +230,7 @@ Facephi tokenised format.
 
 ---
 
-## Customisation of the component
+## 8. Customization of the component
 
 Apart from the changes that can be made at SDK level (which are
 explained in the <a href="Mobile_SDK"
