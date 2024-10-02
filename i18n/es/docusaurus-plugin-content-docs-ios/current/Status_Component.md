@@ -1,6 +1,6 @@
 # Status Component
 
-## 1. Introduction
+## 1. Introducción
 
 The _Component_ dealt with in the current document is called **_StatusComponent_**. It is in charge of the common UI used in the components. This _Component_ can is completely customizable. The elements you can override/change are:
 

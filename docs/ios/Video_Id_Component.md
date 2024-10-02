@@ -105,7 +105,7 @@ and what each of them is used for.
 
 The fields included in the configuration **(url, apiKey, tenantId)**,
 usually **do not need to be reported** as they are filled internally
-through the licence used.
+through the license used.
 
 These fields are usually **reported only** when the server is
 **OnPremise**.

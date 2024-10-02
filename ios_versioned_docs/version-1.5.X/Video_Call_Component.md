@@ -106,7 +106,7 @@ and what each of them is used for.
 
 The fields included in the configuration, normally **do not need to be
 be reported** as they are filled internally through the license used.
-licence used.
+license used.
 
 
 #### 5.1.1. Basic Configuration
@@ -223,7 +223,7 @@ They will be able to modify:
 
 
 #### IMPORTANT
-The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the licence.
+The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the license.
 
 ## 7. Receipt of the result
 
