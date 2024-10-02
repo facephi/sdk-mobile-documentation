@@ -14,6 +14,7 @@
         "Video_Call_Component",
         "Video_Id_Component",
         "Video_Recording_Component",
+        "Status_Component",
         "Sample_applications_use"
       ]
     }
