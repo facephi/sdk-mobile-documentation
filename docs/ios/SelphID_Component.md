@@ -504,7 +504,7 @@ var configSelphID = SelphIDConfigurationData()
 configSelphi.documentType = SelphIDDocumentType.FOREIGN_CARD
 ```
 
-![Image](/iOS/Selphi/selphid_tips-001.png)
+![MobileCapture](/iOS/SelphID/selphid_tips-001.png)
 
 - ***selphid_anim_tip_id_male & selphid_anim_tip_id_female***
 Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
@@ -552,17 +552,17 @@ The view that contains these animations is accessed by clicking on the More Info
 - ***selphid_anim_tuto_id_1***
 This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
 
-![Image](/iOS/Selphi/selphid_tutorial-001.png)
+![MobileCapture](/iOS/SelphID/selphid_tutorial-001.png)
 
 - ***selphid_anim_tuto_id_2***
 This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
 
-![Image](/iOS/Selphi/selphid_tutorial-002.png)
+![MobileCapture](/iOS/SelphID/selphid_tutorial-002.png)
 
 - ***selphid_anim_tuto_id_3***
 This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
 
-![Image](/iOS/Selphi/selphid_tutorial-003.png)
+![MobileCapture](/iOS/SelphID/selphid_tutorial-003.png)
 
 - ***selphid_anim_tuto_pass_1***
 This animation is shown if the documentType configuration parameter is *PASSPORT*. It is the first tutorial's step.
@@ -639,6 +639,6 @@ The texts can be customized by overriding the value of these keys inside a Local
 SelphID has two different parts, the first one is the tips and tutorial pages as stated in previous sections.
 The second one is the capture widget.
 
-![Image](/iOS/Selphi/selphid_capture-001.png)
+![MobileCapture](/iOS/SelphID/selphid_capture-001.png)
 
 This widget can also be customized by following the instructions inside [SelphID Resources](./../resources/SelphID_resources.md).

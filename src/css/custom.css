@@ -126,3 +126,7 @@ span.note {
   font-size: larger;
   font-weight: bold;
 }
+
+img[alt="MobileCapture"] {
+  width: 250px;
+}

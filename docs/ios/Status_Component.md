@@ -360,27 +360,29 @@ The tip is activated by default but can be skipped with the controller's configu
 
 Usually it's the first page the user will see after launching the Controller.
 
-![Image](/iOS/Status/status_tips-001.png)
+![MobileCapture](/iOS/Status/status_tips-001.png)
 
 
 ### 5.2 Tutorial Views
 
 The tutorial is accessed by the ***More Information*** button in the Tip. It's a set of views that further explain the process to the user.
 
-![Image](/iOS/Status/status_tutorial-001.png)
+![MobileCapture](/iOS/Status/status_tutorial-001.png)
 
 ### 5.3 Diagnostic View
 
 The Diagnostic view is shown to the user when there is information needed to continue the process.
 
-![Image](/iOS/Status/status_diagnostic-001.png)
+![MobileCapture](/iOS/Status/status_diagnostic-001.png)
 
 ### 5.4 Permission View
 
 Similar to Diagnostic view. It's shown when the capture process needs the user's approval to access some of the device's features. The difference is that this view contains a button that navigates to the device settings.
 
 ***Missing Camera Permissions***
-![Image](/iOS/Status/status_permissions-001.png)
+
+![MobileCapture](/iOS/Status/status_permissions-001.png)
 
 ***Missing Microphone Permissions***
-![Image](/iOS/Status/status_permissions-002.png)
+
+![MobileCapture](/iOS/Status/status_permissions-002.png)

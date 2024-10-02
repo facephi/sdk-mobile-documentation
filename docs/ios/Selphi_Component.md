@@ -386,7 +386,7 @@ var configSelphi = SelphiConfigurationData()
 configSelphi.livenessMode = SelphiFaceLivenessMode.PASSIVE
 ```
 
-![Image](/iOS/Selphi/selphi_tips-002.png)
+![MobileCapture](/iOS/Selphi/selphi_tips-001.png)
 
 - ***selphi_anim_tip_move***
 This animation is shown if the livenessMode configuration parameter is MOVE.
@@ -397,19 +397,19 @@ var configSelphi = SelphiConfigurationData()
 configSelphi.livenessMode = SelphiFaceLivenessMode.MOVE
 ```
 
-![Image](/iOS/Selphi/selphi_tips-002.png)
+![MobileCapture](/iOS/Selphi/selphi_tips-002.png)
 
 - ***selphi_anim_tuto_1***
 
-![Image](/iOS/Selphi/selphi_tutorial-001.png)
+![MobileCapture](/iOS/Selphi/selphi_tutorial-001.png)
 
 - ***selphi_anim_tuto_2***
 
-![Image](/iOS/Selphi/selphi_tutorial-002.png)
+![MobileCapture](/iOS/Selphi/selphi_tutorial-002.png)
 
 - ***selphi_anim_tuto_3***
 
-![Image](/iOS/Selphi/selphi_tutorial-003.png)
+![MobileCapture](/iOS/Selphi/selphi_tutorial-003.png)
 
 
 ### 9.2 Colors, images, dimensions and fonts
@@ -443,6 +443,6 @@ The texts can be customized by overriding the value of these keys inside a Local
 Selphi has two different parts, the first one is the tips and tutorial pages as stated in previous sections.
 The second one is the capture widget.
 
-![Image](/iOS/Selphi/selphi_capture-001.png)
+![MobileCapture](/iOS/Selphi/selphi_capture-001.png)
 
 This widget can also be customized by following the instructions inside [Selphi Resources](./../resources/Selphi_resources.md).
