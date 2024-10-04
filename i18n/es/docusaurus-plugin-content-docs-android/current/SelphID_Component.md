@@ -76,6 +76,7 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 | --------------- | ------------------------------ |
 | 2.0.2           | 1.25.1                         |
 | 2.0.3           | 1.26.0                         |
+| 2.1.0           | 1.27.0                         |
 
 ---
 
@@ -258,6 +259,8 @@ documento. Tiene 3 posibles valores:
 - SelphIDTimeout.MEDIUM: 20 segundos.
 
 - SelphIDTimeout.LONG: 25 segundos.
+
+- SelphIDTimeout.VERY_LONG: 60 segundos.
 
 #### 5.1.13 _videoFilename_
 
