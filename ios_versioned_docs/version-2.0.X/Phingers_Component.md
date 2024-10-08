@@ -97,9 +97,8 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 
 ## 3. Start new operation
 
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
+In order to generate the associated information correctly in the platform, the **newOperation** command must be executed first.
+
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.

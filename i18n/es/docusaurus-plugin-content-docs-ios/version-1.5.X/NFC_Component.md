@@ -448,3 +448,40 @@ Para aplicar este custom theme debemos usar la siguiente instrucción antes de l
 ```
 ThemeNFCManager.setup(theme: CustomThemeNFC())
 ```
+
+## 9. Troubleshooting
+
+### 9.1  OpenSSL contains bitcode
+
+El error específico puede verse al intentar subir un IPA. Ocurre en XCode 16.
+
+```
+Asset validation failed (90482) Invalid Executable. The executable 'Runner.app/Frameworks/OpenSSL.framework/OpenSSL' contains bitcode. (ID: 769a1928-0b74-4b3d-b58a-0cb36799d1df)
+```
+
+El error puede evitarse copiando el siguiente script dentro del Podfile:
+
+```
+post_install do |installer|
+  ### XCode 16 fix
+  bitcode_strip_path = `xcrun --find bitcode_strip`.chop!
+  def strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+  framework_path = File.join(Dir.pwd, framework_relative_path)
+  command = "#{bitcode_strip_path} #{framework_path} -r -o #{framework_path}"
+  puts "Stripping bitcode: #{command}"
+  system(command)
+  end
+  framework_paths = [
+  "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_armv7/OpenSSL.framework/OpenSSL",
+  "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_i386_x86_64-simulator/OpenSSL.framework/OpenSSL",
+  "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_x86_64-maccatalyst/OpenSSL.framework/OpenSSL",
+  "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/macos-arm64_x86_64/OpenSSL.framework/OpenSSL",
+  ]
+  
+  framework_paths.each do |framework_relative_path|
+    strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
+  end
+end
+```
+
+Tras pegar el script y ejecutar `pod install` el error debería desaparecer.

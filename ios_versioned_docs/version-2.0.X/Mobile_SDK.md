@@ -209,19 +209,19 @@ initialized. The steps to follow in the initialisation are as follows:
 
 1.  Include the Application object
 
-2.  Decide whether the licence will be included via a _String_ or a
+2.  Decide whether the license will be included via a _String_ or a
     _remote licensing service_ (**see section 3.1**).
 
-### 3.1 Licence injection
+### 3.1 license injection
 
-As discussed above, there are currently two ways to inject the licence:
+As discussed above, there are currently two ways to inject the license:
 
-#### a. Obtaining the licence through a service
+#### a. Obtaining the license through a service
 
 Through a service that requires a URL and an API-KEY as an identifier.
-This would avoid problems when manipulating the licence, as well as the
-constant replacement of these licences when a problem arises
-(malformation or improper modification, expiry of the licence...).
+This would avoid problems when manipulating the license, as well as the
+constant replacement of these licenses when a problem arises
+(malformation or improper modification, expiry of the license...).
 
 ```java
 // AUTO License
@@ -234,9 +234,9 @@ SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output:
 }, trackingController: trackingController)
 ```
 
-#### b. Injecting the licence as a String
+#### b. Injecting the license as a String
 
-You can assign the licence directly as a String, as follows:
+You can assign the license directly as a String, as follows:
 
 ```java
 // MANUAL License

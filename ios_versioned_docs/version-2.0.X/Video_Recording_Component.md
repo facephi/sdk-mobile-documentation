@@ -53,25 +53,25 @@ For the documented example, an app with SwiftUI has been used, but the component
 
 In our project we add a new target of type ***Broadcast Upload Extension:***
 
-![Image](/iOS/videoRecording-001.png)
+![Image](/iOS/VideoRecording/videoRecording-001.png)
 
 We configure the name of the extension, in this example it will be VideoRecording:
 
-![Image](/iOS/videoRecording-002.png)
+![Image](/iOS/VideoRecording/videoRecording-002.png)
 
 If the following modal appears, click activate:
 
-![Image](/iOS/videoRecording-003.png)
+![Image](/iOS/VideoRecording/videoRecording-003.png)
 
 This generates the following structure:
 
-![Image](/iOS/videoRecording-004.png)
+![Image](/iOS/VideoRecording/videoRecording-004.png)
 
 Where SampleHandler is the main class of the extension.
 
 **NOTE: It is important to keep in mind that the version number (MARKETING_VERSION) and the project version number must always be the same in both targets:**
 
-![Image](/iOS/videoRecording-005.png)
+![Image](/iOS/VideoRecording/videoRecording-005.png)
 
 ### 2.2 Creating the shared App Group
 
@@ -79,19 +79,19 @@ If we don't already have it in our app, we can create a new Capability of type A
 
 This will serve to create the shared container between our extension and the application target.
 
-![Image](/iOS/videoRecording-006.png)
+![Image](/iOS/VideoRecording/videoRecording-006.png)
 
 We assign a name to the new App Group after clicking on the + icon:
 
-![Image](/iOS/videoRecording-007.png)
+![Image](/iOS/VideoRecording/videoRecording-007.png)
 
 We select the same identifier in our extension. In this way both will have checked the App Group that we just created:
 
-![Image](/iOS/videoRecording-008.png)
+![Image](/iOS/VideoRecording/videoRecording-008.png)
 
 XCode will automatically generate or update the entitlement files involved to add the capability to each target:
 
-![Image](/iOS/videoRecording-009.png)
+![Image](/iOS/VideoRecording/videoRecording-009.png)
 
 ### 2.3 Dependencies required for integration
 
@@ -141,11 +141,11 @@ NOTE: You have to be careful to put the extension target outside the application
 
 We add our dependency to the project and assign it to the VideoRecording target:
 
-![Image](/iOS/videoRecording-010.png)
+![Image](/iOS/VideoRecording/videoRecording-010.png)
 
 We must then also add it to the target of the app in General → Framework, Libraries and Embedded Content:
 
-![Image](/iOS/videoRecording-011.png)
+![Image](/iOS/VideoRecording/videoRecording-011.png)
 
 ### 2.4 Implement the extension
 
@@ -268,9 +268,8 @@ extension SampleHandler: AgoraRtcEngineDelegate {
 
 ## 3. Start new operation
 
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
+In order to generate the associated information correctly in the platform, the **newOperation** command must be executed first.
+
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **prior to launch**.
@@ -335,11 +334,11 @@ Right now there are no resources to configure in the component.
 #### 6.1.1 Write permissions - Sandbox: rsync.samba(67364) deny(1) file-write-create
 If you see a compilation error regarding write permissions:
 
-![Image](/iOS/videoRecording-012.png)
+![Image](/iOS/VideoRecording/videoRecording-012.png)
 
 Check the status in Build Settings of the parameter **ENABLE_USER_SCRIPT_SANDBOXING**, its value must be **NO**.
 
-![Image](/iOS/videoRecording-013.png)
+![Image](/iOS/VideoRecording/videoRecording-013.png)
 
 ### 6.2 At runtime
 
@@ -347,11 +346,11 @@ Check the status in Build Settings of the parameter **ENABLE_USER_SCRIPT_SANDBOX
 
 When launching the component an error may appear in the Starscream dependency:
 
-![Image](/iOS/videoRecording-014.png)
+![Image](/iOS/VideoRecording/videoRecording-014.png)
 
 ***Solution*** - Upload the minimum Pod version from iOS11 to iOS12:
 
-![Image](/iOS/videoRecording-015.png)
+![Image](/iOS/VideoRecording/videoRecording-015.png)
 
 
 #### 6.2.2 QuickTime Player

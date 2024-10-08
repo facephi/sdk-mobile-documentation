@@ -75,19 +75,14 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 
 ## 3. Start new operation
 
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
+In order to generate the associated information correctly in the platform, the **newOperation** command must be executed first.
+
 <div class="note">
 <span class="note">:information_source:</span>
-This command must have been executed **prior to launch**.
-
-To learn more about how to start a new operation, it is recommended to
-consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
-documentation, which details and explains what this process consists of.
+This command must have been executed **before launch**.
+To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
+
 ---
 
 ## 4. Available controllers
@@ -111,7 +106,7 @@ and what each of them is used for.
 
 The fields included in the configuration, normally **do not need to be
 be reported** as they are filled internally through the license used.
-licence used.
+license used.
 
 #### 5.1.1. Basic Configuration
 
@@ -216,7 +211,7 @@ They will be able to modify:
 
 
 #### IMPORTANT
-The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the licence.
+The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the license.
 
 ## 7. Receipt of the result
 
@@ -335,7 +330,7 @@ of each _String_ by the desired one.
     <string name="video_call_accesibility_phone">Phone</string>
 ```
 
-### 8.4 Colors
+### 8.4 Colors repetido?
 
 ```java
 <!-- VIDEO CALL -->
