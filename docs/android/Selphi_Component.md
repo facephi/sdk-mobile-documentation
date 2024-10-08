@@ -64,6 +64,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | --------------- | ---------------------------- |
 | 2.0.2           | 5.13.1                       |
 | 2.0.3           | 5.13.4                       |
+| 2.1.0           | 5.14.1                       |
 
 ---
 
@@ -139,14 +140,14 @@ intuitively explains how the capture is performed.
 
 Sets the liveness mode of the widget. Allowed values are:
 
-- LIVENESS_NONE: Indicates that the photodetection mode should not be
+- SelphiFaceLivenessMode.NONE: Indicates that the photodetection mode should not be
   enabled in the authentication processes.
 
-- LIVENESS_PASSIVE: Indicates that the passive liveness test is
+- SelphiFaceLivenessMode.PASSIVE: Indicates that the passive liveness test is
   performed in the server, sending the corresponding "BestImage" or
   "TemplateRaw" for this purpose.
 
-- LIVENESS_MOVE: Indicates that the liveness test is active
+- SelphiFaceLivenessMode.MOVE: Indicates that the liveness test is active
   by displaying instructions during the capture, and returning
   the corresponding result of the process.
 
