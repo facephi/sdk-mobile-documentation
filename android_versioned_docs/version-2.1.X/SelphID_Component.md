@@ -79,11 +79,11 @@ When you want to perform a specific operation, in order to generate the
 associated information correctly in the platform, the **newOperation**
 command must first be executed.
 
+<div class="note">
+<span class="note">:information_source:</span>
 This command must have been executed **before launch**.
-
-To learn more about how to start a new operation, it is recommended to
-consult the [Getting Started](./Mobile_SDK)
-documentation, which details and explains what this process consists of.
+To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
+</div>
 
 ---
 
@@ -252,6 +252,8 @@ document. It has three possible values:
 
 - SelphIDTimeout.LONG: 25 seconds.
 
+- SelphIDTimeout.VERY_LONG: 60 segundos.
+
 #### 5.1.13 _videoFilename_
 
 Sets the absolute path to the filename where a video of the capture
@@ -306,10 +308,6 @@ configure the widget views.
 #### 5.1.19. showDiagnostic
 
 Display diagnostic screens at the end of the process
-
-#### 5.1.20. showPreviousTip
-
-Displays a pre-launch screen with information about the process to be performed and a launch button.
 
 ---
 
@@ -370,23 +368,32 @@ rel="nofollow">6. Result return</a> section-.
 
 On the error side, we will have the SelphIdError class.
 
-```java
-    SelphIDError.ACTIVITY_RESULT_ERROR
-    SelphIDError.BAD_EXTRACTOR_CONFIGURATION_ERROR
-    SelphIDError.CAMERA_PERMISSION_DENIED
-    SelphIDError.CANCEL_BY_USER
-    SelphIDError.CONTROL_NOT_INITIALIZATED_ERROR
-    SelphIDError.EXTRACTION_LICENSE_ERROR
-    SelphIDError.HARDWARE_ERROR
-    is SelphIDError.INITIALIZATION_ERROR -> it.error // More info
-    SelphIDError.NO_ERROR
-    SelphIDError.RESOURCES_NOT_FOUND
-    SelphIDError.SETTINGS_PERMISSION_ERROR
-    is SelphIDError.TIMEOUT
-    SelphIDError.UNEXPECTED_CAPTURE_ERROR
-    SelphIDError.UNKNOWN_ERROR
-    SelphIDError.FETCH_DATA_ERROR -> it.error
-```
+Error list:
+
+- ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+- ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
+- APPLICATION_CONTEXT_ERROR: The required application context is null.
+- BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration
+- CAMERA_PERMISSION_DENIED: User has rejected permissions.
+- CANCEL_BY_USER: The user has cancelled the process.
+- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- COMPONENT_LICENSE_ERROR: The component license is not correct.
+- CONTROL_NOT_INITIALIZATED_ERROROR: Widget: Initialisation error
+- EMPTY_LICENSE: The license string is empty.
+- EXTRACTION_LICENSE_ERROR: Widget: License error
+- FETCH_DATA_ERROR: Error in the collection of the result.
+- FLOW_ERROR: Error in the flow process.
+- HARDWARE_ERROR: Widget: Hardware error
+- INITIALIZATION_ERROR: Initialisation error.
+- MANAGER_NOT_INITIALIZED: Managers are null.
+- NO_DATA_ERROR: Input data is null.
+- OPERATION_NOT_CREATED: No operation is in progress.
+- RESOURCES_NOT_FOUND: Resource zip not found.
+- SETTINGS_PERMISSION_ERROR: Widget: Permission error
+- TIMEOUT: Timeout in process.
+- UNEXPECTED_CAPTURE_ERROR: Widget: Capture error
+- UNKNOWN_ERROR: Unknown Error
+- WIDGET_RESULT_DATA_ERROR: Error in widget output data
 
 ### 7.2. Receipt of correct execution - _data_
 
@@ -435,7 +442,7 @@ value, the more similar the data compared. If the calculation returns
 -1.0, then the document contains no common fields or there is no
 information yet from both sides.
 
-#### 7.2.6 _Propiedad captureProgress_
+#### 7.2.6 _captureProgress_
 
 This property returns the state the capture process was in when the
 widget ended. Here are the possible values:
@@ -553,4 +560,50 @@ each String to the desired one.
     <string name="selphid_component_timeout_desc">We apologize. The capture could not be made</string>
     <string name="selphid_component_internal_error_title">There was a technical problem</string>
     <string name="selphid_component_internal_error_desc">We apologize. The capture could not be made</string>
+    <!-- WIDGET -->
+    <string name="button_repeat">TRY AGAIN</string>
+    <string name="button_finish">ACCEPT</string>
+    <string name="button_skip">SKIP</string>
+    <string name="button_ready">READY</string>
+    <string name="CaptureTipFront">Please capture \n document\'s front</string>
+    <string name="CaptureInfoFront">Please capture \n document\'s front</string>
+    <string name="CaptureTipFrontID">Please capture \n document\'s front</string>
+    <string name="CaptureInfoFrontID">Please capture \n document\'s front</string>
+    <string name="CaptureTipFrontPP">Please capture passport</string>
+    <string name="CaptureInfoFrontPP">Please capture passport</string>
+    <string name="CaptureTipFrontDL">Please capture \n driver licence\'s front</string>
+    <string name="CaptureInfoFrontDL">Please capture\n driver licence\'s front</string>
+    <string name="CaptureTipBack">Please capture \n document\'s back</string>
+    <string name="CaptureInfoBack">Please capture \n document\'s back</string>
+    <string name="CaptureTipBackID">Please capture \n document\'s back</string>
+    <string name="CaptureInfoBackID">Please capture \n document\'s back</string>
+    <string name="CaptureTipBackPP">Please capture passport</string>
+    <string name="CaptureInfoBackPP">Please capture passport</string>
+    <string name="CaptureTipBackDL">Please capture \n driver license\'s back</string>
+    <string name="CaptureInfoBackDL">Please capture \n driver license\'s back</string>
+    <string name="CaptureSuccessFront">Document scanned \n successfully!</string>
+    <string name="CaptureSuccessBack">Document scanned \n successfully!</string>
+    <string name="CaptureError">Processing document...</string>
+    <string name="CaptureErrorLight">There is not \n enough light</string>
+    <string name="Tutorial1">Find a background \n with high contrast to \n capture the document</string>
+    <string name="Tutorial2">Be sure the images \n and text of the document \n are properly focused</string>
+    <string name="Tutorial3">Avoid any glare on \n the document to better \n capture the information</string>
+    <string name="Tutorial1_PP">Find a background \n with high contrast to \n capture the passport</string>
+    <string name="Tutorial2_PP">Be sure the images \n and text of the passport \n are properly focused</string>
+    <string name="Tutorial3_PP">Avoid any glare on \n the passport to better \n capture the information</string>
+    <string name="selphid_component_tutorial_title">Document Photo</string>
+    <string name="selphid_component_tutorial_button">Start</string>
+    <string name="selphid_component_tutorial_message">Focus your document inside the box. The photo will be taken automatically.</string>
+```
+
+### 8.2. Animations
+
+If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+
+```text
+selphid_anim_tip_driver_h.json
+selphid_anim_tip_health.json
+selphid_anim_tip_id_h.json
+selphid_anim_tip_mrz.json
+selphid_anim_tip_pass_h.json
 ```
