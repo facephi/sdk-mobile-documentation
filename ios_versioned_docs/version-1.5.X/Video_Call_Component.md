@@ -186,7 +186,7 @@ SDKController.launchMethod(
   )
   ```
 
-  <div class="warning">
+<div class="warning">
   <span class="warning">:warning:</span>
   The **launch** method should be used **by default**. This method allows
   use **_tracking_** if its component is activated, and do not
@@ -200,6 +200,7 @@ In that case, this method is used to prevent that information from being sent.
 to the platform.
 
 </div>
+
 The configuration data (`VideoCallConfigurationData`) also contains
 They will be able to modify:
 
