@@ -102,14 +102,14 @@ Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
 <div class="note">
-<span class="note">:information_source:</span>
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
+  <span class="note">:information_source:</span>
+  Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>. , en el que se detalla y explica en qué consiste este proceso.
+  data-linked-resource-id="2605285492" data-linked-resource-version="11"
+  data-linked-resource-type="page">Mobile SDK</a>. , en el que se detalla y explica en qué consiste este proceso.
 
-## </div>
+</div>
 
 ## 4. Controladores disponibles
 

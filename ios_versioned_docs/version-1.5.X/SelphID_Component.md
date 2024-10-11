@@ -125,13 +125,13 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 In order to generate the associated information correctly in the platform, the **newOperation** command must be executed first.
 
 <div class="note">
-<span class="note">:information_source:</span>
-This command must have been executed **before launch**.
+  <span class="note">:information_source:</span>
+  This command must have been executed **before launch**.
 
 To learn more about how to start a new operation, it is recommended to
 consult the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+  data-linked-resource-id="2605678593" data-linked-resource-version="15"
+  data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documentation, which details and explains what this process consists of.
 
 </div>
