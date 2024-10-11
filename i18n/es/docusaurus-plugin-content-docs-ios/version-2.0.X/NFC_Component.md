@@ -147,7 +147,7 @@ data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
 
-## </div>
+</div>
 
 ## 4. Controladores disponibles
 

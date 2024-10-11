@@ -93,7 +93,7 @@ Para saber más acerca de cómo iniciar una nueva operación, se recomienda cons
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste este proceso.
 
-## </div>
+</div>
 
 ## 4. Controladores disponibles
 

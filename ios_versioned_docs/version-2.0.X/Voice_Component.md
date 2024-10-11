@@ -196,7 +196,7 @@ certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
 
-## </div>
+</div>
 
 ## 7. Recepción del resultado
 

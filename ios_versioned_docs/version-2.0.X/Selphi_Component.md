@@ -130,7 +130,7 @@ data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documentation, which details and explains what this process consists of.
 
-## </div>
+</div>
 
 ## 4. Available controllers
 
@@ -287,7 +287,7 @@ certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
 
-## </div>
+</div>
 
 ## 7. Receipt of the result
 

@@ -207,7 +207,7 @@ flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 
-## </div>
+</div>
 
 ## 7. Recepción del resultado
 

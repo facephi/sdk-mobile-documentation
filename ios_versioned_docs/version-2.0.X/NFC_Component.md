@@ -142,7 +142,7 @@ consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a> documentation, which details and explains what this process consists of.
 
-## </div>
+</div>
 
 ## 4. Available controllers
 

@@ -111,7 +111,7 @@ data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
 
-## </div>
+</div>
 
 ## 4. Controladores disponibles
 
@@ -205,7 +205,7 @@ flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 
-## </div>
+</div>
 
 ## 7. Recepción del resultado
 

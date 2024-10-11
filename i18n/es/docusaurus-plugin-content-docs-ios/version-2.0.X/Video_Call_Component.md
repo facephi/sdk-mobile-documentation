@@ -110,7 +110,7 @@ data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
 
-## </div>
+</div>
 
 ## 4. Controladores disponibles
 
