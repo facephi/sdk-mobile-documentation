@@ -14,7 +14,6 @@ For more information on the base configuration, go to the
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a> section.
 
-
 ## 1. Introduction
 
 The component discussed in the current document is called VideoCall
@@ -23,6 +22,7 @@ and an agent remotely, through a communication channel. It is mainly
 oriented to video assistance use cases.
 
 ## 1.1 Minimum requirements
+
 The minimum iOS SDK version required is the following:
 
 Minimum iOS version: **13**
@@ -30,6 +30,7 @@ Minimum iOS version: **13**
 ---
 
 ## 2. Integración del componente
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
@@ -39,11 +40,13 @@ documentation related to:
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
+
 </div>
 This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, in case you want to
@@ -57,20 +60,24 @@ installing the **_SDKMobile_** components.
 ```java
   pod 'FPHISDKMainComponent', '~> 2.0.0'
 ```
+
 - To install the VideoCall component, the following entry must be included in the application Podfile:
+
 ```java
   pod 'FPHISDKVideoCallComponent', '~> 2.0.0'
 ```
+
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
 - In case of development with **xCode15** a post-installation script must be included:
-![Image](/iOS/fix_ldClassic.png)
+  ![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
+
 In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
 
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
- 
+
 ---
 
 ## 3. Start new operation
@@ -132,75 +139,79 @@ required for the connection to the video service.
 #### 5.1.3. Other parameters
 
 ##### VibrationEnabled
+
 If set to true, vibration is enabled on errors and if the widget response is OK.
 
 ---
 
 ## 6. Use of the component
+
 <div class="warning">
 <span class="warning">:warning:</span>
 For version 2.0.2 or higher, you must include the parameter extensionName: ‘’.
 This new parameter is for screen sharing, if not used it must be an empty string.
 
 let videocallController = VideoCallController(data: data, extensionName: "videoRecording", output: output, viewController: viewController)
-</div>
 
+</div>
 
 Once the component has been started and a new operation has been created (**section
 3**) the SDK components can be launched. There are two ways to launch
 the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
-   of the component normally, but **the events will be tracked**
-   internal to the _tracking_ server in the event that the component
-   tracking is installed and active:
+  of the component normally, but **the events will be tracked**
+  internal to the _tracking_ server in the event that the component
+  tracking is installed and active:
 
-    ```java
-    SDKController.shared.launch(controller: videocallController)
-    ```
+  ```java
+  SDKController.shared.launch(controller: videocallController)
+  ```
 
 - **\[NO TRACKING\]** This call allows launching the functionality
-   of the component normally, but **will not be tracked** any
-   event to the _tracking_ server in case the
-   tracking:
+  of the component normally, but **will not be tracked** any
+  event to the _tracking_ server in case the
+  tracking:
 
-   ```java
-   SDKController.shared.launchMethod(controller: videocallController)
-   ```
-<div class="warning">
-<span class="warning">:warning:</span>
-The **launch** method should be used **by default**. This method allows
-use **_tracking_** if its component is activated, and do not
-will be used when it is disabled (or the component is not found
-installed).
+  ```java
+  SDKController.shared.launchMethod(controller: videocallController)
+  ```
+
+  <div class="warning">
+  <span class="warning">:warning:</span>
+  The **launch** method should be used **by default**. This method allows
+  use **_tracking_** if its component is activated, and do not
+  will be used when it is disabled (or the component is not found
+  installed).
 
 On the contrary, the **launchMethod** method covers a special case, in
 which the integrator has tracking installed and activated, but in a
 certain flow within the application you do not want to track information.
 In that case, this method is used to prevent that information from being sent.
 to the platform.
+
 </div>
 The configuration data (`VideoCallConfigurationData`) also contains
 They will be able to modify:
 
 - **_<u>optional</u> data that is normally included within the license_**
 
-   - **tenantId**: Tenant identifier that refers to the
-     current client, necessary for connection with the service
-     video.
+  - **tenantId**: Tenant identifier that refers to the
+    current client, necessary for connection with the service
+    video.
 
-   - **url**: Path to the video socket.
+  - **url**: Path to the video socket.
 
-   - **apiKey**: ApiKey necessary for the connection with the socket
-     video.
+  - **apiKey**: ApiKey necessary for the connection with the socket
+    video.
 
 ---
 
- ### Example configuration
+### Example configuration
 
 ```
   log("LAUNCH VIDEO CALL")
-  
+
   let videocallController = VideoCallController(data: VideoCallConfigurationData(
                                                           url: "Enter URL",
                                                           apikey: "Enter the ApiKey",
@@ -209,8 +220,8 @@ They will be able to modify:
   SDKController.shared.launchMethod(controller: videocallController)
 ```
 
-
 #### IMPORTANT
+
 The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the license.
 
 ## 7. Receipt of the result
@@ -218,16 +229,16 @@ The values are assigned by default. **ONLY** must be configured in case of using
 The controllers will return the required information in SdkResult format
 -more details in the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>-.	
+data-linked-resource-type="page">Mobile SDK</a>-.
 
 ### 7.1. Receiving errors
 
 On the error side, we will have the VideoCallError class.
 
- VIDEO_CALL_CANCEL_BY_USER
- VIDEO_CALL_TIMEOUT
- VIDEO_CALL_INTERNAL_ERROR
- VIDEO_CALL_DECODER_ERROR
+VIDEO_CALL_CANCEL_BY_USER
+VIDEO_CALL_TIMEOUT
+VIDEO_CALL_INTERNAL_ERROR
+VIDEO_CALL_DECODER_ERROR
 
 ### 7.2. Receiving successful execution - _data_
 
@@ -257,21 +268,20 @@ SDKController.shared.launch(controller: videocallController)
 
 An example of the CustomThemeVideoCall class would be this (must implement ThemeVideoCallProtocol):
 
-
 ```
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
-    
+
     var colours: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
-    
+
     var animations: [R.Animation: String] = [:] var animations: [R.Animation: String] = [:]
-    
+
     var name: String {
         "custom"
     }
-    
+
     var fonts: [R.Font: String] = [:] var fonts: [R.Font: String] = [:] var font: [R.Font: String] = [:]
-    
+
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]
     }
@@ -279,11 +289,15 @@ class CustomThemeVideoCall: ThemeVideoCallProtocol {
 ```
 
 ### 8.1 Colours and images
+
 Images are initialised in the variable images , passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
+
 ```
 case close
 ```
+
 Colours are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+
 ```
 case ButtonBackground
 case ButtonBackgroundDisabled
@@ -295,17 +309,21 @@ case Primary
 case TitleText
 ```
 
-### 8.2 Fonts 
+### 8.2 Fonts
+
 Fonts are initialised similarly in the fonts variable with a dictionary, having as value a String with the name of the desired UIFont.
+
 ```
 case regular
 case bold
 ```
 
 The animations to be used are similarly initialised in the animations variable with a dictionary, having as value a String with the name of the animation found in the xcassets to be used.
+
 ```
 case phone_calling
 ```
+
 The size of the texts is initialised similarly in the dimensions variable with a dictionary, having as value a CGFloat with the desired size.
 
 ### 8.3 Texts

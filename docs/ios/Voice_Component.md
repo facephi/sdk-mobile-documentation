@@ -80,7 +80,7 @@ installing the **_SDKMobile_** components.
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ---
 

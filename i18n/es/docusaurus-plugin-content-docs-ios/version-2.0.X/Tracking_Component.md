@@ -1,7 +1,7 @@
 # Tracking Component
 
 ## 0. Requisitos base de SDK Mobile
- 
+
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
@@ -27,6 +27,7 @@ instalados en la _SDKMobile_. Para trackear la información se mantiene
 en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
 
 ### 1.1 Requisitos mínimos
+
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
@@ -34,6 +35,7 @@ Versión mínima de iOS: **13**
 ---
 
 ## 2. Integración del componente
+
 <div class="warning">
 <span class="warning">:warning:</span> 
 Antes de integrar este componente se recomienda leer la documentación
@@ -44,10 +46,12 @@ data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
+
 </div>
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la **SDKMobile**.
@@ -68,7 +72,7 @@ Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funci
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ---
 
@@ -109,6 +113,7 @@ let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
 ```
+
 Se añade en el initSDK:
 
 ```java
@@ -125,6 +130,7 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 ---
 
 ## 5. Uso del componente
+
 Como se ha comentado previamente, una vez inicializado y configurado el
 componente de **tracking** no será necesario lanzarlo, ya que se
 mantendrá funcionando en segundo plano mientras se ejecutan el resto de
@@ -146,18 +152,21 @@ con anterioridad un **_newOperation_**.
         return SDKController.shared.getExtraData()
     }
 ```
+
 ## 6. Recepción del resultado
 
-El resultado es un objeto *SDKResult* que devuelve el SDK tendrá siempre 3 campos:
+El resultado es un objeto _SDKResult_ que devuelve el SDK tendrá siempre 3 campos:
 
-*finishStatus*: Que nos indicará si la operación ha finalizado correctamente. Posibles valores:
+_finishStatus_: Que nos indicará si la operación ha finalizado correctamente. Posibles valores:
+
 ```
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
-*errorType*: Si el finishStatus indica que ha habido un error, este campo tendrá la descripción del mismo:
 
-Los errores de tracking vienen en el enum *TrackingError*:
+_errorType_: Si el finishStatus indica que ha habido un error, este campo tendrá la descripción del mismo:
+
+Los errores de tracking vienen en el enum _TrackingError_:
 
 ```
 INIT_DATA_ERROR
@@ -176,4 +185,5 @@ SESSION_ID
 OPERATION_ID
 FLOW
 ```
+
 ---

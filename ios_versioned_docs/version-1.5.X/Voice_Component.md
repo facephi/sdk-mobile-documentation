@@ -39,6 +39,7 @@ functionalities are the following:
 - Generation of templates with voice characteristics and scores.
 
 ## 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
@@ -46,6 +47,7 @@ Minimum iOS version: **13**
 ---
 
 ## 2. Integration of the component
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
@@ -55,11 +57,13 @@ documentation related to:
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
+
 </div>
 This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, in case you want to
@@ -73,16 +77,18 @@ installing the **_SDKMobile_** components.
 ```
   	pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+
 - To install the VoiceID component, the following entry must be included in the application Podfile:
+
 ```
 	pod 'FPHISDKVoiceIDComponent', '~> 1.5.0'
 ```
+
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
-
+![Image](/ios/fix_ldClassic.png)
 
 ---
 
@@ -177,6 +183,7 @@ let controller = VoiceController(
             }, viewController: viewController)
         SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
+
 <div class="warning">
 <span class="warning">:warning:</span>
 The **launch** method must be used by **default**. This method allows
@@ -188,8 +195,8 @@ which the integrator has tracking installed and activated, but in a
 certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
-</div>
----
+
+## </div>
 
 ## 7. Recepción del resultado
 

@@ -4,16 +4,16 @@
 
 **SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project
 
-For more information on the base configuration, go to the [1.5.X][EN] ***<a href="Mobile_SDK"
+For more information on the base configuration, go to the [1.5.X][EN] **_<a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>*** section. 
+data-linked-resource-type="page">iOS Mobile SDK</a>_** section.
 
 ---
 
 ## 1. Introduction
 
 The _Component_ dealt with in the current document is called the
-***Behaviour** Component. It is responsible for
+**\*Behaviour** Component. It is responsible for
 is in charge of tracking and analysing the user's behaviour
 through the **SDKMobile** components, sending it to the **Feedzai** services.
 services of **Feedzai**.
@@ -49,8 +49,7 @@ Once the dependencies are installed, the different functionalities of the compon
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
-
+![Image](/ios/fix_ldClassic.png)
 
 ---
 
@@ -65,6 +64,7 @@ import behaviorComponent
 ```
 
 Initialise:
+
 ```
 
 behaviorController = BehaviorController(autoLogoutAction: {
@@ -90,7 +90,9 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 }, behaviorController: behaviorController
 
 ```
+
 ---
+
 ## 4. Use of the component
 
 As previously mentioned, once the **behaviour/behaviour** component has been initialised and configured, it will not be necessary to launch it.
@@ -109,7 +111,7 @@ call the next process to register the user.
             behaviorError: { behaviorError in
                 self.log("BEHAVIOR ERROR: \(behaviorError)")
             }, debugMode: false)
-        
+
 ```
 
 ---

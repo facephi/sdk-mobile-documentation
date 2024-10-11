@@ -26,6 +26,7 @@ of the device in the background. It is mainly oriented for
 recording of the onboarding process.
 
 ## 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
@@ -43,6 +44,7 @@ documentation related to:
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
+
 </div>
 This section will explain step by step how to integrate the current
 component into an existing project.
@@ -51,21 +53,21 @@ component into an existing project.
 
 For the documented example, an app with SwiftUI has been used, but the component and documentation are valid regardless of whether UIKit or SwiftUI is used.
 
-In our project we add a new target of type ***Broadcast Upload Extension:***
+In our project we add a new target of type **_Broadcast Upload Extension:_**
 
-![Image](/iOS/VideoRecording/videoRecording-001.png)
+![Image](/ios/VideoRecording/videoRecording-001.png)
 
 We configure the name of the extension, in this example it will be VideoRecording:
 
-![Image](/iOS/VideoRecording/videoRecording-002.png)
+![Image](/ios/VideoRecording/videoRecording-002.png)
 
 If the following modal appears, click activate:
 
-![Image](/iOS/VideoRecording/videoRecording-003.png)
+![Image](/ios/VideoRecording/videoRecording-003.png)
 
 This generates the following structure:
 
-![Image](/iOS/VideoRecording/videoRecording-004.png)
+![Image](/ios/VideoRecording/videoRecording-004.png)
 
 By default, a file called `SampleHandler` is created. This file contains the main class of the extension.
 
@@ -75,11 +77,11 @@ To make use of Facephi's screen sharing functionality we should modify the key `
 videoRecordingComponent.VideoRecordingHandler
 ```
 
-![Image](/iOS/VideoRecording/videoRecording-2.1.InfoPList.png)
+![Image](/ios/VideoRecording/videoRecording-2.1.InfoPList.png)
 
 **NOTE: It is important to keep in mind that the version number (MARKETING_VERSION) and the project version number must always be the same in both targets:**
 
-![Image](/iOS/VideoRecording/videoRecording-005.png)
+![Image](/ios/VideoRecording/videoRecording-005.png)
 
 ### 2.2 Setting the NSMicrophoneUsageDescription
 
@@ -91,14 +93,13 @@ NSMicrophoneUsageDescription
 
 To our target's Info.plist, detailing why do we use this functionality.
 
-
 ### 2.3 Creating the shared App Group
 
 Now we need to create a new App Group's Capability.
 
 This will serve to create the shared container between our extension and the application target.
 
-![Image](/iOS/VideoRecording/videoRecording-006.png)
+![Image](/ios/VideoRecording/videoRecording-006.png)
 
 After clicking on the + icon.
 
@@ -108,16 +109,15 @@ After clicking on the + icon.
 group.com.facephi.videoRecording
 ```
 
-
-![Image](/iOS/VideoRecording/videoRecording-007.png)
+![Image](/ios/VideoRecording/videoRecording-007.png)
 
 We select the same identifier in our extension. In this way both will have checked the App Group that we just created:
 
-![Image](/iOS/VideoRecording/videoRecording-008.png)
+![Image](/ios/VideoRecording/videoRecording-008.png)
 
 XCode will automatically generate or update the entitlement files involved to add the capability to each target:
 
-![Image](/iOS/VideoRecording/videoRecording-009.png)
+![Image](/ios/VideoRecording/videoRecording-009.png)
 
 ### 2.4 Dependencies required for integration
 
@@ -140,6 +140,7 @@ pod 'FPHISDKMainComponent'
 - It is recommended to also use the VideoRecording component with the tracking component (`FPHISDKTrackingComponent`).
 
 - To install the current component, the following entry must be included in the application's Podfile:
+
 ```
 pod 'FPHISDKVideoRecordingComponent'
 ```
@@ -168,11 +169,11 @@ NOTE: You have to be careful to put the extension target outside the application
 
 We add our dependency to the project and assign it to the VideoRecording target:
 
-![Image](/iOS/VideoRecording/videoRecording-010.png)
+![Image](/ios/VideoRecording/videoRecording-010.png)
 
 We must then also add it to the target of the app in General → Framework, Libraries and Embedded Content:
 
-![Image](/iOS/VideoRecording/videoRecording-011.png)
+![Image](/ios/VideoRecording/videoRecording-011.png)
 
 ---
 
@@ -206,14 +207,14 @@ init(data: VideoRecordingConfigurationData?, extensionIdentifier: String?, outpu
 
 ### 4.2 Configuring the instance
 
-With the configuration data (*VideoRecordingConfigurationData*) you can also modify:
+With the configuration data (_VideoRecordingConfigurationData_) you can also modify:
 
 - **Optional data that is normally included within the license**
-     - **url**: Path to the video socket.
-     - **apiKey**: ApiKey required for connection to the video socket.
-     - **tenantId**: Tenant identifier that refers to the current client, necessary for the connection to the video service.
-     - **extractionTimeout**: How long (milliseconds) will the component wait for the socket before generating a timeout error.
-     - **showDiagnostic**: If an error occurs, the error will be displayed on the screen in addition to being sent with the output.
+  - **url**: Path to the video socket.
+  - **apiKey**: ApiKey required for connection to the video socket.
+  - **tenantId**: Tenant identifier that refers to the current client, necessary for the connection to the video service.
+  - **extractionTimeout**: How long (milliseconds) will the component wait for the socket before generating a timeout error.
+  - **showDiagnostic**: If an error occurs, the error will be displayed on the screen in addition to being sent with the output.
 
 ### 4.3 Launching the component
 
@@ -241,7 +242,8 @@ SDKController.shared.launch(controller: controller)
 The **launch** method should be used **by default**. This method allows you to use **tracking** if your component is activated, and will not use it when it is deactivated (or the component is not installed).
 
 On the contrary, the **launchMethod** method covers a special case, in which the integrator has tracking installed and activated, but in a given flow within the application they do not want to track information. In that case, this method is used to prevent that information from being sent to the platform.
-     </p>
+</p>
+
 </blockquote>
 
 ## 5. Component customization
@@ -253,13 +255,14 @@ Right now there are no resources to configure in the component.
 ### 6.1 At compile time
 
 #### 6.1.1 Write permissions - Sandbox: rsync.samba(67364) deny(1) file-write-create
+
 If you see a compilation error regarding write permissions:
 
-![Image](/iOS/VideoRecording/videoRecording-012.png)
+![Image](/ios/VideoRecording/videoRecording-012.png)
 
 Check the status in Build Settings of the parameter **ENABLE_USER_SCRIPT_SANDBOXING**, its value must be **NO**.
 
-![Image](/iOS/VideoRecording/videoRecording-013.png)
+![Image](/ios/VideoRecording/videoRecording-013.png)
 
 ### 6.2 At runtime
 
@@ -267,23 +270,21 @@ Check the status in Build Settings of the parameter **ENABLE_USER_SCRIPT_SANDBOX
 
 To debug an extension, we need to attach it to a launchable target. In this case, that would be our main app's target.
 
-
 #### 6.2.1 Starscream - EXC_BAD_ACCESS
 
 When launching the component an error may appear in the Starscream dependency:
 
-![Image](/iOS/VideoRecording/videoRecording-014.png)
+![Image](/ios/VideoRecording/videoRecording-014.png)
 
-***Workaround*** - Upload the minimum Pod version from iOS11 to iOS12:
+**_Workaround_** - Upload the minimum Pod version from iOS11 to iOS12:
 
-![Image](/iOS/VideoRecording/videoRecording-015.png)
+![Image](/ios/VideoRecording/videoRecording-015.png)
 
 #### 6.2.2 QuickTime Player
 
 When launching the component, if the iPhone is connected and already sharing screen through a QuickTime Player recording session, it won't work.
 
-***Solution*** - Close the QuickTime Player session.
-
+**_Solution_** - Close the QuickTime Player session.
 
 #### 6.2.3 Screen Sharing doesn't get started
 
@@ -291,20 +292,20 @@ When launching the component, we can't see the native prompt for screen sharing 
 
 Possible Cause: The extension created in your app has a Bundle Identifier. If that identifier has changed, maybe the old one is still persisted in the cache.
 
-***Possible Solution*** - Remove the app, and install it again. Restart the device if needed.
+**_Possible Solution_** - Remove the app, and install it again. Restart the device if needed.
 
 Possible Cause: The device already has a extension with the same Bundle Identifier.
 
-***Possible Solution*** - Make sure the extension's Bundle Identifier is unique
+**_Possible Solution_** - Make sure the extension's Bundle Identifier is unique
 
 Possible Cause: The device already has a extension with the same Name.
 
-***Possible Solution*** - Make sure that you are launching/selecting the correct screensharing extension. It is recommended to use (in development at least) unique names to avoid misunderstandings.
+**_Possible Solution_** - Make sure that you are launching/selecting the correct screensharing extension. It is recommended to use (in development at least) unique names to avoid misunderstandings.
 
 Possible Cause: The extensionName's string value injected in the VideoRecordingController initialization isn't correct.
 
-***Possible Solution*** - Make sure that you initialize send 
+**_Possible Solution_** - Make sure that you initialize send
 
 Possible Cause: The extension's target is not referenced or doesn't install the FPHISDKVideoRecordingComponent dependency in the Podfile.
 
-***Possible Solution*** - Check [Cocoapods Section](#2.4.1-cocoapods)
+**_Possible Solution_** - Check [Cocoapods Section](#2.4.1-cocoapods)

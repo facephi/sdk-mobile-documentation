@@ -27,6 +27,7 @@ comunicación. Está orientado principalmente para casos de uso de
 videoasistencia.
 
 ## 1.1 Requisitos mínimos
+
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
@@ -56,23 +57,29 @@ completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
 #### Cocoapods
+
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+
 - Para instalar el componente de VideoCall deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 ```java
   pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
 ```
+
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permisos y configuraciones
+
 En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **info.plist**
+
 ```
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
@@ -120,7 +127,6 @@ Los campos incluidos en la configuración, normalmente **no es necesario
 que sean informados** ya que se completan internamente a través de la
 licencia usada.
 
-
 #### 5.1.1. Configuración Básica
 
 ##### activateScreenSharing
@@ -128,7 +134,6 @@ licencia usada.
 Activar la opción de compartir pantalla en la llamada.
 
 #### 5.1.2. Configuración Avanzada
-
 
 #### 5.1.2.1. url
 
@@ -143,10 +148,10 @@ ApiKey necesaria para la conexión con el socket de video
 Identificador del tenant que hace referencia al cliente actual,
 necesario para la conexión con el servicio de video.
 
-
 #### 5.1.3. Otros parametros
 
 ##### VibrationEnabled
+
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
 ---
@@ -186,16 +191,15 @@ flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 
-
 En los datos de configuración (`VideoCallConfigurationData`) también se podrán modificar:
 
 - **Datos opcionales que normalmente se incluyen dentro de la licencia**
 
-	 - **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
+  - **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
 
-	- **url**: Ruta al socket de video.
+  - **url**: Ruta al socket de video.
 
-	- **apiKey**: ApiKey necesaria para la conexión con el socket de video.
+  - **apiKey**: ApiKey necesaria para la conexión con el socket de video.
 
 ---
 
@@ -203,7 +207,7 @@ En los datos de configuración (`VideoCallConfigurationData`) también se podrá
 
 ```
   log("LAUNCH VIDEO CALL")
-  
+
   let videocallController = VideoCallController(data: VideoCallConfigurationData(
                                                           url: "Enter URL",
                                                           apikey: "Enter the ApiKey",
@@ -219,12 +223,11 @@ Los valores se asignan por defecto. **SOLO** se debe configurar en caso de usar 
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. 
+Los controllers devolverán la información necesaria en formato SdkResult.
 Más información en la sección de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a>.
-
 
 ### 7.1. Recepción de errores
 
@@ -243,7 +246,6 @@ En la ejecución correcta, simplemente se informa de que todo ha ido bien
 con el SdkResult.Success.
 
 Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá activar compartir pantalla.
-
 
 ---
 
@@ -266,21 +268,20 @@ SDKController.shared.launch(controller: videocallController)
 
 Un ejemplo de la clase CustomThemeVideoCall sería este (debe implementar ThemeVideoCallProtocol):
 
-
 ```java
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
-    
+
     var colors: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red]
-    
+
     var animations: [R.Animation: String] = [:]
-    
+
     var name: String {
         "custom"
     }
-    
+
     var fonts: [R.Font: String] = [:]
-    
+
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]
     }
@@ -288,11 +289,15 @@ class CustomThemeVideoCall: ThemeVideoCallProtocol {
 ```
 
 ### 8.1 Colores e imágenes
+
 Las imagenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
+
 ```
 case close
 ```
+
 Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+
 ```
 case ButtonBackground
 case ButtonBackgroundDisabled
@@ -304,15 +309,18 @@ case Primary
 case TitleText
 ```
 
-### 8.2 Fuentes 
+### 8.2 Fuentes
+
 Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
+
 ```
 case regular
 case bold
 ```
 
 Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
-```
+
+````
 case phone_calling
 ``
 El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.
@@ -337,7 +345,7 @@ of each _String_ by the desired one.
     <string name="video_call_text_finish">Video assistance is complete</string>
     <string name="video_call_text_finish_button">Exit</string>
     <string name="video_call_accesibility_phone">Phone</string>
-```
+````
 
 ### 8.4 Colores
 

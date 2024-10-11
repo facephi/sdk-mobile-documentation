@@ -26,6 +26,7 @@ of the device in the background. It is mainly oriented for
 recording of the onboarding process.
 
 ## 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
@@ -43,6 +44,7 @@ documentation related to:
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
+
 </div>
 This section will explain step by step how to integrate the current
 component into an existing project.
@@ -51,27 +53,27 @@ component into an existing project.
 
 For the documented example, an app with SwiftUI has been used, but the component and documentation are valid regardless of whether UIKit or SwiftUI is used.
 
-In our project we add a new target of type ***Broadcast Upload Extension:***
+In our project we add a new target of type **_Broadcast Upload Extension:_**
 
-![Image](/iOS/VideoRecording/videoRecording-001.png)
+![Image](/ios/VideoRecording/videoRecording-001.png)
 
 We configure the name of the extension, in this example it will be VideoRecording:
 
-![Image](/iOS/VideoRecording/videoRecording-002.png)
+![Image](/ios/VideoRecording/videoRecording-002.png)
 
 If the following modal appears, click activate:
 
-![Image](/iOS/VideoRecording/videoRecording-003.png)
+![Image](/ios/VideoRecording/videoRecording-003.png)
 
 This generates the following structure:
 
-![Image](/iOS/VideoRecording/videoRecording-004.png)
+![Image](/ios/VideoRecording/videoRecording-004.png)
 
 Where SampleHandler is the main class of the extension.
 
 **NOTE: It is important to keep in mind that the version number (MARKETING_VERSION) and the project version number must always be the same in both targets:**
 
-![Image](/iOS/VideoRecording/videoRecording-005.png)
+![Image](/ios/VideoRecording/videoRecording-005.png)
 
 ### 2.2 Creating the shared App Group
 
@@ -79,19 +81,19 @@ If we don't already have it in our app, we can create a new Capability of type A
 
 This will serve to create the shared container between our extension and the application target.
 
-![Image](/iOS/VideoRecording/videoRecording-006.png)
+![Image](/ios/VideoRecording/videoRecording-006.png)
 
 We assign a name to the new App Group after clicking on the + icon:
 
-![Image](/iOS/VideoRecording/videoRecording-007.png)
+![Image](/ios/VideoRecording/videoRecording-007.png)
 
 We select the same identifier in our extension. In this way both will have checked the App Group that we just created:
 
-![Image](/iOS/VideoRecording/videoRecording-008.png)
+![Image](/ios/VideoRecording/videoRecording-008.png)
 
 XCode will automatically generate or update the entitlement files involved to add the capability to each target:
 
-![Image](/iOS/VideoRecording/videoRecording-009.png)
+![Image](/ios/VideoRecording/videoRecording-009.png)
 
 ### 2.3 Dependencies required for integration
 
@@ -113,6 +115,7 @@ pod 'FPHISDKMainComponent' , '~> 2.0.0'
 - It is recommended to also use the VideoRecording component with the tracking component (`FPHISDKTrackingComponent`).
 
 - To install the current component, the following entry must be included in the application's Podfile:
+
 ```
 pod 'FPHISDKVideoRecordingComponent' , '~> 2.0.0'
 ```
@@ -141,11 +144,11 @@ NOTE: You have to be careful to put the extension target outside the application
 
 We add our dependency to the project and assign it to the VideoRecording target:
 
-![Image](/iOS/VideoRecording/videoRecording-010.png)
+![Image](/ios/VideoRecording/videoRecording-010.png)
 
 We must then also add it to the target of the app in General → Framework, Libraries and Embedded Content:
 
-![Image](/iOS/VideoRecording/videoRecording-011.png)
+![Image](/ios/VideoRecording/videoRecording-011.png)
 
 ### 2.4 Implement the extension
 
@@ -231,7 +234,7 @@ extension SampleHandler: AgoraRtcEngineDelegate {
      /// cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraWarningCode.html
      /// @param warningCode warning code of the problem
      func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {}
-    
+
      /// callback when error occured for agora sdk, you are recommended to display the error descriptions on demand
      /// to let user know something wrong is happening
      /// Error code description can be found at:
@@ -239,18 +242,18 @@ extension SampleHandler: AgoraRtcEngineDelegate {
      /// cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
      /// @param errorCode error code of the problem
      func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {}
-    
+
      /// callback when the local user joins a specified channel.
      /// @param channel
      /// @param uid uid of local user
      /// @param elapsed time elapse since current sdk instance join the channel in ms
      func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {}
-    
+
      /// callback when a remote user is joining the channel, note audience in live broadcast mode will NOT trigger this event
      /// @param uid uid of remote joined user
      /// @param elapsed time elapse since current sdk instance join the channel in ms
      func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {}
-    
+
      /// callback when a remote user is leaving the channel, note audience in live broadcast mode will NOT trigger this event
      /// @param uid uid of remote joined user
      /// @param reason why this user left, note this event may be triggered when the remote user
@@ -258,7 +261,7 @@ extension SampleHandler: AgoraRtcEngineDelegate {
      func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
          // Replace domain's value with your Bundle Identifier
          let error = NSError(domain: "com.facephi.demosdk-videoRecording", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Call ended", comment: "")])
-        
+
          finishBroadcastWithError(error)
      }
 }
@@ -279,6 +282,7 @@ consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documentation, which details and explains what this process consists of.
+
 </div>
 
 ---
@@ -289,15 +293,12 @@ Once the component has been started and a new operation has been created (sectio
 
 - **[NO TRACKING]** This call allows the component's functionality to be launched normally, but **no event will be tracked** to the tracking server:
 
-
 ```java
 let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), appGroupName: "group.com.facephi.demosdk-videoRecording", extensionName: "VideoRecording", output: { _ in })
 SDKController.shared.launchMethod(controller: controller)
 ```
- 
 
 - **[WITH TRACKING]** This call allows the component's functionality to be launched normally, but internal events to the tracking server will be tracked:
-
 
 ```java
 let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), appGroupName: "group.com.facephi.demosdk-videoRecording", extensionName: "VideoRecording", output: { _ in })
@@ -309,17 +310,18 @@ SDKController.shared.launch(controller: controller)
 The **launch** method should be used **by default**. This method allows you to use **tracking** if your component is activated, and will not use it when it is deactivated (or the component is not installed).
 
 On the contrary, the **launchMethod** method covers a special case, in which the integrator has tracking installed and activated, but in a given flow within the application they do not want to track information. In that case, this method is used to prevent that information from being sent to the platform.
+
 </div>
 
-In the configuration data (*VideoRecordingConfigurationData*) you can also modify:
+In the configuration data (_VideoRecordingConfigurationData_) you can also modify:
 
 - **Optional data that is normally included within the license**
 
-     - **url**: Path to the video socket.
-     - **apiKey**: ApiKey required for connection to the video socket.
-     - **tenantId**: Tenant identifier that refers to the current client, necessary for the connection to the video service.
-     - **extractionTimeout**: How long (milliseconds) will the component wait for the socket before generating a timeout error.
-     - **showDiagnostic**: If an error occurs, the error will be displayed on the screen in addition to being sent with the output.
+  - **url**: Path to the video socket.
+  - **apiKey**: ApiKey required for connection to the video socket.
+  - **tenantId**: Tenant identifier that refers to the current client, necessary for the connection to the video service.
+  - **extractionTimeout**: How long (milliseconds) will the component wait for the socket before generating a timeout error.
+  - **showDiagnostic**: If an error occurs, the error will be displayed on the screen in addition to being sent with the output.
 
 ---
 
@@ -332,13 +334,14 @@ Right now there are no resources to configure in the component.
 ### 6.1 At compile time
 
 #### 6.1.1 Write permissions - Sandbox: rsync.samba(67364) deny(1) file-write-create
+
 If you see a compilation error regarding write permissions:
 
-![Image](/iOS/VideoRecording/videoRecording-012.png)
+![Image](/ios/VideoRecording/videoRecording-012.png)
 
 Check the status in Build Settings of the parameter **ENABLE_USER_SCRIPT_SANDBOXING**, its value must be **NO**.
 
-![Image](/iOS/VideoRecording/videoRecording-013.png)
+![Image](/ios/VideoRecording/videoRecording-013.png)
 
 ### 6.2 At runtime
 
@@ -346,19 +349,17 @@ Check the status in Build Settings of the parameter **ENABLE_USER_SCRIPT_SANDBOX
 
 When launching the component an error may appear in the Starscream dependency:
 
-![Image](/iOS/VideoRecording/videoRecording-014.png)
+![Image](/ios/VideoRecording/videoRecording-014.png)
 
-***Solution*** - Upload the minimum Pod version from iOS11 to iOS12:
+**_Solution_** - Upload the minimum Pod version from iOS11 to iOS12:
 
-![Image](/iOS/VideoRecording/videoRecording-015.png)
-
+![Image](/ios/VideoRecording/videoRecording-015.png)
 
 #### 6.2.2 QuickTime Player
 
 When launching the component, if the iPhone is connected and already sharing screen through a QuickTime Player recording session, it won't work.
 
-***Solution*** - Close the QuickTime Player session.
-
+**_Solution_** - Close the QuickTime Player session.
 
 #### 6.2.3 Screen Sharing doesn't get started
 
@@ -366,4 +367,4 @@ When launching the component, we can't see the native prompt for screen sharing 
 
 Possible Cause: The extension created in your app has a Bundle Identifier. If that identifier has changed, maybe the old one is still persisted in the cache.
 
-***Possible Solution*** - Remove the app, and install it again. Restart the device if needed.
+**_Possible Solution_** - Remove the app, and install it again. Restart the device if needed.

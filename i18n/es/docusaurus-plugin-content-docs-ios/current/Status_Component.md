@@ -81,13 +81,12 @@ git@github.com:facephi-clienters/SDK-StatusPackage-SPM.git
 
 ## 3. Available controllers
 
-|                   |                                      |
-| ----------------- | ------------------------------------ |
-| **Controller**    | **Description**                      |
-| StatusController  | Contains the exposed API methods     |
+|                  |                                  |
+| ---------------- | -------------------------------- |
+| **Controller**   | **Description**                  |
+| StatusController | Contains the exposed API methods |
 
 ---
-
 
 ## 4 Customize
 
@@ -127,7 +126,7 @@ enum Color: String, CaseIterable {
 
 By default:
 
-![Image](/iOS/Status/status_colors-001.png)
+![Image](/ios/Status/status_colors-001.png)
 
 #### 4.1.1 Customize colors with xcassets
 
@@ -180,8 +179,7 @@ enum Image: String, CaseIterable {
 
 By default:
 
-![Image](/iOS/Status/status_images-001.png)
-
+![Image](/ios/Status/status_images-001.png)
 
 #### 4.2.1 Customize images with xcassets
 
@@ -227,11 +225,11 @@ public var fonts: [R.Font: String] {
 }
 ```
 
-***Poppins-Regular***
-![Image](/iOS/Status/status_fonts-001.png)
+**_Poppins-Regular_**
+![Image](/ios/Status/status_fonts-001.png)
 
-***Poppins-SemiBold***
-![Image](/iOS/Status/status_fonts-002.png)
+**_Poppins-SemiBold_**
+![Image](/ios/Status/status_fonts-002.png)
 
 #### 4.3.1 Customize fonts
 
@@ -319,7 +317,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
         R.Image.ic_sdk_close_arrow: UIImage(named: "custom_arrow_icon"),
         // If the rest is not configured, only the ic_sdk_close_arrow is overrided and customized
     ]
-    
+
     var colors: [R.Color: UIColor?] = [
         R.Color.sdkPrimaryColor: UIColor.red,
         R.Color.sdkBackgroundColor: UIColor.white,
@@ -346,41 +344,40 @@ ThemeStatusManager.setup(theme: CustomThemeStatus())
 
 ---
 
-## 5 Working Example 
+## 5 Working Example
 
 There are four different views inside Status that can be configured.
 
 Aside from using a theme, the customization can be done with the assets approach. In this example, we can see the result of creating the following keys and values:
 
-![Image](/iOS/Status/status_assets_customization-001.png)
+![Image](/ios/Status/status_assets_customization-001.png)
 
 ### 5.1 Tip View
 
-The tip is activated by default but can be skipped with the controller's configuration parameter *showTutorial*.
+The tip is activated by default but can be skipped with the controller's configuration parameter _showTutorial_.
 
 Usually it's the first page the user will see after launching the Controller.
 
-![Image](/iOS/Status/status_tips-001.png)
-
+![Image](/ios/Status/status_tips-001.png)
 
 ### 5.2 Tutorial Views
 
-The tutorial is accessed by the ***More Information*** button in the Tip. It's a set of views that further explain the process to the user.
+The tutorial is accessed by the **_More Information_** button in the Tip. It's a set of views that further explain the process to the user.
 
-![Image](/iOS/Status/status_tutorial-001.png)
+![Image](/ios/Status/status_tutorial-001.png)
 
 ### 5.3 Diagnostic View
 
 The Diagnostic view is shown to the user when there is information needed to continue the process.
 
-![Image](/iOS/Status/status_diagnostic-001.png)
+![Image](/ios/Status/status_diagnostic-001.png)
 
 ### 5.4 Permission View
 
 Similar to Diagnostic view. It's shown when the capture process needs the user's approval to access some of the device's features. The difference is that this view contains a button that navigates to the device settings.
 
-***Missing Camera Permissions***
-![Image](/iOS/Status/status_permissions-001.png)
+**_Missing Camera Permissions_**
+![Image](/ios/Status/status_permissions-001.png)
 
-***Missing Microphone Permissions***
-![Image](/iOS/Status/status_permissions-002.png)
+**_Missing Microphone Permissions_**
+![Image](/ios/Status/status_permissions-002.png)

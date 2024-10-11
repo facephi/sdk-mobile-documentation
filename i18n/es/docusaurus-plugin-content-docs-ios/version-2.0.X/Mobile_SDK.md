@@ -29,7 +29,6 @@ Para tener acceso a nuestro repositorio privado, se requiere haber instalado pre
 
 Por cuestiones de seguridad y mantenimiento, los nuevos componentes de la **_SDKMobile_** se almacenan en unos repositorios privados que requieren de unas credenciales específicas para poder acceder a ellos. Esas credenciales deberá obtenerlas a través del equipo de soporte de Facephi. A continuación se indica como preparar el entorno para consumir los componentes:
 
-
 - Primero instalamos el comando que nos dará acceso a usar cocoapods con **Artifactory**.
 
 ```java
@@ -37,6 +36,7 @@ sudo gem install cocoapods-art
 ```
 
 - En caso de utilizar un Mac con **chip M1**, pueden surgir errores durante la instalación es posible que surjan errores en el futuro, de ser así, se recomienda usar en cambio el siguiente comando:
+
 ```java
 sudo arch -arm64 gem install ffi; sudo arch -arm64 gem install cocoapods-art
 ```
@@ -172,7 +172,7 @@ install_cocoapods
 
 En caso de usar **_xCode15_** se deberá realizar la siguiente configuración:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 Se deberá añadir **_-ld_classic_** en Other Linker Flags, en el Build Settings de la aplicación.
 
@@ -240,7 +240,7 @@ El controlador de TrackingController solo se añadirá en caso de tener el track
 
 Se añade el import:
 
-``` java
+```java
 import trackingComponent
 ```
 
@@ -248,14 +248,15 @@ trackingController: trackingController
 
 Inicializamos:
 
-``` java
+```java
 let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
 ```
+
 Se añade en el initSDK:
 
-``` java
+```java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
@@ -269,19 +270,20 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 #### 3.2.2. TokenizeController
 
 Se añade el import:
-``` java
+
+```java
 import tokenizeComponent
 ```
 
 Inicializamos:
 
-``` java
+```java
 let tokenizeController = TokenizeController()
 ```
 
 Se añade en el initSDK:
 
-``` java
+```java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
@@ -296,16 +298,19 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 
 Se añade el import:
 
-``` java
+```java
 import statusComponent
 ```
 
 Inicializamos:
-``` java
+
+```java
 let statusController = StatusController()
 ```
+
 Se añade en el initSDK:
-``` java
+
+```java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
     if sdkResult.finishStatus == .STATUS_OK {
@@ -315,6 +320,7 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
     }
 }, statusController: statusController)
 ```
+
 ---
 
 ## 4. Iniciar nueva operación
@@ -482,11 +488,11 @@ En caso de no existir ningún error y el resultado se devuelva correctamente, el
 
 ## 10. Personalización de la SDK
 
-La personalización se realiza mediante una clase del componente llamada Theme***Component***Manager. Donde ***Component*** debe sustituirse por el componente deseado.
+La personalización se realiza mediante una clase del componente llamada Theme**_Component_**Manager. Donde **_Component_** debe sustituirse por el componente deseado.
 
 Por ejemplo, videoidComponent contiene `ThemeVideoIdManager`, mientras que videocallComponent `ThemeVideoCallManager` …
 
-Este manager posee una instancia del tipo Theme***Component***Protocol. Si queremos personalizar cualquier detalle, tendríamos que crear una nueva clase que se adhiera a esta interfaz e inyectarla al Theme***Component***Manager.
+Este manager posee una instancia del tipo Theme**_Component_**Protocol. Si queremos personalizar cualquier detalle, tendríamos que crear una nueva clase que se adhiera a esta interfaz e inyectarla al Theme**_Component_**Manager.
 
 ```java
 class CustomThemeComponent: ThemeComponentProtocol {

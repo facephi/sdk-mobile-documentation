@@ -83,7 +83,7 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 #### SPM
 
