@@ -639,6 +639,6 @@ The texts can be customized by overriding the value of these keys inside a Local
 SelphID has two different parts, the first one is the tips and tutorial pages as stated in previous sections.
 The second one is the capture widget.
 
-![MobileCapture](/ios/SelphID/selphid_capture-001.png)
+![MobileCapture](/ios/SelphID/capture-001.png)
 
 This widget can also be customized by following the instructions inside [SelphID Resources](./../resources/SelphID_resources.md).
