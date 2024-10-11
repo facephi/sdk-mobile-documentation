@@ -495,8 +495,8 @@ SDKController.shared.launch(controller: selphidController)
 
 ##### 8.1.1 Main Tip Page
 
-- ***selphid_anim_tip***
-This animation is shown if the documentType configuration parameter is *FOREIGN_CARD* or *CREDIT_CARD*.
+- **_selphid_anim_tip_**
+  This animation is shown if the documentType configuration parameter is _FOREIGN_CARD_ or _CREDIT_CARD_.
 
 ```
 var configSelphID = SelphIDConfigurationData()
@@ -504,11 +504,11 @@ var configSelphID = SelphIDConfigurationData()
 configSelphi.documentType = SelphIDDocumentType.FOREIGN_CARD
 ```
 
-![MobileCapture](/iOS/SelphID/selphid_tips-001.png)
+![MobileCapture](/ios/SelphID/selphid_tips-001.png)
 
-- ***selphid_anim_tip_id_male & selphid_anim_tip_id_female***
-Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
-This animation is shown if the documentType configuration parameter is *ID_CARD*.
+- **_selphid_anim_tip_id_male & selphid_anim_tip_id_female_**
+  Both animations depict the same process but one with a man, and the other with a woman. By default, the _male_ is used.
+  This animation is shown if the documentType configuration parameter is _ID_CARD_.
 
 ```
 var configSelphID = SelphIDConfigurationData()
@@ -516,9 +516,9 @@ var configSelphID = SelphIDConfigurationData()
 configSelphi.documentType = SelphIDDocumentType.ID_CARD
 ```
 
-- ***selphid_anim_tip_pass_male & selphid_anim_tip_pass_female***
-Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
-This animation is shown if the documentType configuration parameter is *PASSPORT*.
+- **_selphid_anim_tip_pass_male & selphid_anim_tip_pass_female_**
+  Both animations depict the same process but one with a man, and the other with a woman. By default, the _male_ is used.
+  This animation is shown if the documentType configuration parameter is _PASSPORT_.
 
 ```
 var configSelphID = SelphIDConfigurationData()
@@ -526,9 +526,9 @@ var configSelphID = SelphIDConfigurationData()
 configSelphi.documentType = SelphIDDocumentType.PASSPORT
 ```
 
-- ***selphid_anim_tip_driver_male & selphid_anim_tip_driver_female***
-Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
-This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*.
+- **_selphid_anim_tip_driver_male & selphid_anim_tip_driver_female_**
+  Both animations depict the same process but one with a man, and the other with a woman. By default, the _male_ is used.
+  This animation is shown if the documentType configuration parameter is _DRIVERS_LICENSE_.
 
 ```
 var configSelphID = SelphIDConfigurationData()
@@ -536,9 +536,9 @@ var configSelphID = SelphIDConfigurationData()
 configSelphi.documentType = SelphIDDocumentType.DRIVERS_LICENSE
 ```
 
-- ***selphid_anim_tip_custom***
-Both animations depict the same process but one with a man, and the other with a woman. By default, the *male* is used.
-This animation is shown if the documentType configuration parameter is *CUSTOM*.
+- **_selphid_anim_tip_custom_**
+  Both animations depict the same process but one with a man, and the other with a woman. By default, the _male_ is used.
+  This animation is shown if the documentType configuration parameter is _CUSTOM_.
 
 ```
 var configSelphID = SelphIDConfigurationData()
@@ -547,57 +547,58 @@ configSelphi.documentType = SelphIDDocumentType.CUSTOM
 ```
 
 ##### 8.1.2 More Information - Tutorial's steps pages
+
 The view that contains these animations is accessed by clicking on the More Information button of the Tip view.
 
-- ***selphid_anim_tuto_id_1***
-This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
+- **_selphid_anim_tuto_id_1_**
+  This animation is shown if the documentType configuration parameter is _ID_CARD_, _FOREIGN_CARD_ or _CREDIT_CARD_.
 
-![MobileCapture](/iOS/SelphID/selphid_tutorial-001.png)
+![MobileCapture](/ios/SelphID/selphid_tutorial-001.png)
 
-- ***selphid_anim_tuto_id_2***
-This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
+- **_selphid_anim_tuto_id_2_**
+  This animation is shown if the documentType configuration parameter is _ID_CARD_, _FOREIGN_CARD_ or _CREDIT_CARD_.
 
-![MobileCapture](/iOS/SelphID/selphid_tutorial-002.png)
+![MobileCapture](/ios/SelphID/selphid_tutorial-002.png)
 
-- ***selphid_anim_tuto_id_3***
-This animation is shown if the documentType configuration parameter is *ID_CARD*, *FOREIGN_CARD* or *CREDIT_CARD*.
+- **_selphid_anim_tuto_id_3_**
+  This animation is shown if the documentType configuration parameter is _ID_CARD_, _FOREIGN_CARD_ or _CREDIT_CARD_.
 
-![MobileCapture](/iOS/SelphID/selphid_tutorial-003.png)
+![MobileCapture](/ios/SelphID/selphid_tutorial-003.png)
 
-- ***selphid_anim_tuto_pass_1***
-This animation is shown if the documentType configuration parameter is *PASSPORT*. It is the first tutorial's step.
+- **_selphid_anim_tuto_pass_1_**
+  This animation is shown if the documentType configuration parameter is _PASSPORT_. It is the first tutorial's step.
 
-- ***selphid_anim_tuto_pass_2***
-This animation is shown if the documentType configuration parameter is *PASSPORT*. It is the second tutorial's step.
+- **_selphid_anim_tuto_pass_2_**
+  This animation is shown if the documentType configuration parameter is _PASSPORT_. It is the second tutorial's step.
 
-- ***selphid_anim_tuto_pass_3***
-This animation is shown if the documentType configuration parameter is *PASSPORT*. It is the third tutorial's step.
+- **_selphid_anim_tuto_pass_3_**
+  This animation is shown if the documentType configuration parameter is _PASSPORT_. It is the third tutorial's step.
 
-- ***selphid_anim_tuto_driving_1***
-This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*. It is the first tutorial's step.
+- **_selphid_anim_tuto_driving_1_**
+  This animation is shown if the documentType configuration parameter is _DRIVERS_LICENSE_. It is the first tutorial's step.
 
-- ***selphid_anim_tuto_driving_2***
-This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*. It is the second tutorial's step.
+- **_selphid_anim_tuto_driving_2_**
+  This animation is shown if the documentType configuration parameter is _DRIVERS_LICENSE_. It is the second tutorial's step.
 
-- ***selphid_anim_tuto_driving_3***
-This animation is shown if the documentType configuration parameter is *DRIVERS_LICENSE*. It is the third tutorial's step.
+- **_selphid_anim_tuto_driving_3_**
+  This animation is shown if the documentType configuration parameter is _DRIVERS_LICENSE_. It is the third tutorial's step.
 
-- ***selphid_anim_tuto_custom_1***
-This animation is shown if the documentType configuration parameter is *CUSTOM*. It is the first tutorial's step.
+- **_selphid_anim_tuto_custom_1_**
+  This animation is shown if the documentType configuration parameter is _CUSTOM_. It is the first tutorial's step.
 
-- ***selphid_anim_tuto_custom_2***
-This animation is shown if the documentType configuration parameter is *CUSTOM*. It is the second tutorial's step.
+- **_selphid_anim_tuto_custom_2_**
+  This animation is shown if the documentType configuration parameter is _CUSTOM_. It is the second tutorial's step.
 
-- ***selphid_anim_tuto_custom_3***
-This animation is shown if the documentType configuration parameter is *CUSTOM*. It is the third tutorial's step.
+- **_selphid_anim_tuto_custom_3_**
+  This animation is shown if the documentType configuration parameter is _CUSTOM_. It is the third tutorial's step.
 
 ### 8.2 Colors, images, dimensions and fonts
 
-The customization of the other elements from previous images is done inside the [Status Component](./Status_Component). 
+The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).
 
 ### 8.3 Texts
 
-The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an ***_alt*** suffix are the accesibility label's needed for the ***voice over*** functionality to work.
+The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```
 "selphid_component_tutorial_1_desc"="Look for a background with good contrast.";
@@ -633,12 +634,11 @@ The texts can be customized by overriding the value of these keys inside a Local
 "selphid_component_timeout_generic_desc" = "Check that the document is inside the box and the data is visible.";
 ```
 
-
-### 8.4 Widget  Customization
+### 8.4 Widget Customization
 
 SelphID has two different parts, the first one is the tips and tutorial pages as stated in previous sections.
 The second one is the capture widget.
 
-![MobileCapture](/iOS/SelphID/selphid_capture-001.png)
+![MobileCapture](/ios/SelphID/selphid_capture-001.png)
 
 This widget can also be customized by following the instructions inside [SelphID Resources](./../resources/SelphID_resources.md).

@@ -39,6 +39,7 @@ Minimum iOS version: **13**
 ---
 
 ## 2. Component integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
@@ -47,8 +48,8 @@ documentation related to [Mobile SDK](./Mobile_SDK) and follow the instructions 
 This section will explain step by step how to integrate the current
 component into an existing project.
 
-
 ### 2.1 Dependencies required for integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 In order to avoid conflicts and compatibility problems, in case you want to
@@ -58,17 +59,21 @@ completely before the installation of the components of the **_SDKMobile_** comp
 </div>
 
 #### 2.1.1 Cocoapods
+
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
   pod 'FPHISDKMainComponent', '~> 2.0.0'
   pod 'zipzap'
 ```
-- To install the current component, the following entry must be included in the *Podfile* of the project
-  entry in the *Podfile* of the application:
+
+- To install the current component, the following entry must be included in the _Podfile_ of the project
+  entry in the _Podfile_ of the application:
+
 ```
   pod 'FPHISDKSelphiComponent', '~> 2.0.0'
 ```
+
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
 - In case of development with **xCode15** a post-installation script must be included:
@@ -76,14 +81,18 @@ completely before the installation of the components of the **_SDKMobile_** comp
 ![Image](/iOS/fix_ldClassic.png)
 
 #### 2.2.2 SPM
+
 - The mandatory dependencies that must have been previously installed are:
+
 ```
 //HTTPS
 https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 //SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
+
 - To install the Selphi component, it must be included in the project modules:
+
 ```
 //HTTPS
 https://github.com/facephi-clienters/SDK-Selphi_component-SPM.git
@@ -92,10 +101,13 @@ git@github.com:facephi-clienters/SDK-Selphi_component-SPM.git
 ```
 
 ### 2.2 Permissions and configurations
+
 In the client application where the components are to be integrated, it is necessary to incorporate the following elements in the info.plist file
+
 ```
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
 ```
+
 ---
 
 ## 3. Start new operation
@@ -112,12 +124,12 @@ To learn more about how to start a new operation, it is recommended to consult t
 
 ## 4. Available controllers
 
-| **Controller**            | **Description**                                |
-| ------------------------- | ---------------------------------------------- |
-| SelphiController          | Facial recognition main controller             |
-| RawTemplateWidgetController     | Driver to generate a RawTemplate from an image with the Selphi Widget's function |
-| RawTemplateController     | Driver to generate a RawTemplate from an image with the FPBTokenizer function |
-| SignatureSelphiController | Driver to sign a process with a Capture        |
+| **Controller**              | **Description**                                                                  |
+| --------------------------- | -------------------------------------------------------------------------------- |
+| SelphiController            | Facial recognition main controller                                               |
+| RawTemplateWidgetController | Driver to generate a RawTemplate from an image with the Selphi Widget's function |
+| RawTemplateController       | Driver to generate a RawTemplate from an image with the FPBTokenizer function    |
+| SignatureSelphiController   | Driver to sign a process with a Capture                                          |
 
 ---
 
@@ -139,29 +151,36 @@ and what each is used for.
 Sets the path to the widget's resource file. This file contains both the graphics resources and the localisation resources. This path must be specified relative to the 'assets' folder of the main application.
 
 ##### showTutorial
+
 This property allows to show the tutorial before the capture process.
 
 ##### showDiagnostic
+
 If set to true, when an error or lack of permissions occurs, the sdk will display a screen with the error returned by the widget.
 
 ##### showResultAfterCapture
+
 Indicates whether or not to display a screen with the captured image of the document after the analysis process. This screen gives the user the possibility to repeat the capture process if the image obtained from the document is not correct.
 
 #### 5.1.2 Advanced Settings
 
 ##### debug
+
 Activation of the debug mode of the component.
 
 ##### fullscreen
+
 Indicates if the view will have priority to be displayed in fullscreen, if the system allows it.
 fullscreen, if the system allows it.
 
 ##### cropPercent
+
 Allows to modify the crop percentage of the face. The higher the
 the higher the number, the more the rectangle is cropped with respect to the face.
 face.
 
 ##### locale
+
 Forces the widget to use the language setting indicated by the
 locale parameter. This parameter accepts both a language code (e.g. 'en') and a regional identification code (e.g. 'en_US').
 e.g. 'en') and a regional identification code (e.g. 'en_US'). If
@@ -170,6 +189,7 @@ locale' selected, its configuration will fall back to the default language.
 language.
 
 ##### livenessMode
+
 Sets the liveness mode of the widget. Allowed values are:
 
 - **SelphiFaceLivenessMode.NONE**: Indicates that photo detection mode should not be enabled in authentication processes.
@@ -179,15 +199,19 @@ Sets the liveness mode of the widget. Allowed values are:
 - **SelphiFaceLivenessMode.MOVE**: Indicates that the liveness test is active by displaying instructions during the capture, and returning the corresponding result of the process.
 
 ##### stabilizationMode
+
 Sets a stabilisation mode prior to any authentication process in the widget. This mode forces the widget not to start any process if the user is not facing forward and not moving his head.
 
 ##### templateRawOptimized
+
 Indicates whether the template (templateRaw) generated after the selfie should be optimised or not.
 
 ##### qrMode
+
 Boolean indicating whether or not to activate QR reading prior to the authentication process.
 
 ##### videoFilename
+
 Sets the absolute path to the filename where a video of the capture process will be recorded.
 a video of the capture process will be recorded. The application is responsible for
 requesting the necessary permissions from the phone in case that path requires additional permissions.
@@ -196,20 +220,24 @@ recording process unless a file path is specified using this method.
 file path is specified using this method.
 
 ##### cameraFlashEnabled
+
 Indicates whether the device's camera flash is enabled.
 
 ##### translationsContent
+
 This advanced property allows, by means of a string in xml format,
 to configure the translation of the literals displayed during the process.
 process.
 
 ##### viewsContent
+
 This advanced property allows, by means of a string in xml format,
 to configure the views of the widget.
 
 #### 5.1.3 Otros parametros
 
 ##### VibrationEnabled
+
 If true, vibration is enabled on errors and if the response of the widget is OK
 
 ---
@@ -237,6 +265,7 @@ SDKController.shared.launch(controller: controller)
 let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
+
 <div class="warning">
 <span class="warning">:warning:</span>
 The **launch** method must be used by **default**. This method allows
@@ -248,8 +277,8 @@ in which the integrator has tracking installed and activated but, in a
 certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
-</div>
----
+
+## </div>
 
 ## 7. Receipt of the result
 
@@ -257,12 +286,15 @@ The controllers will return the required information in SdkResult format (more d
 
 ### 7.1. Receiving errors
 
-*finishStatus*: Which will tell us if the operation has finished successfully. Possible values:
+_finishStatus_: Which will tell us if the operation has finished successfully. Possible values:
+
 ```
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
-*errorType*: Widget's own errors
+
+_errorType_: Widget's own errors
+
 ```
 SELPHID_CANCEL_BY_USER
 SELPHID_TIMEOUT
@@ -277,18 +309,23 @@ RESOURCES_FILE_NOT_FOUND
 The data field is variable and will depend on which component the result was returned. In the case of this component, the fields returned are as follows:
 
 #### 7.2.1 template
+
 Returns the template that is generated after the extraction process. Valid for the AUTHENTICATION process.
 
 #### 7.2.2 templateRaw
+
 Returns the raw template that is generated after the extraction process. Valid for the AUTHENTICATION process.
 
 #### 7.2.3 bestImageData
+
 Returns the best image extracted from the authentication process in byte array format. This image is the image with the original size extracted from the camera. Valid for the **liveness** process.
 
 #### 7.2.4 bestImageCroppedData
+
 Returns a cropped image centered on the user's face in byte array format. This image is obtained from the bestImage. This is the image to be used as the characteristic image of the user who performed the process as an avatar.
 
 #### 7.2.5 QrData
+
 Returns the information from the QR reading in String format.
 
 ---
@@ -311,8 +348,7 @@ let controller = RawTemplateController(
 SDKController.shared.launchMethod(controller: controller)
 ```
 
-or 
-
+or
 
 ```java
 let controller = RawTemplateController(
@@ -323,7 +359,6 @@ let controller = RawTemplateController(
 	})
 SDKController.shared.launchMethod(controller: controller)
 ```
-
 
 ---
 
@@ -377,8 +412,8 @@ SDKController.shared.launch(controller: selphiController)
 
 #### 9.1.1 Animations guide
 
-- ***selphi_anim_tip***
-This animation is shown if the livenessMode configuration parameter is **not** MOVE.
+- **_selphi_anim_tip_**
+  This animation is shown if the livenessMode configuration parameter is **not** MOVE.
 
 ```
 var configSelphi = SelphiConfigurationData()
@@ -386,10 +421,10 @@ var configSelphi = SelphiConfigurationData()
 configSelphi.livenessMode = SelphiFaceLivenessMode.PASSIVE
 ```
 
-![MobileCapture](/iOS/Selphi/selphi_tips-001.png)
+![MobileCapture](/ios/Selphi/selphi_tips-001.png)
 
-- ***selphi_anim_tip_move***
-This animation is shown if the livenessMode configuration parameter is MOVE.
+- **_selphi_anim_tip_move_**
+  This animation is shown if the livenessMode configuration parameter is MOVE.
 
 ```
 var configSelphi = SelphiConfigurationData()
@@ -397,24 +432,23 @@ var configSelphi = SelphiConfigurationData()
 configSelphi.livenessMode = SelphiFaceLivenessMode.MOVE
 ```
 
-![MobileCapture](/iOS/Selphi/selphi_tips-002.png)
+![MobileCapture](/ios/Selphi/selphi_tips-002.png)
 
-- ***selphi_anim_tuto_1***
+- **_selphi_anim_tuto_1_**
 
-![MobileCapture](/iOS/Selphi/selphi_tutorial-001.png)
+![MobileCapture](/ios/Selphi/selphi_tutorial-001.png)
 
-- ***selphi_anim_tuto_2***
+- **_selphi_anim_tuto_2_**
 
-![MobileCapture](/iOS/Selphi/selphi_tutorial-002.png)
+![MobileCapture](/ios/Selphi/selphi_tutorial-002.png)
 
-- ***selphi_anim_tuto_3***
+- **_selphi_anim_tuto_3_**
 
-![MobileCapture](/iOS/Selphi/selphi_tutorial-003.png)
-
+![MobileCapture](/ios/Selphi/selphi_tutorial-003.png)
 
 ### 9.2 Colors, images, dimensions and fonts
 
-The customization of the other elements from previous images is done inside the [Status Component](./Status_Component). 
+The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).
 
 ### 9.3 Texts
 
@@ -437,12 +471,11 @@ The texts can be customized by overriding the value of these keys inside a Local
 "selphi_component_timeout_desc" = "We were unable to identify you. Please try again";
 ```
 
-
-### 9.4 Widget  Customization
+### 9.4 Widget Customization
 
 Selphi has two different parts, the first one is the tips and tutorial pages as stated in previous sections.
 The second one is the capture widget.
 
-![MobileCapture](/iOS/Selphi/selphi_capture-001.png)
+![MobileCapture](/ios/Selphi/selphi_capture-001.png)
 
 This widget can also be customized by following the instructions inside [Selphi Resources](./../resources/Selphi_resources.md).
