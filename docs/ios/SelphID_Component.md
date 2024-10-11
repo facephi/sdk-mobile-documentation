@@ -504,7 +504,7 @@ var configSelphID = SelphIDConfigurationData()
 configSelphi.documentType = SelphIDDocumentType.FOREIGN_CARD
 ```
 
-![MobileCapture](/ios/SelphID/selphid_tips-001.png)
+![MobileCapture](/ios/SelphID/tips-001.png)
 
 - **_selphid_anim_tip_id_male & selphid_anim_tip_id_female_**
   Both animations depict the same process but one with a man, and the other with a woman. By default, the _male_ is used.
@@ -553,17 +553,17 @@ The view that contains these animations is accessed by clicking on the More Info
 - **_selphid_anim_tuto_id_1_**
   This animation is shown if the documentType configuration parameter is _ID_CARD_, _FOREIGN_CARD_ or _CREDIT_CARD_.
 
-![MobileCapture](/ios/SelphID/selphid_tutorial-001.png)
+![MobileCapture](/ios/SelphID/tutorial-001.png)
 
 - **_selphid_anim_tuto_id_2_**
   This animation is shown if the documentType configuration parameter is _ID_CARD_, _FOREIGN_CARD_ or _CREDIT_CARD_.
 
-![MobileCapture](/ios/SelphID/selphid_tutorial-002.png)
+![MobileCapture](/ios/SelphID/tutorial-002.png)
 
 - **_selphid_anim_tuto_id_3_**
   This animation is shown if the documentType configuration parameter is _ID_CARD_, _FOREIGN_CARD_ or _CREDIT_CARD_.
 
-![MobileCapture](/ios/SelphID/selphid_tutorial-003.png)
+![MobileCapture](/ios/SelphID/tutorial-003.png)
 
 - **_selphid_anim_tuto_pass_1_**
   This animation is shown if the documentType configuration parameter is _PASSPORT_. It is the first tutorial's step.

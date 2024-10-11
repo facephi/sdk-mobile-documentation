@@ -504,7 +504,7 @@ var configSelphID = SelphIDConfigurationData()
 configSelphi.documentType = SelphIDDocumentType.FOREIGN_CARD
 ```
 
-![MobileCapture](/ios/SelphID/selphid_tips-001.png)
+![MobileCapture](/ios/SelphID/tips-001.png)
 
 - **_selphid_anim_tip_id_male & selphid_anim_tip_id_female_**
   Both animations depict the same process but one with a man, and the other with a woman. By default, the _male_ is used.
