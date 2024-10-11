@@ -60,11 +60,13 @@ data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Mobile
 SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
+
 </div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
@@ -81,24 +83,27 @@ completo antes de la instalación de los componentes de la
 ```
 
 - Para instalar el componente de VoiceID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 ```
 	 pod 'VoiceIdController', '~> 1.5.0'
 ```
+
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-![Image](/iOS/fix_ldClassic.png)
-
+![Image](/ios/fix_ldClassic.png)
 
 ---
 
 ## 3. Iniciar nueva operación
+
 <div class="note">
 <span class="note">:information_source:</span>
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
+
 </div>
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
@@ -188,6 +193,7 @@ let controller = VoiceController(
             }, viewController: viewController)
         SDKController.shared.launchTokenizableMethod(controller: controller)
 ```
+
 <div class="warning">
 <span class="warning">:warning:</span>
 El método **launchTokenizableMethod** debe usarse **por defecto**. Este método permite
@@ -200,8 +206,8 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+
 </div>
----
 
 ## 7. Recepción del resultado
 

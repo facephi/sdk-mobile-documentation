@@ -62,7 +62,7 @@ installing the **_SDKMobile_** components.
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
 - In case of development with **xCode15** a post-installation script must be included:
-  ![Image](/iOS/fix_ldClassic.png)
+  ![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
 
@@ -137,12 +137,14 @@ If set to true, vibration is enabled on errors and if the widget response is OK.
 ---
 
 ## 6. Use of the component
+
 <div class="warning">
 <span class="warning">:warning:</span>
 For version 2.0.2 or higher, you must include the parameter extensionName: ‘’.
 This new parameter is for screen sharing, if not used it must be an empty string.
 
 let videocallController = VideoCallController(data: data, extensionName: "videoRecording", output: output, viewController: viewController)
+
 </div>
 
 Once the component has been started and a new operation has been created (**section

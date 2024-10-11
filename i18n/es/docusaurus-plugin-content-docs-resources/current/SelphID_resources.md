@@ -2,7 +2,7 @@
 
 ## 0. Requisitos de SelphID
 
-**SelphID legacy widget** es un producto de Facephi que va integrado en el componente de Selphi. 
+**SelphID legacy widget** es un producto de Facephi que va integrado en el componente de Selphi.
 
 Para su correcto funcionamiento hace uso de un fichero zip de recursos que se va actualizando por versión.
 
@@ -12,12 +12,12 @@ Para su correcto funcionamiento hace uso de un fichero zip de recursos que se va
 
 El fichero de recursos se puede obtener de los siguientes enlaces:
 
-| **Versión de SelphID** | **Enlace**            |
-| -------------- | -------------------------- |
-| 1.25.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.0/fphi-selphid-widget-resources-selphid-1.25.0.zip" rel="nofollow"> Recursos v.1.25.0</a> |
-| 1.25.1  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.1/fphi-selphid-widget-resources-selphid-1.25.1.zip" rel="nofollow"> Recursos v.1.25.1</a> |
-| 1.26.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.26.0/fphi-selphid-widget-resources-selphid-1.26.0.zip" rel="nofollow"> Recursos v.1.26.0</a> |
-| 1.27.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.27.0/fphi-selphid-widget-resources-selphid-1.27.0.zip" rel="nofollow"> Recursos v.1.27.0</a> |
+| **Versión de SelphID** | **Enlace**                                                                                                                                                                               |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.25.0                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.0/fphi-selphid-widget-resources-selphid-1.25.0.zip" rel="nofollow"> Recursos v.1.25.0</a> |
+| 1.25.1                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.1/fphi-selphid-widget-resources-selphid-1.25.1.zip" rel="nofollow"> Recursos v.1.25.1</a> |
+| 1.26.0                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.26.0/fphi-selphid-widget-resources-selphid-1.26.0.zip" rel="nofollow"> Recursos v.1.26.0</a> |
+| 1.27.0                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.27.0/fphi-selphid-widget-resources-selphid-1.27.0.zip" rel="nofollow"> Recursos v.1.27.0</a> |
 
 ---
 
@@ -31,10 +31,12 @@ El zip de recursos debe guardarse en la carpeta _assets_ de la aplicación.
 
 ---
 
-## 3. Personalización del zip 
+## 3. Personalización del zip
+
 Este componente permite la personalización de textos, imágenes, fuentes de letra y colores. La personalización se realiza mediante el archivo .zip suministrado internamente. Este zip está compuesto de un fichero llamado widget.xml que contiene la definición de todas las pantallas del widget, cada una de ellas con una serie de elementos los cuales permiten realizar la personalización. El archivo zip también contiene una carpeta con recursos gráficos y otra carpeta con las traducciones de los textos.
 
 ### 3.1. Descripción básica
+
 #### 3.1.1. Personalización de textos
 La personalización de textos se realiza editando los textos de los archivos de traducciones existentes en el .zip de recursos.
 
@@ -42,6 +44,7 @@ La personalización de textos se realiza editando los textos de los archivos de 
     - /strings/strings.xml
 
 #### 3.1.2. Personalización de imágenes
+
 Para personalizar las imágenes que usa el widget se deben añadir las imágenes en el .zip de recursos. En el zip vienen 3 carpetas:
 
     - /resources/163dpi
@@ -55,18 +58,23 @@ Es necesario añadir las imágenes en todas las carpetas, ya que una vez determi
 Las imágenes son referenciadas desde el archivo `widget.xml`.
 
 #### 3.1.3. Personalización de colores
+
 La personalización de los colores de los botones se realiza desde el archivo `widget.xml`. En él se puede personalizar cualquier color de cualquier elemento gráfico que aparece en el widget. Simplemente basta con modificar el color de la propiedad deseada.
 
 #### 3.1.4. Personalización de tipo de fuente
+
 Los archivos de tipografía deben colocarse en la carpeta `/resources/163dpi` y una vez ahí pueden ser referenciados desde el archivo `widget.xml`. Para cambiar el tipo de letra de un elemento de texto bastaría con modificar la propiedad ‘font’ y poner el nombre del archivo correspondiente.
 
 En el siguiente apartado se ampliará la información acerca del contenido del bundle de recursos y el modo de modificar.
 
 ### 3.2. Descripción avanzada
+
 #### 3.2.1. Widget.xml
+
 Este fichero contiene la definición de todas las propiedades que son configurables en los procesos de autenticación y registro. Está dividido por pantallas de navegación y dentro de cada etiqueta de pantalla se encuentran todas las propiedades que pueden modificarse.
 
 #### 3.2.2. Carpeta strings
+
 Esta carpeta contiene un fichero `strings.xml` por cada traducción que se desee soportar. El nombre debe estar formado de la siguiente manera:
 
     strings.(idioma).xml
@@ -82,9 +90,11 @@ Si tampoco existiese ningún resultado, entonces usaría el idioma por defecto.
 A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, “es” o “es_ES”).
 
 #### 3.2.3. Carpeta resources
+
 Contiene las carpetas con todos los recursos necesarios para poder modificarse, divididos en densidades. Es obligatorio generar las imágenes en todas las densidades ya que el widget espera encontrarlas en la carpeta correspondiente a la densidad del dispositivo. También se pueden crear nuevas carpetas con la densidad deseada.
 
 #### 3.2.4. Elemento BACKGROUND
+
 El elemento `background` se compone de 4 segmentos a los que se puede dar color independientemente:
 
 - **top**: define el color de fondo el segmento o panel superior.
@@ -102,6 +112,7 @@ pagination_separator (RegistrationTips, FaceMovementTips): define el color de la
 - **mirror_color (Results)**: define el color de fondo del círculo que muestra los resultados del proceso de registro.
 
 #### 3.2.5. Elemento BUTTON
+
 - **background**: define el color de fondo el botón
 - **decorator**: define el color de la sombra del botón
 - **foreground**: define el color de la fuente del botón en caso de que el contenido sea un texto
@@ -114,6 +125,7 @@ pagination_separator (RegistrationTips, FaceMovementTips): define el color de la
 - **font_size**: Define el tamaño de la letra si el contenido del botón es un texto
 
 #### 3.2.6. Elemento TEXT
+
 Los elementos `text` se utilizan para definir el aspecto gráfico de los textos de cada una de las pantallas del widget. Estas son las propiedades que se pueden modificar:
 
 - **color**: define el color del texto.
@@ -123,26 +135,26 @@ Los elementos `text` se utilizan para definir el aspecto gráfico de los textos 
 Hay que tener en cuenta que en la pantalla de resultados del registro los dos textos que definen la calidad del registro tienen forzado su color al color de la barra que indica la puntuación.
 
 #### 3.2.7. Elemento IMAGE
+
 value: define el nombre del archivo que contiene la imagen a mostrar.
 
 Los elementos `image` solo tienen la propiedad que define el archivo donde se encuentra la imagen físicamente en el bundle de recursos. Las imágenes se obtienen del bundle buscando en la carpeta apropiada de acuerdo con la densidad del dispositivo.
 
 #### 3.2.8. Elemento VIDEO
+
 value: define el nombre del archivo que contiene el video a mostrar.
 
-Los elementos *`video`* solo tienen la propiedad que define el archivo donde se encuentra el video físicamente en el bundle de recursos.
-
+Los elementos _`video`_ solo tienen la propiedad que define el archivo donde se encuentra el video físicamente en el bundle de recursos.
 
 ## 4. Bases de datos (SOLO PARA LA DEPENDENCIA RG)
 
 Si el equipo de Facephi indica que la dependencia de SelphID necesita una base de datos, se podrá elegir entre las siguientes:
 
-| **Base de datos** | **Enlace**            |
-| -------------- | -------------------------- |
-| Europa  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/eur/db.dat" rel="nofollow"> Base de datos</a> |
-| Africa  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/africa/db.dat" rel="nofollow"> Base de datos</a> |
-| Oriente Medio  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/middle-east/db.dat" rel="nofollow"> Base de datos</a> |
-
+| **Base de datos** | **Enlace**                                                                                                                                      |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Europa            | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/eur/db.dat" rel="nofollow"> Base de datos</a>         |
+| Africa            | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/africa/db.dat" rel="nofollow"> Base de datos</a>      |
+| Oriente Medio     | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-databases/middle-east/db.dat" rel="nofollow"> Base de datos</a> |
 
 La base de datos "db.dat" tiene que tener siempre el mismo nombre y se guardará en la carpeta **assets/Regula/** de la aplicación.
 

@@ -1,7 +1,7 @@
 # Tracking Component
 
 ## 0. SDK Mobile baseline requirements
- 
+
 **SDK Mobile** is a set of libraries (Components) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
@@ -29,8 +29,8 @@ transversally with the rest of the components installed in the
 **_SDKMobile_**. To track the information, it is kept in the background
 while the SDKMobile process is running.
 
-
 ### 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
 Minimum iOS version: **13**
@@ -38,6 +38,7 @@ Minimum iOS version: **13**
 ---
 
 ## 2. Component integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
@@ -47,11 +48,13 @@ documentation related to
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 and follow the instructions in that document.
+
 </div>
 This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, if you want to install
@@ -75,7 +78,7 @@ Once the dependencies are installed, the different functionalities of the compon
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ---
 
@@ -84,6 +87,7 @@ Once the dependencies are installed, the different functionalities of the compon
 When you want to perform a specific operation to generate the associated
 information correctly in the platform, the **newOperation** command must
 first be executed.
+
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
@@ -93,8 +97,8 @@ consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documentation, which details and explains what this process consists of.
+
 </div>
----
 
 ## 4. Component configuration
 
@@ -132,26 +136,28 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 ---
 
 ## 5. Use of the component
+
 As previously mentioned, once initialized and configured the
 **tracking** component will not need to be launched, since it will
 will keep running in the background while the rest of the
 components.
 
-
 ---
 
 ## 6. Reception of the result
 
-The result is an *SDKResult* object that is returned by the SDK and will always have 3 fields:
+The result is an _SDKResult_ object that is returned by the SDK and will always have 3 fields:
 
-*finishStatus*: Which will tell us if the operation has completed correctly. Possible values:
+_finishStatus_: Which will tell us if the operation has completed correctly. Possible values:
+
 ```
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
-*errorType*: If the finishStatus indicates that there has been an error, this field will have the description of the error:
 
-Tracking errors come in the *TrackingError* enum:
+_errorType_: If the finishStatus indicates that there has been an error, this field will have the description of the error:
+
+Tracking errors come in the _TrackingError_ enum:
 
 ```
 INIT_DATA_ERROR
@@ -166,4 +172,5 @@ OPERATION_RESULT
 CUSTOMER_ID
 TOKEN_ERROR
 ```
+
 ---

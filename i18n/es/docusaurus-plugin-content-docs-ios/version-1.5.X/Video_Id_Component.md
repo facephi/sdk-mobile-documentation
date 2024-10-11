@@ -25,6 +25,7 @@ El _Componente_ tratado en el documento actual recibe el nombre de
 usuario identificándose, mostrando la cara y su documento de identidad.
 
 ## 1.1 Requisitos mínimos
+
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
@@ -32,6 +33,7 @@ Versión mínima de iOS: **13**
 ---
 
 ## 2. Integración del componente
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación de <a href="Mobile_SDK"
@@ -42,6 +44,7 @@ En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
@@ -56,25 +59,32 @@ completo antes de la instalación de los componentes de la
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+
 - Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 ```
 	pod 'VideoIdController', '~> 1.5.0'
 ```
+
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
-![Image](/iOS/fix_ldClassic.png)
+  ![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permisos y configuraciones
+
 En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **info.plist**
+
 ```
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
+
 ---
 
 ## 3. Iniciar nueva operación
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+
 <div class="note">
 <span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
@@ -82,8 +92,8 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del component
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste este proceso.
+
 </div>
----
 
 ## 4. Controladores disponibles
 
@@ -106,15 +116,19 @@ Estos campos suelen informarse **solo** cuando el **servidor** es
 ### 5.1. Class VideoIdConfigurationData
 
 #### 5.1.1. Configuración Básica
+
 ##### sectionTime
+
 Indica la duración de cada una de las secciones en las que se muestra el
 mensaje de grabación.
 
 ##### showCompletedTutorial
+
 Indica si se quiere mostrar el tutorial inicial completo. Si no, se
 mostrará un progress indicator.
 
 ##### mode
+
 - ONLY_FACE: El proceso se realiza siendo necesariamente solo
   mostrando la cara.
 
@@ -125,22 +139,28 @@ mostrará un progress indicator.
   frontal del documento de identidad y la parte trasera del documento.
 
 #### 5.1.2 Configuración Avanzada
+
 ##### url
+
 Ruta al socket de video
 
 ##### apiKey
+
 ApiKey necesaria para la conexión con el socket de video
 
 ##### tenantId
+
 Identificador del tenant que hace referencia al cliente actual,
 necesario para la conexión con el servicio de video.
 
-#### 5.1.3. Otros 
+#### 5.1.3. Otros
 
 ##### extractionTimeout
+
 Establece el tiempo máximo que se puede realizar la lectura.
 
 ##### VibrationEnabled
+
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
 ---
@@ -168,6 +188,7 @@ SDKController.shared.launchMethod(controller: controller)
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
+
 <div class="warning">
 <span class="warning">:warning:</span>
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -180,6 +201,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+
 </div>
 
 En los datos de configuración (VideoIDConfigurationData) también se podrán modificar:
@@ -188,21 +210,22 @@ En los datos de configuración (VideoIDConfigurationData) también se podrán mo
 
 - **mode**: Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
 
-	- ONLY_FACE: Sólo tienes que mostrar la cara durante el proceso.
+  - ONLY_FACE: Sólo tienes que mostrar la cara durante el proceso.
 
-	- FACE_DOCUMENT_FRONT: Tienes que mostrar la cara y la parte frontal del documento.
+  - FACE_DOCUMENT_FRONT: Tienes que mostrar la cara y la parte frontal del documento.
 
-	- FACE_DOCUMENT_FRONT_BACK: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
+  - FACE_DOCUMENT_FRONT_BACK: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
 
 - **showCompletedTutorial**: Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
 
 - **Datos <u>opcionales</u> que normalmente se incluyen dentro de la licencia**
 
-	- **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
+  - **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
 
-	- **url**: Ruta al socket de video.
+  - **url**: Ruta al socket de video.
 
-	- **apiKey**: ApiKey necesaria para la conexión con el socket de video.
+  - **apiKey**: ApiKey necesaria para la conexión con el socket de video.
+
 ---
 
 ## 7. Recepción del resultado
@@ -229,6 +252,7 @@ MISSING_COMPONENT_LICENSE_DATA
 ## 8. Personalización del componente
 
 Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) después de inicializar el videoIdController:
+
 ```
 let videoidController = VideoIdController(data: data, output: output, viewController: viewController)
 ThemeVideoIdManager.setup(theme: CustomThemeVideoId())
@@ -236,20 +260,21 @@ SDKController.launchVideoId(controller: videoidController)
 ```
 
 Un ejemplo de la clase CustomThemeVideoId sería este (debe implementar ThemeVideoIdProtocol):
+
 ```
 class CustomThemeVideoId: ThemeVideoIdProtocol {
     var images: [R.Image: UIImage?] = [:]
-    
+
     var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
-    
+
     // var animations: [R.Animation: String] = [:]
-    
+
     var name: String {
         "custom"
     }
-    
+
     var fonts: [R.Font: String] = [:]
-    
+
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]
     }
@@ -257,7 +282,9 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 ```
 
 ### 8.1 Colores e imágenes
+
 - Las imágenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
+
 ```
 case ic_video_id_back_id
 case ic_video_id_check
@@ -271,6 +298,7 @@ case intro
 ```
 
 - Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+
 ```
 case MainBackground
 case TitleText
@@ -279,10 +307,12 @@ case PrimaryButtonText
 case Button
 case CheckText
 case Primary
-``` 
+```
 
-### 8.2 Fuentes 
+### 8.2 Fuentes
+
 Las fuentes se inicializan similarmente en la variable `fonts` con un diccionario, teniendo como valor un **String** con el nombre de la **UIFont** que se desee.
+
 ```
 case regular
 case bold
@@ -291,6 +321,7 @@ case bold
 - El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un **CGFloat** con el tamaño deseado.
 
 ### 8.3 Personalizar el tiempo entre pantallas
+
 Para modificar el tiempo que se permanece en cada pantalla de grabación hay que modificar el valor del parámetro time (en ms) del VideoIDConfigurationData:
 
 `VideoIDConfigurationData(time = TIEMPO EN MS)`
@@ -299,19 +330,17 @@ Siempre será el mínimo 5000.
 
 Este objeto se pasará al hacer el setup del video ID.
 
- 
-
 ### 8.4 Textos - Multiidioma
+
 #### 8.4.1 Configuración de idiomas por defecto
+
 Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
 
 **CFBundleAllowMixedLocalizations = YES**
 
- 
-
 Quedaría así:
 
-![Image](/iOS/sdkVideo-infoplist-image.png)
+![Image](/ios/sdkVideo-infoplist-image.png)
 
 - Inglés
 
@@ -327,18 +356,15 @@ El idioma del componente se selecciona en función del idioma que tenga el móvi
 
 - Para cualquier otro caso, se hará uso del Inglés.
 
- 
-
 #### 8.4.2 Configuración de idiomas personalizada
+
 El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
 
 Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt-PT). Se hace a través del uso de los archivos **Localizable.strings.**
 
- 
-
 #### 8.4.3 Keys para multiidioma
-El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
 
+El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
 
 ```
 "video_id_text_waiting_agent_title"="Video grabación";
@@ -365,7 +391,7 @@ El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es 
 
 ```
 
-De este modo, si se desea modificar por ejemplo el texto “*Finalizar*” de la clave `video_id_finish_button` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+De este modo, si se desea modificar por ejemplo el texto “_Finalizar_” de la clave `video_id_finish_button` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
 
 `"video_id_finish_button"="Terminar";`
 

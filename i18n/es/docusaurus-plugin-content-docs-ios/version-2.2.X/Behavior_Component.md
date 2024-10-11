@@ -45,7 +45,6 @@ documento.
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
-
 ### 2.1. Dependencias requeridas para la integración
 
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
@@ -54,10 +53,9 @@ de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
 completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
-
-Actualmente las librerías de FacePhi se distribuyen de forma remota 
-a través de diferentes gestores de dependencias, en este caso Cocoapods. 
-Las dependencias **obligatorias** que deberán haberse instalado previamente 
+Actualmente las librerías de FacePhi se distribuyen de forma remota
+a través de diferentes gestores de dependencias, en este caso Cocoapods.
+Las dependencias **obligatorias** que deberán haberse instalado previamente
 (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
@@ -74,8 +72,7 @@ Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funci
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-![Image](/iOS/fix_ldClassic.png)
-
+![Image](/ios/fix_ldClassic.png)
 
 ---
 
@@ -91,7 +88,7 @@ componente**.
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla 
+data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla
 y explica en qué consiste este proceso.
 
 ---
@@ -107,6 +104,7 @@ import behaviorComponent
 ```
 
 Inicializamos:
+
 ```
 
 behaviorController = BehaviorController(autoLogoutAction: {
@@ -153,7 +151,7 @@ llamar al siguiente proceso para registrar el usuario.
             behaviorError: { behaviorError in
                 self.log("BEHAVIOR ERROR: \(behaviorError)")
             }, debugMode: false)
-        
+
 ```
 
 ---

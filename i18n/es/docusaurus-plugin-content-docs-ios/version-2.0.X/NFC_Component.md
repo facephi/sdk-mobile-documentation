@@ -40,6 +40,7 @@ son las siguientes:
 - Devolución de imágenes cuando estén disponible para su lectura
 
 ### 1.1 Requisitos mínimos
+
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 - Versión mínima de iOS: **13**
@@ -49,6 +50,7 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 ---
 
 ## 2. Integración del componente
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación
@@ -58,11 +60,13 @@ relativa a:
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a> y seguir las instrucciones indicadas en dicho
 documento.
+
 </div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
@@ -74,15 +78,21 @@ completo antes de la instalación de los componentes de la
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 #### Cocoapods
+
 Las dependencias obligatorias que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
+
 ```java
 pod 'FPHISDKMainComponent', '~> 2.0.0'
 ```
+
 Para instalar el componente de NFC deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 ```java
 pod 'FPHISDKNFCComponent', '~> 2.8.0'
 ```
+
 #### SPM
+
 Las dependencias obligatorias que deberán haberse instalado previamente son:
 
 ```java
@@ -92,7 +102,9 @@ https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 
 ```
+
 Para instalar el componente de NFC deberá incluirse en los módulos del proyecto:
+
 ```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-NFC_component-SPM.git
@@ -104,11 +116,11 @@ Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funci
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permisos y configuraciones
-En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **Info.plist**:
 
+En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **Info.plist**:
 
 ```
 Es necesario permitir el uso de NFC - (Privacy - NFC Scan Usage Description)
@@ -119,12 +131,12 @@ A0000002472001
 Es necesario añadir en el apartado Signing & Capabilities del target la opción Near Field Communication Tag Reading
 ```
 
-
 ---
 
 ## 3. Iniciar nueva operación
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+
 <div class="note">
 <span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
@@ -134,8 +146,8 @@ consultar la documentación de <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
+
 </div>
----
 
 ## 4. Controladores disponibles
 
@@ -149,7 +161,7 @@ este proceso.
 
 Para configurar el componente actual, una vez inicializado, se deberá crear un objeto
 
-*NFCConfigurationData* y pasarlo como parámetro en la inicialización de *NFCController*.
+_NFCConfigurationData_ y pasarlo como parámetro en la inicialización de _NFCController_.
 
 En el siguiente apartado se mostrarán los campos que forman parte de esta clase y para qué se utiliza cada uno de ellos.
 
@@ -157,16 +169,20 @@ En el siguiente apartado se mostrarán los campos que forman parte de esta clase
 
 #### 5.1.1. Documentación Básica
 
-#####  showTutorial
+##### showTutorial
+
 Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.
 
-##### vibrationEnabled 
+##### vibrationEnabled
+
 iOS no permite añadir vibración mientras se hacen lecturas de NFC.
 
 ##### showDiagnostic
+
 Si se le da valor true, al producirse un error o una falta de permisos, el sdk mostrará una pantalla con el error devuelto por el widget.
 
 ##### extractionTimeout
+
 Establece el tiempo máximo que se puede realizar la lectura.
 
 #### 5.1.2. Documentación Avanzada
@@ -210,10 +226,7 @@ Indicamos el pais de origen del documento a leer.
 
 ##### documentType
 
-Indica el tipo de documento que se va a leer:
-    - ID_CARD
-    - PASSPORT
-    - FOREIGN_CARD
+Indica el tipo de documento que se va a leer: - ID_CARD - PASSPORT - FOREIGN_CARD
 
 ##### readableTags
 
@@ -225,15 +238,18 @@ Una vez iniciado el componente y creada una nueva operación (**apartado 3**) se
 
 - **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de tracking:
 
-``` java
+```java
 let controller = NfcController(data: nfcConfigurationData, viewController: viewController, output: output, stateDelegate: nil)
 SDKController.shared.launch(controller: controller)
 ```
+
 - **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero no se trackeará ningún evento al servidor de tracking:
-``` java
+
+```java
 let controller = NfcController(data: nfcConfigurationData, viewController: viewController, output: output, stateDelegate: nil)
 NFCController.shared.launchMethod(controller: controller)
 ```
+
 <div class="warning">
 <span class="warning">:warning:</span>
 El método **launch** debe usarse **por defecto**. Este método permite
@@ -246,6 +262,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+
 </div>
 ### 6.1 stateDelegate
 
@@ -255,19 +272,19 @@ En caso querer hacer un seguimiento en los estados del componente NFC se podrá 
 extension SDKManager: NfcWidgetDelegateProtocol {
     func captureFinished() {
         print("NFC State: captureFinished", to: &Log.log)
- 
+
     }
     func captureCancelled() {
         print("NFC State: captureCancelled", to: &Log.log)
- 
+
     }
     func captureTimeout() {
         print("NFC State: captureTimeout", to: &Log.log)
- 
+
     }
     func captureFailed(_ error: Error!) {
         print("NFC State: captureFailed -> error==\(error!)", to: &Log.log)
- 
+
     }
     func onEvent(_ time: Date!, type: String!, info: String!) {
         print("NFC State: onEvent -> type==\(type!), info==\(info!)", to: &Log.log)
@@ -283,7 +300,6 @@ Los controllers devolverán la información necesaria en formato SdkResult. Más
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 
-
 ### 7.1. Recepción de errores
 
 En la parte del error, **internamente** disponemos de la clase NFCPassportReaderError. Este enumerado contiene muchos errores específicos que no aportan información útil si son devueltos al integrador, por lo que son transformados a un tipo más simple (**ErrorType**):
@@ -298,10 +314,11 @@ En la parte del error, **internamente** disponemos de la clase NFCPassportReader
     SECURITY_STATUS_NOT_SATISFIED
     SYSTEM_RESOURCE_UNAVAILABLE
 ```
-**NOTA**: `NFC_INVALID_MRZ_KEY` *implica que la conexión no se ha podido establecer por culpa de que los datos de entrada de la configuración (documentNumber, birthDate, expiryDate) no son correctos.
-Todos los lanzamientos de lectura para ese NFC fallarán mientras no se inicialice un NFCController nuevo con los datos correctos.*
 
-### 7.2. Recepción de ejecución correcta - *data*
+**NOTA**: `NFC_INVALID_MRZ_KEY` _implica que la conexión no se ha podido establecer por culpa de que los datos de entrada de la configuración (documentNumber, birthDate, expiryDate) no son correctos.
+Todos los lanzamientos de lectura para ese NFC fallarán mientras no se inicialice un NFCController nuevo con los datos correctos._
+
+### 7.2. Recepción de ejecución correcta - _data_
 
 En la parte de _data_, dispondremos de la clase _NfcResult_.
 
@@ -453,7 +470,7 @@ de cada _String_ por el deseado.
 
 ```
 
-``` java
+```java
 public protocol ThemeNFCProtocol {
     var name: String { get }
     var fonts: [R.Font: String] { get }
@@ -463,7 +480,9 @@ public protocol ThemeNFCProtocol {
     var animations: [R.Animation: String] { get }
 }
 ```
+
 Por ejemplo:
+
 ```java
 class CustomThemeNFC: ThemeNFCProtocol {
     public var name: String {
@@ -483,14 +502,16 @@ class CustomThemeNFC: ThemeNFCProtocol {
     ...
 }
 ```
+
 Para aplicar este custom theme debemos usar la siguiente instrucción antes de lanzar el componente:
+
 ```
 ThemeNFCManager.setup(theme: CustomThemeNFC())
 ```
 
 ## 9. Troubleshooting
 
-### 9.1  OpenSSL contains bitcode
+### 9.1 OpenSSL contains bitcode
 
 El error específico puede verse al intentar subir un IPA. Ocurre en XCode 16.
 
@@ -516,7 +537,7 @@ post_install do |installer|
   "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_x86_64-maccatalyst/OpenSSL.framework/OpenSSL",
   "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/macos-arm64_x86_64/OpenSSL.framework/OpenSSL",
   ]
-  
+
   framework_paths.each do |framework_relative_path|
     strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
   end

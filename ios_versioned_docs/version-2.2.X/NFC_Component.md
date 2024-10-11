@@ -104,7 +104,7 @@ Once the dependencies are installed, you can use the different functionalities o
 
 - If developing with **xCode15**, a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and settings
 
@@ -470,7 +470,7 @@ ThemeNFCManager.setup(theme: CustomThemeNFC())
 
 ## 9. Troubleshooting
 
-### 9.1  OpenSSL contains bitcode
+### 9.1 OpenSSL contains bitcode
 
 The specific error is shown when trying to upload an app that depends on nfcComponent with XCode 16.
 
@@ -496,7 +496,7 @@ post_install do |installer|
   "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_x86_64-maccatalyst/OpenSSL.framework/OpenSSL",
   "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/macos-arm64_x86_64/OpenSSL.framework/OpenSSL",
   ]
-  
+
   framework_paths.each do |framework_relative_path|
     strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
   end

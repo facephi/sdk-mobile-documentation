@@ -47,6 +47,7 @@ The minimum iOS SDK version required is as follows:
 ---
 
 ## 2. Integration of the component
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the documentation related to 
@@ -59,6 +60,7 @@ This section will explain step by step how to integrate the component
 current in an existing project.
 
 ### 2.1. Dependencies required for integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, if you want to install
@@ -74,13 +76,17 @@ the **_SDKMobile_** components.
 #### Cocoapods
 
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
+
 ```java
 pod 'FPHISDKMainComponent', '~> 2.0.0'
 ```
+
 To install the NFC component, the following entry must be included in the application's Podfile:
+
 ```java
 pod 'FPHISDKNFCComponent', '~>2.8.0'
 ```
+
 #### SPM
 
 The mandatory dependencies that must have been previously installed are:
@@ -92,7 +98,9 @@ https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 
 ```
+
 To install the NFC component, it must be included in the project modules:
+
 ```java
 //HTTPS
 https://github.com/facephi-clienters/SDK-NFC_component-SPM.git
@@ -104,7 +112,7 @@ Once the dependencies are installed, you can use the different functionalities o
 
 - If developing with **xCode15**, a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and settings
 
@@ -133,8 +141,8 @@ To learn more about how to start a new operation, it is recommended to
 consult the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page"><strong>Mobile SDK</strong></a> documentation, which details and explains what this process consists of.
+
 </div>
----
 
 ## 4. Available controllers
 
@@ -159,15 +167,19 @@ each is used for.
 #### 5.1.1. Basic Documentation
 
 ##### showTutorial
+
 Indicates if the component activates the tutorial screen. This view explains intuitively how the capture is performed.
 
-##### vibrationEnabled 
+##### vibrationEnabled
+
 iOS does not allow vibration to be added while taking NFC readings.
 
 ##### showDiagnostic
+
 If set to true, if an error or lack of permissions occurs, the sdk will display a screen with the error returned by the widget.
 
 ##### extractionTimeout
+
 Sets the maximum time the readout can be performed.
 
 #### 5.1.2. Advanced Documentation
@@ -211,14 +223,12 @@ Indicates the country of origin of the document to be read.
 
 ##### documentType
 
-Indicates the type of document to be read:
-    - ID_CARD
-    - PASSPORT
-    - FOREIGN_CARD
+Indicates the type of document to be read: - ID_CARD - PASSPORT - FOREIGN_CARD
 
 ##### readableTags
 
 ---
+
 ## 6. Component use
 
 Once the component has been started and a new operation has been created
@@ -233,6 +243,7 @@ to launch the component:
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
+
 - **\[WITHOUT TRACKING\]** This call allows to launch the
   functionality of the component, but **no event will be tracked** to
   the _tracking_ server:
@@ -241,7 +252,7 @@ SDKController.shared.launch(controller: controller)
 let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
 NFCController.shared.launchMethod(controller: controller)
 ```
- 
+
 <div class="warning">
 <span class="warning">:warning:</span>
 The **launch** method must be used by **default**. This method allows
@@ -253,6 +264,7 @@ in which the integrator has tracking installed and activated but, in a
 certain flow within the application does not want to track information.
 In this case, this method is used to prevent this information from being
 sent to the platform.
+
 </div>
 
 ---
@@ -262,7 +274,7 @@ sent to the platform.
 The controllers will return the required information in SdkResult format
 -more details in the <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>.	
+data-linked-resource-type="page">iOS Mobile SDK's</a>.
 
 ### 7.1. Receipt of errors
 
@@ -279,10 +291,10 @@ On the error side, **internally** we have the NFCPassportReaderError class. This
     SYSTEM_RESOURCE_UNAVAILABLE
 ```
 
-**NOTE**: `NFC_INVALID_MRZ_KEY` *implies that the connection could not be established because the configuration input data (documentNumber, birthDate, expiryDate) is not correct.
-All read launches for that NFC shall fail as long as a new NFCController is not initialised with the correct data.*.
+**NOTE**: `NFC_INVALID_MRZ_KEY` _implies that the connection could not be established because the configuration input data (documentNumber, birthDate, expiryDate) is not correct.
+All read launches for that NFC shall fail as long as a new NFCController is not initialised with the correct data._.
 
-### 7.2. Receiving successful execution - *data*
+### 7.2. Receiving successful execution - _data_
 
 In the _data_ part, we will have the _NfcResult_ class.
 
@@ -443,7 +455,9 @@ public protocol ThemeNFCProtocol {
     var animations: [R.Animation: String] { get }
 }
 ```
+
 For example:
+
 ```java
 class CustomThemeNFC: ThemeNFCProtocol {
     public var name: String {
@@ -463,14 +477,16 @@ class CustomThemeNFC: ThemeNFCProtocol {
     ...
 }
 ```
+
 To apply this custom theme we must use the following instruction before launching the component:
+
 ```java
 ThemeNFCManager.setup(theme: CustomThemeNFC())
 ```
 
 ## 9. Troubleshooting
 
-### 9.1  OpenSSL contains bitcode
+### 9.1 OpenSSL contains bitcode
 
 The specific error is shown when trying to upload an app that depends on nfcComponent with XCode 16.
 
@@ -496,7 +512,7 @@ post_install do |installer|
   "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/ios-arm64_x86_64-maccatalyst/OpenSSL.framework/OpenSSL",
   "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework/macos-arm64_x86_64/OpenSSL.framework/OpenSSL",
   ]
-  
+
   framework_paths.each do |framework_relative_path|
     strip_bitcode_from_framework(bitcode_strip_path, framework_relative_path)
   end

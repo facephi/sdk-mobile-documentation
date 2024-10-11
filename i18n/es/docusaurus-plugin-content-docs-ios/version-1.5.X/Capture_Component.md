@@ -23,6 +23,7 @@ El _Componente_ tratado en el documento actual recibe el nombre de
 **_Capture Component_**. Éste se encarga de realizar la captura de facturas y la captura y generación de QRs.
 
 ### 1.1 Requisitos mínimos
+
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
@@ -32,7 +33,7 @@ Versión mínima de iOS: **13**
 ## 2. Integración del componente
 
 Antes de integrar este componente se recomienda leer la documentación
-relativa a: 
+relativa a:
 <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho documento.
@@ -49,24 +50,29 @@ completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
 #### Cocoapods
-- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
+- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
 ```
+
 - Para instalar el componente de Capture deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 ```
   pod 'FPHISDKCaptureComponent', '~> 1.5.0'
 ```
+
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permisos y configuraciones
+
 En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero info.plist
+
 ```
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
@@ -92,11 +98,11 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-| **Controlador**            | **Descripción**                                    |
-| -------------------------- | -------------------------------------------------- |
-| InvoiceReaderController  | Controlador para la captura de facturas      |
-| QrReaderController | Controlador para la captura de QRs |
-| QrGeneratorController | Controlador para la generación de QRs |
+| **Controlador**         | **Descripción**                         |
+| ----------------------- | --------------------------------------- |
+| InvoiceReaderController | Controlador para la captura de facturas |
+| QrReaderController      | Controlador para la captura de QRs      |
+| QrGeneratorController   | Controlador para la generación de QRs   |
 
 ---
 
@@ -112,44 +118,55 @@ En el siguiente apartado se mostrarán los campos que forman parte de
 estas clased y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class CaptureConfigurationData
+
 #### 5.1.1 Configuración Básica
 
 ##### cameraSelected
+
 Cámara seleccionada: FRONT, BACK
 
 ##### vibrationEnabled
+
 Habilitar vibración durante el proceso
 
 ##### cameraShape
-Forma de la máscara que se quiere mostrar sobre la cámara: 
-- SQUARE: Cuadrado 
+
+Forma de la máscara que se quiere mostrar sobre la cámara:
+
+- SQUARE: Cuadrado
 - CIRCULAR: Círculo
 - RECTANGLE_TALL: Rectángulo
 
 ##### showDiagnostic
+
 Mostrar pantallas de diagnóstico al final del proceso
 
 ##### extractionTimeout
-Tiempo de extracción máximo
 
+Tiempo de extracción máximo
 
 #### 5.1.2 Configuración Avanzada
 
 ##### showStroke
+
 Mostrar una línea como borde de la cámara
 
 ##### transparentBackground
+
 Máscara sobre la cámara semitransparente
 
 ### 5.2. Class QrGeneratorConfiguration
 
 ##### source
+
 Texto que se va a incluir en el QR
 
 ##### width
+
 Ancho del QR generado
 
 ##### height
+
 Alto del QR generado
 
 ---
@@ -273,7 +290,7 @@ Los controllers devolverán la información necesaria en formato
 SdkResult. Más información en la sección de <a href="Mobile_SDK"
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a>
-  
+
 ### 7.1. Recepción de errores
 
 ```java
@@ -292,6 +309,7 @@ con el SdkResult.Success.
 ---
 
 ## 8. Personalización del componente
+
 ### 8.1. Textos
 
 ```java

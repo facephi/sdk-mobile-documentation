@@ -64,6 +64,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | --------------- | ---------------------------- |
 | 2.0.2           | 5.13.1                       |
 | 2.0.3           | 5.13.4                       |
+| 2.1.0           | 5.14.1                       |
 
 ---
 

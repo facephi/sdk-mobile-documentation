@@ -24,12 +24,13 @@ El _Componente_ tratado en el documento actual recibe el nombre de
 **_Capture Component_**. Éste se encarga de realizar la captura de facturas y la captura y generación de QRs.
 
 ## 1.1 Requisitos mínimos
+
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
-Versión mínima de iOS: **14**
----
+## Versión mínima de iOS: **14**
 
 ## 2. Integración del componente
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación de <a href="ES_Mobile_SDK"
@@ -40,6 +41,7 @@ En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
+
 <div class="warning">
 <span class="warning">:warning:</span>
 Para evitar conflictos y problemas de compatibilidad, en caso de querer
@@ -54,25 +56,32 @@ completo antes de la instalación de los componentes de la
 ```
   pod 'FPHISDKMainComponent', '~> 2.0.0'
 ```
+
 - Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 ```
 	pod 'FPHISDKCaptureComponent', '~> 2.0.4'
 ```
+
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
-![Image](/iOS/fix_ldClassic.png)
+  ![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permisos y configuraciones
+
 En la aplicación cliente donde se vayan a integrar los componentes es necesario incorporar el siguiente elementos en el fichero **info.plist**
+
 ```
 Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 ```
+
 ---
 
 ## 3. Iniciar nueva operación
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
+
 <div class="note">
 <span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
@@ -80,17 +89,18 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del component
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="ES_Mobile_SDK"
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste este proceso.
+
 </div>
 
 ---
 
 ## 4. Controladores disponibles
 
-| **Controlador**           | **Descripción**                         |
-| ------------------------- | --------------------------------------- |
-| InvoiceReaderController   | Controlador para la captura de facturas |
-| QrReaderController        | Controlador para la captura de QRs      |
-| QrGeneratorController     | Controlador para la generación de QRs   |
+| **Controlador**         | **Descripción**                         |
+| ----------------------- | --------------------------------------- |
+| InvoiceReaderController | Controlador para la captura de facturas |
+| QrReaderController      | Controlador para la captura de QRs      |
+| QrGeneratorController   | Controlador para la generación de QRs   |
 
 ---
 
@@ -225,6 +235,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+
 </div>
 
 ### 6.2 Captura de QR
@@ -266,6 +277,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+
 </div>
 
 ### 6.3 Generación de QR
@@ -305,6 +317,7 @@ el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
+
 </div>
 
 ---
@@ -344,9 +357,9 @@ con el SdkResult.Success.
 
 Array de documentos escaneados:
 
-  - image: UIImage.
+- image: UIImage.
 
-  - date: Date.
+- date: Date.
 
 ---
 
@@ -387,7 +400,7 @@ de cada _String_ por el deseado.
 "capture_component_remove_confirmation_title" = "Do you want to delete this document?";
 "capture_component_image" = "Image ";
 "capture_component_retry" = "NO, I WANT TO REPEAT THE PHOTOGRAPH";
-"capture_component_tutorial_tittle" = "Scan your documents"; 
+"capture_component_tutorial_tittle" = "Scan your documents";
 "capture_component_tutorial_description" = "Take a picture of the document, or upload an image. /n You can scan several documents before finishing";
 "capture_component_tutorial_button" = "CONTINUE";
 

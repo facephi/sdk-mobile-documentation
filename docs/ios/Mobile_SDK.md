@@ -191,7 +191,7 @@ install_cocoapods
 In the case of using **_xCode15_**, it is recommended to use the
 following configuration:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 The **-ld_classic** flag must be added in _Other Linker Flags_ in the
 _Build Settings_ section of the application.
@@ -272,6 +272,7 @@ let trackingController = TrackingController(trackingError: { trackingError in
       print("TRACKING ERROR: \(trackingError)")
 })
 ```
+
 Added in the initSDK:
 
 ```java
@@ -288,6 +289,7 @@ SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output:
 #### 3.2.2. TokenizeController
 
 Added import:
+
 ```java
 import tokenizeComponent
 ```
@@ -356,10 +358,13 @@ import statusComponent
 ```
 
 Inicializamos:
+
 ```java
 let statusController = StatusController()
 ```
+
 Se añade en el initSDK:
+
 ```java
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output: { sdkResult in
@@ -370,6 +375,7 @@ SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output:
     }
 }, statusController: statusController)
 ```
+
 ---
 
 ## 4. Start a new operation
@@ -492,7 +498,6 @@ until a new operation is started again.
 
 ---
 
-
 ## 8. Error control
 
 When calling any of the components, we will always have an output of type SdkResult as a response, as we see in the example code:
@@ -533,11 +538,11 @@ If there is no error and the result is returned correctly, the errorType would b
 
 ## 9. SDK Customization
 
-Customization is done using a component class called Theme***Component***Manager. Where ***Component*** must be replaced with the desired component.
+Customization is done using a component class called Theme**_Component_**Manager. Where **_Component_** must be replaced with the desired component.
 
 For example, videoidComponent contains `ThemeVideoIdManager`, while videocallComponent `ThemeVideoCallManager`...
 
-This manager has an instance of type Theme***Component***Protocol. If we want to customize any details, we would have to create a new class that attaches to this interface and inject it into the Theme***Component***Manager.
+This manager has an instance of type Theme**_Component_**Protocol. If we want to customize any details, we would have to create a new class that attaches to this interface and inject it into the Theme**_Component_**Manager.
 
 ```java
 class CustomThemeComponent: ThemeComponentProtocol {

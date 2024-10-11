@@ -69,7 +69,7 @@ Once the dependencies are installed, the different functionalities of the compon
 
 - In case of development with **xCode15** a post-installation script must be included:
 
-![Image](/iOS/fix_ldClassic.png)
+![Image](/ios/fix_ldClassic.png)
 
 ---
 

@@ -65,10 +65,11 @@ the **_SDKMobile_** components.
 
 Table of sdk versions and associated resource versions (Found in the **Resources** section):
 
-| **SDK version** | **Selphi resources version**            |
-| -------------- | -------------------------- |
-| 2.0.2  | 1.25.1 |
-| 2.0.3  | 1.26.0 |
+| **SDK version** | **Selphi resources version** |
+| --------------- | ---------------------------- |
+| 2.0.2           | 1.25.1                       |
+| 2.0.3           | 1.26.0                       |
+| 2.1.0           | 1.27.0                       |
 
 ---
 
@@ -528,10 +529,9 @@ easier to search:
 
 #### 7.2.8 _timeoutDiagnostic_
 
-This property returns a text string explaining why the widget has timed out. 
-This string can be used in a later timeout screen where the main application can 
-give more information to the user about what happened during the document capture. 
-
+This property returns a text string explaining why the widget has timed out.
+This string can be used in a later timeout screen where the main application can
+give more information to the user about what happened during the document capture.
 
 ---
 

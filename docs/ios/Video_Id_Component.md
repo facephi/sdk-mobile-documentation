@@ -61,7 +61,7 @@ pod 'FPHISDKVideoIDComponent', '~> 1.5.0'
 - Once the dependencies are installed, you can use the different functionalities of the component.
 
 - If developing with **xCode15**, a post-installation script must be included:
-  ![Image](/iOS/fix_ldClassic.png)
+  ![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
 
@@ -334,7 +334,7 @@ If the package is installed via **SPM**, for text localization to work, the foll
 
 It would look like this:
 
-![Image](/iOS/sdkVideo-infoplist-image.png)
+![Image](/ios/sdkVideo-infoplist-image.png)
 
 - English - Spain
 

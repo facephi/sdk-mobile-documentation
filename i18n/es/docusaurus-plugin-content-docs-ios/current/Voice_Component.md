@@ -50,7 +50,6 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
@@ -72,6 +71,7 @@ completo antes de la instalación de los componentes de la
 **_SDKMobile_**.
 
 #### Cocoapods
+
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
@@ -79,15 +79,16 @@ completo antes de la instalación de los componentes de la
 ```
 
 - Para instalar el componente de VoiceID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 ```
   	pod 'VoiceIdController', '~> 1.5.0'
 ```
+
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
 
-![Image](/iOS/fix_ldClassic.png)
-
+![Image](/ios/fix_ldClassic.png)
 
 ---
 

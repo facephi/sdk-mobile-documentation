@@ -21,10 +21,10 @@ Translated with DeepL.com (free version)
 The Component discussed in the current document is called **_Capture Component_**. It is responsible for the invoice capture and the capture and generation of QRs.
 
 ## 1.1 Minimum requirements
+
 The minimum iOS SDK version required is as follows:
 
-Minimum iOS version: **14**
----
+## Minimum iOS version: **14**
 
 ## 2. Integration of the component
 
@@ -38,6 +38,7 @@ This section will explain step by step how to integrate the component
 current in an existing project.
 
 ### 2.1. Dependencies required for integration
+
 <div class="warning">
 <span class="warning">:warning:</span>
 To avoid conflicts and compatibility problems, if you want
@@ -52,17 +53,22 @@ complete before installing the components of the
 ```
  pod 'FPHISDKMainComponent', '~> 2.0.0'
 ```
+
 - To install the VideoID component, the following entry must be included in the application's Podfile:
+
 ```
   pod 'FPHISDKCaptureComponent', '~>2.0.4'
 ```
+
 - Once the dependencies are installed, you can use the different functionalities of the component.
 
 - If developing with **xCode15**, a post-installation script must be included:
-![Image](/iOS/fix_ldClassic.png)
+  ![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permissions and settings
+
 In the client application where the components are going to be integrated, it is necessary to incorporate the following elements in the file **info.plist**
+
 ```
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
 ```
@@ -72,6 +78,7 @@ It is necessary to allow the use of the camera (Privacy - Camera Usage Descripti
 ## 3. Start new operation
 
 When you want to perform a certain operation, to generate the associated information correctly on the platform, the **newOperation** command must be previously executed.
+
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been run **prior to launching the component**.
@@ -79,17 +86,18 @@ This command must have been run **prior to launching the component**.
 To learn more about how to start a new operation, it is recommended to consult the <a href="Mobile_SDK" 
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"> Mobile SDK</a> documentation , which details and explains what this process consists of.
+
 </div>
 
 ---
 
 ## 4. Available controllers
 
-| **Controller**            | **Description**            |
-| ------------------------- | -------------------------- |
-| InvoiceReaderController   | Invoice capture controller |
-| QrReaderController        | QR capture controller      |
-| QrGeneratorController     | QR generator controller    |
+| **Controller**          | **Description**            |
+| ----------------------- | -------------------------- |
+| InvoiceReaderController | Invoice capture controller |
+| QrReaderController      | QR capture controller      |
+| QrGeneratorController   | QR generator controller    |
 
 ---
 
@@ -131,7 +139,6 @@ Number of images that can be added from the gallery, by default it is 5
 #### 5.1.6 previewAfterCapture
 
 Preview is enabled after capture
-
 
 ### 5.2. Class QrCaptureConfigurationData
 
@@ -196,8 +203,8 @@ Once the component has been started and a new operation has been created (**sect
 the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
- of the component normally, but the events will be tracked
- internal to the _tracking_ server:
+  of the component normally, but the events will be tracked
+  internal to the _tracking_ server:
 
 ```java
 let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: output, viewController: viewController)
@@ -205,8 +212,8 @@ SDKController.shared.launch(controller: controller)
 ```
 
 - **\[NO TRACKING\]** This call allows launching the functionality
- of the component normally, but **will not be tracked** any
- event to _tracking_ server:
+  of the component normally, but **will not be tracked** any
+  event to _tracking_ server:
 
 ```java
 let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: output, viewController: viewController)
@@ -225,6 +232,7 @@ which the integrator has tracking installed and activated, but in a
 certain flow within the application you do not want to track information.
 In that case, this method is used to prevent that information from being sent.
 to the platform.
+
 </div>
 
 ### 6.2 QR Capture
@@ -234,8 +242,8 @@ Once the component has been started and a new operation has been created (**sect
 the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
- of the component normally, but the events will be tracked
- internal to the _tracking_ server:
+  of the component normally, but the events will be tracked
+  internal to the _tracking_ server:
 
 ```java
  let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
@@ -245,8 +253,8 @@ the component:
 ```
 
 - **\[NO TRACKING\]** This call allows launching the functionality
- of the component normally, but **will not be tracked** any
- event to _tracking_ server:
+  of the component normally, but **will not be tracked** any
+  event to _tracking_ server:
 
 ```java
  let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
@@ -266,6 +274,7 @@ which the integrator has tracking installed and activated, but in a
 certain flow within the application you do not want to track information.
 In that case, this method is used to prevent that information from being sent.
 to the platform.
+
 </div>
 
 ### 6.3 QR Generation
@@ -275,8 +284,8 @@ Once the component has been started and a new operation has been created (**sect
 the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
- of the component normally, but the events will be tracked
- internal to the _tracking_ server:
+  of the component normally, but the events will be tracked
+  internal to the _tracking_ server:
 
 ```java
  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
@@ -285,8 +294,8 @@ the component:
 ```
 
 - **\[NO TRACKING\]** This call allows launching the functionality
- of the component normally, but **will not be tracked** any
- event to _tracking_ server:
+  of the component normally, but **will not be tracked** any
+  event to _tracking_ server:
 
 ```java
  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
@@ -305,6 +314,7 @@ which the integrator has tracking installed and activated, but in a
 certain flow within the application you do not want to track information.
 In that case, this method is used to prevent that information from being sent.
 to the platform.
+
 </div>
 
 ---
@@ -344,9 +354,9 @@ with the SdkResult.Success.
 
 Array of scanned documents:
 
- - image: UIImage.
+- image: UIImage.
 
- - date: Date.
+- date: Date.
 
 ---
 
@@ -387,7 +397,7 @@ of each _String_ by the desired one.
 "capture_component_remove_confirmation_title" = "Do you want to delete this document?";
 "capture_component_image" = "Image ";
 "capture_component_retry" = "NO, I WANT TO REPEAT THE PHOTOGRAPH";
-"capture_component_tutorial_tittle" = "Scan your documents"; 
+"capture_component_tutorial_tittle" = "Scan your documents";
 "capture_component_tutorial_description" = "Take a picture of the document, or upload an image. /n You can scan several documents before finishing";
 "capture_component_tutorial_button" = "CONTINUE";
 
