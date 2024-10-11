@@ -641,4 +641,4 @@ The second one is the capture widget.
 
 ![MobileCapture](/ios/SelphID/capture-001.png)
 
-This widget can also be customized by following the instructions inside [SelphID Resources](./../resources/SelphID_resources.md).
+This widget can also be customized by following the instructions inside SelphID Resources.
