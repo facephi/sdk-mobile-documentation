@@ -510,45 +510,7 @@ será **NO_ERROR**.
 
 ---
 
-## 9. Control de errores
-
-Al realizar la llamada a cualquiera de los componentes, siempre tendremos como respuesta un output de tipo SdkResult como vemos en el código de ejemplo:
-
-```java
-        let controller = ComponentController(data: ComponentConfigurationData, output: { sdkResult in
-           print(sdkResult.errorType)
-        }, viewController: viewController)
-        SDKController.shared.launch(controller: controller)
-```
-
-En el atributo .errorType, tendremos la tipología del error. Las tipologías de error están definidas en la documentación propia de cada componente.
-
-Los códigos de error que podría recibir son los siguientes.
-
-```java
-public enum ErrorType: String, Error {
-    case NO_ERROR
-    case UNKNOWN_ERROR
-    case OTHER(String)
-    case COMPONENT_CONTROLLER_DATA_ERROR
-    case NO_OPERATION_CREATED_ERROR
-    case NETWORK_CONNECTION
-    case CAMERA_PERMISSION_DENIED
-    case MIC_PERMISSION_DENIED
-    case LOCATION_PERMISSION_DENIED
-    case STORAGE_PERMISSION_DENIED
-    case CANCEL_BY_USER
-    case TIMEOUT
-    case LICENSE_CHECKER_ERROR_INVALID_LICENSE
-    case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
-}
-```
-
-En caso de no existir ningún error y el resultado se devuelva correctamente, el errorType seria del tipo **NO_ERROR**.
-
----
-
-## 10. Personalización de la SDK
+## 9. Personalización de la SDK
 
 La personalización se realiza mediante una clase del componente llamada Theme**_Component_**Manager. Donde **_Component_** debe sustituirse por el componente deseado.
 

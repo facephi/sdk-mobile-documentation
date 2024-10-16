@@ -452,7 +452,7 @@ The customization of the other elements from previous images is done inside the 
 
 ### 9.3 Texts
 
-The texts can be customized by overriding the value of these keys inside a Localizable.strings:
+The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```
 "selphi_component_tutorial_1"="Place your face in the centre and look straight into the camera.";
