@@ -44,9 +44,7 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] **_<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>_** y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación relativa a [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.

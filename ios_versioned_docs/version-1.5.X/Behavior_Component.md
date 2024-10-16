@@ -4,9 +4,7 @@
 
 **SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing its integration in a Mobile application in a simple and totally scalable way. Depending on the use case required, certain components must be installed. Its high level of modularity allows other new components to be added in the future without affecting those already integrated in the project
 
-For more information on the base configuration, go to the [1.5.X][EN] **_<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>_** section.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#1-introduction) section.
 
 ---
 

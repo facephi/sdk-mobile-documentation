@@ -6,6 +6,7 @@
 
 Para más información sobre la configuración base, vaya a la sección de
 [Primeros Pasos](./Mobile_SDK#1-introducción).
+
 ---
 
 ## 1. Introducción
