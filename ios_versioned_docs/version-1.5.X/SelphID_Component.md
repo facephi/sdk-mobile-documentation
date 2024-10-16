@@ -103,7 +103,7 @@ https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 
-- To install the Selphid component, it must be included in the project modules:
+- To install the SelphID component, it must be included in the project modules:
 
 ```
 //HTTPS

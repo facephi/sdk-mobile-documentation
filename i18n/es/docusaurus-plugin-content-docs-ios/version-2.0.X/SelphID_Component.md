@@ -1,4 +1,4 @@
-# Selphid Component
+# SelphID Component
 
 ## 0. Requisitos base de SDK Mobile
 

@@ -1,4 +1,4 @@
-# Getting Started
+# Primeros Pasos
 
 ## 1. Introducción
 
