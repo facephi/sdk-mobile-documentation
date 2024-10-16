@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>
+[Primeros Pasos](./Mobile_SDK#1-introducción)
 
 ---
 
@@ -251,7 +249,7 @@ Por el contrario, el método **launchMethod** cubre un caso especial, en el cual
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de **_TO DO: Enlace_** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-retorno-de-resultado).
 
 ### 7.1. Recepción de errores
 

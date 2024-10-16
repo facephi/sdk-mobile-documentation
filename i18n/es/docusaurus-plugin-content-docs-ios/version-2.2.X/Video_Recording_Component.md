@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK#1-introducción).
 
 ---
 

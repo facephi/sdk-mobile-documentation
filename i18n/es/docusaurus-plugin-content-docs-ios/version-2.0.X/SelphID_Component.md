@@ -317,9 +317,7 @@ a la plataforma.
 
 ## 7. Recepción del resultado.
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [<a href="Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 

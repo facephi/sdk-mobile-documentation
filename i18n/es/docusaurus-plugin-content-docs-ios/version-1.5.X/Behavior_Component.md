@@ -11,9 +11,7 @@ de modularidad permite que, en un futuro, se puedan añadir otros
 componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
-Para más información sobre la configuración base, vaya a la sección de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>.
+Para más información sobre la configuración base, vaya a la sección de [Primeros Pasos](./Mobile_SDK#1-introducción).
 
 ---
 
@@ -37,9 +35,7 @@ en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
 Antes de integrar este componente se recomienda leer la documentación
 relativa a:
 
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho
+[Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho
 documento.
 
 En esta sección se explicará paso a paso cómo integrar el componente
@@ -86,9 +82,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla
+consultar la documentación de [Primeros Pasos](./Mobile_SDK#4-iniciar-nueva-operación), en el que se detalla
 y explica en qué consiste este proceso.
 
 ---

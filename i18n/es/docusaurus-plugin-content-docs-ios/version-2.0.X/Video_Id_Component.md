@@ -230,10 +230,7 @@ En los datos de configuración (VideoIDConfigurationData) también se podrán mo
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 

@@ -5,9 +5,7 @@
 **SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece una serie de funcionalidades y servicios, permitiendo a su vez su integración en una aplicación Mobile de forma sencilla y totalmente escalable. Dependiendo del caso de uso que se requiera, se deberá realizar la instalación de unos determinados componentes. Su alto nivel de modularidad permite que, en un futuro, se puedan añadir otros componentes nuevos sin afectar en absoluto a los ya integrados en el proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK#1-introducción).
 
 ---
 
@@ -313,9 +311,7 @@ a la plataforma.
 
 ## 7. Recepción del resultado.
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [<a href="Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 

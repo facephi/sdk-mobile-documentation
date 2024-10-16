@@ -251,7 +251,7 @@ Por el contrario, el método **launchMethod** cubre un caso especial, en el cual
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de **_TO DO: Enlace_** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 
