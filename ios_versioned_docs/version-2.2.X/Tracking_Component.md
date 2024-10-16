@@ -34,16 +34,24 @@ Minimum iOS version: **13**
 
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
+<div class="warning">
+<span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow its instructions.
+</div>
 
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
+To use the Tracking Component with the SDK, it's needed to pass an instance as a param in the initSdk function:
 
-This section will explain step by step how to integrate the current
-component into an existing project.
+```
+SDKController.shared.initSdk(
+        ...,
+        trackingController: TrackingController()
+    )
+```
+
+When a TrackingController's instance is provided, the Components will track the SDK process.
 
 ### 2.1. Dependencies required for integration
 

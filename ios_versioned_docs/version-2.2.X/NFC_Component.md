@@ -45,12 +45,14 @@ The minimum iOS SDK version required is as follows:
 
 ## 2. Integration of the component
 
-Before integrating this component, it is recommended to read the documentation related to
-[Getting Started](./Mobile_SDK)
-and follow the instructions indicated in said document.
+<div class="warning">
+<span class="warning">:warning:</span>
+Before integrating this component, it is recommended to read the
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow the instructions given in that document.
+</div>
 
-This section will explain step by step how to integrate the component
-current in an existing project.
+This section will explain step by step how to integrate the current
+component into an existing project.
 
 ### 2.1. Dependencies required for integration
 

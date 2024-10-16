@@ -46,11 +46,13 @@ The minimum iOS SDK version required is as follows:
 
 ## 2. Integration of the component
 
-Before integrating this component, it is recommended that you read the documentation
-documentation for the **<u>Core Component</u>** and follow the instructions
-indicated in this document.
+<div class="warning">
+<span class="warning">:warning:</span>
+Before integrating this component, it is recommended to read the
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow the instructions given in that document.
+</div>
 
-This section will explain step by step how to integrate the current component into an existing project.
+This section will explain step by step how to integrate the current
 component into an existing project.
 
 ### 2.1. Dependencies required for integration
@@ -254,9 +256,7 @@ sent to the platform.
 ## 7. Receipt of the result
 
 The controllers will return the required information in SdkResult
-format. More information in the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>.
+format. More information in the [Result Return](./Mobile_SDK#6-result-return) section.
 
 ### 7.1. Receipt of errors
 

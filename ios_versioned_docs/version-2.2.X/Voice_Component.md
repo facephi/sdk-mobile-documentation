@@ -45,11 +45,11 @@ Minimum iOS version: **13**
 
 ## 2. Integration of the component
 
+<div class="warning">
+<span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to:
-
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow its instructions.
+</div>
 
 This section will explain step by step how to integrate the current
 component into an existing project.
