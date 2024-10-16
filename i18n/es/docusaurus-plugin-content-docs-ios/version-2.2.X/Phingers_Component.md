@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK#1-introducción).
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 
 ---
@@ -223,7 +223,7 @@ a la plataforma.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato SdkResult. 
-Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-retorno-de-resultado).
+Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 

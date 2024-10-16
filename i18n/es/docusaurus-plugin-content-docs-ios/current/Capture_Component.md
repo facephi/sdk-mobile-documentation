@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK#1-introducción).
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 ---
 

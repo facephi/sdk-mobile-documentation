@@ -9,8 +9,7 @@ be installed depending on the use case required. Its high level of
 modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#11-minimum-requirements) section.
 
 ---
 
@@ -38,13 +37,14 @@ Minimum iOS version: **13**
 
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to [Mobile SDK](./Mobile_SDK) and follow the instructions in that document.
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow the instructions given in that document.
 </div>
+
 This section will explain step by step how to integrate the current
 component into an existing project.
 

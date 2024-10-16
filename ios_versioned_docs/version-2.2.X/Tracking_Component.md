@@ -9,8 +9,7 @@ be installed depending on the use case required. Its high level of
 modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#11-minimum-requirements) section.
 
 ---
 

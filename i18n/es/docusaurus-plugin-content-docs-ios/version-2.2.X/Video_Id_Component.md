@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK#1-introducción).
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 ---
 
@@ -215,7 +215,10 @@ En los datos de configuración (VideoIDConfigurationData) también se podrán mo
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en [Retorno de Resultado](./Mobile_SDK#6-retorno-de-resultado).
+Los controllers devolverán la información necesaria en formato
+SdkResult. Más información en <a href="ES_Mobile_SDK"
+data-linked-resource-id="2605678593" data-linked-resource-version="15"
+data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 
 ### 7.1. Recepción de errores
 

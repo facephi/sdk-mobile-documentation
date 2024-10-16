@@ -14,6 +14,8 @@ For more information on the base configuration, go to the
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a> section.
 
+---
+
 ## 1. Introduction
 
 The component discussed in the current document is called VideoCall

@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK#1-introducción).
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 ---
 
@@ -44,8 +44,10 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
-
+<div class="warning">
+<span class="warning">:warning:</span>
+Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -115,8 +117,7 @@ Cuando se desea realizar una determinada operación, para generar la informació
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste
-este proceso.
+consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
 
 ---
 

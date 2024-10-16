@@ -9,8 +9,7 @@ be installed depending on the use case required. Its high level of
 modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#11-minimum-requirements) section.
 
 ---
 
@@ -255,10 +254,7 @@ sent to the platform.
 
 ## 7. Receipt of the result
 
-The controllers will return the required information in SdkResult format
--more details in the <a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>.
+The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
 ### 7.1. Receipt of errors
 

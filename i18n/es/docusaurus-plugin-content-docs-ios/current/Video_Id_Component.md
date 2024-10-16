@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK#1-introducción).
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 ---
 
@@ -32,8 +32,10 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
+<div class="warning">
+<span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
-
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 

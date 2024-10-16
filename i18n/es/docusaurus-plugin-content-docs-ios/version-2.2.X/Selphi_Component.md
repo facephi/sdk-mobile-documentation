@@ -12,7 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK#1-introducción).
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 ---
 
@@ -115,8 +115,7 @@ Cuando se desea realizar una determinada operación, para generar la informació
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste
-este proceso.
+consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
 
 ---
 

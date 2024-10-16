@@ -103,8 +103,7 @@ componente**.
 
 </div>
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste
-este proceso.
+consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
 
 ---
 
