@@ -344,7 +344,7 @@ ThemeStatusManager.setup(theme: CustomThemeStatus())
 
 ---
 
-## 5 Working Example
+## 5. Working Example
 
 There are four different views inside Status that can be configured.
 

@@ -2,33 +2,29 @@
 
 ## 1. Introducción
 
-The _Component_ dealt with in the current document is called **_StatusComponent_**. It is in charge of the common UI used in the components. This _Component_ can is completely customizable. The elements you can override/change are:
+El componente al que hace referencia esta documentación es **_StatusComponent_**. Se encarga de implementar y modificar multitud de aspectos relacionados con la UI de todos los componentes. Los elementos que se pueden personalizar son:
 
-- Colors
+- Colores
 
-- Images
+- Imágenes
 
-- Dimensions (size values,...)
+- Dimensiones (tamaños,...)
 
-- Fonts
-
----
-
-### 1.1 Minimum requirements
-
-The minimum iOS SDK version required is as follows:
-
-Minimum iOS version: **13**
+- Fuentes
 
 ---
 
-## 2. Integration of the component
+### 1.1 Requisitos mínimos
 
-Before integrating this component, it is recommended to read the
-documentation related to [Getting Started](./Mobile_SDK)
-and follow its instructions.
+La versión mínima de la SDK de iOS requerida es la siguiente:
 
-To use the Status Component with the SDK, it's needed to pass an instance as a param in the initSdk function:
+Versión mínima de iOS: **13**
+
+---
+
+## 2. Integración del componente
+
+Para utilizar Status Component con el SDK, es necesario enviar una instancia como parámetro en la función **_initSdk_**:
 
 ```
 SDKController.shared.initSdk(
@@ -37,31 +33,31 @@ SDKController.shared.initSdk(
     )
 ```
 
-When a StatusController's instance is provided, the Component's will show a tutorial UI, diagnostic screen on errors and more when launched.
+### 2.1. Dependencias requeridas para la integración
 
-### 2.1. Dependencies required for integration
-
-None
+Ninguna
 
 #### Cocoapods
 
-- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them in the Podfile file of the project) are:
+- Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
+
 
 ```
   pod 'FPHISDKMainComponent', '~> 2.0.0'
 ```
 
-- To install the Status component, the following entry must be included in the application Podfile:
+- Para instalar el componente de Status deberá incluirse la siguiente entrada en el Podfile de la aplicación:
+
 
 ```
   pod 'FPHISDKStatusComponent', '~> 2.0.0'
 ```
 
-- Once the dependencies are installed, the different functionalities of the component can be used.
+- Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 #### SPM
 
-- The mandatory dependencies that must have been previously installed are:
+- Las dependencias obligatorias que deberán haberse instalado previamente son:
 
 ```
 //HTTPS
@@ -70,7 +66,7 @@ https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 
-- To install the Status component, it must be included in the project modules:
+- Para instalar el componente de Status deberá incluirse en los módulos del proyecto:
 
 ```
 //HTTPS
@@ -79,18 +75,21 @@ https://github.com/facephi-clienters/SDK-StatusPackage-SPM.git
 git@github.com:facephi-clienters/SDK-StatusPackage-SPM.git
 ```
 
-## 3. Available controllers
+---
 
-|                  |                                  |
-| ---------------- | -------------------------------- |
-| **Controller**   | **Description**                  |
-| StatusController | Contains the exposed API methods |
+
+## 3. Controladores disponibles
+
+|                  |                                          |
+| ---------------- | ---------------------------------------- |
+| **Controlador**  | **Descripción**                          |
+| StatusController | Contiene los métodos expuestos en la API |
 
 ---
 
-## 4 Customize
+## 4. Personalización
 
-The component's customization is managed with "Themes". This themes implement ThemeStatusProtocol:
+La customización del componente se gestiona con "Themes". Estos temas implementan el ThemeStatusProtocol:
 
 ```
 public protocol ThemeStatusProtocol {
@@ -102,11 +101,11 @@ public protocol ThemeStatusProtocol {
 }
 ```
 
-A custom theme can edit any of those values. By default there is a ThemeStatus that is used when a param is not configured.
+Un custom theme puede editar esos valores. Por defecto hay un ThemeStatus que se utiliza en caso de no haberse configurado uno custom.
 
-### 4.1 Colors
+### 4.1 Colores
 
-Available colors to customize:
+Colores disponibles para personalizar:
 
 ```
 enum Color: String, CaseIterable {
@@ -124,20 +123,20 @@ enum Color: String, CaseIterable {
 }
 ```
 
-By default:
+Por defecto:
 
 ![Image](/ios/Status/status_colors-001.png)
 
-#### 4.1.1 Customize colors with xcassets
+#### 4.1.1 Personalizar colores con xcassets
 
-When used, the StatusComponent will check first if a color asset with the same name as the enum's case exists in the main app.
+Al ser usado, el StatusComponent comprobará primero si un color con el mismo nombre existe ya entre los assets de la aplicación principal.
 
-This option overrides the Theme.
-If the asset is not found in the main app, it will take the value of the configured "Theme".
+Si existe, sobreescribirá el valor por defecto.
+Si no existe, se utilizará el valor configurado en el tema activo.
 
-#### 4.1.2 Customize colors with a Theme
+#### 4.1.2 Personalizar colors con un Theme
 
-The colors can be customized with the creation of a Theme class:
+Los colores se pueden personalizar mediante una clase Theme:
 
 ```
 import statusComponent
@@ -153,9 +152,9 @@ class CustomThemeStatus: ThemeStatusProtocol {
 }
 ```
 
-### 4.2 Images
+### 4.2 Imágenes
 
-Available images to customize:
+Imágenes disponibles para customizar:
 
 ```
 enum Image: String, CaseIterable {
@@ -177,20 +176,20 @@ enum Image: String, CaseIterable {
 }
 ```
 
-By default:
+Por defecto:
 
 ![Image](/ios/Status/status_images-001.png)
 
-#### 4.2.1 Customize images with xcassets
+#### 4.2.1 Personalizar imágenes con xcassets
 
-When used, the StatusComponent will check first if an image asset with the same name as the enum's case exists in the main app.
+Al ser usado, el StatusComponent comprobará primero si una imagen con el mismo nombre existe ya entre los assets de la aplicación principal.
 
-This option overrides the Theme.
-If the asset is not found in the main app, it will take the value of the configured "Theme".
+Si existe, sobreescribirá el valor por defecto.
+Si no existe, se utilizará el valor configurado en el tema activo.
 
-#### 4.2.2 Customize images with a Theme
+#### 4.2.2 Personalizar imágenes con un Theme
 
-The images can be customized with the creation of a Theme class:
+Las imágenes se pueden personalizar mediante una clase Theme:
 
 ```
 import statusComponent
@@ -205,9 +204,9 @@ class CustomThemeStatus: ThemeStatusProtocol {
 }
 ```
 
-### 4.3 Fonts
+### 4.3 Fuentes
 
-Available fonts to customize:
+Fuentes disponibles para personalizar:
 
 ```
 enum Font: String {
@@ -216,7 +215,7 @@ enum Font: String {
 }
 ```
 
-By default:
+Por defecto:
 
 ```
 public var fonts: [R.Font: String] {
@@ -231,9 +230,9 @@ public var fonts: [R.Font: String] {
 **_Poppins-SemiBold_**
 ![Image](/ios/Status/status_fonts-002.png)
 
-#### 4.3.1 Customize fonts
+#### 4.3.1 Personalizando las fuentes
 
-The fonts can be customized with the creation of a Theme class:
+Las fuentes se pueden personalizar mediante la creación de una clase Theme:
 
 ```
 import statusComponent
@@ -249,12 +248,12 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 <div class="warning">
 <span class="warning">:warning:</span>
-***If using a custom font:*** The font needs to be registered before launching the component. Every ThemeManager registers its fonts, but this operation is asynchronous and can cause race conditions. While using custom fonts, it's advised to call to the ThemeManager.setup(...) as soon as possible.
+***Usando una fuente custom:*** Las fuentes necesitan ser registradas antes de lanzar el componente. Cada ThemeManager registra sus propias fuentes, pero esta operación es asíncrona y puede causar _race conditions_. Al usar fuentes custom, se recomienda llamar a ThemeManager.setup(...) lo antes posible.
 </div>
 
-### 4.4 Dimensions
+### 4.4 Dimensiones/Tamaños
 
-Available dimensions to customize:
+Dimensiones disponibles para personalizar:
 
 ```
 enum Dimension: CGFloat {
@@ -269,7 +268,7 @@ enum Dimension: CGFloat {
 }
 ```
 
-By default:
+Por defecto:
 
 ```
 public var dimensions: [R.Dimension : CGFloat] {
@@ -283,9 +282,9 @@ public var dimensions: [R.Dimension : CGFloat] {
          .outlinedBorderWidth: 1]
 ```
 
-#### 4.4.1 Customize dimensions
+#### 4.4.1 Personalizar dimensiones
 
-The dimensions can be customized with the creation of a Theme class:
+Las dimensiones pueden ser personalizadas mediante la creación de una clase Theme:
 
 ```
 import statusComponent
@@ -301,9 +300,9 @@ class CustomThemeStatus: ThemeStatusProtocol {
 }
 ```
 
-### 4.5 Full Example
+### 4.5 Ejemplo Completo
 
-A full example of a CustomThemeStatus could be:
+Un ejemplo completo de CustomThemeStatus podría ser:
 
 ```
 import statusComponent
@@ -333,7 +332,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 }
 ```
 
-Once implemented, we set the instance of our custom theme like this:
+Una vez implementado, asignamos la instancia de nuestro tema custom de la siguiente manera:
 
 ```
 import statusComponent
@@ -344,40 +343,42 @@ ThemeStatusManager.setup(theme: CustomThemeStatus())
 
 ---
 
-## 5 Working Example
+## 5. Ejemplo funcional
 
-There are four different views inside Status that can be configured.
+Hay 4 vistas distintas dentro de StatusComponent que pueden ser configuradas.
 
-Aside from using a theme, the customization can be done with the assets approach. In this example, we can see the result of creating the following keys and values:
+Además de usando un tema, la customización puede realizarse utilizando assets. En este ejemplo, podemos ver el resultado de crear los recursos personalizados con los siguientes valores: 
 
 ![Image](/ios/Status/status_assets_customization-001.png)
 
-### 5.1 Tip View
+### 5.1 Vista de Información principal
 
-The tip is activated by default but can be skipped with the controller's configuration parameter _showTutorial_.
+Esta vista se muestra en todos los componentes por defecto, aunque puede omitirse si en el controlador específico, se asigna a _false_ el parámetro _showTutorial_.
 
-Usually it's the first page the user will see after launching the Controller.
+Normalmente es la primera página que el usuario ve tras lanzar el controlador.
 
-![Image](/ios/Status/status_tips-001.png)
+![MobileCapture](/ios/Status/status_tips-001.png)
 
-### 5.2 Tutorial Views
+### 5.2 Vistas de tutorial por pasos
 
-The tutorial is accessed by the **_More Information_** button in the Tip. It's a set of views that further explain the process to the user.
+El tutorial es accesible desde el botón  **_Más Información_**. Se trata de un conjunto de vistas que ayudan a detallar el proceso al usuario.
 
-![Image](/ios/Status/status_tutorial-001.png)
+![MobileCapture](/ios/Status/status_tutorial-001.png)
 
-### 5.3 Diagnostic View
+### 5.3 Vista de Diagnóstico
 
-The Diagnostic view is shown to the user when there is information needed to continue the process.
+La vista de Diagnóstico se muestra para informar al usuario de algo importante que ocurre durante el proceso.
 
-![Image](/ios/Status/status_diagnostic-001.png)
+![MobileCapture](/ios/Status/status_diagnostic-001.png)
 
-### 5.4 Permission View
+### 5.4 Vista de Permisos
 
-Similar to Diagnostic view. It's shown when the capture process needs the user's approval to access some of the device's features. The difference is that this view contains a button that navigates to the device settings.
+Similar a la vista de Diagnóstico. Se muestra cuando el proceso de captura necesita la aprobación del usuario para que la aplicación pueda acceder a alguna funcionalidad del dispositivo (cámara, micrófono,...). Una diferencia importante entre esta vista y la de Diagnóstico es que en esta existe un botón que al pulsarlo te lleva a los Ajustes de Permisos del dispositivo.
 
-**_Missing Camera Permissions_**
-![Image](/ios/Status/status_permissions-001.png)
+**_Permiso de acceso a la cámara rechazado_**
 
-**_Missing Microphone Permissions_**
-![Image](/ios/Status/status_permissions-002.png)
+![MobileCapture](/ios/Status/status_permissions-001.png)
+
+**_Permiso de acceso al micrófono rechazado_**
+
+![MobileCapture](/ios/Status/status_permissions-002.png)
