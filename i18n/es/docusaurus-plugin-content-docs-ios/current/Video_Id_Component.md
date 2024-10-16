@@ -246,7 +246,7 @@ PERMISSION_DENIED
 
 ## 8. Customizing the component
 
-Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) después de inicializar el videoIdController:
+Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) antes de lanzar el videoIdController:
 
 ```
 let videoidController = VideoIdController(data: data, output: output, viewController: viewController)

@@ -284,7 +284,7 @@ data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 documento), este componente en particular permite la modificación de datos específicos
 textos.
 
-Para personalizar el componente, se debe llamar a ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) después de inicializar videocallController:
+Para personalizar el componente, se debe llamar a ThemeVideoCallManager.setup(theme: CustomThemeVideoCall() ) antes de lanzar videocallController:
 
 ```java
 let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)

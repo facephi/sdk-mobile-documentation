@@ -248,7 +248,7 @@ explained in the [Getting Started](./Mobile_SDK)
 document), this particular component allows the modification of specific
 texts.
 
-To customise the component, ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) must be called after initialising the videocallController:
+To customise the component, ThemeVideoCallManager.setup(theme: CustomThemeVideoCall() ) must be called before launching the videocallController:
 
 ```java
 let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)

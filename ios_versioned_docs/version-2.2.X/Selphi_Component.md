@@ -402,7 +402,7 @@ class CustomThemeSelphi: ThemeSelphiProtocol {
 }
 ```
 
-To customise the component, ThemeSelphiManager.setup(theme:CustomThemeSelphi() ) must be called after initialising the selphiController:
+To customise the component, ThemeSelphiManager.setup(theme: CustomThemeSelphi() ) must be called before launching the selphiController:
 
 ```
 let selphiController = SelphiController(data: SelphiConfigurationData(), output: output, viewController: viewController)

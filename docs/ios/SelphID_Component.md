@@ -485,7 +485,7 @@ class CustomThemeSelphID: ThemeSelphIDProtocol {
 }
 ```
 
-To customise the component, ThemeSelphIDManager.setup(theme:CustomThemeSelphID() ) must be called after initialising the selphidController:
+To customise the component, ThemeSelphIDManager.setup(theme: CustomThemeSelphID() ) must be called before launching the selphidController:
 
 ```
 let selphidController = SelphIDController(data: SelphIDConfigurationData(), output: output, viewController: viewController)
