@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 
 ---
@@ -50,9 +48,12 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a <u>**Core Component**</u> y seguir las instrucciones indicadas en dicho documento.
-
-En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
+<div class="warning">
+<span class="warning">:warning:</span>
+Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+</div>
+En esta sección se explicará paso a paso cómo integrar el componente
+actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
 
@@ -86,9 +87,7 @@ Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste
+consultar la documentación de [Primeros Pasos](./Mobile_SDK#4-iniciar-nueva-operación), en el que se detalla y explica en qué consiste
 este proceso.
 
 ---
@@ -227,9 +226,7 @@ a la plataforma.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato SdkResult. 
-Más información en la sección de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK's</a>.
+Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 

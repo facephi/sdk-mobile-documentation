@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 ---
 
@@ -46,10 +44,10 @@ Versión mínima de iOS: **13**
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación relativa a [1.5.X][ES] **_<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">iOS Mobile SDK</a>_** y seguir las instrucciones indicadas en dicho documento.
-
+<div class="warning">
+<span class="warning">:warning:</span>
+Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -119,11 +117,7 @@ Cuando se desea realizar una determinada operación, para generar la informació
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Mobile
-SDK</u></strong></a>, en el que se detalla y explica en qué consiste
-este proceso.
+consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
 
 ---
 
@@ -286,10 +280,7 @@ a la plataforma.
 ## 7. Recepción del resultado.
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u>Mobile
-SDK</u></strong></a>
+SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 
@@ -366,3 +357,121 @@ let controller = RawTemplateController(
 	})
 SDKController.shared.launchMethod(controller: controller)
 ```
+
+---
+
+## 9. Personalizando el componente
+
+Además de los cambios a nivel de SDK (que se explican en [Mobile SDK](./Mobile_SDK)), este componente específico permite la modificación de sus animaciones.
+
+### 9.1 Personalizando las animaciones
+
+El componente de Selphi utiliza las siguientes animaciones:
+
+```
+public enum Animation : String, CaseIterable {
+	case selphi_anim_tip
+	case selphi_anim_tip_move
+	case selphi_anim_tuto_1
+	case selphi_anim_tuto_2
+	case selphi_anim_tuto_3
+}
+```
+
+Las animaciones configuradas por defecto pueden sobreescribirse creando un archivo en el proyecto con el mismo nombre y extensión (.json en este caso).
+
+También pueden configurarse de forma dinamica en tiempo de ejecución. Para hacer esto, es necesario crear una clase "tema custom" (custom "theme") que implemente la interfaz **ThemeSelphiProtocol**.
+
+```
+import selphiComponent
+class CustomThemeSelphi: ThemeSelphiProtocol {
+	var name: String = "custom"
+
+	public var customBoolean: Bool = true
+	var animations: [R.Animation : String] {
+		[.selphi_anim_tip: customBoolean ? "primary_custom_selphi_anim_tip": "secondary_custom_selphi_anim_tip",
+		 .selphi_anim_tip_move: customBoolean ? "primary_custom_selphi_anim_tip_move": "secondary_custom_selphi_anim_tip_move",
+		 .selphi_anim_tuto_1: customBoolean ? "primary_custom_selphi_anim_tuto_1": "secondary_custom_selphi_anim_tuto_1",
+		 .selphi_anim_tuto_2: customBoolean ? "primary_custom_selphi_anim_tuto_2": "secondary_custom_selphi_anim_tuto_2",
+		 .selphi_anim_tuto_3: customBoolean ? "primary_custom_selphi_anim_tuto_3": "secondary_custom_selphi_anim_tuto_3"]
+	}
+}
+```
+
+Para que la personalización se aplique al componente, se debe ejecutar **ThemeSelphiManager.setup(theme: CustomThemeSelphi())** antes de lanzar el selphidController.
+
+```
+let selphiController = SelphiController(data: SelphiConfigurationData(), output: output, viewController: viewController)
+ThemeSelphiManager.setup(theme: CustomThemeSelphi())
+SDKController.shared.launch(controller: selphiController)
+```
+
+#### 9.1.1 Guía de animaciones
+
+- **_selphi_anim_tip_**
+	Esta animación se muestra si el livenessMode **NO** es _MOVE_.
+
+```
+var configSelphi = SelphiConfigurationData()
+...
+configSelphi.livenessMode = SelphiFaceLivenessMode.PASSIVE
+```
+
+![MobileCapture](/ios/Selphi/tips-001.png)
+
+- **_selphi_anim_tip_move_**
+	Esta animación se muestra si el livenessMode es _MOVE_.
+
+```
+var configSelphi = SelphiConfigurationData()
+...
+configSelphi.livenessMode = SelphiFaceLivenessMode.MOVE
+```
+
+![MobileCapture](/ios/Selphi/tips-002.png)
+
+- **_selphi_anim_tuto_1_**
+
+![MobileCapture](/ios/Selphi/tutorial-001.png)
+
+- **_selphi_anim_tuto_2_**
+
+![MobileCapture](/ios/Selphi/tutorial-002.png)
+
+- **_selphi_anim_tuto_3_**
+
+![MobileCapture](/ios/Selphi/tutorial-003.png)
+
+### 9.2 Colores, imágenes, tamaños y fuentes
+
+Al contrario que con las animaciones, la personalización de estos elementos se hace desde el [Componente de Status](./Status_Component).
+
+### 9.3 Textos
+
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un Localizable.strings. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
+
+```
+"selphi_component_tutorial_1"="Place your face in the centre and look straight into the camera.";
+"selphi_component_tutorial_2"="Remove any object that covers your face.";
+"selphi_component_tutorial_3"="Look for a well-lit environment, without shadows on your face.";
+"selphi_component_tip_desc"="Place your face in the center of the circle";
+"selphi_component_tip_title"="Face Recognition";
+"selphi_component_tip_button_message"="START";
+"selphi_component_tip_alt"="Animation of a mobile screen with the front camera activated. A circle appears in the center of the screen. A person shows their face inside the circle and the application takes a photo.";
+"selphi_component_tip_move_alt"="Animation of a mobile screen with the front camera activated. A circle appears in the center of the screen. A person shows their face inside the circle, moves it slightly to the side and the application takes a photo of it. ";
+"selphi_component_tutorial_1_alt"="A circle appears in the center of the screen. A person shows their face. Their entire head can be seen inside the circle. When they are correctly positioned, the application takes a photo of them.";
+"selphi_component_tutorial_2_alt"="A circle appears in the center of the screen. Inside the circle there is a person, wearing sunglasses, and his hair covering part of his face. He takes off his glasses and removes his hair from his face. The application detects your entire face and takes a photo.";
+"selphi_component_tutorial_3_alt"="A dark circle appears in the center of the screen. Inside the circle, it is difficult to see a person's face. A light turns on and their face can be clearly seen. After this, the application makes a photo.";
+"selphi_component_tutorial_move_desc"="Place your face in the center of the circle and follow the directions.";
+"selphi_component_timeout_title" = "Timeout";
+"selphi_component_timeout_desc" = "We were unable to identify you. Please try again";
+```
+
+### 9.4 Personalización del Widget
+
+Selphi está dividido en dos partes, la primera es la espeicifcada en las secciones previas y contiene las pantallas de "tutorial" y "Más información". La segunda es el widget de captura con cámara.
+
+![MobileCapture](/ios/Selphi/capture-001.png)
+
+Este widget puede ser personalizado también, pero para hacerlo se deben modificar los recursos de Selphi.

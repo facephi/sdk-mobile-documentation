@@ -9,8 +9,7 @@ case that is required, certain components must be installed. Its high
 level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#11-minimum-requirements) section.
 
 ---
 
@@ -46,11 +45,11 @@ Minimum iOS version: **13**
 
 ## 2. Integration of the component
 
+<div class="warning">
+<span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to:
-
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow its instructions.
+</div>
 
 This section will explain step by step how to integrate the current
 component into an existing project.
@@ -191,7 +190,7 @@ sent to the platform.
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de [Getting Started](./Mobile_SDK).
+SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 

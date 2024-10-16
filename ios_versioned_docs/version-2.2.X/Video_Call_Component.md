@@ -9,8 +9,9 @@ case that is required, certain components must be installed. Its high
 level of modularity allows other new components to be added in the
 future without affecting those already integrated in the project.
 
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#11-minimum-requirements) section.
+
+---
 
 ## 1. Introduction
 
@@ -27,13 +28,13 @@ Minimum iOS version: **13**
 
 ---
 
-## 2. Integración del componente
+## 2. Integration of the component
 
+<div class="warning">
+<span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to:
-
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow its instructions.
+</div>
 
 This section will explain step by step how to integrate the current
 component into an existing project.
@@ -248,7 +249,7 @@ explained in the [Getting Started](./Mobile_SDK)
 document), this particular component allows the modification of specific
 texts.
 
-To customise the component, ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) must be called after initialising the videocallController:
+To customise the component, ThemeVideoCallManager.setup(theme: CustomThemeVideoCall() ) must be called before launching the videocallController:
 
 ```java
 let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)

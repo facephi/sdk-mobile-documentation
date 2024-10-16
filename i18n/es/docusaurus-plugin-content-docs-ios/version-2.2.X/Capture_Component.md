@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+[Primeros Pasos](./Mobile_SDK#11-requisitos-mínimos).
 
 ---
 
@@ -33,9 +31,7 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a> y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
@@ -86,10 +82,7 @@ Cuando se desea realizar una determinada operación, para generar la informació
 <span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>, en el que se detalla y explica en qué consiste este proceso.
-
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
 </div>
 
 ---
@@ -324,9 +317,7 @@ a la plataforma.
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-retorno-de-resultado).
 
 ### 7.1. Recepción de errores
 

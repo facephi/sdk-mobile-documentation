@@ -14,6 +14,8 @@ For more information on the base configuration, go to the
 data-linked-resource-id="2605678593" data-linked-resource-version="15"
 data-linked-resource-type="page">Mobile SDK</a> section.
 
+---
+
 ## 1. Introduction
 
 The component discussed in the current document is called VideoCall
@@ -268,7 +270,7 @@ data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
 document), this particular component allows the modification of specific
 texts.
 
-To customise the component, ThemeVideoCallManager.setup(theme:CustomThemeVideoCall() ) must be called after initialising the videocallController:
+To customise the component, ThemeVideoCallManager.setup(theme: CustomThemeVideoCall() ) must be called before launching the videocallController:
 
 ```
 let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)

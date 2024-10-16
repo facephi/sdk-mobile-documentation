@@ -24,9 +24,11 @@ Minimum iOS version: **13**
 
 ## 2. Integration of the component
 
+<div class="warning">
+<span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to [Getting Started](./Mobile_SDK)
-and follow its instructions.
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow its instructions.
+</div>
 
 To use the Status Component with the SDK, it's needed to pass an instance as a param in the initSdk function:
 
@@ -344,7 +346,7 @@ ThemeStatusManager.setup(theme: CustomThemeStatus())
 
 ---
 
-## 5 Working Example
+## 5. Working Example
 
 There are four different views inside Status that can be configured.
 

@@ -1,4 +1,4 @@
-# Selphid Component
+# SelphID Component
 
 ## 1. Introducción
 El Componente tratado en el documento actual recibe el nombre de SelphID Component. Éste se encarga de realizar capturas de documentos y la posterior extracción y análisis de los datos obtenidos de ellos. Sus principales funcionalidad son las siguientes:

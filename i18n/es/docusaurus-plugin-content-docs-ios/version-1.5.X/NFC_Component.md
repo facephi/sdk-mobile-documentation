@@ -51,14 +51,10 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a> y seguir las instrucciones indicadas en dicho
-documento.
-
+<div class="warning">
+<span class="warning">:warning:</span>
+Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -251,7 +247,7 @@ Por el contrario, el método **launchMethod** cubre un caso especial, en el cual
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de **_TO DO: Enlace_** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 ### 7.1. Recepción de errores
 

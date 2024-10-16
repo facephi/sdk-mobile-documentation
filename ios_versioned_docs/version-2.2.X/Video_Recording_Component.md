@@ -11,10 +11,7 @@ Modularity allows, in the future, to add other
 new components without affecting in any way those already integrated into the
 project.
 
-For more information on the base configuration, go to the section
-<a href="Mobile_SDK"
-linked-data-resource-id="2605285492" linked-data-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK) section.
 
 ---
 
@@ -33,19 +30,14 @@ Minimum iOS version: **13**
 
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to:
-
-<a href="Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
-and follow the instructions in that document.
-
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow its instructions.
 </div>
+
 This section will explain step by step how to integrate the current
 component into an existing project.
 

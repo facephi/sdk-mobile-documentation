@@ -12,9 +12,7 @@ componentes nuevos sin afectar en absoluto a los ya integrados en el
 proyecto.
 
 Para más información sobre la configuración base, vaya a la sección de
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page">Mobile SDK</a>
+[Primeros Pasos](./Mobile_SDK#1-introducción)
 
 ---
 
@@ -51,14 +49,10 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 
 ## 2. Integración del componente
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-<a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a> y seguir las instrucciones indicadas en dicho
-documento.
-
+<div class="warning">
+<span class="warning">:warning:</span>
+Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+</div>
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -132,13 +126,12 @@ Es necesario añadir en el apartado Signing & Capabilities del target la opción
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>, en el que se detalla y explica en qué consiste
-este proceso.
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
+</div>
 
 ---
 
@@ -251,7 +244,7 @@ Por el contrario, el método **launchMethod** cubre un caso especial, en el cual
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de **_TO DO: Enlace_** [1.5.X][ES] iOS Mobile SDK | 7. Retorno de resultado del iOS Mobile SDK.
+Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-retorno-de-resultado).
 
 ### 7.1. Recepción de errores
 

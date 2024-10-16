@@ -9,8 +9,7 @@ be installed depending on the use case required. Its high level of
 modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#11-minimum-requirements) section.
 
 ---
 
@@ -38,13 +37,14 @@ Minimum iOS version: **13**
 
 ---
 
-## 2. Component integration
+## 2. Integration of the component
 
 <div class="warning">
 <span class="warning">:warning:</span>
 Before integrating this component, it is recommended to read the
-documentation related to [Mobile SDK](./Mobile_SDK) and follow the instructions in that document.
+documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow the instructions given in that document.
 </div>
+
 This section will explain step by step how to integrate the current
 component into an existing project.
 
@@ -402,7 +402,7 @@ class CustomThemeSelphi: ThemeSelphiProtocol {
 }
 ```
 
-To customise the component, ThemeSelphiManager.setup(theme:CustomThemeSelphi() ) must be called after initialising the selphiController:
+To customise the component, ThemeSelphiManager.setup(theme: CustomThemeSelphi() ) must be called before launching the selphiController:
 
 ```
 let selphiController = SelphiController(data: SelphiConfigurationData(), output: output, viewController: viewController)
@@ -452,7 +452,7 @@ The customization of the other elements from previous images is done inside the 
 
 ### 9.3 Texts
 
-The texts can be customized by overriding the value of these keys inside a Localizable.strings:
+The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```
 "selphi_component_tutorial_1"="Place your face in the centre and look straight into the camera.";
