@@ -11,10 +11,7 @@ Modularity allows, in the future, to add other
 new components without affecting in any way those already integrated into the
 project.
 
-For more information on the base configuration, go to the section
-<a href="Mobile_SDK"
-linked-data-resource-id="2605285492" linked-data-resource-version="11"
-data-linked-resource-type="page">Mobile SDK</a>.
+For more information on the base configuration, go to the [Getting Started](./Mobile_SDK) section.
 
 ---
 

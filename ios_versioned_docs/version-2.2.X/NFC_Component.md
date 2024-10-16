@@ -10,7 +10,7 @@ modularity allows other new components to be added in the future without
 affecting those already integrated into the project.
 
 For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK)
+[Getting Started](./Mobile_SDK) section.
 
 ---
 
