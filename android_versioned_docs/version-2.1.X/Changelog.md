@@ -2,6 +2,28 @@
 
 ## Versions
 
+### 2.1.1
+
+- General
+
+  - UX updates
+ 
+- SelphID
+
+  - Widget new version: 1.28.1
+
+- Selphi
+
+  - Widget new version: 5.14.2
+
+- Tracking
+
+  - Widget new version: 1.1.5
+
+- Capture
+
+  - Invoice capture improvements
+  
 ### 2.1.0
 
 - General

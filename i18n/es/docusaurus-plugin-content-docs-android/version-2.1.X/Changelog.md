@@ -2,6 +2,28 @@
 
 ## Versiones
 
+### 2.1.1
+
+- General
+
+  - Mejoras UX
+ 
+- SelphID
+
+  - Nueva versión del widget: 1.28.1
+
+- Selphi
+
+  - Nueva versión del widget: 5.14.2
+
+- Tracking
+
+  - Nueva versión del widget: 1.1.5
+
+- Capture
+
+  - Mejoras en la captura de documentos
+
 ### 2.1.0
 
 - General

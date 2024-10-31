@@ -18,6 +18,7 @@ The resource zip file can be downloaded from the following link:
 | 1.25.1  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.25.1/fphi-selphid-widget-resources-selphid-1.25.1.zip" rel="nofollow"> Resources v.1.25.1</a> |
 | 1.26.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.26.0/fphi-selphid-widget-resources-selphid-1.26.0.zip" rel="nofollow"> Resources v.1.26.0</a> |
 | 1.27.0  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.27.0/fphi-selphid-widget-resources-selphid-1.27.0.zip" rel="nofollow"> Resources v.1.27.0</a> |
+| 1.28.1  | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.28.1/fphi-selphid-widget-resources-selphid-1.28.1.zip" rel="nofollow"> Resources v.1.28.1</a> |
 
 ---
 
