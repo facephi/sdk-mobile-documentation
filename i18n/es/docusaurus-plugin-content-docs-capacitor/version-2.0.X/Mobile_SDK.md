@@ -8,9 +8,11 @@
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: **24** y JAVA 17
-- Versión mínima iOS: **13**
-- Versión mínima Capacitor **5**
+-   Versión mínima Android: **24** y JAVA 17
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
+-   Versión mínima iOS: **13**
+-   Versión mínima Capacitor **5**
 
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:

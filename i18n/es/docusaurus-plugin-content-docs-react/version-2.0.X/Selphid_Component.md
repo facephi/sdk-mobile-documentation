@@ -20,6 +20,8 @@ El Componente tratado en el documento actual recibe el nombre de SelphID Compone
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 -   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
 -   Versión mínima iOS: **13**
 -   Versión mínima ReactNative: **0.73.0**
 
@@ -149,7 +151,7 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   debug?: boolean;
   fullScreen?: boolean;
   tokenImageQuality?: number;
-  timeout?: number;
+  timeout?: SelphIDTimeout;
   showResultAfterCapture?: boolean;
   showTutorial?: boolean;
   tutorialOnly?: boolean;
@@ -171,8 +173,6 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   imageQuality?: number,
 }
 ```
-
-
 
 A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphidConfiguration**:
 
@@ -237,7 +237,6 @@ specificData: “ES|\<ALL>”; // Spanish ISO code(ES)
 Los valores permitidos son los siguientes:
 
 **SelphIDDocumentSide.FRONT:** El widget queda configurado para realizar la captura de la parte frontal del documento.
-
 **SelphIDDocumentSide.BACK:** El widget queda configurado para realizar la captura de la parte trasera del documento.
 
 ```
@@ -318,14 +317,15 @@ generateRawImages: true;
 
 **type:** *number*
 
-Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
+Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 4 posibles valores:
 
-- SdkTimeout.Short: 15 segundos.
-- SdkTimeout.Medium: 20 segundos.
-- SdkTimeout.Long: 25 segundos
+- SelphIDTimeout.Short: 15 segundos.
+- SelphIDTimeout.Medium: 20 segundos.
+- SelphIDTimeout.Long: 25 segundos.
+- SelphIDTimeout.VeryLong: 30 segundos.
 
 ```
-timeout: SdkTimeout.Medium;
+timeout: SelphIDTimeout.Medium;
 ```
 
 ### 3.12 tutorialOnly
@@ -367,7 +367,6 @@ Indica si el componente se configurará para capturar ambas partes del documento
 ```
 wizardMode: true
 ```
-
 
 ###  3.16 tokenPrevCaptureData
 
@@ -414,23 +413,7 @@ Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible 
 imageQuality: 95
 ```
 
-###  3.20 timeout
-
-**type:** *SelphIDTimeout*
-
-Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
-
-**SelphIDTimeout.SHORT:** 15 segundos.
-
-**SelphIDTimeout.MEDIUM:** 20 segundos.
-
-**SelphIDTimeout.LONG:** 25 segundos.
-
-```
-timeout: SelphIDTimeout.MEDIUM
-```
-
-### 3.21 videoFilename
+### 3.20 videoFilename
 
 **type:** *string*
 
@@ -445,7 +428,7 @@ Establece la ruta absoluta del nombre del archivo en el que se grabará un video
 vieoFilename: “\<videofile-path\>“;
 ```
 
-### 3.22 documentModels
+### 3.21 documentModels
 
 **type:** *string*
 
@@ -460,7 +443,7 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar modelado 
 documentModels: “\<document-models-content-string\>“;
 ```
 
-### 3.23 translationsContent
+### 3.22 translationsContent
 
 **type:** *string*
 
@@ -475,7 +458,7 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar la locali
 translationsContent: “\<translation-content-string\>“;
 ```
 
-### 3.24 viewsContent
+### 3.23 viewsContent
 
 **type:** *string*
 
@@ -490,6 +473,12 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 ```
 viewsContent: “\<views-content-string\>“;
 ```
+
+#### 3.24. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
 ---
 

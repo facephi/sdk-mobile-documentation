@@ -15,6 +15,8 @@ Generación de las plantillas con las características faciales y de la imagen d
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
 -   Versión mínima iOS: **13**
 -   Versión mínima Flutter: **3.0**
 
@@ -297,7 +299,6 @@ Indica si se debe mostrar o no la imagen capturada de la cara después del proce
 showResultAfterCapture: false
 ```
 
-
 ###  3.13 showTutorial
 
 **type:** *boolean*
@@ -307,7 +308,6 @@ Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Despu
 ```
 showTutorial: true
 ```
-
 
 ###  3.14 compressFormat
 
@@ -349,7 +349,6 @@ Establece la ruta absoluta del nombre del archivo en el que se grabará un video
 videoFilename: “\<videofile-path\>“;
 ```
 
-
 ###  3.17 translationsContent
 
 **type:** *string*
@@ -363,7 +362,6 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar la locali
 ```
 translationsContent: “\<translation-content-string\>“;
 ```
-
 
 ###  3.18 viewsContent
 
@@ -379,6 +377,12 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 ```
 viewsContent: “\<views-content-string\>“;
 ```
+
+#### 3.19. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
 ---
 
