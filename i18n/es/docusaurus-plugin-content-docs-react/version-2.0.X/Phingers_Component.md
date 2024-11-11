@@ -291,6 +291,13 @@ umbral para realizar la captura.
 ```
 threshold: 0.8;
 ```
+
+#### 3.11. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
+
 ---
 
 ## 4. Uso del componente

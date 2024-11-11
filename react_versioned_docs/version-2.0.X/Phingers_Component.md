@@ -180,7 +180,6 @@ be detected during the process. The allowed values are:
 
 - **DT_THUMB**: The capture of a **thumb** is activated.
 
-
 ```
 reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
 ```
@@ -226,7 +225,6 @@ mReturnRawImage: true;
 Enables or disables the camera flash during the fingerprint capture
 process. Default is set to **true**.
 
-
 ```
 useFlash: false;
 ```
@@ -271,7 +269,6 @@ Sets a stabilisation mode prior to any authentication process in the
 widget. This mode forces the widget not to start any process if the user
 is not facing forward and not moving his head.
 
-
 ```
 extractionTimeout: false;
 ```
@@ -295,6 +292,13 @@ threshold to perform the capture.
 ```
 threshold: 0.8;
 ```
+
+#### 3.12. showPreviousTip
+
+**type:** *boolean*
+
+It shows a pre-launch screen with information about the process to be carried out and a start button.
+
 ---
 
 ## 4. Use of the component

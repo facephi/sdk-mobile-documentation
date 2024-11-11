@@ -268,7 +268,6 @@ Indicates the expiry date that appears on the document ("dd/MM/yyyy").
 
 This field is mandatory.
 
-
 ```
 expirationDate: dd/mm/yyyy;
 ```
@@ -327,15 +326,25 @@ reader.
 skipPACE: false;
 ```
 
-### 3.9 debug
+#### 3.9. showPreviousTip
 
 **type:** *boolean*
 
-Activation of the component's debug mode.
+It shows a pre-launch screen with information about the process to be carried out and a start button.
 
-```
-debug: false;
-```
+#### 3.10. extractFacialImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the image of the face.
+
+
+#### 3.11. extractSignatureImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the signature image.
+
 ---
 
 ## 4. Component Usage

@@ -295,6 +295,26 @@ Activation of the component's debug mode.
 ```
 debug: false;
 ```
+
+#### 3.10. showPreviousTip
+
+**type:** *boolean*
+
+It shows a pre-launch screen with information about the process to be carried out and a start button.
+
+#### 3.11. extractFacialImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the image of the face.
+
+
+#### 3.12. extractSignatureImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the signature image.
+
 ---
 
 ## 4. Component Usage

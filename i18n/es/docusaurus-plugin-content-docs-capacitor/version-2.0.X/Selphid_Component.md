@@ -310,7 +310,7 @@ Es un enumerado que define el timeout de la captura de un lado del documento. Ti
 **SelphIDTimeout.SHORT:** 15 segundos.
 **SelphIDTimeout.MEDIUM:** 20 segundos.
 **SelphIDTimeout.LONG:** 25 segundos.
-**SelphIDTimeout.VERYLONG:** 30 segundos.
+**SelphIDTimeout.VERYLONG:** 0 segundos.
 
 ```
 timeout: SelphIDTimeout.MEDIUM

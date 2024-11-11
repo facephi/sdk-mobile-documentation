@@ -236,7 +236,7 @@ Tiempo de espera en el que el plugin deja de scanear de manera automática en ca
 extractionTimeout: 5000;
 ```
 
-### 3.5 issuer
+### 3.5 issuer(sólo iOS)
 
 **type:** *string*
 
@@ -246,15 +246,12 @@ Código del país que se desea scanear.
 issuer: 
 ```
 
-### 3.6 docType
+### 3.6 docType(sólo iOS)
 
 **type:** *NfcDocumentType*
 
 Tipo de documento que se pretende scanear.
 
-```
-docType: ;
-```
 ### 3.7 showTutorial
 
 **type:** *boolean*
@@ -289,21 +286,31 @@ vibrationEnabled: false;
 
 **type:** *boolean*
 
-.
+Indica que solo se desea la lectura NFC BAC. Es un sencillo y rápido.
+lector.
 
 ```
 skipPACE: false;
 ```
 
-### 3.11 debug
+#### 3.11. showPreviousTip
 
 **type:** *boolean*
 
-Habilita o no que se muestren datos de debug en pantalla.
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
-```
-debug: false;
-```
+#### 3.12. extractFacialImage
+
+**type:** *boolean*
+
+Indica si quieres extraer la imagen del rostro.
+
+#### 3.13. extractSignatureImage
+
+**type:** *boolean*
+
+Indica si quieres extraer la imagen de la firma.
+
 ---
 
 ## 4. Uso del componente

@@ -395,7 +395,7 @@ of the document. It has 3 possible values:
 -   SelphIDTimeout.Short: 15 seconds.
 -   SelphIDTimeout.Medium: 20 seconds.
 -   SelphIDTimeout.Long: 25 seconds.
--   SelphIDTimeout.Long: 30 seconds.
+-   SelphIDTimeout.Long: 60 seconds.
 
 > timeout: SelphIDTimeout.Short;
 

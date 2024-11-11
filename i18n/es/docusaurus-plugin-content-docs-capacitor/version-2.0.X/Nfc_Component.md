@@ -283,21 +283,32 @@ vibrationEnabled: false;
 
 **type:** *boolean*
 
-.
+Indicates that only NFC BAC reading is desired. It is a simple and fast
+reader.
 
 ```
 skipPACE: false;
 ```
 
-### 3.11 debug
+#### 3.11. showPreviousTip
 
 **type:** *boolean*
 
-Habilita o no que se muestren datos de debug en pantalla.
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
-```
-debug: false;
-```
+#### 3.12. extractFacialImage
+
+**type:** *boolean*
+
+Indica si quieres extraer la imagen del rostro.
+
+
+#### 3.13. extractSignatureImage
+
+**type:** *boolean*
+
+Indica si desea extraer la imagen de la firma.
+
 ---
 
 ## 4. Uso del componente

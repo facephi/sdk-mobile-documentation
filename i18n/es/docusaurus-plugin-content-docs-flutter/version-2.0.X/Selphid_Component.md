@@ -284,7 +284,7 @@ Es un enumerado que define el timeout de la captura de un lado del documento. Ti
 - SelphIDTimeout.Short: 15 segundos.
 - SelphIDTimeout.Medium: 20 segundos.
 - SelphIDTimeout.Long: 25 segundos.
-- SelphIDTimeout.VeryLong: 30 segundos.
+- SelphIDTimeout.VeryLong: 60 segundos.
 
 ```
 timeout = SelphIDTimeout.T_SHORT;

@@ -415,7 +415,7 @@ It is an enumeration that defines the timeout for capturing one side of the docu
 **SelphIDTimeout.SHORT:** 15 seconds.
 **SelphIDTimeout.MEDIUM:** 20 seconds.
 **SelphIDTimeout.LONG:** 25 seconds.
-**SelphIDTimeout.VERYLONG:** 30 seconds.
+**SelphIDTimeout.VERYLONG:** 60 seconds.
 
 ```
 timeout: SelphIDTimeout.MEDIUM

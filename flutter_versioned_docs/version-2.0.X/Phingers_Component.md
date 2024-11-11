@@ -282,6 +282,13 @@ threshold to perform the capture.
 ```
 threshold: 0.8;
 ```
+
+#### 3.12. showPreviousTip
+
+**type:** *boolean*
+
+It shows a pre-launch screen with information about the process to be carried out and a start button.
+
 ---
 
 ## 4. Use of the component
