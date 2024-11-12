@@ -321,7 +321,6 @@ Indicates if you want to extract the image of the face.
 
 Indicates if you want to extract the signature image.
 
-
 ---
 
 ## 4. Component Usage
