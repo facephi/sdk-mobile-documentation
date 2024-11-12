@@ -48,13 +48,13 @@ installing the **_SDKMobile_** components.
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 - To install the Capture component, the following entry must be included in the Podfile of the application:
 
 ```
-  pod 'FPHISDKCaptureComponent', '~> 1.5.0'
+  pod 'FPHISDKCaptureComponent', '~> 2.2.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -89,7 +89,7 @@ To learn more about how to start a new operation, it is recommended to consult t
 
 | **Controller**            | **Description**            |
 | ------------------------- | -------------------------- |
-| PhacturasReaderController | Invoice capture controller |
+| InvoiceReaderController   | Invoice capture controller |
 | QrReaderController        | QR capture controller      |
 | QrGeneratorController     | QR generator controller    |
 
@@ -97,70 +97,79 @@ To learn more about how to start a new operation, it is recommended to consult t
 
 ## 5. Component configuration
 
-To configure the current component, once it has been initialised, the following must be done
-Create a _CaptureConfigurationData_ object and pass it as a parameter to the SDKController during the launch of the capture component.
+The three controllers have independent functionalities so their configurations are also independent:
 
-A _QrGeneratorConfiguration_ object shall be created and passed as a parameter to the SDKController
-during the launch of the QR generation component.
+- _InvoiceCaptureConfigurationData_ and pass it as a parameter to the SDKController during the launch of the Invoice component.
+- _QrCaptureConfigurationData_ and pass it as a parameter to the SDKController during the launch of the QR capture component.
+- _QrGeneratorConfiguration_ and pass it as a parameter to the SDKController during the launch of the QR generation component.
 
 The following section will show the fields that are part of these classes and what they are used for.
-and what each of them is used for.
 
-### 5.1. Class CaptureConfigurationData
+### 5.1. Class InvoiceCaptureConfigurationData
 
-#### 5.1.1 Basic Configuration
+#### 5.1.1 vibrationEnabled
+Enable vibration during the process
 
-##### extractionTimeout
+#### 5.1.2 showDiagnostic
+Show diagnostic screens at the end of the process and in case of error
 
-Maximum extraction time
+#### 5.1.3 showTutorial
+Indicates whether the component activates the tutorial screen. This view intuitively explains how the capture is performed.
 
-##### cameraSelected
+#### 5.1.4 timePreview
+Defines the time in milliseconds that the preview lasts after the capture, by default it is set to 2000.
 
+#### 5.1.6 previewAfterCapture
+Enables the preview after capture
+
+#### 5.1.7 maxScannedDocs
+Maximum number of captured documents
+
+#### 5.1.8 showPreviousTip
+Show the previous Tips screen
+
+#### 5.1.9 autoCapture
+Enable autoCapture
+
+### 5.2. Class QrCaptureConfigurationData
+
+#### 5.2.1. extractionTimeout
+Maximum extraction timeout
+
+#### 5.2.2. cameraSelected
 Camera selected: FRONT, BACK
 
-##### vibrationEnabled
-
-Enable vibration during processing
-
-##### cameraShape
-
+#### 5.2.3. cameraShape
 Shape of the mask to be displayed on the camera:
-
 - SQUARE: Square
 - CIRCULAR: Circle
 - RECTANGLE_TALL: Rectangle
 
-##### showDiagnostic
+#### 5.2.4. vibrationEnabled
+Enable vibration during the process
 
-Show diagnostic screens at the end of the process
-
-#### 5.1.2 Advanced Settings
-
-##### showStroke
-
+#### 5.2.5. showStroke
 Show a line as camera border
 
-##### showDiagnostic
+#### 5.2.6. showDiagnostic
+Show diagnostic screens at the end of the process and in case of error
 
-Display diagnostic screens at the end of the process
+#### 5.2.7. transparentBackground
+Mask on the camera semi-transparent
 
-##### transparentBackground
+### 5.3. Class QrGeneratorConfiguration
 
-Semi-transparent mask
-
-### 5.2. Class QrGeneratorConfiguration
-
-##### source
-
+#### 5.3.1. source
 Text to be included in the QR
 
-##### width
-
+#### 5.3.2. width
 Width of the generated QR
 
-##### height
-
+#### 5.3.3. height
 Height of the generated QR
+
+#### 5.3.4 showDiagnostic
+Display diagnostic screens at the end of the process and in case of error
 
 ---
 
@@ -297,22 +306,31 @@ with the SdkResult.Success.
 ### 8.1. text
 
 ```java
-"qr_reader_component_exit_alert_question"="Are you sure you will finish the process?";
-"qr_reader_component_camera_message_circle"="Keep the QR inside the circle";
-"qr_reader_component_camera_message_square"="Keep the QR inside the square";
-"invoice_reader_component_camera_message_circle"="Keep the document inside the circle";
-"invoice_reader_component_camera_message_square"="Keep the document inside the square";
-"capture_component_camera_unauthorized_title"="Camara unauthorized";
-"capture_component_camera_unauthorized_description"="It seems you haven't given this app permission to use the camera. Please go to Settings and enable it.";
-"capture_component_image_capture_error"="Image capture error";
-"capture_component_preview_image"="Captured image preview";
-"capture_component_take_again"="Capture again";
-"capture_component_accept"="Accept";
-"capture_component_capture"="Capture";
-"capture_component_ok"="Ok";
-"capture_component_cancel"="Cancel";
-"capture_component_end_confirmation_title" = "Are you sure you will finish the process?";
-"capture_component_text_results_finish_button" = "Finish";
-"capture_component_agree" = "Accept";
+"capture_component_qr_camera_message" = "Keep the QR in the center";
+"capture_component_qr_tutorial_title" = "Scan QR Code";
+"capture_component_qr_tutorial_desc" = "Focus the QR code inside the box";
+"capture_component_qr_tutorial_button_message" = "START";
+"capture_component_qr_tutorial_1" = "Make sure the QR code has enough light and there are no reflections or glare on the code.";
+"capture_component_qr_tutorial_2" = "Fit the edges of the QR code inside the box.";
+"capture_component_invoice_tip_button_message" = "START";
+"capture_component_exit_alert_question" = "Are you sure you want to end the process? ";
+"capture_component_exit_alert_accept" = "Accept";
+"capture_component_exit_alert_cancel" = "Cancel";
+"capture_component_invoice_finish_button_message" = "Finish";
+"capture_component_invoice_preview_finish_button_message" = "FINISH";
+"capture_component_invoice_remove_question" = "Do you want to remove this document?";
+"capture_component_invoice_image_count_label" = "Image";
+"capture_component_invoice_retry_button_message" = "NO, I WANT TO REPEAT THE PICTURE";
+"capture_component_invoice_retry_add_image_message" = "ADD NEW PHOTO";
+"capture_component_invoice_tip_title" = "Scan your documents";
+"capture_component_invoice_tip_desc" = "Take a picture of the document, or upload an image. \You can scan several documents before finishing";
+"capture_component_invoice_close_alt" = "Close";
+"capture_component_invoice_upload_alt" = "Upload photo";
+"capture_component_invoice_capture_alt" = "Capture";
+"capture_component_invoice_remove_alt" = "Remove";
+"capture_component_invoice_back_image_alt" = "Previous image";
+"capture_component_invoice_forward_image_alt" = "Next image";
+"capture_component_timeout_title"="Timeout";
+"capture_component_timeout_desc"="We apologize. The capture could not be made";
 
 ```
