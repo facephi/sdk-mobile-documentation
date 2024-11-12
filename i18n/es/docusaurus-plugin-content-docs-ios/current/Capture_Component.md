@@ -50,13 +50,13 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.0.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 - Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```
-	pod 'FPHISDKCaptureComponent', '~> 2.0.4'
+  pod 'FPHISDKCaptureComponent', '~> 2.2.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -107,8 +107,7 @@ Los tres controladores tienen funcionalidades independientes por lo que sus conf
 
 - _QrGeneratorConfiguration_ y pasarlo como parámetro al SDKController durante el lanzamiento del componente para generación de QRs.
 
-En el siguiente apartado se mostrarán los campos que forman parte de
-estas clased y para qué se utiliza cada uno de ellos.
+En el siguiente apartado se mostrarán los campos que forman parte de estas clased y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class InvoiceCaptureConfigurationData
 
@@ -128,25 +127,34 @@ Indica si el componente activa la pantalla de tutorial. En esta vista se explica
 
 Se define el tiempo en milisegundos que dura la preview tras la captura, por defecto está en 2000
 
-#### 5.1.5 numUploadPhoto
-
-Número de imagenes que se pueden añadir desde la galería, por defecto está en 5
-
 #### 5.1.6 previewAfterCapture
 
 Se habilita la preview tras la captura
 
+#### 5.1.7 maxScannedDocs
+
+Número máximo de documentos capturados
+
+#### 5.1.8 showPreviousTip
+
+Mostrar la pantalla de Tips previos
+
+#### 5.1.9 autoCapture
+
+Habilitar la captura automática
+
+
 ### 5.2. Class QrCaptureConfigurationData
 
-#### 5.1.1. extractionTimeout
+#### 5.2.1. extractionTimeout
 
 Tiempo de extracción máximo
 
-#### 5.1.2. cameraSelected
+#### 5.2.2. cameraSelected
 
 Cámara seleccionada: FRONT, BACK
 
-#### 5.1.3. cameraShape
+#### 5.2.3. cameraShape
 
 Forma de la máscara que se quiere mostrar sobre la cámara:
 
@@ -154,37 +162,37 @@ Forma de la máscara que se quiere mostrar sobre la cámara:
 - CIRCULAR: Círculo
 - RECTANGLE_TALL: Rectángulo
 
-#### 5.1.4. vibrationEnabled
+#### 5.2.4. vibrationEnabled
 
 Habilitar vibración durante el proceso
 
-#### 5.1.5. showStroke
+#### 5.2.5. showStroke
 
 Mostrar una línea como borde de la cámara
 
-#### 5.1.6. showDiagnostic
+#### 5.2.6. showDiagnostic
 
 Mostrar pantallas de diagnóstico al final del proceso y en caso de error
 
-#### 5.1.7. transparentBackground
+#### 5.2.7. transparentBackground
 
 Máscara sobre la cámara semitransparente
 
 ### 5.3. Class QrGeneratorConfiguration
 
-#### 5.2.1. source
+#### 5.3.1. source
 
 Texto que se va a incluir en el QR
 
-#### 5.2.2. width
+#### 5.3.2. width
 
 Ancho del QR generado
 
-#### 5.2.3. height
+#### 5.3.3. height
 
 Alto del QR generado
 
-#### 5.2.4 showDiagnostic
+#### 5.3.4 showDiagnostic
 
 Mostrar pantallas de diagnóstico al final del proceso y en caso de error
 
@@ -369,30 +377,31 @@ Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
-```xml
-"qr_reader_component_exit_alert_question"="Are you sure you will finish the process?";
-"qr_reader_component_camera_message_circle"="Keep the QR inside the circle";
-"qr_reader_component_camera_message_square"="Keep the QR inside the square";
-"invoice_reader_component_camera_message_circle"="Keep the document inside the circle";
-"invoice_reader_component_camera_message_square"="Keep the document inside the square";
-"capture_component_camera_unauthorized_title"="Camara unauthorized";
-"capture_component_camera_unauthorized_description"="It seems you haven't given this app permission to use the camera. Please go to Settings and enable it.";
-"capture_component_image_capture_error"="Image capture error";
-"capture_component_preview_image"="Captured image preview";
-"capture_component_take_again"="Capture again";
-"capture_component_accept"="Accept";
-"capture_component_capture"="Capture";
-"capture_component_ok"="Ok";
-"capture_component_cancel"="Cancel";
-"capture_component_end_confirmation_title" = "Are you sure you will finish the process?";
-"capture_component_text_results_finish_button" = "Finish";
-"capture_component_agree" = "Accept";
-"capture_component_finish" = "FINISH";
-"capture_component_remove_confirmation_title" = "Do you want to delete this document?";
-"capture_component_image" = "Image ";
-"capture_component_retry" = "NO, I WANT TO REPEAT THE PHOTOGRAPH";
-"capture_component_tutorial_tittle" = "Scan your documents";
-"capture_component_tutorial_description" = "Take a picture of the document, or upload an image. /n You can scan several documents before finishing";
-"capture_component_tutorial_button" = "CONTINUE";
-
+```java
+"capture_component_qr_camera_message" = "Mantén el QR en el centro";
+"capture_component_qr_tutorial_title" = "Escanea el código QR";
+"capture_component_qr_tutorial_desc" = "Enfoca el código QR dentro del recuadro";
+"capture_component_qr_tutorial_button_message" = "COMENZAR";
+"capture_component_qr_tutorial_1" = "Asegúrate de que el código QR tiene luz suficiente y no hay reflejos o destellos sobre el código.";
+"capture_component_qr_tutorial_2" = "Encaja los bordes del código QR dentro del recuadro. ";
+"capture_component_invoice_tip_button_message" = "COMENZAR";
+"capture_component_exit_alert_question" = "¿Seguro que quiere finalizar el proceso? ";
+"capture_component_exit_alert_accept" = "Aceptar";
+"capture_component_exit_alert_cancel" = "Cancelar";
+"capture_component_invoice_finish_button_message" = "Finalizar";
+"capture_component_invoice_preview_finish_button_message" = "FINALIZAR";
+"capture_component_invoice_remove_question" = "¿Quieres eliminar este documento?";
+"capture_component_invoice_image_count_label" = "Imagen";
+"capture_component_invoice_retry_button_message" = "NO, QUIERO REPETIR LA FOTOGRAFÍA";
+"capture_component_invoice_retry_add_image_message" = "AÑADIR NUEVA FOTOGRAFÍA";
+"capture_component_invoice_tip_title" = "Escanea tus documentos";
+"capture_component_invoice_tip_desc" = "Haz una foto al documento, o sube una imagen. \nPuedes escanear varios documentos antes de finalizar";
+"capture_component_invoice_close_alt" = "Cerrar";
+"capture_component_invoice_upload_alt" = "Subir foto";
+"capture_component_invoice_capture_alt" = "Capturar";
+"capture_component_invoice_remove_alt" = "Eliminar";
+"capture_component_invoice_back_image_alt" = "Imagen anterior";
+"capture_component_invoice_forward_image_alt" = "Siguiente imagen";
+"capture_component_timeout_title"="Tiempo superado";
+"capture_component_timeout_desc"="Pedimos disculpas. No se ha podido hacer la captura.";
 ```
