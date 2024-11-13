@@ -16,11 +16,10 @@ For more information on the base configuration, go to the
 
 ## 1. Introduction
 
-This Flow document is an **annex** to the common **SDK**, as this functionality is contained in the **SDK** component itself.functionality is contained in the SDK component itself.
+This Flow document is an **annex** to the common **SDK**, as this functionality is contained in the **SDK** component itself.
 
 Flow is a functionality that connects the **Design Studio** section of the **Platform** with the SDK and the implementation done by thethe **Platform** with the SDK and the client implementation.
-Through a Flow identifier, you will be able to launch a flow designed on the web, which can contain up to 1which can contain from 1 to N steps of the existing components in the SDK.
-in the SDK.
+Through a Flow identifier, you will be able to launch a flow designed on the web, which can contain up to which can contain from 1 to N steps of the existing components in the SDK.
 
 ---
 
@@ -40,17 +39,15 @@ component into an existing project.
 No **any extra dependencies** are required to use Flow.
 
 You <u>must add the required dependencies of each component</u>
-that you want to launch within Flow. If you want to launch **facial recognition,** it should be **necessary** to install the **Selphi component**, and so on with the rest of the components.components.
+that you want to launch within Flow. If you want to launch **facial recognition,** it should be **necessary** to install the **Selphi component**, and so on with the rest of the components.
 
 ---
 
 ## 3. Start a new operation
 
 When initiating the launch of a Flow operation, a new operation is generated internally in a fully transparent manner.
-internally, a new operation is generated in a completely transparent way.
 
 **<u>It is not necessary</u>** to perform a new operation beforehand.
-beforehand.
 
 ---
 
@@ -79,8 +76,7 @@ beforehand.
 
 ## 5. SDK initialisation with flow
 
-The SDK initialisation function has the _activateFlow_ parameter to manage its activation.
-parameter to manage its activation:
+The SDK initialisation function has the _activateFlow_ parameter to manage its activation:
 
 ```java
 val sdkConfig = SdkConfigurationData(
@@ -224,7 +220,6 @@ The flow result will have 3 fields:
 
 - step: Information on the flow step that has been performed. With the
   value of "key" it will be possible to identify the component executed in the step.
-  step.
 
 - result: The controllers will return the required information in SdkResult format
   -more details in the Android Mobile SDK's <a
@@ -243,7 +238,6 @@ the **_flowResult.result.error_** containing the error that occurred.
 
 On successful execution of a stream, the corresponding components shall be launched until completion of the stream or until a
 components shall be launched until completion or until an error occurs.
-error.
 
 If the result of a launched step is SdkResult.Success, the _data_ can be located on the one hand, and on the other hand, the _data_ of the flow.
 on the one hand, the _key_ that identifies the component and on the other hand, the _data_ with the _key_ that identifies the component.
