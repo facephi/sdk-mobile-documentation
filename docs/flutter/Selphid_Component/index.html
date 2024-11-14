@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.6.1">
 <title data-rh="true">SelphID Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/docs/flutter/Selphid_Component"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="es"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="2.0.X"><meta data-rh="true" name="docusaurus_tag" content="docs-flutter-2.0.X"><meta data-rh="true" name="docsearch:version" content="2.0.X"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-flutter-2.0.X"><meta data-rh="true" property="og:title" content="SelphID Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/docs/flutter/Selphid_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/flutter/Selphid_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/flutter/Selphid_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/flutter/Selphid_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/assets/css/styles.93bd3aa2.css">
-<script src="/sdk-mobile-documentation/assets/js/runtime~main.31c9b2ca.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/assets/js/runtime~main.6f5ff373.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/assets/js/main.ddbea85e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -42,6 +42,8 @@ of documents...</p>
 <p>The minimum native version (Android and iOS) of the SDK are as follows:</p>
 <ul>
 <li>Minimum Android version: <strong>24 - JDK 17</strong></li>
+<li>Minimum Build Tools version: <strong>8.1.4</strong></li>
+<li>Minimum Kotlin Android version: <strong>1.9.0</strong></li>
 <li>Minimum iOS version: <strong>13</strong></li>
 <li>Minimum Flutter version: <strong>3.0</strong></li>
 </ul>
@@ -314,22 +316,17 @@ document.</li>
 <p>generateRawImages: true</p>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="311-timeout">3.11 timeout<a href="#311-timeout" class="hash-link" aria-label="Direct link to 3.11 timeout" title="Direct link to 3.11 timeout">​</a></h3>
-<p><strong>type:</strong> <em>number</em></p>
+<p><strong>type:</strong> <em>SelphIDTimeout</em></p>
 <p>It is an enumerator that defines the timeout of the capture of one side
 of the document. It has 3 possible values:</p>
 <ul>
-<li>
-<p>WidgetTimeout.Short: 15 segundos.</p>
-</li>
-<li>
-<p>WidgetTimeout.Medium: 20 segundos.</p>
-</li>
-<li>
-<p>WidgetTimeout.Long: 25 segundos</p>
-</li>
+<li>SelphIDTimeout.Short: 15 seconds.</li>
+<li>SelphIDTimeout.Medium: 20 seconds.</li>
+<li>SelphIDTimeout.Long: 25 seconds.</li>
+<li>SelphIDTimeout.Long: 60 seconds.</li>
 </ul>
 <blockquote>
-<p>timeout: SelphIDTimeout.T_SHORT;</p>
+<p>timeout: SelphIDTimeout.Short;</p>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="312-tutorialonly">3.12 tutorialOnly<a href="#312-tutorialonly" class="hash-link" aria-label="Direct link to 3.12 tutorialOnly" title="Direct link to 3.12 tutorialOnly">​</a></h3>
 <p><strong>type:</strong> <em>boolean</em></p>
@@ -420,6 +417,9 @@ layout of the component&#x27;s internal screens whilst running.</p>
 <blockquote>
 <p><strong>viewsContent</strong>: “&lt;views-content-string&gt;“;</p>
 </blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="322-showprevioustip">3.22. showPreviousTip<a href="#322-showprevioustip" class="hash-link" aria-label="Direct link to 3.22. showPreviousTip" title="Direct link to 3.22. showPreviousTip">​</a></h4>
+<p><strong>type:</strong> <em>boolean</em></p>
+<p>Displays a pre-launch screen with information about the process to be performed and a launch button.</p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-component-usage">4. Component Usage<a href="#4-component-usage" class="hash-link" aria-label="Direct link to 4. Component Usage" title="Direct link to 4. Component Usage">​</a></h2>
 <p>The following will show how to execute the functionality of the current
