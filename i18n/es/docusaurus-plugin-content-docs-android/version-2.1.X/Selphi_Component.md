@@ -229,7 +229,7 @@ Mostrar pantallas de diagnóstico al final del proceso
 
 Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
 
-#### 5.1.18. showPreviousTip
+#### 5.1.18. _showPreviousTip_
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
 

@@ -326,6 +326,10 @@ Devuelve una imagen recortada centrada en la cara del usuario en formato array d
 
 Devuelve la información proveniente de la lectura del QR en formato String
 
+#### 7.2.6 bestImageTokenized
+
+Devuelve la mejor imagen extraída del proceso cifrada. Válido para el proceso de **liveness**.
+
 ---
 
 ## 8. Controladores Adicionales

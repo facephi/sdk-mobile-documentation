@@ -328,6 +328,11 @@ Returns a cropped image centered on the user's face in byte array format. This i
 
 Returns the information from the QR reading in String format.
 
+#### 7.2.6 bestImageTokenized
+
+Returns the best image tokenized. Valid for the **liveness** process.
+
+
 ---
 
 ## 8. Additional Drivers

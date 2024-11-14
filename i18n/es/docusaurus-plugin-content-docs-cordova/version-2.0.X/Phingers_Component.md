@@ -134,7 +134,6 @@ SdkPhingersConfig = function () {
     this.returnFullFrameImage   = true;
     this.returnProcessedImage   = true;
     this.returnRawImage         = true;
-    this.returnWSQ              = null;
     this.useFlash               = true;
     this.useLiveness            = true;
     this.showTutorial           = false;

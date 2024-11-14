@@ -19,7 +19,7 @@ main functionalities are the following:
 
 -   Permissions management.
 
--   Assists in the processes of capturing the front and back of the
+-   Assists in the processes of capturing thex front and back of the
     document.
 
 -   Extraction of the information contained in the document.
