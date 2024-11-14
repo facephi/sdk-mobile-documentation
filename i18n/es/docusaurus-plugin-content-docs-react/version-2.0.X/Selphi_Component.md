@@ -14,6 +14,8 @@ Generación de las plantillas con las características faciales y de la imagen d
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 -   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
 -   Versión mínima iOS: **13**
 -   Versión mínima ReactNative: **0.73.0**
 
@@ -198,7 +200,6 @@ Especifica el porcentaje de ampliación del área del rostro detectado para comp
 cropPercent: 1.0
 ```
 
-
 ### 3.3. debug
 
 **type:** *boolean*
@@ -297,7 +298,6 @@ Parámetro opcional. Visible sólo si el parámetro *enableGenerateTemplateRaw* 
 enableGenerateTemplateRaw: true
 ```
 
-
 ###  3.12 showResultAfterCapture
 
 **type:** *boolean*
@@ -307,7 +307,6 @@ Indica si se debe mostrar o no la imagen capturada de la cara después del proce
 ```
 showResultAfterCapture: false
 ```
-
 
 ###  3.13 showTutorial
 
@@ -338,7 +337,6 @@ compressFormat: "JPG“;
 
 Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible establecer la calidad de compresión de la imagen. Este parámetro se ignorará si el valor de la propiedad ***compressFormat*** es **PNG**.   
 
-
 ```
 jpgQuality: 95
 ```
@@ -358,7 +356,6 @@ Establece la ruta absoluta del nombre del archivo en el que se grabará un video
 videoFilename: “\<videofile-path\>“;
 ```
 
-
 ###  3.17 translationsContent
 
 **type:** *string*
@@ -372,7 +369,6 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar la locali
 ```
 translationsContent: “\<translation-content-string\>“;
 ```
-
 
 ###  3.18 viewsContent
 
@@ -388,6 +384,12 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 ```
 viewsContent: “\<views-content-string\>“;
 ```
+
+#### 3.19. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
 ---
 

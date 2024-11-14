@@ -11,9 +11,11 @@ El Componente tratado en el documento actual recibe el nombre de ***NFC Componen
 
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: 24 - JDK 17
-- Versión mínima iOS: 13
-- Versión mínima Capacitor **5**
+-   Versión mínima Android: 24 - JDK 17
+-   Versión mínima Build Tools: **8.3.0**
+-   Versión mínima Kotlin Android: **1.9.0**
+-   Versión mínima iOS: 13
+-   Versión mínima Capacitor **5**
 
 En cuanto a la arquitectura del dispositivo móvil:
 
@@ -281,21 +283,32 @@ vibrationEnabled: false;
 
 **type:** *boolean*
 
-.
+Indicates that only NFC BAC reading is desired. It is a simple and fast
+reader.
 
 ```
 skipPACE: false;
 ```
 
-### 3.11 debug
+#### 3.11. showPreviousTip
 
 **type:** *boolean*
 
-Habilita o no que se muestren datos de debug en pantalla.
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
-```
-debug: false;
-```
+#### 3.12. extractFacialImage
+
+**type:** *boolean*
+
+Indica si quieres extraer la imagen del rostro.
+
+
+#### 3.13. extractSignatureImage
+
+**type:** *boolean*
+
+Indica si desea extraer la imagen de la firma.
+
 ---
 
 ## 4. Uso del componente

@@ -36,6 +36,8 @@ main functionalities are the following:
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
+-   Minimum Build Tools version: **8.1.4**
+-   Minimum Kotlin Android version: **1.9.0**
 -   Minimum iOS version: **13**
 -   Minimum Capacitor version: **5**
 
@@ -408,13 +410,12 @@ generateRawImages: true;
 
 **type:** *SelphIDTimeout*
 
-Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
+It is an enumeration that defines the timeout for capturing one side of the document. It has 4 possible values:
 
-**SelphIDTimeout.SHORT:** 15 segundos.
-
-**SelphIDTimeout.MEDIUM:** 20 segundos.
-
-**SelphIDTimeout.LONG:** 25 segundos.
+**SelphIDTimeout.SHORT:** 15 seconds.
+**SelphIDTimeout.MEDIUM:** 20 seconds.
+**SelphIDTimeout.LONG:** 25 seconds.
+**SelphIDTimeout.VERYLONG:** 60 seconds.
 
 ```
 timeout: SelphIDTimeout.MEDIUM
@@ -595,6 +596,12 @@ layout of the component's internal screens whilst running.
 ```
 viewsContent: “\<views-content-string\>“;
 ```
+
+#### 3.24. showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
 
 ---
 

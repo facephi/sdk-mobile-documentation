@@ -19,10 +19,12 @@ El Componente tratado en el documento actual recibe el nombre de SelphID Compone
 
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: **24 - JDK 17**
-- Versión mínima iOS: **13**
-- Versión mínima Android Cordova **12.0.0**
-- Versión mínima iOS Cordova **7.0.0**
+-   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
+-   Versión mínima iOS: **13**
+-   Versión mínima Android Cordova **12.0.0**
+-   Versión mínima iOS Cordova **7.0.0**
 
 En cuanto a la arquitectura del dispositivo móvil:
 
@@ -273,15 +275,16 @@ Esta propiedad configura el componente para devolver la imagen completa de la c�
 generateRawImages: true;
 ```
 
-### 3.10 widgetTimeout
+### 3.10 timeout
 
-**type:** *number*
+**type:** *SelphIDTimeout*
 
-Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
+Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 4 posibles valores:
 
-- SdkTimeout.Short: 15 segundos.
-- SdkTimeout.Medium: 20 segundos.
-- SdkTimeout.Long: 25 segundos
+- SelphIDTimeout.Short: 15 segundos.
+- SelphIDTimeout.Medium: 20 segundos.
+- SelphIDTimeout.Long: 25 segundos.
+- SelphIDTimeout.VeryLong: 60 segundos
 
 ### 3.11 tutorialOnly
 
@@ -417,6 +420,11 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 
 >     **viewsContent**: “\<views-content-string\>“;
 
+#### 3.23. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
 ---
 
@@ -530,7 +538,7 @@ Devuelve la descripción de finishStatus. Es un valor opcional.
 - **ControlNotInitializedError**: El configurador del componente no ha sido inicializado.
 - **BadExtractorConfiguration**: Problema surgido durante la configuración del componente.
 - **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
-- **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
+- **Timeout**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
 - **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.

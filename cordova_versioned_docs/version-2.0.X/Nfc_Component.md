@@ -12,6 +12,8 @@ The Component discussed in the current document is called ***NFC Component***. P
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: 24 - JDK 17
+-   Minimum Build Tools version: **8.3.0**
+-   Minimum Kotlin Android version: **1.9.0**
 -   Minimum iOS version: 13
 -   Minimum Cordova Android version: **12.0.0**
 -   Minimum Cordova iOS version: **7.0.0** 
@@ -219,15 +221,13 @@ Waiting time in which the plugin stops scanning automatically if no results are 
 extractionTimeout: 5000;
 ```
 
-### 3.6 docType
+### 3.6 docType(only iOS)
 
 **type:** *NfcDocumentType*
 
 Type of document to be scanned.
 
-```
-docType: ;
-```
+
 ### 3.7 showTutorial
 
 **type:** *boolean*
@@ -235,7 +235,7 @@ docType: ;
 Whether or not to enable a tutorial to be shown prior to reading the document.
 
 ```
-showTutorial: ;
+showTutorial: true;
 ```
 
 ### 3.8 showDiagnostic
@@ -262,21 +262,32 @@ vibrationEnabled: false;
 
 **type:** *boolean*
 
-.
+Indicates that only NFC BAC reading is desired. It is a simple and fast
+reader.
 
 ```
 skipPACE: false;
 ```
 
-### 3.11 debug
+#### 3.11. showPreviousTip
 
 **type:** *boolean*
 
-Enables or disables debug data to be displayed on the screen.
+It shows a pre-launch screen with information about the process to be carried out and a start button.
 
-```
-debug: false;
-```
+#### 3.12. extractFacialImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the image of the face.
+
+
+#### 3.13. extractSignatureImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the signature image.
+
 ---
 
 ## 4. Use of the component

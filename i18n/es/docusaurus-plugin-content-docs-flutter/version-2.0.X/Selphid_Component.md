@@ -19,6 +19,8 @@ El Componente tratado en el documento actual recibe el nombre de SelphID Compone
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 -   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
 -   Versión mínima iOS: **13**
 -   Versión mínima Flutter: **3.0**
 
@@ -208,7 +210,6 @@ Un ejemplo de configuración que permita escanear todos los documentos de nacion
 specificData: “ES|&lt;ALL>”; // Spanish ISO code(ES)
 ```
 
-
 ### 3.5 FullScreen
 
 **type:** *boolean*
@@ -249,7 +250,6 @@ Este enumerado se define en el fichero `fphi_sdkmobile_selphid_document_type.dar
 documentType: SelphIDDocumentType.DT_IDCARD;
 ```
 
-
 ### 3.8 TokenImageQuality
 
 **type:** *double*
@@ -279,11 +279,12 @@ generateRawImages: true;
 
 **type:** *number*
 
-Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 3 posibles valores:
+Es un enumerado que define el timeout de la captura de un lado del documento. Tiene 4 posibles valores:
 
 - SelphIDTimeout.Short: 15 segundos.
 - SelphIDTimeout.Medium: 20 segundos.
-- SelphIDTimeout.Long: 25 segundos
+- SelphIDTimeout.Long: 25 segundos.
+- SelphIDTimeout.VeryLong: 60 segundos.
 
 ```
 timeout = SelphIDTimeout.T_SHORT;
@@ -358,6 +359,12 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 ```
 viewsContent: “\<views-content-string\>“;
 ```
+
+#### 3.16. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
 ---
 

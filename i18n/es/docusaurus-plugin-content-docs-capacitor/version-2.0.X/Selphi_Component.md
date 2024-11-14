@@ -13,9 +13,11 @@ Generación de las plantillas con las características faciales y de la imagen d
 
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: **24 - JDK 17**
-- Versión mínima iOS: **13**
-- Versión mínima Capacitor **5**
+-   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
+-   Versión mínima iOS: **13**
+-   Versión mínima Capacitor **5**
 
 En cuanto a la arquitectura del dispositivo móvil:
 
@@ -366,6 +368,11 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 viewsContent: “\<views-content-string\>“;
 ```
 
+#### 3.19. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
 ## 4. Uso del componente
 A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.

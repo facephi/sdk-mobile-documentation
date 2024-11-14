@@ -160,14 +160,6 @@ la misma forma en que se han capturado.
 Activa o desactiva el detector de vivacidad durante el proceso de
 captura de huellas. Por defecto se encuentra a **true**.
 
-##### returnWSQ
-Si se establece a **true** entonces en el resultado de la captura se
-devolverá, para cada una de las huellas, el dato comprimido mediante
-_Wavelet Scalar Quatization_ (WSQ). WSQ es un algortimo de compresión en
-grises, siendo un estándar (NIST) para este tipo de capturas. Orientado
-a la validación contra las diferentes bases de datos gubernamentales
-existentes.
-
 ##### returnFullFrameImage
 Especifica si se debe devolver la imagen completa de la cámara en la que
 se han detectado los dedos.

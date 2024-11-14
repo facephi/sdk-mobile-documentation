@@ -14,10 +14,12 @@ El Componente tratado en el documento actual recibe el nombre de ***Phingers Com
 
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: **24 - JDK 17**
-- Versión mínima iOS: **13**
-- Versión mínima Android Cordova **12.0.0**
-- Versión mínima iOS Cordova **7.0.0**
+-   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.3.0**
+-   Versión mínima Kotlin Android: **1.9.0**
+-   Versión mínima iOS: **13**
+-   Versión mínima Android Cordova **12.0.0**
+-   Versión mínima iOS Cordova **7.0.0**
 
 En cuanto a la arquitectura del dispositivo móvil:
 
@@ -132,7 +134,6 @@ SdkPhingersConfig = function () {
     this.returnFullFrameImage   = true;
     this.returnProcessedImage   = true;
     this.returnRawImage         = true;
-    this.returnWSQ              = null;
     this.useFlash               = true;
     this.useLiveness            = true;
     this.showTutorial           = false;
@@ -277,6 +278,13 @@ umbral para realizar la captura.
 ```
 threshold: 0.8;
 ```
+
+#### 3.11. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
+
 ---
 
 ## 4. Uso del componente

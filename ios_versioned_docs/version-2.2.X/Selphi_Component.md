@@ -234,7 +234,7 @@ process.
 This advanced property allows, by means of a string in xml format,
 to configure the views of the widget.
 
-#### 5.1.3 Otros parametros
+#### 5.1.3 Other parameters
 
 ##### VibrationEnabled
 
@@ -327,6 +327,10 @@ Returns a cropped image centered on the user's face in byte array format. This i
 #### 7.2.5 QrData
 
 Returns the information from the QR reading in String format.
+
+#### 7.2.6 bestImageTokenized
+
+Returns the best image tokenized. Valid for the **liveness** process.
 
 ---
 

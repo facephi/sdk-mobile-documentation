@@ -8,6 +8,8 @@ The Component discussed in the current document is called ***VideoID Component**
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
+-   Minimum Build Tools version: **8.1.4**
+-   Minimum Kotlin Android version: **1.9.0**
 -   Minimum iOS version: **13**
 -   Minimum ReactNative version: **0.73.0**
 

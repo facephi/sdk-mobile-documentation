@@ -7,10 +7,12 @@ El Componente tratado en el documento actual recibe el nombre de ***VideoCall Co
 
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: **24 - JDK 17**
-- Versión mínima iOS: **13**
-- Versión mínima Android Cordova **12.0.0**
-- Versión mínima iOS Cordova **7.0.0**
+-   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima Build Tools: **8.1.4**
+-   Versión mínima Kotlin Android: **1.9.0**
+-   Versión mínima iOS: **13**
+-   Versión mínima Android Cordova **12.0.0**
+-   Versión mínima iOS Cordova **7.0.0**
 
 En cuanto a la arquitectura del dispositivo móvil:
 

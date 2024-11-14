@@ -36,6 +36,8 @@ main functionalities are the following:
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
+-   Minimum Build Tools version: **8.1.4**
+-   Minimum Kotlin Android version: **1.9.0**
 -   Minimum iOS version: **13**
 -   Minimum Cordova Android version: **12.0.0**
 -   Minimum Cordova iOS version: **7.0.0** 
@@ -250,7 +252,7 @@ configure the **SelphID** component:
   fullScreen?: boolean;
   frontalCameraPreferred?: boolean;
   tokenImageQuality?: number;
-  widgetTimeout?: number;
+  timeout?: SelphIDTimeout;
   showResultAfterCapture?: boolean;
   showTutorial?: boolean;
   tutorialOnly?: boolean;
@@ -440,18 +442,17 @@ camera that was used to capture the document:
 > generateRawImages: true;**
 
 
-###  3.10 widgetTimeout
+###  3.10 timeout
 
-**type:** *number*
+**type:** *SelphIDTimeout*
 
 It is an enumerator that defines the timeout of the capture of one side
-of the document. It has 3 possible values:
+of the document. It has 4 possible values:
 
--   WidgetTimeout.Short: 15 segundos.
-
--   WidgetTimeout.Medium: 20 segundos.
-
--   WidgetTimeout.Long: 25 segundos
+-   SelphIDTimeout.Short: 15 segundos.
+-   SelphIDTimeout.Medium: 20 segundos.
+-   SelphIDTimeout.Long: 25 segundos.
+-   SelphIDTimeout.VeryLong: 60 segundos.
 
 ###  3.11 tutorialOnly
 
@@ -545,6 +546,13 @@ found, by default, in a file called **widget.xml** inside the resources
 layout of the component's internal screens whilst running.
 
 >     **viewsContent**: “\<views-content-string\>“;
+
+
+#### 3.16. showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
 
 ---
 

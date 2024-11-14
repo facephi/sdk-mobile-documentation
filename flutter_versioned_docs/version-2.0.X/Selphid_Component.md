@@ -28,6 +28,8 @@ main functionalities are the following:
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
+-   Minimum Build Tools version: **8.1.4**
+-   Minimum Kotlin Android version: **1.9.0**
 -   Minimum iOS version: **13**
 -   Minimum Flutter version: **3.0**
 
@@ -385,18 +387,17 @@ camera that was used to capture the document:
 
 ###  3.11 timeout
 
-**type:** *number*
+**type:** *SelphIDTimeout*
 
 It is an enumerator that defines the timeout of the capture of one side
 of the document. It has 3 possible values:
 
--   WidgetTimeout.Short: 15 segundos.
+-   SelphIDTimeout.Short: 15 seconds.
+-   SelphIDTimeout.Medium: 20 seconds.
+-   SelphIDTimeout.Long: 25 seconds.
+-   SelphIDTimeout.Long: 60 seconds.
 
--   WidgetTimeout.Medium: 20 segundos.
-
--   WidgetTimeout.Long: 25 segundos
-
-> timeout: SelphIDTimeout.T_SHORT;
+> timeout: SelphIDTimeout.Short;
 
 ###  3.12 tutorialOnly
 
@@ -520,6 +521,12 @@ found, by default, in a file called **widget.xml** inside the resources
 layout of the component's internal screens whilst running.
 
 > **viewsContent**: “\<views-content-string\>“;
+
+#### 3.22. showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
 
 ---
 

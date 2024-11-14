@@ -146,26 +146,18 @@ authentication process in the widget. This mode forces the widget to not
 start any process if the user is not facing forward and not moving his head.
 head facing forward and not moving it.
 
-#### 5.1.3 returnWSQ
 
-If set to **true** then in the result of the capture it will
-will return, for each of the footprints, the compressed data by means of
-Wavelet Scalar Quatization\_ (WSQ). WSQ is a grey compression algorithm, being a standard (N
-being a standard (NIST) for this type of captures. Oriented
-validation against the different existing governmental databases.
-databases.
-
-#### 5.1.4 returnRawImage
+#### 5.1.3 returnRawImage
 
 If set to **true** it shall return in the result the images in the same form as they have been captured.
 the same form in which they have been captured.
 
-#### 5.1.5 returnProcessedImage
+#### 5.1.4 returnProcessedImage
 
 If set to **true** it shall return the images in the result as they were captured.
 the same form in which they have been captured.
 
-#### 5.1.6 returnFingerprintTemplate
+#### 5.1.5 returnFingerprintTemplate
 
 Specifies whether the capture process shall return the fingerprint template in the result.
 the result. It is an enumerated of type **_FingerprintTemplateType_**, and
@@ -180,37 +172,37 @@ each value would be:
 
 - **NONE**: Template return is disabled.
 
-#### 5.1.7 returnFullFrameImage
+#### 5.1.6 returnFullFrameImage
 
 Specifies whether to return the full image of the camera where the fingers have been detected.
 fingers have been detected.
 
-#### 5.1.8 useLiveness
+#### 5.1.7 useLiveness
 
 Enables or disables the liveness detector during the fingerprint capture process.
 capture process. Defaults to **true**.
 
-#### 5.1.9 useFlash
+#### 5.1.8 useFlash
 
 Enables or disables the camera flash during the fingerprint capture process.
 process. Defaults to **true**.
 
-#### 5.1.10 captureFingersText
+#### 5.1.9 captureFingersText
 
 Sets the message (string) that is displayed on the screen after the four fingers have been
 detected and the user shall be instructed not to move them.
 
-#### 5.1.11 captureThumbText
+#### 5.1.10 captureThumbText
 
 Sets the message (string) to be displayed on the screen after the thumb has been detected and the user shall be prompted not to move the thumb.
 detected and the user shall be prompted not to move it.
 
-#### 5.1.12 thumbNotInFocusText
+#### 5.1.11 thumbNotInFocusText
 
 Sets the message (string) that is displayed on the screen while attempting to
 attempted
 
-#### 5.1.13 captureFingerText
+#### 5.1.12 captureFingerText
 
 Sets the message (string) displayed on screen during the thumb capture process.
 thumb capture process.

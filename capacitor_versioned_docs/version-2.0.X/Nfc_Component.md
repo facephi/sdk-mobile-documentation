@@ -21,9 +21,11 @@ The Component addressed in the current document is called the ***NFC Component**
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
-- Minimum Android version: **24 - JDK 17**
-- Minimum iOS version: **13**
-- Minimum Capacitor version: **5**
+-   Minimum Android version: **24 - JDK 17**
+-   Minimum Build Tools version: **8.3.0**
+-   Minimum Kotlin Android version: **1.9.0**
+-   Minimum iOS version: **13**
+-   Minimum Capacitor version: **5**
 
 Regarding the architecture of the mobile device:
 
@@ -299,6 +301,26 @@ Activation of the component's debug mode.
 ```
 debug: false;
 ```
+
+#### 3.10. showPreviousTip
+
+**type:** *boolean*
+
+It shows a pre-launch screen with information about the process to be carried out and a start button.
+
+#### 3.11. extractFacialImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the image of the face.
+
+
+#### 3.12. extractSignatureImage
+
+**type:** *boolean*
+
+Indicates if you want to extract the signature image.
+
 ---
 
 ## 4. Component Usage

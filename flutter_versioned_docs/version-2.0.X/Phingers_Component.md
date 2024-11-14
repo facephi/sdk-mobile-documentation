@@ -14,6 +14,8 @@ The Component discussed in the current document is called ***Phingers Component*
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
+-   Minimum Build Tools version: **8.3.0**
+-   Minimum Kotlin Android version: **1.9.0**
 -   Minimum iOS version: **13**
 -   Minimum Flutter version: **3.0**
 
@@ -280,6 +282,13 @@ threshold to perform the capture.
 ```
 threshold: 0.8;
 ```
+
+#### 3.12. showPreviousTip
+
+**type:** *boolean*
+
+It shows a pre-launch screen with information about the process to be carried out and a start button.
+
 ---
 
 ## 4. Use of the component
