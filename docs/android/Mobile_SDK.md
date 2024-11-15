@@ -251,6 +251,20 @@ SDKController.INSTANCE.initSdk(
 );
 ```
 
+### 3.2. Receipt of errors
+
+On the error side, we will have the SdkError class.
+
+Error list:
+
+- EMPTY_LICENSE: Empty license
+- INIT_AI_MODELS(error: String): Error obtained in the model download service
+- INIT_FLOW (error: String): Error obtained in the flow download service
+- LICENSE_CHECKER_ERROR (error: String): Error obtained verifying if the license is correct
+- LICENSING_ERROR (error: String): Error obtained in the license download service
+- NETWORK_CONNECTION_ERROR: Internet connection error
+- TRACKING_ERROR (error: String): Error obtained when starting the tracking controller
+
 ---
 
 ## 4. Start a new operation
