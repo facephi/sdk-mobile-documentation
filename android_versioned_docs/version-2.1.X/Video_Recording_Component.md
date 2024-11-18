@@ -124,11 +124,11 @@ There are two ways to launch the component:
 
 ```java
 val controller = VideoRecordingController(VideoRecordingConfigurationData())
-viewModelScope.launch {
-    controller.stateFlow.collect {
-        Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
-    }
+
+controller.setOutput {
+    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
 }
+
 viewModelScope.launch {
     SDKController.launch(controller)
 }
@@ -140,11 +140,11 @@ viewModelScope.launch {
 
 ```java
 val controller = VideoRecordingController(VideoRecordingConfigurationData())
-viewModelScope.launchMethod {
-    controller.stateFlow.collect {
-        Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
-    }
+
+controller.setOutput {
+     Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
 }
+
 viewModelScope.launch {
     SDKController.launch(controller)
 }
@@ -174,11 +174,11 @@ There are two ways to launch the component:
 
 ```java
 val controller = StopVideoRecordingController()
-viewModelScope.launch {
-    controller.stateFlow.collect {
-        Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
-    }
+
+controller.setOutput {
+    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
 }
+
 viewModelScope.launch {
     SDKController.launch(controller)
 }
@@ -190,11 +190,11 @@ viewModelScope.launch {
 
 ```java
 val controller = StopVideoRecordingController()
-viewModelScope.launchMethod {
-    controller.stateFlow.collect {
-        Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
-    }
+
+controller.setOutput {
+    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
 }
+
 viewModelScope.launch {
     SDKController.launch(controller)
 }
