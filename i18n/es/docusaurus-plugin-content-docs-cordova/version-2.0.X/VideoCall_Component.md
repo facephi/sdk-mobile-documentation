@@ -143,15 +143,24 @@ A la hora de realizar la llamada al component existe una serie de parámetros qu
 
 ### 3.1 screenSharing
 
-**type:** *boolean*
+**type:** *bool*
 
-Indica si se desea compartir la pantalla del dispositivo con el operador.
+Se encarga de activar la captura de la pantalla del dispositivo en segundo plano. Está orientado principalmente para la grabación del proceso de onboarding.
+En caso de activar la funcion de screenSharing, para iOS se requiere una serie de pasos adicionales a nivel nativo. Por favor seguir la siguiente documentación:
+
+https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
+
+### 3.2 extensionName(sólo iOS)
+
+**type:** *string*
+
+Hay que asegurarse de introducir aqui el bundle identifier del Broadcast Upload Extension creado. En nuestro ejemplo es com.facephi.sdk.demo.videoRecording.
 
 ```
 showTutorial: true;
 ```
 
-### 3.2 url
+### 3.3 url
 
 **type:** *string*
 
@@ -161,7 +170,7 @@ Ruta al socket de video.
 url: url_provided_by_Facephi
 ```
 
-### 3.3 apiKey
+### 3.4 apiKey
 
 **type:** *string*
 
@@ -170,7 +179,7 @@ ApiKey necesaria para la conexión con el socket de video.
 ```
 apiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.4 tenantId
+### 3.5 tenantId
 
 **type:** *string*
 
@@ -180,7 +189,7 @@ Identificador del tenant que hace referencia al cliente actual, necesario para l
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.5 showDiagnostic
+### 3.6 showDiagnostic
 
 **type:** *boolean*
 
@@ -190,7 +199,7 @@ Indica si se desea mostrar un diagnostico en caso de falla.
 showDiagnostic: false;
 ```
 
-### 3.6 vibration
+### 3.7 vibration
 
 **type:** *boolean*
 
