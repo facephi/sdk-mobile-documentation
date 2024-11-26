@@ -71,6 +71,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | 2.0.3           | 1.26.0                       |
 | 2.1.0           | 1.27.0                       |
 | 2.1.1           | 1.28.1                       |
+| 2.1.2           | 1.29.0                       |
 
 ---
 
@@ -231,6 +232,9 @@ The permitted values are as follows:
 
 - **SelphIDDocumentType.CUSTOM**: The widget is configured to capture
   other types of documents that do not fall into the above categories.
+
+- **WidgetSelphIDDocumentType.VISA**: The widget is configured to capture
+  country's visa document. (SDK min 2.1.2)
 
 #### 5.1.11 _documentSide_
 
@@ -540,6 +544,14 @@ easier to search:
 This property returns a text string explaining why the widget has timed out.
 This string can be used in a later timeout screen where the main application can
 give more information to the user about what happened during the document capture.
+
+#### 7.2.9 _countryCaptured_
+
+Country of the document.
+
+#### 7.2.10 _documentTypeCaptured_
+
+Type of document. Corresponds to those in section 5.1.10.
 
 ---
 

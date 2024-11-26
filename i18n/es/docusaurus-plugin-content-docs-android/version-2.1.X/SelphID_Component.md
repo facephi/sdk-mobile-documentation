@@ -78,6 +78,7 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 | 2.0.3           | 1.26.0                         |
 | 2.1.0           | 1.27.0                         |
 | 2.1.1           | 1.28.1                         |
+| 2.1.2           | 1.29.0                         |
 
 ---
 
@@ -239,6 +240,9 @@ Los valores permitidos son los siguientes:
 - **SelphIDDocumentType.CUSTOM**: El widget queda configurado para
   realizar la captura de otro tipo de documentos que no corresponden a
   ninguna de las categorías anteriores.
+
+- **WidgetSelphIDDocumentType.VISA**: El widget queda configurado para
+  realizar la captura del visado de un país. (SDK min 2.1.2)
 
 #### 5.1.11 _documentSide_
 
@@ -459,7 +463,7 @@ más similares son los datos comparados. Si el cálculo devuelve -1.0 es
 que el documento no contiene campos comunes o aún no se tiene
 información de las dos caras.
 
-#### 7.2.6 _Propiedad captureProgress_
+#### 7.2.6 _captureProgress_
 
 Esta propiedad devuelve el estado en el que se encontraba el proceso de
 captura cuando el widget terminó. Estos son los posibles valores:
@@ -552,6 +556,20 @@ fácil su búsqueda:
 - **MatchingSidesScore**: Valor que indica la correspondencia entre
   las caras leídas del documento. Corresponde a la propiedad
   matchingSidesScore.
+
+#### 7.2.8 _timeoutDiagnostic_
+
+Esta propiedad devuelve una cadena de texto que explica por qué se ha agotado el tiempo de espera del widget.
+Esta cadena puede ser utilizada en una pantalla de tiempo de espera posterior donde la aplicación principal puede
+dar más información al usuario sobre lo ocurrido durante la captura del documento.
+
+#### 7.2.9 _countryCaptured_
+
+País del documento.
+
+#### 7.2.10 _documentTypeCaptured_
+
+Tipo de documento. Se corresponde con los del apartado 5.1.10.
 
 ---
 

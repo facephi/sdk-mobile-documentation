@@ -20,6 +20,7 @@ The resource zip file can be downloaded from the following link:
 | 5.13.4             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.13.4/fphi-selphi-widget-resources-selphi-live-5.13.4.zip" rel="nofollow"> Resources v.5.13.4</a> |
 | 5.14.1             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.14.1/fphi-selphi-widget-resources-selphi-live-5.14.1.zip" rel="nofollow"> Resources v.5.14.1</a> |
 | 5.14.2             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.14.2/fphi-selphi-widget-resources-selphi-live-5.14.2.zip" rel="nofollow"> Resources v.5.14.2</a> |
+| 5.15.0             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.15.0/fphi-selphi-widget-resources-selphi-live-5.15.0.zip" rel="nofollow"> Resources v.5.15.0</a> |
 
 
 ---

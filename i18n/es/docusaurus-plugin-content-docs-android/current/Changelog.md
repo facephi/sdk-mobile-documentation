@@ -2,6 +2,33 @@
 
 ## Versiones
 
+### 2.1.2
+
+- General
+
+  - Mejoras UX
+  - Mejoras en la accesibilidad
+ 
+- SelphID
+
+  - Nueva versión del widget: 1.29.0
+
+- Selphi
+
+  - Nueva versión del widget: 5.15.5
+
+- Video Call
+
+  - Mejoras en la connectividad
+
+- Video Id
+
+  - Mejoras en la connectividad
+
+- Video Recording
+
+  - Mejoras en la connectividad
+
 ### 2.1.1
 
 - General
