@@ -141,13 +141,20 @@ Toda la configuración se podrá encontrar en el archivo ***definitions.ts*** de
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 extensionName
+### 3.1 screenSharing
+
+**type:** *bool*
+
+Se encarga de activar la captura de la pantalla del dispositivo en segundo plano. Está orientado principalmente para la grabación del proceso de onboarding.
+En caso de activar la funcion de screenSharing, para iOS se requiere una serie de pasos adicionales a nivel nativo. Por favor seguir la siguiente documentación:
+
+https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
+
+### 3.2 extensionName(sólo iOS)
 
 **type:** *string*
 
-### 3.2 screenSharing
-
-**type:** *bool*
+Hay que asegurarse de introducir aqui el bundle identifier del Broadcast Upload Extension creado. En nuestro ejemplo es com.facephi.sdk.demo.videoRecording.
 
 ### 3.3 url
 

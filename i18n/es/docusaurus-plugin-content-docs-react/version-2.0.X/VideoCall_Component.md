@@ -195,23 +195,19 @@ showDiagnostic: false;
 
 ### 3.5 screenSharing
 
-**type:** *boolean*
+**type:** *bool*
 
-Indica si se desea habilitar o no el compartir la pantalla del dispositivo.
+Se encarga de activar la captura de la pantalla del dispositivo en segundo plano. Está orientado principalmente para la grabación del proceso de onboarding.
+En caso de activar la funcion de screenSharing, para iOS se requiere una serie de pasos adicionales a nivel nativo. Por favor seguir la siguiente documentación:
 
-```
- screenSharing: true;
-```
+https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
 
-### 3.6 extensionName
+### 3.6 extensionName(sólo iOS)
 
 **type:** *string*
 
-.
+Hay que asegurarse de introducir aqui el bundle identifier del Broadcast Upload Extension creado. En nuestro ejemplo es com.facephi.sdk.demo.videoRecording.
 
-```
- extensionName: ;
-```
 ---
 
 ## 4. Uso del componente
