@@ -3,7 +3,7 @@
 ## Última versión disponible
 
 ```text
-2.1.2
+2.2.0
 ```
 
 ## 1. Introducción
@@ -25,7 +25,7 @@ La versión mínima de la SDK de Android requerida es la siguiente:
 
 - API Version: **34**
 
-- Kotlin: **2.0.20**
+- Kotlin: **2.0.21**
 
 - Plugin Gradle Android: **8.5.2**
 

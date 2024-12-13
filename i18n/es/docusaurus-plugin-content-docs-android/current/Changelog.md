@@ -2,6 +2,17 @@
 
 ## Versiones
 
+### 2.2.0
+
+- General
+
+  - Mejoras en la gestión de excepciones
+  - Actualización de dependencias internas
+
+- Selphi
+
+  - Nueva versión del widget: 5.16.0
+
 ### 2.1.2
 
 - General

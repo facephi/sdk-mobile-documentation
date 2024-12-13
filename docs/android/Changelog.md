@@ -2,6 +2,17 @@
 
 ## Versions
 
+### 2.2.0
+
+- General
+
+  - Improved exception handling
+  - Updating internal dependencies
+
+- Selphi
+
+  - Widget new version: 5.16.0
+
 ### 2.1.2
 
 - General
