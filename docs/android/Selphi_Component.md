@@ -210,9 +210,13 @@ Display diagnostic screens at the end of the process
 
 When activated, a list of the 5 best images taken of the user is returned.
 
-#### 5.1.17. showPreviousTip
+#### 5.1.17. _showPreviousTip_
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 5.1.18. _extractionDuration_
+
+Duration of facial extraction process
 
 ---
 

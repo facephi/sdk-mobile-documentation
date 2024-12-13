@@ -208,32 +208,28 @@ requiera de permisos adicionales. El widget, por defecto, no realizará
 ningún proceso de grabación a menos que se especifique una ruta de
 archivo mediante este método.
 
-#### 5.1.14 _translationsContent_
-
-Esta propiedad avanzada permite, mediante una cadena en formato xml,
-configurar la traducción de los literales que se muestran durante el
-proceso.
-
-Nota: Esta propiedad no altera el contenido del archivo de recursos.
-
-#### 5.1.15 _viewsContent_
+#### 5.1.14 _viewsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 5.1.16. _showDiagnostic_
+#### 5.1.15. _showDiagnostic_
 
 Mostrar pantallas de diagnóstico al final del proceso
 
-#### 5.1.17. _logImages_
+#### 5.1.16. _logImages_
 
 Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
 
-#### 5.1.18. showPreviousTip
+#### 5.1.17. _showPreviousTip_
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 5.1.18. _extractionDuration_
+
+Duración del proceso de extracción facial
 
 ---
 
