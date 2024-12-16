@@ -15,6 +15,10 @@
   - Se añade parámetro para la duración de la extracción
   - Se añade la gestión de la orientación
 
+- SelphID
+
+  - Nueva versión del widget: 1.30.0
+
 ### 2.1.2
 
 - General

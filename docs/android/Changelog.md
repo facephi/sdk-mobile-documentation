@@ -15,6 +15,10 @@
   - Add extraction duration
   - Add orientation
 
+- SelphID
+
+  - Widget new version: 1.30.0
+
 ### 2.1.2
 
 - General
