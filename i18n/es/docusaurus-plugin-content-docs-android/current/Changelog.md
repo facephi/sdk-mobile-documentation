@@ -17,7 +17,7 @@
 
 - SelphID
 
-  - Nueva versión del widget: 1.30.0
+  - Nueva versión del widget: 1.30.1
 
 ### 2.1.2
 

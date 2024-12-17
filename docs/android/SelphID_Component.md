@@ -72,7 +72,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | 2.1.0           | 1.27.0                       |
 | 2.1.1           | 1.28.1                       |
 | 2.1.2           | 1.29.0                       |
-| 2.2.0           | 1.30.0                       |
+| 2.2.0           | 1.30.1                       |
 
 ---
 
