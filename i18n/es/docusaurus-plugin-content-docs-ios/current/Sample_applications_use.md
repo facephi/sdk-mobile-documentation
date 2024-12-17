@@ -9,10 +9,9 @@ Las aplicaciones de ejemplo se pueden encontrar en el repositorio de GitHub:
 
 ### Pasos para configurar y ejecutar las aplicaciones
 
-1. Es necesario incluir el usuario y token facilitado por Facephi en el fichero de local.properties como se indica en la <a
-   href="Mobile_SDK#21-a%C3%B1adir-repositorio-privado"
-   rel="nofollow">documentación del SDK</a>
-2. Es necesario incluir el applicationId de la licencia facilitada por Facephi en el Gradle de la aplicación.
+1. Para tener acceso a nuestro repositorio privado, se requiere haber instalado previamente Cocoapods en la máquina como se indica en la <a
+   href="Mobile_SDK#21-a%C3%B1adir-repositorio-privado" rel="nofollow">documentación del SDK</a>
+2. Es necesario incluir el applicationId de la licencia facilitada por Facephi en el Bundle Identifier de la aplicación.
 3. Rellenar los datos de SdkConfigurationManager.
 
 ### SdkConfigurationManager - Datos necesarios para el uso del SDK
