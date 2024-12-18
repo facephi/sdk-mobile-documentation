@@ -11,7 +11,7 @@
 
 - Selphi
 
-  - Nueva versión del widget: 5.16.0
+  - Nueva versión del widget: 5.16.1
   - Se añade parámetro para la duración de la extracción
   - Se añade la gestión de la orientación
 

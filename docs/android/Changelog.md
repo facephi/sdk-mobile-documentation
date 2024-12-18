@@ -11,7 +11,7 @@
 
 - Selphi
 
-  - Widget new version: 5.16.0
+  - Widget new version: 5.16.1
   - Add extraction duration
   - Add orientation
 
