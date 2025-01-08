@@ -4,8 +4,8 @@
 
 Android sample applications can be found in the GitHub repository:
 
-[![Android Repository v.2.1.X](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/2.1.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/2.1.X"
-   rel="nofollow"> Android Repository v.2.1.X</a>
+[![Android Repository v.2.2.X](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-android-samples/tree/2.2.X)<a href="https://github.com/facephi/sdk-mobile-android-samples/tree/2.2.X"
+   rel="nofollow"> Android Repository v.2.2.X</a>
 
 ### Steps to Set Up and Run the Applications
 
