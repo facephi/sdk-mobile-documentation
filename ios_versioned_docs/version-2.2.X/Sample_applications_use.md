@@ -4,12 +4,12 @@
 
 IOS sample applications can be found in the GitHub repository:
 
-[![IOS Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-ios-samples/tree/2.2.x)<a href="https://github.com/facephi/sdk-mobile-ios-samples/tree/2.2.x" rel="nofollow"> IOS Repository</a>
+[![IOS Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-ios-samples/tree/2.2.X)<a href="https://github.com/facephi/sdk-mobile-ios-samples/tree/2.2.X" rel="nofollow"> IOS Repository</a>
 
 ### Steps to Set Up and Run the Applications
 
-1. It's necessary to include the user and token provided by Facephi in the local.properties file as indicated in [documentation](Mobile_SDK#21-add-private-repository).
-2. The applicationId from the license provided by Facephi must be included in the application's Gradle.
+1. To access our remote repository, you must install Cocoapods on the computer as indicated in [documentation](Mobile_SDK#21-add-private-repository).
+2. The applicationId from the license provided by Facephi must be included in the application's Bundle Identifier.
 3. Fill in the SdkConfigurationManager details.
 
 ### SdkConfigurationManager - Necessary Data for SDK Use
