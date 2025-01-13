@@ -218,6 +218,10 @@ Displays a pre-launch screen with information about the process to be performed 
 
 Duration of facial extraction process
 
+#### 5.1.19. _cameraPreferred_
+
+Selection of camera used for the process: FRONT, BACK
+
 ---
 
 ## 6. Component use

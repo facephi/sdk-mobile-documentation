@@ -2,6 +2,20 @@
 
 ## Versions
 
+### 2.2.1
+
+- General
+
+  - Updating internal dependencies
+
+- Selphi
+
+  - New input parameter for camera selection
+
+- Tracking
+
+  - New version 1.1.7
+
 ### 2.2.0
 
 - General

@@ -231,6 +231,10 @@ Muestra una pantalla previa al lanzamiento de la captura con información sobre 
 
 Duración del proceso de extracción facial
 
+#### 5.1.19. _cameraPreferred_
+
+Cámara con la que se quiere realizar el proceso: FRONT, BACK
+
 ---
 
 ## 6. Uso del componente
