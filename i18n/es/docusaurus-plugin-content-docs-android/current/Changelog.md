@@ -11,10 +11,15 @@
 - Selphi
 
   - Nuevo parámetro de entrada para la selección de cámara
+  - Nueva versión del widget: 5.16.2
 
 - Tracking
 
   - Nueva versión 1.1.7
+
+- SelphID
+
+  - Nueva versión del widget: 1.31.0
 
 ### 2.2.0
 
