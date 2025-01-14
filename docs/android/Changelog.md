@@ -2,6 +2,25 @@
 
 ## Versions
 
+### 2.2.1
+
+- General
+
+  - Updating internal dependencies
+
+- Selphi
+
+  - New input parameter for camera selection
+  - Widget new version: 5.16.2
+
+- Tracking
+
+  - New version 1.1.7
+
+- SelphID
+
+  - Widget new version: 1.31.0
+
 ### 2.2.0
 
 - General

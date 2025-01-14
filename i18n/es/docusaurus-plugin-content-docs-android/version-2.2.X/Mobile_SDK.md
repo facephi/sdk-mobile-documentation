@@ -3,7 +3,7 @@
 ## Última versión disponible
 
 ```text
-2.2.0
+2.2.1
 ```
 
 ## 1. Introducción
