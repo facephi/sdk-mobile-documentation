@@ -181,7 +181,6 @@ Specifies the magnification percentage of the detected face area to compose the 
 cropPercent: 1.0
 ```
 
-
 ### 3.3. debug
 
 **type:** *boolean*
@@ -199,9 +198,7 @@ debug: false
 Sets the liveness mode of the component. The possible values are:
 
 - **NoneMode**: Indicates that the photodetection mode should not be enabled in authentication processes.
-
 - **PassiveMode**: Indicates that the passive life test is carried out on the server, sending the corresponding "BestImage" for this purpose
-
 - **MoveMode**: Indicates that the liveness test is active  by displaying instructions during the capture, and returning the corresponding result of the process.
 
 ```
@@ -242,7 +239,7 @@ fullscreen: true
 
 ### 3.8. logImages
 
-**type:** *string*
+**type:** *boolean*
 
 Indicates whether the sdk returns to the application the images used during extraction or not. It should be noted that returning images can result in a significant increase in device resource usage:
 
@@ -392,6 +389,25 @@ viewsContent: “\<views-content-string\>“;
 **type:** *boolean*
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 3.20. extractionDuration
+
+**type:** *SelphiFaceExtractionDuration*
+
+Indicates the Duration of the facial extraction process. The possible values are:
+
+- SelphiFaceExtractionDuration.SHORT
+- SelphiFaceExtractionDuration.MEDIUM
+- SelphiFaceExtractionDuration.LONG
+
+#### 3.21. cameraPreferred
+
+**type:** *SelphiCamera*
+
+Indicates which camera will carry out the capture process. The possible values are:
+
+- SelphiCamera.BACK
+- SelphiCamera.FRONT
 
 ---
 

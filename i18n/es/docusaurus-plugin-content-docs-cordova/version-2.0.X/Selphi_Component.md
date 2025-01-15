@@ -368,6 +368,31 @@ viewsContent: “\<views-content-string\>“;
 
 Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
+#### 3.19. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
+
+#### 3.20. extractionDuration
+
+**type:** *SelphiFaceExtractionDuration*
+
+Indica la Duración del proceso de extracción facial. Los valores posibles son:
+
+- SelphiFaceExtractionDuration.SHORT
+- SelphiFaceExtractionDuration.MEDIUM
+- SelphiFaceExtractionDuration.LONG
+
+#### 3.21. cameraPreferred
+
+**type:** *SelphiCamera*
+
+Indica qué cámara realizará el proceso de captura. Los valores posibles son:
+
+- SelphiCamera.BACK
+- SelphiCamera.FRONT
+
 ---
 
 ## 4. Uso del componente

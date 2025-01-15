@@ -161,6 +161,9 @@ class SelphiFaceConfiguration {
   SelphiFaceLivenessMode mLivenessMode;
   bool? mShowDiagnostic;
   bool? mShowTutorial;
+  bool? mShowPreviousTip;
+  SelphiFaceExtractionDuration? mExtractionDuration;
+  SelphiCamera mCameraPreferred;
 }
 ```
 
@@ -262,7 +265,7 @@ fullscreen: true
 
 ### 3.9. logImages
 
-**type:** *string*
+**type:** *boolean*
 
 Indicates whether the sdk returns to the application the images used during extraction or not. It should be noted that returning images can result in a significant increase in device resource usage:
 
@@ -322,8 +325,6 @@ Indicates whether or not to display the tutorial before the process. After the t
 showTutorial: true
 ```
 
-
-
 ###  3.15 compressFormat
 
 **type:** *boolean*
@@ -336,7 +337,6 @@ Indicates the image format compression. The possible values are:
 ```
 compressFormat: SelphiCompressFormat.T_JPEG;
 ```
-
 
 ###  3.16 videoFilename
 
@@ -358,7 +358,6 @@ write processing unless a file path is specified using this method.
 videoFilename: “\<videofile-path\>“;
 ```
 
-
 ###  3.17 translationsContent
 
 **type:** *string*
@@ -378,7 +377,6 @@ replace the current location of the component at run time.
 ```
 translationsContent: “\<translation-content-string\>“;
 ```
-
 
 ###  3.18 viewsContent
 
@@ -405,6 +403,25 @@ viewsContent: “\<views-content-string\>“;
 **type:** *boolean*
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 3.20. extractionDuration
+
+**type:** *SelphiFaceExtractionDuration*
+
+Indicates the Duration of the facial extraction process. The possible values are:
+
+- SelphiFaceExtractionDuration.SHORT
+- SelphiFaceExtractionDuration.MEDIUM
+- SelphiFaceExtractionDuration.LONG
+
+#### 3.21. cameraPreferred
+
+**type:** *SelphiCamera*
+
+Indicates which camera will carry out the capture process. The possible values are:
+
+- SelphiCamera.BACK
+- SelphiCamera.FRONT
 
 ---
 

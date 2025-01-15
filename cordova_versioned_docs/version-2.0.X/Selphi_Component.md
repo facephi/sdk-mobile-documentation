@@ -198,19 +198,7 @@ Sets the name of the resource file that the widget will use for its graphical co
 resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
-
-### 3.2. crop
-
-**type:** *boolean*
-
-Indicates whether the images returned (in the images parameter that is activated with enableImages = true) in the completion event contain only the area of ​​the detected face, at a magnification given by CropPercent, or whether the entire image is returned.
-
-
-```
-crop: false
-```
-
-### 3.3. cropPercent
+### 3.2. cropPercent
 
 **type:** *float*
 
@@ -221,7 +209,7 @@ cropPercent: 1.0
 ```
 
 
-### 3.4. debug
+### 3.3. debug
 
 **type:** *boolean*
 
@@ -231,23 +219,21 @@ Sets the debugging mode of the widget.
 debug: false
 ```
 
-### 3.5. livenessMode
+### 3.4. livenessMode
 
 **type:** *string*
 
 Sets the liveness mode of the component. The possible values are:
 
 - **NoneMode**: Indicates that the photodetection mode should not be enabled in authentication processes.
-
 - **PassiveMode**: Indicates that the passive life test is carried out on the server, sending the corresponding "BestImage" for this purpose
-
 - **MoveMode**: Indicates that the liveness test is active  by displaying instructions during the capture, and returning the corresponding result of the process.
 
 ```
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 ```
 
-### 3.6. stabilizationMode
+### 3.5. stabilizationMode
 
 **type:** *boolean*
 
@@ -257,7 +243,7 @@ Property that allows activating or deactivating the stabilised mode before the f
 stabilizationMode: true
 ```
 
-### 3.7. locale
+### 3.6. locale
 
 **type:** *string*
 
@@ -269,7 +255,7 @@ This parameter accepts both a language code (for example, en) and a regional ide
 locale: 'ES'
 ```
 
-### 3.8. fullScreen
+### 3.7. fullScreen
 
 **type:** *string*
 
@@ -279,9 +265,9 @@ Sets whether you want the sdk to start in full screen mode, hiding the status ba
 fullscreen: true
 ```
 
-### 3.9. enableImages
+### 3.8. enableImages
 
-**type:** *string*
+**type:** *boolean*
 
 Indicates whether the sdk returns to the application the images used during extraction or not. It should be noted that returning images can result in a significant increase in device resource usage:
 
@@ -289,21 +275,166 @@ Indicates whether the sdk returns to the application the images used during extr
 logImages: false
 ```
 
-### 3.10. frontalCameraPreferred
+### 3.9. templateRawOptimized
 
 **type:** *boolean*
 
-Property to select the front camera as the preferred camera.
+Indicates whether if the selfie token generated must be optimized or not.
 
 ```
-frontalCameraPreferred: true
+templateRawOptimized: false
 ```
 
-#### 3.11. showPreviousTip
+### 3.10. showDiagnostic
+
+**type:** *boolean*
+
+Shows a pop-up with the component diagnostic if the process fails.
+
+```
+showDiagnostic: true
+```
+
+### 3.11 enableGenerateTemplateRaw
+
+**type:** *boolean*
+
+Optional parameter. Only visible if the parameter enableGenerateTemplateRaw is set to true. The component will return the *templateRaw* in *stringBase64* format.
+
+```
+enableGenerateTemplateRaw: true
+```
+
+
+###  3.12 showResultAfterCapture
+
+**type:** *boolean*
+
+Indicates whether or not to display a screen with the captured image of the document after the analysis process. This screen gives the user the option of repeating the capture process if the image obtained from the document is not correct.
+
+```
+showResultAfterCapture: false
+```
+
+
+###  3.13 showTutorial
+
+**type:** *boolean*
+
+Indicates whether or not to display the tutorial before the process. After the tutorial finishes, the component process will continue as usual.
+
+```
+showTutorial: true
+```
+
+###  3.14 compressFormat
+
+**type:** *SdkCompressFormat*
+
+Indicates the format compression of the image. The possible values are:
+
+- PNG
+- JPG
+
+```
+compressFormat: "JPG“;
+```
+
+###  3.15 jpgQuality
+
+**type:** *number*
+
+If the ***compressFormat*** property is configured as **JPG**, it is possible to set the image's *quality compression*. However, this parameter will be ignored if the ***compressFormat*** is **PNG**.
+
+```
+jpgQuality: 95
+```
+
+###  3.16 videoFilename
+
+**type:** *string*
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+Sets the absolute path of the file name in which a video of the capture
+process will be recorded. The application is responsible for requesting
+the necessary permissions to the phone in case that route requires
+additional permissions. The component, by default, will not perform any
+write processing unless a file path is specified using this method.
+
+```
+videoFilename: “\<videofile-path\>“;
+```
+
+###  3.17 translationsContent
+
+**type:** *string*
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+
+This property allows, through a string in xml format, to configure the
+current location of the component. The definition of this model can be
+found, by default, in an internal translations folder within the
+resources .zip. This property allows an application to update and
+replace the current location of the component at run time.
+
+```
+translationsContent: “\<translation-content-string\>“;
+```
+
+###  3.18 viewsContent
+
+**type:** *string*
+
+<div class="warning">
+<span class="warning">:warning:</span>
+This is an **advanced property**, and in most use cases you don't need
+to modify it. Incorrect use may cause component malfunction.
+</div>
+
+
+This property allows, through a string in xml format, to configure the
+views of the current component. The definition of this modelling can be
+found, by default, in a file called **widget.xml** inside the resources
+.zip. This property allows an application to update and override the
+layout of the component's internal screens whilst running.
+```
+viewsContent: “\<views-content-string\>“;
+```
+
+#### 3.19. showPreviousTip
 
 **type:** *boolean*
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 3.20. extractionDuration
+
+**type:** *SelphiFaceExtractionDuration*
+
+Indicates the Duration of the facial extraction process. The possible values are:
+
+- SelphiFaceExtractionDuration.SHORT
+- SelphiFaceExtractionDuration.MEDIUM
+- SelphiFaceExtractionDuration.LONG
+
+#### 3.21. cameraPreferred
+
+**type:** *SelphiCamera*
+
+Indicates which camera will carry out the capture process. The possible values are:
+
+- SelphiCamera.BACK
+- SelphiCamera.FRONT
 
 ---
 

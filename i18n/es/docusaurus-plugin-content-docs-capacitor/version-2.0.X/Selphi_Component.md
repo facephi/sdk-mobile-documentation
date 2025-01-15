@@ -238,7 +238,7 @@ fullscreen: true
 
 ### 3.8. logImages
 
-**type:** *string*
+**type:** *boolean*
 
 Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
 
@@ -276,7 +276,6 @@ Parámetro opcional. Visible sólo si el parámetro *enableGenerateTemplateRaw* 
 enableGenerateTemplateRaw: true
 ```
 
-
 ###  3.12 showResultAfterCapture
 
 **type:** *boolean*
@@ -286,7 +285,6 @@ Indica si se debe mostrar o no la imagen capturada de la cara después del proce
 ```
 showResultAfterCapture: false
 ```
-
 
 ###  3.13 showTutorial
 
@@ -337,7 +335,6 @@ Establece la ruta absoluta del nombre del archivo en el que se grabará un video
 videoFilename: “\<videofile-path\>“;
 ```
 
-
 ###  3.17 translationsContent
 
 **type:** *string*
@@ -351,7 +348,6 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar la locali
 ```
 translationsContent: “\<translation-content-string\>“;
 ```
-
 
 ###  3.18 viewsContent
 
@@ -373,6 +369,25 @@ viewsContent: “\<views-content-string\>“;
 **type:** *boolean*
 
 Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
+
+#### 3.20. extractionDuration
+
+**type:** *SelphiFaceExtractionDuration*
+
+Indica la Duración del proceso de extracción facial. Los valores posibles son:
+
+- SelphiFaceExtractionDuration.SHORT
+- SelphiFaceExtractionDuration.MEDIUM
+- SelphiFaceExtractionDuration.LONG
+
+#### 3.21. cameraPreferred
+
+**type:** *SelphiCamera*
+
+Indica qué cámara realizará el proceso de captura. Los valores posibles son:
+
+- SelphiCamera.BACK
+- SelphiCamera.FRONT
 
 ## 4. Uso del componente
 A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
