@@ -141,15 +141,24 @@ When calling the component, there are a series of parameters that must be includ
 
 ### 3.1 screenSharing
 
-**type:** *boolean*
+**type:** *bool*
 
-Indicates whether you want to share the device screen with the operator.
+It is responsible for activating the device's screenshot in the background. It is mainly oriented for recording the onboarding process.
+If you activate the screenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
+
+https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
+
+### 3.2 extensionName(sólo iOS)
+
+**type:** *string*
+
+You must make sure to enter the bundle identifier of the Broadcast Upload Extension created here. In our example it is com.facephi.sdk.demo.videoRecording.
 
 ```
 showTutorial: true;
 ```
 
-### 3.2 url
+### 3.3 url
 
 **type:** *string*
 
@@ -159,7 +168,7 @@ Path to the video socket.
 url: url_provided_by_Facephi
 ```
 
-### 3.3 apiKey
+### 3.4 apiKey
 
 **type:** *string*
 
@@ -168,7 +177,7 @@ ApiKey required for connection to the video socket.
 ```
 apiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.4 tenantId
+### 3.5 tenantId
 
 **type:** *string*
 
@@ -178,7 +187,7 @@ Tenant identifier that refers to the current client, necessary for the connectio
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.5 showDiagnostic
+### 3.6 showDiagnostic
 
 **type:** *boolean*
 
@@ -188,7 +197,7 @@ Indicates whether you want to show a diagnosis in case of failure.
 showDiagnostic: false;
 ```
 
-### 3.6 vibration
+### 3.7 vibration
 
 **type:** *boolean*
 

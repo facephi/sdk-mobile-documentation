@@ -139,7 +139,22 @@ All configuration can be found in the component's ***fphi_sdkmobile_videoid/fphi
 
 When calling the widget there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.5 url
+### 3.1 screenSharing
+
+**type:** *bool*
+
+It is responsible for activating the device's screenshot in the background. It is mainly oriented for recording the onboarding process.
+If you activate the screenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
+
+https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
+
+### 3.2 extensionName(sólo iOS)
+
+**type:** *string*
+
+You must make sure to enter the bundle identifier of the Broadcast Upload Extension created here. In our example it is com.facephi.sdk.demo.videoRecording.
+
+### 3.3 url
 
 **type:** *string*
 
@@ -149,7 +164,7 @@ Ruta al socket de video.
 mUrl: url_provided_by_Facephi
 ```
 
-### 3.6 apiKey
+### 3.4 apiKey
 
 **type:** *string*
 
@@ -158,7 +173,7 @@ ApiKey necesaria para la conexión con el socket de video.
 ```
 mApiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 tenantId
+### 3.5 tenantId
 
 **type:** *string*
 
@@ -168,7 +183,7 @@ Identificador del tenant que hace referencia al cliente actual, necesario para l
 mTenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.8 mShowDiagnostic
+### 3.6 mShowDiagnostic
 
 **type:** *boolean*
 
