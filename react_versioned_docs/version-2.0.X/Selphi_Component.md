@@ -334,7 +334,6 @@ Indicates whether or not to display a screen with the captured image of the docu
 showResultAfterCapture: false
 ```
 
-
 ###  3.14 showTutorial
 
 **type:** *boolean*
@@ -387,7 +386,6 @@ replace the current location of the component at run time.
 translationsContent: “\<translation-content-string\>“;
 ```
 
-
 ###  3.17 viewsContent
 
 **type:** *string*
@@ -413,6 +411,31 @@ viewsContent: “\<views-content-string\>“;
 **type:** *boolean*
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 3.19. showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 3.20. extractionDuration
+
+**type:** *SelphiFaceExtractionDuration*
+
+Indicates the Duration of the facial extraction process. The possible values are:
+
+- SelphiFaceExtractionDuration.SHORT
+- SelphiFaceExtractionDuration.MEDIUM
+- SelphiFaceExtractionDuration.LONG
+
+#### 3.21. cameraPreferred
+
+**type:** *SelphiCamera*
+
+Indicates which camera will carry out the capture process. The possible values are:
+
+- SelphiCamera.BACK
+- SelphiCamera.FRONT
 
 ---
 

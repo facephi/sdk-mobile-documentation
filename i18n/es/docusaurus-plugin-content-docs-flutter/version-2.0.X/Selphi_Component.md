@@ -250,7 +250,7 @@ fullscreen: true
 
 ### 3.8. logImages
 
-**type:** *string*
+**type:** *boolean*
 
 Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
 
@@ -322,7 +322,6 @@ Indica el formato de compresión de la imagen. Los valores posibles son:
 compressFormat: SelphiCompressFormat.T_JPEG;
 ```
    
-
 ###  3.15 jpgQuality
 
 **type:** *number*
@@ -383,6 +382,25 @@ viewsContent: “\<views-content-string\>“;
 **type:** *boolean*
 
 Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
+
+#### 3.20. extractionDuration
+
+**type:** *SelphiFaceExtractionDuration*
+
+Indica la Duración del proceso de extracción facial. Los valores posibles son:
+
+- SelphiFaceExtractionDuration.SHORT
+- SelphiFaceExtractionDuration.MEDIUM
+- SelphiFaceExtractionDuration.LONG
+
+#### 3.21. cameraPreferred
+
+**type:** *SelphiCamera*
+
+Indica qué cámara realizará el proceso de captura. Los valores posibles son:
+
+- SelphiCamera.BACK
+- SelphiCamera.FRONT
 
 ---
 
