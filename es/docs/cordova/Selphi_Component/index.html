@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Selphi Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/cordova/Selphi_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="2.0.X"><meta data-rh="true" name="docusaurus_tag" content="docs-cordova-2.0.X"><meta data-rh="true" name="docsearch:version" content="2.0.X"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-cordova-2.0.X"><meta data-rh="true" property="og:title" content="Selphi Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. Introducción"><meta data-rh="true" property="og:description" content="1. Introducción"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/cordova/Selphi_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/cordova/Selphi_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/cordova/Selphi_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/cordova/Selphi_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.28aebaee.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.2dc8bc00.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.af10cadb.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.7b0c4365.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -177,6 +177,24 @@ Esta es una <strong>propiedad avanzada</strong>, y en la mayoría de casos de us
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="318-showprevioustip">3.18. showPreviousTip<a href="#318-showprevioustip" class="hash-link" aria-label="Enlace directo al 3.18. showPreviousTip" title="Enlace directo al 3.18. showPreviousTip">​</a></h4>
 <p><strong>type:</strong> <em>boolean</em></p>
 <p>Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="319-showprevioustip">3.19. showPreviousTip<a href="#319-showprevioustip" class="hash-link" aria-label="Enlace directo al 3.19. showPreviousTip" title="Enlace directo al 3.19. showPreviousTip">​</a></h4>
+<p><strong>type:</strong> <em>boolean</em></p>
+<p>Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="320-extractionduration">3.20. extractionDuration<a href="#320-extractionduration" class="hash-link" aria-label="Enlace directo al 3.20. extractionDuration" title="Enlace directo al 3.20. extractionDuration">​</a></h4>
+<p><strong>type:</strong> <em>SelphiFaceExtractionDuration</em></p>
+<p>Indica la Duración del proceso de extracción facial. Los valores posibles son:</p>
+<ul>
+<li>SelphiFaceExtractionDuration.SHORT</li>
+<li>SelphiFaceExtractionDuration.MEDIUM</li>
+<li>SelphiFaceExtractionDuration.LONG</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="321-camerapreferred">3.21. cameraPreferred<a href="#321-camerapreferred" class="hash-link" aria-label="Enlace directo al 3.21. cameraPreferred" title="Enlace directo al 3.21. cameraPreferred">​</a></h4>
+<p><strong>type:</strong> <em>SelphiCamera</em></p>
+<p>Indica qué cámara realizará el proceso de captura. Los valores posibles son:</p>
+<ul>
+<li>SelphiCamera.BACK</li>
+<li>SelphiCamera.FRONT</li>
+</ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-uso-del-componente">4. Uso del componente<a href="#4-uso-del-componente" class="hash-link" aria-label="Enlace directo al 4. Uso del componente" title="Enlace directo al 4. Uso del componente">​</a></h2>
 <p>A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.</p>
@@ -287,7 +305,7 @@ Se podrá encontrar en el archivo www/SdkSephiResult.js</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="625-elemento-button">6.2.5. Elemento BUTTON<a href="#625-elemento-button" class="hash-link" aria-label="Enlace directo al 6.2.5. Elemento BUTTON" title="Enlace directo al 6.2.5. Elemento BUTTON">​</a></h4>
 <p><strong>background</strong>: define el color de fondo el botón</p>
 <p><strong>decorator</strong>: define el color de la sombra del botón</p>
-<p><strong>foreground</strong>: define el color de la fuente del bot ón en caso de que el contenido sea un texto</p>
+<p><strong>foreground</strong>: define el color de la fuente del botón en caso de que el contenido sea un texto</p>
 <p><strong>content_type</strong>: define el tipo de contenido del botón. Existen 2 tipos diferentes:</p>
 <p><strong>resource_id</strong>: Content debe contener el nombre de un archivo en el bundle de recursos</p>
 <p><strong>text_id</strong>: Content debe contener el identificador de un literal del fichero de traducciones del bundle de recursos</p>
