@@ -2,6 +2,12 @@
 
 ## Versiones
 
+### 2.2.2
+
+- SelphID
+
+  - Nueva versión del widget: 1.31.2
+
 ### 2.2.1
 
 - General
