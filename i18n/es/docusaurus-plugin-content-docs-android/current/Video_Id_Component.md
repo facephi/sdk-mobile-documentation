@@ -139,6 +139,10 @@ Tiempo de espera en ms para la respuesta del servidor.
 
 Tiempo de espera en ms para detectar si hay una cara y comenzar la grabación.
 
+#### 5.1.9. camera
+
+Cámara con la que se quiere realizar el proceso: FRONT, BACK
+
 ---
 
 ## 6. Uso del componente

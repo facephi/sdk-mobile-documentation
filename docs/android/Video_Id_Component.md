@@ -125,6 +125,18 @@ message is displayed.
 Indicates if you want to show the complete initial tutorial. If not, a
 progress indicator will be shown.
 
+#### 5.1.7. timeoutServerConnection
+
+Timeout in ms for server response.
+
+#### 5.1.8. timeoutFaceDetection
+
+Timeout in ms to detect if there is a face and start recording.
+
+#### 5.1.9. camera
+
+Camera with which the process is to be carried out: FRONT, BACK
+
 ---
 
 ## 6. Component use
