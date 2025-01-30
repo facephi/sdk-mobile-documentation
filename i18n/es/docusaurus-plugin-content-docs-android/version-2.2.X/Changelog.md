@@ -2,6 +2,20 @@
 
 ## Versiones
 
+### 2.2.3
+
+- Voice
+
+  - Actualización de dependencias internas
+
+- Phingers
+
+  - Actualización de dependencias internas
+
+- Video ID
+
+  - Nuevo parámetro de entrada para la selección de cámara
+
 ### 2.2.2
 
 - SelphID
