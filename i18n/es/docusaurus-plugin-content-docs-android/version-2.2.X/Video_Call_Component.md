@@ -200,6 +200,7 @@ Lista de errores:
 - TIMEOUT: Timeout en el proceso
 - VIDEO_ERROR: Error en el procesamiento del vídeo
 - UNKNOWN_ERROR: Error desconocido
+- VIDEO_RECORDING_ACTIVE: No se puede iniciar porque el proceso de vídeo grabación está activo
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
