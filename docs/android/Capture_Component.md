@@ -86,7 +86,7 @@ The following section will show the fields that are part of this class and what 
 
 Maximum extraction time
 
-#### 5.1.2. cameraSelected
+#### 5.1.2. cameraPreferred
 
 Camera selected: FRONT, BACK
 

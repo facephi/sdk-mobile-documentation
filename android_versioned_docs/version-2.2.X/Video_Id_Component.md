@@ -133,7 +133,7 @@ Timeout in ms for server response.
 
 Timeout in ms to detect if there is a face and start recording.
 
-#### 5.1.9. camera
+#### 5.1.9. cameraPreferred
 
 Camera with which the process is to be carried out: FRONT, BACK
 
@@ -216,6 +216,7 @@ Error list:
 - SOCKET_ERROR: Error in the connection of services
 - TIMEOUT: Timeout in the process
 - VIDEO_ERROR: Error in video processing
+- VIDEO_RECORDING_ACTIVE: Cannot start because the video recording process is active.
 
 ### 7.2. Receipt of correct execution - _data_
 

@@ -93,7 +93,7 @@ estas clased y para qué se utiliza cada uno de ellos.
 
 Tiempo de extracción máximo
 
-#### 5.1.2. cameraSelected
+#### 5.1.2. cameraPreferred
 
 Cámara seleccionada: FRONT, BACK
 

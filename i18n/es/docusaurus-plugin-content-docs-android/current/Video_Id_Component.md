@@ -139,7 +139,7 @@ Tiempo de espera en ms para la respuesta del servidor.
 
 Tiempo de espera en ms para detectar si hay una cara y comenzar la grabación.
 
-#### 5.1.9. camera
+#### 5.1.9. cameraPreferred
 
 Cámara con la que se quiere realizar el proceso: FRONT, BACK
 
@@ -223,6 +223,7 @@ Lista de errores:
 - SOCKET_ERROR: Error en la conexiónde los servicios
 - TIMEOUT: Timeout en el proceso
 - VIDEO_ERROR: Error en el procesamiento del vídeo
+- VIDEO_RECORDING_ACTIVE: No se puede iniciar porque el proceso de vídeo grabación está activo
 
 ### 7.2. Recepción de ejecución correcta - _data_
 

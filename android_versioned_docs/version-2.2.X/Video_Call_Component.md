@@ -188,6 +188,7 @@ Error list:
 - TIMEOUT: Timeout in the process
 - VIDEO_ERROR: Error in video processing
 - UNKNOWN_ERROR
+- VIDEO_RECORDING_ACTIVE: Cannot start because the video recording process is active.
 
 ### 7.2. Receipt of correct execution - _data_
 
