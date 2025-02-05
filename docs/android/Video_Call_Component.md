@@ -203,9 +203,7 @@ The screen sharing functionality can be executed using the _VideoCallScreenShari
 With it, it is possible to start and end the screen sharing as well as to collect the states in which it is.
 
 ```java
-val videoCallScreenSharingManager = VideoCallScreenSharingManager(
-            SdkApplication(application)
-        )
+val videoCallScreenSharingManager = VideoCallScreenSharingManager()
 
 videoCallScreenSharingManager.setOutput { state ->
             Napier.d("SCREEN SHARING STATE: ${state.name}")

@@ -11,10 +11,17 @@
 - Phingers
 
   - Updating internal dependencies
+  - New filter
 
 - Video ID
 
   - New input parameter for camera selection
+  - Detection of active video recording process before starting
+
+- Video Call
+
+  - Detection of active video recording process before starting
+  - VideoCallScreenSharingManager does not require the application.
 
 ### 2.2.2
 

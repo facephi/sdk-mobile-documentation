@@ -11,10 +11,17 @@
 - Phingers
 
   - Actualización de dependencias internas
+  - Nuevo filtro
 
 - Video ID
 
   - Nuevo parámetro de entrada para la selección de cámara
+  - Detección del proceso de video grabación activo antes de iniciar
+
+- Video Call
+
+  - Detección del proceso de video grabación activo antes de iniciar
+  - VideoCallScreenSharingManager no necesita la aplicación.
 
 ### 2.2.2
 
