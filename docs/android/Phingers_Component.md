@@ -110,8 +110,6 @@ be detected during the process. The allowed values are:
 - **RIGHT**: Enables the capture of the **four** **fingers** of the
   **left** **hand**.
 
-- **THUMB**: The capture of a **thumb** is activated.
-
 #### 5.1.2. useFlash
 
 Enables or disables the camera flash during the fingerprint capture
@@ -173,6 +171,10 @@ Display diagnostic screens at the end of the process
 #### 5.1.15. showPreviousTip
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 5.1.16. fingerFilter
+
+Filter to select the whole hand or a specific finger: SLAP, INDEX_FINGER, MIDDLE_FINGER, RING_FINGER, LITTLE_FINGER, THUMB_FINGER.
 
 ---
 

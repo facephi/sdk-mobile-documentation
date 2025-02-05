@@ -116,7 +116,6 @@ detectar durante el proceso. Los valores permitidos son:
 - **RIGHT**: Se activa la captura de los **cuatro dedos de la mano
   izquierda**.
 
-- **THUMB**: Se activa la captura de **un pulgar**.
 
 #### 5.1.2. useFlash
 
@@ -179,6 +178,10 @@ Mostrar pantallas de diagnóstico al final del proceso
 #### 5.1.15. showPreviousTip
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 5.1.16. fingerFilter
+
+Filtro para elegir la mano entera o un dedo en concreto: SLAP, INDEX_FINGER, MIDDLE_FINGER, RING_FINGER, LITTLE_FINGER, THUMB_FINGER,
 
 ---
 

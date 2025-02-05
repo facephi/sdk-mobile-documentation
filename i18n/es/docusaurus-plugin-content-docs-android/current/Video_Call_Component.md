@@ -217,9 +217,7 @@ La funcionalidad de compartir pantalla se podrá ejecutar haciendo uso de la cla
 Con ella se podrá tanto comenzar y finalizar la compartición de pantalla como recoger los estados en los que se encuentra.
 
 ```java
-val videoCallScreenSharingManager = VideoCallScreenSharingManager(
-            SdkApplication(application)
-        )
+val videoCallScreenSharingManager = VideoCallScreenSharingManager()
 
 videoCallScreenSharingManager.setOutput { state ->
             Napier.d("SCREEN SHARING STATE: ${state.name}")
