@@ -349,9 +349,21 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
+    <!-- Previous Tip -->
+    <string name="capture_component_phactura_tip_title">Scan Documents</string>
+    <string name="capture_component_phactura_tip_message">Take a photo of the document, or upload an image.&lt;br&gt;&lt;br&gt; You can scan several documents before finishing.</string>
+    <string name="capture_component_phactura_tip_button">Start</string>
+    <string name="capture_component_qr_tip_title">Scan QR Code</string>
+    <string name="capture_component_qr_tip_message">&lt;b&gt; Focus &lt;/b&gt; the QR code &lt;b&gt; inside the box &lt;/b&gt;</string>
+    <string name="capture_component_qr_tip_button">Start</string>
+    <!-- Tutorial -->
+    <string name="capture_component_qr_tutorial_1">Make sure the QR code has &lt;b&gt; enough light &lt;/b&gt; and there are &lt;b&gt; no reflections &lt;/b&gt; or glare on the code.</string>
+    <string name="capture_component_qr_tutorial_2">Fit the edges of the QR code inside the box.</string>
+    <!-- Process -->
     <string name="capture_component_qr_camera_message">Keep the QR in the center</string>
     <string name="capture_component_invoice_camera_message">Keep bill in the center</string>
     <string name="capture_component_button_message">Capture</string>
+    <!-- Diagnostic -->
     <string name="capture_component_timeout_title">Time exceeded</string>
     <string name="capture_component_timeout_desc">We apologize. The capture could not be made</string>
     <string name="capture_component_internal_error_title">There was a technical problem</string>

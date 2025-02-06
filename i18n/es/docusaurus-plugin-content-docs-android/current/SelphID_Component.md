@@ -594,43 +594,31 @@ de cada _String_ por el deseado.
 
 ```xml
     <string name="selphid_component_timeout_title">Tiempo superado</string>
-    <string name="selphid_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="selphid_component_timeout_desc">Comprueba que el documento está dentro del recuadro y los datos son visibles.</string>
     <string name="selphid_component_internal_error_title">Hubo un problema técnico</string>
     <string name="selphid_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <!-- WIDGET -->
-    <string name="button_repeat">INTENTAR DE NUEVO</string>
-    <string name="button_finish">ACEPTAR</string>
-    <string name="button_skip">OMITIR</string>
-    <string name="button_ready">LISTO</string>
-    <string name="CaptureTipFront">Pon el FRENTE del \n documento</string>
-    <string name="CaptureInfoFront">Pon el FRENTE \n del documento</string>
-    <string name="CaptureTipFrontID">Pon el FRENTE del \n documento</string>
-    <string name="CaptureInfoFrontID">Pon el FRENTE \n del documento</string>
-    <string name="CaptureTipFrontPP">Pon el PASAPORTE dentro \n del recuadro</string>
-    <string name="CaptureInfoFrontPP">Pon el PASAPORTE \n dentro del recuadro</string>
-    <string name="CaptureTipFrontDL">Pon el FRENTE del \n carnet de conducir</string>
-    <string name="CaptureInfoFrontDL">Pon el FRENTE \n del carnet de conducir</string>
-    <string name="CaptureTipBack">Pon el REVERSO del \n documento</string>
-    <string name="CaptureInfoBack">Pon el REVERSO \n del documento</string>
-    <string name="CaptureTipBackID">Pon el REVERSO del \n documento</string>
-    <string name="CaptureInfoBackID">Pon el REVERSO \n del documento</string>
-    <string name="CaptureTipBackPP">Pon el PASAPORTE dentro \n del recuadro</string>
-    <string name="CaptureInfoBackPP">Pon el PASAPORTE \n dentro del recuadro</string>
-    <string name="CaptureTipBackDL">Pon el REVERSO del \n carnet de conducir</string>
-    <string name="CaptureInfoBackDL">Pon el REVERSO \n del carnet de conducir</string>
-    <string name="CaptureSuccessFront">¡El escaneado \n ha sido exitoso!</string>
-    <string name="CaptureSuccessBack">¡El escaneado \n ha sido exitoso!</string>
-    <string name="CaptureError">Analizando documento...</string>
-    <string name="CaptureErrorLight">No hay \n suficiente luz</string>
-    <string name="Tutorial1">Busca un fondo \n con buen contraste</string>
-    <string name="Tutorial2">Coloca el documento \n dentro del recuadro</string>
-    <string name="Tutorial3">Evita brillos que dificulten \n la lectura del documento</string>
-    <string name="Tutorial1_PP">Busca un fondo \n con buen contraste</string>
-    <string name="Tutorial2_PP">Coloca el pasaporte \n dentro del recuadro</string>
-    <string name="Tutorial3_PP">Evita brillos que dificulten \n la lectura del pasaporte</string>
-    <string name="selphid_component_tutorial_title">Foto del documento</string>
-    <string name="selphid_component_tutorial_button">Comenzar</string>
-    <string name="selphid_component_tutorial_message">Enfoca tu documento dentro del recuadro. La foto se hará automáticamente.</string>
+    <!-- Previous Tip -->
+    <string name="selphid_tip_message">&lt;b&gt; Enfoca&lt;/b&gt; tu documento&lt;b&gt; dentro del recuadro.&lt;/b&gt; La foto se hará automáticamente.</string>
+    <string name="selphid_tip_message_alt">Enfoca tu documento dentro del recuadro. La foto se hará automáticamente.</string>
+    <string name="selphid_tip_anim_id_desc">Animación de un teléfono móvil haciendo una foto a un documento de identidad. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <string name="selphid_tip_anim_pass_desc">Animación de un teléfono móvil haciendo una foto a un pasaporte. El documento aparece en horizontal, abierto por la página donde aparece la foto. El móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando la página del pasaporte encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <string name="selphid_tip_title">Foto del documento</string>
+    <string name="selphid_tip_button">Comenzar</string>
+    <!-- Tutorial -->
+    <string name="selphid_previous_page">Página anterior</string>
+    <string name="selphid_next_page">Próxima página</string>
+    <string name="selphid_skip">OMITIR</string>
+    <string name="selphid_next">SIGUIENTE</string>
+    <string name="selphid_previous">ANTERIOR</string>
+    <string name="selphid_tutorial_message_1">Busca un fondo con buen contraste.</string>
+    <string name="selphid_tutorial_message_2">Coloca el documento dentro del recuadro.</string>
+    <string name="selphid_tutorial_message_3">Evita brillos que dificulten la lectura del documento.</string>
+    <string name="selphid_tutorial_message_1_anim_id_desc">Se muestra un documento de identidad de color blanco, sobre un fondo blanco. Los bordes del documento no se distinguen con claridad. Mediante una animación, el fondo cambia de color.</string>
+    <string name="selphid_tutorial_message_2_anim_id_desc">Un teléfono móvil hace una foto a un documento de identidad. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <string name="selphid_tutorial_message_3_anim_id_desc">Un documento de identidad, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.</string>
+    <string name="selphid_tutorial_message_1_anim_pass_desc">Se muestra un pasaporte abierto, sobre un fondo blanco. Los bordes del pasaporte no se distinguen con claridad. Mediante una animación, el fondo cambia de color.</string>
+    <string name="selphid_tutorial_message_2_anim_pass_desc">Un teléfono móvil hace una foto a un pasaporte abierto. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el pasaporte encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <string name="selphid_tutorial_message_3_anim_pass_desc">Un pasaporte abierto, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.</string>
 
 ```
 
