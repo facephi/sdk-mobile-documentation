@@ -4,6 +4,10 @@
 
 ### 2.2.3
 
+- General
+
+  - Complete separation between the activation of the pre-tip screen and the tutorial screen.
+
 - Voice
 
   - Updating internal dependencies
@@ -22,6 +26,19 @@
 
   - Detection of active video recording process before starting
   - VideoCallScreenSharingManager does not require the application.
+  - Internet connection failure detection
+
+- Video Recording
+
+  - Internet connection failure detection
+
+- SelphID
+
+  - New input parameter to activate vibration
+
+- Selphi
+
+  - New input parameter to activate vibration
 
 ### 2.2.2
 
