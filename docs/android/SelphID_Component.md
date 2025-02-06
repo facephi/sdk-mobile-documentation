@@ -581,43 +581,32 @@ each String to the desired one.
 
 ```xml
     <string name="selphid_component_timeout_title">Time exceeded</string>
-    <string name="selphid_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="selphid_component_timeout_desc">Check that the document is inside the box and the data is visible.</string>
     <string name="selphid_component_internal_error_title">There was a technical problem</string>
     <string name="selphid_component_internal_error_desc">We apologize. The capture could not be made</string>
-    <!-- WIDGET -->
-    <string name="button_repeat">TRY AGAIN</string>
-    <string name="button_finish">ACCEPT</string>
-    <string name="button_skip">SKIP</string>
-    <string name="button_ready">READY</string>
-    <string name="CaptureTipFront">Please capture \n document\'s front</string>
-    <string name="CaptureInfoFront">Please capture \n document\'s front</string>
-    <string name="CaptureTipFrontID">Please capture \n document\'s front</string>
-    <string name="CaptureInfoFrontID">Please capture \n document\'s front</string>
-    <string name="CaptureTipFrontPP">Please capture passport</string>
-    <string name="CaptureInfoFrontPP">Please capture passport</string>
-    <string name="CaptureTipFrontDL">Please capture \n driver licence\'s front</string>
-    <string name="CaptureInfoFrontDL">Please capture\n driver licence\'s front</string>
-    <string name="CaptureTipBack">Please capture \n document\'s back</string>
-    <string name="CaptureInfoBack">Please capture \n document\'s back</string>
-    <string name="CaptureTipBackID">Please capture \n document\'s back</string>
-    <string name="CaptureInfoBackID">Please capture \n document\'s back</string>
-    <string name="CaptureTipBackPP">Please capture passport</string>
-    <string name="CaptureInfoBackPP">Please capture passport</string>
-    <string name="CaptureTipBackDL">Please capture \n driver license\'s back</string>
-    <string name="CaptureInfoBackDL">Please capture \n driver license\'s back</string>
-    <string name="CaptureSuccessFront">Document scanned \n successfully!</string>
-    <string name="CaptureSuccessBack">Document scanned \n successfully!</string>
-    <string name="CaptureError">Processing document...</string>
-    <string name="CaptureErrorLight">There is not \n enough light</string>
-    <string name="Tutorial1">Find a background \n with high contrast to \n capture the document</string>
-    <string name="Tutorial2">Be sure the images \n and text of the document \n are properly focused</string>
-    <string name="Tutorial3">Avoid any glare on \n the document to better \n capture the information</string>
-    <string name="Tutorial1_PP">Find a background \n with high contrast to \n capture the passport</string>
-    <string name="Tutorial2_PP">Be sure the images \n and text of the passport \n are properly focused</string>
-    <string name="Tutorial3_PP">Avoid any glare on \n the passport to better \n capture the information</string>
-    <string name="selphid_component_tutorial_title">Document Photo</string>
-    <string name="selphid_component_tutorial_button">Start</string>
-    <string name="selphid_component_tutorial_message">Focus your document inside the box. The photo will be taken automatically.</string>
+    <!-- Previous Tip -->
+    <string name="selphid_tip_message">&lt;b&gt; Focus&lt;/b&gt; your document&lt;b&gt; inside the box.&lt;/b&gt; The photo will be taken automatically.</string>
+    <string name="selphid_tip_message_alt">Focus your document inside the box. The photo will be taken automatically.</string>
+    <string name="selphid_tip_anim_id_desc">Animation of a mobile phone taking a photo of an identity document. The document appears horizontally, and the mobile phone vertically. A box appears on the mobile phone screen. When the document fits inside the box, the application takes a photo.</string>
+    <string name="selphid_tip_anim_pass_desc">Animation of a mobile phone taking a photo of a passport. The document appears horizontally, open on the page where the photo appears. The mobile phone in a vertical position. A box appears on the screen of the mobile phone. When the passport page fits inside the box, the application takes a photo.</string>
+    <string name="selphid_tip_title">Document photo</string>
+    <string name="selphid_tip_button">Start</string>
+    <!-- Tutorial -->
+    <string name="selphid_previous_page">Previous page</string>
+    <string name="selphid_next_page">Next page</string>
+    <string name="selphid_skip">SKIP</string>
+    <string name="selphid_next">NEXT</string>
+    <string name="selphid_previous">PREVIOUS</string>
+    <string name="selphid_tutorial_message_1">Look for a background with good contrast.</string>
+    <string name="selphid_tutorial_message_2">Place the document in the box</string>
+    <string name="selphid_tutorial_message_3">Avoid glare that makes the document difficult to read.</string>
+    <string name="selphid_tutorial_message_1_anim_id_desc">A white ID document is displayed on a white background. The edges of the document are not clearly distinguishable. By means of an animation, the background changes color.</string>
+    <string name="selphid_tutorial_message_2_anim_id_desc">A cell phone takes a picture of an identity document. The document appears horizontally, and the cell phone vertically. A box appears on the cell phone screen. When the document fits inside the box, the application takes a photo.</string>
+    <string name="selphid_tutorial_message_3_anim_id_desc">An identity document, seen from the front. When tilted, reflections appear on the document.</string>
+    <string name="selphid_tutorial_message_1_anim_pass_desc">An open passport is shown on a white background. The edges of the passport are not clearly distinguishable. By means of an animation, the background changes color.</string>
+    <string name="selphid_tutorial_message_2_anim_pass_desc">A cell phone takes a picture of an open passport. The document appears horizontally, and the cell phone vertically. A box appears on the screen of the cell phone. When the passport fits inside the box, the application takes a photo.</string>
+    <string name="selphid_tutorial_message_3_anim_pass_desc">An open passport, seen from the front. When tilted, reflections appear on the document.</string>
+
 ```
 
 ### 8.2. Animations

@@ -345,15 +345,19 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-    <string name="phingers_component_tutorial_left_message">Prepara tu mano izquierda para la captura</string>
-    <string name="phingers_component_tutorial_left_title">Huellas mano izquierda</string>
-    <string name="phingers_component_turorial_right_message">Prepara tu mano derecha para la captura</string>
-    <string name="phingers_component_tutorial_right_title">Huellas mano derecha</string>
-    <string name="phingers_component_tutorial_button">Tomar huellas</string>
+    <!-- Previous Tip -->
+    <string name="phingers_component_tip_left_title">Huellas mano izquierda</string>
+    <string name="phingers_component_tip_right_title">Huellas mano derecha</string>
+    <string name="phingers_component_tip_thumb_title">Huella pulgar</string>
+    <string name="phingers_component_tip_message">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
+    <string name="phingers_component_tip_thumb_message">Enfoca el pulgar dentro del círculo. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
+    <string name="phingers_component_tip_button">Comenzar</string>
+    <!-- Process -->
     <string name="phingers_component_capture_phingers">Mantenga los dedos firmes</string>
     <string name="phingers_component_capture_thumb">Mantenga el dedo firme</string>
     <string name="phingers_component_capture_phingers_not_focus">Mueva los dedos hasta que estén enfocados</string>
     <string name="phingers_component_capture_thumb_not_focus">Mueva el dedo hasta que esté enfocado</string>
+    <!-- Diagnostic -->
     <string name="phingers_component_timeout_title">Tiempo superado</string>
     <string name="phingers_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
     <string name="phingers_component_internal_error_title">Hubo un problema técnico</string>
