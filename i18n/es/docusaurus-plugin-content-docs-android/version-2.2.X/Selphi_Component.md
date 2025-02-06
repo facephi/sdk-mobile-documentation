@@ -236,6 +236,10 @@ Duración del proceso de extracción facial
 
 Cámara con la que se quiere realizar el proceso: FRONT, BACK
 
+#### 5.1.20. _vibrationEnabled_
+
+Indica si se desea un feedback de vibración al acabar el proceso.
+
 ---
 
 ## 6. Uso del componente

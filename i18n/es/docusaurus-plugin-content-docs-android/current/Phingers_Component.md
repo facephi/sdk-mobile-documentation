@@ -116,7 +116,6 @@ detectar durante el proceso. Los valores permitidos son:
 - **RIGHT**: Se activa la captura de los **cuatro dedos de la mano
   izquierda**.
 
-
 #### 5.1.2. useFlash
 
 Activa o desactiva el flash de la cámara durante el proceso de captura
@@ -181,7 +180,7 @@ Muestra una pantalla previa al lanzamiento de la captura con información sobre 
 
 #### 5.1.16. fingerFilter
 
-Filtro para elegir la mano entera o un dedo en concreto: SLAP, INDEX_FINGER, MIDDLE_FINGER, RING_FINGER, LITTLE_FINGER, THUMB_FINGER,
+Filtro para elegir la mano entera o un dedo en concreto: SLAP, INDEX_FINGER, MIDDLE_FINGER, RING_FINGER, LITTLE_FINGER, THUMB_FINGER.
 
 ---
 

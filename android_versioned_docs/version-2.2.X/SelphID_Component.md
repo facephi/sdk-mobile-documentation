@@ -287,7 +287,7 @@ camera used to capture the document. These images are returned in the
 rawFrontDocument and rawBackDocument properties of the resulting object,
 respectively.
 
-#### 5.1.16 tokenPreviousCaptureData
+#### 5.1.16 _tokenPreviousCaptureData_
 
 When the document capture is done in 2 calls, this property allows the
 pass a dictionary with the information from the previous capture. This
@@ -299,23 +299,31 @@ of the data from both sides.
 If both sides of the document are captured in a single call, this is
 unnecessary as the widget does this process internally.
 
-#### 5.1.17 translationsContent
+#### 5.1.17 _translationsContent_
 
 This advanced property allows, through a string in XML format, to
 configure the current translation of the component literals.
 
 **Note**: This property does not alter the content of the resource file.
 
-#### 5.1.18 viewsContent
+#### 5.1.18 _viewsContent_
 
 This advanced property allows, through a string in XML format, to
 configure the widget views.
 
 **Note**: This property does not alter the content of the resource file.
 
-#### 5.1.19. showDiagnostic
+#### 5.1.19. _showDiagnostic_
 
 Display diagnostic screens at the end of the process
+
+#### 5.1.20. _showPreviousTip_
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 5.1.21. _vibrationEnabled_
+
+Indicates whether vibration feedback is desired at the end of the process.
 
 ---
 
