@@ -223,6 +223,10 @@ Duration of facial extraction process
 
 Selection of camera used for the process: FRONT, BACK
 
+#### 5.1.20. _vibrationEnabled_
+
+Indicates whether vibration feedback is desired at the end of the process.
+
 ---
 
 ## 6. Component use

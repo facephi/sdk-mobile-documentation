@@ -297,7 +297,7 @@ la cámara que se utilizó para capturar el documento. Estas imágenes se
 devuelven en las propiedades `rawFrontDocument` y `rawBackDocument` del
 objeto `results` respectivamente.
 
-#### 5.1.16 tokenPreviousCaptureData
+#### 5.1.16 _tokenPreviousCaptureData_
 
 Cuando la captura del documento se realiza en 2 llamadas, esta propiedad
 permite pasar un diccionario con la información de la captura previa. De
@@ -310,7 +310,7 @@ En el caso que la captura de ambas caras del documento se realice en una
 única llamada esto no es necesario ya que el widget internamente hace
 este proceso.
 
-#### 5.1.17 translationsContent
+#### 5.1.17 _translationsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar la traducción de los literales que se muestran durante el
@@ -318,20 +318,24 @@ proceso.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 5.1.18 viewsContent
+#### 5.1.18 _viewsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 5.1.19. showDiagnostic
+#### 5.1.19. _showDiagnostic_
 
 Mostrar pantallas de diagnóstico al final del proceso
 
-#### 5.1.20. showPreviousTip
+#### 5.1.20. _showPreviousTip_
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 5.1.21. _vibrationEnabled_
+
+Indica si se desea un feedback de vibración al acabar el proceso.
 
 ---
 
