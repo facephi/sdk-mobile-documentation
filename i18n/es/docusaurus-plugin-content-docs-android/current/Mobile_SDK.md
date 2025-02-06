@@ -591,7 +591,7 @@ cambiando el valor _hex_ (RGB) de cada color principal:
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- SdkTheme -->
-    <color name="sdkPrimaryColor">#7636FC</color>
+    <color name="sdkPrimaryColor">#FFFFFF</color>
     <color name="sdkSecondaryColor">#03DAC5</color>
     <color name="sdkBackgroundColor">#FFFFFF</color>
     <color name="sdkErrorColor">#DD3631</color>

@@ -230,6 +230,7 @@ Los posibles estados son:
     AGENT_HANGUP,
     PERMISSION_ERROR,
     UNKNOWN_ERROR,
+    NETWORK_CONNECTION_ERROR,
     SHARING,
     FINISH
 ```

@@ -216,6 +216,7 @@ The possible states are:
     AGENT_HANGUP,
     PERMISSION_ERROR,
     UNKNOWN_ERROR,
+    NETWORK_CONNECTION_ERROR,
     SHARING,
     FINISH
 ```
