@@ -4,6 +4,10 @@
 
 ### 2.2.3
 
+- General
+
+  - Separación completa entre la activación de pantalla de tip previo y la pantalla de tutorial.
+
 - Voice
 
   - Actualización de dependencias internas
@@ -22,6 +26,19 @@
 
   - Detección del proceso de video grabación activo antes de iniciar
   - VideoCallScreenSharingManager no necesita la aplicación.
+  - Detección de fallos en la conexión a internet
+
+- Video Recording
+
+  - Detección de fallos en la conexión a internet
+
+- SelphID
+
+  - Nuevo parámetro de entrada para activar la vibración
+
+- Selphi
+
+  - Nuevo parámetro de entrada para activar la vibración
 
 ### 2.2.2
 
