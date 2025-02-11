@@ -171,6 +171,10 @@ Si se le da valor true, al producirse un error o una falta de permisos, el sdk m
 
 Establece el tiempo máximo que se puede realizar la lectura.
 
+##### showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 #### 5.1.2. Documentación Avanzada
 
 ##### enableDebugMode
@@ -182,6 +186,14 @@ Activación del modo depuración del componente.
 Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura
 con información más simple y rápida que permite la lectura de más
 variedad de documentos.
+
+##### extractFacialImage
+
+Indicamos si queremos extraer la imagen de la cara.
+
+##### extractSignatureImage
+
+Indicamos si queremos extraer la imagen de la firma.
 
 #### 5.1.3 Otros parametros
 

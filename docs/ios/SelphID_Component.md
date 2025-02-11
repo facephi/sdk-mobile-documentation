@@ -164,6 +164,10 @@ Indicates whether or not to show a screen with the captured image of the documen
 
 This property allows to show the tutorial prior to the capture process.
 
+##### showPreviousTip
+
+It displays a preview screen with information about the process to be carried out and a button to start the process.
+
 ##### ScanMode
 
 Specifies the OCR scanning mode of the documents. Depending on the choice, several types of documents or a specific one will be scanned and searched. This mode can be of three types:

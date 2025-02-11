@@ -139,6 +139,10 @@ Establece el tiempo máximo que se puede realizar la captura.
 
 Mostrar pantallas de diagnóstico al final del proceso
 
+#### 5.1.6 showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 ---
 
 ## 6. Uso del componente

@@ -207,6 +207,10 @@ attempted
 Sets the message (string) displayed on screen during the thumb capture process.
 thumb capture process.
 
+#### 5.1.13 showPreviousTip
+
+It displays a preview screen with information about the process to be carried out and a button to start the process.
+
 ---
 
 ## 6. Use of the component

@@ -131,12 +131,16 @@ Show the previous Tips screen
 #### 5.1.9 autoCapture
 Enable autoCapture
 
+#### 5.1.10. showPreviousTip
+
+It displays a preview screen with information about the process to be carried out and a button to start the process.
+
 ### 5.2. Class QrCaptureConfigurationData
 
 #### 5.2.1. extractionTimeout
 Maximum extraction timeout
 
-#### 5.2.2. cameraSelected
+#### 5.2.2. cameraPreferred
 Camera selected: FRONT, BACK
 
 #### 5.2.3. cameraShape
@@ -156,6 +160,12 @@ Show diagnostic screens at the end of the process and in case of error
 
 #### 5.2.7. transparentBackground
 Mask on the camera semi-transparent
+
+#### 5.2.8. showPreviousTip
+It displays a preview screen with information about the process to be carried out and a button to start the process.
+
+#### 5.2.9 showTutorial
+Indicates whether the component activates the tutorial screen. This view intuitively explains how the capture is performed.
 
 ### 5.3. Class QrGeneratorConfiguration
 

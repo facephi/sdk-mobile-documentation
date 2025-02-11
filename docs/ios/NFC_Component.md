@@ -171,6 +171,10 @@ If set to true, if an error or lack of permissions occurs, the sdk will display 
 
 Sets the maximum time the readout can be performed.
 
+#### showPreviousTip
+
+It displays a preview screen with information about the process to be carried out.
+
 #### 5.1.2. Advanced Documentation
 
 ##### enableDebugMode
@@ -182,6 +186,14 @@ Enable debug mode for the component.
 Indicates that only NFC BAC reading is desired. This is a simpler and faster
 simpler and faster information that allows reading of a wider variety of documents.
 variety of documents.
+
+##### extractFacialImage
+
+Indicates if we want to extract the image of the face.
+
+##### extractSignatureImage
+
+Indicates if we want to extract the signature image.
 
 #### 5.1.3 Other parameters
 

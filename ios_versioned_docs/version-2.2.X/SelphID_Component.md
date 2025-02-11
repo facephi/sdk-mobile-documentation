@@ -272,6 +272,10 @@ This property allows, by means of a string in xml format, to configure the model
 
 Note: This property does not alter the content of the resource file.
 
+##### showPreviousTip
+
+It displays a preview screen with information about the process to be carried out and a button to start the process.
+
 #### 5.1.3 Other parameters
 
 ##### VideoFilename

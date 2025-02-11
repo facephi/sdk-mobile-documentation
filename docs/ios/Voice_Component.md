@@ -139,6 +139,10 @@ Sets the maximum time that the capture can be performed.
 
 Show diagnostic screens at the end of the process
 
+#### 5.1.6. showPreviousTip
+
+It displays a preview screen with information about the process to be carried out and a button to start the process.
+
 ---
 
 ## 6. Using the component

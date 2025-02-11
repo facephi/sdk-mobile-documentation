@@ -145,6 +145,10 @@ de huellas. Por defecto se encuentra a **true**.
 ##### showDiagnostic
 Mostrar pantallas de diagnóstico al final del proceso
 
+##### showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 
 #### 5.1.2. Configuración Avanzada
 

@@ -129,6 +129,10 @@ mostrará un progress indicator.
 - FACE_DOCUMENT_FRONT_BACK: El proceso se realiza usando la cara, el
   frontal del documento de identidad y la parte trasera del documento.
 
+##### cameraPreferred
+
+Esta propiedad le permite seleccionar la cámara frontal o trasera. Por defecto se selecciona la cámara frontal
+
 #### 5.1.2 Configuración Avanzada
 
 ##### url

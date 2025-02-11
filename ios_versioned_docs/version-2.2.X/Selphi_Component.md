@@ -63,7 +63,7 @@ completely before the installation of the components of the **_SDKMobile_** comp
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.0.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
   pod 'zipzap'
 ```
 
@@ -71,7 +71,7 @@ completely before the installation of the components of the **_SDKMobile_** comp
   entry in the _Podfile_ of the application:
 
 ```
-  pod 'FPHISDKSelphiComponent', '~> 2.0.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.2.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -210,6 +210,10 @@ Indicates whether the template (templateRaw) generated after the selfie should b
 
 Boolean indicating whether or not to activate QR reading prior to the authentication process.
 
+##### cameraFlashEnabled
+
+Indicates whether the device's camera flash is activated (only when the rear camera is selected).
+
 ##### videoFilename
 
 Sets the absolute path to the filename where a video of the capture process will be recorded.
@@ -234,11 +238,25 @@ process.
 This advanced property allows, by means of a string in xml format,
 to configure the views of the widget.
 
-#### 5.1.3 Other parameters
+##### cameraPreferred
+
+This property allows you to select the front or rear camera. By default the front camera is selected
+
+##### showPreviousTip
+
+It displays a preview screen with information about the process to be carried out and a button to start the process.
 
 ##### VibrationEnabled
 
 If true, vibration is enabled on errors and if the response of the widget is OK
+
+##### extractionDuration
+
+Duration of the facial extraction process
+
+##### logImages
+
+When activated, a list of the 5 best images taken by the user is returned.
 
 ---
 

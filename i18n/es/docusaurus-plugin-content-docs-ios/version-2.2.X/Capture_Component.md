@@ -137,7 +137,7 @@ Número máximo de documentos capturados
 
 #### 5.1.8 showPreviousTip
 
-Mostrar la pantalla de Tips previos
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
 
 #### 5.1.9 autoCapture
 
@@ -150,7 +150,7 @@ Habilitar la captura automática
 
 Tiempo de extracción máximo
 
-#### 5.2.2. cameraSelected
+#### 5.2.2. cameraPreferred
 
 Cámara seleccionada: FRONT, BACK
 
@@ -177,6 +177,14 @@ Mostrar pantallas de diagnóstico al final del proceso y en caso de error
 #### 5.2.7. transparentBackground
 
 Máscara sobre la cámara semitransparente
+
+#### 5.2.8. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 5.2.9 showTutorial
+
+Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.
 
 ### 5.3. Class QrGeneratorConfiguration
 

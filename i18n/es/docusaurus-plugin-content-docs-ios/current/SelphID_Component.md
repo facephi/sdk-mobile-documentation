@@ -251,6 +251,10 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar modelado 
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
+##### showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 #### 5.1.3 Otros parametros
 
 ##### VideoFilename

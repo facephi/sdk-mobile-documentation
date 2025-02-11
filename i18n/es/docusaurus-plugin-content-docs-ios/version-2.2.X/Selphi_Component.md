@@ -64,14 +64,14 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
   pod 'zipzap'
 ```
 
 - Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-  pod 'FPHISDKSelphiComponent', '~> 1.5.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.2.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -160,6 +160,10 @@ Si se le da valor true, al producirse un error o una falta de permisos, el sdk m
 
 Indica si mostrar o no una pantalla con la imagen capturada del documento después del proceso de análisis. En esta pantalla se le da al usuario la posibilidad de repetir el proceso de captura si la imagen que se obtuvo del documento no fuera correcta.
 
+##### showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
 #### 5.1.2 Configuración Avanzada
 
 ##### debug
@@ -219,7 +223,7 @@ archivo mediante este método.
 
 ##### cameraFlashEnabled
 
-Indica si se activa el flash de la cámara del dispositivo.
+Indica si se activa el flash de la cámara del dispositivo. (Solo cuando esta seleccionada la cámara trasera)
 
 ##### translationsContent
 
@@ -232,11 +236,20 @@ proceso.
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
-#### 5.1.3 Otros parametros
+##### cameraPreferred
+
+Esta propiedad permite, seleccionar la camara trasea o delantera. Por defecto esta seleccionada la delantera
 
 ##### VibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
+
+##### extractionDuration
+
+Duración del proceso de extracción facial
+
+##### logImages
+Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
 
 ---
 

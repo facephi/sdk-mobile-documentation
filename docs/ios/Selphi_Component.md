@@ -162,6 +162,20 @@ If set to true, when an error or lack of permissions occurs, the sdk will displa
 
 Indicates whether or not to display a screen with the captured image of the document after the analysis process. This screen gives the user the possibility to repeat the capture process if the image obtained from the document is not correct.
 
+##### showPreviousTip
+
+It displays a preview screen with information about the process to be carried out and a button to start the process.
+
+##### livenessMode
+
+Sets the liveness mode of the widget. Allowed values are:
+
+- **SelphiFaceLivenessMode.NONE**: Indicates that photo detection mode should not be enabled in authentication processes.
+
+- **SelphiFaceLivenessMode.PASSIVE**: Indicates that the passive liveness test is performed on the server, by sending the corresponding "BestImage" or "TemplateRaw" for this purpose.
+
+- **SelphiFaceLivenessMode.MOVE**: Indicates that the liveness test is active by displaying instructions during the capture, and returning the corresponding result of the process.
+
 #### 5.1.2 Advanced Settings
 
 ##### debug
@@ -183,20 +197,10 @@ face.
 
 Forces the widget to use the language setting indicated by the
 locale parameter. This parameter accepts both a language code (e.g. 'en') and a regional identification code (e.g. 'en_US').
-e.g. 'en') and a regional identification code (e.g. 'en_US'). If
+(e.g. 'en') and a regional identification code (e.g. 'en_US'). If
 the widget's resource file did not have a locale for the selected
 locale' selected, its configuration will fall back to the default language.
 language.
-
-##### livenessMode
-
-Sets the liveness mode of the widget. Allowed values are:
-
-- **SelphiFaceLivenessMode.NONE**: Indicates that photo detection mode should not be enabled in authentication processes.
-
-- **SelphiFaceLivenessMode.PASSIVE**: Indicates that the passive liveness test is performed on the server, by sending the corresponding "BestImage" or "TemplateRaw" for this purpose.
-
-- **SelphiFaceLivenessMode.MOVE**: Indicates that the liveness test is active by displaying instructions during the capture, and returning the corresponding result of the process.
 
 ##### stabilizationMode
 
@@ -221,7 +225,7 @@ file path is specified using this method.
 
 ##### cameraFlashEnabled
 
-Indicates whether the device's camera flash is enabled.
+Indicates whether the device's camera flash is activated (only when the rear camera is selected).
 
 ##### translationsContent
 
@@ -234,11 +238,21 @@ process.
 This advanced property allows, by means of a string in xml format,
 to configure the views of the widget.
 
-#### 5.1.3 Otros parametros
+##### cameraPreferred
+
+This property allows you to select the front or rear camera. By default the front camera is selected
 
 ##### VibrationEnabled
 
 If true, vibration is enabled on errors and if the response of the widget is OK
+
+##### extractionDuration
+
+Duration of the facial extraction process
+
+##### logImages
+
+When activated, a list of the 5 best images taken by the user is returned.
 
 ---
 
