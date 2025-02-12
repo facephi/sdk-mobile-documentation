@@ -39,6 +39,7 @@
 - Selphi
 
   - Nuevo parámetro de entrada para activar la vibración
+  - Nuevos parámetros de entrada para los intentos de Liveness Move
 
 ### 2.2.2
 

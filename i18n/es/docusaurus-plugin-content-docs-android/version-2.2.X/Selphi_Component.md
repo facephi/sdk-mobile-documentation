@@ -240,6 +240,14 @@ Cámara con la que se quiere realizar el proceso: FRONT, BACK
 
 Indica si se desea un feedback de vibración al acabar el proceso.
 
+#### 5.1.21. _moveSuccessfulAttempts_
+
+Número de reintentos para la captura correcta en el proceso de movimiento (Por defecto 1)
+
+#### 5.1.22. _moveFailedAttempts_
+
+Número de reintentos para la captura incorrecta en el proceso de movimiento (Por defecto 2)
+
 ---
 
 ## 6. Uso del componente
