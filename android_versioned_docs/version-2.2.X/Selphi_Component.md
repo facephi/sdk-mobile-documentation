@@ -227,6 +227,14 @@ Selection of camera used for the process: FRONT, BACK
 
 Indicates whether vibration feedback is desired at the end of the process.
 
+#### 5.1.21. _moveSuccessfulAttempts_
+
+Number of retries for successful capture in the movement process (Default 1)
+
+#### 5.1.22. _moveFailedAttempts_
+
+Number of retries for incorrect capture in the movement process (Default 2)
+
 ---
 
 ## 6. Component use

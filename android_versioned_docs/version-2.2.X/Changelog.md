@@ -39,6 +39,7 @@
 - Selphi
 
   - New input parameter to activate vibration
+  - New input parameters for Liveness Move attempts
 
 ### 2.2.2
 
