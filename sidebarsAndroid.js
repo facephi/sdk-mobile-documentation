@@ -37,6 +37,7 @@ const sidebars = {
         "Changelog",
         "FAQ",
         "Sample_applications_use",
+        "Customization",
       ],
     },
   ],
