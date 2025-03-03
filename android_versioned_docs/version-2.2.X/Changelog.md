@@ -7,6 +7,7 @@
 - General
 
   - Complete separation between the activation of the pre-tip screen and the tutorial screen.
+  - Added event tracking and analysis for interaction and navigation.
 
 - Voice
 

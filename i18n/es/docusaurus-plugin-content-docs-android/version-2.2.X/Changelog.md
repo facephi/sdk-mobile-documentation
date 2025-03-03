@@ -7,6 +7,7 @@
 - General
 
   - Separación completa entre la activación de pantalla de tip previo y la pantalla de tutorial.
+  - Añadido sistema de seguimiento y análisis de eventos para interacción y navegación.
 
 - Voice
 
