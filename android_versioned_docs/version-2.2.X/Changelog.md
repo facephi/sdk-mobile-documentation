@@ -21,6 +21,7 @@
 - Video ID
 
   - New input parameter for camera selection
+  - New input parameter for enable/disable auto face detection
   - Detection of active video recording process before starting
 
 - Video Call

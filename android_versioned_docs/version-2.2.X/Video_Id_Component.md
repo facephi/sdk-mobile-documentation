@@ -137,6 +137,10 @@ Timeout in ms to detect if there is a face and start recording.
 
 Camera with which the process is to be carried out: FRONT, BACK
 
+#### 5.1.10. autoFaceDetection
+
+Enable/Disable auto face detection
+
 ---
 
 ## 6. Component use

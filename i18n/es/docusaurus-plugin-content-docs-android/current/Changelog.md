@@ -21,6 +21,7 @@
 - Video ID
 
   - Nuevo parámetro de entrada para la selección de cámara
+  - Nuevo parámetro de entrada para activar/desactivar la captura automática de cara
   - Detección del proceso de video grabación activo antes de iniciar
 
 - Video Call

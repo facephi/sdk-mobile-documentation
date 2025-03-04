@@ -143,6 +143,10 @@ Tiempo de espera en ms para detectar si hay una cara y comenzar la grabación.
 
 Cámara con la que se quiere realizar el proceso: FRONT, BACK
 
+#### 5.1.10. autoFaceDetection
+
+Activa/Desactiva la detección automática de cara
+
 ---
 
 ## 6. Uso del componente
