@@ -564,7 +564,7 @@ SDKController.launch(TrackingErrorController {
 
 ## 10. Application Event Tracking and Analysis
 
-Event functionality allows key interactions within the application, such as screen changes and user actions, to be recorded and interpreted, facilitating real-time behavioural analysis. 
+Event functionality allows key interactions within the application, such as screen changes and user actions, to be recorded and interpreted, facilitating real-time behavioural analysis.
 
 Each event is sent with a specific timestamp, type and detail, providing structured tracking and optimising the user experience with accurate, actionable data.
 
