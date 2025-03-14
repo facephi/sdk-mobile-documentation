@@ -8,6 +8,7 @@
 
   - Complete separation between the activation of the pre-tip screen and the tutorial screen.
   - Added event tracking and analysis for interaction and navigation.
+  - New license checker.
 
 - Voice
 
@@ -37,11 +38,13 @@
 - SelphID
 
   - New input parameter to activate vibration
+  - Widget new version: 1.32.0
 
 - Selphi
 
   - New input parameter to activate vibration
   - New input parameters for Liveness Move attempts
+  - Widget new version: 5.17.1
 
 ### 2.2.2
 
