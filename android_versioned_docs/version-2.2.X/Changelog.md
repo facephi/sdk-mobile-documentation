@@ -46,6 +46,10 @@
   - New input parameters for Liveness Move attempts
   - Widget new version: 5.17.1
 
+- License Checker
+
+  - Widget new version: 0.4.0
+
 ### 2.2.2
 
 - SelphID

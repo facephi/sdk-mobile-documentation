@@ -71,6 +71,10 @@
 
   - Widget new version: 1.31.0
 
+- License Checker
+
+  - Widget new version: 0.4.0
+  
 ### 2.2.0
 
 - General

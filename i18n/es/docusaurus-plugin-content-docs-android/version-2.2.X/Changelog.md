@@ -46,6 +46,10 @@
   - Nuevos parámetros de entrada para los intentos de Liveness Move
   - Nueva versión del widget: 5.17.1
 
+- License Checker
+
+  - Nueva versión del widget: 0.4.0
+
 ### 2.2.2
 
 - SelphID
