@@ -47,7 +47,7 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains common steps. To install the plugin you must follow the following steps:
 
-- Make sure React Native is installed.
+- Make sure **Cordova** is installed.
 - Access **\<%APPLICATION_PATH%\>** in a terminal and execute:
 
 ```
