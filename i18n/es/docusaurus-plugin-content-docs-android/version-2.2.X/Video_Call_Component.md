@@ -200,6 +200,7 @@ Lista de errores:
 - TIMEOUT: Timeout en el proceso
 - VIDEO_ERROR: Error en el procesamiento del vídeo
 - UNKNOWN_ERROR: Error desconocido
+- VIDEO_RECORDING_ACTIVE: No se puede iniciar porque el proceso de vídeo grabación está activo
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
@@ -216,9 +217,7 @@ La funcionalidad de compartir pantalla se podrá ejecutar haciendo uso de la cla
 Con ella se podrá tanto comenzar y finalizar la compartición de pantalla como recoger los estados en los que se encuentra.
 
 ```java
-val videoCallScreenSharingManager = VideoCallScreenSharingManager(
-            SdkApplication(application)
-        )
+val videoCallScreenSharingManager = VideoCallScreenSharingManager()
 
 videoCallScreenSharingManager.setOutput { state ->
             Napier.d("SCREEN SHARING STATE: ${state.name}")
@@ -231,6 +230,7 @@ Los posibles estados son:
     AGENT_HANGUP,
     PERMISSION_ERROR,
     UNKNOWN_ERROR,
+    NETWORK_CONNECTION_ERROR,
     SHARING,
     FINISH
 ```
@@ -283,19 +283,22 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-    <string name="video_call_component_text_waiting_agent_title">Conectando con un agente…</string>
-    <string name="video_call_component_agent">Agente</string>
+    <!-- Waiting -->
+    <string name="video_call_component_text_waiting_agent_title">Conectando con un asistente…</string>
+    <!-- Process -->
+    <string name="video_call_component_agent">Asistente</string>
     <string name="video_call_component_local">Tú</string>
     <string name="video_call_component_exit">Salir</string>
     <string name="video_call_component_text_finish">La video asistencia ha finalizado</string>
     <string name="video_call_component_accesibility_phone">Teléfono</string>
     <string name="video_call_component_accesibility_switch">Cambiar cámara</string>
+    <!-- Diagnostic -->
     <string name="video_call_component_restart">Repetir llamada</string>
     <string name="video_call_component_timeout_title">Tiempo superado</string>
     <string name="video_call_component_timeout_desc">No se ha podido contactar con un asistente.</string>
     <string name="video_call_component_internal_error_title">Hubo un problema técnico</string>
     <string name="video_call_component_internal_error_desc">No se ha podido contactar con un asistente.</string>
-
+    
 ```
 
 ### 9.2. Colores

@@ -188,6 +188,7 @@ Error list:
 - TIMEOUT: Timeout in the process
 - VIDEO_ERROR: Error in video processing
 - UNKNOWN_ERROR
+- VIDEO_RECORDING_ACTIVE: Cannot start because the video recording process is active.
 
 ### 7.2. Receipt of correct execution - _data_
 
@@ -202,9 +203,7 @@ The screen sharing functionality can be executed using the _VideoCallScreenShari
 With it, it is possible to start and end the screen sharing as well as to collect the states in which it is.
 
 ```java
-val videoCallScreenSharingManager = VideoCallScreenSharingManager(
-            SdkApplication(application)
-        )
+val videoCallScreenSharingManager = VideoCallScreenSharingManager()
 
 videoCallScreenSharingManager.setOutput { state ->
             Napier.d("SCREEN SHARING STATE: ${state.name}")
@@ -217,6 +216,7 @@ The possible states are:
     AGENT_HANGUP,
     PERMISSION_ERROR,
     UNKNOWN_ERROR,
+    NETWORK_CONNECTION_ERROR,
     SHARING,
     FINISH
 ```
@@ -270,19 +270,22 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
+    <!-- Waiting -->
     <string name="video_call_component_text_waiting_agent_title">Connecting with an assistant…</string>
+    <!-- Process -->
     <string name="video_call_component_local">You</string>
-    <string name="video_call_component_agent">Agent</string>
+    <string name="video_call_component_agent">Assistant</string>
     <string name="video_call_component_exit">Exit</string>
     <string name="video_call_component_text_finish">Video assistance is complete</string>
     <string name="video_call_component_accesibility_phone">Phone</string>
     <string name="video_call_component_accesibility_switch">Switch camera</string>
-    <string name="video_call_component_restart">Repeat recording</string>
+    <!-- Diagnostic -->
+    <string name="video_call_component_restart">Repeat call</string>
     <string name="video_call_component_timeout_title">Time exceeded</string>
     <string name="video_call_component_timeout_desc">An assistant could not be reached.</string>
     <string name="video_call_component_internal_error_title">There was a technical problem</string>
     <string name="video_call_component_internal_error_desc">An assistant could not be reached.</string>
-
+    
 ```
 
 ### 9.2. Colors

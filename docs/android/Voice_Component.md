@@ -237,21 +237,24 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
-    <string name="voice_component_tutorial_message">Speak clearly and loudly. \n\n Make sure you are in a quiet environment.</string>
-    <string name="voice_component_tutorial_title">Speech recognition</string>
-    <string name="voice_component_tutorial_button">Continue</string>
+    <!-- Previous Tip -->
+    <string name="voice_component_tip_message">Speak clearly and loudly. &lt;br&gt;&lt;br&gt; Make sure you are in a quiet environment.</string>
+    <string name="voice_component_tip_title">Speech recognition</string>
+    <string name="voice_component_tip_button">Continue</string>
+    <!-- Process -->
     <string name="voice_component_success_message">Recorded recording</string>
-    <string name="voice_component_speech_message">Speak clearly and close to the microphone</string>
+    <string name="voice_component_speech_message">Without pressing anything, he speaks clearly and close to the microphone</string>
     <string name="voice_component_speech_more_message">Keep talking</string>
     <string name="voice_component_speech_empty_message" translatable="false"></string>
     <string name="voice_component_read_message">Say out loud:</string>
     <string name="voice_component_speech_noisy_message">There is too much background noise, try to go to a quiet environment</string>
     <string name="voice_component_success_records_message">successful recordings</string>
+    <!-- Diagnostic -->
     <string name="voice_component_timeout_title">Time exceeded</string>
-    <string name="voice_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="voice_component_timeout_desc">We were unable to identify you. Please try again.</string>
     <string name="voice_component_internal_error_title">There was a technical problem</string>
     <string name="voice_component_internal_error_desc">We apologize. The capture could not be made</string>
-
+    
 ```
 
 ### 8.2. Animations

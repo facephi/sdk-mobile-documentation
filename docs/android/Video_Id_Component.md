@@ -125,6 +125,22 @@ message is displayed.
 Indicates if you want to show the complete initial tutorial. If not, a
 progress indicator will be shown.
 
+#### 5.1.7. timeoutServerConnection
+
+Timeout in ms for server response.
+
+#### 5.1.8. timeoutFaceDetection
+
+Timeout in ms to detect if there is a face and start recording.
+
+#### 5.1.9. cameraPreferred
+
+Camera with which the process is to be carried out: FRONT, BACK
+
+#### 5.1.10. autoFaceDetection
+
+Enable/Disable auto face detection
+
 ---
 
 ## 6. Component use
@@ -204,6 +220,7 @@ Error list:
 - SOCKET_ERROR: Error in the connection of services
 - TIMEOUT: Timeout in the process
 - VIDEO_ERROR: Error in video processing
+- VIDEO_RECORDING_ACTIVE: Cannot start because the video recording process is active.
 
 ### 7.2. Receipt of correct execution - _data_
 
@@ -226,22 +243,26 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
+    <!-- Waiting -->
     <string name="video_id_component_text_waiting_agent_title">Video ID</string>
+    <!-- Process -->
     <string name="video_id_component_first_message">Place your face and the front of your document within the frame</string>
     <string name="video_id_component_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
     <string name="video_id_component_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
     <string name="video_id_component_second_message">Now place the back of your document</string>
-    <string name="video_id_component_third_message">Now please say out loud "I (name and surname) accept the terms and conditions".</string>
-    <string name="video_id_component_finish_message">Video recording finished!</string>
+    <string name="video_id_component_third_message">Say out loud "I (name and surname) accept the terms and conditions".</string>
+    <string name="video_id_component_finish_message">Video recording\ncompleted</string>
     <string name="video_id_component_record_init_button">Start recording</string>
     <string name="video_id_component_ready_button">Ready</string>
     <string name="video_id_component_first_message_face">Place your face within the frame</string>
+    <!-- Diagnostic -->
     <string name="video_id_component_restart">Repeat recording</string>
     <string name="video_id_component_timeout_title">Time exceeded</string>
     <string name="video_id_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="video_id_component_face_timeout_desc">Please place yourself on the marks to start recording.</string>
     <string name="video_id_component_internal_error_title">There was a technical problem</string>
     <string name="video_id_component_internal_error_desc">We apologize. The capture could not be made</string>
-
+    
 ```
 
 ### 8.2. Animations
