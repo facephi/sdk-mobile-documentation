@@ -160,12 +160,12 @@ section explains the common steps to all platforms. To install the
 plugin, the following steps must be adopted:
 
 
-- Make sure **react-native** is installed.
+- Make sure **Cordova** is installed.
 
 - Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ```
-yarn add @facephi/sdk-core-react-native
+cordova plugin add @facephi/sdk-core-cordova
 ```
 
 <div class="warning">
@@ -183,7 +183,7 @@ It is recommended to launch every **pod** command with ***arch -x86_64*** before
 
 ```
 "dependencies": {
-  "@facephi/sdk-core-react-native": "^2.0.0",
+  "@facephi/sdk-core-cordova": "^2.2.0",
 }
 ```
 
@@ -191,18 +191,8 @@ After running the above steps, you can start the app with the sdk/component inst
 
 ***From Terminal***
 
-For Android:
-
 ```
-npx react-native run-android 
-or 
-npx react-native run-android --active-arch-only
-```
-
-For iOS:
-
-```
-npx react-native run-ios
+cordova plugin ls
 ```
 
 ***From different IDEs***

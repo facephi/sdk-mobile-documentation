@@ -46,7 +46,7 @@ Because the **Tracking** component has geolocation options, it is necessary to a
 
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's *node_modules/@facephi/sdk-core-react-native/src/src/index.tsx* file.
+All the configuration can be found in the component's *plugins/@facephi/com.facephi.sdk.core/www/**Config.js* files.
 </div>
 
 Each component has a controller that will allow access to its functionality. Before they can be used, they must be properly initialised. This initialisation must be done as soon as possible, preferably at the application init. Moreover, once all the operations are finished, and the interaction with the SDK Mobile is over, the session must be closed (***section 6***).

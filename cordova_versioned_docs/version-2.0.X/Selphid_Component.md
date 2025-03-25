@@ -82,12 +82,12 @@ The plugin allows execution on **Android and iOS** platforms. This
 section explains the common steps to all platforms. To install the
 plugin, the following steps must be adopted:
 
--   Make sure **react-native** is installed.
+-   Make sure **Cordova** is installed.
 -   Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ``` java
-yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-selphid-react-native
+cordova plugin add @facephi/sdk-core-cordova
+cordova plugin add @facephi/sdk-selphid-cordova
 yarn install
 ```
 
@@ -104,8 +104,8 @@ pod install
 
 ``` java
 "dependencies": {
-  "sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "sdk-selphid-react-native": <% PLUGIN_SELPHID_PATH %>
+  "sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
+  "sdk-selphid-cordova": <% PLUGIN_SELPHID_PATH %>
 }
 ```
 
@@ -117,18 +117,8 @@ sdk/component installed.
 
 ***From Terminal***
 
-For Android:
-
 ``` java
-npx react-native run-android 
-or
-npx react-native run-android --active-arch-only
-```
-
-For iOS:
-
-``` java
-npx react-native run-ios
+cordova plugin ls
 ```
 
 ***From different IDEs***
@@ -237,7 +227,7 @@ the following permissions:
 ## 3. Component configuration
 
 The current component contains a number of Typescript methods and
-interfaces contained within the ***node_modules/@facephi/sdk-selphid-react-native/src/index.tsx*** file. ** In this file
+interfaces contained within the ***plugins/com.facephi.sdk.selphid/www/*** file. ** In this file
 you can find the necessary API for the communication between the
 application and the native functionality of the component. It is then
 explained what each one of those listed is for and the other properties

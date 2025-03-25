@@ -55,36 +55,28 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-- Make sure **react-native is** installed.
+- Make sure **Cordova** is installed.
 
 - Access **APPLICATION_PATH** at a terminal and run:
 ```
-yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-selphi-react-native
+cordova plugin add @facephi/sdk-core-cordova
+cordova plugin add @facephi/sdk-selphi-cordova
 ```
 
 - It is important to verify that the path to the plugin is correctly defined in package.json:
 
 ```
 "dependencies": {
-  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-selphi-react-native": <% PLUGIN_SELPHI_FACE_PATH %>
+  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-selphi-cordova": <% PLUGIN_SELPHI_FACE_PATH %>
 }
 ```
 After running the above steps, you can start the app with the sdk/component installed.
 
 - Finally, to launch the projects, the following commands must be executed in two ways:
 
-***From Terminal (For Android):***
 ```
-npx react-native run-android 
-or 
-npx react-native run-android --active-arch-only
-```
-
-***From Terminal (For iOS):***
-```
-npx react-native run-ios
+cordova plugin ls
 ```
 
 ***From different IDEs***
@@ -151,7 +143,7 @@ buildscript {
 ---
 
 ## 3. Component configuration
-The actual component contains a number of Typescript methods and interfaces contained within the  ***node_modules/@facephi/sdk-selphi-react-native/src/index.ts*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
+The actual component contains a number of Typescript methods and interfaces contained within the  ***plugins/com.facephi.sdk.selphi/wwww/*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
 
 Below is the *SelphiConfiguration* class, which allows you to configure the Selphi component:
 
@@ -183,7 +175,7 @@ export interface SelphiConfiguration {
 Then, all the properties that can be defined in the ***SdkTracking*** object will be commented on:
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's *node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx* file.
+All the configuration can be found in the component's *plugins/com.facephi.sdk.selphi/wwww/* file.
 </div>
 
 When making the call to the widget there is a series of parameters that must be included. They will be briefly discussed below.

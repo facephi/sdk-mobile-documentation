@@ -140,7 +140,7 @@ apply plugin: 'kotlin-android' // ADD THIS LINE
 #### Error
 
 ```
-/Users/lariel/proyects/sdkMobile/react-native/cocoapods-license-antonio/qashio/android/app/src/debug/AndroidManifest.xml:6:9-44 Error:
+AndroidManifest.xml:6:9-44 Error:
   Attribute application@usesCleartextTraffic value=(true) from AndroidManifest.xml:6:9-44
   is also present at [com.facephi.androidsdk:selphi_component:2.0.1] AndroidManifest.xml:8:18-54 value=(false).
   Suggestion: add 'tools:replace="android:usesCleartextTraffic"' to <application> element at AndroidManifest.xml:5:5-8:50 to override.
