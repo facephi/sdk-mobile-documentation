@@ -69,7 +69,7 @@
 
 - SelphID
 
-  - Widget new version: 1.31.0
+  - Widget new version: 1.31.1
 
 - License Checker
 
