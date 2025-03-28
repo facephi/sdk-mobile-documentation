@@ -480,6 +480,7 @@ export interface SelphiFaceResult {
   bestImageTemplateRaw?: string;
   qrData?: string;
   templateRaw?: string;
+  livenessDiagnostic?: string;
 }
 ```
 
@@ -542,8 +543,40 @@ Returns the captured QR code data.
 
 ### 5.9 bestImageTemplateRaw
 
-Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The component will return the *bestImage* encrypted and in stringBase64 format.
+Optional output. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The component will return the *bestImage* encrypted and in stringBase64 format.
 
+### 5.10 livenessDiagnostic
+
+Optional output. Returns extra information of the scan face.
+Possible results:
+```
+enum class LivenessDiagnostic {
+    NotRated,
+    PhotoDetected,
+    LivenessDetected,
+    Unsuccess,
+    UnsuccessLowPerformance,
+    UnsuccessGlasses,
+    UnsuccessLight,
+    UnsuccessNoMovement,
+    UnsuccessWrongDirection,
+    UnsuccessTooFar,
+    UnsuccessPlayback,
+    UnsuccessDetectionRateFail,
+    UnsuccessProximityFail,
+    UnsuccessLandmarkDetectionFail,
+    UnsuccessDuplicatedFrames,
+    UnsuccessContinuityFail,
+    UnsuccessOPFail,
+    UnsuccessOPDubious,
+    UnsuccessOPSpoofing,
+    UnsuccessTemplateFail,
+    UnsuccessInsufficientDetections,
+    UnsuccessNoEyeMovementDetected,
+    UnsuccessMovementDerivative,
+    UnsuccessMovementBoundaries
+}
+```
 ---
 
 ## 6. Component Customisation (Optional)
