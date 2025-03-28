@@ -523,7 +523,7 @@ Parámetro opcional. Solo visible si se setea el parámetro enableGenerateTempla
 
 Parámetro optional. Returna información extra en caso de error durante el scaneo del rostro.
 Posibles resultados:
-
+```
 enum class LivenessDiagnostic {
     NotRated,
     PhotoDetected,
@@ -550,7 +550,7 @@ enum class LivenessDiagnostic {
     UnsuccessMovementDerivative,
     UnsuccessMovementBoundaries
 }
-
+```
 ---
 
 ## 6. Personalización de componente (Opcional)

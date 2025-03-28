@@ -578,7 +578,7 @@ Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is
 
 Optional output. Returns extra information of the scan face.
 Possible results:
-
+```
 enum class LivenessDiagnostic {
     NotRated,
     PhotoDetected,
@@ -605,7 +605,7 @@ enum class LivenessDiagnostic {
     UnsuccessMovementDerivative,
     UnsuccessMovementBoundaries
 }
-
+```
 ---
 
 ## 6. Component Customisation (Optional)

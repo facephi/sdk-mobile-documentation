@@ -552,7 +552,7 @@ Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is
 
 Parámetro optional. Returna información extra en caso de error durante el scaneo del rostro.
 Posibles resultados:
-
+```
 enum class LivenessDiagnostic {
     NotRated,
     PhotoDetected,
@@ -579,7 +579,7 @@ enum class LivenessDiagnostic {
     UnsuccessMovementDerivative,
     UnsuccessMovementBoundaries
 }
-
+```
 ---
 
 ## 6. Personalización de componente (Opcional)
