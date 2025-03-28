@@ -9,7 +9,6 @@ El Componente tratado en el documento actual recibe el nombre de Selphi Componen
 
 Generación de las plantillas con las características faciales y de la imagen de la cara del usuario para el proceso de detección de vivacidad (Liveness)
 
-
 ### 1.1 Minimum requirements
 
 The minimum native version (Android and iOS) of the SDK are as follows:
@@ -490,6 +489,7 @@ class SelphiFaceResult {
   final String? bestImage;
   final String? bestImageCropped;
   final String? bestImageTemplateRaw;
+  final String? livenessDiagnostic;
 }
 ```
  
@@ -547,6 +547,38 @@ Returns the captured QR code data.
 ### 5.9 bestImageTemplateRaw
 
 Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The widget will return the *bestImage* encrypted and in stringBase64 format.
+
+### 5.10 livenessDiagnostic
+
+Parámetro optional. Returna información extra en caso de error durante el scaneo del rostro.
+Posibles resultados:
+
+enum class LivenessDiagnostic {
+    NotRated,
+    PhotoDetected,
+    LivenessDetected,
+    Unsuccess,
+    UnsuccessLowPerformance,
+    UnsuccessGlasses,
+    UnsuccessLight,
+    UnsuccessNoMovement,
+    UnsuccessWrongDirection,
+    UnsuccessTooFar,
+    UnsuccessPlayback,
+    UnsuccessDetectionRateFail,
+    UnsuccessProximityFail,
+    UnsuccessLandmarkDetectionFail,
+    UnsuccessDuplicatedFrames,
+    UnsuccessContinuityFail,
+    UnsuccessOPFail,
+    UnsuccessOPDubious,
+    UnsuccessOPSpoofing,
+    UnsuccessTemplateFail,
+    UnsuccessInsufficientDetections,
+    UnsuccessNoEyeMovementDetected,
+    UnsuccessMovementDerivative,
+    UnsuccessMovementBoundaries
+}
 
 ---
 
