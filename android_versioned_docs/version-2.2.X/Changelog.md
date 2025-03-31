@@ -38,7 +38,7 @@
 - SelphID
 
   - New input parameter to activate vibration
-  - Widget new version: 1.32.1
+  - Widget new version: 1.32.2
 
 - Selphi
 
