@@ -139,6 +139,14 @@ Tiempo de espera en ms para la respuesta del servidor.
 
 Tiempo de espera en ms para detectar si hay una cara y comenzar la grabación.
 
+#### 5.1.9. cameraPreferred
+
+Cámara con la que se quiere realizar el proceso: FRONT, BACK
+
+#### 5.1.10. autoFaceDetection
+
+Activa/Desactiva la detección automática de cara
+
 ---
 
 ## 6. Uso del componente
@@ -219,6 +227,7 @@ Lista de errores:
 - SOCKET_ERROR: Error en la conexiónde los servicios
 - TIMEOUT: Timeout en el proceso
 - VIDEO_ERROR: Error en el procesamiento del vídeo
+- VIDEO_RECORDING_ACTIVE: No se puede iniciar porque el proceso de vídeo grabación está activo
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
@@ -240,19 +249,23 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
+    <!-- Waiting -->
     <string name="video_id_component_text_waiting_agent_title">Video ID</string>
+    <!-- Process -->
     <string name="video_id_component_first_message">Coloca tu rostro y el frente de tu documento en las marcas</string>
     <string name="video_id_component_init_message_face_content_desc">Coloca tu rostro en frente de la cámara e inicia la grabación</string>
     <string name="video_id_component_init_message_face_docu_content_desc">Coloca tu rostro y tu documento en frente de la cámara e inicia la grabación</string>
     <string name="video_id_component_second_message">Ahora coloca el reverso de tu documento</string>
-    <string name="video_id_component_third_message">Ahora en voz alta di “Yo (nombre y apellidos) acepto los términos y condiciones”.</string>
-    <string name="video_id_component_finish_message">¡Videograbación finalizada!</string>
+    <string name="video_id_component_third_message">Di en voz alta “Yo (nombre y apellidos) acepto los términos y condiciones”.</string>
+    <string name="video_id_component_finish_message">Videograbación\ncompletada</string>
     <string name="video_id_component_record_init_button">Iniciar grabación</string>
     <string name="video_id_component_ready_button">Continuar</string>
     <string name="video_id_component_first_message_face">Coloque su cara dentro del marco</string>
+    <!-- Diagnostic -->
     <string name="video_id_component_restart">Repetir grabación</string>
     <string name="video_id_component_timeout_title">Tiempo superado</string>
     <string name="video_id_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="video_id_component_face_timeout_desc">Por favor, colócate en las marcas para que empiece la grabación.</string>
     <string name="video_id_component_internal_error_title">Hubo un problema técnico</string>
     <string name="video_id_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
 

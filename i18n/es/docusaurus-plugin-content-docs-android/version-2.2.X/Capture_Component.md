@@ -93,7 +93,7 @@ estas clased y para qué se utiliza cada uno de ellos.
 
 Tiempo de extracción máximo
 
-#### 5.1.2. cameraSelected
+#### 5.1.2. cameraPreferred
 
 Cámara seleccionada: FRONT, BACK
 
@@ -358,14 +358,26 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
+    <!-- Previous Tip -->
+    <string name="capture_component_qr_tip_title">Escanea el código QR</string>
+    <string name="capture_component_qr_tip_message">&lt;b&gt; Enfoca &lt;/b&gt; el código QR &lt;b&gt; dentro del recuadro &lt;/b&gt;</string>
+    <string name="capture_component_qr_tip_button">Comenzar</string>
+    <string name="capture_component_phactura_tip_title">Escanear documentos</string>
+    <string name="capture_component_phactura_tip_message">Haz una foto al documento, o sube una imagen.&lt;br&gt;&lt;br&gt; Puedes escanear varios documentos antes de finalizar.</string>
+    <string name="capture_component_phactura_tip_button">Comenzar</string>
+    <!-- Tutorial -->
+    <string name="capture_component_qr_tutorial_1">Asegúrate de que el código QR tiene &lt;b&gt; luz suficiente &lt;/b&gt; y &lt;b&gt; no hay reflejos &lt;/b&gt; o destellos sobre el código.</string>
+    <string name="capture_component_qr_tutorial_2">Encaja los bordes del código QR dentro del recuadro.</string>
+    <!-- Process -->
     <string name="capture_component_qr_camera_message">Mantén el QR en el centro</string>
-    <string name="capture_component_invoice_camera_message">Manten la factura en el centro</string>
+    <string name="capture_component_invoice_camera_message">Mantén la factura en el centro</string>
     <string name="capture_component_button_message">Capturar</string>
+    <!-- Diagnostic -->
     <string name="capture_component_timeout_title">Tiempo superado</string>
     <string name="capture_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
     <string name="capture_component_internal_error_title">Hubo un problema técnico</string>
     <string name="capture_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-
+    
 ```
 
 ### 8.2. Animaciones

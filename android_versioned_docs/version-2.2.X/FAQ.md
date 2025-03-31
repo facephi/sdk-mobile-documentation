@@ -33,10 +33,10 @@ android {
 ```
 
 3. Verify and adjust the configuration of the Android Gradle Plugin (AGP) and JDK:
-Ensure that your AGP and JDK are correctly configured to support the Java version you require.
+   Ensure that your AGP and JDK are correctly configured to support the Java version you require.
 
 After making any changes, perform a clean and rebuild of the project with ./gradlew clean build to ensure all settings take effect.
 
 <br></br>
 
-#### If any other problems occur, please contact the support team so that we can help you.
+#### If any other problems occur, please contact the support team so that we can help you

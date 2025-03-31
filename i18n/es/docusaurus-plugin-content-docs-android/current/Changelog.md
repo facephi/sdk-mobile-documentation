@@ -2,6 +2,54 @@
 
 ## Versiones
 
+### 2.2.3
+
+- General
+
+  - Separación completa entre la activación de pantalla de tip previo y la pantalla de tutorial.
+  - Añadido sistema de seguimiento y análisis de eventos para interacción y navegación.
+  - Nuevo lector de licencias.
+
+- Voice
+
+  - Actualización de dependencias internas
+
+- Phingers
+
+  - Actualización de dependencias internas
+  - Nuevo filtro
+
+- Video ID
+
+  - Nuevo parámetro de entrada para la selección de cámara
+  - Nuevo parámetro de entrada para activar/desactivar la captura automática de cara
+  - Detección del proceso de video grabación activo antes de iniciar
+
+- Video Call
+
+  - Detección del proceso de video grabación activo antes de iniciar
+  - VideoCallScreenSharingManager no necesita la aplicación.
+  - Detección de fallos en la conexión a internet
+
+- Video Recording
+
+  - Detección de fallos en la conexión a internet
+
+- SelphID
+
+  - Nuevo parámetro de entrada para activar la vibración
+  - Nueva versión del widget: 1.32.2
+
+- Selphi
+
+  - Nuevo parámetro de entrada para activar la vibración
+  - Nuevos parámetros de entrada para los intentos de Liveness Move
+  - Nueva versión del widget: 5.17.1
+
+- License Checker
+
+  - Nueva versión del widget: 0.4.0
+
 ### 2.2.2
 
 - SelphID

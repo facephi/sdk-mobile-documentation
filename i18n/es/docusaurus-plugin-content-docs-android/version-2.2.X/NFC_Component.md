@@ -417,27 +417,38 @@ de cada _String_ por el deseado.
 
 ```xml
     <string name="nfc_component_start_message">Desliza el documento\nhasta que el sensor lo detecte.</string>
+    <string name="nfc_component_reading_message">Mantén la posición.</string>
+    <string name="nfc_component_reading_face_message">Extrayendo imagen de la cara.</string>
+    <string name="nfc_component_reading_images_message">Extrayendo imágenes.</string>
+    <string name="nfc_component_reading_fingerprint_message">Extrayendo huella.</string>
+    <string name="nfc_component_reading_signature_message">Extrayendo firma.</string>
+    <string name="nfc_component_reading_mrz_message">Extrayendo MRZ.</string>
+    <string name="nfc_component_reading_document_message">Extrayendo los datos del documento.</string>
     <string name="nfc_component_ready_to_scan">Listo para escanear</string>
     <string name="nfc_component_reading_device">Leyendo dispositivo</string>
     <string name="nfc_component_in_progress">En progreso:</string>
     <string name="nfc_component_connector_of">de</string>
     <string name="nfc_component_error">El NFC no se ha podido\nleer correctamente</string>
-    <string name="nfc_component_tutorial">Junta el documento a la parte trasera de tu dispositivo.</string>
+    <string name="nfc_component_retry">Reintentar</string>
+    <string name="nfc_component_finish">Lectura finalizada</string>
+    <string name="nfc_component_not_finish">Lectura incompleta</string>
+    <string name="nfc_component_tutorial">Pon &lt;b&gt;en contacto&lt;/b&gt; el documento con la parte trasera de tu dispositivo.</string>
     <string name="nfc_component_tutorial_button">Continuar</string>
-    <string name="nfc_component_tutorial_title">Escanear NFC</string>
+    <string name="nfc_component_tutorial_title">Lectura de NFC</string>
     <string name="nfc_component_tutorial_1">Cuando pasamos una tarjeta por un sensor, hay un intercambio de información llamado NFC.</string>
     <string name="nfc_component_tutorial_2">En tu móvil, el sensor está en la zona marcada. Aquí deberás juntar tu documento.</string>
     <string name="nfc_component_tutorial_3">Para una mejor lectura, quita la funda de tu móvil.</string>
-    <string name="nfc_component_tutorial_more_info_button">Más información</string>
-    <string name="nfc_component_timeout_title">Tiempo superado</string>
-    <string name="nfc_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="nfc_component_tutorial_3_pass">Mantén &lt;b&gt; cerrado &lt;/b&gt; el pasaporte para hacer la lectura.</string>
+    <string name="nfc_component_tutorial_more_info_button">Mira estos consejos</string>
+    <string name="nfc_component_timeout_title">Sigue las instrucciones</string>
+    <string name="nfc_component_timeout_desc">Junta el documento &lt;b&gt;después&lt;/b&gt; de pulsar el &lt;b&gt;botón comenzar.&lt;/b&gt;</string>
     <string name="nfc_component_internal_error_title">Hubo un problema técnico</string>
     <string name="nfc_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
     <string name="nfc_component_data_error_title">No se pudo leer el documento</string>
     <string name="nfc_component_data_error_desc">Revisa los datos introducidos</string>
     <string name="nfc_component_read_not_finish_title">La lectura no finalizó</string>
     <string name="nfc_component_read_not_finish_desc">Mantén la posición hasta que finalice la lectura.</string>
-
+    
 ```
 
 ### 8.2. Animaciones

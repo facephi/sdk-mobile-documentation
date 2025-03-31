@@ -3,7 +3,7 @@
 ## Latest available version
 
 ```text
-2.2.2
+2.2.3
 ```
 
 ## 1. Introduction
@@ -558,6 +558,21 @@ SDKController.launch(TrackingErrorController {
  if (BuildConfig.DEBUG) {
   SDKController.enableDebugMode()
  }
+```
+
+---
+
+## 10. Application Event Tracking and Analysis
+
+Event functionality allows key interactions within the application, such as screen changes and user actions, to be recorded and interpreted, facilitating real-time behavioural analysis.
+
+Each event is sent with a specific timestamp, type and detail, providing structured tracking and optimising the user experience with accurate, actionable data.
+
+```java
+ SDKController.getAnalyticsEvents { time, componentName, eventType, info ->
+            Log.i { "EVENTS", "*** $time - ${componentName.name} -" +
+                " ${eventType.name} -  ${info ?: ""} " }
+        }
 ```
 
 ---

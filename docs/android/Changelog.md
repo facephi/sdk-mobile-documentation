@@ -2,6 +2,50 @@
 
 ## Versions
 
+### 2.2.3
+
+- General
+
+  - Complete separation between the activation of the pre-tip screen and the tutorial screen.
+  - Added event tracking and analysis for interaction and navigation.
+  - New license checker.
+
+- Voice
+
+  - Updating internal dependencies
+
+- Phingers
+
+  - Updating internal dependencies
+  - New filter
+
+- Video ID
+
+  - New input parameter for camera selection
+  - New input parameter for enable/disable auto face detection
+  - Detection of active video recording process before starting
+
+- Video Call
+
+  - Detection of active video recording process before starting
+  - VideoCallScreenSharingManager does not require the application.
+  - Internet connection failure detection
+
+- Video Recording
+
+  - Internet connection failure detection
+
+- SelphID
+
+  - New input parameter to activate vibration
+  - Widget new version: 1.32.0
+
+- Selphi
+
+  - New input parameter to activate vibration
+  - New input parameters for Liveness Move attempts
+  - Widget new version: 5.17.1
+
 ### 2.2.2
 
 - SelphID
@@ -25,8 +69,12 @@
 
 - SelphID
 
-  - Widget new version: 1.31.0
+  - Widget new version: 1.31.2
 
+- License Checker
+
+  - Widget new version: 0.4.0
+  
 ### 2.2.0
 
 - General

@@ -246,20 +246,23 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-    <string name="voice_component_tutorial_message">Habla claro y en voz alta. \n\n Asegúrate de estar en un entorno silencioso</string>
-    <string name="voice_component_tutorial_title">Reconocimiento de voz</string>
-    <string name="voice_component_tutorial_button">Comenzar</string>
+    <!-- Previous Tip -->
+    <string name="voice_component_tip_message">Habla claro y en voz alta. &lt;br&gt;&lt;br&gt; Asegúrate de estar en un entorno silencioso</string>
+    <string name="voice_component_tip_title">Reconocimiento de voz</string>
+    <string name="voice_component_tip_button">Comenzar</string>
+    <!-- Process -->
     <string name="voice_component_success_message">Grabación registrada</string>
-    <string name="voice_component_speech_message">Habla claro y cercano al micrófono</string>
-    <string name="voice_component_speech_more_message">Continue hablando</string>
+    <string name="voice_component_speech_message">Sin pulsar nada, habla claro y cercano al micrófono</string>
+    <string name="voice_component_speech_more_message">Continúe hablando</string>
     <string name="voice_component_read_message">Di en voz alta:</string>
     <string name="voice_component_speech_noisy_message">Demasiado ruido. Busca un entorno silencioso</string>
     <string name="voice_component_success_records_message">grabaciones exitosas</string>
+    <!-- Diagnostic -->
     <string name="voice_component_timeout_title">Tiempo superado</string>
-    <string name="voice_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="voice_component_timeout_desc">No hemos podido identificarte. Inténtalo de nuevo.</string>
     <string name="voice_component_internal_error_title">Hubo un problema técnico</string>
     <string name="voice_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-
+    
 ```
 
 ### 8.2. Animaciones

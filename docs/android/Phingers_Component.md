@@ -110,8 +110,6 @@ be detected during the process. The allowed values are:
 - **RIGHT**: Enables the capture of the **four** **fingers** of the
   **left** **hand**.
 
-- **THUMB**: The capture of a **thumb** is activated.
-
 #### 5.1.2. useFlash
 
 Enables or disables the camera flash during the fingerprint capture
@@ -173,6 +171,10 @@ Display diagnostic screens at the end of the process
 #### 5.1.15. showPreviousTip
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 5.1.16. fingerFilter
+
+Filter to select the whole hand or a specific finger: SLAP, INDEX_FINGER, MIDDLE_FINGER, RING_FINGER, LITTLE_FINGER, THUMB_FINGER.
 
 ---
 
@@ -337,19 +339,24 @@ following XML file in the client application, and modify the value of
 each String to the desired one.
 
 ```xml
-    <string name="phingers_component_tutorial_left_message">Prepare your left hand for the catch</string>
-    <string name="phingers_component_tutorial_left_title">Prepare your left hand for the catch</string>
-    <string name="phingers_component_turorial_right_message">Prepare your right hand for capture</string>
-    <string name="phingers_component_tutorial_right_title">Prepare your right hand for capture</string>
-    <string name="phingers_component_tutorial_button">Take fingerprints</string>
+    <!-- Previous Tip -->
+    <string name="phingers_component_tip_left_title">Left hand prints</string>
+    <string name="phingers_component_tip_right_title">Right hand prints</string>
+    <string name="phingers_component_tip_thumb_title">Thumbprint</string>
+    <string name="phingers_component_tip_message">Put your fingers together. Move your hand closer or further away until your fingerprints come into focus.</string>
+    <string name="phingers_component_tip_thumb_message">Focus your thumb inside the circle. Move your finger closer or further away until your print comes into focus.</string>
+    <string name="phingers_component_tip_button">Start</string>
+    <!-- Process -->
     <string name="phingers_component_capture_phingers">Hold fingers steady</string>
     <string name="phingers_component_capture_thumb">Hold finger steady</string>
     <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
     <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string>
+    <!-- Diagnostic -->
     <string name="phingers_component_timeout_title">Time exceeded</string>
     <string name="phingers_component_timeout_desc">We apologize. The capture could not be made</string>
     <string name="phingers_component_internal_error_title">There was a technical problem</string>
     <string name="phingers_component_internal_error_desc">We apologize. The capture could not be made</string>
+
 
 ```
 

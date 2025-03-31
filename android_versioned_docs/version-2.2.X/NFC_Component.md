@@ -408,20 +408,31 @@ each String to the desired one.
 
 ```xml
     <string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
+    <string name="nfc_component_reading_message">Hold the position.</string>
+    <string name="nfc_component_reading_face_message">Extracting face image.</string>
+    <string name="nfc_component_reading_images_message">Extracting images.</string>
+    <string name="nfc_component_reading_fingerprint_message">Extracting fingerprint image.</string>
+    <string name="nfc_component_reading_signature_message">Extracting signature image.</string>
+    <string name="nfc_component_reading_mrz_message">Extracting MRZ.</string>
+    <string name="nfc_component_reading_document_message">Extracting document data.</string>
     <string name="nfc_component_ready_to_scan">Ready to scan</string>
     <string name="nfc_component_reading_device">Reading device</string>
     <string name="nfc_component_in_progress">In progress:</string>
     <string name="nfc_component_connector_of">in</string>
     <string name="nfc_component_error">The NFC could not be\nread correctly</string>
-    <string name="nfc_component_tutorial">Attach the document to the back of your device.</string>
+    <string name="nfc_component_retry">Retry</string>
+    <string name="nfc_component_finish">Reading finished</string>
+    <string name="nfc_component_not_finish">Reading incomplete</string>
+    <string name="nfc_component_tutorial">&lt;b&gt;Attach&lt;/b&gt; the document to the back of your device.</string>
     <string name="nfc_component_tutorial_button">Continue</string>
-    <string name="nfc_component_tutorial_title">Scan NFC</string>
+    <string name="nfc_component_tutorial_title">NFC Reader</string>
     <string name="nfc_component_tutorial_1">When we pass a card through a sensor, there is an exchange of information called NFC.</string>
     <string name="nfc_component_tutorial_2">On your mobile, the sensor is in the marked area. Here you must gather your document.</string>
     <string name="nfc_component_tutorial_3">For a better reading, remove the cover of your mobile.</string>
-    <string name="nfc_component_tutorial_more_info_button">More info</string>
-    <string name="nfc_component_timeout_title">Time exceeded</string>
-    <string name="nfc_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="nfc_component_tutorial_3_pass">Keep &lt;b&gt; closed &lt;/b&gt; the passport to do the reading.</string>
+    <string name="nfc_component_tutorial_more_info_button">Check out these tips</string>
+    <string name="nfc_component_timeout_title">Follow the instructions</string>
+    <string name="nfc_component_timeout_desc">Join the document &lt;b&gt;after&lt;/b&gt; clicking on the &lt;b&gt;Start button.&lt;/b&gt;</string>
     <string name="nfc_component_internal_error_title">There was a technical problem</string>
     <string name="nfc_component_internal_error_desc">We apologize. The capture could not be made</string>
     <string name="nfc_component_data_error_title">Document could not be read</string>

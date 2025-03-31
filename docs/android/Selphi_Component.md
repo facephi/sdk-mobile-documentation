@@ -69,6 +69,8 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | 2.1.2           | 5.15.0                       |
 | 2.2.0           | 5.16.1                       |
 | 2.2.1           | 5.16.2                       |
+| 2.2.2           | 5.16.2                       |
+| 2.2.3           | 5.17.1                       |
 
 ---
 
@@ -222,6 +224,18 @@ Duration of facial extraction process
 #### 5.1.19. _cameraPreferred_
 
 Selection of camera used for the process: FRONT, BACK
+
+#### 5.1.20. _vibrationEnabled_
+
+Indicates whether vibration feedback is desired at the end of the process.
+
+#### 5.1.21. _moveSuccessfulAttempts_
+
+Number of retries for successful capture in the movement process (Default 1)
+
+#### 5.1.22. _moveFailedAttempts_
+
+Number of retries for incorrect capture in the movement process (Default 2)
 
 ---
 
@@ -389,12 +403,39 @@ each String to the desired one.
 
 ```xml
     <string name="selphi_component_timeout_title">Time exceeded</string>
-    <string name="selphi_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="selphi_component_timeout_desc">We were unable to identify you. Please try again.</string>
     <string name="selphi_component_internal_error_title">There was a technical problem</string>
     <string name="selphi_component_internal_error_desc">We apologize. The capture could not be made</string>
-    <string name="selphi_component_tutorial_message">Stay still,\nwith your face\nin the center of the circle</string>
+    <string name="selphi_component_tutorial_message">Stay still,&lt;br&gt;with your face&lt;br&gt;in the center of the circle</string>
     <string name="selphi_component_tutorial_title">Take a selfie</string>
     <string name="selphi_component_tutorial_button">Continue</string>
+    <!-- Previous Tip -->
+    <string name="selphi_tip_message">Stay still,&lt;br&gt;with your face&lt;br&gt;in the center of the circle</string>
+    <string name="selphi_tip_message_alt">Stay still, with your face in the center of the circle</string>
+    <string name="selphi_tip_anim_desc">Animation of a mobile screen with the front camera activated. A circle appears in the centre of the screen. A person shows their face inside the circle and the application takes a photo of them.</string>
+    <string name="selphi_tip_title">Take a selfie</string>
+    <string name="selphi_tip_button">Start</string>
+    <string name="selphi_tip_move_message">Put your face in the center of the circle and follow the directions.</string>
+    <string name="selphi_tip_move_anim_desc">Animation of a mobile screen with the front camera activated. A circle appears in the centre of the screen. A person shows their face inside the circle, moves it slightly to the side and the application takes a photo.</string>
+    <string name="selphi_tip_move_title">Facial recognition</string>
+    <string name="selphi_tip_move_button">Start</string>
+    <string name="selphi_qr_tip_title">Scan QR Code</string>
+    <string name="selphi_qr_tip_message">Focus the QR code inside the box</string>
+    <string name="selphi_qr_tip_anim_desc">Focus the QR code inside the box</string>
+    <string name="selphi_qr_tip_button">Start</string>
+    <!-- Tutorial -->
+    <string name="selphi_previous_page">Previous page</string>
+    <string name="selphi_next_page">Next page</string>
+    <string name="selphi_skip">SKIP</string>
+    <string name="selphi_next">NEXT</string>
+    <string name="selphi_previous">PREVIOUS</string>
+    <string name="selphi_tutorial_message_1">Place your face in the centre and face the camera.</string>
+    <string name="selphi_tutorial_message_2">Remove any items covering your face.</string>
+    <string name="selphi_tutorial_message_3">Look for a well-lit environment with no shadows on your face.</string>
+    <string name="selphi_tutorial_message_1_anim_desc">A circle appears in the centre of the screen. A person shows his or her face. You can see their whole head inside the circle. When it is positioned correctly, the application takes a photo of it.</string>
+    <string name="selphi_tutorial_message_2_anim_desc">A circle appears in the centre of the screen. Inside the circle is a person, wearing sunglasses, with hair covering part of his face. He takes off his glasses and removes the hair from his face. The application detects his full face and takes a photo of him.</string>
+    <string name="selphi_tutorial_message_3_anim_desc">A dark circle appears in the centre of the screen. Inside the circle, a person\'s face is dimly visible. A light comes on and the face is clearly visible. After this, the application takes a photo of the person.</string>
+
 
 ```
 
