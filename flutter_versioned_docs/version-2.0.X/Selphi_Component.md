@@ -507,6 +507,7 @@ class SelphiFaceResult {
   final String? bestImage;
   final String? bestImageCropped;
   final String? bestImageTemplateRaw;
+  final String? livenessDiagnostic;
 }
 ```
 
@@ -583,6 +584,38 @@ Returns the captured QR code data.
 ### 5.8 bestImageTemplateRaw
 Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The widget will return the *bestImage* encrypted and in stringBase64 format. 
 
+### 5.9 livenessDiagnostic
+
+Optional output. Returns extra information of the scan face.
+Possible results:
+```
+enum class LivenessDiagnostic {
+    NotRated,
+    PhotoDetected,
+    LivenessDetected,
+    Unsuccess,
+    UnsuccessLowPerformance,
+    UnsuccessGlasses,
+    UnsuccessLight,
+    UnsuccessNoMovement,
+    UnsuccessWrongDirection,
+    UnsuccessTooFar,
+    UnsuccessPlayback,
+    UnsuccessDetectionRateFail,
+    UnsuccessProximityFail,
+    UnsuccessLandmarkDetectionFail,
+    UnsuccessDuplicatedFrames,
+    UnsuccessContinuityFail,
+    UnsuccessOPFail,
+    UnsuccessOPDubious,
+    UnsuccessOPSpoofing,
+    UnsuccessTemplateFail,
+    UnsuccessInsufficientDetections,
+    UnsuccessNoEyeMovementDetected,
+    UnsuccessMovementDerivative,
+    UnsuccessMovementBoundaries
+}
+```
 ---
 
 ## 6. Component Customisation (Optional)

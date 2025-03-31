@@ -496,6 +496,7 @@ export interface SelphiResult {
   bestImageTemplateRaw?: string;
   qrData?: string;
   templateRaw?: string;
+  livenessDiagnostic?: string;
 }
 ```
  
@@ -560,6 +561,38 @@ Devuelve los datos del código QR capturado.
 
 Parámetro opcional. Solo visible si se setea el parámetro enableGenerateTemplateRaw en true. El componente devolverá el templateRaw en formato stringBase64.
 
+### 5.10 livenessDiagnostic
+
+Parámetro optional. Returna información extra en caso de error durante el scaneo del rostro.
+Posibles resultados:
+```
+enum class LivenessDiagnostic {
+    NotRated,
+    PhotoDetected,
+    LivenessDetected,
+    Unsuccess,
+    UnsuccessLowPerformance,
+    UnsuccessGlasses,
+    UnsuccessLight,
+    UnsuccessNoMovement,
+    UnsuccessWrongDirection,
+    UnsuccessTooFar,
+    UnsuccessPlayback,
+    UnsuccessDetectionRateFail,
+    UnsuccessProximityFail,
+    UnsuccessLandmarkDetectionFail,
+    UnsuccessDuplicatedFrames,
+    UnsuccessContinuityFail,
+    UnsuccessOPFail,
+    UnsuccessOPDubious,
+    UnsuccessOPSpoofing,
+    UnsuccessTemplateFail,
+    UnsuccessInsufficientDetections,
+    UnsuccessNoEyeMovementDetected,
+    UnsuccessMovementDerivative,
+    UnsuccessMovementBoundaries
+}
+```
 ---
 
 ## 6. Personalización de componente (Opcional)
