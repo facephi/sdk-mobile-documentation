@@ -146,6 +146,18 @@ enableTracking: true
 
 El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SdkCoreResult. Más información sobre cómo funciona esta clase se añadirá en el ***apartado 6***.
 
+#### 2.2.5 locale
+
+Esta es un String que permite cambiar la configuración regional y el idioma del widget. Algunos ejemplos de valores que puede tener son los siguientes:
+
+- ““ para utilizar el idioma del sistema
+
+- “es” for Spanish.
+
+- “en” for English.
+
+- “fr” for french.
+
 ## 3. Inicialización de la operación
 Cada vez que se desee iniciar el flujo de alguna operación nueva (ejemplos de operaciones serían: onboarding, authentication,…) es esencial indicarle al **SDKController** que ésta va a comenzar, y así la SDK sabrá que las próximas llamadas de **Componentes** (también llamados **Steps**) formarán parte de dicha operación. Esto es necesario para trackear a la plataforma la información global de esta operación de forma satisfactoria.
 
