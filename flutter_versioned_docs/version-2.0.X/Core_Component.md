@@ -165,6 +165,19 @@ This property enables or disables the tracking component. This parameter allows 
 mEnableTracking: true
 ```
 
+#### 2.2.5 locale
+
+This is a string that allows you to change the locale and language of
+the widget. Examples of values they can have are as follows:
+
+- ““ for use the system language
+
+- “es” for Spanish.
+
+- “en” for English.
+
+- “fr” for french.
+
 ---
 
 ## 3. Start a new operation
