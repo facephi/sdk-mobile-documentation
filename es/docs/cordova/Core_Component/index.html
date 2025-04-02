@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Core Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/cordova/Core_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="2.0.X"><meta data-rh="true" name="docusaurus_tag" content="docs-cordova-2.0.X"><meta data-rh="true" name="docsearch:version" content="2.0.X"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-cordova-2.0.X"><meta data-rh="true" property="og:title" content="Core Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. Introducción"><meta data-rh="true" property="og:description" content="1. Introducción"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/cordova/Core_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/cordova/Core_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/cordova/Core_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/cordova/Core_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.28aebaee.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.26c483d9.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.32cfbfb6.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.2fd8e4f0.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -75,6 +75,22 @@ A través de un servicio que simplemente requerirá una URL y un API-KEY. Esto e
 <p>Habilita o deshabilita el uso del componente de tracking. Esto permite ver la información de lo que hace el cliente en la plataforma de Facephi.  Este componente funciona en background mientras se ejecutan el resto de componentes instalados, y analiza el comportamiento del usuario durante el proceso actual.</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">enableTracking: true</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copiar código al portapapeles" title="Copiar" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SdkCoreResult. Más información sobre cómo funciona esta clase se añadirá en el <em><strong>apartado 6</strong></em>.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="225-locale">2.2.5 locale<a href="#225-locale" class="hash-link" aria-label="Enlace directo al 2.2.5 locale" title="Enlace directo al 2.2.5 locale">​</a></h4>
+<p>Esta es un String que permite cambiar la configuración regional y el idioma del widget. Algunos ejemplos de valores que puede tener son los siguientes:</p>
+<ul>
+<li>
+<p>““ para utilizar el idioma del sistema</p>
+</li>
+<li>
+<p>“es” for Spanish.</p>
+</li>
+<li>
+<p>“en” for English.</p>
+</li>
+<li>
+<p>“fr” for french.</p>
+</li>
+</ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-inicialización-de-la-operación">3. Inicialización de la operación<a href="#3-inicialización-de-la-operación" class="hash-link" aria-label="Enlace directo al 3. Inicialización de la operación" title="Enlace directo al 3. Inicialización de la operación">​</a></h2>
 <p>Cada vez que se desee iniciar el flujo de alguna operación nueva (ejemplos de operaciones serían: onboarding, authentication,…) es esencial indicarle al <strong>SDKController</strong> que ésta va a comenzar, y así la SDK sabrá que las próximas llamadas de <strong>Componentes</strong> (también llamados <strong>Steps</strong>) formarán parte de dicha operación. Esto es necesario para trackear a la plataforma la información global de esta operación de forma satisfactoria.</p>
 <div class="warning"><p><span class="warning">⚠️</span>
