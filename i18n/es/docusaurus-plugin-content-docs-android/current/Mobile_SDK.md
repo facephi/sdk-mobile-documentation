@@ -3,7 +3,7 @@
 ## Última versión disponible
 
 ```text
-2.2.3
+2.3.0
 ```
 
 ## 1. Introducción
@@ -574,7 +574,7 @@ SDKController.launch(TrackingErrorController {
 
 ## 10. Seguimiento y Análisis de Eventos en la Aplicación
 
-La funcionalidad de eventos permite registrar e interpretar interacciones clave dentro de la aplicación, como cambios de pantalla y acciones del usuario, facilitando el análisis del comportamiento en tiempo real. 
+La funcionalidad de eventos permite registrar e interpretar interacciones clave dentro de la aplicación, como cambios de pantalla y acciones del usuario, facilitando el análisis del comportamiento en tiempo real.
 
 Cada evento se envía con un sello de tiempo, tipo y detalle específico, proporcionando un seguimiento estructurado y optimizando la experiencia del usuario con datos precisos y accionables.
 

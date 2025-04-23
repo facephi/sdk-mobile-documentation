@@ -2,6 +2,37 @@
 
 ## Versions
 
+### 2.3.0
+
+- General
+
+  - Common Design internal library
+  - Proguard fixes
+  - Updated target Api to 35
+  - Android Gradle Plugin 8.9.1
+  - Accesibility improvements
+
+- Tracking
+
+  - IDV Platform compatible
+    - New license mandatory
+
+- Flow
+
+  - Improvements and fixes
+
+- VideoCall
+
+  - UI improvements
+
+- SelphID
+
+  - Widget new version: 1.32.2
+
+- Video ID
+
+  - New validations in Video Identification, check video id component section
+
 ### 2.2.3
 
 - General
