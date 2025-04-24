@@ -255,9 +255,12 @@ Datos del frente del documento. Incluye:
 
 - documentImage: Imagen del documento
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
-- iqaOverExposure: 
-- iqaReadable: 
-- iqaSharpness: 
+- iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen; 
+  un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
+- iqaReadable: Valor numérico entre 0 y 1 que indica la legibilidad del texto del documento; valores más altos 
+  implican que el texto es más claro y fácil de reconocer.
+- iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una 
+  imagen más enfocada, lo que mejora la capacidad de extracción de datos.
 
 #### 7.2.2 backDocumentData
 
@@ -265,9 +268,12 @@ Datos del reverso del documento. Incluye:
 
 - documentImage: Imagen del documento
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
-- iqaOverExposure: 
-- iqaReadable: 
-- iqaSharpness: 
+- iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen; 
+  un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
+- iqaReadable: Valor numérico entre 0 y 1 que indica la legibilidad del texto del documento; valores más altos 
+  implican que el texto es más claro y fácil de reconocer.
+- iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una 
+  imagen más enfocada, lo que mejora la capacidad de extracción de datos.
 
 #### 7.2.3 faceImage
 

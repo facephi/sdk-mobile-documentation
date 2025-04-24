@@ -247,9 +247,12 @@ Data from the front of the document. Includes:
 
 - documentImage: Image of the document
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
-- iqaOverExposure: 
-- iqaReadable: 
-- iqaSharpness: 
+- iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value 
+  suggests that the image is too bright, which may make the document difficult to read.
+- iqaReadable: Numerical value between 0 and 1 indicating the readability of the text in the document; higher values 
+  imply that the text is clearer and easier to recognise.
+- iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values 
+  reflect a more focused image, which improves the data extraction capability.
 
 #### 7.2.2 backDocumentData
 
@@ -257,9 +260,12 @@ Data from the back of the document. Includes:
 
 - documentImage: Image of the document
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
-- iqaOverExposure: 
-- iqaReadable: 
-- iqaSharpness: 
+- iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value 
+  suggests that the image is too bright, which may make the document difficult to read.
+- iqaReadable: Numerical value between 0 and 1 indicating the readability of the text in the document; higher values 
+  imply that the text is clearer and easier to recognise.
+- iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values 
+  reflect a more focused image, which improves the data extraction capability. 
 
 #### 7.2.3 faceImage
 
