@@ -112,8 +112,7 @@ necesario para la conexión con el servicio de video.
 
 #### 5.1.4. sectionTime
 
-Indica la duración de cada una de las secciones en las que se muestra el
-mensaje de grabación.
+Indica la duración de las secciones con tiempo asociado (captura facial y cambio de cámara).
 
 #### 5.1.5. mode
 
@@ -126,26 +125,41 @@ mensaje de grabación.
 - FACE_DOCUMENT_FRONT_BACK: El proceso se realiza usando la cara, el
   frontal del documento de identidad y la parte trasera del documento.
 
-#### 5.1.6. showCompletedTutorial
+#### 5.1.6. timeoutServerConnection
 
-Indica si se quiere mostrar el tutorial inicial completo. Si no, se
-mostrará un progress indicator.
+Tiempo máximo de espera en ms para la respuesta del servidor.
 
-#### 5.1.7. timeoutServerConnection
+#### 5.1.7. sectionTimeout
 
-Tiempo de espera en ms para la respuesta del servidor.
+Tiempo máximo permitido para completar una sección (en ms).
 
-#### 5.1.8. timeoutFaceDetection
+#### 5.1.8. autoFaceDetection
 
-Tiempo de espera en ms para detectar si hay una cara y comenzar la grabación.
+Activa/Desactiva la detección automática de cara.
 
-#### 5.1.9. cameraPreferred
+#### 5.1.9. debug
 
-Cámara con la que se quiere realizar el proceso: FRONT, BACK
+Habilita la visualización de información adicional útil para el diagnóstico y seguimiento del comportamiento interno.
 
-#### 5.1.10. autoFaceDetection
+#### 5.1.10. countryFilter
 
-Activa/Desactiva la detección automática de cara
+Permite restringir el procesamiento a un conjunto específico de países, aceptando un array de strings que representan los alias en formato ISO3 (código de 3 letras según el estándar ISO 3166-1). 
+
+#### 5.1.11. documentFilter
+
+Permite restringir los tipos de documentos aceptados durante la captura. Los valores posibles son:
+
+- "IDC": Documento de Identidad (ID Card)
+- "PSP": Pasaporte (Passport)
+- "DLI": Licencia de Conducir (Driver License)
+- "VIS": Visado (Visa)
+- "FOC": Tarjeta de Extranjero (Foreign Card)
+- "INV": Factura (Invoice)
+- "CUS": Documento Personalizado (Custom Document) 
+
+#### 5.1.12. speechText
+
+Texto que el usuario deberá pronunciar durante la grabación del video. 
 
 ---
 
@@ -231,8 +245,69 @@ Lista de errores:
 
 ### 7.2. Recepción de ejecución correcta - _data_
 
-En la ejecución correcta, simplemente se informa de que todo ha ido bien
-con el SdkResult.Success.
+El campo _data_ es variable y dependerá de qué componente se ha devuelto
+el resultado. En el caso de este componente, los campos devueltos son
+los siguientes:
+
+#### 7.2.1 frontDocumentData
+
+Datos del frente del documento. Incluye:
+
+- documentImage: Imagen del documento
+- documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
+- iqaOverExposure: 
+- iqaReadable: 
+- iqaSharpness: 
+
+#### 7.2.2 backDocumentData
+
+Datos del reverso del documento. Incluye:
+
+- documentImage: Imagen del documento
+- documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
+- iqaOverExposure: 
+- iqaReadable: 
+- iqaSharpness: 
+
+#### 7.2.3 faceImage
+
+Imagen del usuario capturada en la primera sección del proceso.
+
+#### 7.2.4 ocrMap
+
+Mapa del OCR extraído del documento.
+
+#### 7.2.5 matchingSidesScore
+
+Valor numérico entre 0 y 1 que estima el nivel de coincidencia entre las caras del documento (frontal y trasera).
+
+#### 7.2.6 documentType
+
+Tipo de documento obtenido.
+
+#### 7.2.7 personalData
+
+Conjunto reducido de datos obtenidos del usuario:
+
+- issuer
+- documentNumber
+- issueDate
+- expiryDate
+- name
+- surname
+- fullName
+- gender
+- birthDate
+- birthPlace
+- nationality
+- address
+- nfcKey
+- numSupport
+- mrz
+
+#### 7.2.8 speechText
+
+Texto que el usuario deberá pronunciar durante la grabación del video. 
 
 ---
 

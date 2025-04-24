@@ -432,6 +432,8 @@ convertir las imágenes a **Base64** de la siguiente manera:
 
 `Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
 
+### 7.2. Recepción de ejecución correcta - _data_
+
 El campo _data_ es variable y dependerá de qué componente se ha devuelto
 el resultado. En el caso de este componente, los campos devueltos son
 los siguientes:
@@ -578,6 +580,26 @@ País del documento.
 #### 7.2.10 _documentTypeCaptured_
 
 Tipo de documento. Se corresponde con los del apartado 5.1.10.
+
+#### 7.2.11 _personalData_
+
+Conjunto reducido de datos obtenidos del usuario:
+
+- issuer
+- documentNumber
+- issueDate
+- expiryDate
+- name
+- surname
+- fullName
+- gender
+- birthDate
+- birthPlace
+- nationality
+- address
+- nfcKey
+- numSupport
+- mrz
 
 ---
 

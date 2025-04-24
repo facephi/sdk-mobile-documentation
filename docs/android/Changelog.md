@@ -10,12 +10,13 @@
   - Proguard fixes
   - Updated target Api to 35
   - Android Gradle Plugin 8.9.1
+  - Kotlin 2.1.10
   - Accesibility improvements
 
 - Tracking
 
-  - IDV Platform compatible
-    - New license mandatory
+  - Widget new version: 1.1.8
+  - IDV Platform compatible (New license mandatory)
 
 - Flow
 
@@ -31,7 +32,9 @@
 
 - Video ID
 
-  - New validations in Video Identification, check video id component section
+  - Verification of face present
+  - OCR reading of the submitted document
+  - New output data
 
 ### 2.2.3
 

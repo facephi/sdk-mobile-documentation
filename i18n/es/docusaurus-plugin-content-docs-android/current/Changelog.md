@@ -10,12 +10,13 @@
   - Proguard ajustes
   - Actualizado el target Api a 35
   - Android Gradle Plugin 8.9.1
+  - Kotlin 2.1.10
   - Mejoras en Accesibilidad
 
 - Tracking
 
-  - Compatible con IDV Platform
-    - Necesaria una nueva licencia
+  - Nueva versión del widget: 1.1.8
+  - Compatible con IDV Platform (Necesaria una nueva licencia)
 
 - Flow
 
@@ -27,11 +28,13 @@
 
 - SelphID
 
-  - Widget version: 1.32.2
+  - Nueva versión del widget: 1.32.2
 
 - Video ID
 
-  - Nuevas validaciones en Video Identification, revisar la sección de video id component
+  - Verificación de cara presente
+  - Lectura del OCR del documento presentado
+  - Nuevos datos de salida
 
 ### 2.2.3
 

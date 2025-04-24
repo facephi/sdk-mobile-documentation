@@ -565,6 +565,26 @@ Country of the document.
 
 Type of document. Corresponds to those in section 5.1.10.
 
+#### 7.2.11 _personalData_
+
+Small set of data obtained from the user:
+
+- issuer
+- documentNumber
+- issueDate
+- expiryDate
+- name
+- surname
+- fullName
+- gender
+- birthDate
+- birthPlace
+- nationality
+- address
+- nfcKey
+- numSupport
+- mrz
+
 ---
 
 ## 8. Customizing the component

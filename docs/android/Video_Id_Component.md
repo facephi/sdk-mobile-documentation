@@ -106,8 +106,7 @@ connection to the video service.
 
 #### 5.1.4. sectionTime
 
-Indicates the duration of each of the sections in which the recording
-message is displayed.
+Indicates the duration of sections with associated time (facial capture and camera change).
 
 #### 5.1.5. mode
 
@@ -120,26 +119,41 @@ message is displayed.
 - FACE_DOCUMENT_FRONT_BACK: The process is performed using the face,
   the front of the identity document and the back of the document.
 
-#### 5.1.6. showCompletedTutorial
+#### 5.1.6. timeoutServerConnection
 
-Indicates if you want to show the complete initial tutorial. If not, a
-progress indicator will be shown.
+Maximum timeout in ms for server response.
 
-#### 5.1.7. timeoutServerConnection
+#### 5.1.7. sectionTimeout
 
-Timeout in ms for server response.
+Maximum time allowed to complete a section (in ms).
 
-#### 5.1.8. timeoutFaceDetection
+#### 5.1.8. autoFaceDetection
 
-Timeout in ms to detect if there is a face and start recording.
+Enables/Disables automatic face detection.
 
-#### 5.1.9. cameraPreferred
+#### 5.1.9. debug
 
-Camera with which the process is to be carried out: FRONT, BACK
+Enables the display of additional information useful for the diagnosis and monitoring of internal behaviour.
 
-#### 5.1.10. autoFaceDetection
+#### 5.1.10. countryFilter
 
-Enable/Disable auto face detection
+It allows to restrict processing to a specific set of countries by accepting an array of strings representing the aliases in ISO3 format (3-letter code according to ISO 3166-1 standard). 
+
+#### 5.1.11. documentFilter
+
+Allows to restrict the types of documents accepted during capture. Possible values are:
+
+- "IDC": ID Card
+- "PSP": Passport
+- "DLI": Driver License
+- "VIS": Visa
+- "FOC": Foreign Card
+- "INV": Invoice
+- "CUS": Custom Document
+
+#### 5.1.12. speechText
+
+Text to be spoken by the user during the recording of the video. 
 
 ---
 
@@ -224,8 +238,68 @@ Error list:
 
 ### 7.2. Receipt of correct execution - _data_
 
-On successful execution, it simply reports that everything went well
-with the SdkResult.Success.
+The _data_ field is variable and will depend on which component the result is returned.
+In the case of this component, the fields returned are the following:
+
+#### 7.2.1 frontDocumentData
+
+Data from the front of the document. Includes:
+
+- documentImage: Image of the document
+- documentFaceImage: If a face has been found in the document, the image of the face is returned.
+- iqaOverExposure: 
+- iqaReadable: 
+- iqaSharpness: 
+
+#### 7.2.2 backDocumentData
+
+Data from the back of the document. Includes:
+
+- documentImage: Image of the document
+- documentFaceImage: If a face has been found in the document, the image of the face is returned.
+- iqaOverExposure: 
+- iqaReadable: 
+- iqaSharpness: 
+
+#### 7.2.3 faceImage
+
+Image of the user captured in the first section of the process.
+
+#### 7.2.4 ocrMap
+
+OCR map extracted from the document.
+
+#### 7.2.5 matchingSidesScore
+
+Numerical value between 0 and 1 that estimates the level of coincidence between the sides of the document (front and back).
+
+#### 7.2.6 documentType
+
+Type of document obtained.
+
+#### 7.2.7 personalData
+
+Small set of data obtained from the user:
+
+- issuer
+- documentNumber
+- issueDate
+- expiryDate
+- name
+- surname
+- fullName
+- gender
+- birthDate
+- birthPlace
+- nationality
+- address
+- nfcKey
+- numSupport
+- mrz
+
+#### 7.2.8 speechText
+
+Text to be spoken by the user during the recording of the video. 
 
 ---
 

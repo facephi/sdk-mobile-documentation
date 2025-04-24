@@ -21,11 +21,11 @@ The minimum version of the Android SDK required is as follows:
 
 - Minimum SDK (minSdk): **23**
 
-- API Version: **34**
+- API Version: **35**
 
-- Kotlin: **2.0.21**
+- Kotlin: **2.1.10**
 
-- Plugin Gradle Android: **8.5.2**
+- Plugin Gradle Android: **8.9.1**
 
 ---
 
