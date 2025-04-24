@@ -320,15 +320,24 @@ each String to the desired one.
     <!-- Waiting -->
     <string name="video_id_component_text_waiting_agent_title">Video ID</string>
     <!-- Process -->
-    <string name="video_id_component_first_message">Place your face and the front of your document within the frame</string>
+    <string name="video_id_component_document_front_message">Place the front of your document within the frame</string>
+    <string name="video_id_component_document_front_message_readable">Keep the front of your document within the frame</string>
+    <string name="video_id_component_document_front_message_not_readable">Bring the front of your document closer to the frame</string>
+    <string name="video_id_component_document_front_message_finish">Front of document captured correctly</string>
+    <string name="video_id_component_document_back_message">Now place the back of your document</string>
+    <string name="video_id_component_document_back_message_readable">Keep the back of your document within the frame</string>
+    <string name="video_id_component_document_back_message_not_readable">Bring the back of your document closer to the frame</string>
+    <string name="video_id_component_document_back_message_finish">Back of document captured correctly</string>
+    <string name="video_id_component_switch_camera_message">Prepare your document while the camera is being changed</string>
     <string name="video_id_component_init_message_face_content_desc">Place your face in front of the camera and start recording</string>
     <string name="video_id_component_init_message_face_docu_content_desc">Place your face and your document in front of the camera and start recording</string>
-    <string name="video_id_component_second_message">Now place the back of your document</string>
-    <string name="video_id_component_third_message">Say out loud "I (name and surname) accept the terms and conditions".</string>
+    <string name="video_id_component_speech_message">I (name and surname) accept the terms and conditions</string>
+    <string name="video_id_component_speech_say_out_loud">Say out loud </string>
     <string name="video_id_component_finish_message">Video recording\ncompleted</string>
     <string name="video_id_component_record_init_button">Start recording</string>
     <string name="video_id_component_ready_button">Ready</string>
     <string name="video_id_component_first_message_face">Place your face within the frame</string>
+    <string name="video_id_component_first_message_multiple_face">Multiple faces detected. Place only your face within the frame. </string>
     <!-- Diagnostic -->
     <string name="video_id_component_restart">Repeat recording</string>
     <string name="video_id_component_timeout_title">Time exceeded</string>

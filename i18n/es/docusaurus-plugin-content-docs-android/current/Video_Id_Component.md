@@ -327,15 +327,24 @@ de cada _String_ por el deseado.
     <!-- Waiting -->
     <string name="video_id_component_text_waiting_agent_title">Video ID</string>
     <!-- Process -->
-    <string name="video_id_component_first_message">Coloca tu rostro y el frente de tu documento en las marcas</string>
+    <string name="video_id_component_document_front_message">Coloca el frente de tu documento en las marcas</string>
+    <string name="video_id_component_document_front_message_readable">Mantén el frente de tu documento en las marcas</string>
+    <string name="video_id_component_document_front_message_not_readable">Acerca el frente de tu documento a las marcas</string>
+    <string name="video_id_component_document_front_message_finish">Frente del documento capturado correctamente</string>
+    <string name="video_id_component_document_back_message">Ahora coloca el reverso de tu documento</string>
+    <string name="video_id_component_document_back_message_readable">Mantén el reverso de tu documento en las marcas</string>
+    <string name="video_id_component_document_back_message_not_readable">Acerca el reverso de tu documento a las marcas</string>
+    <string name="video_id_component_document_back_message_finish">Reverso del documento capturado correctamente</string>
+    <string name="video_id_component_switch_camera_message">Prepare su documento mientras se procede al cambio de cámara</string>
     <string name="video_id_component_init_message_face_content_desc">Coloca tu rostro en frente de la cámara e inicia la grabación</string>
     <string name="video_id_component_init_message_face_docu_content_desc">Coloca tu rostro y tu documento en frente de la cámara e inicia la grabación</string>
-    <string name="video_id_component_second_message">Ahora coloca el reverso de tu documento</string>
-    <string name="video_id_component_third_message">Di en voz alta “Yo (nombre y apellidos) acepto los términos y condiciones”.</string>
+    <string name="video_id_component_speech_message">Yo (nombre y apellidos) acepto los términos y condiciones de uso</string>
+    <string name="video_id_component_speech_say_out_loud">Di en voz alta </string>
     <string name="video_id_component_finish_message">Videograbación\ncompletada</string>
     <string name="video_id_component_record_init_button">Iniciar grabación</string>
     <string name="video_id_component_ready_button">Continuar</string>
     <string name="video_id_component_first_message_face">Coloque su cara dentro del marco</string>
+    <string name="video_id_component_first_message_multiple_face">Varias caras detectadas. Coloque sólo su cara dentro del marco</string>
     <!-- Diagnostic -->
     <string name="video_id_component_restart">Repetir grabación</string>
     <string name="video_id_component_timeout_title">Tiempo superado</string>
