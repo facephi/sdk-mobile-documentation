@@ -403,6 +403,7 @@ Error list:
 - HARDWARE_ERROR: Widget: Hardware error
 - INITIALIZATION_ERROR: Initialisation error.
 - MANAGER_NOT_INITIALIZED: Managers are null.
+- MOVE_FAIL: The user has not moved as specified in the process.
 - NO_DATA_ERROR: Input data is null.
 - OPERATION_NOT_CREATED: No operation is in progress.
 - RESOURCES_NOT_FOUND: Resource zip not found.

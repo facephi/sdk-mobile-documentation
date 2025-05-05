@@ -416,6 +416,7 @@ Listado de errores:
 - HARDWARE_ERROR: Widget: Error de hardware
 - INITIALIZATION_ERROR: Error de inicialización.
 - MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- MOVE_FAIL: El usuario no se ha movido como se le ha especificado en el proceso.
 - NO_DATA_ERROR: Los datos de entrada son nulos.
 - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
 - RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos
