@@ -174,7 +174,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `Copyright © ${new Date().getFullYear()} SDK Mobile, Facephi.`,
+        copyright: `${new Date().getFullYear()} ® Facephi. All rights reserved.`,
       },
       prism: {
         theme: prismThemes.github,
