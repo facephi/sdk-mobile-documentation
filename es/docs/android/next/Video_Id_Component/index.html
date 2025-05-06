@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Video Id Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Video_Id_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-android-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-android-current"><meta data-rh="true" property="og:title" content="Video Id Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="0. Requisitos base de SDK Mobile"><meta data-rh="true" property="og:description" content="0. Requisitos base de SDK Mobile"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Video_Id_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Video_Id_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Video_Id_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Video_Id_Component" hreflang="x-default"><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.28aebaee.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.0ffc5082.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.90c23c47.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.8b7965f4.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -190,6 +190,7 @@ un valor alto sugiere que la imagen está demasiado iluminada, lo que puede difi
 implican que el texto es más claro y fácil de reconocer.</li>
 <li>iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una
 imagen más enfocada, lo que mejora la capacidad de extracción de datos.</li>
+<li>documentFaceImageTokenized: Si se ha encontrado una cara en el documento se devuelve la imagen cifrada de la misma.</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="722-backdocumentdata">7.2.2 backDocumentData<a href="#722-backdocumentdata" class="hash-link" aria-label="Enlace directo al 7.2.2 backDocumentData" title="Enlace directo al 7.2.2 backDocumentData">​</a></h4>
 <p>Datos del reverso del documento. Incluye:</p>
@@ -202,6 +203,7 @@ un valor alto sugiere que la imagen está demasiado iluminada, lo que puede difi
 implican que el texto es más claro y fácil de reconocer.</li>
 <li>iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una
 imagen más enfocada, lo que mejora la capacidad de extracción de datos.</li>
+<li>documentFaceImageTokenized: Si se ha encontrado una cara en el documento se devuelve la imagen cifrada de la misma.</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="723-faceimage">7.2.3 faceImage<a href="#723-faceimage" class="hash-link" aria-label="Enlace directo al 7.2.3 faceImage" title="Enlace directo al 7.2.3 faceImage">​</a></h4>
 <p>Imagen del usuario capturada en la primera sección del proceso.</p>
@@ -232,6 +234,8 @@ imagen más enfocada, lo que mejora la capacidad de extracción de datos.</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="728-speechtext">7.2.8 speechText<a href="#728-speechtext" class="hash-link" aria-label="Enlace directo al 7.2.8 speechText" title="Enlace directo al 7.2.8 speechText">​</a></h4>
 <p>Texto que el usuario deberá pronunciar durante la grabación del video.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="729-faceimagetokenized">7.2.9 faceImageTokenized<a href="#729-faceimagetokenized" class="hash-link" aria-label="Enlace directo al 7.2.9 faceImageTokenized" title="Enlace directo al 7.2.9 faceImageTokenized">​</a></h4>
+<p>Imagen cifrada del usuario capturada en la primera sección del proceso.</p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="8-personalización-del-componente">8. Personalización del componente<a href="#8-personalización-del-componente" class="hash-link" aria-label="Enlace directo al 8. Personalización del componente" title="Enlace directo al 8. Personalización del componente">​</a></h2>
 <p>Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
