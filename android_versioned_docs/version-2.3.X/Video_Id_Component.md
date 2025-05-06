@@ -253,6 +253,7 @@ Data from the front of the document. Includes:
   imply that the text is clearer and easier to recognise.
 - iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values 
   reflect a more focused image, which improves the data extraction capability.
+- documentFaceImageTokenized: If a face has been found in the document, the tokenized image of the face is returned.
 
 #### 7.2.2 backDocumentData
 
@@ -266,6 +267,7 @@ Data from the back of the document. Includes:
   imply that the text is clearer and easier to recognise.
 - iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values 
   reflect a more focused image, which improves the data extraction capability. 
+- documentFaceImageTokenized: If a face has been found in the document, the tokenized image of the face is returned.
 
 #### 7.2.3 faceImage
 
@@ -306,6 +308,10 @@ Small set of data obtained from the user:
 #### 7.2.8 speechText
 
 Text to be spoken by the user during the recording of the video. 
+
+#### 7.2.9 faceImageTokenized
+
+Tokenized image of the user captured in the first section of the process.
 
 ---
 

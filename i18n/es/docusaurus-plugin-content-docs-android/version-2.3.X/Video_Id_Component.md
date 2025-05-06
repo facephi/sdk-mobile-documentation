@@ -261,6 +261,7 @@ Datos del frente del documento. Incluye:
   implican que el texto es más claro y fácil de reconocer.
 - iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una 
   imagen más enfocada, lo que mejora la capacidad de extracción de datos.
+- documentFaceImageTokenized: Si se ha encontrado una cara en el documento se devuelve la imagen cifrada de la misma.
 
 #### 7.2.2 backDocumentData
 
@@ -274,6 +275,7 @@ Datos del reverso del documento. Incluye:
   implican que el texto es más claro y fácil de reconocer.
 - iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una 
   imagen más enfocada, lo que mejora la capacidad de extracción de datos.
+- documentFaceImageTokenized: Si se ha encontrado una cara en el documento se devuelve la imagen cifrada de la misma.
 
 #### 7.2.3 faceImage
 
@@ -314,6 +316,10 @@ Conjunto reducido de datos obtenidos del usuario:
 #### 7.2.8 speechText
 
 Texto que el usuario deberá pronunciar durante la grabación del video. 
+
+#### 7.2.9 faceImageTokenized
+
+Imagen cifrada del usuario capturada en la primera sección del proceso.
 
 ---
 
