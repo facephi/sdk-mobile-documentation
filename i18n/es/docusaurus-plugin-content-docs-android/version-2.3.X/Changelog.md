@@ -13,6 +13,10 @@
   - Nueva versión del widget: 5.15.5
   - Incluye Tokenizer
 
+- Tracking
+
+  - Nueva versión del widget: 1.1.9
+
 ### 2.3.0
 
 - General
