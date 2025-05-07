@@ -76,8 +76,9 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 | 2.1.2           | 5.15.0                         |
 | 2.2.0           | 5.16.1                         |
 | 2.2.1           | 5.16.2                         |
-| 2.2.2           | 5.16.2                       |
-| 2.2.3           | 5.17.1                       |
+| 2.2.2           | 5.16.2                         |
+| 2.2.3           | 5.17.1                         |
+| 2.3.1           | 5.17.2                         |
 
 ---
 

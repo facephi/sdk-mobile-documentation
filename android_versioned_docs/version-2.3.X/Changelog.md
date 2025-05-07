@@ -10,7 +10,7 @@
 
 - Selphi
 
-  - Widget new version: 5.15.5
+  - Widget new version: 5.17.2
   - Tokenizer included
 
 - Tracking
