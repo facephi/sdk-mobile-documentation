@@ -2,6 +2,17 @@
 
 ## Versions
 
+### 2.3.1
+
+- General
+
+ - Accesibility improvements
+
+- Selphi
+
+  - Widget new version: 5.15.5
+  - Tokenizer included
+
 ### 2.3.0
 
 - General
@@ -25,10 +36,6 @@
 - VideoCall
 
   - UI improvements
-
-- SelphID
-
-  - Widget new version: 1.32.2
 
 - Video ID
 
