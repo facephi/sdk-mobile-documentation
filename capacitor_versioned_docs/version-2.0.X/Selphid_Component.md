@@ -37,7 +37,8 @@ The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
 -   Minimum Build Tools version: **8.1.4**
--   Minimum Kotlin Android version: **1.9.0**
+-   Minimum Kotlin Android version **(sdk {'<'}= 2.2.x)**: **1.9.0**
+-   Minimum Kotlin Android version **(sdk >= 2.3.x)**: **2.1.0**
 -   Minimum iOS version: **13**
 -   Minimum Capacitor version: **5**
 
@@ -50,7 +51,6 @@ Regarding the architecture of the mobile device:
 The current plugin version can be checked as follows:
 
 -   We look for the ***package.json*** file at the root of the plugin.
-
 -   The KEY/TAG ***version*** indicates the version.
 
 ---
@@ -197,7 +197,6 @@ configure the **SelphID** component:
   scanMode?: SelphIDScanMode;
   specificData?: string;
   fullscreen?: boolean;
-  locale?: string;
   tokenImageQuality?: number;
   documentType?: SelphIDDocumentType;
   timeout?: SelphIDTimeout;
@@ -320,31 +319,6 @@ hiding the status bar.
 
 ```
 fullscreen**: true;
-```
-
-### 3.7 locale
-
-**type:** *string*
-
-It is a string that allows the localisation and language of the component
-to be changed. Examples of values ​​that they may have are the following:
-
--   “es” for Spanish.
-
--   “en” for English.
-
--   “fr” for French.
-
-Ultimately, it will depend on the name that appears in the strings.xml
-file of the language you want to select (strings-es.xml, strings-en.xml,
-strings-fr.xml).
-
-In the resource zip, which is located inside the strings folder, you can
-add the strings-xx.xml files corresponding to each location that needs
-to be incorporated into the component.
-
-```
-locale: "es";
 ```
 
 ### 3.8 documentType

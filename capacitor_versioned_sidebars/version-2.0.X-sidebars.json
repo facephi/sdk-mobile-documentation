@@ -15,7 +15,7 @@
         "Voice_Component",
         "Sample_applications_use",
         {
-          "Migrations": ["migration_140_200"]
+          "Migrations": ["migration_140_200","migration_200_230"]
         }
       ]
     }

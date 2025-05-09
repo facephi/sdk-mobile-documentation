@@ -15,7 +15,8 @@ The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
 -   Minimum Build Tools version: **8.1.4**
--   Minimum Kotlin Android version: **1.9.0**
+-   Minimum Kotlin Android version **(sdk {'<'}= 2.2.x)**: **1.9.0**
+-   Minimum Kotlin Android version **(sdk >= 2.3.x)**: **2.1.0**
 -   Minimum iOS version: **13**
 -   Minimum Flutter version: **3.0**
 
@@ -153,7 +154,6 @@ class SelphiFaceConfiguration {
   double mCropPercent;
   double mJPGQuality;
   SelphiCompressFormat mCompressFormat;
-  String mLocale;
   String mTranslationsContent;
   String mViewsContent;
   int? mCameraId;
@@ -239,18 +239,6 @@ Property that allows activating or deactivating the stabilised mode before the f
 
 ```
 stabilizationMode: true
-```
-
-### 3.7. locale
-
-**type:** *string*
-
-Forces the sdk to use the language setting indicated by the locale parameter.
-
-This parameter accepts both a language code (for example, en) and a regional identification code (for example, en_US). If the widget's resource file does not have a locale for the selected locale, its setting will revert to the default language of ES.
-
-```
-locale: 'ES'
 ```
 
 ### 3.8. fullScreen
