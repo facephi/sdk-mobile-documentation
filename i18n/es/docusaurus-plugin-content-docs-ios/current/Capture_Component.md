@@ -63,7 +63,8 @@ completo antes de la instalación de los componentes de la
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
 - En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
-  ![Image](/ios/fix_ldClassic.png)
+
+![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permisos y configuraciones
 

@@ -60,7 +60,8 @@ pod 'FPHISDKVideoIDComponent', '~> 2.3.0'
 - Once the dependencies are installed, you can use the different functionalities of the component.
 
 - If developing with **XCode15**, a post-installation script must be included:
-  ![Image](/ios/fix_ldClassic.png)
+
+![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
 

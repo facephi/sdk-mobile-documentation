@@ -47,14 +47,14 @@ installing the **_SDKMobile_** components.
 
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
-```
-  pod 'FPHISDKMainComponent', '~> 2.2.0'
+```java
+  pod 'FPHISDKMainComponent', '~> 2.3.0'
 ```
 
 - To install the Capture component, the following entry must be included in the Podfile of the application:
 
-```
-  pod 'FPHISDKCaptureComponent', '~> 2.2.0'
+```java
+  pod 'FPHISDKCaptureComponent', '~> 2.3.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
