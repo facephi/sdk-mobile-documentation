@@ -53,13 +53,13 @@ Las dependencias **obligatorias** que deberán haberse instalado previamente
 (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 1.5.0'
+pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 Para instalar el componente de Behavior deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-pod 'FPHISDKBehaviorComponent', '~> 1.5.0'
+pod 'FPHISDKBehaviorComponent', '~> 2.2.0'
 ```
 
 Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.

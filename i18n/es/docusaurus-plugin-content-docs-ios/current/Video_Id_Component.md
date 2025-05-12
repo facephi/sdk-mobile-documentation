@@ -52,13 +52,13 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.3.0'
 ```
 
 - Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```
-	pod 'VideoIdController', '~> 1.5.0'
+	pod 'VideoIdController', '~> 2.3.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.

@@ -64,14 +64,14 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.3.0'
   pod 'zipzap'
 ```
 
 - Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-  pod 'FPHISDKSelphiComponent', '~> 1.5.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.3.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.

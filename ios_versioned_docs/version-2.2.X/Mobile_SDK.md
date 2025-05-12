@@ -97,7 +97,7 @@ plugin 'cocoapods-art', :sources => [
 source 'https://cdn.cocoapods.org/'
 
 target 'Example' do
-  pod 'FPHISDKMainComponent'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
 
    post_install do |installer|
   installer.pods_project.targets.each do |target|

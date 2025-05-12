@@ -34,13 +34,13 @@ To avoid conflicts and compatibility problems, in case you want to install the c
 Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must be previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-pod 'FPHISDKMainComponent', '~> 1.5.0'
+pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 To install the Behavior component, the following entry must be included in the Podfile of the application:
 
 ```
-pod 'FPHISDKBehaviorComponent', '~> 1.5.0'
+pod 'FPHISDKBehaviorComponent', '~> 2.2.0'
 ```
 
 Once the dependencies are installed, the different functionalities of the component can be used.

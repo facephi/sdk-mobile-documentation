@@ -48,13 +48,13 @@ completely before the installation of the components of the **_SDKMobile_** comp
 - Currently the FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```
-   pod 'FPHISDKMainComponent', '~> 1.5.0'
+   pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 - To install the VideoID component, the following entry must be included in the application's Podfile:
 
 ```
-pod 'FPHISDKVideoIDComponent', '~> 1.5.0'
+pod 'FPHISDKVideoIDComponent', '~> 2.2.0'
 ```
 
 - Once the dependencies are installed, you can use the different functionalities of the component.

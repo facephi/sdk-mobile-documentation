@@ -63,13 +63,13 @@ the **_SDKMobile_** components.
 Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must be previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-pod 'FPHISDKMainComponent', '~> 1.5.0'
+pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 To install the Tracking component, the following entry must be included in the application Podfile:
 
 ```
-pod 'FPHISDKTrackingComponent', '~> 1.5.0'
+pod 'FPHISDKTrackingComponent', '~> 2.2.0'
 ```
 
 Once the dependencies are installed, the different functionalities of the component can be used.

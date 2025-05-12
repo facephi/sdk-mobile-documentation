@@ -43,14 +43,14 @@ Ninguna
 
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.0.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 - Para instalar el componente de Status deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 
 ```
-  pod 'FPHISDKStatusComponent', '~> 2.0.0'
+  pod 'FPHISDKStatusComponent', '~> 2.2.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
