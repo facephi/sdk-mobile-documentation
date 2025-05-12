@@ -31,8 +31,9 @@ La versión mínima de la SDK de iOS requerida es la siguiente:
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -61,7 +62,7 @@ completo antes de la instalación de los componentes de la
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
   ![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permisos y configuraciones
@@ -195,13 +196,11 @@ Mostrar pantallas de diagnóstico al final del proceso y en caso de error
 
 ### 6.1 Captura de factura
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
 let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: output, viewController: viewController)
@@ -234,13 +233,11 @@ a la plataforma.
 
 ### 6.2 Captura de QR
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
   let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
@@ -276,13 +273,11 @@ a la plataforma.
 
 ### 6.3 Generación de QR
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
   let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)

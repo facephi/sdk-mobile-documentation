@@ -71,7 +71,7 @@ installing the **_SDKMobile_** components.
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
   ![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations

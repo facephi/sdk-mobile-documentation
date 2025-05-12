@@ -52,6 +52,7 @@ Versión mínima de iOS: **13**
 <span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación relativa a <u>**Core Component**</u> y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
@@ -190,13 +191,11 @@ Indica la relación para el recorte de la captura.
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)

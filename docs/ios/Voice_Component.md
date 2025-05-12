@@ -15,8 +15,7 @@ For more information on the base configuration, go to the [Getting Started](./Mo
 
 ## 1. Introduction
 
-The _component_ discussed in the current document is called **Voice
-Component**. It is in charge of capturing the user's voice and the
+The _Component_ discussed in the current document is called **_Voice Component_**. It is in charge of capturing the user's voice and the
 subsequent extraction of the corresponding templates. Its main
 functionalities are the following:
 
@@ -77,7 +76,7 @@ installing the **_SDKMobile_** components.
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -90,6 +89,7 @@ In order to generate the associated information correctly in the platform, the *
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
+
 To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
 
@@ -147,32 +147,29 @@ Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component normally, but internal events will be tracked to
-  the _tracking_ server:
+- **\[WITH TRACKING\]** This call allows launching the functionality
+  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
 let controller = VoiceController(
-            data: data,
-            output: { sdkResult in
-                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
-                output(voiceIdSdkResult)
-            }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
+    data: voiceConfigurationData,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
-
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component normally, but **no event will be
-  tracked** to the _tracking_ server:
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
+  of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
 let controller = VoiceController(
-            data: data,
-            output: { sdkResult in
-                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
-                output(voiceIdSdkResult)
-            }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
+    data: voiceConfigurationData,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -196,12 +193,43 @@ The controllers will return the required information in SdkResult format. More d
 On the error side, we will have the common _ErrorType_ enum:
 
 ```java
- INTERNAL_ERROR
- MIC_PERMISSION_DENIED
- TIMEOUT
- CANCEL_BY_USER
- VOICE_ENROLLMENT_PARSE_RESPONSE
- VOICE_MATCHING_PARSE_RESPONSE
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+The errors 'ErrorType.OTHER' and 'ErrorType.LICENSE_CHECKER_ERROR' are special because they also inform of
+the error's details.
+
+The _String_ can have this values in the OTHER's case:
+
+```java
+enum VoiceError {
+    case VOICE_ENROLLMENT_PARSE_RESPONSE
+    case VOICE_MATCHING_PARSE_RESPONSE
+}
 ```
 
 ### 7.2. Receiving successful execution - _data_.
@@ -223,7 +251,7 @@ Facephi tokenised format.
 
 ---
 
-## Customisation of the component
+## 8. Customization of the component
 
 Apart from the changes that can be made at SDK level (which are
 explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)

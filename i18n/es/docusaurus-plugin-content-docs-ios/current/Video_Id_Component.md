@@ -34,8 +34,9 @@ Versión mínima de iOS: **13**
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -63,7 +64,7 @@ completo antes de la instalación de los componentes de la
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
   ![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permisos y configuraciones
@@ -80,9 +81,12 @@ Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
+</div>
 
 ---
 
@@ -187,16 +191,20 @@ Número de reintentos permitidos en cada operación. Por defecto, su valor es 3.
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
+
 
 ```java
-let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
+let controller = VoiceController(
+    data: videoIdConfigurationData,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -307,7 +315,7 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 
 - Las imágenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
 
-```
+```java
 case ic_sdk_close_arrow
 case ic_sdk_close
 case ic_video_id_back_id
@@ -412,7 +420,7 @@ Esta personalización se aplica tanto a nuevas localizaciones como al caso de lo
 
 El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
 
-```
+```java
 "video_id_component_init_message_face_docu_content_desc"="Coloca tu rostro y el frente de tu documento en las marcas";
 "video_id_component_init_message_face_content_desc"="Coloca tu rostro en las marcas e inicia la grabación";
 "video_id_component_finish_message"="¡Videograbación finalizada!";

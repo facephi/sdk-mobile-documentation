@@ -41,7 +41,7 @@ Sus principales funcionalidades son las siguientes:
 - Generación de las plantillas con las características de la voz y
   puntuaciones.
 
-##1.1 Requisitos mínimos
+## 1.1 Requisitos mínimos
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
@@ -62,6 +62,7 @@ SDK</u></strong></a> y seguir las instrucciones indicadas en dicho
 documento.
 
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -90,7 +91,7 @@ completo antes de la instalación de los componentes de la
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -156,13 +157,11 @@ Mostrar pantallas de diagnóstico al final del proceso
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
 val result = SDKController.launch(

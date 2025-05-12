@@ -215,18 +215,15 @@ Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component normally, but internal events will be tracked to
-  the _tracking_ server:
+- **\[WITH TRACKING\]** This call allows launching the functionality
+  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
-
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component normally, but **no event will be
-  tracked** to the _tracking_ server:
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
+  of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)

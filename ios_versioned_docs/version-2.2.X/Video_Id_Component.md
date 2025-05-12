@@ -59,7 +59,7 @@ pod 'FPHISDKVideoIDComponent', '~> 2.2.0'
 
 - Once the dependencies are installed, you can use the different functionalities of the component.
 
-- If developing with **xCode15**, a post-installation script must be included:
+- If developing with **XCode15**, a post-installation script must be included:
   ![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
@@ -165,18 +165,21 @@ Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component normally, but internal events will be tracked to
-  the _tracking_ server:
+- **\[WITH TRACKING\]** This call allows launching the functionality
+  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
+
 
 ```java
-let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
+let controller = VoiceController(
+    data: videoIdConfigurationData,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
-
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component normally, but **no event will be
-  tracked** to the _tracking_ server:
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
+  of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)

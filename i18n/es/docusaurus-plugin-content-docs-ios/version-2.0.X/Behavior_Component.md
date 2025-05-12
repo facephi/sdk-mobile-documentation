@@ -37,8 +37,9 @@ en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -66,6 +67,8 @@ Cuando se desea realizar una determinada operación, para generar la
 información asociada correctamente en la plataforma deberá ejecutarse
 previamente el comando **newOperation**.
 
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
@@ -75,6 +78,7 @@ data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page"><strong><u>Android Mobile
 SDK</u></strong></a>, en el que se detalla y explica en qué consiste
 este proceso.
+</div>
 
 ---
 

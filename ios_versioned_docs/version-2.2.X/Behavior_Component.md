@@ -45,7 +45,7 @@ pod 'FPHISDKBehaviorComponent', '~> 2.2.0'
 
 Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 

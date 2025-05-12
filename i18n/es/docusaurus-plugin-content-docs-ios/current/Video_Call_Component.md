@@ -36,8 +36,9 @@ Versión mínima de iOS: **13**
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -64,7 +65,7 @@ completo antes de la instalación de los componentes de la **_SDKMobile_**.
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -154,7 +155,12 @@ el componente:
   del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
-let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+let controller = VoiceController(
+    data: data,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -318,9 +324,7 @@ El tamaño de los textos se inicializa similarmente en la variable dimensions co
 
 ### 8.3 Textos
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application, and modify the value
-of each _String_ by the desired one.
+El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
 
 ```java
 /* VideoAssistance view */
@@ -340,6 +344,12 @@ of each _String_ by the desired one.
 "video_call_component_timeout_title" = "Tiempo superado";
 "video_call_component_timeout_desc" = "No se ha podido conectar con un agente.";
 ```
+
+De este modo, si se desea modificar por ejemplo el texto “_Finalizar_” de la clave `video_call_component_exit_alert_finish` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+
+`"video_call_component_exit_alert_finish"="Terminar";`
+
+Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.
 
 ### 8.4 Colores
 

@@ -62,7 +62,7 @@ installing the **_SDKMobile_** components.
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
   ![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
@@ -158,7 +158,12 @@ the component:
   tracking is installed and active:
 
 ```java
-let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+let controller = VoiceController(
+    data: data,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 

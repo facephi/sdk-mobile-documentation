@@ -36,10 +36,9 @@ Sus principales funcionalidades son las siguientes:
 
 - Asistente en los procesos de captura.
 
-- Generación de las plantillas con las características de la voz y
-  puntuaciones.
+- Generación de las plantillas con las características de la voz y puntuaciones.
 
-##1.1 Requisitos mínimos
+## 1.1 Requisitos mínimos
 La versión mínima de la SDK de iOS requerida es la siguiente:
 
 Versión mínima de iOS: **13**
@@ -50,8 +49,9 @@ Versión mínima de iOS: **13**
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -79,7 +79,7 @@ completo antes de la instalación de los componentes de la
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -89,10 +89,13 @@ completo antes de la instalación de los componentes de la
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
+</div>
 
 ---
 
@@ -143,22 +146,20 @@ Mostrar pantallas de diagnóstico al final del proceso
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
 let controller = VoiceController(
-            data: data,
-            output: { sdkResult in
-                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
-                output(voiceIdSdkResult)
-            }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
+    data: voiceConfigurationData,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -167,20 +168,20 @@ let controller = VoiceController(
 
 ```java
 let controller = VoiceController(
-            data: data,
-            output: { sdkResult in
-                let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
-                output(voiceIdSdkResult)
-            }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
+    data: voiceConfigurationData,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
-El método **launchTokenizableMethod** debe usarse **por defecto**. Este método permite
+El método **launch** debe usarse **por defecto**. Este método permite
 utilizar **_tracking_** en caso de estar su componente activado, y no lo
 usará cuando esté desactivado (o no se encuentre el componente
 instalado).
 
-Por el contrario, el método **launchTokenizableMethod** cubre un caso especial, en
+Por el contrario, el método **launchMethod** cubre un caso especial, en
 el cual el integrador tiene instalado y activado el tracking, pero en un
 flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
@@ -195,15 +196,45 @@ SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_S
 
 ### 7.1. Recepción de errores
 
-En la parte del error, dispondremos de la clase VoiceError.
+En la parte del error, dispondremos del enumerado común _ErrorType_:
 
 ```java
- INTERNAL_ERROR
- MIC_PERMISSION_DENIED
- TIMEOUT
- CANCEL_BY_USER
- VOICE_ENROLLMENT_PARSE_RESPONSE
- VOICE_MATCHING_PARSE_RESPONSE
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+Los errores 'ErrorType.OTHER' y 'ErrorType.LICENSE_CHECKER_ERROR' son especiales porque además pueden informar del detalle del error.
+
+El _String_ puede tener los siguientes valores en el caso del 'ErrorType.OTHER':
+
+```java
+enum VoiceError {
+    case VOICE_ENROLLMENT_PARSE_RESPONSE
+    case VOICE_MATCHING_PARSE_RESPONSE
+}
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

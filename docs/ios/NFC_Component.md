@@ -103,7 +103,7 @@ git@github.com:facephi-clienters/SDK-NFC_component-SPM.git
 
 Once the dependencies are installed, you can use the different functionalities of the component.
 
-- If developing with **xCode15**, a post-installation script must be included:
+- If developing with **XCode15**, a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 
