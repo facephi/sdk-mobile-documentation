@@ -109,53 +109,81 @@ through the license used.
 These fields are usually **reported only** when the server is
 **OnPremise**.
 
-#### 5.1.1. Basic Configuration
+#### 5.1.1. url
 
-##### sectionTime
+Path to the video socket
 
-Indicates the duration of each of the sections in which the
-recording message.
+#### 5.1.2. apiKey
 
-##### showCompletedTutorial
+ApiKey needed for connection to the video socket
 
-Indicates whether you want to show the complete initial tutorial. If I dont know
-will show a progress indicator.
+#### 5.1.3. tenantId
 
-##### mode
+Tenant identifier referring to the current client, required for the
+connection to the video service.
 
-- ONLY_FACE: The process is carried out being necessarily only
-  showing face.
+#### 5.1.4. sectionTime
 
-- FACE_DOCUMENT_FRONT: The process is carried out using both the face and
-  the front of the identity document.
+Indicates the duration of sections with associated time (facial capture and camera change).
 
-- FACE_DOCUMENT_FRONT_BACK: The process is carried out using the face, the
-  front of the identity document and the back of the document.
+#### 5.1.5. mode
 
-#### 5.1.2 Advanced Configuration
+- ONLY_FACE: process is necessarily performed by showing only the
+  face.
 
-##### url
+- FACE_DOCUMENT_FRONT: The process is performed using both the face
+  and the front of the identity document.
 
-Path to video socket
+- FACE_DOCUMENT_FRONT_BACK: The process is performed using the face,
+  the front of the identity document and the back of the document.
 
-##### apiKey
+#### 5.1.6. timeoutServerConnection
 
-ApiKey required for connection to video socket
+Maximum timeout in ms for server response.
 
-##### tenantId
+#### 5.1.7. sectionTimeout
 
-Tenant identifier that refers to the current client,
-necessary for connection to the video service.
+Maximum time allowed to complete a section (in ms).
 
-#### 5.1.3. Other parameters
+#### 5.1.8. autoFaceDetection
 
-##### extractionTimeout
+Enables/Disables automatic face detection.
 
-Sets the maximum time that the reading can be performed.
+#### 5.1.9. debug
 
-##### VibrationEnabled
+Enables the display of additional information useful for the diagnosis and monitoring of internal behaviour.
+
+#### 5.1.10. countryFilter
+
+It allows to restrict processing to a specific set of countries by accepting an array of strings representing the aliases in ISO3 format (3-letter code according to ISO 3166-1 standard). 
+
+#### 5.1.11. documentFilter
+
+Allows to restrict the types of documents accepted during capture. Possible values are:
+
+- "IDC": ID Card
+- "PSP": Passport
+- "DLI": Driver License
+- "VIS": Visa
+- "FOC": Foreign Card
+- "INV": Invoice
+- "CUS": Custom Document
+
+#### 5.1.12. speechText
+
+Text to be spoken by the user during the recording of the video.
+
+#### 5.1.13. showCompletedTutorial
+
+Indicates whether you want to show the complete initial tutorial. If I dont know will show a progress indicator.
+
+#### 5.1.14. vibrationEnabled
 
 If the value is set to true, the vibration is activated on errors and if the widget response is OK
+
+#### 5.1.15. maximumRetries
+
+Maximum retries allowed with each operation. Default value is 3.
 
 ---
 

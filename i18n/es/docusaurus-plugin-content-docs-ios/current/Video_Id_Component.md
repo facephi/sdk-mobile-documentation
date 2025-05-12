@@ -106,19 +106,24 @@ Estos campos suelen informarse **solo** cuando el **servidor** es
 
 ### 5.1. Class VideoIdConfigurationData
 
-#### 5.1.1. Configuración Básica
+#### 5.1.1. url
 
-##### sectionTime
+Ruta al socket de video
 
-Indica la duración de cada una de las secciones en las que se muestra el
-mensaje de grabación.
+#### 5.1.2. apiKey
 
-##### showCompletedTutorial
+ApiKey necesaria para la conexión con el socket de video
 
-Indica si se quiere mostrar el tutorial inicial completo. Si no, se
-mostrará un progress indicator.
+#### 5.1.3. tenantId
 
-##### mode
+Identificador del tenant que hace referencia al cliente actual,
+necesario para la conexión con el servicio de video.
+
+#### 5.1.4. sectionTime
+
+Indica la duración de las secciones con tiempo asociado (captura facial y cambio de cámara).
+
+#### 5.1.5. mode
 
 - ONLY_FACE: El proceso se realiza siendo necesariamente solo
   mostrando la cara.
@@ -129,30 +134,54 @@ mostrará un progress indicator.
 - FACE_DOCUMENT_FRONT_BACK: El proceso se realiza usando la cara, el
   frontal del documento de identidad y la parte trasera del documento.
 
-#### 5.1.2 Configuración Avanzada
+#### 5.1.6. timeoutServerConnection
 
-##### url
+Tiempo máximo de espera en ms para la respuesta del servidor.
 
-Ruta al socket de video
+#### 5.1.7. sectionTimeout
 
-##### apiKey
+Tiempo máximo permitido para completar una sección (en ms).
 
-ApiKey necesaria para la conexión con el socket de video
+#### 5.1.8. autoFaceDetection
 
-##### tenantId
+Activa/Desactiva la detección automática de cara.
 
-Identificador del tenant que hace referencia al cliente actual,
-necesario para la conexión con el servicio de video.
+#### 5.1.9. debug
 
-#### 5.1.3. Otros
+Habilita la visualización de información adicional útil para el diagnóstico y seguimiento del comportamiento interno.
 
-##### extractionTimeout
+#### 5.1.10. countryFilter
 
-Establece el tiempo máximo que se puede realizar la lectura.
+Permite restringir el procesamiento a un conjunto específico de países, aceptando un array de strings que representan los alias en formato ISO3 (código de 3 letras según el estándar ISO 3166-1). 
 
-##### VibrationEnabled
+#### 5.1.11. documentFilter
+
+Permite restringir los tipos de documentos aceptados durante la captura. Los valores posibles son:
+
+- "IDC": Documento de Identidad (ID Card)
+- "PSP": Pasaporte (Passport)
+- "DLI": Licencia de Conducir (Driver License)
+- "VIS": Visado (Visa)
+- "FOC": Tarjeta de Extranjero (Foreign Card)
+- "INV": Factura (Invoice)
+- "CUS": Documento Personalizado (Custom Document) 
+
+#### 5.1.12. speechText
+
+Texto que el usuario deberá pronunciar durante la grabación del video. 
+
+#### 5.1.13. showCompletedTutorial
+
+Indica si se quiere mostrar el tutorial inicial completo. Si no, se
+mostrará un progress indicator.
+
+#### 5.1.14. vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
+
+#### 5.1.15. maximumRetries
+
+Número de reintentos permitidos en cada operación. Por defecto, su valor es 3.
 
 ---
 
