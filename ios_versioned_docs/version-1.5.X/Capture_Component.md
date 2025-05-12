@@ -48,7 +48,7 @@ installing the **_SDKMobile_** components.
 
 #### Cocoapods
 
-- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
