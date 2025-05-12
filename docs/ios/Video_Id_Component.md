@@ -389,7 +389,7 @@ case video_id_anim_diagnostic_error
 
 To modify the time spent on each recording screen, the value of the time parameter (in ms) of the VideoIDConfigurationData must be modified:
 
-`VideoIDConfigurationData(...,sectionTime: TIEMPO EN MS,...)`
+`VideoIDConfigurationData(...,sectionTime: TIME IN MS,...)`
 
 The minimum supported is 5000ms.
 
@@ -467,7 +467,7 @@ The texts can be customized by overriding the value of these keys inside a **Loc
 "video_id_component_face_timeout_desc" = "Please place your face on the check mark to start the process";
 ```
 
-Thus, if you want to modify for example the text "_Finish_" of the key `video_id_finish_button` for the language **es-MX**, you must go to the file **Localizable.strings** in the folder **es-MX.lproj** if it exists (if not, you must create it) and there, add:
+Thus, if you want to modify for example the text "_Finish_" of the key `video_id_finish_button` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
 
 `"video_id_finish_button"="Finish";`.
 
