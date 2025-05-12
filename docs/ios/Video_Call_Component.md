@@ -15,8 +15,7 @@ For more information on the base configuration, go to the [Getting Started](./Mo
 
 ## 1. Introduction
 
-The component discussed in the current document is called VideoCall
-Component. It is in charge of managing the communication between a user
+The component discussed in the current document is called **_VideoCall Component_**. It is in charge of managing the communication between a user
 and an agent remotely, through a communication channel. It is mainly
 oriented to video assistance use cases.
 
@@ -67,7 +66,7 @@ installing the **_SDKMobile_** components.
 
 ### 2.2 Permissions and configurations
 
-In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
+In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the **Info.plist** file.
 
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
 
@@ -80,6 +79,7 @@ In order to generate the associated information correctly in the platform, the *
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
+
 To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
 
@@ -104,8 +104,7 @@ and what each of them is used for.
 
 ### 5.1. Class VideoCallConfigurationData
 
-The fields included in the configuration, normally **do not need to be
-be reported** as they are filled internally through the license used.
+The fields included in the configuration, normally **do not need to be be reported** as they are filled internally through the license used.
 license used.
 
 #### 5.1.1. Basic Configuration
@@ -131,7 +130,7 @@ required for the connection to the video service.
 
 #### 5.1.3. Other parameters
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If set to true, vibration is enabled on errors and if the widget response is OK.
 
@@ -139,23 +138,11 @@ If set to true, vibration is enabled on errors and if the widget response is OK.
 
 ## 6. Use of the component
 
-<div class="warning">
-<span class="warning">:warning:</span>
-For version 2.0.2 or higher, you must include the parameter extensionName: ‘’.
-This new parameter is for screen sharing, if not used it must be an empty string.
-
-let videocallController = VideoCallController(data: data, extensionName: "videoRecording", output: output, viewController: viewController)
-
-</div>
-
-Once the component has been started and a new operation has been created (**section
-3**) the SDK components can be launched. There are two ways to launch
+Once the component has been started and a new operation has been created (**Section 3**) the SDK components can be launched. There are two ways to launch
 the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
-  of the component normally, but **the events will be tracked**
-  internal to the _tracking_ server in the event that the component
-  tracking is installed and active:
+  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
 let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
@@ -163,9 +150,7 @@ SDKController.shared.launch(controller: controller)
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows launching the functionality
-  of the component normally, but **will not be tracked** any
-  event to the _tracking_ server in case the
-  tracking:
+  of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
 let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
@@ -174,8 +159,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 The **launch** method should be used **by default**. This method allows
 use **_tracking_** if its component is activated, and do not
-will be used when it is disabled (or the component is not found
-installed).
+will be used when it is disabled (or the component is not found installed).
 
 On the contrary, the **launchMethod** method covers a special case, in
 which the integrator has tracking installed and activated, but in a
@@ -201,36 +185,54 @@ They will be able to modify:
 
 ### Example configuration
 
-```
+```java
   log("LAUNCH VIDEO CALL")
 
-  let videocallController = VideoCallController(data: VideoCallConfigurationData(
-                                                          url: "Enter URL",
-                                                          apikey: "Enter the ApiKey",
-                                                          tenantId: "Enter the tenantId"),
-                                                output: output, viewController: viewController)
-  SDKController.shared.launchMethod(controller: videocallController)
+  let videocallController = VideoCallControlle(
+    data: VideoCallConfigurationData(
+      vibrationEnabled: true,
+      activateScreenSharing: true,
+      timeout: 8000
+    ),
+    output: output,
+    viewController: viewController)
+  SDKController.shared.launch(controller: videocallController)
 ```
-
-<blockquote>
-*** IMPORTANT ***
-The values are assigned by default. **ONLY** must be configured in case of using an external platform to the one provided by Facephi, within the license.
-</blockquote>
 
 ## 7. Receipt of the result
 
-The controllers will return the required information in SdkResult format
--more details in the [Getting Started](./Mobile_SDK)-.
+The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
 ### 7.1. Receiving errors
 
-On the error side, we will have the VideoCallError class.
+On the error side, we will have the common enum _ErrorType_.
 
 ```java
- VIDEO_CALL_CANCEL_BY_USER
- VIDEO_CALL_TIMEOUT
- VIDEO_CALL_INTERNAL_ERROR
- VIDEO_CALL_DECODER_ERROR
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
 ```
 
 ### 7.2. Receiving successful execution - _data_
@@ -245,8 +247,8 @@ When the result is Success and the _sharingScreen_ flag is active, screen sharin
 ## 8. Customizing the component
 
 Apart from the changes that can be made at SDK level (which are
-explained in the [Getting Started](./Mobile_SDK)
-document), this particular component allows the modification of specific
+explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
+document), this particular component allows the modification of specific animations, images, fonts, colors and
 texts.
 
 To customise the component, ThemeVideoCallManager.setup(theme: CustomThemeVideoCall() ) must be called before launching the videocallController:
@@ -257,7 +259,7 @@ ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
 SDKController.shared.launch(controller: videocallController)
 ```
 
-An example of the CustomThemeVideoCall class would be this (must implement ThemeVideoCallProtocol):
+An example of the CustomThemeVideoCall class would be this (must extend ThemeVideoCallProtocol):
 
 ```java
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
@@ -279,43 +281,32 @@ class CustomThemeVideoCall: ThemeVideoCallProtocol {
 }
 ```
 
-### 8.1 Colours and images
+### 8.1 Images
 
 Images are initialised in the variable images , passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
 
-```
-case close
-```
-
-Colours are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
-
-```
-case sdkPrimaryColor
-case sdkBackgroundColor
-case sdkSecondaryColor
-case sdkBodyTextColor
-case sdkTitleTextColor
-case sdkSuccessColor
-case sdkErrorColor
-case sdkNeutralColor
-case sdkAccentColor
-case sdkTopIconsVideoColor
-case sdkTopIconsColor
+```java
+case ic_sdk_close
+case ic_sdk_close_arrow
+case ic_video_call_camera_off
+case ic_video_call_camera_on
+case ic_video_call_hangout
+case ic_video_call_micro
+case ic_video_call_mute
+case ic_video_call_phone
+case ic_video_call_recording
+case ic_video_call_share
+case ic_video_call_timeout
+case ic_video_call_camera_toggle
 ```
 
 ### 8.2 Fonts
 
 Fonts are initialised similarly in the fonts variable with a dictionary, having as value a String with the name of the desired UIFont.
 
-```
+```java
 case regular
 case bold
-```
-
-The animations to be used are similarly initialised in the animations variable with a dictionary, having as value a String with the name of the animation found in the xcassets to be used.
-
-```
-case phone_calling
 ```
 
 The size of the texts is initialised similarly in the dimensions variable with a dictionary, having as value a CGFloat with the desired size.
@@ -327,27 +318,49 @@ following XML file in the client application, and modify the value
 of each _String_ by the desired one.
 
 ```java
- <!-- VIDEO CALL -->
-    <string name="video_call_text_waiting_agent_title">Connecting with an assistant…</string>
-    <string name="video_call_agent">Agent</string>
-    <string name="video_call_exit_alert_title">Cancel process</string>
-    <string name="video_call_exit_alert_question">Are you sure you want to leave the video assistance?</string>
-    <string name="video_call_exit_alert_exit">Quit</string>
-    <string name="video_call_exit_alert_cancel">Cancel</string>
-    <string name="video_call_exit">Exit</string>
-    <string name="video_call_network_connection_error">Check your internet connection.</string>
-    <string name="video_call_image_description">Phone</string>
-    <string name="video_call_text_finish">Video assistance is complete</string>
-    <string name="video_call_text_finish_button">Exit</string>
-    <string name="video_call_accesibility_phone">Phone</string>
+/* VideoAssistance view */
+"video_call_component_exit_alert_question" = "Are you sure you want to end the call?";
+
+/* Other */
+"video_call_component_exit_alert_finish" = "Finalize";
+"video_call_component_exit_alert_accept" = "Agree";
+"video_call_component_exit_alert_cancel" = "Cancel";
+"video_call_component_exit_alert_skip" = "SKIP";
+"video_call_component_exit_alert_retry" = "RETRY";
+
+"video_call_component_agent_label" = "Assistant";
+"video_call_component_text_waiting_agent_title" = "Connecting with an assistant…";
+"video_call_component_close_alt" = "Close";
+"video_call_component_back_alt" = "Back";
+"video_call_component_timeout_title" = "Timeout exceeded";
+"video_call_component_timeout_desc" = "An assistant could not be contacted.";
 ```
 
 ### 8.4 Colors
 
+Colors are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+
 ```java
-<!-- VIDEO CALL -->
-<color name="colorVideoCallPhoneButtonBackground">#F44336</color>
-<color name="colorVideoCallActionsBackground">#30333d</color>
-<color name="colorVideoCallCardText">#ffffff</color>
-<color name="colorVideoCallButtonBackground">#FF526080</color>
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsVideoColor
+case sdkTopIconsColor
+// VideoCall Specific Colors
+case sdkBackgroundDisabled
+```
+
+### 8.5 Animations
+
+The animations to be used are similarly initialised in the animations variable with a dictionary, having as value a String with the name of the animation found in the xcassets to be used.
+
+```java
+case video_call_anim_waiting
 ```
