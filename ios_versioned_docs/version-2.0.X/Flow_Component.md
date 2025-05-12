@@ -72,7 +72,7 @@ beforehand.
 | FSelphiController          | Facial recognition    |
 | FSelphIDController         | Document recognition  |
 | FVoiceController           | Voice capture         |
-| FPhingersController        | Capture of footprints |
+| FPhingersController        | Fingerprint Capture   |
 | FNfcController             | NFC                   |
 | FQrReaderController        | QR Reader             |
 | FPhacturasReaderController | Invoice capture       |

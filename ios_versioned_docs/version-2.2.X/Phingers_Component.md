@@ -150,7 +150,7 @@ head facing forward and not moving it.
 #### 5.1.3 returnWSQ
 
 If set to **true** then in the result of the capture it will
-will return, for each of the footprints, the compressed data by means of
+will return, for each of the fingerprints, the compressed data by means of
 Wavelet Scalar Quatization\_ (WSQ). WSQ is a grey compression algorithm, being a standard (N
 being a standard (NIST) for this type of captures. Oriented
 validation against the different existing governmental databases.

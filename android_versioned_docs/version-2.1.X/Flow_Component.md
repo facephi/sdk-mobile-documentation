@@ -65,7 +65,7 @@ When initiating the launch of a Flow operation, a new operation is generated int
 | FSelphiController          | Facial recognition    |
 | FSelphIDController         | Document recognition  |
 | FVoiceController           | Voice capture         |
-| FPhingersController        | Capture of footprints |
+| FPhingersController        | Fingerprint Capture   |
 | FNfcController             | NFC                   |
 | FQrReaderController        | QR Reader             |
 | FPhacturasReaderController | Invoice capture       |

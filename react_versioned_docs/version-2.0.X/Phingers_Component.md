@@ -8,7 +8,7 @@ The Component discussed in the current document is called ***Phingers Component*
 - Permit management.
 - Built-in liveness detection.
 - Assistant in the fingerprint capture processes.
-- Generation of templates with the characteristics of footprints, images and scores.
+- Generation of templates with the characteristics of the fingerprints, images and scores.
 
 ### 1.1 Minimum requirements
 

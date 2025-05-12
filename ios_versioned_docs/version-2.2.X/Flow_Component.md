@@ -65,7 +65,7 @@ internally, a new operation is generated in a completely transparent way.
 | SelphiController          | Facial recognition    |
 | SelphIDController         | Document recognition  |
 | VoiceController           | Voice capture         |
-| PhingersController        | Capture of footprints |
+| PhingersController        | Fingerprint Capture   |
 | NFCController             | NFC                   |
 | QrReaderController        | QR Reader             |
 | InvoiceReaderController   | Invoice capture       |
