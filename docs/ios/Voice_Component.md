@@ -144,7 +144,7 @@ Show diagnostic screens at the end of the process
 ## 6. Using the component
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
+(**Section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality

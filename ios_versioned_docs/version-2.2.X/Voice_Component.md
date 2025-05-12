@@ -89,6 +89,7 @@ In order to generate the associated information correctly in the platform, the *
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
+
 To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
 
@@ -143,7 +144,7 @@ Show diagnostic screens at the end of the process
 ## 6. Using the component
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
+(**Section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
