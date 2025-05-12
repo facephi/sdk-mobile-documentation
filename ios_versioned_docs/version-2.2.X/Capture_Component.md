@@ -65,7 +65,7 @@ installing the **_SDKMobile_** components.
 
 ### 2.2 Permissions and configurations
 
-In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
+In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the **Info.plist** file
 
 ```
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
