@@ -187,14 +187,13 @@ sent to the platform.
 
 ---
 
-## 7. Recepción del resultado
+## 7. Reception of the result
 
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
+The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Recepción de errores
+### 7.1. Receipt of errors
 
-En la parte del error, dispondremos de la clase VoiceError.
+On the error side, we will have the common _ErrorType_ enum:
 
 ```java
  INTERNAL_ERROR
