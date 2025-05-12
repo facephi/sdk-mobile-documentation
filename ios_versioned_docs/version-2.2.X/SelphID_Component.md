@@ -280,7 +280,7 @@ When the document capture is performed in 2 calls, this property allows to pass 
 
 In case both sides of the document are captured in a single call this is not necessary as the widget internally does this process.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If true, vibration is enabled on errors and if the widget response is OK, the following is true
 

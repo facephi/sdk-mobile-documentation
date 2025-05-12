@@ -159,7 +159,7 @@ necesario para la conexión con el servicio de video.
 
 Establece el tiempo máximo que se puede realizar la lectura.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 

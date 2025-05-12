@@ -153,7 +153,7 @@ necessary for connection to the video service.
 
 Sets the maximum time that the reading can be performed.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If the value is set to true, the vibration is activated on errors and if the widget response is OK
 

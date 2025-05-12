@@ -245,7 +245,7 @@ Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuar
 
 #### 5.1.3 Otros parametros
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 

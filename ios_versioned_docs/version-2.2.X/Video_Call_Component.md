@@ -131,7 +131,7 @@ required for the connection to the video service.
 
 #### 5.1.3. Other parameters
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If set to true, vibration is enabled on errors and if the widget response is OK.
 

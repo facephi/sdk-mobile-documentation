@@ -155,7 +155,7 @@ necesario para la conexión con el servicio de video.
 
 #### 5.1.3. Otros parametros
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 

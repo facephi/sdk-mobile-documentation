@@ -245,7 +245,7 @@ to configure the views of the widget.
 
 #### 5.1.3 Otros parametros
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If true, vibration is enabled on errors and if the response of the widget is OK
 

@@ -259,7 +259,7 @@ Cuando la captura del documento se realiza en 2 llamadas, esta propiedad permite
 
 En el caso que la captura de ambas caras del documento se realice en una única llamada esto no es necesario ya que el widget internamente hace este proceso.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 

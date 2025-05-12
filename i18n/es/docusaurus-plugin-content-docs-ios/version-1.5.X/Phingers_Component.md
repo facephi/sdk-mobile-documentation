@@ -127,7 +127,7 @@ esta clase y para qué se utiliza cada uno de ellos.
 Indica si el componente activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-##### VibrationEnabled
+##### vibrationEnabled
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
 ##### reticleOrientation
