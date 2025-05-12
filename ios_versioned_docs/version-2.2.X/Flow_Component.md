@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Depending on the use
 case that is required, certain components must be installed. Its high
@@ -65,7 +65,7 @@ internally, a new operation is generated in a completely transparent way.
 | SelphiController          | Facial recognition    |
 | SelphIDController         | Document recognition  |
 | VoiceController           | Voice capture         |
-| PhingersController        | Capture of footprints |
+| PhingersController        | Fingerprint Capture   |
 | NFCController             | NFC                   |
 | QrReaderController        | QR Reader             |
 | InvoiceReaderController   | Invoice capture       |

@@ -34,8 +34,9 @@ en segundo plano mientras se ejecuta el proceso de la **SDKMobile**.
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -53,18 +54,18 @@ Las dependencias **obligatorias** que deberán haberse instalado previamente
 (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 1.5.0'
+pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 Para instalar el componente de Behavior deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-pod 'FPHISDKBehaviorComponent', '~> 1.5.0'
+pod 'FPHISDKBehaviorComponent', '~> 2.2.0'
 ```
 
 Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -76,12 +77,15 @@ Cuando se desea realizar una determinada operación, para generar la
 información asociada correctamente en la plataforma deberá ejecutarse
 previamente el comando **newOperation**.
 
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del
 componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de [Primeros Pasos](./Mobile_SDK#4-iniciar-nueva-operación), en el que se detalla
 y explica en qué consiste este proceso.
+</div>
 
 ---
 

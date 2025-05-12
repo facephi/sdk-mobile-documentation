@@ -127,7 +127,7 @@ esta clase y para qué se utiliza cada uno de ellos.
 Indica si el componente activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-##### VibrationEnabled
+##### vibrationEnabled
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
 ##### reticleOrientation
@@ -206,7 +206,7 @@ el componente:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -215,7 +215,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 <div class="warning">
 <span class="warning">:warning:</span>

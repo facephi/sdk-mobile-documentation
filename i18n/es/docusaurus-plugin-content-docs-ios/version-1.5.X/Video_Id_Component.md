@@ -159,7 +159,7 @@ necesario para la conexión con el servicio de video.
 
 Establece el tiempo máximo que se puede realizar la lectura.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
@@ -177,7 +177,7 @@ el componente:
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -186,7 +186,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 <div class="warning">

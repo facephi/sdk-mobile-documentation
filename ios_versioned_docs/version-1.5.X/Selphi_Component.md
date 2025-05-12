@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
 be installed depending on the use case required. Its high level of
@@ -66,7 +66,7 @@ of the Facephi libraries (_Widgets_), these must be completely removed before th
 completely before the installation of the components of the **_SDKMobile_** components.
 </div>
 #### Cocoapods
-- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
   pod 'FPHISDKMainComponent', '~> 1.5.0'
@@ -239,7 +239,7 @@ to configure the views of the widget.
 
 #### 5.1.3 Otros parametros
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If true, vibration is enabled on errors and if the response of the widget is OK
 

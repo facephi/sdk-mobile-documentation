@@ -155,7 +155,7 @@ necesario para la conexión con el servicio de video.
 
 #### 5.1.3. Otros parametros
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
@@ -172,8 +172,13 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+let controller = VideoCallController(
+    data: videoCallConfigurationData,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -182,7 +187,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 <div class="warning">

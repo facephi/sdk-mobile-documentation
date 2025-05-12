@@ -62,6 +62,7 @@ data-linked-resource-type="page"><strong>Mobile SDK</strong></a> y seguir las in
 documento.
 
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -114,7 +115,7 @@ git@github.com:facephi-clienters/SDK-NFC_component-SPM.git
 
 Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
 
 ![Image](/ios/fix_ldClassic.png)
 

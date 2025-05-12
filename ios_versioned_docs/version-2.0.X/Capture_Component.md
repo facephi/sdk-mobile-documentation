@@ -62,7 +62,7 @@ complete before installing the components of the
 
 - Once the dependencies are installed, you can use the different functionalities of the component.
 
-- If developing with **xCode15**, a post-installation script must be included:
+- If developing with **XCode15**, a post-installation script must be included:
   ![Image](/ios/fix_ldClassic.png)
 
 ## 2.2 Permissions and settings
@@ -211,7 +211,7 @@ let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, 
 SDKController.shared.launch(controller: controller)
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to _tracking_ server:
 
@@ -252,7 +252,7 @@ the component:
 
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to _tracking_ server:
 
@@ -293,7 +293,7 @@ the component:
 
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to _tracking_ server:
 

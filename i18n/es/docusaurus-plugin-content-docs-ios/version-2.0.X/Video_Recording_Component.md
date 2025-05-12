@@ -46,6 +46,7 @@ data-linked-resource-type="page"><strong><u>Mobile SDK</u></strong></a>
 y seguir las instrucciones indicadas en dichodocumento.
 
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 

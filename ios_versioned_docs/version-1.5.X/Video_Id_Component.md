@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Depending on the use
 case that is required, certain components must be installed. Its high
@@ -164,7 +164,7 @@ necessary for connection to the video service.
 
 Sets the maximum time that the reading can be performed.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If the value is set to true, the vibration is activated on errors and if the widget response is OK
 
@@ -182,7 +182,7 @@ to launch the component:
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -191,7 +191,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 <div class="warning">

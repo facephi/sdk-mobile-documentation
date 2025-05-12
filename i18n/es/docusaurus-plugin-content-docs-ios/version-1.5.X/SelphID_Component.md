@@ -49,10 +49,6 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 ```java
   pod 'FPHISDKMainComponent', '~> 1.5.0'
-  pod 'JWTDecode'
-  pod 'SwiftFormat/CLI'
-  pod 'IQKeyboardManagerSwift'
-  pod 'zipzap'
 ```
 
 - Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
@@ -266,7 +262,7 @@ Cuando la captura del documento se realiza en 2 llamadas, esta propiedad permite
 
 En el caso que la captura de ambas caras del documento se realice en una única llamada esto no es necesario ya que el widget internamente hace este proceso.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 

@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile Base Requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
 be installed depending on the use case required. Its high level of
@@ -110,7 +110,7 @@ git@github.com:facephi-clienters/SDK-NFC_component-SPM.git
 
 Once the dependencies are installed, you can use the different functionalities of the component.
 
-- If developing with **xCode15**, a post-installation script must be included:
+- If developing with **XCode15**, a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -451,7 +451,7 @@ public protocol ThemeNFCProtocol {
     var fonts: [R.Font: String] { get }
     var dimensions: [R.Dimension: CGFloat] { get }
     var images: [R.Image: UIImage?] { get }
-    var colours: [R.Color: UIColor?] { get }
+    var colors: [R.Color: UIColor?] { get }
     var animations: [R.Animation: String] { get }
 }
 ```

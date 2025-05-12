@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
 be installed depending on the use case required. Its high level of
@@ -70,10 +70,6 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 ```
   pod 'FPHISDKMainComponent', '~> 2.0.0'
-  pod 'JWTDecode'
-  pod 'SwiftFormat/CLI'
-  pod 'IQKeyboardManagerSwift'
-  pod 'zipzap'
 ```
 
 - To install the SelphID component, the following entry must be included in the application Podfile:
@@ -84,7 +80,7 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -288,7 +284,7 @@ When the document capture is performed in 2 calls, this property allows to pass 
 
 In case both sides of the document are captured in a single call this is not necessary as the widget internally does this process.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If true, vibration is enabled on errors and if the widget response is OK, the following is true
 

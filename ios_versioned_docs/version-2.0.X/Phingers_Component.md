@@ -153,7 +153,7 @@ head facing forward and not moving it.
 #### 5.1.3 returnWSQ
 
 If set to **true** then in the result of the capture it will
-will return, for each of the footprints, the compressed data by means of
+will return, for each of the fingerprints, the compressed data by means of
 Wavelet Scalar Quatization_ (WSQ). WSQ is a grey compression algorithm, being a standard (N
 being a standard (NIST) for this type of captures. Oriented
 validation against the different existing governmental databases.
@@ -227,18 +227,15 @@ Once the component has been started and a new operation has been created
 (**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component normally, but internal events will be tracked to
-  the _tracking_ server:
+- **\[WITH TRACKING\]** This call allows launching the functionality
+  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
-
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component normally, but **no event will be
-  tracked** to the _tracking_ server:
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
+  of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)

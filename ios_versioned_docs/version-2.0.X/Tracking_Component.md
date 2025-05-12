@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
 be installed depending on the use case required. Its high level of
@@ -76,7 +76,7 @@ pod 'FPHISDKTrackingComponent', '~> 2.0.0'
 
 Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 

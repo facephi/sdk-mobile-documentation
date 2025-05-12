@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Depending on the use
 case that is required, certain components must be installed. Its high
@@ -71,7 +71,7 @@ installing the **_SDKMobile_** components.
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
   ![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
@@ -140,7 +140,7 @@ required for the connection to the video service.
 
 #### 5.1.3. Other parameters
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If set to true, vibration is enabled on errors and if the widget response is OK.
 
@@ -170,7 +170,7 @@ the component:
   SDKController.shared.launch(controller: videocallController)
   ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to the _tracking_ server in case the
   tracking:
@@ -275,15 +275,15 @@ An example of the CustomThemeVideoCall class would be this (must implement Theme
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
 
-    var colours: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
+    var colors: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
 
-    var animations: [R.Animation: String] = [:] var animations: [R.Animation: String] = [:]
+    var animations: [R.Animation: String] = [:]
 
     var name: String {
         "custom"
     }
 
-    var fonts: [R.Font: String] = [:] var fonts: [R.Font: String] = [:] var font: [R.Font: String] = [:]
+    var fonts: [R.Font: String] = [:]
 
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]

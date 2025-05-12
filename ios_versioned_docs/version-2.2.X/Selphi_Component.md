@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Certain components must
 be installed depending on the use case required. Its high level of
@@ -60,10 +60,10 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 #### 2.1.1 Cocoapods
 
-- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **required** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
+- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.0.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
   pod 'zipzap'
 ```
 
@@ -71,12 +71,12 @@ completely before the installation of the components of the **_SDKMobile_** comp
   entry in the _Podfile_ of the application:
 
 ```
-  pod 'FPHISDKSelphiComponent', '~> 2.0.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.2.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -102,11 +102,9 @@ git@github.com:facephi-clienters/SDK-Selphi_component-SPM.git
 
 ### 2.2 Permissions and configurations
 
-In the client application where the components are to be integrated, it is necessary to incorporate the following elements in the info.plist file
+In the client application where the components are to be integrated, it is necessary to incorporate the following elements in the **Info.plist** file.
 
-```
-It is necessary to allow the use of the camera (Privacy - Camera Usage Description)
-```
+It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
 
 ---
 
@@ -117,6 +115,7 @@ In order to generate the associated information correctly in the platform, the *
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
+
 To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
 
@@ -236,7 +235,7 @@ to configure the views of the widget.
 
 #### 5.1.3 Other parameters
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If true, vibration is enabled on errors and if the response of the widget is OK
 
@@ -245,7 +244,7 @@ If true, vibration is enabled on errors and if the response of the widget is OK
 ## 6. Use of the component
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
+(**Section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
 - **\[WITH TRACKING\]** This call allows to launch the functionality

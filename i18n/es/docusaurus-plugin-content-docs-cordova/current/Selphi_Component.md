@@ -71,7 +71,7 @@ Desde diferentes IDE's, Los proyectos generados en las carpetas de Android e iOS
 #### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-Añadir los permisos de cámara: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
+Añadir los permisos de cámara: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo **Info.plist** de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
 
 ```
 <key>NSCameraUsageDescription</key>

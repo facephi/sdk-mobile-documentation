@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Depending on the use
 case that is required, certain components must be installed. Its high
@@ -15,8 +15,7 @@ For more information on the base configuration, go to the [Getting Started](./Mo
 
 ## 1. Introduction
 
-The _component_ discussed in the current document is called **Voice
-Component**. It is in charge of capturing the user's voice and the
+The _Component_ discussed in the current document is called **_Voice Component_**. It is in charge of capturing the user's voice and the
 subsequent extraction of the corresponding templates. Its main
 functionalities are the following:
 
@@ -66,18 +65,18 @@ installing the **_SDKMobile_** components.
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  	pod 'FPHISDKMainComponent', '~> 1.5.0'
+  	pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 - To install the VoiceID component, the following entry must be included in the application's Podfile:
 
 ```
-  	pod 'VoiceIdController', '~> 1.5.0'
+  	pod 'FPHISDKVoiceIDComponent', '~> 2.2.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
+- In case of development with **XCode15** a post-installation script must be included:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -90,6 +89,7 @@ In order to generate the associated information correctly in the platform, the *
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
+
 To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
 
@@ -144,12 +144,11 @@ Show diagnostic screens at the end of the process
 ## 6. Using the component
 
 Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
+(**Section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component normally, but internal events will be tracked to
-  the _tracking_ server:
+- **\[WITH TRACKING\]** This call allows launching the functionality
+  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
 let controller = VoiceController(
@@ -158,12 +157,10 @@ let controller = VoiceController(
                 let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
                 output(voiceIdSdkResult)
             }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
+        SDKController.shared.launch(controller: controller)
 ```
-
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component normally, but **no event will be
-  tracked** to the _tracking_ server:
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
+  of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
 let controller = VoiceController(
@@ -172,7 +169,7 @@ let controller = VoiceController(
                 let voiceIdSdkResult = SdkResult(finishStatus: sdkResult.finishStatus, errorType: sdkResult.errorType, data: sdkResult.data)
                 output(voiceIdSdkResult)
             }, viewController: viewController)
-        SDKController.shared.launchTokenizableMethod(controller: controller)
+        SDKController.shared.launchMethod(controller: controller)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -227,7 +224,7 @@ Facephi tokenised format.
 ## Customisation of the component
 
 Apart from the changes that can be made at SDK level (which are
-explained in the [Getting Started](./Mobile_SDK)
+explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
 document), this particular component allows the modification of specific
 texts.
 

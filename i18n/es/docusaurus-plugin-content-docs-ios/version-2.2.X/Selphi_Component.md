@@ -46,8 +46,9 @@ Versión mínima de iOS: **13**
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Antes de integrar este componente se recomienda leer la documentación de [Integración](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
+Antes de integrar este componente se recomienda leer la documentación de [Integración Inicial](./Mobile_SDK#2-integración-inicial) y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
@@ -64,19 +65,19 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
   pod 'zipzap'
 ```
 
 - Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-  pod 'FPHISDKSelphiComponent', '~> 1.5.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.2.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -114,10 +115,13 @@ Es necesario permitir el uso de la cámara (Privacy - Camera Usage Description)
 
 Cuando se desea realizar una determinada operación, para generar la información asociada correctamente en la plataforma deberá ejecutarse previamente el comando **newOperation**.
 
+<div class="note">
+<span class="note">:information_source:</span>
 Este comando debe haberse ejecutado **anteriormente al lanzamiento del componente**.
 
 Para saber más acerca de cómo iniciar una nueva operación, se recomienda
 consultar la documentación de [Iniciar nueva operación](./Mobile_SDK#4-iniciar-nueva-operacion), en el que se detalla y explica en qué consiste este proceso.
+</div>
 
 ---
 
@@ -234,7 +238,7 @@ configurar las vistas del widget.
 
 #### 5.1.3 Otros parametros
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
@@ -242,13 +246,11 @@ Si se le da valor true, se activa la vibración en errores y si la respuesta del
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
 let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)

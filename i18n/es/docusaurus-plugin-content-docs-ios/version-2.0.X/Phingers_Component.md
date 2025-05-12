@@ -52,6 +52,7 @@ Versión mínima de iOS: **13**
 <span class="warning">:warning:</span>
 Antes de integrar este componente se recomienda leer la documentación relativa a <u>**Core Component**</u> y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
@@ -121,7 +122,7 @@ esta clase y para qué se utiliza cada uno de ellos.
 Indica si el componente activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-##### VibrationEnabled
+##### vibrationEnabled
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
 ##### reticleOrientation
@@ -190,17 +191,15 @@ Indica la relación para el recorte de la captura.
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -209,7 +208,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 <div class="warning">
 <span class="warning">:warning:</span>

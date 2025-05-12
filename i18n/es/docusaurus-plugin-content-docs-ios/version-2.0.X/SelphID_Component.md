@@ -38,6 +38,7 @@ Antes de integrar este componente se recomienda leer la documentación relativa 
 data-linked-resource-id="2605285492" data-linked-resource-version="11"
 data-linked-resource-type="page">Mobile SDK</a>.y seguir las instrucciones indicadas en dicho documento.
 </div>
+
 En esta sección se explicará paso a paso cómo integrar el componente actual en un proyecto ya existente.
 
 ### 2.1. Dependencias requeridas para la integración
@@ -51,10 +52,6 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 ```
   pod 'FPHISDKMainComponent', '~> 2.0.0'
-  pod 'JWTDecode'
-  pod 'SwiftFormat/CLI'
-  pod 'IQKeyboardManagerSwift'
-  pod 'zipzap'
 ```
 
 - Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
@@ -65,7 +62,7 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
-- En caso de realizar el desarrollo con **xCode15** se deberá incluir un script de post-instalacion:
+- En caso de realizar el desarrollo con **XCode15** se deberá incluir un script de post-instalacion:
 
 ![Image](/ios/fix_ldClassic.png)
 
@@ -268,7 +265,7 @@ Cuando la captura del documento se realiza en 2 llamadas, esta propiedad permite
 
 En el caso que la captura de ambas caras del documento se realice en una única llamada esto no es necesario ya que el widget internamente hace este proceso.
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
 
@@ -276,13 +273,11 @@ Si se le da valor true, se activa la vibración en errores y si la respuesta del
 
 ## 6. Uso del componente
 
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+Una vez iniciado el componente y creada una nueva operación (**Apartado 3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
 el componente:
 
 - **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+  del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
 let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)

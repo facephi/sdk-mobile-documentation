@@ -2,7 +2,7 @@
 
 ## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (Components) that offer a series of
+**SDK Mobile** is a set of libraries (**Components**) that offer a series of
 functionalities and services, allowing their integration into a Mobile
 application in a simple and fully scalable way. Depending on the use
 case that is required, certain components must be installed. Its high
@@ -51,23 +51,24 @@ installing the **_SDKMobile_** components.
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 1.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.2.0'
 ```
 
 - To install the VideoCall component, the following entry must be included in the application Podfile:
 
 ```java
-  pod 'FPHISDKVideoCallComponent', '~> 1.5.0'
+  pod 'FPHISDKVideoCallComponent', '~> 2.2.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
 
-- In case of development with **xCode15** a post-installation script must be included:
-  ![Image](/ios/fix_ldClassic.png)
+- In case of development with **XCode15** a post-installation script must be included:
+
+![Image](/ios/fix_ldClassic.png)
 
 ### 2.2 Permissions and configurations
 
-In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the info.plist file
+In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the **Info.plist** file.
 
 It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
 
@@ -80,6 +81,7 @@ In order to generate the associated information correctly in the platform, the *
 <div class="note">
 <span class="note">:information_source:</span>
 This command must have been executed **before launch**.
+
 To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
 </div>
 
@@ -131,7 +133,7 @@ required for the connection to the video service.
 
 #### 5.1.3. Other parameters
 
-##### VibrationEnabled
+##### vibrationEnabled
 
 If set to true, vibration is enabled on errors and if the widget response is OK.
 
@@ -158,18 +160,23 @@ the component:
   tracking is installed and active:
 
 ```java
-let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+let controller = VoiceController(
+    data: data,
+    output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to the _tracking_ server in case the
   tracking:
 
 ```java
 let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 The **launch** method should be used **by default**. This method allows
@@ -263,15 +270,15 @@ An example of the CustomThemeVideoCall class would be this (must implement Theme
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
 
-    var colours: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
 
-    var animations: [R.Animation: String] = [:] var animations: [R.Animation: String] = [:]
+    var animations: [R.Animation: String] = [:]
 
     var name: String {
         "custom"
     }
 
-    var fonts: [R.Font: String] = [:] var fonts: [R.Font: String] = [:] var font: [R.Font: String] = [:]
+    var fonts: [R.Font: String] = [:]
 
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]
@@ -290,14 +297,17 @@ case close
 Colours are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
 
 ```
-case ButtonBackground
-case ButtonBackgroundDisabled
-case CardBackground
-case CardText
-case MainBackground
-case PhoneButtonBackground
-case Primary
-case TitleText
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsVideoColor
+case sdkTopIconsColor
 ```
 
 ### 8.2 Fonts
@@ -319,9 +329,7 @@ The size of the texts is initialised similarly in the dimensions variable with a
 
 ### 8.3 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application, and modify the value
-of each _String_ by the desired one.
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```java
  <!-- VIDEO CALL -->
