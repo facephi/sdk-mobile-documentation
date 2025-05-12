@@ -411,7 +411,7 @@ Adicionalmente se añaden claves del propio objeto results para hacer más fáci
 ## 8. Personalizando el componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk), este componente en concreto permite la modificación de animaciones y textos específicos.
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones y textos específicos.
 
 ### 8.1 Personalizando las animaciones
 

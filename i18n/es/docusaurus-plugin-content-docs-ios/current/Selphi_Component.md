@@ -367,7 +367,7 @@ SDKController.shared.launchMethod(controller: controller)
 ## 9. Personalizando el componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk), este componente en concreto permite la modificación de animaciones y textos específicos.
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones y textos específicos.
 
 ### 9.1 Personalizando las animaciones
 
