@@ -461,9 +461,9 @@ configSelphi.livenessMode = SelphiFaceLivenessMode.MOVE
 
 ### 9.2 Texts
 
-The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
-```
+```java
 "selphi_component_tutorial_1"="Place your face in the centre and look straight into the camera.";
 "selphi_component_tutorial_2"="Remove any object that covers your face.";
 "selphi_component_tutorial_3"="Look for a well-lit environment, without shadows on your face.";

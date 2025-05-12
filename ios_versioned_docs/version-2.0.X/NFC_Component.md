@@ -451,7 +451,7 @@ public protocol ThemeNFCProtocol {
     var fonts: [R.Font: String] { get }
     var dimensions: [R.Dimension: CGFloat] { get }
     var images: [R.Image: UIImage?] { get }
-    var colours: [R.Color: UIColor?] { get }
+    var colors: [R.Color: UIColor?] { get }
     var animations: [R.Animation: String] { get }
 }
 ```

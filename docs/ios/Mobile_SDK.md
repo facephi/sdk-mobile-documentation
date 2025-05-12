@@ -545,7 +545,7 @@ This manager has an instance of type Theme**_Component_**Protocol. If we want to
 
 ```java
 class CustomThemeComponent: ThemeComponentProtocol {
-     var images: [R.Image: UIImage?] = [:]
+     var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
 
      var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
 

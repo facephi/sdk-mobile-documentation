@@ -172,8 +172,8 @@ el componente:
   internos al servidor de _tracking_:
 
 ```java
-let controller = VoiceController(
-    data: voiceConfigurationData,
+let controller = VideoCallController(
+    data: videoCallConfigurationData,
     output: { sdkResult in
         // Do whatever with the result
         ...

@@ -282,7 +282,7 @@ public enum VideoIdError: String {
 
 ---
 
-## 8. Customizing the component
+## 8. Component customization
 
 To customize the component, ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) must be called after initializing the videoIdController:
 
@@ -299,7 +299,7 @@ An example of the CustomThemeVideoId class would be this (you must implement The
 
 ```
 class CustomThemeVideoId: ThemeVideoIdProtocol {
-     var images: [R.Image: UIImage?] = [:]
+     var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
 
      var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
 

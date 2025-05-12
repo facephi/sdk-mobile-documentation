@@ -280,9 +280,9 @@ Un ejemplo de la clase CustomThemeVideoCall sería este (debe extender ThemeVide
 
 ```java
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
-    var images: [R.Image: UIImage?] = [:]
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
 
-    var colors: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red]
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
 
     var animations: [R.Animation: String] = [:]
 

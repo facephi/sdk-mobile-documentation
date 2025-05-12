@@ -437,7 +437,7 @@ Additionally, keys of the results object itself are added to make it easier to s
 
 ---
 
-## 8. Customizing the component
+## 8. Component customization
 
 Apart from the changes that can be made at SDK level (which are
 explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)

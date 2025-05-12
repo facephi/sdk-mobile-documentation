@@ -147,7 +147,7 @@ the component:
 
 ```java
 let controller = VoiceController(
-    data: voiceConfigurationData,
+    data: videocallConfigurationData,
     output: { sdkResult in
         // Do whatever with the result
         ...
@@ -160,7 +160,7 @@ SDKController.shared.launch(controller: controller)
 
 ```java
 let controller = VideoCallController(
-    data: voiceConfigurationData,
+    data: videocallConfigurationData,
     output: { sdkResult in
         // Do whatever with the result
         ...
@@ -178,37 +178,19 @@ certain flow within the application you do not want to track information.
 In that case, this method is used to prevent that information from being sent.
 to the platform.
 
-The configuration data (`VideoCallConfigurationData`) also contains
-They will be able to modify:
-
-- **_<u>optional</u> data that is normally included within the license_**
-
-  - **tenantId**: Tenant identifier that refers to the
-    current client, necessary for connection with the service
-    video.
-
-  - **url**: Path to the video socket.
-
-  - **apiKey**: ApiKey necessary for the connection with the socket
-    video.
-
 ---
 
-### Example configuration
+### 6.1 Example configuration
 
 ```java
-  log("LAUNCH VIDEO CALL")
-
-  let videocallController = VideoCallControlle(
-    data: VideoCallConfigurationData(
+let videocallConfigurationData = VideoCallConfigurationData(
       vibrationEnabled: true,
       activateScreenSharing: true,
       timeout: 8000
-    ),
-    output: output,
-    viewController: viewController)
-  SDKController.shared.launch(controller: videocallController)
+    )
 ```
+
+---
 
 ## 7. Receipt of the result
 
@@ -255,7 +237,7 @@ When the result is Success and the _sharingScreen_ flag is active, screen sharin
 
 ---
 
-## 8. Customizing the component
+## 8. Component customization
 
 Apart from the changes that can be made at SDK level (which are
 explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
@@ -277,17 +259,17 @@ An example of the CustomThemeVideoCall class would be this (must extend ThemeVid
 
 ```java
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
-    var images: [R.Image: UIImage?] = [:]
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
 
-    var colours: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
 
-    var animations: [R.Animation: String] = [:] var animations: [R.Animation: String] = [:]
+    var animations: [R.Animation: String] = [:]
 
     var name: String {
         "custom"
     }
 
-    var fonts: [R.Font: String] = [:] var fonts: [R.Font: String] = [:] var font: [R.Font: String] = [:]
+    var fonts: [R.Font: String] = [:]
 
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]
@@ -327,9 +309,7 @@ The size of the texts is initialised similarly in the dimensions variable with a
 
 ### 8.3 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application, and modify the value
-of each _String_ by the desired one.
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```java
 /* VideoAssistance view */

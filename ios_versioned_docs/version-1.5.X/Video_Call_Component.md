@@ -284,15 +284,15 @@ An example of the CustomThemeVideoCall class would be this (must implement Theme
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
 
-    var colours: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
+    var colors: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
 
-    var animations: [R.Animation: String] = [:] var animations: [R.Animation: String] = [:]
+    var animations: [R.Animation: String] = [:]
 
     var name: String {
         "custom"
     }
 
-    var fonts: [R.Font: String] = [:] var fonts: [R.Font: String] = [:] var font: [R.Font: String] = [:]
+    var fonts: [R.Font: String] = [:]
 
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]

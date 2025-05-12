@@ -270,15 +270,15 @@ An example of the CustomThemeVideoCall class would be this (must implement Theme
 class CustomThemeVideoCall: ThemeVideoCallProtocol {
     var images: [R.Image: UIImage?] = [:]
 
-    var colours: [R.Color: UIColor?] = [R.Color.TitleText: UIColor.red] = [R.Color.TitleText: UIColor.red].
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
 
-    var animations: [R.Animation: String] = [:] var animations: [R.Animation: String] = [:]
+    var animations: [R.Animation: String] = [:]
 
     var name: String {
         "custom"
     }
 
-    var fonts: [R.Font: String] = [:] var fonts: [R.Font: String] = [:] var font: [R.Font: String] = [:]
+    var fonts: [R.Font: String] = [:]
 
     var dimensions: [R.Dimension: CGFloat] {
         [.fontBig: 8]
@@ -329,9 +329,7 @@ The size of the texts is initialised similarly in the dimensions variable with a
 
 ### 8.3 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application, and modify the value
-of each _String_ by the desired one.
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```java
  <!-- VIDEO CALL -->

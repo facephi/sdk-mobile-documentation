@@ -184,21 +184,21 @@ to launch the component:
   of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
-   let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
-   SDKController.shared.launch(controller: controller)
+let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
+      // Do whatever with the result
+      ...
+  }, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 - **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-   let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
-   SDKController.shared.launchMethod(controller: controller)
+let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
+      // Do whatever with the result
+      ...
+  }, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -221,21 +221,21 @@ to launch the component:
   of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
-        SDKController.shared.launch(controller: controller)
+let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
+  // Do whatever with the result
+  ...
+  }, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 - **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
-        SDKController.shared.launchMethod(controller: controller)
+let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
+  // Do whatever with the result
+  ...
+  }, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -258,22 +258,21 @@ to launch the component:
   of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
-        SDKController.shared.launch(controller: controller)
-
+let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
+  // Do whatever with the result
+  ...
+  }, viewController: viewController)
+SDKController.shared.launch(controller: controller)
 ```
 - **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
-        SDKController.shared.launchMethod(controller: controller)
+let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
+  // Do whatever with the result
+  ...
+  }, viewController: viewController)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 The **launch** method must be used by **default**. This method allows
@@ -294,12 +293,34 @@ The controllers will return the required information in SdkResult format. More d
 
 ### 7.1. Error reception
 
+On the error side, we will have the common enum _ErrorType_.
+
 ```java
-NO_OPERATION_CREATED_ERROR
-CAMERA_PERMISSION_DENIED
-CANCEL_BY_USER
-TIMEOUT
-INTERNAL_ERROR
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
 ```
 
 ### 7.2. Successful execution reception - _data_
@@ -313,10 +334,71 @@ with the SdkResult.Success.
 
 Apart from the changes that can be made at SDK level (which are
 explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
-document), this particular component allows the modification of specific
-texts.
+document), this particular component allows the modification of specific animations, images, colors, fonts and texts.
 
-### 8.1. text
+To customise the component, ThemeCaptureReaderManager.setup(theme: CustomThemeCapture() ) must be called before launching a capture controller:
+
+```java
+let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
+      // Do whatever with the result
+      ...
+  }, viewController: viewController)
+ThemeCaptureReaderManager.setup(theme: CustomThemeCapture())
+SDKController.shared.launch(controller: controller)
+```
+
+An example of the CustomThemeCapture class would be this (must extend ThemeCaptureReaderProtocol):
+
+```java
+class CustomThemeCapture: ThemeCaptureReaderProtocol {
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
+
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
+
+    var animations: [R.Animation: String] = [:]
+
+    var name: String {
+        "custom"
+    }
+
+    var fonts: [R.Font: String] = [:]
+
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
+    }
+}
+```
+
+### 8.1 Images
+
+Images are initialised in the variable images , passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
+
+```java
+case ic_capture_capture
+case ic_capture_pager_back
+case ic_capture_pager_forward
+case ic_capture_trash
+case ic_capture_upload
+case ic_sdk_close_arrow
+case ic_sdk_close
+case ic_sdk_logo
+case ic_sdk_info
+```
+
+### 8.2 Fonts
+
+Fonts are initialised similarly in the fonts variable with a dictionary, having as value a String with the name of the desired UIFont.
+
+```java
+case regular
+case bold
+```
+
+The size of the texts is initialised similarly in the dimensions variable with a dictionary, having as value a CGFloat with the desired size.
+
+### 8.3 Texts
+
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```java
 "capture_component_qr_camera_message" = "Keep the QR in the center";
@@ -336,7 +418,7 @@ texts.
 "capture_component_invoice_retry_button_message" = "NO, I WANT TO REPEAT THE PICTURE";
 "capture_component_invoice_retry_add_image_message" = "ADD NEW PHOTO";
 "capture_component_invoice_tip_title" = "Scan your documents";
-"capture_component_invoice_tip_desc" = "Take a picture of the document, or upload an image. \You can scan several documents before finishing";
+"capture_component_invoice_tip_desc" = "Take a picture of the document, or upload an image.\nYou can scan several documents before finishing";
 "capture_component_invoice_close_alt" = "Close";
 "capture_component_invoice_upload_alt" = "Upload photo";
 "capture_component_invoice_capture_alt" = "Capture";
@@ -345,5 +427,40 @@ texts.
 "capture_component_invoice_forward_image_alt" = "Next image";
 "capture_component_timeout_title"="Timeout";
 "capture_component_timeout_desc"="We apologize. The capture could not be made";
+"capture_component_logo_alt" = "Logo";
+"capture_component_qr_generation_failed_alert_title" = "QR generation failed";
+"capture_component_qr_generation_failed_alert_message" = "Please try again";
+```
 
+### 8.4 Colors
+
+Colors are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+
+// Capture Specific Colors
+case sdkCaptureButtonColor
+case sdkDisabledBackgroundColor
+```
+
+### 8.5 Animations
+
+The animations to be used are similarly initialised in the animations variable with a dictionary, having as value a String with the name of the animation found in the xcassets to be used.
+
+```java
+case phactura_anim_tip
+case qr_anim_tip
+case qr_anim_tuto_1
+case qr_anim_tuto_2
 ```

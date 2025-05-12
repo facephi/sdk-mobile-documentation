@@ -339,9 +339,7 @@ texts.
 
 ### 8.1 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application, and modify the value of
-each String to the desired one.
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```java
 <!-- PHINGERS -->
