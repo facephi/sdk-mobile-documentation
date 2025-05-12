@@ -285,14 +285,17 @@ case close
 Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
 
 ```
-case ButtonBackground
-case ButtonBackgroundDisabled
-case CardBackground
-case CardText
-case MainBackground
-case PhoneButtonBackground
-case Primary
-case TitleText
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsVideoColor
+case sdkTopIconsColor
 ```
 
 ### 8.2 Fuentes

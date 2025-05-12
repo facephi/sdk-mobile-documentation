@@ -290,14 +290,17 @@ case close
 Colours are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
 
 ```
-case ButtonBackground
-case ButtonBackgroundDisabled
-case CardBackground
-case CardText
-case MainBackground
-case PhoneButtonBackground
-case Primary
-case TitleText
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsVideoColor
+case sdkTopIconsColor
 ```
 
 ### 8.2 Fonts
