@@ -199,7 +199,7 @@ to launch the component:
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[WITHOUT TRACKING\]** This call allows to launch the
@@ -208,7 +208,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 The **launch** method must be used by **default**. This method allows

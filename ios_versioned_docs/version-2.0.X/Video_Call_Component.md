@@ -170,7 +170,7 @@ the component:
   SDKController.shared.launch(controller: videocallController)
   ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to the _tracking_ server in case the
   tracking:

@@ -211,7 +211,7 @@ let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, 
 SDKController.shared.launch(controller: controller)
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to _tracking_ server:
 
@@ -252,7 +252,7 @@ the component:
 
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to _tracking_ server:
 
@@ -293,7 +293,7 @@ the component:
 
 ```
 
-- **\[NO TRACKING\]** This call allows launching the functionality
+- **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but **will not be tracked** any
   event to _tracking_ server:
 

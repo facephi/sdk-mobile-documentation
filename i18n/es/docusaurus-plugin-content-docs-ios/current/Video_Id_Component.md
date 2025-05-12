@@ -197,7 +197,7 @@ el componente:
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -206,7 +206,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 
 El método **launch** debe usarse **por defecto**. Este método permite

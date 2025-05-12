@@ -291,7 +291,7 @@ documentation, which details and explains what this process consists of.
 
 Once the component has been started and a new operation has been created (section 3), the SDK components can be launched. There are two ways to launch the component:
 
-- **[NO TRACKING]** This call allows the component's functionality to be launched normally, but **no event will be tracked** to the tracking server:
+- **[WITHOUT TRACKING]** This call allows the component's functionality to be launched normally, but **no event will be tracked** to the tracking server:
 
 ```java
 let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), appGroupName: "group.com.facephi.demosdk-videoRecording", extensionName: "VideoRecording", output: { _ in })

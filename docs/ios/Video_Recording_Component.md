@@ -213,7 +213,7 @@ With the configuration data (_VideoRecordingConfigurationData_) you can also mod
 Once we have set a new operation ([Section 3](#3-start-new-operation)) and have an instance of our controller, we can start it.
 There are two ways to launch it:
 
-- **[NO TRACKING]** This call allows the component's functionality to be launched normally, but **no event will be tracked** to the tracking server:
+- **[WITHOUT TRACKING]** This call allows the component's functionality to be launched normally, but **no event will be tracked** to the tracking server:
 
 ```swift
 let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), extensionName: "VideoRecording", output: { _ in })

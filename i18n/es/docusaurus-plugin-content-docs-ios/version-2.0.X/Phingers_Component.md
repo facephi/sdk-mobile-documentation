@@ -200,7 +200,7 @@ el componente:
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+SDKController.shared.launch(controller: controller)
 ```
 
 - **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
@@ -209,7 +209,7 @@ SDKController.shared.launchMethod(controller: controller)
 
 ```java
 let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+SDKController.shared.launchMethod(controller: controller)
 ```
 <div class="warning">
 <span class="warning">:warning:</span>
