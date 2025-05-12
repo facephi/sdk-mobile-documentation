@@ -220,53 +220,55 @@ flujo determinado dentro de la aplicación no desea trackear información.
 En ese caso se usa este método para evitar que se envíe esa información
 a la plataforma.
 
-En los datos de configuración (VideoIDConfigurationData) también se podrán modificar:
-
-- **sectionTime**: Tiempo que se permanecerá en cada pantalla del proceso en ms
-
-- **mode**: Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
-
-  - ONLY_FACE: Sólo tienes que mostrar la cara durante el proceso.
-
-  - FACE_DOCUMENT_FRONT: Tienes que mostrar la cara y la parte frontal del documento.
-
-  - FACE_DOCUMENT_FRONT_BACK: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
-
-- **showCompletedTutorial**: Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
-
-- **Datos <u>opcionales</u> que normalmente se incluyen dentro de la licencia**
-
-  - **tenantId**: Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
-
-  - **url**: Ruta al socket de video.
-
-  - **apiKey**: ApiKey necesaria para la conexión con el socket de video.
-
 ---
 
 ## 7. Recepción del resultado
 
 Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605678593" data-linked-resource-version="15"
-data-linked-resource-type="page"><strong>Mobile SDK</strong></a>
+SdkResult. Más información en [Primeros Pasos](./Mobile_SDK)
 
 ### 7.1. Recepción de errores
 
-En la parte del error, dispondremos de la clase _VideoIdError_.
+En la parte del error, dispondremos del enumerado común _ErrorType_:
 
 ```java
-NO_DATA_ERROR
-TIMEOUT
-CANCEL_BY_USER
-CANCEL_LAUNCH
-NETWORK_CONNECTION
-SOCKET_ERROR
-VIDEO_ERROR
-ACTIVITY_RESULT_ERROR
-INITIALIZATION_ERROR -> it.error
-UNKNOWN_ERROR
-PERMISSION_DENIED
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+Los errores 'ErrorType.OTHER' y 'ErrorType.LICENSE_CHECKER_ERROR' son especiales porque además pueden informar del detalle del error.
+
+El _String_ puede tener los siguientes valores en el caso del 'ErrorType.OTHER':
+
+```java
+public enum VideoIdError: String {
+    case SOCKET_URL_IS_NOT_VALID
+    case MISSING_DOCUMENT_READER_RESOURCES
+    case NO_FACE_DETECTED
+}
 ```
 
 ## 8. Customizing the component
@@ -306,27 +308,40 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 - Las imágenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
 
 ```
+case ic_sdk_close_arrow
+case ic_sdk_close
 case ic_video_id_back_id
 case ic_video_id_check
-case ic_video_id_close
 case ic_video_id_front_id
+case ic_video_id_logo
 case ic_video_id_record_back
 case ic_video_id_record_face
 case ic_video_id_record_front
 case ic_video_id_user
-case intro
+case ic_video_id_micro
+case ic_video_id_camera_switch
+case ic_video_id_camera_switch_mask
+case ic_video_id_record_back_detected
+case ic_video_id_record_face_detected
+case ic_video_id_record_front_detected
+case ic_video_id_no_face_detected
+case ic_video_id_timeout
 ```
 
 - Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
 
 ```
-case MainBackground
-case TitleText
-case MessageText
-case PrimaryButtonText
-case Button
-case CheckText
-case Primary
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsVideoColor
+case sdkTopIconsColor
 ```
 
 ### 8.2 Fuentes
@@ -340,19 +355,30 @@ case bold
 
 - El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un **CGFloat** con el tamaño deseado.
 
-### 8.3 Personalizar el tiempo entre pantallas
+### 8.3 Animaciones
+
+Las animaciones se inicializan similarmente en la variable `animations` con un diccionario, teniendo como valor un **String** con el nombre del archivo **JSON Lottie** que se desee.
+
+
+```
+case video_id_anim_doc_and_face
+case video_id_anim_face
+case video_id_anim_loading
+case video_id_anim_diagnostic_success
+case video_id_anim_diagnostic_error
+```
+
+### 8.4 Personalizar el tiempo entre pantallas
 
 Para modificar el tiempo que se permanece en cada pantalla de grabación hay que modificar el valor del parámetro time (en ms) del VideoIDConfigurationData:
 
-`VideoIDConfigurationData(time = TIEMPO EN MS)`
+`VideoIDConfigurationData(...,sectionTime: TIEMPO EN MS,...)`
 
-Siempre será el mínimo 5000.
+El mínimo soportado es 5000ms.
 
-Este objeto se pasará al hacer el setup del video ID.
+### 8.5 Textos - Multiidioma
 
-### 8.4 Textos - Multiidioma
-
-#### 8.4.1 Configuración de idiomas por defecto
+#### 8.5.1 Configuración de idiomas por defecto
 
 Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
 
@@ -376,39 +402,52 @@ El idioma del componente se selecciona en función del idioma que tenga el móvi
 
 - Para cualquier otro caso, se hará uso del Inglés.
 
-#### 8.4.2 Configuración de idiomas personalizada
+#### 8.5.2 Configuración de idiomas personalizada
 
 El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
 
 Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt-PT). Se hace a través del uso de los archivos **Localizable.strings.**
 
-#### 8.4.3 Keys para multiidioma
+#### 8.5.3 Keys para multiidioma
 
 El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
 
 ```
-"video_id_text_waiting_agent_title"="Video grabación";
-"video_id_permission_denied"="Permiso denegado";
-"video_id_network_connection_error"="Revise su conexión a internet";
-"video_id_exit_alert_question"="¿Quieres abandonar la identificación?";
-"video_id_exit_alert_exit"="Abandonar";
-"video_id_exit_alert_cancel"="Cancelar";
-"video_id_exit_alert_ok"="Ok";
-"video_id_exit"="Salir";
-"video_id_tip_message_face_document"="Coloca tu rostro y el frente de tu documento en las marcas e inicia la grabación";
-"video_id_tip_message_only_face"="Coloca tu rostro en las marcas e inicia la grabación";
-"video_id_info_message_back"="Ahora coloca el reverso de tu documento en la marca correspondiente"; // DOCUMENTO? DNI?
-"video_id_info_message_face_old"="Coloca tu rostro y en voz alta di los datos de tu domicilio y nombre completo";
-"video_id_finish_message"="¡Videograbación finalizada!";
-"video_id_finish_button"="Finalizar";
-"video_id_record_retry_button"="Repetir grabación";
-"video_id_record_init_button"="Iniciar grabación";
-"video_id_ready_button"="CONTINUAR";
-"video_id_generic_error"="Ha habido un error en la grabación";
-"video_id_tip_info_message"="En la parte inferior de la pantalla aparecerán las instrucciones y el tiempo para llevar a cabo la grabación";
-"video_id_face_instructions"="Ahora en voz alta di \"Yo (nombre y apellidos)  acepto los términos y condiciones\".";
-"video_id_face_document_instructions"="Coloca tu rostro y el frente de tu documento en las marcas";
-
+"video_id_component_init_message_face_docu_content_desc"="Coloca tu rostro y el frente de tu documento en las marcas";
+"video_id_component_init_message_face_content_desc"="Coloca tu rostro en las marcas e inicia la grabación";
+"video_id_component_finish_message"="¡Videograbación finalizada!";
+"video_id_component_finish_button"="FINALIZAR";
+"video_id_component_restart"="REPETIR GRABACIÓN";
+"video_id_component_ready_button"="CONTINUAR";
+"video_id_component_first_message"="Coloca tu rostro y el frente de tu documento en las marcas";
+"video_id_component_second_message"="Coloca tu rostro y el dorso de tu documento en las marcas";
+"video_id_component_third_message"="Di en voz alta: \"Yo (nombre y apellidos) acepto los términos y condiciones\".";
+"video_id_component_exit_alert_cancel"="Cancelar";
+"video_id_component_exit_alert_question" = "¿Seguro que quiere finalizar el proceso?";
+"video_id_component_exit_alert_finish" = "Finalizar";
+"video_id_component_exit_alert_accept" = "Aceptar";
+"video_id_component_timeout_title"="Tiempo superado";
+"video_id_component_timeout_desc"="No pudimos hacer la grabación a tiempo. Probemos de nuevo.";
+"video_id_component_unknown_title"="Se ha producido un error";
+"video_id_component_unknown_desc"="Probemos de nuevo.";
+"video_id_component_close_alt" = "Cerrar";
+"video_id_component_back_alt" = "Atrás";
+"video_id_component_logo_alt" = "Logo";
+"video_id_component_document_front_message" = "Coloca el frente de tu documento en las marcas";
+"video_id_component_document_front_message_readable" = "Mantén el frente de tu documento en las marcas";
+"video_id_component_document_front_message_not_readable" = "Acerca el frente de tu documento a las marcas";
+"video_id_component_document_back_message" = "Ahora coloca el reverso de tu documento";
+"video_id_component_document_back_message_readable" = "Mantén el reverso de tu documento en las marcas";
+"video_id_component_document_back_message_not_readable" = "Acerca el reverso de tu documento a las marcas";
+"video_id_component_switch_camera_message" = "Prepare su documento mientras se procede al cambio de cámara";
+"video_id_component_first_message_face" = "Coloque su cara dentro del marco";
+"video_id_component_first_message_multiple_face" = "Varias caras detectadas. Coloque sólo su cara dentro del marco";
+"video_id_component_speech_message" = "Yo (nombre y apellidos) acepto los términos y condiciones";
+"video_id_component_speech_say_out_loud" = "Di en voz alta: ";
+"video_id_component_front_document_captured" = "Frente del documento capturado correctamente";
+"video_id_component_document_back_message_finish" = "Reverso del documento capturado correctamente";
+"video_id_component_face_timeout_title" = "No hemos detectado tu rostro";
+"video_id_component_face_timeout_desc" = "Por favor, coloca tu rostro en la marca para iniciar el proceso";
 ```
 
 De este modo, si se desea modificar por ejemplo el texto “_Finalizar_” de la clave `video_id_finish_button` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
