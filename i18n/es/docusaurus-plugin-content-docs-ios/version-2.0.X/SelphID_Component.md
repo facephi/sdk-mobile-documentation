@@ -51,10 +51,6 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 ```
   pod 'FPHISDKMainComponent', '~> 2.0.0'
-  pod 'JWTDecode'
-  pod 'SwiftFormat/CLI'
-  pod 'IQKeyboardManagerSwift'
-  pod 'zipzap'
 ```
 
 - Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:

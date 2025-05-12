@@ -86,11 +86,7 @@ plugin 'cocoapods-art', :sources => [
 source 'https://cdn.cocoapods.org/'
 
 target 'Example' do
-  pod 'JWTDecode'
-  pod 'SwiftFormat/CLI'
-  pod 'IQKeyboardManagerSwift'
   pod 'FPHISDKMainComponent'
-  pod 'FPHISDKCoreComponent'
 
    post_install do |installer|
   installer.pods_project.targets.each do |target|

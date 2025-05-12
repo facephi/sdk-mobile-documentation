@@ -70,10 +70,6 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 ```
   pod 'FPHISDKMainComponent', '~> 2.0.0'
-  pod 'JWTDecode'
-  pod 'SwiftFormat/CLI'
-  pod 'IQKeyboardManagerSwift'
-  pod 'zipzap'
 ```
 
 - To install the SelphID component, the following entry must be included in the application Podfile:
