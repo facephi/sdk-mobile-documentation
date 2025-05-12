@@ -324,7 +324,7 @@ sent to the platform.
 
 ## 7. Receipt of the result
 
-The controllers will return the required information in SdkResult format (more details in the [Mobile SDK](./Mobile_SDK))
+The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
 ### 7.1. Receiving errors
 
@@ -432,7 +432,10 @@ Additionally, keys of the results object itself are added to make it easier to s
 
 ## 8. Customizing the component
 
-Apart from the changes that can be made at SDK level (which are explained in the [Mobile SDK](./Mobile_SDK) document), this particular component allows the modification of specific animations.
+Apart from the changes that can be made at SDK level (which are
+explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
+document), this particular component allows the modification of specific
+texts.
 
 ### 8.1 Customizing the animations
 
@@ -589,15 +592,11 @@ The view that contains these animations is accessed by clicking on the More Info
 - **_selphid_anim_tuto_custom_3_**
   This animation is shown if the documentType configuration parameter is _CUSTOM_. It is the third tutorial's step.
 
-### 8.2 Colors, images, dimensions and fonts
-
-The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).
-
-### 8.3 Texts
+### 8.2 Texts
 
 The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
-```
+```java
 "selphid_component_tutorial_1_desc"="Look for a background with good contrast.";
 "selphid_component_tutorial_2_desc"="Place the document inside the box.";
 "selphid_component_tutorial_3_desc"="Avoid glare that makes the document difficult to read.";
@@ -630,6 +629,10 @@ The texts can be customized by overriding the value of these keys inside a Local
 "selphid_component_timeout_back_desc" = "Check that the back of the document is inside the box and the data are visible.";
 "selphid_component_timeout_generic_desc" = "Check that the document is inside the box and the data is visible.";
 ```
+
+### 8.3 Colors, images, dimensions and fonts
+
+The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).
 
 ### 8.4 Widget Customization
 

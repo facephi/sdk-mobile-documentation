@@ -303,6 +303,11 @@ with the SdkResult.Success.
 
 ## 8. Component customization
 
+Apart from the changes that can be made at SDK level (which are
+explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
+document), this particular component allows the modification of specific
+texts.
+
 ### 8.1. text
 
 ```java

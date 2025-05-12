@@ -227,7 +227,7 @@ Facephi tokenised format.
 ## Customisation of the component
 
 Apart from the changes that can be made at SDK level (which are
-explained in the [Getting Started](./Mobile_SDK)
+explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
 document), this particular component allows the modification of specific
 texts.
 

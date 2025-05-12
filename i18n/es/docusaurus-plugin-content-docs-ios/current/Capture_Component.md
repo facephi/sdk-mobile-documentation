@@ -365,11 +365,7 @@ Array de documentos escaneados:
 ## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de <a href="ES_Mobile_SDK"
-data-linked-resource-id="2605285492" data-linked-resource-version="11"
-data-linked-resource-type="page"><strong><u> Mobile
-SDK</u></strong></a>), este componente en concreto permite la
-modificación de textos específicos.
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk), este componente en concreto permite la modificación de textos específicos.
 
 ### 8.1. Textos
 

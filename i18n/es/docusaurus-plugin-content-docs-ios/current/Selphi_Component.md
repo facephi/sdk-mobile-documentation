@@ -366,7 +366,8 @@ SDKController.shared.launchMethod(controller: controller)
 
 ## 9. Personalizando el componente
 
-Además de los cambios a nivel de SDK (que se explican en [Mobile SDK](./Mobile_SDK)), este componente específico permite la modificación de sus animaciones.
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk), este componente en concreto permite la modificación de animaciones y textos específicos.
 
 ### 9.1 Personalizando las animaciones
 
@@ -446,11 +447,7 @@ configSelphi.livenessMode = SelphiFaceLivenessMode.MOVE
 
 ![MobileCapture](/ios/Selphi/tutorial-003.png)
 
-### 9.2 Colores, imágenes, tamaños y fuentes
-
-Al contrario que con las animaciones, la personalización de estos elementos se hace desde el [Componente de Status](./Status_Component).
-
-### 9.3 Textos
+### 9.2 Textos
 
 Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un Localizable.strings. 
 Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
@@ -471,6 +468,10 @@ Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en l
 "selphi_component_timeout_title" = "Timeout";
 "selphi_component_timeout_desc" = "We were unable to identify you. Please try again";
 ```
+
+### 9.3 Colores, imágenes, tamaños y fuentes
+
+Al contrario que con las animaciones, la personalización de estos elementos se hace desde el [Componente de Status](./Status_Component).
 
 ### 9.4 Personalización del Widget
 

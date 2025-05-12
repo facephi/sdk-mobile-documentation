@@ -373,7 +373,49 @@ El sistema de personalización se basa en temas (themes). Por defecto, el compon
 
 Para modificar la interfaz visual (UX/UI) se puede crear un nuevo CustomTheme que extienda el siguiente protocolo:
 
+```java
+public protocol ThemeNFCProtocol {
+    var name: String { get }
+    var fonts: [R.Font: String] { get }
+    var dimensions: [R.Dimension: CGFloat] { get }
+    var images: [R.Image: UIImage?] { get }
+    var colors: [R.Color: UIColor?] { get }
+    var animations: [R.Animation: String] { get }
+}
+```
+
+Por ejemplo:
+
+```java
+class CustomThemeNFC: ThemeNFCProtocol {
+    public var name: String {
+        "customNfc"
+    }
+
+    public var fonts: [R.Font: String] {
+        [.bold: "Arial"] // the font is overrided
+    }
+
+    public var dimensions: [R.Dimension: CGFloat] {
+        [.fontSmall: 7,
+         .fontRegular: 12,
+         .fontBig: 20,
+         .radiusCorner: 16]
+    }
+    ...
+}
+```
+
+Para aplicar este custom theme debemos usar la siguiente instrucción antes de lanzar el componente:
+
+```
+ThemeNFCManager.setup(theme: CustomThemeNFC())
+```
+
 ### 8.1 Textos
+
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk), este componente en concreto permite la modificación de textos específicos.
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
@@ -413,46 +455,6 @@ de cada _String_ por el deseado.
 "diagnostic_tag_connection_lost_description" = "Mantén la posición hasta que finalice la lectura";
 "diagnostic_invaliz_mrz_error_title" = "Hubo un problema técnico";
 "diagnostic_invalid_mrz_error_description" = "Pedimos disculpas. Necesitamos una nueva foto del documento";
-
-```
-
-```java
-public protocol ThemeNFCProtocol {
-    var name: String { get }
-    var fonts: [R.Font: String] { get }
-    var dimensions: [R.Dimension: CGFloat] { get }
-    var images: [R.Image: UIImage?] { get }
-    var colors: [R.Color: UIColor?] { get }
-    var animations: [R.Animation: String] { get }
-}
-```
-
-Por ejemplo:
-
-```java
-class CustomThemeNFC: ThemeNFCProtocol {
-    public var name: String {
-        "customNfc"
-    }
-
-    public var fonts: [R.Font: String] {
-        [.bold: "Arial"] // the font is overrided
-    }
-
-    public var dimensions: [R.Dimension: CGFloat] {
-        [.fontSmall: 7,
-         .fontRegular: 12,
-         .fontBig: 20,
-         .radiusCorner: 16]
-    }
-    ...
-}
-```
-
-Para aplicar este custom theme debemos usar la siguiente instrucción antes de lanzar el componente:
-
-```
-ThemeNFCManager.setup(theme: CustomThemeNFC())
 ```
 
 ## 9. Troubleshooting

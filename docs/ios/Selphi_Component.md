@@ -281,7 +281,7 @@ sent to the platform.
 
 ## 7. Receipt of the result
 
-The controllers will return the required information in SdkResult format (more details in the [Mobile SDK](./Mobile_SDK))
+The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
 ### 7.1. Receiving errors
 
@@ -369,8 +369,9 @@ SDKController.shared.launchMethod(controller: controller)
 ## 9. Customizing the component
 
 Apart from the changes that can be made at SDK level (which are
-explained in the [Mobile SDK](./Mobile_SDK) document), this particular component allows the modification of specific
-animations.
+explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
+document), this particular component allows the modification of specific animations and
+texts.
 
 ### 9.1 Customizing the animations
 
@@ -450,11 +451,7 @@ configSelphi.livenessMode = SelphiFaceLivenessMode.MOVE
 
 ![MobileCapture](/ios/Selphi/tutorial-003.png)
 
-### 9.2 Colors, images, dimensions and fonts
-
-The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).
-
-### 9.3 Texts
+### 9.2 Texts
 
 The texts can be customized by overriding the value of these keys inside a Localizable.strings. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
@@ -474,6 +471,10 @@ The texts can be customized by overriding the value of these keys inside a Local
 "selphi_component_timeout_title" = "Timeout";
 "selphi_component_timeout_desc" = "We were unable to identify you. Please try again";
 ```
+
+### 9.3 Colors, images, dimensions and fonts
+
+The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).
 
 ### 9.4 Widget Customization
 

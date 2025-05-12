@@ -410,7 +410,8 @@ Adicionalmente se añaden claves del propio objeto results para hacer más fáci
 
 ## 8. Personalizando el componente
 
-Además de los cambios a nivel de SDK (que se explican en [Mobile SDK](./Mobile_SDK)), este componente específico permite la modificación de sus animaciones.
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk), este componente en concreto permite la modificación de animaciones y textos específicos.
 
 ### 8.1 Personalizando las animaciones
 
@@ -567,11 +568,7 @@ La vista que contiene las animaciones es accesible desde la vista 8.1.1. Es nece
 - **_selphid_anim_tuto_custom_3_**
   Esta animación se muestra si el documentType es _CUSTOM_. Se trata del tercer y último paso del tutorial.
 
-### 8.2 Colores, imágenes, tamaños y fuentes
-
-Al contrario que con las animaciones, la personalización de estos elementos se hace desde el [Componente de Status](./Status_Component).
-
-### 8.3 Textos
+### 8.2 Textos
 
 Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un Localizable.strings. 
 Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
@@ -609,6 +606,10 @@ Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en l
 "selphid_component_timeout_back_desc" = "Check that the back of the document is inside the box and the data are visible.";
 "selphid_component_timeout_generic_desc" = "Check that the document is inside the box and the data is visible.";
 ```
+
+### 8.2 Colores, imágenes, tamaños y fuentes
+
+Al contrario que con las animaciones, la personalización de estos elementos se hace desde el [Componente de Status](./Status_Component).
 
 ### 8.4 Personalización del Widget
 

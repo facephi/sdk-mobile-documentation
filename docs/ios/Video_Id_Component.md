@@ -225,8 +225,7 @@ sent to the platform.
 
 ## 7. Reception of the result
 
-The controllers will return the required information in SdkResult
-format. More information in the [Getting Started](./Mobile_SDK)
+The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
 ### 7.1. Receipt of errors
 
