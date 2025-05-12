@@ -230,7 +230,10 @@ to launch the component:
   _tracking_ server:
 
 ```
-let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
+let controller = NFCController(data: nfcConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -239,7 +242,10 @@ SDKController.shared.launch(controller: controller)
   the _tracking_ server:
 
 ```
-let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
+let controller = NFCController(data: nfcConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 NFCController.shared.launchMethod(controller: controller)
 ```
 

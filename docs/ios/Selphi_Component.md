@@ -251,7 +251,10 @@ to launch the component:
   _tracking_ server:
 
 ```java
-let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+let controller = SelphiController(data: selphiConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -260,7 +263,10 @@ SDKController.shared.launch(controller: controller)
   the _tracking_ server:
 
 ```java
-let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+let controller = SelphiController(data: selphiConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -409,7 +415,10 @@ class CustomThemeSelphi: ThemeSelphiProtocol {
 To customise the component, ThemeSelphiManager.setup(theme: CustomThemeSelphi() ) must be called before launching the selphiController:
 
 ```
-let selphiController = SelphiController(data: SelphiConfigurationData(), output: output, viewController: viewController)
+let selphiController = SelphiController(data: SelphiConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeSelphiManager.setup(theme: CustomThemeSelphi())
 SDKController.shared.launch(controller: selphiController)
 ```

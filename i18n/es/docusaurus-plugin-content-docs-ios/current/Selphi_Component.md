@@ -253,7 +253,10 @@ el componente:
   del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
-let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+let controller = SelphiController(data: selphiConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -262,7 +265,10 @@ SDKController.shared.launch(controller: controller)
   evento al servidor de _tracking_:
 
 ```java
-let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+let controller = SelphiController(data: selphiConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -408,7 +414,10 @@ class CustomThemeSelphi: ThemeSelphiProtocol {
 Para que la personalización se aplique al componente, se debe ejecutar **ThemeSelphiManager.setup(theme: CustomThemeSelphi())** antes de lanzar el selphidController.
 
 ```
-let selphiController = SelphiController(data: SelphiConfigurationData(), output: output, viewController: viewController)
+let selphiController = SelphiController(data: SelphiConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeSelphiManager.setup(theme: CustomThemeSelphi())
 SDKController.shared.launch(controller: selphiController)
 ```

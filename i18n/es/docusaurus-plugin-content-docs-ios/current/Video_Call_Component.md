@@ -169,7 +169,10 @@ SDKController.shared.launch(controller: controller)
   evento al servidor de _tracking_:
 
 ```java
-let controller = VideoCallController(data: videoCallConfigurationData, output: output, viewController: viewController)
+let controller = VideoCallController(data: videoCallConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -265,7 +268,10 @@ se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-perso
 Para personalizar el componente, se debe llamar a ThemeVideoCallManager.setup(theme: CustomThemeVideoCall()) antes de lanzar videocallController:
 
 ```java
-let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)
+let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
 SDKController.shared.launch(controller: videocallController)
 ```

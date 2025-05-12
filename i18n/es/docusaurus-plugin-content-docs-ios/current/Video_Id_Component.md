@@ -214,7 +214,10 @@ SDKController.shared.launch(controller: controller)
   evento al servidor de _tracking_:
 
 ```java
-let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
+let controller = VideoIdController(data: VideoIdConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -285,7 +288,10 @@ public enum VideoIdError: String {
 Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) antes de lanzar el videoIdController:
 
 ```
-let videoidController = VideoIdController(data: data, output: output, viewController: viewController)
+let videoidController = VideoIdController(data: data, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeVideoIdManager.setup(theme: CustomThemeVideoId())
 SDKController.launchVideoId(controller: videoidController)
 ```

@@ -298,7 +298,10 @@ to launch the component:
   _tracking_ server:
 
 ```
-let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
+let controller = SelphIDController(data: selphIDConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -307,7 +310,10 @@ SDKController.shared.launch(controller: controller)
   the _tracking_ server:
 
 ```
-let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
+let controller = SelphIDController(data: selphIDConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -489,7 +495,10 @@ class CustomThemeSelphID: ThemeSelphIDProtocol {
 To customise the component, ThemeSelphIDManager.setup(theme: CustomThemeSelphID() ) must be called before launching the selphidController:
 
 ```
-let selphidController = SelphIDController(data: SelphIDConfigurationData(), output: output, viewController: viewController)
+let selphidController = SelphIDController(data: SelphIDConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeSelphIDManager.setup(theme: CustomThemeSelphID())
 SDKController.shared.launch(controller: selphidController)
 ```

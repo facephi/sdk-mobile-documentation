@@ -273,7 +273,10 @@ el componente:
   del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
-let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
+let controller = SelphIDController(data: selphIDConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -282,7 +285,10 @@ SDKController.shared.launch(controller: controller)
   evento al servidor de _tracking_:
 
 ```java
-let controller = SelphIDController(data: selphIDConfigurationData, output: output, viewController: viewController)
+let controller = SelphIDController(data: selphIDConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -463,7 +469,10 @@ class CustomThemeSelphID: ThemeSelphIDProtocol {
 Para que la personalización se aplique al componente, se debe ejecutar **ThemeSelphIDManager.setup(theme: CustomThemeSelphID())** antes de lanzar el selphidController.
 
 ```
-let selphidController = SelphIDController(data: SelphIDConfigurationData(), output: output, viewController: viewController)
+let selphidController = SelphIDController(data: SelphIDConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeSelphIDManager.setup(theme: CustomThemeSelphID())
 SDKController.shared.launch(controller: selphidController)
 ```

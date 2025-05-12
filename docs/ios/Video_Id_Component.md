@@ -212,7 +212,10 @@ SDKController.shared.launch(controller: controller)
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-let controller = VideoIdController(data: VideoIdConfigurationData, output: output, viewController: viewController)
+let controller = VideoIdController(data: VideoIdConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -284,7 +287,10 @@ public enum VideoIdError: String {
 To customize the component, ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) must be called after initializing the videoIdController:
 
 ```
-let videoidController = VideoIdController(data: data, output: output, viewController: viewController)
+let videoidController = VideoIdController(data: data, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeVideoIdManager.setup(theme: CustomThemeVideoId())
 SDKController.launchVideoId(controller: videoidController)
 ```

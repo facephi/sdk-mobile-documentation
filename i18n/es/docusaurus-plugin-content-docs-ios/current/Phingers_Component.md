@@ -191,7 +191,10 @@ el componente:
   del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
-let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
+let controller = PhingersController(data: phingersConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -200,7 +203,10 @@ SDKController.shared.launch(controller: controller)
   evento al servidor de _tracking_:
 
 ```java
-let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
+let controller = PhingersController(data: phingersConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 

@@ -265,7 +265,10 @@ texts.
 To customise the component, ThemeVideoCallManager.setup(theme: CustomThemeVideoCall() ) must be called before launching the videocallController:
 
 ```java
-let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: output, viewController: viewController)
+let videocallController = VideoCallController(data: VideoCallConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 ThemeVideoCallManager.setup(theme: CustomThemeVideoCall())
 SDKController.shared.launch(controller: videocallController)
 ```

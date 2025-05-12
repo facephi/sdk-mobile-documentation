@@ -450,7 +450,10 @@ access the **documentation for each component**.
 
 ```java
 
- let controller = SelphiController(data: selphiConfigurationData, output: output, viewController: viewController)
+ let controller = SelphiController(data: selphiConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
  SDKController.shared.launch(controller: controller)
 
 ```

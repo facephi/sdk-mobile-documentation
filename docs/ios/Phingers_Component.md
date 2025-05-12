@@ -220,14 +220,20 @@ to launch the component:
   of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
-let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
+let controller = PhingersController(data: phingersConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 - **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-let controller = PhingersController(data: phingersConfigurationData, output: output, viewController: viewController)
+let controller = PhingersController(data: phingersConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 

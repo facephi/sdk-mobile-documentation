@@ -211,7 +211,10 @@ el componente:
   del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
-let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: output, viewController: viewController)
+let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -220,7 +223,10 @@ SDKController.shared.launch(controller: controller)
   evento al servidor de _tracking_:
 
 ```java
-let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: output, viewController: viewController)
+let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -248,7 +254,10 @@ el componente:
   del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
-  let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+  let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 
   SDKController.shared.launch(controller: controller)
 
@@ -259,7 +268,10 @@ el componente:
   evento al servidor de _tracking_:
 
 ```java
-  let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+  let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
   SDKController.shared.launchMethod(controller: controller)
 
 ```
@@ -288,7 +300,10 @@ el componente:
   del componente con normalidad, y **trackeando los eventos** internos al servidor de _tracking_:
 
 ```java
-  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
   SDKController.shared.launch(controller: controller)
 
 ```
@@ -298,7 +313,10 @@ el componente:
   evento al servidor de _tracking_:
 
 ```java
-  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+  let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
   SDKController.shared.launchMethod(controller: controller)
 ```
 

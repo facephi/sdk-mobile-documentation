@@ -226,14 +226,20 @@ Una vez iniciado el componente y creada una nueva operación (**apartado 3**) se
 - **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de tracking:
 
 ```java
-let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
+let controller = NFCController(data: nfcConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
 - **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero no se trackeará ningún evento al servidor de tracking:
 
 ```java
-let controller = NFCController(data: nfcConfigurationData, output: output, viewController: viewController)
+let controller = NFCController(data: nfcConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
 NFCController.shared.launchMethod(controller: controller)
 ```
 

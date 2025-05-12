@@ -177,21 +177,27 @@ Display diagnostic screens at the end of the process and in case of error
 ### 6.1 Invoice capture
 
 Once the component has been started and a new operation has been created
-(**Section 3**), the SDK components can be launched. There are two ways
+(**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
   of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
-   let controller = InvoiceReaderController(output: output, viewController: viewController)
+   let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
    SDKController.shared.launch(controller: controller)
 ```
 - **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-   let controller = InvoiceReaderController(output: output, viewController: viewController)
+   let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
    SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -208,21 +214,27 @@ sent to the platform.
 ### 6.2 QR capture
 
 Once the component has been started and a new operation has been created
-(**Section 3**), the SDK components can be launched. There are two ways
+(**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
   of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+        let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
         SDKController.shared.launch(controller: controller)
 ```
 - **\[WITHOUT TRACKING\]** This call allows launching the functionality
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrReaderController(data: qrReaderConfigurationData, output: output, viewController: viewController)
+        let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
         SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -239,14 +251,17 @@ sent to the platform.
 ### 6.3 QR generation
 
 Once the component has been started and a new operation has been created
-(**Section 3**), the SDK components can be launched. There are two ways
+(**section 3**), the SDK components can be launched. There are two ways
 to launch the component:
 
 - **\[WITH TRACKING\]** This call allows launching the functionality
   of the component normally, and **the internal events will be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
         SDKController.shared.launch(controller: controller)
 
 ```
@@ -254,7 +269,10 @@ to launch the component:
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: output, viewController: viewController)
+        let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
         SDKController.shared.launchMethod(controller: controller)
 ```
 
