@@ -52,13 +52,13 @@ completo antes de la instalación de los componentes de la
 
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
-```
+```java
   pod 'FPHISDKMainComponent', '~> 2.3.0'
 ```
 
 - Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
-```
+```java
 	pod 'VideoIdController', '~> 2.3.0'
 ```
 
@@ -200,12 +200,12 @@ el componente:
 
 
 ```java
-let controller = VoiceController(
-    data: videoIdConfigurationData,
-    output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
+let controller = VideoIdController(
+  data: videoIdConfigurationData,
+  output: { sdkResult in
+    // Do whatever with the result
+    ...
+  }, viewController: viewController)
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -214,10 +214,12 @@ SDKController.shared.launch(controller: controller)
   evento al servidor de _tracking_:
 
 ```java
-let controller = VideoIdController(data: VideoIdConfigurationData, output: { sdkResult in
-        // Do whatever with the result
-        ...
-    }, viewController: viewController)
+let controller = VideoIdController(
+  data: videoIdConfigurationData,
+  output: { sdkResult in
+    // Do whatever with the result
+    ...
+  }, viewController: viewController)
 SDKController.shared.launchMethod(controller: controller)
 ```
 
@@ -287,7 +289,7 @@ public enum VideoIdError: String {
 
 Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) antes de lanzar el videoIdController:
 
-```
+```java
 let videoidController = VideoIdController(data: data, output: { sdkResult in
         // Do whatever with the result
         ...
@@ -298,13 +300,13 @@ SDKController.launchVideoId(controller: videoidController)
 
 Un ejemplo de la clase CustomThemeVideoId sería este (debe implementar ThemeVideoIdProtocol):
 
-```
+```java
 class CustomThemeVideoId: ThemeVideoIdProtocol {
     var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
 
     var colors: [R.Color: UIColor?] = [R.Color.MessageText: UIColor.red]
 
-    // var animations: [R.Animation: String] = [:]
+    var animations: [R.Animation: String] = [:]
 
     var name: String {
         "custom"
@@ -318,7 +320,7 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 }
 ```
 
-### 8.1 Colores e imágenes
+### 8.1 Imágenes
 
 - Las imágenes inicializan en la variable images , pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
 
@@ -343,9 +345,11 @@ case ic_video_id_no_face_detected
 case ic_video_id_timeout
 ```
 
+### 8.2 Colores
+
 - Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
 
-```
+```java
 case sdkPrimaryColor
 case sdkBackgroundColor
 case sdkSecondaryColor
@@ -359,7 +363,7 @@ case sdkTopIconsVideoColor
 case sdkTopIconsColor
 ```
 
-### 8.2 Fuentes
+### 8.3 Fuentes
 
 Las fuentes se inicializan similarmente en la variable `fonts` con un diccionario, teniendo como valor un **String** con el nombre de la **UIFont** que se desee.
 
@@ -370,7 +374,7 @@ case bold
 
 - El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un **CGFloat** con el tamaño deseado.
 
-### 8.3 Animaciones
+### 8.4 Animaciones
 
 Las animaciones se inicializan similarmente en la variable `animations` con un diccionario, teniendo como valor un **String** con el nombre del archivo **JSON Lottie** que se desee.
 
@@ -383,7 +387,7 @@ case video_id_anim_diagnostic_success
 case video_id_anim_diagnostic_error
 ```
 
-### 8.4 Personalizar el tiempo entre pantallas
+### 8.5 Personalizar el tiempo entre pantallas
 
 Para modificar el tiempo que se permanece en cada pantalla de grabación hay que modificar el valor del parámetro time (en ms) del VideoIDConfigurationData:
 
@@ -391,9 +395,9 @@ Para modificar el tiempo que se permanece en cada pantalla de grabación hay que
 
 El mínimo soportado es 5000ms.
 
-### 8.5 Textos - Multiidioma
+### 8.6 Textos - Multiidioma
 
-#### 8.5.1 Configuración de idiomas por defecto
+#### 8.6.1 Configuración de idiomas por defecto
 
 Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
 
@@ -417,15 +421,15 @@ El idioma del componente se selecciona en función del idioma que tenga el móvi
 
 - Para cualquier otro caso, se hará uso del Inglés.
 
-#### 8.5.2 Configuración de idiomas personalizada
+#### 8.6.2 Configuración de idiomas personalizada
 
 El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
 
-Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt-PT). Se hace a través del uso de los archivos **Localizable.strings.**
+Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt). Se hace a través del uso de los archivos **Localizable.strings.**
 
-#### 8.5.3 Keys para multiidioma
+#### 8.6.3 Keys para multiidioma
 
-El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
+Los textos pueden ser personalizados sobreescribiendo su valor en las siguientes claves del archivo **Localizable.strings**. Las claves que contienen el sufijo **_\_alt_** son las etiquetas de accesibilidad necesarias para el correcto funcionamiento del **_voice over_**.
 
 ```java
 "video_id_component_init_message_face_docu_content_desc"="Coloca tu rostro y el frente de tu documento en las marcas";

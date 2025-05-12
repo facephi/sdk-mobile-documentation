@@ -296,18 +296,47 @@ case ic_video_call_timeout
 case ic_video_call_camera_toggle
 ```
 
-### 8.2 Fonts
+### 8.2 Colors
 
-Fonts are initialised similarly in the fonts variable with a dictionary, having as value a String with the name of the desired UIFont.
+Colors are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsVideoColor
+case sdkTopIconsColor
+// VideoCall Specific Colors
+case sdkBackgroundDisabled
+```
+
+### 8.3 Fonts
+
+Fonts are similarly initialized in the `fonts` variable with a dictionary, having as value a **String** with the name of the desired **UIFont**.
 
 ```java
 case regular
 case bold
 ```
 
-The size of the texts is initialised similarly in the dimensions variable with a dictionary, having as value a CGFloat with the desired size.
+- The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
 
-### 8.3 Texts
+### 8.4 Animations
+
+Animations are similarly initialized in the `animations` variable with a dictionary, having as value a **String** with the name of the desired **JSON Lottie**.
+
+```java
+case video_call_anim_waiting
+```
+
+### 8.5 Texts
 
 The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
@@ -330,31 +359,8 @@ The texts can be customized by overriding the value of these keys inside a **Loc
 "video_call_component_timeout_desc" = "An assistant could not be contacted.";
 ```
 
-### 8.4 Colors
+Thus, if you want to modify for example the text "_Finalize_" of the key `video_call_component_exit_alert_finish` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
 
-Colors are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+`"video_call_component_exit_alert_finish"="Finish";`.
 
-```java
-// COMMON SDK Colors 
-case sdkPrimaryColor
-case sdkBackgroundColor
-case sdkSecondaryColor
-case sdkBodyTextColor
-case sdkTitleTextColor
-case sdkSuccessColor
-case sdkErrorColor
-case sdkNeutralColor
-case sdkAccentColor
-case sdkTopIconsVideoColor
-case sdkTopIconsColor
-// VideoCall Specific Colors
-case sdkBackgroundDisabled
-```
-
-### 8.5 Animations
-
-The animations to be used are similarly initialised in the animations variable with a dictionary, having as value a String with the name of the animation found in the xcassets to be used.
-
-```java
-case video_call_anim_waiting
-```
+If a message is not specified in the language file, it will be filled with the default message.

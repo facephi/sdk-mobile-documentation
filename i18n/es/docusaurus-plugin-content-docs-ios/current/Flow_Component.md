@@ -64,9 +64,11 @@ Al iniciar el lanzamiento de una operación Flow, se genera internamente una nue
 | PhingersController        | Captura de huellas        |
 | NfcController             | Lectura de NFC            |
 | QrReaderController        | Lectura de QR             |
-| PhacturasReaderController | Captura de facturas       |
+| QrGeneratorController     | Generador de QR           |
+| InvoiceReaderController   | Captura de facturas       |
 | VideoIdController         | Video Identificación      |
 | VideoCallController       | Video Asistencia          |
+| VideoRecordingController  | Video ScreenSharing       |
 
 ---
 
@@ -156,8 +158,7 @@ El resultado del flujo tendrá 3 campos:
 - step: Información sobre el paso de flujo que se ha realizado. Con el valor
   valor de "key" se podrá identificar el componente ejecutado en el paso.
 
-- result: Los controladores devolverán la información requerida en formato SdkResult
-  -mas detalles en la sección Mobile SDK's <a href="Mobile_SDK#6-result-return" rel="nofollow">6. Retorno de resultado</a> -.
+- result: Los controllers devolverán la información necesaria en formato SdkResult. Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
 
 - flowFinish: Flag que indica si el proceso ha finalizado.
 
@@ -182,20 +183,20 @@ Tras comprobar los resultados, deberemos comprobar si el flujo ha finalizado o a
 Ejemplo:
 ```java
 let flowOutput: (SdkFlowResult) -> Void = { sdkFlowResult in
-            print("FlowController: STEP - \(sdkFlowResult.step)")
-            print("FlowController: FLOW FINISH: \(sdkFlowResult.flowFinish)")
-            print("FlowController: SDKResult: ERROR=\(sdkFlowResult.result.errorType) - DATA=\(sdkFlowResult.result.data)")
-            
-            switch (sdkFlowResult.result.data) {
-            case (let data as SelphIDResult):
-                break
-            case (let data as SelphiResult):
-                break
-            case (let data as SelphixResult):
-                break
-            default: break
-            }
-        }
+    print("FlowController: STEP - \(sdkFlowResult.step)")
+    print("FlowController: FLOW FINISH: \(sdkFlowResult.flowFinish)")
+    print("FlowController: SDKResult: ERROR=\(sdkFlowResult.result.errorType) - DATA=\(sdkFlowResult.result.data)")
+
+    switch (sdkFlowResult.result.data) {
+    case (let data as SelphIDResult):
+        break
+    case (let data as SelphiResult):
+        break
+    case (let data as SelphixResult):
+        break
+    default: break
+    }
+    }
 ```
 
 Después de comprobar los resultados, debemos comprobar si el flujo se ha finalizado o aún quedan pasos, para poder gestionar los siguientes pasos fuera del SDK.

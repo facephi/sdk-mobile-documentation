@@ -25,6 +25,8 @@ The minimum iOS SDK version required is as follows:
 
 ## Minimum iOS version: **13**
 
+---
+
 ## 2. Integration of the component
 
 <div class="warning">
@@ -47,13 +49,13 @@ completely before the installation of the components of the **_SDKMobile_** comp
 
 - Currently the FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
-```
+```java
 pod 'FPHISDKMainComponent', '~> 2.3.0'
 ```
 
 - To install the VideoID component, the following entry must be included in the application's Podfile:
 
-```
+```java
 pod 'FPHISDKVideoIDComponent', '~> 2.3.0'
 ```
 
@@ -200,7 +202,7 @@ to launch the component:
 
 
 ```java
-let controller = VoiceController(
+let controller = VideoIdController(
     data: videoIdConfigurationData,
     output: { sdkResult in
         // Do whatever with the result
@@ -212,7 +214,7 @@ SDKController.shared.launch(controller: controller)
   of the component normally, but events **will not be tracked** to the _tracking_ server:
 
 ```java
-let controller = VideoIdController(data: VideoIdConfigurationData, output: { sdkResult in
+let controller = VideoIdController(data: videoIdConfigurationData, output: { sdkResult in
         // Do whatever with the result
         ...
     }, viewController: viewController)
@@ -286,7 +288,7 @@ public enum VideoIdError: String {
 
 To customize the component, ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) must be called after initializing the videoIdController:
 
-```
+```java
 let videoidController = VideoIdController(data: data, output: { sdkResult in
         // Do whatever with the result
         ...
@@ -297,7 +299,7 @@ SDKController.launchVideoId(controller: videoidController)
 
 An example of the CustomThemeVideoId class would be this (you must implement ThemeVideoIdProtocol):
 
-```
+```java
 class CustomThemeVideoId: ThemeVideoIdProtocol {
      var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
 
@@ -317,11 +319,11 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 }
 ```
 
-### 8.1 Colors and images
+### 8.1 Images
 
 - The images initialize in the variable images , passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
 
-```
+```java
 case ic_sdk_close_arrow
 case ic_sdk_close
 case ic_video_id_back_id
@@ -342,9 +344,11 @@ case ic_video_id_no_face_detected
 case ic_video_id_timeout
 ```
 
+### 8.2 Colors
+
 - The colors are initialized similarly in the colors variable with a dictionary, having as value a UIColor of your choice.
 
-```
+```java
 case sdkPrimaryColor
 case sdkBackgroundColor
 case sdkSecondaryColor
@@ -358,22 +362,22 @@ case sdkTopIconsVideoColor
 case sdkTopIconsColor
 ```
 
-### 8.2 Fonts
+### 8.3 Fonts
 
 Fonts are similarly initialized in the `fonts` variable with a dictionary, having as value a **String** with the name of the desired **UIFont**.
 
-```
+```java
 case regular
 case bold
 ```
 
 - The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
 
-### 8.3 Animations
+### 8.4 Animations
 
 Animations are similarly initialized in the `animations` variable with a dictionary, having as value a **String** with the name of the desired **JSON Lottie**.
 
-```
+```java
 case video_id_anim_doc_and_face
 case video_id_anim_face
 case video_id_anim_loading
@@ -381,7 +385,7 @@ case video_id_anim_diagnostic_success
 case video_id_anim_diagnostic_error
 ```
 
-### 8.4 Customizing the time between screens
+### 8.5 Customizing the time between screens
 
 To modify the time spent on each recording screen, the value of the time parameter (in ms) of the VideoIDConfigurationData must be modified:
 
@@ -389,9 +393,9 @@ To modify the time spent on each recording screen, the value of the time paramet
 
 The minimum supported is 5000ms.
 
-### 8.5 Texts - Multi-Language
+### 8.6 Texts - Multi-Language
 
-#### 8.5.1 Default language settings
+#### 8.6.1 Default language settings
 
 If the package is installed via **SPM**, for text localization to work, the following needs to be added to the **Info.plist** file of the integrator app:
 
@@ -415,17 +419,17 @@ The language of the component is selected according to the language that the cel
 
 - For any other case, English will be used.
 
-#### 8.5.2 Customized Language Configuration
+#### 8.6.2 Customized Language Configuration
 
 The component allows the customization of texts according to the language, which as in the previous case, will be defined by the language that is selected on the device.
 
 This customization applies to new localizations as well as to the case of the default languages (es, en and pt-PT). It is done through the use of **Localizable.strings.** files.
 
-#### 8.5.3 Keys for multi-languages
+#### 8.6.3 Keys for multi-languages
 
-The **Localizable.strings** file in the **es.lproj** folder of the component is the following:
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
-```
+```java
 "video_id_component_init_message_face_docu_content_desc"="Place your face and the front of your document within the frame";
 "video_id_component_init_message_face_content_desc"="Place your face within the frame and start recording";
 "video_id_component_finish_message"="Video recording finished!";

@@ -60,17 +60,19 @@ internally, a new operation is generated in a completely transparent way.
 
 ### 4.1. Available controllers for flow
 
-| **Controller**             | **Description**       |
-| -------------------------- | --------------------- |
+| **Controller**            | **Description**       |
+| ------------------------- | --------------------- |
 | SelphiController          | Facial recognition    |
 | SelphIDController         | Document recognition  |
 | VoiceController           | Voice capture         |
-| PhingersController        | Capture of footprints |
+| PhingersController        | Fingerprint Capture   |
 | NFCController             | NFC                   |
-| QrReaderController        | QR Reader             |
-| InvoiceReaderController   | Invoice capture       |
+| InvoiceReaderController   | Invoice Capture       |
+| QrReaderController        | QR Capture            |
+| QrGeneratorController     | QR Generator          |
 | VideoIdController         | Video Identification  |
 | VideoCallController       | Video Call            |
+| VideoRecordingController  | Video ScreenSharing   |
 
 ---
 
@@ -160,10 +162,7 @@ The flow result will have 3 fields:
 - step: Information on the flow step that has been performed. With the
   value of "key" it will be possible to identify the component executed in the step.
 
-- result: The controllers will return the required information in SdkResult format
-  -more details in the Android Mobile SDK's <a
-  href="Mobile_SDK#6-result-return"
-  rel="nofollow">6. Result return</a> section-.
+- result: The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
 - flowFinish: Flag indicating whether the process has finished.
 
@@ -188,20 +187,20 @@ After checking the results, we should check whether the flow has been finished o
 Example:
 ```java
 let flowOutput: (SdkFlowResult) -> Void = { sdkFlowResult in
-            print("FlowController: STEP - \(sdkFlowResult.step)")
-            print("FlowController: FLOW FINISH: \(sdkFlowResult.flowFinish)")
-            print("FlowController: SDKResult: ERROR=\(sdkFlowResult.result.errorType) - DATA=\(sdkFlowResult.result.data)")
-            
-            switch (sdkFlowResult.result.data) {
-            case (let data as SelphIDResult):
-                break
-            case (let data as SelphiResult):
-                break
-            case (let data as SelphixResult):
-                break
-            default: break
-            }
-        }
+    print("FlowController: STEP - \(sdkFlowResult.step)")
+    print("FlowController: FLOW FINISH: \(sdkFlowResult.flowFinish)")
+    print("FlowController: SDKResult: ERROR=\(sdkFlowResult.result.errorType) - DATA=\(sdkFlowResult.result.data)")
+    
+    switch (sdkFlowResult.result.data) {
+    case (let data as SelphIDResult):
+        break
+    case (let data as SelphiResult):
+        break
+    case (let data as SelphixResult):
+        break
+    default: break
+    }
+}
 ```
 
 After checking the results, we should check whether the flow has been
