@@ -267,17 +267,46 @@ The controllers will return the required information in SdkResult format. More d
 
 ### 7.1. Receipt of errors
 
-On the error side, **internally** we have the NFCPassportReaderError class. This enumeration contains many specific errors that do not provide useful information if returned to the integrator, so they are transformed to a simpler type (**ErrorType**):
+On the error side, **internally** we have the **NfcError** class. This enumeration contains many specific errors that do not provide useful information if returned to the integrator, so they are transformed to a simpler type (**ErrorType**):
 
 ```java
-    CANCEL_BY_USER
-    TIMEOUT
-    UNKNOWN_ERROR
-    NFC_INVALID_MRZ_KEY
-    NFC_NOT_SUPPORTED
-    TAG_CONNECTION_LOST
-    SECURITY_STATUS_NOT_SATISFIED
-    SYSTEM_RESOURCE_UNAVAILABLE
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+The OTHER case can contain these String values:
+
+```java
+public enum NfcError: String {
+    case NFC_INVALID_MRZ_KEY
+    case NFC_NOT_SUPPORTED
+    case TAG_CONNECTION_LOST
+    case SECURITY_STATUS_NOT_SATISFIED
+    case SYSTEM_RESOURCE_UNAVAILABLE
+}
 ```
 
 **NOTE**: `NFC_INVALID_MRZ_KEY` _implies that the connection could not be established because the configuration input data (documentNumber, birthDate, expiryDate) is not correct.

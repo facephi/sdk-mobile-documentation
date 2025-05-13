@@ -282,5 +282,4 @@ value of each _String_ to the desired one.
 "voice_component_end_confirmation_title" = "Are you sure you will finish the process?";
 "voice_component_text_results_finish_button" = "Finish";
 "voice_component_agree" = "Accept";
-
 ```

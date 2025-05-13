@@ -337,20 +337,52 @@ The controllers will return the required information in SdkResult format. More d
 
 _finishStatus_: Which will tell us if the operation has finished successfully. Possible values:
 
-```
+```java
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
 
-_errorType_: Errors specific to the widget.
-
-```
-case SELPHID_CANCEL_BY_USER
-case SELPHID_TIMEOUT
-case SELPHID_INTERNAL_ERROR
-```
-
 _data_: It will have the response data of the executed component function. The fields included in this component are specified in section 7.2.
+
+_errorType_: Widget's own errors
+
+```java
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+The OTHER case can contain these values:
+
+```java
+public enum SelphIDError: String {
+    case RESOURCES_FILE_NOT_FOUND
+    case COULD_NOT_CREATE_WIDGET_INSTANCE
+    case CONSUMED_BY_LICENSE_ERROR
+}
+```
 
 ### 7.2. Receiving successful execution - data
 
