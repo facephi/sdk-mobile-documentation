@@ -143,7 +143,7 @@ The result is an _SDKResult_ object that is returned by the SDK and will always 
 
 _finishStatus_: Which will tell us if the operation has completed correctly. Possible values:
 
-```
+```java
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
@@ -152,18 +152,37 @@ _errorType_: If the finishStatus indicates that there has been an error, this fi
 
 Tracking errors come in the _TrackingError_ enum:
 
-```
-INIT_DATA_ERROR
-ASSET_UPLOAD
-INIT_IDS_ERROR
-ASSET_LINK
-STEP_CHANGE
-OCR_DATA
-INIT_OPERATION
-EXTERNAL_EVENT
-OPERATION_RESULT
-CUSTOMER_ID
-TOKEN_ERROR
-```
+  - **APPLICATION_CONTEXT_ERROR**: Error in the initialisation of the context  
+  - **ASSET_LINK**: Error when sending resource link  
+  - **ASSET_UPLOAD**: Error during the asset upload process  
+  - **COMPONENT_LICENSE_ERROR**: Missing or invalid component license  
+  - **CUSTOMER_ID**: Error retrieving or validating the customer ID  
+  - **DEVICE_EVENT_ERROR**: Failure during a device-related event  
+  - **EMPTY_LICENSE**: License data is missing or empty  
+  - **FLOW**: Error during the execution flow  
+  - **INITIALIZATION_ERROR**: General initialization failure  
+  - **INIT_IDS_ERROR**: Error generating or assigning IDs during init  
+  - **INIT_OPERATION**: Operation failed at the initialization phase  
+  - **LICENSE_ERROR**: Invalid or corrupted license data  
+  - **MANAGER_NOT_INITIALIZED**: Manager component used before being initialized  
+  - **NETWORK_CONNECTION**: Network connection issue detected  
+  - **NETWORK_ERROR**: Generic network failure  
+  - **NO_OPERATION_CREATED_ERROR**: No operation was created when expected  
+  - **OCR_DATA**: Error processing OCR data  
+  - **OPERATION_NOT_CREATED**: Expected operation was not generated  
+  - **OPERATION_ID**: Invalid or missing operation ID  
+  - **SESSION_ID**: Error with the session identification  
+  - **SIGNATURE_RESULT**: Failure in the signature process or result  
+  - **STEP_CHANGE**: Unexpected or invalid step transition  
+  - **STEP_RESULT_CANCELLED**: Step was cancelled unexpectedly  
+  - **STEP_RESULT_ERROR**: Step ended with an error  
+  - **STEP_RESULT_EXPIRED**: Step result expired before completion  
+  - **STEP_RESULT_SUCCEEDED**: Step succeeded but resulted in an unexpected issue  
+  - **TOKEN_ERROR**: Token missing, expired, or invalid  
+  - **ADVANCED_TRACKING_UPLOAD**: Advanced tracking data upload failed  
+  - **TENANT_ID_EMPTY_ERROR**: Tenant ID was missing or empty  
+  - **ADVANCED_TRACKING_SERIALIZATION_ERROR**: Error serializing advanced tracking data  
+  - **ADVANCED_TRACKING_VALIDATION_ERROR**: Validation failed for tracking payload  
+  - **TOKENIZER_ERROR**: Error during tokenization process  
 
 ---

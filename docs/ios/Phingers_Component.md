@@ -77,7 +77,7 @@ The mandatory dependencies that must have been previously installed (adding them
   entry in the _Podfile_ of the application:
 
   ```java
-  pod 'FPHISDKPhingersComponent', '~> 2.3.0'.
+  pod 'FPHISDKPhingersTFComponent', '~> 2.3.0'.
   ```
 
 - Once the dependencies have been installed, you will be able to use the different
@@ -129,84 +129,80 @@ class and what each of them is used for.
 
 #### 5.1.1 reticleOrientation
 
+Sets the hand which is going to be captured. The allowed values are:
+
+- **LEFT**: Enables the capture of the **fingers** of the
+  **left** **hand**.
+
+- **RIGHT**: Enables the capture of the **fingers** of the
+  **left** **hand**.
+
+#### 5.1.2 fingerFilter
+
 Sets the fingerprint detection mode and indicates which fingers are to
 be detected during the process. The allowed values are:
 
-- **LEFT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+- **INDEX_FINGER**: Enables the capture of the **index** **finger**.
 
-- **RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+- **MIDDLE_FINGER**: Enables the capture of the **middle** **finger**.
 
-- **THUMB**: The capture of a **thumb** is activated.
+- **RING_FINGER**: Enables the capture of the **ring** **finger**.
 
-#### 5.1.2 extractionTimeout
+- **LITTLE_FINGER**: Enables the capture of the **little** **finger**.
 
-Sets a stabilisation mode prior to any authentication process in the widget.
-authentication process in the widget. This mode forces the widget to not
-start any process if the user is not facing forward and not moving his head.
-head facing forward and not moving it.
+- **THUMB_FINGER**: Enables the capture of the **thumb** **finger**.
 
+- **SLAP**: Enables the capture of the **four** **fingers** with a single photo.
 
-#### 5.1.3 returnRawImage
+- **ALL_4_FINGERS_ONE_BY_ONE**: Enables the capture of the **four** **fingers** of the selected hand one by one.
 
-If set to **true** it shall return in the result the images in the same form as they have been captured.
-the same form in which they have been captured.
+- **ALL_5_FINGERS_ONE_BY_ONE**: Enables the capture of the **five** **fingers** of the selected hand one by one.
 
-#### 5.1.4 returnProcessedImage
-
-If set to **true** it shall return the images in the result as they were captured.
-the same form in which they have been captured.
-
-#### 5.1.5 returnFingerprintTemplate
+#### 5.1.3 templateType
 
 Specifies whether the capture process shall return the fingerprint template in the result.
-the result. It is an enumerated of type **_FingerprintTemplateType_**, and
-each value would be:
+It is an enumerated of type **_TemplateType_**, and each value would be:
 
-- **ISO**: This template type refers to the standard **ISO/IEC
-  19794-4**.
+- **ISO_TEMPLATE**: This template type refers to the standard **ISO/IEC 19794-4**.
 
-- **INNOVATRICS**: This type of template is a proprietary template
-  template, compatible with scaling change, and very useful for different validation processes.
-  validation processes.
+- **NIST_TEMPLATE**: This template type refers to the NIST standard.
 
-- **NONE**: Template return is disabled.
+- **NIST_TF_TEMPLATE**: **This is the default value.** This type of template is a proprietary template,
+  compatible with scaling change, and very useful for different validation processes.
 
-#### 5.1.6 returnFullFrameImage
+#### 5.1.4 extractionTimeout
 
-Specifies whether to return the full image of the camera where the fingers have been detected.
-fingers have been detected.
+Sets the maximum time that the capture can be performed.
 
-#### 5.1.7 useLiveness
+#### 5.1.5 showPreviousTip
 
-Enables or disables the liveness detector during the fingerprint capture process.
-capture process. Defaults to **true**.
+Displays a pre-launch screen with information about the process to be performed and a launch button.
 
-#### 5.1.8 useFlash
+#### 5.1.6. showTutorial
 
-Enables or disables the camera flash during the fingerprint capture process.
-process. Defaults to **true**.
+Indicates whether the component activates the tutorial screen. This view
+intuitively explains how the capture is performed.
 
-#### 5.1.9 captureFingersText
+#### 5.1.7. vibrationEnabled
 
-Sets the message (string) that is displayed on the screen after the four fingers have been
-detected and the user shall be instructed not to move them.
+Indicates whether vibration feedback is desired at the end of the
+process.
 
-#### 5.1.10 captureThumbText
+#### 5.1.8 showDiagnostic
 
-Sets the message (string) to be displayed on the screen after the thumb has been detected and the user shall be prompted not to move the thumb.
-detected and the user shall be prompted not to move it.
+Display diagnostic screens at the end of the process
 
-#### 5.1.11 thumbNotInFocusText
+#### 5.1.9 threshold
 
-Sets the message (string) that is displayed on the screen while attempting to
-attempted
+Sets the fingerprint detector's threshold. **Default value is 0.7.**
 
-#### 5.1.12 captureFingerText
+#### 5.1.10 showEllipses
 
-Sets the message (string) displayed on screen during the thumb capture process.
-thumb capture process.
+Draw an ellipse in the capture screen on detected fingerprint.
+
+#### 5.1.11 cropWidth & cropHeight
+
+Sets the width and height of the cropped capture photo.
 
 ---
 
@@ -251,80 +247,105 @@ sent to the platform.
 
 ## 7. Receipt of the result
 
-The controllers will return the required information in SdkResult
-format. More information in the [Result Return](./Mobile_SDK#6-result-return) section.
+The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receipt of errors
+### 7.1. Receiving errors
+
+On the error side, we will have the common enum _ErrorType_.
 
 ```java
-NO_OPERATION_CREATED_ERROR
-COMPONENT_CONTROLLER_DATA_ERROR
-CAMERA_PERMISSION_DENIED
-LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
-ERROR_CAPTURE_SUCCESS_WITHOUT_RESULT
-CAMERA_PERMISSION_DENIED
-CANCEL_BY_USER
-TIMEOUT
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+The errors 'ErrorType.OTHER' and 'ErrorType.LICENSE_CHECKER_ERROR' are special because they also inform of
+the error's details.
+
+The _String_ can have this values in the OTHER's case:
+
+```java
+public enum PhingersError: String {
+    case INITIALIZATION_ERROR
+}
 ```
 
 ### 7.2 Receipt of correct execution - _data_
 
-The result returns the images in **Bitmap** format, it is possible to
-convert the images to **Base64** as follows:
+In the data part, we have the _PhingersResult_ class.
+The fields returned are the following:
 
-`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`.
+#### 7.1.1 _fingers_
 
-The _data_ field is variable and will depend on which component the result was returned.
-the result has been returned. In the case of this component, the returned fields are
-the following:
+##### 7.1.1.1. position
 
-#### 7.2.1 _focusQuality_.
+Returns an integer that represents the captured element. This value is set as instructed
+in the NIST_POS_CODE.
 
-Returns the best image extracted from the authentication process in
-Base64 string format. This image is the original size image
-extracted from the camera. Valid for the **liveness** process.
+##### 7.1.1.2. displayImage
 
-#### 7.2.2 _fullFrameImage_
+Returns the processed image.
 
-Returns a cropped image centred on the user's face in Base64 string format.
-string Base64 format. This image is obtained from the _bestImage_. This
-is the image that shall be used as the characteristic image of the
-user who performed the process as the _avatar_.
+##### 7.1.1.3. wsq
 
-#### 7.2.3 _livenessConfidence_
+The fingerprint capture in WSQ format is returned.
 
-Returns an indicator of the confidence level of the catch.
+##### 7.1.1.4. minutiaesNumber
 
-#### 7.2.4 _fingersResult_.
+Returns the number of minutiaes found in the biometric capture.
 
-This is a list of **_FingerResult_** objects, containing all the information associated with each finger.
-information associated with each of the captured fingers.
+##### 7.1.1.5. quality
 
-#### 7.2.4.1 wsq
+Integer that represents the quality of the element after processing.
 
-The fingerprint capture is returned in WSQ format.
+##### 7.1.1.6 nistQuality
 
-#### 7.2.4.2 fingerprintTemplate
+Integer that represents the quality of the element after processing with NIST standards.
 
-Returns the fingerprint template, used for further validation.
+##### 7.1.1.7 nist2Quality
 
-#### 7.2.4.3 rawFingerprintImage
+Integer that represents the quality of the element after processing with an alternative version of the NIST standards.
 
-Returns the raw, unmodified image of the current fingerprint.
+##### 7.1.1.8 livenessScore
 
-#### 7.2.4.4 processedFingerprintImage
+Returns an indicator of the confidence level of the capture.
 
-Returns the processed fingerprint image.
+#### 7.1.2 _slapImages_
 
-#### 7.2.4.5 nfiqMetrics
+##### 7.1.2.1. position
 
-These are the metrics of the capture. Currently the following is returned.
-value:
+Returns an integer that represents the captured element. This value is set as instructed
+in the NIST_POS_CODE.
 
-- nfiqMetric\*\*: An integer value, between 1 and 5 (inclusive),
-  indicating the quality of the fingerprint capture, with 1 indicating the highest quality and 5 the worst quality.
-  indicates the highest quality and 5 the worst quality. Fingerprints with the latter value
-  The latter value is usually discarded for further validation.
+##### 7.1.2.2. image
+
+Returns the processed image.
+
+##### 7.1.2.3. livenessScore
+
+Returns an indicator of the confidence level of the capture.
 
 ---
 
@@ -332,28 +353,191 @@ value:
 
 Apart from the changes that can be made at SDK level (which are
 explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
-document), this particular component allows the modification of specific
+document), this particular component allows the modification of specific animations, images, fonts, colors and
 texts.
 
-### 8.1 Texts
+To customize the component, ThemePhingersManager.setup(theme:`CustomThemePhingers()` ) must be called after initializing the PhingersController:
+
+```java
+let phingersController = PhingersController(data: PhingersConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+ThemePhingersManager.setup(theme: CustomThemePhingers())
+SDKController.shared.launch(controller: phingersController)
+```
+
+For example:
+
+```java
+class CustomThemePhingers: ThemePhingersProtocol {
+    public var name: String {
+        "custom"
+    }
+
+    public var fonts: [R.Font: String] {
+        [.bold: "Arial"] // the font is overrided
+    }
+
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
+
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
+
+    var fonts: [R.Font: String] = [:]
+
+    var animations: [R.Animation: String] = [:]
+
+    public var dimensions: [R.Dimension: CGFloat] {
+        [.fontSmall: 7,
+         .fontRegular: 12,
+         .fontBig: 20,
+         .radiusCorner: 16]
+    }
+}
+```
+
+### 8.1 Images
+
+- The images initialize in the variable images, passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
+
+```java
+case ic_sdk_close
+case ic_sdk_close_arrow
+```
+
+### 8.2 Colors
+
+- The colors are initialized similarly in the colors variable with a dictionary, having as value a UIColor of your choice.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+// Phingers Specific Colors
+case sdkButtonTextColor
+```
+
+### 8.3 Fonts
+
+Fonts are similarly initialized in the `fonts` variable with a dictionary, having as value a **String** with the name of the desired **UIFont**.
+
+```java
+case regular
+case bold
+```
+
+- The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
+
+### 8.4 Animations
+
+Animations are similarly initialized in the `animations` variable with a dictionary, having as value a **String** with the name of the desired **JSON Lottie**.
+
+```java
+case phingers_anim_tip_left
+case phingers_anim_tip_right
+case phingers_anim_tip_thumb
+```
+
+### 8.5 Texts - Multi-Language
+
+#### 8.5.1 Default language settings
+
+If the package is installed via **SPM**, for text localization to work, the following needs to be added to the **Info.plist** file of the integrator app:
+
+**CFBundleAllowMixedLocalizations = YES**.
+
+It would look like this:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- English - Spain
+
+- Spanish - Spain
+
+- Portuguese - Portugal
+
+The component's language can be configured with the **_locale_** parameter of the *_initSdk_* function.
+If not configured, by default, the SDK chooses the established lnaguage of the device.
+
+- If the language is any language whose root is Spanish (e.g. Spanish - Mexico), by default, it will use Spanish - Spain.
+
+- If the language is any language whose root is Portuguese (e.g. Portuguese - Brazil), by default, it will use Portuguese - Portugal.
+
+- For any other case, English will be used.
+
+#### 8.5.2 Customized Language Configuration
+
+The component allows the customization of texts according to the language, which as in the previous case, will be defined by the language that is selected on the device.
+
+This customization applies to new localizations as well as to the case of the default languages (es, en and pt-PT). It is done through the use of **Localizable.strings.** files.
+
+#### 8.5.3 Keys for multi-languages
 
 The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```java
-<!-- PHINGERS -->
-"phingers_component_tutorial_title_left" = "Left hand prints.";
-"phingers_component_tutorial_title_right" = "Right hand prints.";
-"phingers_component_tutorial_title_thumb" = "Thumbprints.";
-"phingers_component_action_text" = "Begin";
-"phingers_component_tutorial_description" = "Put your fingers together. Move your hand closer or lower until your fingerprints are in focus.";
-"phingers_component_capture_phingers" = "Hold fingers steady";
-"phingers_component_capture_thumb" = "Hold finger steady";
-"phingers_component_capture_phingers_not_focus" = "Move fingers until in focus";
-"phingers_component_capture_thumb_not_focus" = "Move finger until in focus";
-"phingers_component_ok"="Ok";
-"phingers_component_cancel"="Cancel";
-"phingers_component_end_confirmation_title" = "Are you sure you will finish the process?";
-"phingers_component_text_results_finish_button" = "Finish";
-"phingers_component_agree" = "Accept";
----
+/*  PhingersLocalizable view  */
+"phingers_tf_component_tip_title_left" = "Left handprints";
+"phingers_tf_component_tip_title_right" = "Right handprints";
+"phingers_tf_component_tip_title_thumb" = "Thumb print";
+"phingers_tf_component_tip_button_message" = "START";
+"phingers_tf_component_tip_desc" = "Put your fingers together. Zoom your hand in or out until your fingerprints come into focus.";
+"phingers_tf_component_capture_phingers" = "Keep your fingers steady";
+"phingers_tf_component_capture_thumb" = "Hold your finger steady";
+"phingers_tf_component_capture_phingers_not_focus" = "Move your fingers until they are in focus";
+"phingers_tf_component_capture_thumb_not_focus" = "Move your finger until it is in focus";
+"phingers_tf_component_timeout_title"="Timeout";
+"phingers_tf_component_timeout_desc"="We apologize. The capture could not be made";
+"phingers_tf_component_exit_alert_question" = "Are you sure to exit the process?";
+"phingers_tf_component_exit_alert_cancel"="Cancel";
+"phingers_tf_component_exit_alert_finish" = "Finish";
+"phingers_tf_component_exit_alert_accept" = "Accept";
+
+// WIDGET
+"phingers_tf_component_label_frame" = "Keep your fingers steady";
+"phingers_tf_component_label_morethan_expected_fingers" = "More than %d %@";
+"phingers_tf_component_label_fingers" = "Fingers";
+"phingers_tf_component_label_finger" = "Finger";
+"phingers_tf_component_label_hold_fingers_horizantally" = "Hold %@ horizontally";
+"phingers_tf_component_label_hold_fingers_vertically" = "Hold %@ vertically";
+"phingers_tf_component_label_tooFar" = "Please bring your hand closer";
+"phingers_tf_component_label_tooClose" = "Please move your hand further";
+"phingers_tf_component_label_lowFocus" = "Low focus. Try to move hand";
+"phingers_tf_component_label_goodFocus" = "Hold your hand steady";
+"phingers_tf_component_label_right_4_fingers" = "Right 4 fingers";
+"phingers_tf_component_label_left_4_fingers" = "Left 4 fingers";
+"phingers_tf_component_label_thumbs" = "Thumbs";
+"phingers_tf_component_label_right_thumb" = "Right thumb";
+"phingers_tf_component_label_left_thumb" = "Left thumb";
+"phingers_tf_component_label_right_index" = "Right index finger";
+"phingers_tf_component_label_right_middle" = "Right middle finger";
+"phingers_tf_component_label_right_ring" = "Right ring finger";
+"phingers_tf_component_label_right_little" = "Right little finger";
+"phingers_tf_component_label_left_index" = "Left index finger";
+"phingers_tf_component_label_left_middle" = "Left middle finger";
+"phingers_tf_component_label_left_ring" = "Left ring finger";
+"phingers_tf_component_label_left_little" = "Left little finger";
+"phingers_tf_component_label_progress" = "Processing...";
+"phingers_tf_component_label_right" = "Right";
+"phingers_tf_component_label_left" = "Left";
+"phingers_tf_component_label_four_fingers" = "4 fingers";
+"phingers_tf_component_label_left_or_right_num_fingers" = "%@ %d fingers";
+"phingers_tf_component_label_thumb" = "thumb";
+"phingers_tf_component_label_hand" = "Hand";
+"phingers_tf_component_label_wronghand" = "Wrong hand detected\nPlease present %@";
+"phingers_tf_component_label_too_few_fingers_detected" = "Too few fingers detected";
 ```
+
+Thus, if you want to modify for example the text "_START_" of the key `phingers_tf_component_tip_button_message` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
+
+`"phingers_tf_component_tip_button_message"="BEGIN";`.
+
+If a message is not specified in the language file, it will be filled with the default message.

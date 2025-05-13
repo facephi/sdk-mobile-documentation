@@ -265,7 +265,8 @@ We initialize:
 
 ```java
 let trackingController = TrackingController(trackingError: { trackingError in
-      print("TRACKING ERROR: \(trackingError)")
+    // Manage what happens if error
+    print("TRACKING ERROR: \(trackingError)")
 })
 ```
 
@@ -320,7 +321,6 @@ import behaviorComponent
 Initialise:
 
 ```java
-
 behaviorController = BehaviorController(autoLogoutAction: {
                       print("ACTIVE DEFENSE")
                       return true
@@ -513,21 +513,30 @@ In the .errorType attribute, we will have the typology of the error. The error t
 The error codes you may receive are as follows.
 
 ```java
-public enum ErrorType: String, Error {
-     case NO_ERROR
-     case UNKNOWN_ERROR
-     case OTHER(String)
-     case COMPONENT_CONTROLLER_DATA_ERROR
-     case NO_OPERATION_CREATED_ERROR
-     case NETWORK_CONNECTION
-     case CAMERA_PERMISSION_DENIED
-     case MIC_PERMISSION_DENIED
-     case LOCATION_PERMISSION_DENIED
-     case STORAGE_PERMISSION_DENIED
-     case CANCEL_BY_USER
-     case TIMEOUT
-     case LICENSE_CHECKER_ERROR_INVALID_LICENSE
-     case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
 }
 ```
 

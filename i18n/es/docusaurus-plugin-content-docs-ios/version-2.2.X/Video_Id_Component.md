@@ -364,8 +364,8 @@ Esta personalización se aplica tanto a nuevas localizaciones como al caso de lo
 
 #### 8.4.3 Keys para multiidioma
 
-El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
-
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
 ```
 "video_id_text_waiting_agent_title"="Video grabación";
 "video_id_permission_denied"="Permiso denegado";

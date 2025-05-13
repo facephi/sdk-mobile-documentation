@@ -183,11 +183,20 @@ Indicates whether you want to show the complete initial tutorial. If I dont know
 
 #### 5.1.14. vibrationEnabled
 
-If the value is set to true, the vibration is activated on errors and if the widget response is OK
+If the value is set to true, the vibration is activated on errors and if the widget response is OK.
 
-#### 5.1.15. maximumRetries
+#### 5.1.15. maxRetries
 
 Maximum retries allowed with each operation. Default value is 3.
+
+#### 5.1.16. ocrValidations
+
+Validations to be made after document's capture. The given data is evaluated against the obtained data.
+
+#### 5.1.17. ocrMaxWarnings
+
+How many warnings are allowed before the VideoID capture is labelled as *_TOLERANCE_ERROR_*.
+**Default value is 5.**
 
 ---
 
@@ -279,12 +288,18 @@ public enum VideoIdError: String {
     case SOCKET_URL_IS_NOT_VALID
     case MISSING_DOCUMENT_READER_RESOURCES
     case NO_FACE_DETECTED
+    case OCR_ERROR
 }
 ```
 
 ---
 
 ## 8. Component customization
+
+Apart from the changes that can be made at SDK level (which are
+explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
+document), this particular component allows the modification of specific animations, images, fonts, colors and
+texts.
 
 To customize the component, ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) must be called after initializing the videoIdController:
 
@@ -321,7 +336,7 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 
 ### 8.1 Images
 
-- The images initialize in the variable images , passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
+- The images initialize in the variable images, passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
 
 ```java
 case ic_sdk_close_arrow
@@ -358,8 +373,9 @@ case sdkSuccessColor
 case sdkErrorColor
 case sdkNeutralColor
 case sdkAccentColor
-case sdkTopIconsVideoColor
 case sdkTopIconsColor
+// VideoID Specific Colors
+case sdkTopIconsVideoColor
 ```
 
 ### 8.3 Fonts
@@ -411,7 +427,8 @@ It would look like this:
 
 - Portuguese - Portugal
 
-The language of the component is selected according to the language that the cell phone has set.
+The component's language can be configured with the **_locale_** parameter of the *_initSdk_* function.
+If not configured, by default, the SDK chooses the established lnaguage of the device.
 
 - If the language is any language whose root is Spanish (e.g. Spanish - Mexico), by default, it will use Spanish - Spain.
 

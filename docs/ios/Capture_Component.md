@@ -371,7 +371,7 @@ class CustomThemeCapture: ThemeCaptureReaderProtocol {
 
 ### 8.1 Images
 
-Images are initialised in the variable images , passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
+Images are initialised in the variable images, passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
 
 ```java
 case ic_capture_capture

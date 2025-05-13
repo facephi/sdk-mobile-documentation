@@ -32,7 +32,7 @@ documentation related to [Initial Integration](./Mobile_SDK#2-initial-integratio
 
 To use the Status Component with the SDK, it's needed to pass an instance as a param in the initSdk function:
 
-```
+```java
 SDKController.shared.initSdk(
         ...,
         statusController: StatusController()
@@ -49,13 +49,13 @@ None
 
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them in the Podfile file of the project) are:
 
-```
+```java
   pod 'FPHISDKMainComponent', '~> 2.3.0'
 ```
 
 - To install the Status component, the following entry must be included in the application Podfile:
 
-```
+```java
   pod 'FPHISDKStatusComponent', '~> 2.3.0'
 ```
 
@@ -94,7 +94,7 @@ git@github.com:facephi-clienters/SDK-StatusPackage-SPM.git
 
 The component's customization is managed with "Themes". This themes implement ThemeStatusProtocol:
 
-```
+```java
 public protocol ThemeStatusProtocol {
     var name: String { get } // Description of the theme
     var fonts: [R.Font: String] { get }
@@ -110,20 +110,20 @@ A custom theme can edit any of those values. By default there is a ThemeStatus t
 
 Available colors to customize:
 
-```
-enum Color: String, CaseIterable {
-    case sdkPrimaryColor
-    case sdkSecondaryColor
-    case sdkBackgroundColor
-    case sdkTitleTextColor
-    case sdkBodyTextColor
-    case sdkTopIconsColor
-    case sdkButtonTextColor
-    case sdkErrorColor
-    case sdkSuccessColor
-    case sdkNeutralColor
-    case sdkAccentColor
-}
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+// Phingers Specific Colors
+case sdkButtonTextColor
 ```
 
 By default:
@@ -141,7 +141,7 @@ If the asset is not found in the main app, it will take the value of the configu
 
 The colors can be customized with the creation of a Theme class:
 
-```
+```java
 import statusComponent
 ...
 
@@ -159,7 +159,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Available images to customize:
 
-```
+```java
 enum Image: String, CaseIterable {
     case ic_sdk_close
     case ic_sdk_close_arrow
@@ -194,7 +194,7 @@ If the asset is not found in the main app, it will take the value of the configu
 
 The images can be customized with the creation of a Theme class:
 
-```
+```java
 import statusComponent
 ...
 
@@ -211,7 +211,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Available fonts to customize:
 
-```
+```java
 enum Font: String {
     case regular
     case bold
@@ -220,7 +220,7 @@ enum Font: String {
 
 By default:
 
-```
+```java
 public var fonts: [R.Font: String] {
     [.bold: "Poppins-SemiBold",
      .regular: "Poppins-Regular"]
@@ -237,7 +237,7 @@ public var fonts: [R.Font: String] {
 
 The fonts can be customized with the creation of a Theme class:
 
-```
+```java
 import statusComponent
 ...
 
@@ -258,7 +258,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Available dimensions to customize:
 
-```
+```java
 enum Dimension: CGFloat {
     case fontExtraSmall
     case fontSmall
@@ -273,7 +273,7 @@ enum Dimension: CGFloat {
 
 By default:
 
-```
+```java
 public var dimensions: [R.Dimension : CGFloat] {
         [.fontExtraSmall: 16,
          .fontSmall: 18,
@@ -289,7 +289,7 @@ public var dimensions: [R.Dimension : CGFloat] {
 
 The dimensions can be customized with the creation of a Theme class:
 
-```
+```java
 import statusComponent
 ...
 
@@ -303,11 +303,85 @@ class CustomThemeStatus: ThemeStatusProtocol {
 }
 ```
 
-### 4.5 Full Example
+### 4.5 Texts - Multi-Language
+
+#### 4.5.1 Default language settings
+
+If the package is installed via **SPM**, for text localization to work, the following needs to be added to the **Info.plist** file of the integrator app:
+
+**CFBundleAllowMixedLocalizations = YES**.
+
+It would look like this:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- English - Spain
+
+- Spanish - Spain
+
+- Portuguese - Portugal
+
+The component's language can be configured with the **_locale_** parameter of the *_initSdk_* function.
+If not configured, by default, the SDK chooses the established lnaguage of the device.
+
+- If the language is any language whose root is Spanish (e.g. Spanish - Mexico), by default, it will use Spanish - Spain.
+
+- If the language is any language whose root is Portuguese (e.g. Portuguese - Brazil), by default, it will use Portuguese - Portugal.
+
+- For any other case, English will be used.
+
+#### 4.5.2 Customized Language Configuration
+
+The component allows the customization of texts according to the language, which as in the previous case, will be defined by the language that is selected on the device.
+
+This customization applies to new localizations as well as to the case of the default languages (es, en and pt-PT). It is done through the use of **Localizable.strings.** files.
+
+#### 4.5.3 Keys for multi-languages
+
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
+
+```java
+"sdk_network_connection_desc"="Check that your connection is stable and try again.";
+"sdk_network_connection_title"="Check your internet connection.";
+"sdk_retry_button_message"="RETRY";
+"sdk_finish_button_message"="FINISH";
+"sdk_timeout_desc"="";
+"sdk_timeout_title"="Time exceeded";
+"sdk_unknown_desc"="";
+"sdk_unknown_title"="An error has occurred";
+"sdk_permissions_camera_title"="Allows access to the camera";
+"sdk_permissions_microphone_title"="Allows access to the microphone";
+"sdk_permissions_microphone_desc"="Voice permission is required to make the recording.";
+"sdk_permissions_camera_desc"="To capture the images we need you to activate this permission.";
+"sdk_permissions_settings_message"="GO TO PERMISSIONS";
+"sdk_tutorial_skip_button_message"="SKIP";
+"sdk_tutorial_next_button_message"="NEXT";
+"sdk_tutorial_previous_button_message"="PREVIOUS";
+"sdk_tutorial_finish_button_message"="FINISH";
+"sdk_exit_alert_question" = "Are you sure you will finish the process?";
+"sdk_exit_alert_cancel" = "Cancel";
+"sdk_exit_alert_finish" = "Finish";
+"sdk_exit_alert_accept" = "Accept";
+"sdk_close_alt" = "Close";
+"sdk_back_alt" = "Back";
+"sdk_tutorial_alt" = "Tutorial";
+"sdk_tutorial_skip_button_alt"="Skip";
+"sdk_tutorial_next_button_alt"="Next tip";
+"sdk_tutorial_previous_button_alt"="Previous tip";
+"sdk_tutorial_finish_button_alt"="Finish";
+```
+
+Thus, if you want to modify for example the text "_Finish_" of the key `sdk_exit_alert_finish` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
+
+`"sdk_exit_alert_finish"="End";`.
+
+If a message is not specified in the language file, it will be filled with the default message.
+
+### 4.6 Full Example
 
 A full example of a CustomThemeStatus could be:
 
-```
+```java
 import statusComponent
 
 class CustomThemeStatus: ThemeStatusProtocol {
@@ -337,7 +411,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Once implemented, we set the instance of our custom theme like this:
 
-```
+```java
 import statusComponent
 ...
 ThemeStatusManager.setup(theme: CustomThemeStatus())

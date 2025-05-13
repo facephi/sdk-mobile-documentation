@@ -301,7 +301,6 @@ case sdkSuccessColor
 case sdkErrorColor
 case sdkNeutralColor
 case sdkAccentColor
-case sdkTopIconsVideoColor
 case sdkTopIconsColor
 ```
 

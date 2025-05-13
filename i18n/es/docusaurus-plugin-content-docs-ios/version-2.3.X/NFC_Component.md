@@ -374,24 +374,21 @@ Información de las validaciones del documento ordenada por:
 
 ## 8. Personalización del componente
 
-El componente de NFC dispone de recursos visuales parametrizables que modifican la interfaz, animaciones, textos y traducciones,…
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones, imágenes, fuentes, colores y textos específicos.
 
-El sistema de personalización se basa en temas (themes). Por defecto, el componente tiene un tema llamado ThemeNFC.
-
-Para modificar la interfaz visual (UX/UI) se puede crear un nuevo CustomTheme que extienda el siguiente protocolo:
+Para personalizar el componente, se debe llamar a ThemeNFCManager.setup(theme: CustomThemeNFC()) antes de lanzar nfcController:
 
 ```java
-public protocol ThemeNFCProtocol {
-    var name: String { get }
-    var fonts: [R.Font: String] { get }
-    var dimensions: [R.Dimension: CGFloat] { get }
-    var images: [R.Image: UIImage?] { get }
-    var colors: [R.Color: UIColor?] { get }
-    var animations: [R.Animation: String] { get }
-}
+let nfcController = NFCController(data: NfcConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+ThemeNFCManager.setup(theme: CustomThemeNFC())
+SDKController.shared.launch(controller: nfcController)
 ```
 
-Por ejemplo:
+Un ejemplo de la clase CustomThemeNFC sería este (debe extender ThemeNFCProtocol):
 
 ```java
 class CustomThemeNFC: ThemeNFCProtocol {
@@ -403,38 +400,134 @@ class CustomThemeNFC: ThemeNFCProtocol {
         [.bold: "Arial"] // the font is overrided
     }
 
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
+
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
+
+    var fonts: [R.Font: String] = [:]
+
+    var animations: [R.Animation: String] = [:]
+
     public var dimensions: [R.Dimension: CGFloat] {
         [.fontSmall: 7,
          .fontRegular: 12,
          .fontBig: 20,
          .radiusCorner: 16]
     }
-    ...
 }
 ```
 
-Para aplicar este custom theme debemos usar la siguiente instrucción antes de lanzar el componente:
+### 8.1 Imágenes
 
-```
-ThemeNFCManager.setup(theme: CustomThemeNFC())
-```
-
-### 8.1 Textos
-
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de textos específicos.
-
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+Las imagenes inicializan en la variable _images_, pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
 
 ```java
-"text_intro_chip_state_waiting_tag_text" = "Desliza lentamente el documento hasta que el sensor lo detecte";
-"text_chip_security_enable_nfc_title" = "Por favor habilita NFC para poder continuar";
-"text_error_retrieving_document_data" = "Ha ocurrido un error durante la captura de los datos del documento";
-"text_nfc_read_successfull_title" = "NFC leído exitosamente";
-"text_intro_chip_state_fail" = "¡Ups! El NFC no ha podido ser leído";
-"text_diagnostic_NFC_timeout_description" = "Has excedido el tiempo de lectura de NFC. Por favor intenta de nuevo";
+case ic_sdk_close
+case ic_sdk_close_arrow
+case ic_nfc_dot_primary
+case ic_nfc_dot_variant
+case ic_nfc_pager_arrow
+case ic_sdk_info
+case tag_connection_lost
+case selphid_error
+```
+
+### 8.2 Colores
+
+Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+// NFC Specific Colors
+case sdkDisabledBackgroundColor
+```
+
+### 8.3 Fuentes
+
+Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
+
+```java
+case regular
+case bold
+```
+
+El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.
+
+### 8.4 Animaciones
+
+Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
+
+```java
+case nfc_anim_tuto_id_male
+case nfc_anim_tuto_id_male_iphone_15
+case nfc_anim_tuto_id_female
+case nfc_anim_tuto_passport
+case nfc_anim_tuto_1
+case nfc_anim_tuto_2
+case nfc_anim_tuto_2_iphone_15
+case nfc_anim_tuto_3
+case nfc_anim_tuto_3_pass
+```
+
+### 8.5 Textos - Multiidioma
+
+#### 8.5.1 Configuración de idiomas por defecto
+
+Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
+
+**CFBundleAllowMixedLocalizations = YES**
+
+Quedaría así:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- Inglés
+
+- Español - España
+
+- Portugués - Portugal
+
+El idioma del componente se puede configurar en el *_initSdk_* mediante el parámetro **_locale_**.
+En caso de no configurarse, el SDK escoge el idioma establecido en el dispositivo.
+
+- Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
+
+- Si el idioma es cualquiera cuya raíz es el Portugués (p.e Portugués - Brasil), por defecto, usará Portugués - Portugal.
+
+- Para cualquier otro caso, se hará uso del Inglés.
+
+#### 8.5.2 Configuración de idiomas personalizada
+
+El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
+
+Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt). Se hace a través del uso de los archivos **Localizable.strings.**
+
+#### 8.5.3 Keys para multiidioma
+
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
+
+```java
+"nfc_component_start_message" = "\nDesliza el documento\nhasta que el dispositivo lo detecte\n";
+"nfc_component_reading_face_message" = "Extrayendo imagen de la cara.";
+"nfc_component_reading_images_message" = "Extrayendo imágenes.";
+"nfc_component_reading_document_message" = "Extrayendo los datos del documento.";
+"nfc_component_error_retrieving_document_data_message" = "Ha ocurrido un error durante la captura de los datos del documento";
+"nfc_component_read_successful_title" = "NFC leído exitosamente";
+"nfc_component_error" = "¡Ups! El NFC no ha podido ser leído";
+"text_error_tag_connection_lost" = "Lectura interrumpida. Vuelve a poner el documento en la parte superior.";
+"text_error_tag_connection_lost_timer" = "Hubo un error en la lectura. Por favor, cancela para reiniciar el proceso.";
+"nfc_component_timeout_desc" = "Has excedido el tiempo de lectura de NFC. Por favor intenta de nuevo";
 "text_chip_duplicated_session_error" = "El proceso de captura se ha duplicado, por favor vuelva a intentarlo tras desaparecer este mensaje";
 "text_chip_security_serial_number_title" = "Número de serie";
 "text_chip_security_algorithm_sign_title" = "Algoritmo de firma";
@@ -444,25 +537,40 @@ de cada _String_ por el deseado.
 "text_chip_security_subject_title" = "Sujeto";
 "text_chip_security_valid_from_title" = "Válido desde";
 "text_chip_security_valid_still_title" = "Válido hasta";
-"text_loading_optional_description" = "Leyendo, por favor, no mueva el documento\n\n";
+"text_loading_optional_description" = "Leyendo, por favor, no mueva el documento";
 "icon_loading_filled_circle" = "🟢";
 "icon_loading_void_circle" = "⚪️";
+"nfc_component_end_confirmation_title" = "Finalizar";
+"nfc_component_end_confirmation_message" = "¿Seguro que finalizar el proceso?";
 "nfc_component_cancel" = "Cancelar";
-"nfc_component_end_confirmation_title" = "¿Seguro que finalizar el proceso?";
 "nfc_component_agree" = "Aceptar";
-"nfc_component_tutorial" = "Junta el documento a la parte trasera de tu dispositivo";
-"nfc_component_tutorial_button" = "Comenzar";
-"nfc_component_tutorial_button_info" = "Más información";
+"nfc_component_tutorial" = "Pon **en contacto** el documento con la parte trasera de tu dispositivo.";
+"nfc_component_tutorial_iphone_15"="Pon **en contacto** el documento con la parte delantera de tu dispositivo.";
+"text_tutorial_nfc_title" = "Lectura de NFC";
+"text_tutorial_nfc_button_ok" = "COMENZAR";
+"text_tutorial_nfc_button_tip" = "MIRA ESTOS CONSEJOS";
 "nfc_component_tutorial_title" = "Escanear NFC";
+"nfc_component_tutorial_button_disabled" = "PREPARANDO NFC";
 "nfc_component_tutorial_1" = "Cuando pasamos una tarjeta por un sensor, hay un intercambio de información llamado NFC.";
 "nfc_component_tutorial_2" = "En tu móvil, el sensor está en la zona marcada. Aquí deberás juntar tu documento.";
 "nfc_component_tutorial_3" = "Para una mejor lectura, quita la funda de tu móvil.";
-"nfc_component_skip" = "Omitir";
+"nfc_component_tutorial_3_pass"="Mantén **cerrado** el pasaporte para hacer la lectura.";
+"nfc_component_next" = "SIGUIENTE";
+"nfc_component_previous" = "ANTERIOR";
+"nfc_component_more_info_finish" = "FINALIZAR";
 "diagnostic_tag_connection_lost_title" = "La lectura no finalizó";
 "diagnostic_tag_connection_lost_description" = "Mantén la posición hasta que finalice la lectura";
-"diagnostic_invaliz_mrz_error_title" = "Hubo un problema técnico";
+"diagnostic_invalid_mrz_error_title" = "Hubo un problema técnico";
 "diagnostic_invalid_mrz_error_description" = "Pedimos disculpas. Necesitamos una nueva foto del documento";
 ```
+
+De este modo, si se desea modificar por ejemplo el texto “_COMENZAR_” de la clave `text_tutorial_nfc_button_ok` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+
+`"text_tutorial_nfc_button_ok"="EMPEZAR";`
+
+Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.
+
+---
 
 ## 9. Troubleshooting
 

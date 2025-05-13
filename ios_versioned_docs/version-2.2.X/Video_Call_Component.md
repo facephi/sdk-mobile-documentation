@@ -288,7 +288,7 @@ class CustomThemeVideoCall: ThemeVideoCallProtocol {
 
 ### 8.1 Colours and images
 
-Images are initialised in the variable images , passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
+Images are initialised in the variable images, passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
 
 ```
 case close
@@ -306,7 +306,6 @@ case sdkSuccessColor
 case sdkErrorColor
 case sdkNeutralColor
 case sdkAccentColor
-case sdkTopIconsVideoColor
 case sdkTopIconsColor
 ```
 

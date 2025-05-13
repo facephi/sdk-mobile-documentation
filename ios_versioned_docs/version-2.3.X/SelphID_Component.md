@@ -337,20 +337,52 @@ The controllers will return the required information in SdkResult format. More d
 
 _finishStatus_: Which will tell us if the operation has finished successfully. Possible values:
 
-```
+```java
 FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
 
-_errorType_: Errors specific to the widget.
-
-```
-case SELPHID_CANCEL_BY_USER
-case SELPHID_TIMEOUT
-case SELPHID_INTERNAL_ERROR
-```
-
 _data_: It will have the response data of the executed component function. The fields included in this component are specified in section 7.2.
+
+_errorType_: Widget's own errors
+
+```java
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+The OTHER case can contain these values:
+
+```java
+public enum SelphIDError: String {
+    case RESOURCES_FILE_NOT_FOUND
+    case COULD_NOT_CREATE_WIDGET_INSTANCE
+    case CONSUMED_BY_LICENSE_ERROR
+}
+```
 
 ### 7.2. Receiving successful execution - data
 
@@ -639,6 +671,12 @@ The texts can be customized by overriding the value of these keys inside a Local
 "selphid_component_timeout_back_desc" = "Check that the back of the document is inside the box and the data are visible.";
 "selphid_component_timeout_generic_desc" = "Check that the document is inside the box and the data is visible.";
 ```
+
+Thus, if you want to modify for example the text "_START_" of the key `selphid_component_tip_button_message` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
+
+`"selphid_component_tip_button_message"="BEGIN";`.
+
+If a message is not specified in the language file, it will be filled with the default message.
 
 ### 8.3 Colors, images, dimensions and fonts
 
