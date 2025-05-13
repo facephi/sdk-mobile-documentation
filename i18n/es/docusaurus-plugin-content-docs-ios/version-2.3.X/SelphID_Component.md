@@ -581,39 +581,45 @@ La vista que contiene las animaciones es accesible desde la vista 8.1.1. Es nece
 Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
 Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
 
-```
-"selphid_component_tutorial_1_desc"="Look for a background with good contrast.";
-"selphid_component_tutorial_2_desc"="Place the document inside the box.";
-"selphid_component_tutorial_3_desc"="Avoid glare that makes the document difficult to read.";
-"selphid_component_tip_desc"="**Focus** your document **inside the box.** The photo will be taken automatically.";
-"selphid_component_tip_title"="Document photo";
-"selphid_component_tip_button_message"="START";
-"selphid_component_tip_return_message"="RETURN";
-"selphid_component_tip_id_alt" = "Animation of a mobile phone taking a photo of an identity document. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the app takes a photo.";
-"selphid_component_tip_passport_alt" = "Animation of a mobile phone taking a photo of a passport. The document appears horizontally, open to the page where the photo appears. The mobile phone in a vertical position. A box appears on the mobile screen. When the page of the passport fits inside the box, the application takes a photo.";
-"selphid_component_tip_driving_alt" = "Animation of a mobile phone taking a photo of a driving license. The document appears horizontally, and the mobile phone vertically. A box appears on the mobile screen. When the document fits inside the box, the app takes a photo.";
-"selphid_component_tutorial_1_id_alt"="A white ID document is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
-"selphid_component_tutorial_2_id_alt"="A mobile phone takes a photo of an identity document. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application takes a picture.";
-"selphid_component_tutorial_3_id_alt"="An identity document, seen from the front. When tilted, reflections appear on the document.";
-"selphid_component_tutorial_1_passport_alt"="A white passport is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
-"selphid_component_tutorial_2_passport_alt"="A mobile phone takes a photo of a passport. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application takes a photo ";
-"selphid_component_tutorial_3_passport_alt"="A passport, seen from the front. When tilted, reflections appear on the document.";
-"selphid_component_tutorial_1_driving_alt"="A white driving license is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
-"selphid_component_tutorial_2_driving_alt"="A mobile phone takes a photo of a driving license. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application does a picture.";
-"selphid_component_tutorial_3_driving_alt"="A driving license, seen from the front. When tilted, reflections appear on the document.";
-"selphid_component_tip_health_mad_alt"="Animation of a mobile phone taking a photo of a health card. The document appears horizontally, and the mobile phone in a vertical position. A box appears on the mobile screen. When the document fits inside the box, the application takes a photo.";
-"selphid_component_tutorial_1_health_mad_alt"="A white health card is shown on a white background. The edges of the document are not clearly visible. Through an animation, the background changes color.";
-"selphid_component_tutorial_2_health_mad_alt"="A mobile phone takes a photo of a health card. The document appears horizontally, and the mobile phone appears vertically. A box appears on the mobile phone's screen. When the document fits inside the box, the application makes a photo.";
-"selphid_component_tutorial_3_health_mad_alt"="A health card, seen from the front. When tilted, reflections appear on the document.";
+```java
+"selphid_component_tutorial_1_desc"="Busca un fondo\n con buen contraste.";
+"selphid_component_tutorial_2_desc"="Coloca el documento\n dentro del recuadro.";
+"selphid_component_tutorial_3_desc"="Evita brillos\n que dificulten la lectura\n del documento.";
+"selphid_component_tip_desc"="**Enfoca** tu documento **dentro del recuadro.** La foto se hará automáticamente.";
+"selphid_component_tip_title"="Foto del documento";
+"selphid_component_tip_button_message"="COMENZAR";
+"selphid_component_tip_return_message"="VOLVER";
+"selphid_component_tip_id_alt" = "Animación de un teléfono móvil haciendo una foto a un documento de identidad. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tip_passport_alt" = "Animación de un teléfono móvil haciendo una foto a un pasaporte. El documento aparece en horizontal, abierto por la página donde aparece la foto. El móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando la página del pasaporte encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tip_driving_alt" = "Animación de un teléfono móvil haciendo una foto a un carné de conducir. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tutorial_1_id_alt"="Se muestra un documento de identidad de color blanco, sobre un fondo blanco. Los bordes del documento no se distinguen con claridad. Mediante una animación, el fondo cambia de color.";
+"selphid_component_tutorial_2_id_alt"="Un teléfono móvil hace una foto a un documento de identidad. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tutorial_3_id_alt"="Un documento de identidad, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.";
+"selphid_component_tutorial_1_passport_alt"="Se muestra un pasaporte de color blanco, sobre un fondo blanco. Los bordes del documento no se distinguen con claridad. Mediante una animación, el fondo cambia de color.";
+"selphid_component_tutorial_2_passport_alt"="Un teléfono móvil hace una foto a un pasaporte. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tutorial_3_passport_alt"="Un pasaporte, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.";
+"selphid_component_tutorial_1_driving_alt"="Se muestra un carné de conducir de color blanco, sobre un fondo blanco. Los bordes del documento no se distinguen con claridad. Mediante una animación, el fondo cambia de color.";
+"selphid_component_tutorial_2_driving_alt"="Un teléfono móvil hace una foto a un carné de conducir. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tutorial_3_driving_alt"="Un carné de conducir, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.";
+"selphid_component_tip_health_mad_alt"="Animación de un teléfono móvil haciendo una foto a una tarjeta sanitaria. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tutorial_1_health_mad_alt"="Se muestra una tarjeta sanitaria de color blanco, sobre un fondo blanco. Los bordes del documento no se distinguen con claridad. Mediante una animación, el fondo cambia de color.";
+"selphid_component_tutorial_2_health_mad_alt"="Un teléfono móvil hace una foto a una tarjeta sanitaria. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.";
+"selphid_component_tutorial_3_health_mad_alt"="Una tarjeta sanitaria, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.";
 "selphid_component_tip_custom_alt" = "";
 "selphid_component_tutorial_1_custom_alt" = "";
 "selphid_component_tutorial_2_custom_alt" = "";
 "selphid_component_tutorial_3_custom_alt" = "";
-"selphid_component_timeout_title" = "Time exceeded";
-"selphid_component_timeout_front_desc" = "Check that the front of the document is inside the box and the data are visible.";
-"selphid_component_timeout_back_desc" = "Check that the back of the document is inside the box and the data are visible.";
-"selphid_component_timeout_generic_desc" = "Check that the document is inside the box and the data is visible.";
+"selphid_component_timeout_title" = "Tiempo superado";
+"selphid_component_timeout_front_desc" = "Comprueba que el frente del documento está dentro del recuadro y los datos son visibles.";
+"selphid_component_timeout_back_desc" = "Comprueba que el dorso del documento está dentro del recuadro y los datos son visibles.";
+"selphid_component_timeout_generic_desc" = "Comprueba que el documento está dentro del recuadro y los datos son visibles.";
 ```
+
+De este modo, si se desea modificar por ejemplo el texto “_COMENZAR_” de la clave `selphid_component_tip_button_message` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+
+`"selphid_component_tip_button_message"="EMPEZAR";`
+
+Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.
 
 ### 8.2 Colores, imágenes, tamaños y fuentes
 

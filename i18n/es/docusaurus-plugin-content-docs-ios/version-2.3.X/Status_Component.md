@@ -107,20 +107,20 @@ Un custom theme puede editar esos valores. Por defecto hay un ThemeStatus que se
 
 Colores disponibles para personalizar:
 
-```
-enum Color: String, CaseIterable {
-    case sdkPrimaryColor
-    case sdkSecondaryColor
-    case sdkBackgroundColor
-    case sdkTitleTextColor
-    case sdkBodyTextColor
-    case sdkTopIconsColor
-    case sdkButtonTextColor
-    case sdkErrorColor
-    case sdkSuccessColor
-    case sdkNeutralColor
-    case sdkAccentColor
-}
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+// Phingers Specific Colors
+case sdkButtonTextColor
 ```
 
 Por defecto:
@@ -156,7 +156,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Imágenes disponibles para customizar:
 
-```
+```java
 enum Image: String, CaseIterable {
     case ic_sdk_close
     case ic_sdk_close_arrow
@@ -191,7 +191,7 @@ Si no existe, se utilizará el valor configurado en el tema activo.
 
 Las imágenes se pueden personalizar mediante una clase Theme:
 
-```
+```java
 import statusComponent
 ...
 
@@ -255,7 +255,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Dimensiones disponibles para personalizar:
 
-```
+```java
 enum Dimension: CGFloat {
     case fontExtraSmall
     case fontSmall
@@ -270,7 +270,7 @@ enum Dimension: CGFloat {
 
 Por defecto:
 
-```
+```java
 public var dimensions: [R.Dimension : CGFloat] {
         [.fontExtraSmall: 16,
          .fontSmall: 18,
@@ -286,7 +286,7 @@ public var dimensions: [R.Dimension : CGFloat] {
 
 Las dimensiones pueden ser personalizadas mediante la creación de una clase Theme:
 
-```
+```java
 import statusComponent
 ...
 
@@ -300,11 +300,86 @@ class CustomThemeStatus: ThemeStatusProtocol {
 }
 ```
 
-### 4.5 Ejemplo Completo
+### 4.5 Textos - Multiidioma
+
+#### 4.5.1 Configuración de idiomas por defecto
+
+Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
+
+**CFBundleAllowMixedLocalizations = YES**
+
+Quedaría así:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- Inglés
+
+- Español - España
+
+- Portugués - Portugal
+
+El idioma del componente se puede configurar en el *_initSdk_* mediante el parámetro **_locale_**.
+En caso de no configurarse, el SDK escoge el idioma establecido en el dispositivo.
+
+- Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
+
+- Si el idioma es cualquiera cuya raíz es el Portugués (p.e Portugués - Brasil), por defecto, usará Portugués - Portugal.
+
+- Para cualquier otro caso, se hará uso del Inglés.
+
+#### 4.5.2 Configuración de idiomas personalizada
+
+El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
+
+Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt). Se hace a través del uso de los archivos **Localizable.strings.**
+
+#### 4.5.3 Keys para multiidioma
+
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
+
+```java
+"sdk_network_connection_desc"="Comprueba que tu conexión es estable e inténtalo de nuevo.";
+"sdk_network_connection_title"="Revisa tu conexión a internet";
+"sdk_retry_button_message"="REINTENTAR";
+"sdk_finish_button_message"="FINALIZAR";
+"sdk_timeout_desc"="";
+"sdk_timeout_title"="Tiempo superado";
+"sdk_unknown_desc"="";
+"sdk_unknown_title"="Se ha producido un error";
+"sdk_permissions_camera_title"="Permite el acceso a cámara";
+"sdk_permissions_microphone_title"="Permite el acceso al micrófono";
+"sdk_permissions_microphone_desc"="El permiso de voz es necesario para realizar la grabación.";
+"sdk_permissions_camera_desc"="Para capturar las imágenes necesitamos que actives este permiso.";
+"sdk_permissions_settings_message"="IR A PERMISOS";
+"sdk_tutorial_skip_button_message"="OMITIR";
+"sdk_tutorial_next_button_message"="SIGUIENTE";
+"sdk_tutorial_previous_button_message"="ANTERIOR";
+"sdk_tutorial_finish_button_message"="FINALIZAR";
+"sdk_exit_alert_cancel" = "Cancel";
+"sdk_exit_alert_question" = "¿Seguro que quiere finalizar el proceso?";
+"sdk_exit_alert_finish" = "Finalizar";
+"sdk_exit_alert_accept" = "Aceptar";
+"sdk_close_alt" = "Cerrar";
+"sdk_back_alt" = "Atrás";
+"sdk_tutorial_alt" = "Tutorial";
+"sdk_tutorial_skip_button_alt"="Omitir";
+"sdk_tutorial_next_button_alt"="Siguiente consejo";
+"sdk_tutorial_previous_button_alt"="Consejo anterior";
+"sdk_tutorial_finish_button_alt"="Finalizar";
+```
+
+De este modo, si se desea modificar por ejemplo el texto “_Finalizar_” de la clave `sdk_exit_alert_finish` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+
+`"sdk_exit_alert_finish"="Terminar";`
+
+Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.
+
+### 4.6 Ejemplo Completo
 
 Un ejemplo completo de CustomThemeStatus podría ser:
 
-```
+```java
 import statusComponent
 
 class CustomThemeStatus: ThemeStatusProtocol {
@@ -334,7 +409,7 @@ class CustomThemeStatus: ThemeStatusProtocol {
 
 Una vez implementado, asignamos la instancia de nuestro tema custom de la siguiente manera:
 
-```
+```java
 import statusComponent
 ...
 ThemeStatusManager.setup(theme: CustomThemeStatus())

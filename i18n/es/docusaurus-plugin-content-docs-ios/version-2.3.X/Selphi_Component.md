@@ -464,21 +464,27 @@ Los textos pueden ser customizados sobreescribiendo el valor de las siguientes c
 Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
 
 ```java
-"selphi_component_tutorial_1"="Place your face in the centre and look straight into the camera.";
-"selphi_component_tutorial_2"="Remove any object that covers your face.";
-"selphi_component_tutorial_3"="Look for a well-lit environment, without shadows on your face.";
-"selphi_component_tip_desc"="Place your face in the center of the circle";
-"selphi_component_tip_title"="Face Recognition";
-"selphi_component_tip_button_message"="START";
-"selphi_component_tip_alt"="Animation of a mobile screen with the front camera activated. A circle appears in the center of the screen. A person shows their face inside the circle and the application takes a photo.";
-"selphi_component_tip_move_alt"="Animation of a mobile screen with the front camera activated. A circle appears in the center of the screen. A person shows their face inside the circle, moves it slightly to the side and the application takes a photo of it. ";
-"selphi_component_tutorial_1_alt"="A circle appears in the center of the screen. A person shows their face. Their entire head can be seen inside the circle. When they are correctly positioned, the application takes a photo of them.";
-"selphi_component_tutorial_2_alt"="A circle appears in the center of the screen. Inside the circle there is a person, wearing sunglasses, and his hair covering part of his face. He takes off his glasses and removes his hair from his face. The application detects your entire face and takes a photo.";
-"selphi_component_tutorial_3_alt"="A dark circle appears in the center of the screen. Inside the circle, it is difficult to see a person's face. A light turns on and their face can be clearly seen. After this, the application makes a photo.";
-"selphi_component_tutorial_move_desc"="Place your face in the center of the circle and follow the directions.";
-"selphi_component_timeout_title" = "Timeout";
-"selphi_component_timeout_desc" = "We were unable to identify you. Please try again";
+"selphi_component_tutorial_1"="Coloca tu cara en el centro y mira de frente a la cámara.";
+"selphi_component_tutorial_2"="Retira cualquier objeto que cubra tu cara.";
+"selphi_component_tutorial_3"="Busca un entorno bien iluminado, sin sombras sobre tu rostro.";
+"selphi_component_tip_desc"="Coloca tu cara en el centro del círculo";
+"selphi_component_tip_title"="Reconocimiento facial";
+"selphi_component_tip_button_message"="COMENZAR";
+"selphi_component_tip_alt"="Animación de una pantalla de móvil con la cámara frontal activada. En el centro de la pantalla aparece un círculo. Una persona muestra su cara dentro del círculo y la aplicación le hace una foto.";
+"selphi_component_tip_move_alt"="Animación de una pantalla de móvil con la cámara frontal activada. En el centro de la pantalla aparece un círculo. Una persona muestra su cara dentro del círculo, la mueve ligeramente hacia un lado y la aplicación le hace una foto.";
+"selphi_component_tutorial_1_alt"="Aparece un círculo en el centro de la pantalla. Una persona muestra su cara. Se puede ver su cabeza al completo dentro del círculo. Cuando está bien posicionada, la aplicación le hace una foto.";
+"selphi_component_tutorial_2_alt"="Aparece un círculo en el centro de la pantalla. Dentro del círculo hay una persona, con gafas de sol, y el pelo tapando parte de su cara. Se quita las gafas y se retira el pelo de la cara. La aplicación detecta su cara al completo y le hace una foto.";
+"selphi_component_tutorial_3_alt"="Aparece un círculo oscuro en el centro de la pantalla. Dentro del círculo, se observa con dificultad la cara de una persona. Se enciende una luz y su cara se aprecia con claridad. Tras esto, la aplicación le hace una foto.";
+"selphi_component_tutorial_move_desc"="Coloca tu cara en el centro del círculo y sigue las indicaciones.";
+"selphi_component_timeout_title" = "Tiempo superado";
+"selphi_component_timeout_desc" = "No hemos podido identificarte. Inténtalo de nuevo";
 ```
+
+De este modo, si se desea modificar por ejemplo el texto “_COMENZAR_” de la clave `selphi_component_tip_button_message` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+
+`"selphi_component_tip_button_message"="EMPEZAR";`
+
+Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.
 
 ### 9.3 Colores, imágenes, tamaños y fuentes
 

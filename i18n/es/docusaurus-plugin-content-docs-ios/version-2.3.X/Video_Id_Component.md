@@ -188,6 +188,15 @@ Si se le da valor true, se activa la vibración en errores y si la respuesta del
 
 Número de reintentos permitidos en cada operación. Por defecto, su valor es 3.
 
+#### 5.1.16. ocrValidations
+
+Validaciones a realizar tras la captura del documento. Los datos proporcionados se evalúan contra los obtenidos.
+
+#### 5.1.17. ocrMaxWarnings
+
+Cuántas advertencias se permiten antes de que la captura de VideoID se marque como *_TOLERANCE_ERROR_*.
+**El valor por defecto es 5.**
+
 ---
 
 ## 6. Uso del componente
@@ -287,6 +296,9 @@ public enum VideoIdError: String {
 ```
 
 ## 8. Component customization
+
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones, imágenes, fuentes, colores y textos específicos.
 
 Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) antes de lanzar el videoIdController:
 
