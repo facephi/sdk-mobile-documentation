@@ -379,13 +379,136 @@ Array de documentos escaneados:
 ## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de textos específicos.
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones, imágenes, fuentes, colores y textos específicos.
 
-### 8.1. Textos
+Para personalizar el componente, se debe llamar a ThemeCaptureReaderManager.setup(theme: CustomThemeCaptureReader()) antes de lanzar invoiceReaderController:
 
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+```java
+let invoiceReaderController = InvoiceReaderController(data: InvoiceCaptureConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+ThemeCaptureReaderManager.setup(theme: CustomThemeCaptureReader())
+SDKController.shared.launch(controller: invoiceReaderController)
+```
+
+Un ejemplo de la clase CustomThemeCaptureReader sería este (debe extender ThemeCaptureReaderProtocol):
+
+```java
+class CustomThemeCaptureReader: ThemeCaptureReaderProtocol {
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
+
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
+
+    var animations: [R.Animation: String] = [:]
+
+    var name: String {
+        "custom"
+    }
+
+    var fonts: [R.Font: String] = [:]
+
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
+    }
+}
+```
+
+### 8.1 Imágenes
+
+Las imagenes inicializan en la variable _images_, pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
+
+```java
+case ic_capture_capture
+case ic_capture_pager_back
+case ic_capture_pager_forward
+case ic_capture_trash
+case ic_capture_upload
+case ic_sdk_close_arrow
+case ic_sdk_close
+case ic_sdk_logo
+case ic_sdk_info
+```
+
+### 8.2 Colores
+
+Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+// Capture Specific Colors
+case sdkCaptureButtonColor
+case sdkDisabledBackgroundColor
+```
+
+### 8.3 Fuentes
+
+Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
+
+```java
+case regular
+case bold
+```
+
+El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.
+
+### 8.4 Animaciones
+
+Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
+
+```java
+case phactura_anim_tip
+case qr_anim_tip
+case qr_anim_tuto_1
+case qr_anim_tuto_2
+```
+
+### 8.5 Textos - Multiidioma
+
+#### 8.5.1 Configuración de idiomas por defecto
+
+Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
+
+**CFBundleAllowMixedLocalizations = YES**
+
+Quedaría así:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- Inglés
+
+- Español - España
+
+- Portugués - Portugal
+
+El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+
+- Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
+
+- Si el idioma es cualquiera cuya raíz es el Portugués (p.e Portugués - Brasil), por defecto, usará Portugués - Portugal.
+
+- Para cualquier otro caso, se hará uso del Inglés.
+
+#### 8.5.2 Configuración de idiomas personalizada
+
+El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
+
+Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt). Se hace a través del uso de los archivos **Localizable.strings.**
+
+#### 8.5.3 Keys para multiidioma
+
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
 
 ```java
 "capture_component_qr_camera_message" = "Mantén el QR en el centro";
@@ -414,4 +537,13 @@ de cada _String_ por el deseado.
 "capture_component_invoice_forward_image_alt" = "Siguiente imagen";
 "capture_component_timeout_title"="Tiempo superado";
 "capture_component_timeout_desc"="Pedimos disculpas. No se ha podido hacer la captura.";
+"capture_component_logo_alt" = "Logo";
+"capture_component_qr_generation_failed_alert_title" = "La generación de QR ha fallado";
+"capture_component_qr_generation_failed_alert_message" = "Por favor, vuelve a intentarlo";
 ```
+
+De este modo, si se desea modificar por ejemplo el texto “_COMENZAR_” de la clave `capture_component_invoice_tip_button_message` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+
+`"capture_component_invoice_tip_button_message"="EMPEZAR";`
+
+Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.

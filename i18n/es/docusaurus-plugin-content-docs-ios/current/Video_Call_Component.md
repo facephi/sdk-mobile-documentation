@@ -317,7 +317,27 @@ case ic_video_call_timeout
 case ic_video_call_camera_toggle
 ```
 
-### 8.2 Fuentes
+### 8.2 Colores
+
+Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+// VideoCall Specific Colors
+case sdkBackgroundDisabled
+```
+
+### 8.3 Fuentes
 
 Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
 
@@ -328,9 +348,50 @@ case bold
 
 El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.
 
-### 8.3 Textos
+### 8.4 Animaciones
 
-El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
+Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
+
+```java
+case video_call_anim_waiting
+```
+
+### 8.5 Textos - Multiidioma
+
+#### 8.5.1 Configuración de idiomas por defecto
+
+Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
+
+**CFBundleAllowMixedLocalizations = YES**
+
+Quedaría así:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- Inglés
+
+- Español - España
+
+- Portugués - Portugal
+
+El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+
+- Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
+
+- Si el idioma es cualquiera cuya raíz es el Portugués (p.e Portugués - Brasil), por defecto, usará Portugués - Portugal.
+
+- Para cualquier otro caso, se hará uso del Inglés.
+
+#### 8.5.2 Configuración de idiomas personalizada
+
+El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
+
+Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt). Se hace a través del uso de los archivos **Localizable.strings.**
+
+#### 8.5.3 Keys para multiidioma
+
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
 
 ```java
 /* VideoAssistance view */
@@ -356,32 +417,3 @@ De este modo, si se desea modificar por ejemplo el texto “_Finalizar_” de la
 `"video_call_component_exit_alert_finish"="Terminar";`
 
 Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.
-
-### 8.4 Colores
-
-Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
-
-```java
-// COMMON SDK Colors 
-case sdkPrimaryColor
-case sdkBackgroundColor
-case sdkSecondaryColor
-case sdkBodyTextColor
-case sdkTitleTextColor
-case sdkSuccessColor
-case sdkErrorColor
-case sdkNeutralColor
-case sdkAccentColor
-case sdkTopIconsVideoColor
-case sdkTopIconsColor
-// VideoCall Specific Colors
-case sdkBackgroundDisabled
-```
-
-### 8.5 Animaciones
-
-Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
-
-```java
-case video_call_anim_waiting
-```

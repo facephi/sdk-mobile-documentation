@@ -259,30 +259,158 @@ Facephi.
 ## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de textos específicos.
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones, imágenes, fuentes, colores y textos específicos.
 
-### 8.1 Textos
-
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+Para personalizar el componente, se debe llamar a ThemeVoiceIDManager.setup(theme: CustomThemeVoiceID()) antes de lanzar voiceController:
 
 ```java
-"voice_component_success_records_message" = "%d/%d successful recordings";
-"voice_component_read_message" = "Say loudly:";
-"voice_component_speech_message" = "Speak clearly and close to the microphone";
-"voice_component_speech_noisy_message" = "There is too much noise. Try to be in a quiet environment.";
-"voice_component_success_message" = "Recording registred";
-"voice_component_phrase_generic_error_feedback" = "Please, repeat the sentence.";
-"voice_component_phrase_long_silence_feedback" = "Talk for 2 seconds or more.";
-"voice_component_phrase_long_reverberation_feedback" = "Too much echo. Try in another environment.";
-"voice_component_tutorial_title" = "Voice Recognition";
-"voice_component_tutorial_message" = "Speak clearly and aloud\n\nMake sure your surroundings are silent";
-"voice_component_tutorial_button" = "Start";
-"voice_component_success_button" = "Continue";
-"voice_component_ok"="Ok";
-"voice_component_cancel"="Cancel";
-"voice_component_end_confirmation_title" = "Are you sure you will finish the process?";
-"voice_component_text_results_finish_button" = "Finish";
-"voice_component_agree" = "Accept";
+let voiceController = VoiceController(data: VoiceConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+ThemeVoiceIDManager.setup(theme: CustomThemeVoiceID())
+SDKController.shared.launch(controller: voiceController)
 ```
+
+Un ejemplo de la clase CustomThemeVoiceID sería este (debe extender ThemeVoiceIDProtocol):
+
+```java
+class CustomThemeVoiceID: ThemeVoiceIDProtocol {
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
+
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
+
+    var animations: [R.Animation: String] = [:]
+
+    var name: String {
+        "custom"
+    }
+
+    var fonts: [R.Font: String] = [:]
+
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
+    }
+}
+```
+
+### 8.1 Imágenes
+
+Las imagenes inicializan en la variable _images_, pasándole un diccionario, siendo la clave uno de los enumerados que representan las distintas imágenes de la pantalla, y el valor la imagen personalizada que se deba mostrar.
+
+```java
+case ic_sdk_logo
+case ic_sdk_close_arrow
+case ic_sdk_check
+case ic_sdk_back
+case ic_sdk_close
+```
+
+### 8.2 Colores
+
+Los colores se inicializan similarmente en la variable colors con un diccionario, teniendo como valor un UIColor que se desee.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+```
+
+### 8.3 Fuentes
+
+Las fuentes se inicializan similarmente en la variable fonts con un diccionario, teniendo como valor un String con el nombre de la UIFont que se desee.
+
+```java
+case regular
+case bold
+```
+
+El tamaño de los textos se inicializa similarmente en la variable dimensions con un diccionario, teniendo como valor un CGFloat con el tamaño deseado.
+
+### 8.4 Animaciones
+
+Las animaciones a usar se inicializan similarmente en la variable animations con un diccionario, teniendo como valor una string con el nombre de la animación que se encuentre en xcassets que se desee usar.
+
+```java
+case voice_anim_enroll
+case voice_anim_enroll_error
+case voice_anim_enroll_ok
+case voice_anim_intro
+```
+
+### 8.5 Textos - Multiidioma
+
+#### 8.5.1 Configuración de idiomas por defecto
+
+Si se instala el paquete mediante **SPM**, para que funcione la localización de textos, es necesario añadir en el archivo **Info.plist** de la app integradora lo siguiente:
+
+**CFBundleAllowMixedLocalizations = YES**
+
+Quedaría así:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- Inglés
+
+- Español - España
+
+- Portugués - Portugal
+
+El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+
+- Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
+
+- Si el idioma es cualquiera cuya raíz es el Portugués (p.e Portugués - Brasil), por defecto, usará Portugués - Portugal.
+
+- Para cualquier otro caso, se hará uso del Inglés.
+
+#### 8.5.2 Configuración de idiomas personalizada
+
+El componente permite la personalización de los textos según el idioma, el cual al igual que en el anterior caso, será definido por el lenguaje que esté seleccionado en el dispositivo.
+
+Esta personalización se aplica tanto a nuevas localizaciones como al caso de los idiomas predeterminados (es, en y pt). Se hace a través del uso de los archivos **Localizable.strings.**
+
+#### 8.5.3 Keys para multiidioma
+
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
+
+```java
+"voice_component_success_records_message" = "%d/%d grabaciones exitosas";
+"voice_component_read_message" = "Di en voz alta:";
+"voice_component_speech_message" = "Habla claro y cercano al micrófono";
+"voice_component_speech_noisy_message" = "Hay demasiado ruido. Intenta estar en un entorno silencioso.";
+"voice_component_success_message" = "Grabación registrada";
+"voice_component_phrase_generic_error_feedback" = "Por favor, repite la frase.";
+"voice_component_phrase_long_silence_feedback" = "Habla durante 2 segundos o más.";
+"voice_component_phrase_long_reverberation_feedback" = "Demasiado eco. Prueba en otro entorno.";
+"voice_component_tip_title" = "Reconocimiento de voz";
+"voice_component_tip_desc" = "Habla claro y en voz alta.\n\nAsegúrate de estar en un entorno silencioso";
+"voice_component_tip_button_message" = "COMENZAR";
+"voice_component_exit_alert_accept"="Aceptar";
+"voice_component_exit_alert_cancel"="Cancel";
+"voice_component_exit_alert_question" = "¿Seguro que finalizar el proceso?";
+"voice_component_multiple_speakers_error_feedback" = "Se ha detectado voces de fondo. Asegúrate de estar en un entorno silencioso";
+"voice_component_short_recorded_speech_feedback" = "La grabación ha sido muy corta.";
+"voice_component_quality_check_error_feedback" = "La calidad del audio es insuficiente.";
+"voice_component_back_alt" = "Atrás";
+"voice_component_close_alt" = "Cerrar";
+"voice_component_logo_alt" = "Logo";
+"voice_component_tip_alt"="";
+"voice_component_timeout_title"="Tiempo superado";
+"voice_component_timeout_desc"="No hemos podido identificarte. Inténtalo de nuevo.";
+```
+
+De este modo, si se desea modificar por ejemplo el texto “_COMENZAR_” de la clave `voice_component_tip_button_message` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:
+
+`"voice_component_tip_button_message"="EMPEZAR";`
+
+Si un mensaje no se especifica en el fichero del idioma, este se rellenará con el mensaje por defecto.
