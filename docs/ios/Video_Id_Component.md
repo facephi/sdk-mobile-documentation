@@ -321,7 +321,7 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 
 ### 8.1 Images
 
-- The images initialize in the variable images , passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
+- The images initialize in the variable images, passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
 
 ```java
 case ic_sdk_close_arrow
@@ -358,8 +358,9 @@ case sdkSuccessColor
 case sdkErrorColor
 case sdkNeutralColor
 case sdkAccentColor
-case sdkTopIconsVideoColor
 case sdkTopIconsColor
+// VideoID Specific Colors
+case sdkTopIconsVideoColor
 ```
 
 ### 8.3 Fonts

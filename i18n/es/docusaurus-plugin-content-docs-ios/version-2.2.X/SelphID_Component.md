@@ -572,7 +572,7 @@ Al contrario que con las animaciones, la personalización de estos elementos se 
 
 ### 8.3 Textos
 
-Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un Localizable.strings. 
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
 Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
 
 ```

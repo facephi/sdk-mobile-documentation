@@ -359,8 +359,9 @@ case sdkSuccessColor
 case sdkErrorColor
 case sdkNeutralColor
 case sdkAccentColor
-case sdkTopIconsVideoColor
 case sdkTopIconsColor
+// VideoID Specific Colors
+case sdkTopIconsVideoColor
 ```
 
 ### 8.3 Fuentes

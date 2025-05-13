@@ -285,7 +285,7 @@ class CustomThemeVideoId: ThemeVideoIdProtocol {
 
 ### 8.1 Colors and images
 
-- The images initialize in the variable images , passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
+- The images initialize in the variable images, passing it a dictionary, being the key one of the enumerated ones that represent the different images of the screen, and the value the customized image to be shown.
 
 ```
 case ic_video_id_back_id

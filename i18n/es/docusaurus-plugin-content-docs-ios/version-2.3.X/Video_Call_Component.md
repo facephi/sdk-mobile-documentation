@@ -330,8 +330,8 @@ El tamaño de los textos se inicializa similarmente en la variable dimensions co
 
 ### 8.3 Textos
 
-El archivo **Localizable.strings** de la carpeta **es.lproj** del componente es el siguiente:
-
+Los textos pueden ser customizados sobreescribiendo el valor de las siguientes claves en un **Localizable.strings**. 
+Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en las etiquetas de accesibilidad necesarias para la funcionalidad de **_voice over_**.
 ```java
 /* VideoAssistance view */
 "video_call_component_exit_alert_question" = "¿Seguro que quieres finalizar la llamada?";
@@ -372,7 +372,6 @@ case sdkSuccessColor
 case sdkErrorColor
 case sdkNeutralColor
 case sdkAccentColor
-case sdkTopIconsVideoColor
 case sdkTopIconsColor
 // VideoCall Specific Colors
 case sdkBackgroundDisabled
