@@ -185,6 +185,10 @@ Indicates whether you want to show the complete initial tutorial. If I dont know
 
 If the value is set to true, the vibration is activated on errors and if the widget response is OK.
 
+#### 5.1.15. maxRetries
+
+Maximum retries allowed with each operation. Default value is 3.
+
 ---
 
 ## 6. Use of the component
