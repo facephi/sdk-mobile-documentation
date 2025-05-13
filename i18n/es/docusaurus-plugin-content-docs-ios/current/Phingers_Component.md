@@ -66,7 +66,7 @@ Actualmente las librerías de FacePhi se distribuyen de forma remota a través d
 ```
 - Para instalar el componente actual deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```java
-pod 'FPHISDKPhingersComponent', '~> 2.3.0'
+pod 'FPHISDKPhingersTFComponent', '~> 2.3.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
@@ -117,68 +117,81 @@ esta clase y para qué se utiliza cada uno de ellos.
 
 ### 5.1. Class PhingersConfigurationData
 
-#### 5.1.1. Configuración Básica
+#### 5.1.1 reticleOrientation
 
-##### showTutorial
+Configura qué mano se va a proceder a capturar. Los valores permitidos son:
+
+- **LEFT**: Activa la captura de los dedos de la mano **izquierda**.
+
+- **RIGHT**: Activa la captura de los dedos de la mano **derecha**.
+
+#### 5.1.2 fingerFilter
+
+Configura el modo de detección de huellas dactilares que se usará durante la captura.
+Los valores permitidos son:
+
+- **INDEX_FINGER**: Configura la captura con el dedo **índice**.
+
+- **MIDDLE_FINGER**: Configura la captura con el dedo **corazón**.
+
+- **RING_FINGER**: Configura la captura con el dedo **anular**.
+
+- **LITTLE_FINGER**: Configura la captura con el dedo **meñique**.
+
+- **THUMB_FINGER**: Configura la captura con el dedo **pulgar**.
+
+- **SLAP**: Configura la captura de los **cuatro** dedos con una solo foto.
+
+- **ALL_4_FINGERS_ONE_BY_ONE**: Configura la captura de los **cuatro** dedos
+haciendo una foto por cada uno de ellos.
+
+- **ALL_5_FINGERS_ONE_BY_ONE**: Configura la captura de los **cinco** dedos
+haciendo una foto por cada uno de ellos.
+
+#### 5.1.3 templateType
+
+Especifica la plantilla con la que se devolverá la huella dactilar en el resultado.
+El enumerado **_TemplateType_** tiene los siguientes valores posibles:
+
+- **ISO_TEMPLATE**: Este template hace referencia al estandar **ISO/IEC 19794-4**.
+
+- **NIST_TEMPLATE**: Este template hace referencia al estandar NIST.
+
+- **NIST_TF_TEMPLATE**: **Este es el valor por defecto.** Este template hace referencia a una variante
+  del estandar NIST que facilita el procesado y evaluación de la muestra.
+
+#### 5.1.4 extractionTimeout
+
+Establece el tiempo máximo que se puede realizar la lectura.
+
+#### 5.1.5 showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 5.1.6. showTutorial
+
 Indica si el componente activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-##### vibrationEnabled
-Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
+#### 5.1.7. vibrationEnabled
 
-##### reticleOrientation
+Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK.
 
-Establece el modo de detección de huellas e indica qué dedos se van a
-detectar durante el proceso. Los valores permitidos son:
+#### 5.1.8 showDiagnostic
 
-- **LEFT**: Se activa la captura de los **cuatro dedos de la mano
-  izquierda**.
+Mostrar pantallas de diagnóstico al final del proceso.
 
-- **RIGHT**: Se activa la captura de los **cuatro dedos de la mano
-  izquierda**.
+#### 5.1.9 threshold
 
-- **THUMB**: Se activa la captura de **un pulgar**.
+Configura el threshold del detector de huellas. **El valor por defecto es 0.7.**
 
-##### extractionTimeout
-Establece el tiempo máximo que se puede realizar la lectura.
+#### 5.1.10 showEllipses
 
-##### useFlash
-Activa o desactiva el flash de la cámara durante el proceso de captura
-de huellas. Por defecto se encuentra a **true**.
+Dibuja una elipsa durante la captura cuando se detecta una posible huella.
 
-##### showDiagnostic
-Mostrar pantallas de diagnóstico al final del proceso
+#### 5.1.11 cropWidth & cropHeight
 
-
-#### 5.1.2. Configuración Avanzada
-
-##### returnProcessedImage
-Si se establece a **true** se devolverá en el resultado las imágenes de
-la misma forma en que se han capturado.
-
-##### returnRawImage
-Si se establece a **true** se devolverá en el resultado las imágenes de
-la misma forma en que se han capturado.
-
-##### useLiveness
-Activa o desactiva el detector de vivacidad durante el proceso de
-captura de huellas. Por defecto se encuentra a **true**.
-
-##### returnFullFrameImage
-Especifica si se debe devolver la imagen completa de la cámara en la que
-se han detectado los dedos.
-
-#### showSpinner
-Indica si se quiere mostrar el spinner de carga.
-
-##### cropWidth
-Indica un ancho para realizar un recorte de la captura.
-
-##### cropHeight
-Indica una altura para realizar un recorte de la captura.
-
-##### cropFactor
-Indica la relación para el recorte de la captura.
+Indica un ancho y alto para realizar un recorte de la captura.
 
 ---
 
@@ -225,20 +238,49 @@ a la plataforma.
 
 ## 7. Recepción del resultado
 
-Los controllers devolverán la información necesaria en formato SdkResult. 
-Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-result-return).
+Los controllers devolverán la información necesaria en formato SdkResult.
+Más información en la sección de [Retorno de Resultado](./Mobile_SDK#6-retorno-de-resultado).
 
 ### 7.1. Recepción de errores
 
+En la parte del error, dispondremos de la clase común _ErrorType_.
+
 ```java
-NO_OPERATION_CREATED_ERROR
-COMPONENT_CONTROLLER_DATA_ERROR
-CAMERA_PERMISSION_DENIED
-LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
-ERROR_CAPTURE_SUCCESS_WITHOUT_RESULT
-CAMERA_PERMISSION_DENIED
-CANCEL_BY_USER
-TIMEOUT
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
+```
+
+Los errores 'ErrorType.OTHER' y 'ErrorType.LICENSE_CHECKER_ERROR' son especiales porque además pueden informar del detalle del error.
+
+El _String_ puede tener los siguientes valores en el caso del 'ErrorType.OTHER':
+
+```java
+public enum PhingersError: String {
+    case INITIALIZATION_ERROR
+}
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -249,48 +291,55 @@ El campo _data_ es variable y dependerá de qué componente se ha devuelto
 el resultado. En el caso de este componente, los campos devueltos son
 los siguientes:
 
-#### 7.2.1 _fingersResult_
+#### 7.1.1 _fingers_
 
-##### 7.2.1.1 _fullFrameImage_
-Devuelve una imagen recortada centrada en la cara del usuarioen formato
-string Base64. Esta imagen se obtiene a partir de la _bestImage_. Ésta
-es la imagen que se deberá utilizar como imagen característica del
-usuario que realizó el proceso a modo de _avatar_.
+##### 7.1.1.1. position
 
-#### 7.2.1.2 _focusQuality_
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato string Base64. Esta imagen es la imagen con el tamaño original
-extraída de la cámara. Válido para el proceso de **liveness**.
+Devuelve un entero que representa el elemento capturado. Este valor se establece según
+las instrucciones del NIST_POS_CODE.
 
-#### 7.2.1.3 _livenessConfidence_
-Devuelve un indicador del nivel de confianza de la captura.
+##### 7.1.1.2. displayImage
 
-##### 7.2.1.4. rawFingerprintImage
+Contiene la imagen procesada.
 
-Devuelve el array de las imagenes de la huella actual en crudo, sin modificar.
+##### 7.1.1.3. wsq
 
-##### 7.2.1.5. processedFingerprintImage
+La huella dactilar en formato WSQ.
 
-Devuelve el array de las imagenes de la huella procesada.
+##### 7.1.1.4. minutiaesNumber
 
-##### 7.2.1.6. wsqDataArray
+Devuelve el número de minucias encontradas en la captura biométrica.
 
-Se devuelve el array de las capturas de huella en formato WSQ.
+##### 7.1.1.5. quality
 
-##### 7.2.1.7. fingerprintTemplate
+Entero que representa la calidad del elemento procesado.
 
-Devuelve la plantilla en bruto que se genera después del proceso de
-extracción. Válida para el proceso de AUTHENTICATION.
+##### 7.1.1.6 nistQuality
 
-##### 7.2.1.8. nfiqMetrics
+Entero que representa la calidad del elemento procesado usando los estándares NIST.
 
-Son las métricas de la captura. Actualmente se devuelve el siguiente
-valor:
+##### 7.1.1.7 nist2Quality
 
-- nfiqMetric: Es un valor entero, entre 1 y 5 (ambos inclusive), que
-  indica la calidad de la captura de huella, siendo 1 el valor que
-  indica la calidad más alta y 5 la peor calidad. Las huellas con este
-  último valor suelen ser descartadas para posteriores validaciones.
+Entero que representa la calidad del elemento procesado usando una versión alternativa de los estándares NIST.
+
+##### 7.1.1.8 livenessScore
+
+Contiene un valor del indicador de confianza en la captura.
+
+#### 7.1.2 _slapImages_
+
+##### 7.1.2.1. position
+
+Devuelve un entero que representa el elemento capturado. Este valor se establece según
+las instrucciones del NIST_POS_CODE.
+
+##### 7.1.2.2. image
+
+Contiene la imagen procesada.
+
+##### 7.1.2.3. livenessScore
+
+Contiene un valor del indicador de confianza en la captura.
 
 ---
 
@@ -357,6 +406,8 @@ case sdkErrorColor
 case sdkNeutralColor
 case sdkAccentColor
 case sdkTopIconsColor
+// Phingers Specific Colors
+case sdkButtonTextColor
 ```
 
 ### 8.3 Fuentes
@@ -398,7 +449,8 @@ Quedaría así:
 
 - Portugués - Portugal
 
-El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+El idioma del componente se puede configurar en el *_initSdk_* mediante el parámetro **_locale_**.
+En caso de no configurarse, el SDK escoge el idioma establecido en el dispositivo.
 
 - Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
 

@@ -343,20 +343,34 @@ Los controllers devolverán la información necesaria en formato SdkResult. Más
 
 ### 7.1. Recepción de errores
 
-En la parte del error, dispondremos de la clase _CaptureError_.
+En la parte del error, dispondremos de la clase común _ErrorType_.
 
 ```java
- NO_DATA_ERROR
- TIMEOUT
- CANCEL_BY_USER
- CANCEL_LAUNCH
- CAMERA_ERROR
- QR_GENERATION_ERROR
- ACTIVITY_RESULT_ERROR
- QR_CAPTURE_ERROR
- PHACTURAS_CAPTURE_ERROR
- CAMERA_PERMISSION_DENIED
- INITIALIZATION_ERROR
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+}
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_
@@ -491,7 +505,8 @@ Quedaría así:
 
 - Portugués - Portugal
 
-El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+El idioma del componente se puede configurar en el *_initSdk_* mediante el parámetro **_locale_**.
+En caso de no configurarse, el SDK escoge el idioma establecido en el dispositivo.
 
 - Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
 

@@ -108,19 +108,19 @@ Un custom theme puede editar esos valores. Por defecto hay un ThemeStatus que se
 Colores disponibles para personalizar:
 
 ```java
-enum Color: String, CaseIterable {
-    case sdkPrimaryColor
-    case sdkSecondaryColor
-    case sdkBackgroundColor
-    case sdkTitleTextColor
-    case sdkBodyTextColor
-    case sdkTopIconsColor
-    case sdkButtonTextColor
-    case sdkErrorColor
-    case sdkSuccessColor
-    case sdkNeutralColor
-    case sdkAccentColor
-}
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+// Phingers Specific Colors
+case sdkButtonTextColor
 ```
 
 Por defecto:
@@ -318,7 +318,8 @@ Quedaría así:
 
 - Portugués - Portugal
 
-El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+El idioma del componente se puede configurar en el *_initSdk_* mediante el parámetro **_locale_**.
+En caso de no configurarse, el SDK escoge el idioma establecido en el dispositivo.
 
 - Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
 

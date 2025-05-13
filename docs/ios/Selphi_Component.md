@@ -509,6 +509,12 @@ The texts can be customized by overriding the value of these keys inside a **Loc
 "selphi_component_timeout_desc" = "We were unable to identify you. Please try again";
 ```
 
+Thus, if you want to modify for example the text "_START_" of the key `selphi_component_tip_button_message` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
+
+`"selphi_component_tip_button_message"="BEGIN";`.
+
+If a message is not specified in the language file, it will be filled with the default message.
+
 ### 9.3 Colors, images, dimensions and fonts
 
 The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).

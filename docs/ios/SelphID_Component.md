@@ -672,6 +672,12 @@ The texts can be customized by overriding the value of these keys inside a Local
 "selphid_component_timeout_generic_desc" = "Check that the document is inside the box and the data is visible.";
 ```
 
+Thus, if you want to modify for example the text "_START_" of the key `selphid_component_tip_button_message` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
+
+`"selphid_component_tip_button_message"="BEGIN";`.
+
+If a message is not specified in the language file, it will be filled with the default message.
+
 ### 8.3 Colors, images, dimensions and fonts
 
 The customization of the other elements from previous images is done inside the [Status Component](./Status_Component).

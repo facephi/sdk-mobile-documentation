@@ -335,7 +335,48 @@ Animations are similarly initialized in the `animations` variable with a diction
 case video_call_anim_waiting
 ```
 
-### 8.5 Texts
+### 8.5 Customizing the time between screens
+
+To modify the time spent on each recording screen, the value of the time parameter (in ms) of the VideoIDConfigurationData must be modified:
+
+`VideoIDConfigurationData(...,sectionTime: TIME IN MS,...)`
+
+The minimum supported is 5000ms.
+
+### 8.5 Texts - Multi-Language
+
+#### 8.5.1 Default language settings
+
+If the package is installed via **SPM**, for text localization to work, the following needs to be added to the **Info.plist** file of the integrator app:
+
+**CFBundleAllowMixedLocalizations = YES**.
+
+It would look like this:
+
+![Image](/ios/sdkVideo-infoplist-image.png)
+
+- English - Spain
+
+- Spanish - Spain
+
+- Portuguese - Portugal
+
+The component's language can be configured with the **_locale_** parameter of the *_initSdk_* function.
+If not configured, by default, the SDK chooses the established lnaguage of the device.
+
+- If the language is any language whose root is Spanish (e.g. Spanish - Mexico), by default, it will use Spanish - Spain.
+
+- If the language is any language whose root is Portuguese (e.g. Portuguese - Brazil), by default, it will use Portuguese - Portugal.
+
+- For any other case, English will be used.
+
+#### 8.5.2 Customized Language Configuration
+
+The component allows the customization of texts according to the language, which as in the previous case, will be defined by the language that is selected on the device.
+
+This customization applies to new localizations as well as to the case of the default languages (es, en and pt-PT). It is done through the use of **Localizable.strings.** files.
+
+#### 8.5.3 Keys for multi-languages
 
 The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 

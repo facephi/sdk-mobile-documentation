@@ -279,6 +279,7 @@ public enum VideoIdError: String {
     case SOCKET_URL_IS_NOT_VALID
     case MISSING_DOCUMENT_READER_RESOURCES
     case NO_FACE_DETECTED
+    case OCR_ERROR
 }
 ```
 
@@ -412,7 +413,8 @@ It would look like this:
 
 - Portuguese - Portugal
 
-The language of the component is selected according to the language that the cell phone has set.
+The component's language can be configured with the **_locale_** parameter of the *_initSdk_* function.
+If not configured, by default, the SDK chooses the established lnaguage of the device.
 
 - If the language is any language whose root is Spanish (e.g. Spanish - Mexico), by default, it will use Spanish - Spain.
 

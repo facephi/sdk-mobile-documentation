@@ -364,7 +364,8 @@ Quedaría así:
 
 - Portugués - Portugal
 
-El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+El idioma del componente se puede configurar en el *_initSdk_* mediante el parámetro **_locale_**.
+En caso de no configurarse, el SDK escoge el idioma establecido en el dispositivo.
 
 - Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
 

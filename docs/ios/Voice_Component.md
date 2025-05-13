@@ -251,18 +251,101 @@ Facephi tokenised format.
 
 ---
 
-## 8. Customization of the component
+## 8. Component customization
 
 Apart from the changes that can be made at SDK level (which are
 explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
-document), this particular component allows the modification of specific
+document), this particular component allows the modification of specific animations, images, fonts, colors and
 texts.
 
-### 8.1 Texts
+To customise the component, ThemeVoiceIDManager.setup(theme: CustomThemeVoiceID() ) must be called before launching the VoiceController:
 
-If you want to modify the SDK texts you would have to include the
-XML file in the client application, and modify the value of each _String_ to the desired one.
-value of each _String_ to the desired one.
+```java
+let voiceController = VoiceController(data: VoiceConfigurationData(), output: { sdkResult in
+        // Do whatever with the result
+        ...
+    }, viewController: viewController)
+ThemeVoiceIDManager.setup(theme: CustomThemeVoiceID())
+SDKController.shared.launch(controller: voiceController)
+```
+
+An example of the CustomThemeVoiceID class would be this (must extend ThemeVoiceIDProtocol):
+
+```java
+class CustomThemeVoiceID: ThemeVoiceIDProtocol {
+    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
+
+    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
+
+    var animations: [R.Animation: String] = [:]
+
+    var name: String {
+        "custom"
+    }
+
+    var fonts: [R.Font: String] = [:]
+
+    var dimensions: [R.Dimension: CGFloat] {
+        [.fontBig: 8]
+    }
+}
+```
+
+### 8.1 Images
+
+Images are initialised in the variable images, passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
+
+```java
+case ic_sdk_logo
+case ic_sdk_close_arrow
+case ic_sdk_check
+case ic_sdk_back
+case ic_sdk_close
+```
+
+### 8.2 Colors
+
+Colors are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+
+```java
+// COMMON SDK Colors 
+case sdkPrimaryColor
+case sdkBackgroundColor
+case sdkSecondaryColor
+case sdkBodyTextColor
+case sdkTitleTextColor
+case sdkSuccessColor
+case sdkErrorColor
+case sdkNeutralColor
+case sdkAccentColor
+case sdkTopIconsColor
+```
+
+### 8.3 Fonts
+
+Fonts are similarly initialized in the `fonts` variable with a dictionary, having as value a **String** with the name of the desired **UIFont**.
+
+```java
+case regular
+case bold
+```
+
+- The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
+
+### 8.4 Animations
+
+Animations are similarly initialized in the `animations` variable with a dictionary, having as value a **String** with the name of the desired **JSON Lottie**.
+
+```java
+case voice_anim_enroll
+case voice_anim_enroll_error
+case voice_anim_enroll_ok
+case voice_anim_intro
+```
+
+### 8.5 Texts
+
+The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
 
 ```java
 "voice_component_success_records_message" = "%d/%d successful recordings";
@@ -273,13 +356,25 @@ value of each _String_ to the desired one.
 "voice_component_phrase_generic_error_feedback" = "Please, repeat the sentence.";
 "voice_component_phrase_long_silence_feedback" = "Talk for 2 seconds or more.";
 "voice_component_phrase_long_reverberation_feedback" = "Too much echo. Try in another environment.";
-"voice_component_tutorial_title" = "Voice Recognition";
-"voice_component_tutorial_message" = "Speak clearly and aloud\n\nMake sure your surroundings are silent";
-"voice_component_tutorial_button" = "Start";
-"voice_component_success_button" = "Continue";
-"voice_component_ok"="Ok";
-"voice_component_cancel"="Cancel";
-"voice_component_end_confirmation_title" = "Are you sure you will finish the process?";
-"voice_component_text_results_finish_button" = "Finish";
-"voice_component_agree" = "Accept";
+"voice_component_tip_title" = "Voice Recognition";
+"voice_component_tip_desc" = "Speak clearly and aloud\n\nMake sure your surroundings are silent";
+"voice_component_tip_button_message" = "START";
+"voice_component_exit_alert_question" = "Are you sure you will finish the process?";
+"voice_component_exit_alert_accept" = "Accept";
+"voice_component_exit_alert_cancel" = "Cancel";
+"voice_component_multiple_speakers_error_feedback" = "There are several voices in background. Try to be in a quiet environment";
+"voice_component_short_recorded_speech_feedback" = "The recording is too short.";
+"voice_component_quality_check_error_feedback" = "The audio quality is very low.";
+"voice_component_back_alt" = "Back";
+"voice_component_close_alt" = "Close";
+"voice_component_logo_alt" = "Logo";
+"voice_component_tip_alt"="";
+"voice_component_timeout_title"="Time exceeded";
+"voice_component_timeout_desc"="We have not been able to identify you. Try again.";
 ```
+
+Thus, if you want to modify for example the text "_START_" of the key `voice_component_tip_button_message` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
+
+`"voice_component_tip_button_message"="BEGIN";`.
+
+If a message is not specified in the language file, it will be filled with the default message.

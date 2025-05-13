@@ -188,6 +188,15 @@ Si se le da valor true, se activa la vibración en errores y si la respuesta del
 
 Número de reintentos permitidos en cada operación. Por defecto, su valor es 3.
 
+#### 5.1.16. ocrValidations
+
+Validaciones a realizar tras la captura del documento. Los datos proporcionados se evalúan contra los obtenidos.
+
+#### 5.1.17. ocrMaxWarnings
+
+Cuántas advertencias se permiten antes de que la captura de VideoID se marque como *_TOLERANCE_ERROR_*.
+**El valor por defecto es 5.**
+
 ---
 
 ## 6. Uso del componente
@@ -282,10 +291,14 @@ public enum VideoIdError: String {
     case SOCKET_URL_IS_NOT_VALID
     case MISSING_DOCUMENT_READER_RESOURCES
     case NO_FACE_DETECTED
+    case OCR_ERROR
 }
 ```
 
 ## 8. Component customization
+
+Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones, imágenes, fuentes, colores y textos específicos.
 
 Para personalizar el componente, se debe llamar a ThemeVideoIdManager.setup(theme:`CustomThemeVideoId()` ) antes de lanzar el videoIdController:
 
@@ -414,7 +427,8 @@ Quedaría así:
 
 - Portugués - Portugal
 
-El idioma del componente se selecciona en función del idioma que tenga el móvil establecido.
+El idioma del componente se puede configurar en el *_initSdk_* mediante el parámetro **_locale_**.
+En caso de no configurarse, el SDK escoge el idioma establecido en el dispositivo.
 
 - Si el idioma es cualquiera cuya raíz es el Español (p.e Español - México), por defecto, usará Español - España.
 
