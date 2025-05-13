@@ -182,11 +182,7 @@ mostrará un progress indicator.
 
 #### 5.1.14. vibrationEnabled
 
-Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK
-
-#### 5.1.15. maximumRetries
-
-Número de reintentos permitidos en cada operación. Por defecto, su valor es 3.
+Si se le da valor true, se activa la vibración en errores y si la respuesta del widget es OK.
 
 ---
 

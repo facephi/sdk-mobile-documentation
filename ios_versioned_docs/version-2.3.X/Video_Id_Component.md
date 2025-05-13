@@ -183,11 +183,7 @@ Indicates whether you want to show the complete initial tutorial. If I dont know
 
 #### 5.1.14. vibrationEnabled
 
-If the value is set to true, the vibration is activated on errors and if the widget response is OK
-
-#### 5.1.15. maximumRetries
-
-Maximum retries allowed with each operation. Default value is 3.
+If the value is set to true, the vibration is activated on errors and if the widget response is OK.
 
 ---
 
