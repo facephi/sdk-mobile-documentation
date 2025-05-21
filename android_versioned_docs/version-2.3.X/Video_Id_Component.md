@@ -137,7 +137,7 @@ Enables the display of additional information useful for the diagnosis and monit
 
 #### 5.1.10. countryFilter
 
-It allows to restrict processing to a specific set of countries by accepting an array of strings representing the aliases in ISO3 format (3-letter code according to ISO 3166-1 standard). 
+It allows to restrict processing to a specific set of countries by accepting an array of strings representing the aliases in ISO3 format (3-letter code according to ISO 3166-1 standard).
 
 #### 5.1.11. documentFilter
 
@@ -153,7 +153,31 @@ Allows to restrict the types of documents accepted during capture. Possible valu
 
 #### 5.1.12. speechText
 
-Text to be spoken by the user during the recording of the video. 
+Text to be spoken by the user during the recording of the video.
+
+#### 5.1.13. ocrValidations
+
+Dictionary with the OCR validations to be performed. The keys are the fields to be validated and the values are instances of OcrValidationValue.
+
+OcrValidationValue has the following fields:
+
+- value: The value to be validated.
+- tolerance: The tolerance level for the validation.
+  - STRICT: Strict validation.
+  - LOW_TOLERANCE: Low tolerance validation.
+  - MEDIUM_TOLERANCE: Medium tolerance validation.
+  - HIGH_TOLERANCE: High tolerance validation.
+- validationType: The type of validation to be performed.
+  - OPTIONAL: Optional validation.
+  - REQUIRED: Required validation.
+
+#### 5.1.14. ocrMaxWarnings
+
+Maximum number of warnings allowed in the OCR validation.
+
+#### 5.1.15. maxRetries
+
+Maximum number of retries allowed for the OCR validation. 3 is the default value.
 
 ---
 
@@ -247,11 +271,11 @@ Data from the front of the document. Includes:
 
 - documentImage: Image of the document
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
-- iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value 
+- iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value
   suggests that the image is too bright, which may make the document difficult to read.
-- iqaReadable: Numerical value between 0 and 1 indicating the readability of the text in the document; higher values 
+- iqaReadable: Numerical value between 0 and 1 indicating the readability of the text in the document; higher values
   imply that the text is clearer and easier to recognise.
-- iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values 
+- iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values
   reflect a more focused image, which improves the data extraction capability.
 - documentFaceImageTokenized: If a face has been found in the document, the tokenized image of the face is returned.
 
@@ -261,12 +285,12 @@ Data from the back of the document. Includes:
 
 - documentImage: Image of the document
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
-- iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value 
+- iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value
   suggests that the image is too bright, which may make the document difficult to read.
-- iqaReadable: Numerical value between 0 and 1 indicating the readability of the text in the document; higher values 
+- iqaReadable: Numerical value between 0 and 1 indicating the readability of the text in the document; higher values
   imply that the text is clearer and easier to recognise.
-- iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values 
-  reflect a more focused image, which improves the data extraction capability. 
+- iqaSharpness: Numerical value between 0 and 1 indicating the sharpness of the document image; higher values
+  reflect a more focused image, which improves the data extraction capability.
 - documentFaceImageTokenized: If a face has been found in the document, the tokenized image of the face is returned.
 
 #### 7.2.3 faceImage
@@ -277,15 +301,27 @@ Image of the user captured in the first section of the process.
 
 OCR map extracted from the document.
 
-#### 7.2.5 matchingSidesScore
+#### 7.2.5 ocrDiagnostic
+
+Dictionary with the OCR diagnostic of the document. The keys are the
+fields to be validated and the values are instances of OcrDiagnostic.
+
+OCR diagnostic extracted from the document.
+
+- OK: The OCR is correct.
+- NOT_FOUND: The OCR key is not found.
+- TOLERANCE_ERROR: The OCR is not correct.
+- WARNING: The OCR is not correct, but it is a warning because is an optional field.
+
+#### 7.2.6 matchingSidesScore
 
 Numerical value between 0 and 1 that estimates the level of coincidence between the sides of the document (front and back).
 
-#### 7.2.6 documentType
+#### 7.2.7 documentType
 
 Type of document obtained.
 
-#### 7.2.7 personalData
+#### 7.2.8 personalData
 
 Small set of data obtained from the user:
 
@@ -305,11 +341,11 @@ Small set of data obtained from the user:
 - numSupport
 - mrz
 
-#### 7.2.8 speechText
+#### 7.2.9 speechText
 
-Text to be spoken by the user during the recording of the video. 
+Text to be spoken by the user during the recording of the video.
 
-#### 7.2.9 faceImageTokenized
+#### 7.2.10 faceImageTokenized
 
 Tokenized image of the user captured in the first section of the process.
 
@@ -357,7 +393,7 @@ each String to the desired one.
     <string name="video_id_component_face_timeout_desc">Please place yourself on the marks to start recording.</string>
     <string name="video_id_component_internal_error_title">There was a technical problem</string>
     <string name="video_id_component_internal_error_desc">We apologize. The capture could not be made</string>
-    
+
 ```
 
 ### 8.2. Animations

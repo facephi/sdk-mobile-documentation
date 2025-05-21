@@ -2,11 +2,16 @@
 
 ## Versions
 
+### 2.3.2
+
+- Video ID
+  - OCR Validations input / output
+
 ### 2.3.1
 
 - General
 
- - Accesibility improvements
+  - Accesibility improvements
 
 - Selphi
 
@@ -119,7 +124,7 @@
 - License Checker
 
   - Widget new version: 0.4.0
-  
+
 ### 2.2.0
 
 - General
@@ -143,7 +148,7 @@
 
   - UX updates
   - Accesibility improvements
- 
+
 - SelphID
 
   - Widget new version: 1.29.0
@@ -169,7 +174,7 @@
 - General
 
   - UX updates
- 
+
 - SelphID
 
   - Widget new version: 1.28.1
