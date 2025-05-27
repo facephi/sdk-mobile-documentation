@@ -208,7 +208,7 @@ initialized. The steps to follow in the initialisation are as follows:
 2.  Decide whether the license will be included via a _String_ or a
     _remote licensing service_ (**see section 3.1**).
 
-### 3.1 license injection
+### 3.1 License injection
 
 As discussed above, there are currently two ways to inject the license:
 
