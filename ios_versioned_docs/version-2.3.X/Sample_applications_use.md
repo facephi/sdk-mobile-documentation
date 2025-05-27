@@ -4,7 +4,7 @@
 
 IOS sample applications can be found in the GitHub repository:
 
-[![IOS Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-ios-samples/tree/2.2.x)<a href="https://github.com/facephi/sdk-mobile-ios-samples/tree/2.2.x" rel="nofollow"> IOS Repository</a>
+[![IOS Repository](@site/static/img/github_50.png)](https://github.com/facephi/sdk-mobile-ios-samples/tree/2.3.X)<a href="https://github.com/facephi/sdk-mobile-ios-samples/tree/2.3.X" rel="nofollow"> IOS Repository</a>
 
 ### Steps to Set Up and Run the Applications
 
