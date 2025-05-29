@@ -143,7 +143,7 @@ Habilita la visualización de información adicional útil para el diagnóstico 
 
 #### 5.1.10. countryFilter
 
-Permite restringir el procesamiento a un conjunto específico de países, aceptando un array de strings que representan los alias en formato ISO3 (código de 3 letras según el estándar ISO 3166-1). 
+Permite restringir el procesamiento a un conjunto específico de países, aceptando un array de strings que representan los alias en formato ISO3 (código de 3 letras según el estándar ISO 3166-1).
 
 #### 5.1.11. documentFilter
 
@@ -155,13 +155,35 @@ Permite restringir los tipos de documentos aceptados durante la captura. Los val
 - "VIS": Visado (Visa)
 - "FOC": Tarjeta de Extranjero (Foreign Card)
 - "INV": Factura (Invoice)
-- "CUS": Documento Personalizado (Custom Document) 
+- "CUS": Documento Personalizado (Custom Document)
 
 #### 5.1.12. speechText
 
-Texto que el usuario deberá pronunciar durante la grabación del video. 
+Texto que el usuario deberá pronunciar durante la grabación del video.
 
----
+#### 5.1.13. ocrValidations
+
+Diccionario con las validaciones OCR a realizar. Las claves son los campos a validar y los valores son instancias de OcrValidationValue.
+
+OcrValidationValue tiene los siguientes campos:
+
+- value: El valor a validar.
+- tolerance: El nivel de tolerancia para la validación.
+  - STRICT: Validación estricta.
+  - LOW_TOLERANCE: Validación con baja tolerancia.
+  - MEDIUM_TOLERANCE: Validación con tolerancia media.
+  - HIGH_TOLERANCE: Validación con alta tolerancia.
+- validationType: El tipo de validación a realizar.
+  - OPTIONAL: Validación opcional.
+  - REQUIRED: Validación obligatoria.
+
+#### 5.1.14. ocrMaxWarnings
+
+Número máximo de advertencias permitidas en la validación OCR.
+
+#### 5.1.15. maxRetries
+
+Número máximo de reintentos permitidos para la validación OCR. El valor por defecto es 3.
 
 ## 6. Uso del componente
 
@@ -255,11 +277,11 @@ Datos del frente del documento. Incluye:
 
 - documentImage: Imagen del documento
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
-- iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen; 
+- iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen;
   un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
-- iqaReadable: Valor numérico entre 0 y 1 que indica la legibilidad del texto del documento; valores más altos 
+- iqaReadable: Valor numérico entre 0 y 1 que indica la legibilidad del texto del documento; valores más altos
   implican que el texto es más claro y fácil de reconocer.
-- iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una 
+- iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una
   imagen más enfocada, lo que mejora la capacidad de extracción de datos.
 - documentFaceImageTokenized: Si se ha encontrado una cara en el documento se devuelve la imagen cifrada de la misma.
 
@@ -269,11 +291,11 @@ Datos del reverso del documento. Incluye:
 
 - documentImage: Imagen del documento
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
-- iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen; 
+- iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen;
   un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
-- iqaReadable: Valor numérico entre 0 y 1 que indica la legibilidad del texto del documento; valores más altos 
+- iqaReadable: Valor numérico entre 0 y 1 que indica la legibilidad del texto del documento; valores más altos
   implican que el texto es más claro y fácil de reconocer.
-- iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una 
+- iqaSharpness: Valor numérico entre 0 y 1 que indica la nitidez de la imagen del documento; valores altos reflejan una
   imagen más enfocada, lo que mejora la capacidad de extracción de datos.
 - documentFaceImageTokenized: Si se ha encontrado una cara en el documento se devuelve la imagen cifrada de la misma.
 
@@ -285,15 +307,26 @@ Imagen del usuario capturada en la primera sección del proceso.
 
 Mapa del OCR extraído del documento.
 
-#### 7.2.5 matchingSidesScore
+#### 7.2.5 ocrDiagnostic
+
+Diccionario con el diagnóstico OCR del documento. Las claves son los campos a validar y los valores son instancias de OcrDiagnostic.
+
+Diagnóstico OCR extraído del documento.
+
+- OK: El OCR es correcto.
+- NOT_FOUND: No se encuentra la clave OCR.
+- TOLERANCE_ERROR: El OCR no es correcto.
+- WARNING: El OCR no es correcto, pero es solo una advertencia porque es un campo opcional.
+
+#### 7.2.6 matchingSidesScore
 
 Valor numérico entre 0 y 1 que estima el nivel de coincidencia entre las caras del documento (frontal y trasera).
 
-#### 7.2.6 documentType
+#### 7.2.7 documentType
 
 Tipo de documento obtenido.
 
-#### 7.2.7 personalData
+#### 7.2.8 personalData
 
 Conjunto reducido de datos obtenidos del usuario:
 
@@ -313,11 +346,11 @@ Conjunto reducido de datos obtenidos del usuario:
 - numSupport
 - mrz
 
-#### 7.2.8 speechText
+#### 7.2.9 speechText
 
-Texto que el usuario deberá pronunciar durante la grabación del video. 
+Texto que el usuario deberá pronunciar durante la grabación del video.
 
-#### 7.2.9 faceImageTokenized
+#### 7.2.10 faceImageTokenized
 
 Imagen cifrada del usuario capturada en la primera sección del proceso.
 
