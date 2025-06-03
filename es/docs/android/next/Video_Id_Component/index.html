@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.8.0">
 <title data-rh="true">Video Id Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Video_Id_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-android-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-android-current"><meta data-rh="true" property="og:title" content="Video Id Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="0. Requisitos base de SDK Mobile"><meta data-rh="true" property="og:description" content="0. Requisitos base de SDK Mobile"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Video_Id_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Video_Id_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Video_Id_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Video_Id_Component" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Video Id Component","item":"https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Video_Id_Component"}]}</script><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.590f535e.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.3eff416e.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.659a17ef.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.255a130c.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -124,7 +124,30 @@ frontal del documento de identidad y la parte trasera del documento.</p>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="5112-speechtext">5.1.12. speechText<a href="#5112-speechtext" class="hash-link" aria-label="Enlace directo al 5.1.12. speechText" title="Enlace directo al 5.1.12. speechText">​</a></h4>
 <p>Texto que el usuario deberá pronunciar durante la grabación del video.</p>
-<hr>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5113-ocrvalidations">5.1.13. ocrValidations<a href="#5113-ocrvalidations" class="hash-link" aria-label="Enlace directo al 5.1.13. ocrValidations" title="Enlace directo al 5.1.13. ocrValidations">​</a></h4>
+<p>Diccionario con las validaciones OCR a realizar. Las claves son los campos a validar y los valores son instancias de OcrValidationValue.</p>
+<p>OcrValidationValue tiene los siguientes campos:</p>
+<ul>
+<li>value: El valor a validar.</li>
+<li>tolerance: El nivel de tolerancia para la validación.<!-- -->
+<ul>
+<li>STRICT: Validación estricta.</li>
+<li>LOW_TOLERANCE: Validación con baja tolerancia.</li>
+<li>MEDIUM_TOLERANCE: Validación con tolerancia media.</li>
+<li>HIGH_TOLERANCE: Validación con alta tolerancia.</li>
+</ul>
+</li>
+<li>validationType: El tipo de validación a realizar.<!-- -->
+<ul>
+<li>OPTIONAL: Validación opcional.</li>
+<li>REQUIRED: Validación obligatoria.</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5114-ocrmaxwarnings">5.1.14. ocrMaxWarnings<a href="#5114-ocrmaxwarnings" class="hash-link" aria-label="Enlace directo al 5.1.14. ocrMaxWarnings" title="Enlace directo al 5.1.14. ocrMaxWarnings">​</a></h4>
+<p>Número máximo de advertencias permitidas en la validación OCR.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5115-maxretries">5.1.15. maxRetries<a href="#5115-maxretries" class="hash-link" aria-label="Enlace directo al 5.1.15. maxRetries" title="Enlace directo al 5.1.15. maxRetries">​</a></h4>
+<p>Número máximo de reintentos permitidos para la validación OCR. El valor por defecto es 3.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="6-uso-del-componente">6. Uso del componente<a href="#6-uso-del-componente" class="hash-link" aria-label="Enlace directo al 6. Uso del componente" title="Enlace directo al 6. Uso del componente">​</a></h2>
 <p>Una vez iniciado el componente y creada una nueva operación (<strong>apartado
 3</strong>) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
@@ -212,11 +235,20 @@ imagen más enfocada, lo que mejora la capacidad de extracción de datos.</li>
 <p>Imagen del usuario capturada en la primera sección del proceso.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="724-ocrmap">7.2.4 ocrMap<a href="#724-ocrmap" class="hash-link" aria-label="Enlace directo al 7.2.4 ocrMap" title="Enlace directo al 7.2.4 ocrMap">​</a></h4>
 <p>Mapa del OCR extraído del documento.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="725-matchingsidesscore">7.2.5 matchingSidesScore<a href="#725-matchingsidesscore" class="hash-link" aria-label="Enlace directo al 7.2.5 matchingSidesScore" title="Enlace directo al 7.2.5 matchingSidesScore">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="725-ocrdiagnostic">7.2.5 ocrDiagnostic<a href="#725-ocrdiagnostic" class="hash-link" aria-label="Enlace directo al 7.2.5 ocrDiagnostic" title="Enlace directo al 7.2.5 ocrDiagnostic">​</a></h4>
+<p>Diccionario con el diagnóstico OCR del documento. Las claves son los campos a validar y los valores son instancias de OcrDiagnostic.</p>
+<p>Diagnóstico OCR extraído del documento.</p>
+<ul>
+<li>OK: El OCR es correcto.</li>
+<li>NOT_FOUND: No se encuentra la clave OCR.</li>
+<li>TOLERANCE_ERROR: El OCR no es correcto.</li>
+<li>WARNING: El OCR no es correcto, pero es solo una advertencia porque es un campo opcional.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="726-matchingsidesscore">7.2.6 matchingSidesScore<a href="#726-matchingsidesscore" class="hash-link" aria-label="Enlace directo al 7.2.6 matchingSidesScore" title="Enlace directo al 7.2.6 matchingSidesScore">​</a></h4>
 <p>Valor numérico entre 0 y 1 que estima el nivel de coincidencia entre las caras del documento (frontal y trasera).</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="726-documenttype">7.2.6 documentType<a href="#726-documenttype" class="hash-link" aria-label="Enlace directo al 7.2.6 documentType" title="Enlace directo al 7.2.6 documentType">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="727-documenttype">7.2.7 documentType<a href="#727-documenttype" class="hash-link" aria-label="Enlace directo al 7.2.7 documentType" title="Enlace directo al 7.2.7 documentType">​</a></h4>
 <p>Tipo de documento obtenido.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="727-personaldata">7.2.7 personalData<a href="#727-personaldata" class="hash-link" aria-label="Enlace directo al 7.2.7 personalData" title="Enlace directo al 7.2.7 personalData">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="728-personaldata">7.2.8 personalData<a href="#728-personaldata" class="hash-link" aria-label="Enlace directo al 7.2.8 personalData" title="Enlace directo al 7.2.8 personalData">​</a></h4>
 <p>Conjunto reducido de datos obtenidos del usuario:</p>
 <ul>
 <li>issuer</li>
@@ -235,9 +267,9 @@ imagen más enfocada, lo que mejora la capacidad de extracción de datos.</li>
 <li>numSupport</li>
 <li>mrz</li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="728-speechtext">7.2.8 speechText<a href="#728-speechtext" class="hash-link" aria-label="Enlace directo al 7.2.8 speechText" title="Enlace directo al 7.2.8 speechText">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="729-speechtext">7.2.9 speechText<a href="#729-speechtext" class="hash-link" aria-label="Enlace directo al 7.2.9 speechText" title="Enlace directo al 7.2.9 speechText">​</a></h4>
 <p>Texto que el usuario deberá pronunciar durante la grabación del video.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="729-faceimagetokenized">7.2.9 faceImageTokenized<a href="#729-faceimagetokenized" class="hash-link" aria-label="Enlace directo al 7.2.9 faceImageTokenized" title="Enlace directo al 7.2.9 faceImageTokenized">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="7210-faceimagetokenized">7.2.10 faceImageTokenized<a href="#7210-faceimagetokenized" class="hash-link" aria-label="Enlace directo al 7.2.10 faceImageTokenized" title="Enlace directo al 7.2.10 faceImageTokenized">​</a></h4>
 <p>Imagen cifrada del usuario capturada en la primera sección del proceso.</p>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="8-personalización-del-componente">8. Personalización del componente<a href="#8-personalización-del-componente" class="hash-link" aria-label="Enlace directo al 8. Personalización del componente" title="Enlace directo al 8. Personalización del componente">​</a></h2>
