@@ -4,8 +4,29 @@
 
 ### 2.3.2
 
+- General
+
+  -  Mejoras en Accesibilidad
+
 - Video ID
+
   - Validaciones de OCR de entrada y salida
+
+- Selphi
+
+  - Nueva versión del widget: 5.17.3
+
+- SelphID
+
+  - Nueva versión del widget: 1.33.1
+
+- VideoCall
+
+  - Nuevo desarrollo para compartir pantalla
+
+- VideoRecording
+
+  - Nuevo desarrollo para compartir pantalla
 
 ### 2.3.1
 
