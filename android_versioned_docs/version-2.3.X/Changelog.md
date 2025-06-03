@@ -7,6 +7,7 @@
 - General
 
   - Accesibility improvements
+  - Compatible with 16Kb page size
 
 - Video ID
 

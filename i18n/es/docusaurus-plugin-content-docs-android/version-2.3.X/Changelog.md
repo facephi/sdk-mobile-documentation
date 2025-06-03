@@ -6,7 +6,8 @@
 
 - General
 
-  -  Mejoras en Accesibilidad
+  - Mejoras en Accesibilidad
+  - Compatible con 16Kb
 
 - Video ID
 
