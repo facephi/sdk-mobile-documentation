@@ -2,11 +2,16 @@
 
 ## Versiones
 
+### 2.3.2
+
+- Video ID
+  - Validaciones de OCR de entrada y salida
+
 ### 2.3.1
 
 - General
 
- - Mejoras en Accesibilidad
+  - Mejoras en Accesibilidad
 
 - Selphi
 
@@ -143,7 +148,7 @@
 
   - Mejoras UX
   - Mejoras en la accesibilidad
- 
+
 - SelphID
 
   - Nueva versión del widget: 1.29.0
@@ -169,7 +174,7 @@
 - General
 
   - Mejoras UX
- 
+
 - SelphID
 
   - Nueva versión del widget: 1.28.1
@@ -185,7 +190,6 @@
 - Capture
 
   - Mejoras en la captura de documentos
-
 
 ### 2.1.0
 

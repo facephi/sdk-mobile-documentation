@@ -2,11 +2,16 @@
 
 ## Versiones
 
+### 2.3.2
+
+- Video ID
+  - Validaciones de OCR de entrada y salida
+
 ### 2.3.1
 
 - General
 
- - Mejoras en Accesibilidad
+  - Mejoras en Accesibilidad
 
 - Selphi
 
