@@ -618,32 +618,32 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
+    <!-- Diagnostic -->
     <string name="selphid_component_timeout_title">Tiempo superado</string>
     <string name="selphid_component_timeout_desc">Comprueba que el documento está dentro del recuadro y los datos son visibles.</string>
     <string name="selphid_component_internal_error_title">Hubo un problema técnico</string>
     <string name="selphid_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
     <!-- Previous Tip -->
-    <string name="selphid_tip_message">&lt;b&gt; Enfoca&lt;/b&gt; tu documento&lt;b&gt; dentro del recuadro.&lt;/b&gt; La foto se hará automáticamente.</string>
-    <string name="selphid_tip_message_alt">Enfoca tu documento dentro del recuadro. La foto se hará automáticamente.</string>
-    <string name="selphid_tip_anim_id_desc">Animación de un teléfono móvil haciendo una foto a un documento de identidad. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.</string>
-    <string name="selphid_tip_anim_pass_desc">Animación de un teléfono móvil haciendo una foto a un pasaporte. El documento aparece en horizontal, abierto por la página donde aparece la foto. El móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando la página del pasaporte encaja dentro del recuadro, la aplicación hace una foto.</string>
-    <string name="selphid_tip_title">Foto del documento</string>
-    <string name="selphid_tip_button">Comenzar</string>
+    <string name="selphid_component_tip_message">&lt;b&gt; Enfoca&lt;/b&gt; tu documento&lt;b&gt; dentro del recuadro.&lt;/b&gt; La foto se hará automáticamente.</string>
+    <string name="selphid_component_tip_message_alt">Enfoca tu documento dentro del recuadro. La foto se hará automáticamente.</string>
+    <string name="selphid_component_tip_anim_id_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tip_anim_pass_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tip_title">Foto del documento</string>
+    <string name="selphid_component_tip_button">Comenzar</string>
+    <string name="selphid_component_tip_button_alt">Comenzar captura de documento</string>
+    <string name="selphid_component_tip_close_button_alt">Volver</string>
+    <string name="selphid_component_tip_info_button_alt">Ver consejos</string>
     <!-- Tutorial -->
-    <string name="selphid_previous_page">Página anterior</string>
-    <string name="selphid_next_page">Próxima página</string>
-    <string name="selphid_skip">OMITIR</string>
-    <string name="selphid_next">SIGUIENTE</string>
-    <string name="selphid_previous">ANTERIOR</string>
-    <string name="selphid_tutorial_message_1">Busca un fondo con buen contraste.</string>
-    <string name="selphid_tutorial_message_2">Coloca el documento dentro del recuadro.</string>
-    <string name="selphid_tutorial_message_3">Evita brillos que dificulten la lectura del documento.</string>
-    <string name="selphid_tutorial_message_1_anim_id_desc">Se muestra un documento de identidad de color blanco, sobre un fondo blanco. Los bordes del documento no se distinguen con claridad. Mediante una animación, el fondo cambia de color.</string>
-    <string name="selphid_tutorial_message_2_anim_id_desc">Un teléfono móvil hace una foto a un documento de identidad. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.</string>
-    <string name="selphid_tutorial_message_3_anim_id_desc">Un documento de identidad, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.</string>
-    <string name="selphid_tutorial_message_1_anim_pass_desc">Se muestra un pasaporte abierto, sobre un fondo blanco. Los bordes del pasaporte no se distinguen con claridad. Mediante una animación, el fondo cambia de color.</string>
-    <string name="selphid_tutorial_message_2_anim_pass_desc">Un teléfono móvil hace una foto a un pasaporte abierto. El documento aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el pasaporte encaja dentro del recuadro, la aplicación hace una foto.</string>
-    <string name="selphid_tutorial_message_3_anim_pass_desc">Un pasaporte abierto, visto de frente. Al inclinarlo, aparecen reflejos sobre el documento.</string>
+    <string name="selphid_component_tutorial_message_1">Busca un fondo con buen contraste.</string>
+    <string name="selphid_component_tutorial_message_2">Coloca el documento dentro del recuadro.</string>
+    <string name="selphid_component_tutorial_message_3">Evita brillos que dificulten la lectura del documento.</string>
+    <string name="selphid_component_tutorial_message_1_anim_id_desc">Coloca el documento en una superficie con un color distinto al documento.</string>
+    <string name="selphid_component_tutorial_message_2_anim_id_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tutorial_message_3_anim_id_desc">Aparecen reflejos sobre el documento.</string>
+    <string name="selphid_component_tutorial_message_1_anim_pass_desc">Coloca el documento en una superficie con un color distinto al documento.</string>
+    <string name="selphid_component_tutorial_message_2_anim_pass_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tutorial_message_3_anim_pass_desc">Aparecen reflejos sobre el documento.</string>
+    <string name="selphid_component_tutorial_close_button_alt">Volver al tutorial previo</string>
 
 ```
 

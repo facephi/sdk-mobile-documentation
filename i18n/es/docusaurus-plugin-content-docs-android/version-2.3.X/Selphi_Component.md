@@ -419,39 +419,32 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-    <string name="selphi_component_timeout_title">Tiempo superado</string>
-    <string name="selphi_component_timeout_desc">No hemos podido identificarte. Inténtalo de nuevo.</string>
-    <string name="selphi_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="selphi_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="selphi_component_tutorial_message">Permanece quieto,&lt;br&gt;con tu cara&lt;br&gt;en el centro del círculo</string>
-    <string name="selphi_component_tutorial_title">Tómate una selfie</string>
-    <string name="selphi_component_tutorial_button">Comenzar</string>
+    <!-- Diagnostic -->
+    <string name="selphid_component_timeout_title">Tiempo superado</string>
+    <string name="selphid_component_timeout_desc">Comprueba que el documento está dentro del recuadro y los datos son visibles.</string>
+    <string name="selphid_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="selphid_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
     <!-- Previous Tip -->
-    <string name="selphi_tip_message">Permanece quieto,&lt;br&gt; con tu cara&lt;br&gt; en el centro del círculo</string>
-    <string name="selphi_tip_message_alt">Permanece quieto, con tu cara en el centro del círculo</string>
-    <string name="selphi_tip_anim_desc">Animación de una pantalla de móvil con la cámara frontal activada. En el centro de la pantalla aparece un círculo. Una persona muestra su cara dentro del círculo y la aplicación le hace una foto.</string>
-    <string name="selphi_tip_title">Tómate una selfie</string>
-    <string name="selphi_tip_button">Comenzar</string>
-    <string name="selphi_tip_move_message">Coloca tu cara en el centro del círculo y sigue las indicaciones</string>
-    <string name="selphi_tip_move_anim_desc">Animación de una pantalla de móvil con la cámara frontal activada. En el centro de la pantalla aparece un círculo. Una persona muestra su cara dentro del círculo, la mueve ligeramente hacia un lado y la aplicación le hace una foto.</string>
-    <string name="selphi_tip_move_title">Reconocimiento facial</string>
-    <string name="selphi_tip_move_button">Comenzar</string>
-    <string name="selphi_qr_tip_title">Escanea el código QR</string>
-    <string name="selphi_qr_tip_message">Enfoca el código QR dentro del recuadro</string>
-    <string name="selphi_qr_tip_anim_desc">Enfoca el código QR dentro del recuadro</string>
-    <string name="selphi_qr_tip_button">Comenzar</string>
+    <string name="selphid_component_tip_message">&lt;b&gt; Enfoca&lt;/b&gt; tu documento&lt;b&gt; dentro del recuadro.&lt;/b&gt; La foto se hará automáticamente.</string>
+    <string name="selphid_component_tip_message_alt">Enfoca tu documento dentro del recuadro. La foto se hará automáticamente.</string>
+    <string name="selphid_component_tip_anim_id_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tip_anim_pass_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tip_title">Foto del documento</string>
+    <string name="selphid_component_tip_button">Comenzar</string>
+    <string name="selphid_component_tip_button_alt">Comenzar captura de documento</string>
+    <string name="selphid_component_tip_close_button_alt">Volver</string>
+    <string name="selphid_component_tip_info_button_alt">Ver consejos</string>
     <!-- Tutorial -->
-    <string name="selphi_previous_page">Página anterior</string>
-    <string name="selphi_next_page">Próxima página</string>
-    <string name="selphi_skip">OMITIR</string>
-    <string name="selphi_next">SIGUIENTE</string>
-    <string name="selphi_previous">ANTERIOR</string>
-    <string name="selphi_tutorial_message_1">Coloca tu cara en el centro y mira a la cámara.</string>
-    <string name="selphi_tutorial_message_2">Quítese cualquier prenda que le cubra la cara.</string>
-    <string name="selphi_tutorial_message_3">Busca un entorno bien iluminado y sin sombras en la cara.</string>
-    <string name="selphi_tutorial_message_1_anim_desc">Aparece un círculo en el centro de la pantalla. Una persona muestra su cara. Se puede ver su cabeza al completo dentro del círculo. Cuando está bien posicionada, la aplicación le hace una foto.</string>
-    <string name="selphi_tutorial_message_2_anim_desc">Aparece un círculo en el centro de la pantalla. Dentro del círculo hay una persona, con gafas de sol, y el pelo tapando parte de su cara. Se quita las gafas y se retira el pelo de la cara. La aplicación detecta su cara al completo y le hace una foto.</string>
-    <string name="selphi_tutorial_message_3_anim_desc">Aparece un círculo oscuro en el centro de la pantalla. Dentro del círculo, se observa con dificultad la cara de una persona. Se enciende una luz y su cara se aprecia con claridad. Tras esto, la aplicación le hace una foto.</string>
+    <string name="selphid_component_tutorial_message_1">Busca un fondo con buen contraste.</string>
+    <string name="selphid_component_tutorial_message_2">Coloca el documento dentro del recuadro.</string>
+    <string name="selphid_component_tutorial_message_3">Evita brillos que dificulten la lectura del documento.</string>
+    <string name="selphid_component_tutorial_message_1_anim_id_desc">Coloca el documento en una superficie con un color distinto al documento.</string>
+    <string name="selphid_component_tutorial_message_2_anim_id_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tutorial_message_3_anim_id_desc">Aparecen reflejos sobre el documento.</string>
+    <string name="selphid_component_tutorial_message_1_anim_pass_desc">Coloca el documento en una superficie con un color distinto al documento.</string>
+    <string name="selphid_component_tutorial_message_2_anim_pass_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
+    <string name="selphid_component_tutorial_message_3_anim_pass_desc">Aparecen reflejos sobre el documento.</string>
+    <string name="selphid_component_tutorial_close_button_alt">Volver al tutorial previo</string>
 
 ```
 
