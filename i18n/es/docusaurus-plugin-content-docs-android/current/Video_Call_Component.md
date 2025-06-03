@@ -72,9 +72,10 @@ este proceso.
 
 ## 4. Controladores disponibles
 
-| **Controlador**     | **Descripción**                       |
-| ------------------- | ------------------------------------- |
-| VideoCallController | Controlador principal de videollamada |
+| **Controlador**         | **Descripción**                       |
+| ----------------------- | ------------------------------------- |
+| VideoCallController     | Controlador principal de videollamada |
+| StopVideoCallController | Detener la compartición de pantalla y la llamada en curso |
 
 ---
 
@@ -213,31 +214,7 @@ Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá
 
 ## 8. Compartir pantalla
 
-La funcionalidad de compartir pantalla se podrá ejecutar haciendo uso de la clase _VideoCallScreenSharingManager_.
-Con ella se podrá tanto comenzar y finalizar la compartición de pantalla como recoger los estados en los que se encuentra.
-
-```java
-val videoCallScreenSharingManager = VideoCallScreenSharingManager()
-
-videoCallScreenSharingManager.setOutput { state ->
-            Napier.d("SCREEN SHARING STATE: ${state.name}")
-        }
-```
-
-Los posibles estados son:
-
-```java
-    AGENT_HANGUP,
-    PERMISSION_ERROR,
-    UNKNOWN_ERROR,
-    NETWORK_CONNECTION_ERROR,
-    SHARING,
-    FINISH
-```
-
-Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
-
-Si se quiere habilitar la opción de compartir pantalla se deberá lanzar el controlador de video llamada con el flag _activateScreenSharing_ de su configuración activo. En la salida del lanzamiento de la video llamada se indicará si el usuario ha solicitado compartir pantalla con el flag _sharingScreen_.
+Cuando el usuario active la funcionalidad de compartir pantalla se recibirá en el controlador el resultado con "sharingScreen = true". Esto indica que la llamada sigue en curso.
 
 ```java
 val result = SDKController.launch(
@@ -250,23 +227,37 @@ when (result) {
 
     is SdkResult.Success -> {
             Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
-            if (result.data.sharingScreen) {
-                videoCallScreenSharingManager.startScreenSharingService()
-            }
         }
     }
 }
 ```
 
-Para comenzar y finalizar la compartición de pantalla en la llamada:
+Para detener la llamada se hará uso del controlador StopVideoCallController.
 
 ```java
-// START
-videoCallScreenSharingManager.startScreenSharingService()
+val controller = StopVideoCallController()
 
-// STOP
-videoCallScreenSharingManager.stopScreenSharingService()
+controller.setOutput { state ->
+    Napier.d { "VIDEOCALL: SCREEN SHARING STATE: ${state.name}" }
+}
+viewModelScope.launch {
+    SDKController.launch(controller)
+}
 ```
+
+Los posibles estados son:
+
+```java
+AGENT_HANGUP,
+PERMISSION_ERROR,
+NETWORK_CONNECTION_ERROR,
+UNKNOWN_ERROR,
+SHARING,
+CANCEL_BY_USER,
+FINISH
+```
+
+El estado que indica la finalización completa de la llamada es FINISH.
 
 ---
 

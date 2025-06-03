@@ -67,9 +67,10 @@ To learn more about how to start a new operation, it is recommended to consult t
 
 ## 4. Available controllers
 
-| **Controller**      | **Description**           |
-| ------------------- | ------------------------- |
-| VideoCallController | Videocall main controller |
+| **Controller**          | **Description**              |
+| ----------------------- | ---------------------------- |
+| VideoCallController     | Videocall main controller    |
+| StopVideoCallController | Stop screen sharing and call |
 
 ## 5. Component configuration
 
@@ -199,31 +200,7 @@ with the SdkResult.Success.
 
 ## 8. Screen sharing
 
-The screen sharing functionality can be executed using the _VideoCallScreenSharingManager_ class.
-With it, it is possible to start and end the screen sharing as well as to collect the states in which it is.
-
-```java
-val videoCallScreenSharingManager = VideoCallScreenSharingManager()
-
-videoCallScreenSharingManager.setOutput { state ->
-            Napier.d("SCREEN SHARING STATE: ${state.name}")
-        }
-```
-
-The possible states are:
-
-```java
-    AGENT_HANGUP,
-    PERMISSION_ERROR,
-    UNKNOWN_ERROR,
-    NETWORK_CONNECTION_ERROR,
-    SHARING,
-    FINISH
-```
-
-Where SHARING indicates that the screen is being recorded and FINISH indicates that the process has finished.
-
-If you want to enable the screen sharing option, the video call driver must be launched with the _activateScreenSharing_ flag of its active configuration. The output of the video call launch will indicate whether the user has requested screen sharing with the _sharingScreen_ flag.
+When the user activates the screen sharing functionality the result with ‘sharingScreen = true’ will be received in the controller. This indicates that the call is still in progress.
 
 ```java
 val result = SDKController.launch(
@@ -236,22 +213,34 @@ when (result) {
 
     is SdkResult.Success -> {
             Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
-            if (result.data.sharingScreen) {
-                videoCallScreenSharingManager.startScreenSharingService()
-            }
         }
     }
 }
 ```
 
-To start and end screen sharing in the call:
+To stop the call, the StopVideoCallController shall be used.
 
 ```java
-// START
-videoCallScreenSharingManager.startScreenSharingService()
+val controller = StopVideoCallController()
 
-// STOP
-videoCallScreenSharingManager.stopScreenSharingService()
+controller.setOutput { state ->
+    Napier.d { "VIDEOCALL: SCREEN SHARING STATE: ${state.name}" }
+}
+viewModelScope.launch {
+    SDKController.launch(controller)
+}
+```
+
+The possible states are:
+
+```java
+AGENT_HANGUP,
+PERMISSION_ERROR,
+NETWORK_CONNECTION_ERROR,
+UNKNOWN_ERROR,
+SHARING,
+CANCEL_BY_USER,
+FINISH
 ```
 
 ---
