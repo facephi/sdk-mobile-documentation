@@ -219,18 +219,20 @@ The evolution of the process shall be indicated by statuses:
 Recording controllers shall return statuses to indicate the evolution of the process:
 
 ```java
-    AGENT_HANGUP,
-    FINISH,
-    SHARING,
-    LICENSE_ERROR,
-    INITIALIZATION_ERROR,
-    OPERATION_NOT_CREATED,
-    NETWORK_CONNECTION_ERROR,
-    PERMISSION_ERROR,
-    CANCEL_BY_USER,
-    VIDEO_ERROR,
-    SOCKET_ERROR,
-    UNKNOWN_ERROR,
+AGENT_HANGUP,
+FINISH,
+SHARING,
+LICENSE_ERROR,
+INITIALIZATION_ERROR,
+OPERATION_NOT_CREATED,
+VIDEO_RECORDING_ACTIVE_ERROR,
+VIDEO_CALL_ACTIVE_ERROR,
+NETWORK_CONNECTION_ERROR,
+PERMISSION_ERROR,
+CANCEL_BY_USER,
+VIDEO_ERROR,
+SOCKET_ERROR,
+UNKNOWN_ERROR,
 ```
 
 Where SHARING indicates that the screen is being recorded and FINISH indicates that the process is finished.
