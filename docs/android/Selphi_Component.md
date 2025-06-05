@@ -72,6 +72,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | 2.2.2           | 5.16.2                       |
 | 2.2.3           | 5.17.1                       |
 | 2.3.1           | 5.17.2                       |
+| 2.3.2           | 5.17.3                       |
 
 ---
 
@@ -403,40 +404,32 @@ following XML file in the client application and change the value of
 each String to the desired one.
 
 ```xml
-    <string name="selphi_component_timeout_title">Time exceeded</string>
-    <string name="selphi_component_timeout_desc">We were unable to identify you. Please try again.</string>
-    <string name="selphi_component_internal_error_title">There was a technical problem</string>
-    <string name="selphi_component_internal_error_desc">We apologize. The capture could not be made</string>
-    <string name="selphi_component_tutorial_message">Stay still,&lt;br&gt;with your face&lt;br&gt;in the center of the circle</string>
-    <string name="selphi_component_tutorial_title">Take a selfie</string>
-    <string name="selphi_component_tutorial_button">Continue</string>
+    <!-- Diagnostic -->
+    <string name="selphid_component_timeout_title">Time exceeded</string>
+    <string name="selphid_component_timeout_desc">Check that the document is inside the box and the data is visible.</string>
+    <string name="selphid_component_internal_error_title">There was a technical problem</string>
+    <string name="selphid_component_internal_error_desc">We apologize. The capture could not be made</string>
     <!-- Previous Tip -->
-    <string name="selphi_tip_message">Stay still,&lt;br&gt;with your face&lt;br&gt;in the center of the circle</string>
-    <string name="selphi_tip_message_alt">Stay still, with your face in the center of the circle</string>
-    <string name="selphi_tip_anim_desc">Animation of a mobile screen with the front camera activated. A circle appears in the centre of the screen. A person shows their face inside the circle and the application takes a photo of them.</string>
-    <string name="selphi_tip_title">Take a selfie</string>
-    <string name="selphi_tip_button">Start</string>
-    <string name="selphi_tip_move_message">Put your face in the center of the circle and follow the directions.</string>
-    <string name="selphi_tip_move_anim_desc">Animation of a mobile screen with the front camera activated. A circle appears in the centre of the screen. A person shows their face inside the circle, moves it slightly to the side and the application takes a photo.</string>
-    <string name="selphi_tip_move_title">Facial recognition</string>
-    <string name="selphi_tip_move_button">Start</string>
-    <string name="selphi_qr_tip_title">Scan QR Code</string>
-    <string name="selphi_qr_tip_message">Focus the QR code inside the box</string>
-    <string name="selphi_qr_tip_anim_desc">Focus the QR code inside the box</string>
-    <string name="selphi_qr_tip_button">Start</string>
+    <string name="selphid_component_tip_message">&lt;b&gt; Focus&lt;/b&gt; your document&lt;b&gt; inside the box.&lt;/b&gt; The photo will be taken automatically.</string>
+    <string name="selphid_component_tip_message_alt">Focus your document inside the box. The photo will be taken automatically.</string>
+    <string name="selphid_component_tip_anim_id_desc">Place your ID card horizontally, and point your phone vertically.</string>
+    <string name="selphid_component_tip_anim_pass_desc">Place your passport horizontally, and point your phone vertically.</string>
+    <string name="selphid_component_tip_title">Document photo</string>
+    <string name="selphid_component_tip_button">Start</string>
+    <string name="selphid_component_tip_button_alt">Start document capture</string>
+    <string name="selphid_component_tip_close_button_alt">Back</string>
+    <string name="selphid_component_tip_info_button_alt">Show advices</string>
     <!-- Tutorial -->
-    <string name="selphi_previous_page">Previous page</string>
-    <string name="selphi_next_page">Next page</string>
-    <string name="selphi_skip">SKIP</string>
-    <string name="selphi_next">NEXT</string>
-    <string name="selphi_previous">PREVIOUS</string>
-    <string name="selphi_tutorial_message_1">Place your face in the centre and face the camera.</string>
-    <string name="selphi_tutorial_message_2">Remove any items covering your face.</string>
-    <string name="selphi_tutorial_message_3">Look for a well-lit environment with no shadows on your face.</string>
-    <string name="selphi_tutorial_message_1_anim_desc">A circle appears in the centre of the screen. A person shows his or her face. You can see their whole head inside the circle. When it is positioned correctly, the application takes a photo of it.</string>
-    <string name="selphi_tutorial_message_2_anim_desc">A circle appears in the centre of the screen. Inside the circle is a person, wearing sunglasses, with hair covering part of his face. He takes off his glasses and removes the hair from his face. The application detects his full face and takes a photo of him.</string>
-    <string name="selphi_tutorial_message_3_anim_desc">A dark circle appears in the centre of the screen. Inside the circle, a person\'s face is dimly visible. A light comes on and the face is clearly visible. After this, the application takes a photo of the person.</string>
-
+    <string name="selphid_component_tutorial_message_1">Look for a background with good contrast.</string>
+    <string name="selphid_component_tutorial_message_2">Place the document in the box</string>
+    <string name="selphid_component_tutorial_message_3">Avoid glare that makes the document difficult to read.</string>
+    <string name="selphid_component_tutorial_message_1_anim_id_desc">Place the document on a surface with a different colour than the document.</string>
+    <string name="selphid_component_tutorial_message_2_anim_id_desc">Place your ID card horizontally, and point your phone vertically.</string>
+    <string name="selphid_component_tutorial_message_3_anim_id_desc">Reflections appear on the document.</string>
+    <string name="selphid_component_tutorial_message_1_anim_pass_desc">Place the document on a surface with a different colour than the document.</string>
+    <string name="selphid_component_tutorial_message_2_anim_pass_desc">Place your passport horizontally, and point your phone vertically.</string>
+    <string name="selphid_component_tutorial_message_3_anim_pass_desc">Reflections appear on the document.</string>
+    <string name="selphid_component_tutorial_close_button_alt">Back to previous tutorial</string>
 
 ```
 

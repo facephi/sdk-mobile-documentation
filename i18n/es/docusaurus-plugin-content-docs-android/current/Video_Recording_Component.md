@@ -230,15 +230,20 @@ La evolución del proceso vendrá indicada a través de los estados:
 Los controladores de grabación devolverán estados para indicar la evolución del proceso:
 
 ```java
-    AGENT_HANGUP,
-    FINISH,
-    SHARING,
-    INITIALIZATION_ERROR,
-    NETWORK_CONNECTION_ERROR,
-    PERMISSION_ERROR,
-    VIDEO_ERROR,
-    SOCKET_ERROR,
-    UNKNOWN_ERROR,
+AGENT_HANGUP,
+FINISH,
+SHARING,
+LICENSE_ERROR,
+INITIALIZATION_ERROR,
+OPERATION_NOT_CREATED,
+VIDEO_RECORDING_ACTIVE_ERROR,
+VIDEO_CALL_ACTIVE_ERROR,
+NETWORK_CONNECTION_ERROR,
+PERMISSION_ERROR,
+CANCEL_BY_USER,
+VIDEO_ERROR,
+SOCKET_ERROR,
+UNKNOWN_ERROR,
 ```
 
 Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.

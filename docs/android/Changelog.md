@@ -4,8 +4,30 @@
 
 ### 2.3.2
 
+- General
+
+  - Accesibility improvements
+  - Compatible with 16Kb page size
+
 - Video ID
+
   - OCR Validations input / output
+
+- Selphi
+
+  - Widget new version: 5.17.3
+
+- SelphID
+
+  - Widget new version: 1.33.1
+
+- VideoCall
+
+  - New screen sharing
+
+- VideoRecording
+
+  - New screen sharing
 
 ### 2.3.1
 
