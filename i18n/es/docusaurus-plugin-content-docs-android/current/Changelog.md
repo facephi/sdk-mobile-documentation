@@ -12,7 +12,7 @@
 
 - Video ID
 
-  - New modes
+  - Nuevos modos de lanzamiento
   - Nueva versión del reader: 1.5.1
   - Nueva versión del helper: 3.26.10
 

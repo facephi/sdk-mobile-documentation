@@ -119,6 +119,10 @@ Indicates the duration of sections with associated time (facial capture and came
 - FACE_DOCUMENT_FRONT_BACK: The process is performed using the face,
   the front of the identity document and the back of the document.
 
+- DOCUMENT_FRONT: The process extracts data only from the front side of the document.
+
+- DOCUMENT_FRONT_BACK: The process extracts only the information from the entire document.
+
 #### 5.1.6. timeoutServerConnection
 
 Maximum timeout in ms for server response.
