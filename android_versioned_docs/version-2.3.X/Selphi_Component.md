@@ -73,6 +73,7 @@ Table of sdk versions and associated resource versions (Found in the **Resources
 | 2.2.3           | 5.17.1                       |
 | 2.3.1           | 5.17.2                       |
 | 2.3.2           | 5.17.3                       |
+| 2.3.3           | 5.17.5                       |
 
 ---
 
@@ -439,5 +440,9 @@ each String to the desired one.
 If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
 
 ```text
-selphi_anim_tuto.json
+selphi_anim_prev_tip.json
+selphi_anim_prev_tip_move.json
+selphi_anim_tuto_m_1.json
+selphi_anim_tuto_m_2.json
+selphi_anim_tuto_m_3.json
 ```

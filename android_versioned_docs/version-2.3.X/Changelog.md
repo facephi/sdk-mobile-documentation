@@ -2,6 +2,32 @@
 
 ## Versions
 
+### 2.3.3
+
+- General
+
+  - Accesibility improvements
+  - Horizontal screen improvements
+  - Security widget new version: 1.0.1
+
+- Video ID
+
+  - New modes
+  - Reader new version: 1.7.0
+  - Helper new version: 3.26.13
+
+- SelphID
+
+  - Widget new version: 1.33.4
+
+- Selphi
+
+  - Widget new version: 5.17.4
+
+- Tracking
+
+  - Widget new version: 1.1.10
+
 ### 2.3.2
 
 - General

@@ -119,6 +119,10 @@ Indicates the duration of sections with associated time (facial capture and came
 - FACE_DOCUMENT_FRONT_BACK: The process is performed using the face,
   the front of the identity document and the back of the document.
 
+- DOCUMENT_FRONT: The process extracts data only from the front side of the document.
+
+- DOCUMENT_FRONT_BACK: The process extracts only the information from the entire document.
+
 #### 5.1.6. timeoutServerConnection
 
 Maximum timeout in ms for server response.
@@ -270,6 +274,7 @@ In the case of this component, the fields returned are the following:
 Data from the front of the document. Includes:
 
 - documentImage: Image of the document
+- documentFullImage: Complete frame
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
 - iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value
   suggests that the image is too bright, which may make the document difficult to read.
@@ -284,6 +289,7 @@ Data from the front of the document. Includes:
 Data from the back of the document. Includes:
 
 - documentImage: Image of the document
+- documentFullImage: Complete frame
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
 - iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value
   suggests that the image is too bright, which may make the document difficult to read.

@@ -84,6 +84,7 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 | 2.2.2           | 1.31.2                         |
 | 2.2.3           | 1.32.2                         |
 | 2.3.2           | 1.33.1                         |
+| 2.3.3           | 1.33.4                         |
 
 ---
 
@@ -653,8 +654,33 @@ Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las
 
 ```text
 selphid_anim_tip_driver_h.json
+selphid_anim_tip_driver_m.json
 selphid_anim_tip_health.json
 selphid_anim_tip_id_h.json
+selphid_anim_tip_id_m.json
 selphid_anim_tip_mrz.json
 selphid_anim_tip_pass_h.json
+selphid_anim_tip_pass_m.json
+
+selphid_anim_tuto_driver_h_1.json
+selphid_anim_tuto_driver_h_2.json
+selphid_anim_tuto_driver_h_3.json
+selphid_anim_tuto_driver_m_1.json
+selphid_anim_tuto_driver_m_2.json
+selphid_anim_tuto_driver_m_3.json
+
+selphid_anim_tuto_id_h_1.json
+selphid_anim_tuto_id_h_2.json
+selphid_anim_tuto_id_h_3.json
+selphid_anim_tuto_id_m_1.json
+selphid_anim_tuto_id_m_2.json
+selphid_anim_tuto_id_m_3.json
+
+selphid_anim_tuto_pass_h_1.json
+selphid_anim_tuto_pass_h_2.json
+selphid_anim_tuto_pass_h_3.json
+selphid_anim_tuto_pass_m_1.json
+selphid_anim_tuto_pass_m_2.json
+selphid_anim_tuto_pass_m_3.json
+
 ```

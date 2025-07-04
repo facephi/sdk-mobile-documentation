@@ -25,6 +25,7 @@ El fichero de recursos se puede obtener de los siguientes enlaces:
 | 1.31.2                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.31.2/fphi-selphid-widget-resources-selphid-1.31.2.zip" rel="nofollow"> Recursos v.1.31.2</a> |
 | 1.32.2                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.32.2/fphi-selphid-widget-resources-selphid-1.32.2.zip" rel="nofollow"> Recursos v.1.32.2</a> |
 | 1.33.1                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.33.1/fphi-selphid-widget-resources-selphid-1.33.1.zip" rel="nofollow"> Recursos v.1.33.1</a> |
+| 1.33.4                 | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphid-resources/1.33.4/fphi-selphid-widget-resources-selphid-1.33.4.zip" rel="nofollow"> Recursos v.1.33.4</a> |
 
 ---
 

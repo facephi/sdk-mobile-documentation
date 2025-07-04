@@ -116,14 +116,17 @@ Indica la duración de las secciones con tiempo asociado (captura facial y cambi
 
 #### 5.1.5. mode
 
-- ONLY_FACE: El proceso se realiza siendo necesariamente solo
-  mostrando la cara.
+- ONLY_FACE: El proceso se realiza capturando la cara del usuario.
 
-- FACE_DOCUMENT_FRONT: El proceso se realiza usando tanto la cara como
-  el frontal del documento de identidad.
+- FACE_DOCUMENT_FRONT: El proceso se realiza capturando la cara del usuario y la parte delantera 
+  del documento de identidad.
 
-- FACE_DOCUMENT_FRONT_BACK: El proceso se realiza usando la cara, el
-  frontal del documento de identidad y la parte trasera del documento.
+- FACE_DOCUMENT_FRONT_BACK: El proceso se realiza capturando la cara del usuario y el documento de 
+  identidad completo.
+
+- DOCUMENT_FRONT: El proceso extrae la información sólo de la cara delantera del documento.
+
+- DOCUMENT_FRONT_BACK: El proceso extrae la información sólo del documento completo.
 
 #### 5.1.6. timeoutServerConnection
 
@@ -276,6 +279,7 @@ los siguientes:
 Datos del frente del documento. Incluye:
 
 - documentImage: Imagen del documento
+- documentFullImage: Imagen completa capturada
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
 - iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen;
   un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
@@ -290,6 +294,7 @@ Datos del frente del documento. Incluye:
 Datos del reverso del documento. Incluye:
 
 - documentImage: Imagen del documento
+- documentFullImage: Imagen completa capturada
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
 - iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen;
   un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
