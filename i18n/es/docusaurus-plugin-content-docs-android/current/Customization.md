@@ -7,7 +7,7 @@ cambios que se pueden realizar.
 Se recomienda agregar las modificaciones tanto en el tema **claro** como
 **oscuro** (night).
 
-## 1. Colores, logo y animaciones
+## 1. Colores y logo 
 
 Para cambiar los colores y el logo del SDK habría que incluir un fichero
 XML en la aplicación del cliente (por ejemplo **_sdk_styles.xml_**)
@@ -65,7 +65,7 @@ los componentes.
 Los componentes de Selphi y SelphID lleva su zip de recursos asociados
 que se mantiene ajeno a esta característica del SDK.
 
-### 1.1. Animaciones
+## 2. Animaciones
 
 Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
 
@@ -74,7 +74,7 @@ anim_cancelled.json
 anim_success.json
 ```
 
-## 2. Textos
+## 3. Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
@@ -111,14 +111,14 @@ de cada _String_ por el deseado.
 
 ```
 
-## 3. Fuente
+## 4. Fuente
 
 Para modificar la fuente, se agregarán los ficheros .ttf a la carpeta
 _font_ de la aplicación y renombrándolos como aparecen en la imagen:
 
 ![Image](/android/fonts.png)
 
-## 4. Botones
+## 5. Botones
 
 En caso de desear cambiar la forma de los botones del SDK habría que
 incluir esta línea en el fichero XML de estilos del SDK cambiando el
@@ -129,6 +129,16 @@ valor _dp_ de la variable _dimen_:
 <resources>
     <dimen name="sdk_buttons_corner_dimen">5dp</dimen>
 </resources>
+```
+
+## 6. Iconos de la barra superior
+
+Para cambiar los oconos de la barra superior se deben crear los siguientes recursos en la carpeta de ‘drawables’:
+
+```text
+ic_fphi_close_arrow
+ic_fphi_close
+ic_fphi_info
 ```
 
 ---
