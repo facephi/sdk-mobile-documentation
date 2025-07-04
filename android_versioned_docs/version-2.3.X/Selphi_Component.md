@@ -439,5 +439,9 @@ each String to the desired one.
 If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
 
 ```text
-selphi_anim_tuto.json
+selphi_anim_prev_tip.json
+selphi_anim_prev_tip_move.json
+selphi_anim_tuto_m_1.json
+selphi_anim_tuto_m_2.json
+selphi_anim_tuto_m_3.json
 ```

@@ -419,32 +419,37 @@ siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
-    <!-- Diagnostic -->
-    <string name="selphid_component_timeout_title">Tiempo superado</string>
-    <string name="selphid_component_timeout_desc">Comprueba que el documento está dentro del recuadro y los datos son visibles.</string>
-    <string name="selphid_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="selphid_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+<!-- Diagnostic -->
+    <string name="selphi_component_timeout_title">Tiempo superado</string>
+    <string name="selphi_component_timeout_desc">No hemos podido identificarte. Inténtalo de nuevo.</string>
+    <string name="selphi_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="selphi_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
     <!-- Previous Tip -->
-    <string name="selphid_component_tip_message">&lt;b&gt; Enfoca&lt;/b&gt; tu documento&lt;b&gt; dentro del recuadro.&lt;/b&gt; La foto se hará automáticamente.</string>
-    <string name="selphid_component_tip_message_alt">Enfoca tu documento dentro del recuadro. La foto se hará automáticamente.</string>
-    <string name="selphid_component_tip_anim_id_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
-    <string name="selphid_component_tip_anim_pass_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
-    <string name="selphid_component_tip_title">Foto del documento</string>
-    <string name="selphid_component_tip_button">Comenzar</string>
-    <string name="selphid_component_tip_button_alt">Comenzar captura de documento</string>
-    <string name="selphid_component_tip_close_button_alt">Volver</string>
-    <string name="selphid_component_tip_info_button_alt">Ver consejos</string>
+    <string name="selphi_component_tip_message">Coloca tu cara en el centro del círculo</string>
+    <string name="selphi_component_tip_message_alt">Coloca tu cara en el centro del círculo</string>
+    <string name="selphi_component_tip_anim_desc">Una persona muestra su cara dentro del círculo y la aplicación le hace una foto.</string>
+    <string name="selphi_component_tip_title">Reconocimiento facial</string>
+    <string name="selphi_component_tip_button">Comenzar</string>
+    <string name="selphi_component_tip_button_alt">Comenzar captura de rostro</string>
+    <string name="selphi_component_tip_move_message">Coloca tu cara en el centro del círculo y sigue las indicaciones</string>
+    <string name="selphi_component_tip_move_message_alt">Coloca tu cara en el centro del círculo y sigue las indicaciones</string>
+    <string name="selphi_component_tip_move_anim_desc">Una persona muestra su cara dentro del círculo, la mueve ligeramente hacia un lado y la aplicación le hace una foto.</string>
+    <string name="selphi_component_tip_move_title">Reconocimiento facial</string>
+    <string name="selphi_component_tip_move_button">Comenzar</string>
+    <string name="selphi_component_qr_tip_title">Escanea el código QR</string>
+    <string name="selphi_component_qr_tip_message">Enfoca el código QR dentro del recuadro</string>
+    <string name="selphi_component_qr_tip_anim_desc">Enfoca el código QR dentro del recuadro</string>
+    <string name="selphi_component_qr_tip_button">Comenzar</string>
+    <string name="selphi_component_tip_close_button_alt">Volver</string>
+    <string name="selphi_component_tip_info_button_alt">Ver consejos</string>
     <!-- Tutorial -->
-    <string name="selphid_component_tutorial_message_1">Busca un fondo con buen contraste.</string>
-    <string name="selphid_component_tutorial_message_2">Coloca el documento dentro del recuadro.</string>
-    <string name="selphid_component_tutorial_message_3">Evita brillos que dificulten la lectura del documento.</string>
-    <string name="selphid_component_tutorial_message_1_anim_id_desc">Coloca el documento en una superficie con un color distinto al documento.</string>
-    <string name="selphid_component_tutorial_message_2_anim_id_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
-    <string name="selphid_component_tutorial_message_3_anim_id_desc">Aparecen reflejos sobre el documento.</string>
-    <string name="selphid_component_tutorial_message_1_anim_pass_desc">Coloca el documento en una superficie con un color distinto al documento.</string>
-    <string name="selphid_component_tutorial_message_2_anim_pass_desc">Coloca tu documento de identidad en horizontal, y apunta con tu teléfono en posición vertical.</string>
-    <string name="selphid_component_tutorial_message_3_anim_pass_desc">Aparecen reflejos sobre el documento.</string>
-    <string name="selphid_component_tutorial_close_button_alt">Volver al tutorial previo</string>
+    <string name="selphi_component_tutorial_message_1">Coloca tu cara en el centro y mira de frente a la cámara.</string>
+    <string name="selphi_component_tutorial_message_2">Retira cualquier elemento que cubra tu cara.</string>
+    <string name="selphi_component_tutorial_message_3">Busca un entorno bien iluminado, sin sombras sobre tu rostro.</string>
+    <string name="selphi_component_tutorial_message_1_anim_desc">La foto se realiza cuando la persona está en el centro.</string>
+    <string name="selphi_component_tutorial_message_2_anim_desc">Una persona se quita las gafas de sol y se retira el pelo de los ojos.</string>
+    <string name="selphi_component_tutorial_message_3_anim_desc">La imagen aparece oscura y una persona enciende la luz.</string>
+    <string name="selphi_component_tutorial_close_button_alt">Volver al tutorial previo</string>
 
 ```
 
@@ -453,5 +458,9 @@ de cada _String_ por el deseado.
 Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
 
 ```text
-selphi_anim_tuto.json
+selphi_anim_prev_tip.json
+selphi_anim_prev_tip_move.json
+selphi_anim_tuto_m_1.json
+selphi_anim_tuto_m_2.json
+selphi_anim_tuto_m_3.json
 ```
