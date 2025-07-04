@@ -133,7 +133,7 @@ valor _dp_ de la variable _dimen_:
 
 ## 6. Iconos de la barra superior
 
-Para cambiar los oconos de la barra superior se deben crear los siguientes recursos en la carpeta de ‘drawables’:
+Para cambiar los iconos de la barra superior se deben crear los siguientes recursos en la carpeta de ‘drawables’:
 
 ```text
 ic_fphi_close_arrow

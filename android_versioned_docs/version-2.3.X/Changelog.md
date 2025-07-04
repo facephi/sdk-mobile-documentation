@@ -13,12 +13,12 @@
 - Video ID
 
   - New modes
-  - Reader new version: 1.5.1
-  - Helper new version: 3.26.10
+  - Reader new version: 1.7.0
+  - Helper new version: 3.26.13
 
 - SelphID
 
-  - Widget new version: 1.33.3
+  - Widget new version: 1.33.4
 
 - Selphi
 

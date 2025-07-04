@@ -13,16 +13,16 @@
 - Video ID
 
   - Nuevos modos de lanzamiento
-  - Nueva versión del reader: 1.5.1
-  - Nueva versión del helper: 3.26.10
+  - Nueva versión del reader: 1.7.0
+  - Nueva versión del helper: 3.26.13
 
 - SelphID
 
-  - Nueva versión del widget: 1.33.3
+  - Nueva versión del widget: 1.33.4
 
 - Selphi
 
-  - Nueva versión del widget: 5.17.4
+  - Nueva versión del widget: 5.17.5
 
 - Tracking
 
