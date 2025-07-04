@@ -274,6 +274,7 @@ In the case of this component, the fields returned are the following:
 Data from the front of the document. Includes:
 
 - documentImage: Image of the document
+- documentFullImage: Complete frame
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
 - iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value
   suggests that the image is too bright, which may make the document difficult to read.
@@ -288,6 +289,7 @@ Data from the front of the document. Includes:
 Data from the back of the document. Includes:
 
 - documentImage: Image of the document
+- documentFullImage: Complete frame
 - documentFaceImage: If a face has been found in the document, the image of the face is returned.
 - iqaOverExposure: Numerical value between 0 and 1 indicating the level of overexposure of the image; a high value
   suggests that the image is too bright, which may make the document difficult to read.

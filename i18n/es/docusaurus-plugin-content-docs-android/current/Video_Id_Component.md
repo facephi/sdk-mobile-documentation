@@ -279,6 +279,7 @@ los siguientes:
 Datos del frente del documento. Incluye:
 
 - documentImage: Imagen del documento
+- documentFullImage: Imagen completa capturada
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
 - iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen;
   un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
@@ -293,6 +294,7 @@ Datos del frente del documento. Incluye:
 Datos del reverso del documento. Incluye:
 
 - documentImage: Imagen del documento
+- documentFullImage: Imagen completa capturada
 - documentFaceImage: Si se ha encontrado una cara en el documento se devuelve la imagen de la misma.
 - iqaOverExposure: Valor numérico entre 0 y 1 que indica el nivel de sobreexposición de la imagen;
   un valor alto sugiere que la imagen está demasiado iluminada, lo que puede dificultar la lectura del documento.
