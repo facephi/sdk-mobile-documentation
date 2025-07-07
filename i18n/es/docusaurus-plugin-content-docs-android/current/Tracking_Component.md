@@ -1,5 +1,4 @@
-# Envío de eventos
-
+# Conexión con plataforma
 ## 1. Introducción
 
 El envío de eventos a la plataforma se realiza con el **_Tracking Component_**. 
@@ -45,7 +44,7 @@ SDKController.initSdk(
 )
 ```
 
-### 4.1. Configuración de control de errores
+### 4.1. Control de errores
 
 Se podrá configurar el callback para controlar los errores de tracking:
 
@@ -57,7 +56,7 @@ SDKController.launch(
 )
 ```
 
-## 5. Informmación avanzada
+## 5. Información avanzada
 
 ### 5.1 Controladores Adicionales
 

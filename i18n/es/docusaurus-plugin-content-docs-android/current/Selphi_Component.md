@@ -72,6 +72,7 @@ SelphiConfigurationData(
   resourcesPath = "resources_file.zip",
   livenessMode = SelphiFaceLivenessMode.NONE
 )
+```
 
 Los diferentes modos de lanzamiento son:
 
@@ -79,12 +80,11 @@ Los diferentes modos de lanzamiento son:
 - SelphiFaceLivenessMode.PASSIVE
 - SelphiFaceLivenessMode.MOVE
 
-```
+---
 
-## 7. Recepción del resultado
+## 6. Recepción del resultado
 
-El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre 
-un lanzamiento correcto y uno incorrecto:
+El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y uno incorrecto:
 
 ```java
 when (response) {
@@ -93,7 +93,7 @@ when (response) {
 }
 ```
 
-### 7.1. Recepción de errores
+### 6.1. Recepción de errores
 
 Los errores se devolverán como un objeto 'SelphiError'.
 
@@ -125,7 +125,7 @@ Listado de errores:
 - UNKNOWN_ERROR: Error desconocido.
 - WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget.
 
-### 7.2. Recepción del resultado correcto - _data_
+### 6.2. Recepción del resultado correcto - _data_
 
 En la parte de SdkResult.Success - _data_, dispondremos de la clase SelphiResult.
 
@@ -137,49 +137,49 @@ se puede utilizar la función:
 
 Los campos devueltos e el resultado son los siguientes:
 
-#### 7.2.1 _templateRaw_
+#### 6.2.1 _templateRaw_
 
 Devuelve la plantilla en bruto que se genera después del proceso de
 extracción. Válida para el proceso de **matching**.
 
-#### 7.2.2 _template_
+#### 6.2.2 _template_
 
 Devuelve la plantilla que se genera después del proceso de extracción.
 Válida para el proceso de **matching**.
 
-#### 7.2.3 _bestImage_
+#### 6.2.3 _bestImage_
 
 Devuelve la mejor imagen extraída del proceso de autenticación. Esta imagen 
 tiene el tamaño original extraída de la cámara. Válida para el
 proceso de **liveness**.
 
-#### 7.2.4 _bestImageCropped_
+#### 6.2.4 _bestImageCropped_
 
 Devuelve una imagen recortada centrada en la cara del usuario. Esta imagen se obtiene
 a partir de la _bestImage_.
 
-#### 7.2.5 _logImages_
+#### 6.2.5 _logImages_
 
 Lista con las 5 mejores imágenes capturadas. Se devuelve si se activa el flag "logImages" en la configuración.
 
-#### 7.2.6 _bestImageTokenized_
+#### 6.2.6 _bestImageTokenized_
 
 Devuelve la mejor imagen extraída en el proceso cifrada. Válida para el proceso de **liveness**.
 
 ---
 
-## 8. Información avanzada
+## 7. Información avanzada
 
 Este apartado amplía la información del componente.
 
-### 8.1 Controladores Adicionales
+### 7.1 Controladores Adicionales
 
-#### 8.1.1 SignatureSelphiController
+#### 7.1.1 SignatureSelphiController
 
 Se utiliza de la misma manera que _SelphiController_ con la diferencia de que genera
 un fichero de firma en la plataforma.
 
-#### 8.1.2 RawTemplateController
+#### 7.1.2 RawTemplateController
 
 Controlador para generar un RawTemplate a partir de una imagen (bitmap).
 
@@ -195,18 +195,18 @@ when (result) {
 }
 ```
 
-### 8.2  Configuración avanzada del componente
+### 7.2  Configuración avanzada del componente
 
 Para lanzar el componente actual, se deberá crear un objeto _SelphiConfigurationData_ 
 que será la configuración del controlador del componente.
 
-En el siguiente apartado se detallan todos los campos que forman parte de esta clase.
+A continuación se detallan todos los campos que forman parte de esta clase.
 
-#### 8.2.0. _debug_
+#### 7.2.0. _debug_
 
 Activación del modo depuración del componente.
 
-#### 8.2.1. _resourcesPath_
+#### 7.2.1. _resourcesPath_
 
 Indica el nombre de los recursos en formato zip del componente. Ejemplo:
 “resources-selphi-2-0.zip“.
@@ -215,29 +215,29 @@ Este nombre irá a buscar el fichero a la ruta de _assets_.
 
 ![Image](/android/selphi_resources.png)
 
-#### 8.2.2. _cropPercent_
+#### 7.2.2. _cropPercent_
 
 Permite modificar el porcentaje de recortado de la cara. Cuanto mayor
 sea el número mayor será el recorte del rectángulo con respecto a la
 cara.
 
-#### 8.2.3. _cropImageDebug_
+#### 7.2.3. _cropImageDebug_
 
 Permite al modo de depuración comprobar el porcentaje de recorte de la cara.
 
-#### 8.2.4. _showResultAfterCapture_
+#### 7.2.4. _showResultAfterCapture_
 
 Indica si mostrar o no una pantalla con la imagen capturada después del
 proceso de análisis. En esta pantalla se le da al usuario la posibilidad
 de repetir el proceso de captura si la imagen que se obtuvo no fuera
 correcta.
 
-#### 8.2.5. _showTutorial_
+#### 7.2.5. _showTutorial_
 
 Indica si el widget activa la pantalla de tutorial. En esta vista se
 explica de forma intuitiva cómo se realiza la captura.
 
-#### 8.2.6. _livenessMode_
+#### 7.2.6. _livenessMode_
 
 Establece el modo liveness del widget. Los valores permitidos son:
 
@@ -252,18 +252,18 @@ Establece el modo liveness del widget. Los valores permitidos son:
   unas instrucciones durante la captura, y devolviendo el correspondiente
   resultado del proceso.
 
-#### 8.2.7. _stabilizationMode_
+#### 7.2.7. _stabilizationMode_
 
 Establece un modo de estabilización previo a cualquier proceso de
 autenticación en el widget. Con este modo se obliga al widget a no
 empezar ningún proceso si el usuario no se encuentra con la cabeza,
 mirando al frente y sin moverla.
 
-#### 8.2.8. _cameraFlashEnabled_
+#### 7.2.8. _cameraFlashEnabled_
 
 Indica si se activa el flash de la cámara del dispositivo.
 
-#### 8.2.9 _locale_
+#### 7.2.9 _locale_
 
 Fuerza al widget a utilizar la configuración de idioma indicado por el
 parámetro locale. Este parámetro acepta tanto un código de idioma (p.
@@ -272,22 +272,22 @@ el archivo de recursos del widget no tuviera una localización para el
 ‘locale’ seleccionado su configuración pasaría a utilizar el idioma por
 defecto.
 
-#### 8.2.10 _fullscreen_
+#### 7.2.10 _fullscreen_
 
 Indica si la vista va a tener prioridad para mostrarse en pantalla
 completa, si el sistema lo permite.
 
-#### 8.2.11. _templateRawOptimized_
+#### 7.2.11. _templateRawOptimized_
 
 Indica si el template (templateRaw) generado tras el selfie debe
 optimizarse o no.
 
-#### 8.2.12. _qrMode_
+#### 7.2.12. _qrMode_
 
 Booleano que indica si se quiere o no activar la lectura de QR previo al
 proceso de autenticación.
 
-#### 8.2.13 _videoFilename_
+#### 7.2.13 _videoFilename_
 
 Establece la ruta absoluta del nombre del archivo en el que se grabará
 un video del proceso de captura. La aplicación es la responsable de
@@ -296,54 +296,53 @@ requiera de permisos adicionales. El widget, por defecto, no realizará
 ningún proceso de grabación a menos que se especifique una ruta de
 archivo mediante este método.
 
-#### 8.2.14 _viewsContent_
+#### 7.2.14 _viewsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 8.2.15. _showDiagnostic_
+#### 7.2.15. _showDiagnostic_
 
 Mostrar pantallas de diagnóstico al final del proceso
 
-#### 8.2.16. _logImages_
+#### 7.2.16. _logImages_
 
 Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
 
-#### 8.2.17. _showPreviousTip_
+#### 7.2.17. _showPreviousTip_
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
 
-#### 8.2.18. _extractionDuration_
+#### 7.2.17. _extractionDuration_
 
 Duración del proceso de extracción facial
 
-#### 8.2.19. _cameraPreferred_
+#### 7.2.19. _cameraPreferred_
 
 Cámara con la que se quiere realizar el proceso: FRONT, BACK
 
-#### 8.2.20. _vibrationEnabled_
+#### 7.2.20. _vibrationEnabled_
 
 Indica si se desea un feedback de vibración al acabar el proceso.
 
-#### 8.2.21. _moveSuccessfulAttempts_
+#### 7.2.21. _moveSuccessfulAttempts_
 
 Número de reintentos para la captura correcta en el proceso de movimiento (Por defecto 1)
 
-#### 8.2.22. _moveFailedAttempts_
+#### 7.2.22. _moveFailedAttempts_
 
 Número de reintentos para la captura incorrecta en el proceso de movimiento (Por defecto 2)
 
 ---
 
-## 9. Personalización del componente
+## 8. Personalización del componente
 
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
-modificación de textos específicos.
+Además de los cambios que se pueden realizar a nivel de SDK (los cuales
+se explican en el documento de [Ajustes avanzados](./Mobile_SDK_advanced)), este componente en concreto permite su propia personalización.
 
-### 9.1 Textos
+### 8.1 Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
@@ -384,7 +383,7 @@ de cada _String_ por el deseado.
 
 ```
 
-### 9.2. Animaciones
+### 8.2. Animaciones
 
 Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
 
@@ -398,7 +397,7 @@ selphi_anim_tuto_m_3.json
 
 ---
 
-### 2.1. Fichero zip de recursos
+## 9. Fichero zip de recursos
 
 Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar en el apartado de **Resources**):
 
