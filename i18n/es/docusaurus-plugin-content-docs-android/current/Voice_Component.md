@@ -47,7 +47,7 @@ La dependencia específica del componente es:
 Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente. 
 Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funcionalidad.
 
-Lanzamiento de la captura facial:
+Lanzamiento de la captura:
 
 ```java
 val response = SDKController.launch(
@@ -118,7 +118,7 @@ Listado de errores:
 
 En la parte de SdkResult.Success - _data_, dispondremos de la clase  _VoiceResult_.
 
-Los campos devueltos e el resultado son los siguientes:
+Los campos devueltos en el resultado son los siguientes:
 
 #### 6.2.1 _audios_
 

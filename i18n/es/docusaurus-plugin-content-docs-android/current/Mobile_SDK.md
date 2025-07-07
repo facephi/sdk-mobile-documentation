@@ -162,7 +162,7 @@ Se detalla el lanzamiento de cada funcionalidad en su apartado de la documentaci
 - [Captura de voz](./Voice_Component)
 - [Captura de NFC](./NFC_Component)
 - [Captura de huellas](./Phingers_Component)
-- [Vídeo llamada](./Video_Call_Component)
+- [Videollamada](./Video_Call_Component)
 - [Vídeo identificación](./Video_Id_Component)
 - [Vídeo grabación](./Video_Recording_Component)
 

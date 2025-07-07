@@ -145,7 +145,7 @@ se puede utilizar la función:
 
 `Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
 
-Los campos devueltos e el resultado son los siguientes:
+Los campos devueltos en el resultado son los siguientes:
 
 #### 6.2.1 _frontDocument / tokenFrontDocument:_
 

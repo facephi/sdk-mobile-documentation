@@ -63,7 +63,7 @@ android {
 Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente. 
 Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funcionalidad.
 
-Lanzamiento de la captura facial:
+Lanzamiento de la captura:
 
 ```java
 val response = SDKController.launch(
@@ -153,7 +153,7 @@ se puede utilizar la función:
 
 `Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
 
-Los campos devueltos e el resultado son los siguientes:
+Los campos devueltos en el resultado son los siguientes:
 
 #### 6.2.1. nfcRawData
 
