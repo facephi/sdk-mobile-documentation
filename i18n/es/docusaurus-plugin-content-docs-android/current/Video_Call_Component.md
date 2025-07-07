@@ -18,7 +18,7 @@ entre un usuario y un agente (videoasistencia). Sus principales procesos son:
 La dependencia específica del componente es:
 
   ```java
-  implementation "com.facephi.androidsdk:videocall_component:$sdk_videocall_component_version"
+  implementation "com.facephi.androidsdk:videocall_component:$version"
   ```
 
 ---
@@ -164,7 +164,7 @@ when (result) {
             Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
         }
     }
-}
+
 ```
 
 Para detener la llamada se hará uso del controlador StopVideoCallController.
