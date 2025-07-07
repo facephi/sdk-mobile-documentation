@@ -62,8 +62,8 @@ when (response) {
 
 ## 5. Configuración básica 
 
-Para lanzar el componente actual, se deberá crear un objeto _SelphiConfigurationData_ 
-que será la configuración del controlador del componente.
+Para lanzar el componente actual, se deberá crear un objeto _SelphiConfigurationData_ que será la configuración del 
+controlador del componente.
 
 La configuración básica necesaria para es la siguiente:
 
@@ -127,7 +127,7 @@ Listado de errores:
 
 ### 6.2. Recepción del resultado correcto - _data_
 
-En la parte de SdkResult.Success - _data_, dispondremos de la clase SelphiResult.
+En la parte de SdkResult.Success - _data_, dispondremos de la clase _SelphiResult_.
 
 El resultado devuelve las imágenes en formato **SdkImage**, es posible 
 extraer el bitmap accediendo a _image.bitmap_. Si se quisiera convertir a base64 
