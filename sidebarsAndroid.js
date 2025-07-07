@@ -23,6 +23,7 @@ const sidebars = {
       label: "Android",
       items: [
         "Mobile_SDK",
+        "Mobile_SDK_advanced",
         "Tracking_Component",
         "Selphi_Component",
         "SelphID_Component",
@@ -32,7 +33,7 @@ const sidebars = {
         "Video_Call_Component",
         "Video_Id_Component",
         "Video_Recording_Component",
-        "Capture_Component",
+        //"Capture_Component",
         "Flow_Component",
         "Changelog",
         "FAQ",
