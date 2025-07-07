@@ -1,4 +1,4 @@
-# Personalización de la SDK
+# Personalización del SDK
 
 Esta versión de la SDK permite modificar algunas características
 visuales de los componentes. A continuación se indican los posibles
@@ -111,7 +111,7 @@ de cada _String_ por el deseado.
 
 ```
 
-## 4. Fuente
+## 4. Fuentes
 
 Para modificar la fuente, se agregarán los ficheros .ttf a la carpeta
 _font_ de la aplicación y renombrándolos como aparecen en la imagen:

@@ -99,6 +99,10 @@ when (result) {
           "APP: INIT SDK: KO - ${result.error.name}"
         )
 }
+
+if (BuildConfig.DEBUG) {
+    SDKController.enableDebugMode()
+}
 ```
 
 ### 2.3. Iniciar operación 

@@ -15,9 +15,7 @@ faciales más importantes. Sus principales procesos son:
 - Generación de las plantillas con las características faciales y de
   la imagen del usuario.
 
-En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para 
-la integración básica del SDK. En esta sección se añade la información para el lanzamiento 
-de este componente.
+En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
 
 ---
 

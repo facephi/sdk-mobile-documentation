@@ -29,7 +29,7 @@ val environmentLicensingData: EnvironmentLicensingData = EnvironmentLicensingDat
     )
 ```
 
-- String de la licencia si no se va a utilizar un servicio:
+- String de la licencia si se requiere licencia offline:
 
 ```kotlin
 const val LICENSE = "...."
