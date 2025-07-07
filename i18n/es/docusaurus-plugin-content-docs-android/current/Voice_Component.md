@@ -177,7 +177,7 @@ Muestra una pantalla previa al lanzamiento de la captura con información sobre 
 ## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
+se explican en el documento de [Ajustes avanzados](./Mobile_SDK_advanced)), este componente en concreto permite la
 modificación de su interfaz.
 
 ### 8.1 Textos

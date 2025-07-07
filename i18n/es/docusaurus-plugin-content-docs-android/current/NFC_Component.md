@@ -1,27 +1,12 @@
-# NFC Component
-
-## 0. Requisitos base de SDK Mobile
-
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
-
-Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK).
-
----
+# Captura de NFC
 
 ## 1. Introducción
 
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_NFC Component_**. Éste se encarga de realizar la lectura de nfc de
-documentos de identidad y pasaportes. Sus principales funcionalidades
-son las siguientes:
+La captura facial se realiza con el **_NFC Component_**. 
+
+
+Este componente se encarga de realizar la lectura del NFC de los
+documentos de identidad y pasaportes. Sus principales procesos son:
 
 - Gestión interna del sensor de NFC.
 
@@ -39,28 +24,9 @@ son las siguientes:
 
 ---
 
-## 2. Integración del componente
+## 2. Dependencia
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-[Primeros Pasos](./Mobile_SDK) y seguir las instrucciones indicadas en dicho
-documento.
-
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
-
-### 2.1. Dependencias requeridas para la integración
-
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
-
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+La dependencia específica del componente es:
 
   ```java
   implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version"{
@@ -69,7 +35,7 @@ completo antes de la instalación de los componentes de la
     }
   ```
 
-En el caso de NFC hay que añadir en gradle:
+Además habrá que añadir en gradle:
 
 ```java
 android {
@@ -84,22 +50,7 @@ android {
 
 ---
 
-## 3. Iniciar nueva operación
-
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
-
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del
-componente**.
-
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de [Primeros Pasos](./Mobile_SDK), en el que se detalla y explica en qué consiste
-este proceso.
-
----
-
-## 4. Controladores disponibles
+## 3. Controladores disponibles
 
 | **Controlador** | **Descripción**                      |
 | --------------- | ------------------------------------ |
@@ -107,109 +58,17 @@ este proceso.
 
 ---
 
-## 5. Configuración del componente
+## 4. Lanzamiento simplificado
 
-Para configurar el componente actual, una vez inicializado, se deberá
-crear un objeto
+Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente. 
+Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funcionalidad.
 
-_NFCConfigurationData_ y pasarlo como parámetro al SDKController durante
-el lanzamiento del componente.
-
-En el siguiente apartado se mostrarán los campos que forman parte de
-esta clase y para qué se utiliza cada uno de ellos.
-
-### 5.1. Class NFCConfigurationData
-
-#### 5.1.1. documentNumber
-
-Indica el número de documento o número de soporte dependiendo del
-documento a realizar la lectura.
-
-Éste campo es obligatorio.
-
-#### 5.1.2. birthDate
-
-Indica la fecha de nacimiento que aparece en el documento
-("dd/MM/yyyy").
-
-Éste campo es obligatorio.
-
-#### 5.1.3. expirationDate
-
-Indica la fecha de expiración que aparece en el documento
-("dd/MM/yyyy").
-
-Éste campo es obligatorio.
-
-#### 5.1.4. extractionTimeout
-
-Establece el tiempo máximo que se puede realizar la lectura.
-
-#### 5.1.5. showReadingScreen
-
-Establece si se desea mostrar la pantalla modal inferior con la lectura
-que se está realizando. Si se desactiva, no se muestra ninguna vista y
-se deberán escuchar los estados que devuelve el controlador.
-
-#### 5.1.6. showTutorial
-
-Indica si el componente activa la pantalla de tutorial. En esta vista se
-explica de forma intuitiva cómo se realiza la captura.
-
-#### 5.1.7. vibrationEnabled
-
-Indica si se desea un feedback de vibración al acabar el proceso.
-
-#### 5.1.8. enableDebugMode
-
-Activación del modo depuración del componente.
-
-#### 5.1.9. skipPace
-
-Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura
-con información más simple y rápida que permite la lectura de más
-variedad de documentos.
-
-#### 5.1.10. showDiagnostic
-
-Mostrar pantallas de diagnóstico al final del proceso
-
-#### 5.1.11. extractFacialImage
-
-Indica si quiere extraer la imagen de la cara.
-
-#### 5.1.12. extractSignatureImage
-
-Indica si quiere extraer la imagen de la firma.
-
-#### 5.1.13. documentType
-
-Campo utilizado para cambiar la vista de tutorial y que muestre los diferentes documentos.
-
-#### 5.1.14. showPreviousTip
-
-Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
-
----
-
-## 6. Uso del componente
-
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
-
-- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+Lanzamiento de la captura facial:
 
 ```java
-val result = SDKController.launch(
+val response = SDKController.launch(
     NfcController(
-        componentData = NfcConfigurationData(
-            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
-            birthDate = NFC_BIRTH_DATE, // "dd/MM/yyyy"
-            expirationDate = NFC_EXPIRATION_DATE, // "dd/MM/yyyy",
-            ),
+        componentData = NfcConfigurationData(...),
         state = { state ->
             Napier.d("NFC: State: ${state.name}")
         },
@@ -218,69 +77,48 @@ val result = SDKController.launch(
         }
     )
 )
-when (result) {
-    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
-    is SdkResult.Success -> {
-        Napier.d("APP: NFC: OK")
-        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
-        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
-    }
+when (response) {
+    is SdkResult.Error -> Napier.d("NFC: ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 ```
-
-- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **no se trackeará** ningún
-  evento al servidor de _tracking_:
-
-```java
-val result = SDKController.launchMethod(
-    NfcController(
-        componentData = NfcConfigurationData(
-            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
-            birthDate = NFC_BIRTH_DATE, // "dd/MM/yyyy"
-            expirationDate = NFC_EXPIRATION_DATE, // "dd/MM/yyyy",
-            ),
-        state = { state ->
-            Napier.d("NFC: State: ${state.name}")
-        },
-        debugLogs = {
-            Napier.d("NFC Logs: $it")
-        }
-    )
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
-    is SdkResult.Success -> {
-        Napier.d("APP: NFC: OK")
-        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
-        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
-    }
-}
-```
-
-El método **launch** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
-
-Por el contrario, el método **launchMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
 
 ---
 
-## 7. Recepción del resultado
+## 5. Configuración básica
 
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK.
+Para lanzar el componente actual, se deberá crear un objeto _NFCConfigurationData_ que será la configuración del 
+controlador del componente.
 
-### 7.1. Recepción de errores
+La configuración básica necesaria para es la siguiente:
 
-En la parte del error, dispondremos de la clase NfcError.
+```java
+NfcConfigurationData(
+    documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
+    birthDate = NFC_BIRTH_DATE, // "dd/MM/yyyy"
+    expirationDate = NFC_EXPIRATION_DATE, // "dd/MM/yyyy",
+)
+```
+
+Los datos necesarios son los del documento que se va a capturar.
+
+---
+
+
+## 6. Recepción del resultado
+
+El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y uno incorrecto:
+
+```java
+when (response) {
+    is SdkResult.Error -> Napier.d("ERROR - ${response.error}")
+    is SdkResult.Success -> response.data
+}
+```
+
+### 6.1. Recepción de errores
+
+Los errores se devolverán como un objeto 'NfcError'.
 
 Listado de errores:
 
@@ -305,19 +143,23 @@ Listado de errores:
 - OPERATION_NOT_CREATED: No hay ninguna operación en curso.
 - TIMEOUT: Timeout en el proceso.
 
-### 7.2. Recepción de ejecución correcta - _data_
+### 6.2. Recepción del resultado correcto - _data_
 
-En la parte de _data_, dispondremos de la clase _NfcResult_.
+En la parte de SdkResult.Success - _data_, dispondremos de la clase _NfcResult_.
 
-El campo _data_ es variable y dependerá de qué componente se ha devuelto
-el resultado. En el caso de este componente, los campos devueltos son
-los siguientes:
+El resultado devuelve las imágenes en formato **SdkImage**, es posible 
+extraer el bitmap accediendo a _image.bitmap_. Si se quisiera convertir a base64 
+se puede utilizar la función:
 
-#### 7.2.1. nfcRawData
+`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
+
+Los campos devueltos e el resultado son los siguientes:
+
+#### 6.2.1. nfcRawData
 
 Información obtenida por cada tipo de dato en formato crudo.
 
-#### 7.2.2. nfcDocumentInformation
+#### 6.2.2. nfcDocumentInformation
 
 Información obtenida del documento ordenada por:
 
@@ -331,7 +173,7 @@ Información obtenida del documento ordenada por:
 
 - type
 
-#### 7.2.3. nfcPersonalInformation
+#### 6.2.3. nfcPersonalInformation
 
 Información obtenida del documento ordenada por:
 
@@ -353,7 +195,7 @@ Información obtenida del documento ordenada por:
 
 - surname
 
-#### 7.2.4. nfcImages
+#### 6.2.4. nfcImages
 
 Información de imágenes obtenida del documento ordenada por:
 
@@ -363,7 +205,7 @@ Información de imágenes obtenida del documento ordenada por:
 
 - signatureImage
 
-#### 7.2.5 nfcSecurityData
+#### 6.2.5 nfcSecurityData
 
 Información de datos de seguridad del documento ordenada por:
 
@@ -377,7 +219,7 @@ Información de datos de seguridad del documento ordenada por:
 
 - ldsVersion
 
-#### 7.2.6. nfcValidations
+#### 6.2.6. nfcValidations
 
 Información de las validaciones del documento ordenada por:
 
@@ -395,7 +237,7 @@ Información de las validaciones del documento ordenada por:
 
 - issuerSigningValidation
 
-#### 7.2.7. nfcCertificateData
+#### 6.2.7. nfcCertificateData
 
 Información del certificado X509 obtenido del documento ordenada por.
 
@@ -403,10 +245,93 @@ Información del certificado X509 obtenido del documento ordenada por.
 
 ---
 
+## 7. Información avanzada
+
+Este apartado amplía la información del componente.
+
+### 7.1  Configuración avanzada del componente
+
+Para lanzar el componente actual, se deberá crear un objeto _NFCConfigurationData_ 
+que será la configuración del controlador del componente.
+
+A continuación se detallan todos los campos que forman parte de esta clase.
+
+#### 7.1.1. documentNumber
+
+Indica el número de documento o número de soporte dependiendo del
+documento a realizar la lectura.
+
+Éste campo es obligatorio.
+
+#### 7.1.2. birthDate
+
+Indica la fecha de nacimiento que aparece en el documento
+("dd/MM/yyyy").
+
+Éste campo es obligatorio.
+
+#### 7.1.3. expirationDate
+
+Indica la fecha de expiración que aparece en el documento
+("dd/MM/yyyy").
+
+Éste campo es obligatorio.
+
+#### 7.1.4. extractionTimeout
+
+Establece el tiempo máximo que se puede realizar la lectura.
+
+#### 7.1.5. showReadingScreen
+
+Establece si se desea mostrar la pantalla modal inferior con la lectura
+que se está realizando. Si se desactiva, no se muestra ninguna vista y
+se deberán escuchar los estados que devuelve el controlador.
+
+#### 7.1.6. showTutorial
+
+Indica si el componente activa la pantalla de tutorial. En esta vista se
+explica de forma intuitiva cómo se realiza la captura.
+
+#### 7.1.7. vibrationEnabled
+
+Indica si se desea un feedback de vibración al acabar el proceso.
+
+#### 7.1.8. enableDebugMode
+
+Activación del modo depuración del componente.
+
+#### 7.1.9. skipPace
+
+Indica que solo se desea realizar la lectura BAC de NFC. Es una lectura
+con información más simple y rápida que permite la lectura de más
+variedad de documentos.
+
+#### 7.1.10. showDiagnostic
+
+Mostrar pantallas de diagnóstico al final del proceso
+
+#### 7.1.11. extractFacialImage
+
+Indica si quiere extraer la imagen de la cara.
+
+#### 7.1.12. extractSignatureImage
+
+Indica si quiere extraer la imagen de la firma.
+
+#### 7.1.13. documentType
+
+Campo utilizado para cambiar la vista de tutorial y que muestre los diferentes documentos.
+
+#### 7.1.14. showPreviousTip
+
+Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+---
+
 ## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
+se explican en el documento de [Ajustes avanzados](./Mobile_SDK_advanced)), este componente en concreto permite la
 modificación de su interfaz.
 
 ### 8.1 Textos
@@ -553,3 +478,6 @@ Una vez creadas las clases que implementan los interfaces, en el lanzamiento del
 ## 9. Logs
 
 Para visualizar en consola los logs de este componente se podrá usar el filtro: "NFC:"
+
+
+### 5.1. Class 
