@@ -137,8 +137,7 @@ when (result) {
 
 ### 2.4. Lanzamiento de los componentes
 
-La funcionalidad del SDK se nace de los diferentes componentes que tienen sus
-controladores particulares. Estos controladores se “lanzarán” desde el
+La funcionalidad del SDK nace de la combinación de los diferentes componentes. Cada componente tiene sus propios controladores que se “lanzarán” desde el
 SDKController.
 
 ```java
@@ -155,7 +154,22 @@ when (result) {
 }
 ```
 
-Se detalla el lanzamiento de cada componente en su apartado de la documentación.
+Se detalla el lanzamiento de cada funcionalidad en su apartado de la documentación:
+
+- [Conexión con plataforma](./Tracking_Component)
+- [Captura facial](./Selphi_Component)
+- [Captura de documentos](./SelphID_Component)
+- [Captura de voz](./Voice_Component)
+- [Captura de NFC](./NFC_Component)
+- [Captura de huellas](./Phingers_Component)
+- [Vídeo llamada](./Video_Call_Component)
+- [Vídeo identificación](./Video_Id_Component)
+- [Vídeo grabación](./Video_Recording_Component)
+
+Para el caso del lanzamiento continuo o "flow":
+
+- [Flow](./Flow_Component)
+
 
 ### 2.5. Cierre de sesión
 
