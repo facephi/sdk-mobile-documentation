@@ -20,6 +20,8 @@ extracción de las plantillas. Sus principales procesos son:
 - Generación de las plantillas con las características de las huellas,
   imágenes y puntuaciones.
 
+En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
+
 ---
 
 ## 2. Dependencia

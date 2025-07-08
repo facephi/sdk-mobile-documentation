@@ -8,6 +8,8 @@ Este componente se encarga de  capturar la pantalla
 del dispositivo en segundo plano. Está orientado principalmente para la
 grabación del proceso de onboarding.
 
+En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
+
 ---
 
 ## 2. Dependencia

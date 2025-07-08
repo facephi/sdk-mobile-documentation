@@ -8,6 +8,8 @@ A través de un identificador de Flow, podrá lanzar un flujo diseñado en
 la web, que puede contener de 1 a N pasos de los componentes existentes
 en el SDK.
 
+En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
+
 ---
 
 ## 2. Dependencias requeridas para la integración
