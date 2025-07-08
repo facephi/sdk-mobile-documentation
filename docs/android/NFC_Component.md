@@ -1,413 +1,294 @@
-# NFC Component
-
-## 0. SDK Mobile baseline requirements
-
-**SDK Mobile** is a set of libraries (**Components**) that offer a series of
-functionalities and services, allowing their integration into a Mobile
-application in a simple and fully scalable way. Certain components must
-be installed depending on the use case required. Its high level of
-modularity allows other new components to be added in the future without
-affecting those already integrated into the project.
-
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
-
----
+# NFC Capture
 
 ## 1. Introduction
 
-The Component discussed in the current document is called **NFC
-Component**. It is responsible for NFC reading of ID cards and
-passports. Its main functionalities are the following:
+NFC capture is performed with the **NFC Component**. This component handles reading NFC from identity documents and passports. Its main processes are:
 
-- Internal management of the NFC sensor.
+- Internal management of the NFC sensor
+- Permission handling
+- Document data parsing
+- Progress tracking
+- Guided assistance during the reading process
+- Returning all readable information
+- Returning images when available for reading
 
-- Permission management.
-
-- Document analysis.
-
-- Progress analysis.
-
-- Assistant in reading processes.
-
-- Return all possible information to be read
-
-- Return of images when they are available for reading.
+Refer to the [Quickstart](./Mobile_SDK) section for basic SDK integration. This section provides details for launching this component.
 
 ---
 
-## 2. Integration of the component
+## 2. Dependency
 
-Before integrating this component, it is recommended to read the
-documentation related to
-
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
-
-This section will explain step by step how to integrate the current
-component into an existing project.
-
-### 2.1. Dependencies required for integration
-
-To avoid conflicts and compatibility problems, if you want to install
-the component in a project containing an old Facephi libraries
-(_Widgets_) version, these must be removed entirely before installing
-the **_SDKMobile_** components.
-
-- Currently, FacePhi libraries are distributed remotely through
-  different dependency managers. **Mandatory** dependencies that must
-  be installed beforehand:
-
-  ```java
-  implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version"{
-        exclude group : "org.bouncycastle", module : "bcprov-jdk15on"
-        exclude group : "org.bouncycastle", module : "jetified-bcprov-jdk15on-1.68"
-    }
-  ```
-
-In the case of the NFC component, it is necessary to add in gradle:
+The component-specific dependency is:
 
 ```java
+implementation "com.facephi.androidsdk:nfc_component:$sdk_nfc_component_version" {
+    exclude group: "org.bouncycastle", module: "bcprov-jdk15on"
+    exclude group: "org.bouncycastle", module: "jetified-bcprov-jdk15on-1.68"
+}
+```
+
+Additionally, add the following to your **build.gradle**:
+
+```groovy
 android {
-  ...
- packaging {
-      resources {
-          pickFirsts.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
-      }
-  }
+    ...
+    packaging {
+        resources {
+            pickFirsts.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
+        }
+    }
 }
 ```
 
 ---
 
-## 3. Start a new operation
+## 3. Available Controllers
 
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
-
-<div class="note">
-<span class="note">:information_source:</span>
-This command must have been executed **before launch**.
-To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
-</div>
+| **Controller** | **Description**                 |
+| -------------- | ------------------------------- |
+| NFCController  | Main controller for NFC reading |
 
 ---
 
-## 4. Available controllers
+## 4. Quick Launch
 
-|                |                            |
-| -------------- | -------------------------- |
-| **Controller** | **Description**            |
-| NFCController  | NFC main reader controller |
+Once the SDK is initialized and a new operation has been created, you can launch the component. Use its controller to execute the NFC reading functionality:
+
+```java
+val response = SDKController.launch(
+    NfcController(
+        componentData = NfcConfigurationData(...),
+        state = { state ->
+            Napier.d("NFC: State: ${state.name}")
+        },
+        debugLogs = {
+            Napier.d("NFC Logs: $it")
+        }
+    )
+)
+
+when (response) {
+    is SdkResult.Error -> Napier.d("NFC: ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
+}
+```
 
 ---
 
-## 5. Component configuration
+## 5. Basic Configuration
 
-Once initialized, a _NFCConfigurationData_ object must be created and
-passed as a parameter to the SDKController during component launch to
-configure the current component.
+To launch the component, create an `NfcConfigurationData` object with the following basic fields:
 
-The following section will show the fields part of this class and what
-each is used for.
+```java
+NfcConfigurationData(
+    documentNumber    = NFC_SUPPORT_NUMBER,  // Document or support number
+    birthDate         = NFC_BIRTH_DATE,      // "dd/MM/yyyy"
+    expirationDate    = NFC_EXPIRATION_DATE  // "dd/MM/yyyy"
+)
+```
 
-### 5.1. Class NFCConfigurationData
+All fields are required and must match the document’s data being read.
 
-#### 5.1.1. documentNumber
+---
+
+## 6. Receiving the Result
+
+The launch returns an `SdkResult`. You can differentiate between success and error:
+
+```java
+when (response) {
+    is SdkResult.Error   -> Napier.d("NFC: ERROR - ${response.error}")
+    is SdkResult.Success -> response.data
+}
+```
+
+### 6.1 Handling Errors
+
+Errors are returned as an `NfcError` object. Possible values include:
+
+- `APPLICATION_CONTEXT_ERROR`: Required application context is null.
+- `CANCEL_BY_USER`: The user cancelled the process.
+- `CANCEL_LAUNCH`: A general SDK cancellation occurred.
+- `COMPONENT_LICENSE_ERROR`: Invalid component license.
+- `EMPTY_LICENSE`: The license string is empty.
+- `EXTRACT_DATA_ERROR`: Error extracting data.
+- `FETCH_DATA_ERROR`: Error fetching the result.
+- `FLOW_ERROR`: Error in the flow process.
+- `INITIALIZATION_ERROR`: Initialization error.
+- `LAST_COMMAND_EXPECTED`: Error in the final command.
+- `MANAGER_NOT_INITIALIZED`: Managers are null.
+- `NFC_ERROR`: General NFC error.
+- `NFC_ERROR_DATA`: Input data error.
+- `NFC_ERROR_DISABLED`: NFC is disabled.
+- `NFC_ERROR_ILLEGAL_ARGUMENT`: Incorrect NFC tag.
+- `NFC_ERROR_IO`: I/O error.
+- `NFC_ERROR_NOT_SUPPORTED`: NFC not supported.
+- `NFC_ERROR_TAG_LOST`: Connection lost.
+- `OPERATION_NOT_CREATED`: No operation in progress.
+- `TIMEOUT`: Timeout occurred during the process.
+
+### 6.2 Handling Success – `data`
+
+On success (`SdkResult.Success`), you receive an `NfcResult` object. It returns images as `SdkImage`; to extract a bitmap, use `image.bitmap`. To convert to Base64:
+
+```kotlin
+Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)
+```
+
+The `NfcResult` includes the following fields:
+
+#### 6.2.1 `nfcRawData`
+
+Raw NFC data obtained for each data type.
+
+#### 6.2.2 `nfcDocumentInformation`
+
+Document information organized by:
+
+- documentNumber
+- expirationDate
+- issuer
+- mrzString
+- type
+
+#### 6.2.3 `nfcPersonalInformation`
+
+Personal information organized by:
+
+- address
+- birthdate
+- city
+- gender
+- name
+- nationality
+- personalNumber
+- placeOfBirth
+- surname
+
+#### 6.2.4 `nfcImages`
+
+Image data organized by:
+
+- facialImage
+- fingerprintImage
+- signatureImage
+
+#### 6.2.5 `nfcSecurityData`
+
+Security data organized by:
+
+- dataGroupsHashes
+- dataGroupsRead
+- documentSigningCertificateData
+- issuerSigningCertificateData
+- ldsVersion
+
+#### 6.2.6 `nfcValidations`
+
+Validation results organized by:
+
+- accessType
+- activeAuthenticationSupported
+- activeAuthenticationValidation
+- chipAuthenticationValidation
+- dataGroupsHashesValidation
+- documentSigningValidation
+- issuerSigningValidation
+
+#### 6.2.7 `nfcCertificateData`
+
+X.509 certificate information obtained from the document.
+
+---
+
+## 7. Advanced Information
+
+This section provides advanced configuration options for the NFC Component.
+
+### 7.1 Advanced Component Configuration
+
+All fields of `NfcConfigurationData`:
+
+#### 7.1.1. documentNumber
 
 Indicates the document or media number depending on the document to be
 read.
 
 This field is mandatory.
 
-#### 5.1.2. birthDate
+#### 7.1.2. birthDate
 
 Indicates the date of birth that appears on the document ("dd/MM/yyyy").
 
 This field is mandatory.
 
-#### 5.1.3. expirationDate
+#### 7.1.3. expirationDate
 
 Indicates the expiry date that appears on the document ("dd/MM/yyyy").
 
 This field is mandatory.
 
-#### 5.1.4. extractionTimeout
+#### 7.1.4. extractionTimeout
 
 Sets the maximum time the reading can be done.
 
-#### 5.1.5. showReadingScreen
+#### 7.1.5. showReadingScreen
 
 Sets whether to display the lower modal display with the reading being
 taken. If disabled, no view is displayed, and you must listen to the
 statuses returned by the controller.
 
-#### 5.1.6. showTutorial
+#### 7.1.6. showTutorial
 
 Indicates whether the component activates the tutorial screen. This view
 intuitively explains how the capture is performed.
 
-#### 5.1.7. vibrationEnabled
+#### 7.1.7. vibrationEnabled
 
 Indicates whether vibration feedback is desired at the end of the
 process.
 
-#### 5.1.8. enableDebugMode
+#### 7.1.8. enableDebugMode
 
 Activation of the component's debug mode.
 
-#### 5.1.9. skipPace
+#### 7.1.9. skipPace
 
 Indicates that only NFC BAC reading is desired. It is a simple and fast
 reader.
 
-#### 5.1.10. showDiagnostic
+#### 7.1.10. showDiagnostic
 
 Display diagnostic screens at the end of the process
 
-#### 5.1.11. extractFacialImage
+#### 7.1.11. extractFacialImage
 
 Indicates if you want to extract the image of the face.
 
-#### 5.1.12. extractSignatureImage
+#### 7.1.12. extractSignatureImage
 
 Indicates if you want to extract the signature image.
 
-#### 5.1.13. documentType
+#### 7.1.13. documentType
 
 Field used to change the tutorial view to show the different documents.
 
-#### 5.1.14. showPreviousTip
+#### 7.1.14. showPreviousTip
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
 
 ---
 
-## 6. Component use
+## 8. Component Customization
 
-Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
-to launch the component:
-
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component, but internal events will be tracked to the
-  _tracking_ server:
-
-```java
-val result = SDKController.launch(
-    NfcController(
-        componentData = NfcConfigurationData(
-            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
-            birthDate = NFC_BIRTH_DATE, // "dd/MM/yyyy"
-            expirationDate = NFC_EXPIRATION_DATE, // "dd/MM/yyyy",
-            ),
-        state = { state ->
-            Napier.d("NFC: State: ${state.name}")
-        },
-        debugLogs = {
-            Napier.d("NFC Logs: $it")
-        }
-    )
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
-    is SdkResult.Success -> {
-        Napier.d("APP: NFC: OK")
-        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
-        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
-    }
-}
-```
-
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component, but **no event will be tracked** to
-  the _tracking_ server:
-
-```java
-val result = SDKController.launchMethod(
-    NfcController(
-        componentData = NfcConfigurationData(
-            documentNumber = NFC_SUPPORT_NUMBER, // Num soport.
-            birthDate = NFC_BIRTH_DATE, // "dd/MM/yyyy"
-            expirationDate = NFC_EXPIRATION_DATE, // "dd/MM/yyyy",
-            ),
-        state = { state ->
-            Napier.d("NFC: State: ${state.name}")
-        },
-        debugLogs = {
-            Napier.d("NFC Logs: $it")
-        }
-    )
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("APP: NFC: ERROR - ${result.error.name}")
-    is SdkResult.Success -> {
-        Napier.d("APP: NFC: OK")
-        Napier.d("DOCUMENT: ${result.data.nfcDocumentInformation}")
-        Napier.d("PERSONAL: ${result.data.nfcPersonalInformation}")
-    }
-}
-```
-
-The **launch** method must be used by **default**. This method allows
-**_tracking_** to be used if your component is enabled and will not be
-used when it is disabled (or the component is not installed).
-
-On the other hand, the **launchMethod** method covers a particular case
-in which the integrator has tracking installed and activated but, in a
-certain flow within the application does not want to track information.
-In this case, this method is used to prevent this information from being
-sent to the platform.
-
----
-
-## 7. Receipt of the result
-
-The controllers will return the required information in SdkResult format
--more details in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section-.
-
-### 7.1. Receipt of errors
-
-On the error side, we will have the _NfcError_ class.
-
-Error list:
-
-- APPLICATION_CONTEXT_ERROR: The required application context is null.
-- CANCEL_BY_USER: The user has cancelled the process.
-- CANCEL_LAUNCH: A general cancellation of the SDK has been made.
-- COMPONENT_LICENSE_ERROR: The component license is not correct.
-- EMPTY_LICENSE: The licence string is empty.
-- EXTRACT_DATA_ERROR: Error in data extracted.
-- FETCH_DATA_ERROR: Error in the result retrieval.
-- FLOW_ERROR: Error in the flow process.
-- INITIALIZATION_ERROR: Initialisation error.
-- LAST_COMMAND_EXPECTED: Error in the completion command.
-- MANAGER_NOT_INITIALIZED: Managers are null.
-- NFC_ERROR: General error
-- NFC_ERROR_DATA: Error in input data
-- NFC_ERROR_DISABLED: NFC disabled
-- NFC_ERROR_ILLEGAL_ARGUMENT: NFC with wrong tag
-- NFC_ERROR_IO: Input/output error
-- NFC_ERROR_NOT_SUPPORTED: NFC not supported
-- NFC_ERROR_TAG_LOST: Lost connection
-- OPERATION_NOT_CREATED: No operation in progress.
-- TIMEOUT: Timeout in the process.
-
-### 7.2. Receipt of correct execution - _data_
-
-In the data part, we have the _NfcResult class_.
-
-The data field is variable and will depend on which component has
-returned the result. In the case of this component, the fields returned
-are the following:
-
-#### 7.2.1. nfcRawData
-
-Information obtained for each data type in raw format.
-
-#### 7.2.2. nfcDocumentInformation
-
-Information obtained from the document ordered by:
-
-- documentNumber
-
-- expirationDate
-
-- issuer
-
-- mrzString
-
-- type
-
-#### 7.2.3. nfcPersonalInformation
-
-Information obtained from the document ordered by:
-
-- address
-
-- birthdate
-
-- city
-
-- gender
-
-- name
-
-- nationality
-
-- personalNumber
-
-- placeOfBirth
-
-- surname
-
-#### 7.2.4. nfcImages
-
-Image information obtained from the document sorted by:
-
-- facialImage
-
-- fingerprintImage
-
-- signatureImage
-
-#### 7.2.5 nfcSecurityData
-
-Document security data information sorted by:
-
-- dataGroupsHashes
-
-- dataGroupsRead
-
-- documentSigningCertificateData
-
-- issuerSigningCertificateData
-
-- ldsVersion
-
-#### 7.2.6. nfcValidations
-
-Document validation information sorted by:
-
-- accessType
-
-- activeAuthenticationSupported
-
-- activeAuthenticationValidation
-
-- chipAuthenticationValidation
-
-- dataGroupsHashesValidation
-
-- documentSigningValidation
-
-- issuerSigningValidation
-
-#### 7.2.7. nfcCertificateData
-
-X509 certificate information obtained from the document ordered by.
-
-- X509Certificate
-
----
-
-## 8. Customizing the component
-
-Apart from the changes that can be made at the SDK level (explained in
-the [Getting Started](./Mobile_SDK)
-document), this particular component allows several modifications.
+Beyond SDK-level customizations (see [Advanced Settings](./Mobile_SDK_advanced)), this component allows interface modifications.
 
 ### 8.1 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application and change the value of
-each String to the desired one.
+To override default texts, include an XML file in your app and modify the string values:
 
 ```xml
-    <string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
+<string name="nfc_component_start_message">Attach the chip to your mobile.\nWhen it detects it, hold it still.</string>
     <string name="nfc_component_reading_message">Hold the position.</string>
     <string name="nfc_component_reading_face_message">Extracting face image.</string>
     <string name="nfc_component_reading_images_message">Extracting images.</string>
@@ -439,12 +320,13 @@ each String to the desired one.
     <string name="nfc_component_data_error_desc">Review the data entered</string>
     <string name="nfc_component_read_not_finish_title">Reading not finished</string>
     <string name="nfc_component_read_not_finish_desc">Hold the position until the end of the reading</string>
+```
 
-### 8.2. Animations
+### 8.2 Animations
 
-If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+To override Lottie animations, include files with the same names in `res/raw/`:
 
-```text
+```
 nfc_anim_reader.json
 nfc_anim_tuto_1.json
 nfc_anim_tuto_2.json
@@ -454,7 +336,7 @@ nfc_anim_tuto_id.json
 nfc_anim_tuto_passport.json
 ```
 
-### 8.3 External custom views
+### 8.3 External Views
 
 It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
 
@@ -542,4 +424,5 @@ Once the classes that implement the interfaces have been created, the "customVie
 
 ## 9. Logs
 
-To display the logs of this component on the console, you can use the filter: "NFC:"
+To view logs for this component in the console, filter by: `"NFC:"`
+

@@ -1,25 +1,6 @@
-# Flow Component
-
-## 0. Requisitos base de SDK Mobile
-
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
-
-Para más información sobre la configuración base, vaya a la sección de
-[Primeros Pasos](./Mobile_SDK).
-
----
+# Flow - Lanzamiento continuo
 
 ## 1. Introducción
-
-Este documento de Flow es un **anexo** al común de **SDK**, ya que esta
-funcionalidad está contenida en el propio componente de SDK.
 
 Flow es una funcionalidad que conecta la sección de **Design Studio** de
 la **Plataforma** con el SDK y la implementación que realiza el cliente.
@@ -27,20 +8,12 @@ A través de un identificador de Flow, podrá lanzar un flujo diseñado en
 la web, que puede contener de 1 a N pasos de los componentes existentes
 en el SDK.
 
+
+En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
+
 ---
 
-## 2. Integración del componente
-
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-[Primeros Pasos](./Mobile_SDK) y seguir las instrucciones indicadas en dicho
-documento.
-
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
-
-### 2.1. Dependencias requeridas para la integración
+## 2. Dependencias requeridas para la integración
 
 No es necesaria **ninguna dependencia extra** para utilizar Flow.
 
@@ -52,24 +25,14 @@ componentes.
 
 ---
 
-## 3. Iniciar nueva operación
-
-Al iniciar el lanzamiento de una operación de Flow, internamente se
-genera una nueva operación de manera completamente transparente.
-
-**<u>No es necesario</u>** realizar una nueva operación con
-anterioridad.
-
----
-
-## 4. Controladores disponibles
+## 3. Controladores disponibles
 
 | **Controlador**       | **Descripción**                                                            |
 | --------------------- | -------------------------------------------------------------------------- |
 | FlowController        | Controlador principal de Flow. Lanzamiento de flujos publicados.           |
 | FlowPreviewController | Controlador para el lanzamiento de flujos pendientes de publicar (pruebas) |
 
-### 4.1. Controladores de componentes con flow
+### 3.1. Controladores de componentes con flow
 
 | **Controlador**            | **Descripción**           |
 | -------------------------- | ------------------------- |
@@ -85,7 +48,7 @@ anterioridad.
 
 ---
 
-## 5. Inicialización del SDK con flow
+## 4. Inicialización del SDK con flow
 
 La función de inicialización del SDK tiene el parámetro _activateFlow_
 para gestionar su activación:
@@ -102,12 +65,11 @@ val result = SDKController.initSdk(sdkConfig)
 
 ---
 
-## 6. Uso del componente
+## 5. Uso del componente
 
-#### 6.1 Lanzamiento de un flujo publicado
+#### 5.1 Lanzamiento de un flujo publicado
 
-Se usará el _FlowController_ para lanzar un flujo que el cliente tiene
-publicado en la plataforma:
+Se usará el _FlowController_ para lanzar un flujo que el cliente tiene publicado en la plataforma:
 
 ```java
 val flowController = FlowController (
@@ -117,57 +79,13 @@ val flowController = FlowController (
             customerId = "customerId",
         ))
 
-viewModelScope.launch {
-     flowController.stateFlow.collect { flowResult ->
-          Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
+ SDKController.launch(flowController)
 
-          when (flowResult.step?.key) {
-          FlowKeys.EXTERNAL_STEP.name -> {
-               delay(DELAY_EXTERNAL_STEP)
-               flowController.launchNextStep()
-          }
-
-          FlowKeys.SELPHI_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
-
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphiResult()
-                         Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
-                    }
-               }
-          }
-
-          FlowKeys.SELPHID_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
-
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphIDResult()
-                         Napier.d("APP: SelphID OK ${result.documentCaptured}")
-                    }
-               }
-          }
-          }
-
-          if (flowResult.flowFinish) {
-          Napier.d("APP: FLOW FINISH")
-          }
-     }
-}
-viewModelScope.launch {
-     SDKController.launch(flowController)
-}
 ```
 
-#### 6.2 Lanzamiento de un flujo pendiente de publicar
+#### 5.2 Lanzamiento de un flujo pendiente de publicar
 
-Se usará el _FlowPreviewController_ para probar un flujo que el cliente
-tiene pendiente de publicar en la plataforma:
+Se usará el _FlowPreviewController_ para probar un flujo que el cliente tiene pendiente de publicar en la plataforma:
 
 ```java
 val flowController = FlowPreviewController (
@@ -177,7 +95,16 @@ val flowController = FlowPreviewController (
             customerId = "customerId",
         ))
 
-viewModelScope.launch {
+SDKController.launch(flowController)
+
+```
+
+#### 5.3 Recoger resultados en la aplicación
+
+Los resultados de cada paso del flujo se envían directamente a la plataforma. Si en algún caso se quieren recoger en la aplicación se deberá añadir:
+
+```java
+
      flowController.stateFlow.collect { flowResult ->
           Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
 
@@ -218,15 +145,13 @@ viewModelScope.launch {
           Napier.d("APP: FLOW FINISH")
           }
      }
-}
-viewModelScope.launch {
-     SDKController.launch(flowController)
-}
+
 ```
+
 
 ---
 
-## 7. Recepción del resultado
+## 6. Recepción del resultado
 
 El resultado del flow tendrá 3 campos:
 
@@ -241,13 +166,13 @@ El resultado del flow tendrá 3 campos:
 
 - flowFinish: Flag que indicará si ha terminado el proceso
 
-### 7.1. Recepción de errores
+### 6.1. Recepción de errores
 
 En la parte del error, dentro de _SdkResult.Error_ dispondremos
 **_flowResult.step.key_** para identificar que componente ha fallado y
 el **_flowResult.result.error_** que contiene el error que ha ocurrido.
 
-### 7.2. Recepción de ejecución correcta - _data_
+### 6.2. Recepción de ejecución correcta - _data_
 
 En la ejecución correcta de un flujo, se lanzarán los componentes
 correspondientes hasta la finalización del mismo o hasta obtener un
