@@ -30,7 +30,7 @@ En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos
 La dependencia específica del componente es:
 
   ```java
-  implementation "com.facephi.androidsdk:selphid_component:$sdk_selphid_component_version"
+  implementation "com.facephi.androidsdk:selphid_component:$version"
   ```
 
 ---
