@@ -14,7 +14,7 @@
 
 The minimum required Android SDK configuration is:
 
-- Minimum SDK (minSdk): **23**
+- Minimum SDK (minSdk): **24**
 - API Version: **35**
 - Kotlin: **2.1.21**
 - Android Gradle Plugin: **8.9.3**

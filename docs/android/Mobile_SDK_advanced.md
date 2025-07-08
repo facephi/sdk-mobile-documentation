@@ -19,7 +19,7 @@ future without affecting those already integrated into the project.
 
 The minimum version of the Android SDK required is as follows:
 
-- Minimum SDK (minSdk): **23**
+- Minimum SDK (minSdk): **24**
 
 - API Version: **35**
 

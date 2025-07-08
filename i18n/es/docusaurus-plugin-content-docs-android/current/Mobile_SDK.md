@@ -15,7 +15,7 @@ la posibilidad de hacer un producto a medida para cada cliente.
 
 La versión mínima de la SDK de Android requerida es la siguiente:
 
-- SDK mínima (minSdk): **23**
+- SDK mínima (minSdk): **24**
 
 - API Version: **35**
 

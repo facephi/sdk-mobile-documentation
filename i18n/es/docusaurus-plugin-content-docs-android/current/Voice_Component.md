@@ -144,35 +144,13 @@ que será la configuración del controlador del componente.
 
 A continuación se detallan todos los campos que forman parte de esta clase.
 
-#### 7.1.1. phrases
-
-Indica la/las frases necesarias para capturar.
-
-#### 7.1.2. vibrationEnabled
-
-Indica la activación de la vibración cuando el widget termine
-satisfactoriamente.
-
-#### 7.1.3. showTutorial
-
-Indica si el componente activa la pantalla de tutorial. En esta vista se
-explica de forma intuitiva cómo se realiza la captura.
-
-#### 7.1.4. extractionTimeout
-
-Establece el tiempo máximo que se puede realizar la captura.
-
-#### 7.1.5. showDiagnostic
-
-Mostrar pantallas de diagnóstico al final del proceso
-
-#### 7.1.6. enableQualityCheck
-
-Activa o desactiva la comprobación de calidad del audio. Se recomienda tenerla siempre activa.
-
-#### 7.1.7. showPreviousTip
-
-Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+- `phrases`: Indica la/las frases necesarias para capturar..
+- `vibrationEnabled`: Indica la activación de la vibración cuando el widget termine satisfactoriamente.
+- `showTutorial`: Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.
+- `extractionTimeout`: Establece el tiempo máximo que se puede realizar la captura.
+- `showDiagnostic`: Mostrar pantallas de diagnóstico al final del proceso.
+- `enableQualityCheck`: Activa o desactiva la comprobación de calidad del audio. Se recomienda tenerla siempre activa.
+- `showPreviousTip`: Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
 
 ---
 

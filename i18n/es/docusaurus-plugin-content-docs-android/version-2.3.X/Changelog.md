@@ -196,7 +196,7 @@
 
   - Mejoras UX
   - Mejoras en la accesibilidad
- 
+
 - SelphID
 
   - Nueva versión del widget: 1.29.0
@@ -222,7 +222,7 @@
 - General
 
   - Mejoras UX
- 
+
 - SelphID
 
   - Nueva versión del widget: 1.28.1
@@ -238,7 +238,6 @@
 - Capture
 
   - Mejoras en la captura de documentos
-
 
 ### 2.1.0
 

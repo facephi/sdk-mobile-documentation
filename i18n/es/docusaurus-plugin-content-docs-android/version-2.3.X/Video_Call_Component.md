@@ -1,31 +1,76 @@
-# Videollamada
+# Video Call Component
 
-## 1. Introducción
+## 0. Requisitos base de SDK Mobile
 
-La captura facial se realiza con el **_VideoCall Component_**. 
+**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
+una serie de funcionalidades y servicios, permitiendo a su vez su
+integración en una aplicación Mobile de forma sencilla y totalmente
+escalable. Dependiendo del caso de uso que se requiera, se deberá
+realizar la instalación de unos determinados componentes. Su alto nivel
+de modularidad permite que, en un futuro, se puedan añadir otros
+componentes nuevos sin afectar en absoluto a los ya integrados en el
+proyecto.
 
-Este componente se encarga de gestionar la comunicación
-entre un usuario y un agente (videoasistencia). Sus principales procesos son:
-
-- Gestión interna de cámaras, micro y permisos.
-
-- Conexión con los servicios.
-
-En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
+Para más información sobre la configuración base, vaya a la sección de
+[Primeros Pasos](./Mobile_SDK).
 
 ---
 
-## 2. Dependencia
+## 1. Introducción
 
-La dependencia específica del componente es:
+El _Componente_ tratado en el documento actual recibe el nombre de
+**_VideoCall Component_**. Éste se encarga de gestionar la comunicación
+entre un usuario y un agente de forma remota, a través de un canal de
+comunicación. Está orientado principalmente para casos de uso de
+videoasistencia.
+
+---
+
+## 2. Integración del componente
+
+Antes de integrar este componente se recomienda leer la documentación
+relativa a:
+
+[Primeros Pasos](./Mobile_SDK) y seguir las instrucciones indicadas en dicho
+documento.
+
+En esta sección se explicará paso a paso cómo integrar el componente
+actual en un proyecto ya existente.
+
+### 2.1. Dependencias requeridas para la integración
+
+Para evitar conflictos y problemas de compatibilidad, en caso de querer
+instalar el componente en un proyecto que contenga una versión antigua
+de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
+completo antes de la instalación de los componentes de la
+**_SDKMobile_**.
+
+- Actualmente las librerías de FacePhi se distribuyen de forma remota
+  a través de diferentes gestores de dependencias. Las dependencias
+  **obligatorias** que deberán haberse instalado previamente:
 
   ```java
-  implementation "com.facephi.androidsdk:videocall_component:$version"
+  implementation "com.facephi.androidsdk:videocall_component:$sdk_videocall_component_version"
   ```
 
 ---
 
-## 3. Controladores disponibles
+## 3. Iniciar nueva operación
+
+Cuando se desea realizar una determinada operación, para generar la
+información asociada correctamente en la plataforma deberá ejecutarse
+previamente el comando **newOperation**.
+
+Este comando debe haberse ejecutado **anteriormente al lanzamiento del
+componente**.
+
+Para saber más acerca de cómo iniciar una nueva operación, se recomienda
+consultar la documentación de [Primeros Pasos](./Mobile_SDK), en el que se detalla y explica en qué consiste
+este proceso.
+
+---
+
+## 4. Controladores disponibles
 
 | **Controlador**         | **Descripción**                       |
 | ----------------------- | ------------------------------------- |
@@ -34,50 +79,106 @@ La dependencia específica del componente es:
 
 ---
 
-## 4. Lanzamiento simplificado
+## 5. Configuración del componente
 
-Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente. 
-Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funcionalidad.
+Para configurar el componente actual, una vez inicializado, se deberá
+crear un objeto
 
-Lanzamiento:
+_VideoCallConfigurationData_ y pasarlo como parámetro al SDKController
+durante el lanzamiento del componente.
 
-```java
-val response = SDKController.launch(
-    VideoCallController(VideoCallConfigurationData(...))
-)
-when (response) {
-    is SdkResult.Error -> Napier.d("ERROR - ${response.error.name}")
-    is SdkResult.Success -> response.data
-}
-```
---- 
+En el siguiente apartado se mostrarán los campos que forman parte de
+esta clase y para qué se utiliza cada uno de ellos.
 
-## 5. Configuración básica
+### 5.1. Class VideoCallConfigurationData
 
-Para lanzar el componente actual, se deberá crear un objeto _VideoCallConfigurationData_ que será la configuración del 
-controlador del componente.
+Los campos incluidos en la configuración, normalmente **no es necesario
+que sean informados** ya que se completan internamente a través de la
+licencia usada.
 
-La configuración básica necesaria no necesitará ningún parámetro:
+Estos campos suelen informarse **solo** cuando el **servidor** es
+**OnPremise**.
 
-```java
-VideoCallConfigurationData()
-```
+#### 5.1.1. url
+
+Ruta al socket de video
+
+#### 5.1.2. apiKey
+
+ApiKey necesaria para la conexión con el socket de video
+
+#### 5.1.3. tenantId
+
+Identificador del tenant que hace referencia al cliente actual,
+necesario para la conexión con el servicio de video.
+
+#### 5.1.4. activateScreenSharing
+
+Activar la opción de compartir pantalla en la llamada.
+
+#### 5.1.5. timeout
+
+Tiempo de espera para que un agente coja la llamada (ms)
+
 ---
 
-## 6. Recepción del resultado
+## 6. Uso del componente
 
-El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y uno incorrecto:
+Una vez iniciado el componente y creada una nueva operación (**apartado
+3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
+el componente:
+
+- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero sí se trackearán los eventos
+  internos al servidor de _tracking_:
 
 ```java
-when (response) {
-    is SdkResult.Error -> Napier.d("ERROR - ${response.error}")
-    is SdkResult.Success -> response.data
+val result = SDKController.launch(
+    VideoCallController(VideoCallConfigurationData())
+)
+when (result) {
+    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
 }
 ```
 
-### 6.1. Recepción de errores
+- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
+  del componente con normalidad, pero **no se trackeará** ningún
+  evento al servidor de _tracking_:
 
-Los errores se devolverán como un objeto 'VideoCallError'.
+```java
+val result = SDKController.launchMethod(
+    VideoCallController(VideoCallConfigurationData())
+)
+when (result) {
+    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
+    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+}
+```
+
+El método **launch** debe usarse **por defecto**. Este método permite
+utilizar **_tracking_** en caso de estar su componente activado, y no lo
+usará cuando esté desactivado (o no se encuentre el componente
+instalado).
+
+Por el contrario, el método **launchMethod** cubre un caso especial, en
+el cual el integrador tiene instalado y activado el tracking, pero en un
+flujo determinado dentro de la aplicación no desea trackear información.
+En ese caso se usa este método para evitar que se envíe esa información
+a la plataforma.
+
+---
+
+## 7. Recepción del resultado
+
+Los controllers devolverán la información necesaria en formato
+SdkResult. Más información en la sección de <a
+  href="Mobile_SDK#6-retorno-de-resultado"
+  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
+
+### 7.1. Recepción de errores
+
+En la parte del error, dispondremos de la clase _VideoCallError_.
 
 Lista de errores:
 
@@ -102,54 +203,16 @@ Lista de errores:
 - UNKNOWN_ERROR: Error desconocido
 - VIDEO_RECORDING_ACTIVE: No se puede iniciar porque el proceso de vídeo grabación está activo
 
-### 6.2. Recepción del resultado correcto - _data_
+### 7.2. Recepción de ejecución correcta - _data_
 
-En la parte de SdkResult.Success - _data_, dispondremos de la clase  _VideoCallResult_ que tendrá una única propiedad.
+En la ejecución correcta, simplemente se informa de que todo ha ido bien
+con el SdkResult.Success.
 
 Cuando el resultado sea Success y esté activo el flag _sharingScreen_ se podrá activar compartir pantalla.
 
 ---
 
-## 7. Información avanzada
-
-Este apartado amplía la información del componente.
-
-### 7.1.  Configuración avanzada del componente
-
-Para lanzar el componente actual, se deberá crear un objeto _VideoCallConfigurationData_ 
-que será la configuración del controlador del componente.
-
-A continuación se detallan todos los campos que forman parte de esta clase.
-
-Los campos incluidos en la configuración, normalmente **no es necesario
-que sean informados** ya que se completan internamente a través de la
-licencia usada.
-
-Estos campos suelen informarse **solo** cuando el **servidor** es
-**OnPremise**.
-
-#### 7.1.1. url
-
-Ruta al socket de video
-
-#### 7.1.2. apiKey
-
-ApiKey necesaria para la conexión con el socket de video
-
-#### 7.1.3. tenantId
-
-Identificador del tenant que hace referencia al cliente actual,
-necesario para la conexión con el servicio de video.
-
-#### 7.1.4. activateScreenSharing
-
-Activar la opción de compartir pantalla en la llamada.
-
-#### 7.1.5. timeout
-
-Tiempo de espera para que un agente coja la llamada (ms)
-
-### 7.2. Compartir pantalla
+## 8. Compartir pantalla
 
 Cuando el usuario active la funcionalidad de compartir pantalla se recibirá en el controlador el resultado con "sharingScreen = true". Esto indica que la llamada sigue en curso.
 
@@ -166,7 +229,7 @@ when (result) {
             Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
         }
     }
-
+}
 ```
 
 Para detener la llamada se hará uso del controlador StopVideoCallController.
@@ -198,13 +261,13 @@ El estado que indica la finalización completa de la llamada es FINISH.
 
 ---
 
-## 8. Personalización del componente
+## 9. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Ajustes avanzados](./Mobile_SDK_advanced)), este componente en concreto permite la
+se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
 modificación de su interfaz.
 
-### 8.1. Textos
+### 9.1. Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
@@ -229,14 +292,14 @@ de cada _String_ por el deseado.
     
 ```
 
-### 8.2. Colores
+### 9.2. Colores
 
 ```xml
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
 
-### 8.3. Animaciones
+### 9.3. Animaciones
 
 Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
 
@@ -244,7 +307,7 @@ Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las
 video_call_anim_waiting.json
 ```
 
-### 8.4 Vistas externas
+### 9.4 Vistas externas
 
 Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
 
@@ -267,8 +330,6 @@ Una vez creadas las clases que implementan los interfaces, en el lanzamiento del
 
 ---
 
-## 9. Logs
+## 10. Logs
 
 Para visualizar en consola los logs de este componente se podrá usar el filtro: "VIDEO_CALL:"
-
----
