@@ -129,26 +129,12 @@ licencia usada.
 Estos campos suelen informarse **solo** cuando el **servidor** es
 **OnPremise**.
 
-#### 7.1.1. url
-
-Ruta al socket de video
-
-#### 7.1.2. apiKey
-
-ApiKey necesaria para la conexión con el socket de video
-
-#### 7.1.3. tenantId
-
-Identificador del tenant que hace referencia al cliente actual,
-necesario para la conexión con el servicio de video.
-
-#### 7.1.4. activateScreenSharing
-
-Activar la opción de compartir pantalla en la llamada.
-
-#### 7.1.5. timeout
-
-Tiempo de espera para que un agente coja la llamada (ms)
+- `url`: Ruta al socket de video.
+- `apiKey`: ApiKey necesaria para la conexión con el socket de video.
+- `tenantId`: Identificador del tenant que hace referencia al cliente actual,
+    necesario para la conexión con el servicio de video.
+- `activateScreenSharing`: Activar la opción de compartir pantalla en la llamada.
+- `timeout`: Tiempo de espera para que un agente coja la llamada (ms).
 
 ### 7.2. Compartir pantalla
 

@@ -274,25 +274,23 @@ Beyond SDK-level settings (see [Advanced Settings](./Mobile_SDK_advanced)), you 
 Override default texts by adding an XML file in your app:
 
 ```xml
-<!-- Previous Tip -->
-<string name="phingers_component_tip_left_title">Left hand fingerprints</string>
-<string name="phingers_component_tip_right_title">Right hand fingerprints</string>
-<string name="phingers_component_tip_thumb_title">Thumb fingerprint</string>
-<string name="phingers_component_tip_message">Bring your fingers together. Move your hand closer or farther until your fingerprints are in focus.</string>
-<string name="phingers_component_tip_thumb_message">Place your thumb inside the circle. Move your finger until it’s in focus.</string>
-<string name="phingers_component_tip_button">Start</string>
-
-<!-- Process -->
-<string name="phingers_component_capture_phingers">Keep your fingers steady</string>
-<string name="phingers_component_capture_thumb">Keep your finger steady</string>
-<string name="phingers_component_capture_phingers_not_focus">Move your fingers until they are in focus</string>
-<string name="phingers_component_capture_thumb_not_focus">Move your finger until it is in focus</string>
-
-<!-- Diagnostic -->
-<string name="phingers_component_timeout_title">Timeout</string>
-<string name="phingers_component_timeout_desc">We’re sorry. The capture could not be completed.</string>
-<string name="phingers_component_internal_error_title">A technical issue occurred</string>
-<string name="phingers_component_internal_error_desc">We’re sorry. The capture could not be completed.</string>
+ <!-- Previous Tip -->
+    <string name="phingers_component_tip_left_title">Left hand prints</string>
+    <string name="phingers_component_tip_right_title">Right hand prints</string>
+    <string name="phingers_component_tip_thumb_title">Thumbprint</string>
+    <string name="phingers_component_tip_message">Put your fingers together. Move your hand closer or further away until your fingerprints come into focus.</string>
+    <string name="phingers_component_tip_thumb_message">Focus your thumb inside the circle. Move your finger closer or further away until your print comes into focus.</string>
+    <string name="phingers_component_tip_button">Start</string>
+    <!-- Process -->
+    <string name="phingers_component_capture_phingers">Hold fingers steady</string>
+    <string name="phingers_component_capture_thumb">Hold finger steady</string>
+    <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
+    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string>
+    <!-- Diagnostic -->
+    <string name="phingers_component_timeout_title">Time exceeded</string>
+    <string name="phingers_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="phingers_component_internal_error_title">There was a technical problem</string>
+    <string name="phingers_component_internal_error_desc">We apologize. The capture could not be made</string>
 ```
 
 ### 8.2 Animations
@@ -307,9 +305,12 @@ phingers_anim_thumb.json
 
 ### 8.3 External Views
 
-Replace component screens by implementing the interfaces:
+It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
+
+Previous tip screen:
 
 ```kotlin
+
 interface IPhingersPreviousTipView {
     @Composable
     fun Content(
@@ -317,6 +318,12 @@ interface IPhingersPreviousTipView {
         onClose: () -> Unit,
     )
 }
+
+```
+
+Error diagnosis screen:
+
+```kotlin
 
 interface IPhingersErrorDiagnosticView {
     @Composable
@@ -326,9 +333,10 @@ interface IPhingersErrorDiagnosticView {
         onClose: () -> Unit,
     )
 }
+
 ```
 
-Then pass your implementations via `customViews` when launching the component.
+Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
 
 ---
 

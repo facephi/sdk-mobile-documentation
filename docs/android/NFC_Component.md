@@ -338,33 +338,52 @@ nfc_anim_tuto_passport.json
 
 ### 8.3 External Views
 
-You can fully replace component screens by implementing the following interfaces:
+It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
+
+Previous tip screen:
 
 ```kotlin
+
 interface INfcPreviousTipView {
     @Composable
     fun Content(
         onContinue: () -> Unit,
         onClose: () -> Unit,
-        onInfo: () -> Unit
+        onInfo: () -> Unit,
     )
 }
+
+```
+
+Error diagnosis screen:
+
+```kotlin
 
 interface INfcErrorDiagnosticView {
     @Composable
     fun Content(
         error: NfcError,
         onRetry: () -> Unit,
-        onClose: () -> Unit
+        onClose: () -> Unit,
     )
 }
+
+```
+
+Read screens:
+
+```kotlin
 
 interface INfcWaitingBottomView {
     @Composable
     fun Content(
-        onClose: () -> Unit
+        onClose: () -> Unit,
     )
 }
+
+```
+
+```kotlin
 
 interface INfcReadingBottomView {
     @Composable
@@ -374,23 +393,32 @@ interface INfcReadingBottomView {
     )
 }
 
+```
+
+```kotlin
+
 interface INfcSuccessBottomView {
     @Composable
     fun Content(
-        onContinue: () -> Unit
+        onContinue: () -> Unit,
     )
 }
+
+```
+
+```kotlin
 
 interface INfcErrorBottomView {
     @Composable
     fun Content(
         error: NfcError,
-        onContinue: () -> Unit
+        onContinue: () -> Unit,
     )
 }
+
 ```
 
-After implementing these classes, pass them via the `customViews` parameter when launching the component to use your custom UI.
+Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
 
 ---
 
