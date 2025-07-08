@@ -8,6 +8,7 @@ A través de un identificador de Flow, podrá lanzar un flujo diseñado en
 la web, que puede contener de 1 a N pasos de los componentes existentes
 en el SDK.
 
+
 En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
 
 ---
@@ -68,8 +69,7 @@ val result = SDKController.initSdk(sdkConfig)
 
 #### 5.1 Lanzamiento de un flujo publicado
 
-Se usará el _FlowController_ para lanzar un flujo que el cliente tiene
-publicado en la plataforma:
+Se usará el _FlowController_ para lanzar un flujo que el cliente tiene publicado en la plataforma:
 
 ```java
 val flowController = FlowController (
@@ -79,57 +79,13 @@ val flowController = FlowController (
             customerId = "customerId",
         ))
 
-viewModelScope.launch {
-     flowController.stateFlow.collect { flowResult ->
-          Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
+ SDKController.launch(flowController)
 
-          when (flowResult.step?.key) {
-          FlowKeys.EXTERNAL_STEP.name -> {
-               delay(DELAY_EXTERNAL_STEP)
-               flowController.launchNextStep()
-          }
-
-          FlowKeys.SELPHI_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
-
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphiResult()
-                         Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
-                    }
-               }
-          }
-
-          FlowKeys.SELPHID_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
-
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphIDResult()
-                         Napier.d("APP: SelphID OK ${result.documentCaptured}")
-                    }
-               }
-          }
-          }
-
-          if (flowResult.flowFinish) {
-          Napier.d("APP: FLOW FINISH")
-          }
-     }
-}
-viewModelScope.launch {
-     SDKController.launch(flowController)
-}
 ```
 
 #### 5.2 Lanzamiento de un flujo pendiente de publicar
 
-Se usará el _FlowPreviewController_ para probar un flujo que el cliente
-tiene pendiente de publicar en la plataforma:
+Se usará el _FlowPreviewController_ para probar un flujo que el cliente tiene pendiente de publicar en la plataforma:
 
 ```java
 val flowController = FlowPreviewController (
@@ -139,7 +95,16 @@ val flowController = FlowPreviewController (
             customerId = "customerId",
         ))
 
-viewModelScope.launch {
+SDKController.launch(flowController)
+
+```
+
+#### 5.3 Recoger resultados en la aplicación
+
+Los resultados de cada paso del flujo se envían directamente a la plataforma. Si en algún caso se quieren recoger en la aplicación se deberá añadir:
+
+```java
+
      flowController.stateFlow.collect { flowResult ->
           Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
 
@@ -180,11 +145,9 @@ viewModelScope.launch {
           Napier.d("APP: FLOW FINISH")
           }
      }
-}
-viewModelScope.launch {
-     SDKController.launch(flowController)
-}
+
 ```
+
 
 ---
 
