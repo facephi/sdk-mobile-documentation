@@ -439,6 +439,7 @@ each String to the desired one.
     <string name="nfc_component_data_error_desc">Review the data entered</string>
     <string name="nfc_component_read_not_finish_title">Reading not finished</string>
     <string name="nfc_component_read_not_finish_desc">Hold the position until the end of the reading</string>
+```
 
 ### 8.2. Animations
 

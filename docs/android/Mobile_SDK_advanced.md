@@ -1,4 +1,4 @@
-# Getting Started
+# Advanced settings
 
 ## Latest available version
 
