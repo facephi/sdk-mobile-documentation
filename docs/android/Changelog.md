@@ -2,6 +2,30 @@
 
 ## Versions
 
+### 2.3.4
+
+- General
+
+  - Accesibility improvements
+  - Horizontal screen improvements
+  - Refactor errors
+
+- Video ID
+
+  - Reader new version: 1.7.1
+
+- SelphID
+
+  - Widget new version: 1.33.6
+
+- Design KMP
+
+  - IOS improvements
+
+- NFC
+
+  - Reading improvements
+
 ### 2.3.3
 
 - General

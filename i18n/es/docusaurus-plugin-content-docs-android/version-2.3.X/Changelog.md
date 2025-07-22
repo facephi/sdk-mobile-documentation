@@ -2,6 +2,30 @@
 
 ## Versiones
 
+### 2.3.4
+
+- General
+
+  - Mejoras en Accesibilidad
+  - Mejoras en pantallas horizontales
+  - Refactorización de errores
+
+- Video ID
+
+  - Nueva versión del Reader: 1.7.1
+
+- SelphID
+
+  - Nueva versión del widget: 1.33.6
+
+- Design KMP
+
+  - Mejoras en los recursos de IOS
+
+- NFC
+
+  - Mejoras en la lectura
+
 ### 2.3.3
 
 - General
@@ -196,7 +220,7 @@
 
   - Mejoras UX
   - Mejoras en la accesibilidad
-
+ 
 - SelphID
 
   - Nueva versión del widget: 1.29.0
@@ -222,7 +246,7 @@
 - General
 
   - Mejoras UX
-
+ 
 - SelphID
 
   - Nueva versión del widget: 1.28.1
@@ -238,6 +262,7 @@
 - Capture
 
   - Mejoras en la captura de documentos
+
 
 ### 2.1.0
 

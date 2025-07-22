@@ -1,305 +1,92 @@
-# Selphi Component
-
-## 0. SDK Mobile baseline requirements
-
-**SDK Mobile** is a set of libraries (**Components**) that offer a series of
-functionalities and services, allowing their integration into a Mobile
-application in a simple and fully scalable way. Certain components must
-be installed depending on the use case required. Its high level of
-modularity allows other new components to be added in the future without
-affecting those already integrated into the project.
-
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
-
----
+# Facial Capture
 
 ## 1. Introduction
 
-The Component discussed in the current document is called **Selphi
-Component**. It is responsible for capturing a selfie of the user and
-then extracting the most important facial features. Its main
-functionalities are the following:
+Facial capture is performed with the **Selphi Component**.
 
-- Internal camera management.
+This component is responsible for capturing a user selfie and extracting the most important facial features. Its main processes are:
 
-- Permission management.
+- Internal camera and permission management.
+- Guided assistance during the user’s facial capture process.
+- Generation of facial templates and the user image.
 
-- Assistant in the process of capturing the user's face.
-
-- Generation of the templates with the facial characteristics and the
-  image of the user's face for the liveness detection process.
+Refer to the [Quickstart](./Mobile_SDK) section for the basic SDK integration steps. This guide adds information specific to launching this component.
 
 ---
 
-## 2. Integration of the component
+## 2. Dependency
 
-Before integrating this component, it is recommended to read the
-documentation related to
+The component-specific dependency is:
 
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
-
-This section will explain step by step how to integrate the current
-component into an existing project.
-
-### 2.1. Dependencies required for integration
-
-To avoid conflicts and compatibility problems, if you want to install
-the component in a project containing an old Facephi libraries
-(_Widgets_) version, these must be removed entirely before installing
-the **_SDKMobile_** components. Currently, FacePhi libraries are
-distributed remotely through different dependency managers.
-**Mandatory** dependencies that must be installed beforehand:
-
-- ```java
-  implementation "com.facephi.androidsdk:selphi_component:$sdk_selphi_component_version"
-  ```
-
-### 2.1. Resources zip file
-
-Table of sdk versions and associated resource versions (Found in the **Resources** section):
-
-| **SDK version** | **Selphi resources version** |
-| --------------- | ---------------------------- |
-| 2.0.2           | 5.13.1                       |
-| 2.0.3           | 5.13.4                       |
-| 2.1.0           | 5.14.1                       |
-| 2.1.1           | 5.14.2                       |
-| 2.1.2           | 5.15.0                       |
-| 2.2.0           | 5.16.1                       |
-| 2.2.1           | 5.16.2                       |
-| 2.2.2           | 5.16.2                       |
-| 2.2.3           | 5.17.1                       |
-| 2.3.1           | 5.17.2                       |
-| 2.3.2           | 5.17.3                       |
-| 2.3.3           | 5.17.5                       |
+```java
+implementation "com.facephi.androidsdk:selphi_component:$version"
+```
 
 ---
 
-## 3. Start a new operation
+## 3. Available Controllers
 
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
-
-<div class="note">
-<span class="note">:information_source:</span>
-This command must have been executed **before launch**.
-To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
-</div>
+| **Controller**            | **Description**                                       |
+| ------------------------- | ----------------------------------------------------- |
+| SelphiController          | Main facial recognition controller                    |
+| RawTemplateController     | Controller to generate a RawTemplate from an image    |
+| SignatureSelphiController | Controller to create a signature file in the platform |
 
 ---
 
-## 4. Available controllers
+## 4. Quick Launch
 
-| **Controller**            | **Description**                                |
-| ------------------------- | ---------------------------------------------- |
-| SelphiController          | Facial recognition main controller             |
-| RawTemplateController     | Driver to generate a RawTemplate from an image |
-| SignatureSelphiController | Driver to sign a process with a Capture        |
+Once the SDK is initialized and a new operation has been created, launch the component by using any of its controllers.
 
----
-
-## 5. Component configuration
-
-To configure the current component, once it has been initialized, a
-SelphiConfigurationData object must be created and passed as a parameter
-to the SDKController when the component is launched.
-
-The following section will show the fields that are part of this class
-and what each is used for.
-
-### 5.1. Class SelphiConfigurationData
-
-#### 5.1.0. _debug_
-
-Activation of the component's debugging mode.
-
-#### 5.1.1. _resourcesPath_
-
-Indicates the name of the resources in zip format. Example:
-_"resources-selphi-2-0.zip"_.
-
-This name will fetch the file from the assets path.
-
-![Image](/android/selphi_resources.png)
-
-#### 5.1.2. _cropPercent_
-
-Allows you to change the percentage of cropping of the face. The higher
-the number, the more the rectangle is cropped concerning the face.
-
-#### 5.1.3. _cropImageDebug_
-
-Allows debug mode to check the percentage of cropping of the face.
-
-#### 5.1.4. _showResultAfterCapture_
-
-Indicates whether or not to display a screen with the captured image
-after the analysis process. This screen allows the user to repeat the
-capture process if the image obtained is incorrect.
-
-#### 5.1.5. _showTutorial_
-
-Indicates whether the widget activates the tutorial screen. This view
-intuitively explains how the capture is performed.
-
-#### 5.1.6. _livenessMode_
-
-Sets the liveness mode of the widget. Allowed values are:
-
-- SelphiFaceLivenessMode.NONE: Indicates that the photodetection mode should not be
-  enabled in the authentication processes.
-
-- SelphiFaceLivenessMode.PASSIVE: Indicates that the passive liveness test is
-  performed in the server, sending the corresponding "BestImage" or
-  "TemplateRaw" for this purpose.
-
-- SelphiFaceLivenessMode.MOVE: Indicates that the liveness test is active
-  by displaying instructions during the capture, and returning
-  the corresponding result of the process.
-
-#### 5.1.7. _stabilizationMode_
-
-Sets a stabilization mode before any authentication process in the
-widget. This mode forces the widget not to start any process if the user
-is not facing forward and not moving his head.
-
-#### 5.1.8. _cameraFlashEnabled_
-
-Indicates whether the device's camera flash is activated.
-
-#### 5.1.9 _locale_
-
-Forces the widget to use the language setting indicated by the locale
-parameter. This parameter accepts a language code (e.g. 'en') and a
-regional identification code (e.g. 'en_US'). If the widget resource file
-does not have a locale for the selected 'locale', its configuration will
-fall back to the default language.
-
-#### 5.1.10 _fullscreen_
-
-Indicates whether the view will prioritize for full-screen display if
-the system allows it.
-
-#### 5.1.11. _templateRawOptimized_
-
-Indicates whether the template (templateRaw) generated after the selfie
-should be optimized or not.
-
-#### 5.1.12. _qrMode_
-
-Sets whether or not to activate QR reading before the authentication
-process.
-
-#### 5.1.13 _videoFilename_
-
-Sets the absolute path to the filename where a video of the capture
-process will be recorded. The application is responsible for requesting
-the necessary permissions from the phone if that path requires
-additional permissions. The widget, by default, will not perform any
-recording process unless a file path is specified using this method.
-
-#### 5.1.14 _viewsContent_
-
-This advanced property allows, through a string in XML format, to
-configure the widget views.
-
-Note: This property does not alter the content of the resource file.
-
-#### 5.1.15. _showDiagnostic_
-
-Display diagnostic screens at the end of the process
-
-#### 5.1.16. _logImages_
-
-When activated, a list of the 5 best images taken of the user is returned.
-
-#### 5.1.17. _showPreviousTip_
-
-Displays a pre-launch screen with information about the process to be performed and a launch button.
-
-#### 5.1.18. _extractionDuration_
-
-Duration of facial extraction process
-
-#### 5.1.19. _cameraPreferred_
-
-Selection of camera used for the process: FRONT, BACK
-
-#### 5.1.20. _vibrationEnabled_
-
-Indicates whether vibration feedback is desired at the end of the process.
-
-#### 5.1.21. _moveSuccessfulAttempts_
-
-Number of retries for successful capture in the movement process (Default 1)
-
-#### 5.1.22. _moveFailedAttempts_
-
-Number of retries for incorrect capture in the movement process (Default 2)
-
----
-
-## 6. Component use
-
-Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
-to launch the component:
-
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component, but internal events will be tracked to the
-  _tracking_ server:
+Facial capture launch:
 
 ```java
 val response = SDKController.launch(
-    SelphiController(SelphiConfigurationData(...))
+    SelphiController(
+        SelphiConfigurationData(...)
+    )
 )
 when (response) {
-    is SdkResult.Error -> Napier.d("Selphi: ERROR - ${response.error.name}")
+    is SdkResult.Error   -> Napier.d("Selphi: ERROR - ${response.error.name}")
     is SdkResult.Success -> response.data
 }
 ```
-
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component, but **no event will be tracked** to
-  the _tracking_ server:
-
-```java
-val response = SDKController.launchMethod(
-    SelphiController(SelphiConfigurationData(...))
-)
-when (response) {
-    is SdkResult.Error -> Napier.d("Selphi: ERROR - ${response.error.name}")
-    is SdkResult.Success -> response.data
-}
-```
-
-The **launch** method must be used by **default**. This method allows
-**_tracking_** if your component is enabled and will not be used when it
-is disabled (or the component is not installed).
-
-On the other hand, the **launchMethod** method covers a particular case
-in which the integrator has tracking installed and activated but, in a
-certain flow within the application does not want to track information.
-In this case, this method is used to prevent this information from being
-sent to the platform.
 
 ---
 
-## 7. Receipt of the result
+## 5. Basic Configuration
 
-The controllers will return the required information in SdkResult
-format. -more details in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section-.
+To launch the component, create a `SelphiConfigurationData` object with the following fields:
 
-### 7.1. Receipt of errors
+```java
+SelphiConfigurationData(
+  resourcesPath  = "resources_file.zip",
+  livenessMode   = SelphiFaceLivenessMode.NONE
+)
+```
 
-On the error side, we will have the SelphiError class.
+Available `livenessMode` values:
 
-Error list:
+- `SelphiFaceLivenessMode.NONE`
+- `SelphiFaceLivenessMode.PASSIVE`
+- `SelphiFaceLivenessMode.MOVE`
+
+---
+
+## 6. Receiving the Result
+
+The launch returns an `SdkResult`. Differentiate between success and error:
+
+```java
+when (response) {
+    is SdkResult.Error   -> Napier.d("ERROR - ${response.error}")
+    is SdkResult.Success -> response.data
+}
+```
+
+### 6.1 Handling Errors
+
+Errors are returned as a `SelphiError` object. Possible values include:
 
 - ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
 - ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
@@ -327,85 +114,180 @@ Error list:
 - UNKNOWN_ERROR: Unknown error.
 - WIDGET_RESULT_DATA_ERROR: Error in widget output data.
 
-### 7.2. Receipt of correct execution - _data_
+### 6.2 Handling Success – `data`
 
-In the data part, we have the SelphiResult class.
+On success (`SdkResult.Success`), you receive a `SelphiResult` object. Images are returned as `SdkImage`; extract the bitmap via `image.bitmap`. To convert to Base64:
 
-The result returns the images in **Bitmap** format. It is possible to
-convert the images to **Base64** as follows:
+```kotlin
+Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)
+```
 
-`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
+Returned fields in `SelphiResult`:
 
-The data field is variable and will depend on which component has
-returned the result. In the case of this component, the fields returned
-are the following:
+#### 6.2.1 `templateRaw`
 
-#### 7.2.1 _templateRaw_
+Raw template generated after extraction, valid for matching.
 
-Returns the raw template generated after the extraction process. Valid
-for the **matching** process.
+#### 6.2.2 `template`
 
-#### 7.2.2 _template_
+Processed template generated after extraction, valid for matching.
 
-Returns the template that is generated after the extraction process.
-Valid for the **matching** process.
+#### 6.2.3 `bestImage`
 
-#### 7.2.3 _bestImage_
+Best full-size image from the authentication process, valid for liveness checks.
 
-Returns the best image extracted from the authentication process in
-SdkImage format. This image is the original size image extracted from
-the camera. Valid for the **liveness** process.
+#### 6.2.4 `bestImageCropped`
 
-#### 7.2.4 _bestImageCropped_
+Cropped image centered on the user’s face, derived from `bestImage`.
 
-Returns a cropped image centred on the user's face in SdkImage format.
-This image is obtained from the bestImage. This image will be used as
-the characteristic image of the user who carried out the process as an
-avatar.
+#### 6.2.5 `logImages`
 
-#### 7.2.5 _logImages_
+List of the top 5 captured images (returned if `logImages` flag is enabled).
 
-List of the top 5 captured images returned if the "logImages" flag is set in the configuration.
+#### 6.2.6 `bestImageTokenized`
 
-#### 7.2.6 _bestImageTokenized_
-
-Returns the best image tokenized. Valid for the **liveness** process.
+Encrypted best image from the liveness process.
 
 ---
 
-## 8. Additional Controllers
+## 7. Advanced Information
 
-### 8.1. RawTemplateController
+This section provides extended details for this component.
 
-Controller to generate a RawTemplate from an image (bitmap).
+### 7.1 Additional Controllers
 
-Example of use:
+#### 7.1.1 SignatureSelphiController
+
+Used like `SelphiController` but generates a signature file on the platform.
+
+#### 7.1.2 RawTemplateController
+
+Generates a `RawTemplate` from a given image (`SdkImage`).
+
+Example:
 
 ```java
 val result = SDKController.launch(
     RawTemplateController(SdkImage(image))
 )
 when (result) {
-    is SdkResult.Error -> Napier.d("GenerateRaw: KO - ${result.error}")
+    is SdkResult.Error   -> Napier.d("GenerateRaw: KO - ${result.error}")
     is SdkResult.Success -> result.data
 }
 ```
 
-## 9. Customizing the component
+### 7.2 Advanced Component Configuration
 
-Apart from the changes that can be made at the SDK level (explained in
-the [Getting Started](./Mobile_SDK)
-document), this particular component allows the modification of specific
-texts.
+Create a `SelphiConfigurationData` object with all available fields:
 
-### 9.1 Texts
+#### 7.2.0 `debug`
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application and change the value of
-each String to the desired one.
+Enables debug mode.
+
+#### 7.2.1 `resourcesPath`
+
+Name of the zip file in `assets` (ex. `resources-selphi-2-0.zip`).
+
+#### 7.2.2 `cropPercent`
+
+Percentage to crop around the face; higher values yield a tighter crop.
+
+#### 7.2.3 `cropImageDebug`
+
+Enables debug view for crop percentage.
+
+#### 7.2.4 `showResultAfterCapture`
+
+Whether to show a screen with the captured image for user review.
+
+#### 7.2.5 `showTutorial`
+
+Enables tutorial screen explaining the capture process.
+
+#### 7.2.6 `livenessMode`
+
+Sets the liveness detection mode:
+
+- `NONE`
+- `PASSIVE`
+- `MOVE`
+
+#### 7.2.7 `stabilizationMode`
+
+Requires the user to hold head steady and forward before starting.
+
+#### 7.2.8 `cameraFlashEnabled`
+
+Enables device camera flash.
+
+#### 7.2.9 `locale`
+
+Forces widget to use a specific locale (e.g. `en`, `en_US`).
+
+#### 7.2.10 `fullscreen`
+
+Displays the widget full-screen if supported.
+
+#### 7.2.11 `templateRawOptimized`
+
+Optimizes `templateRaw` if true.
+
+#### 7.2.12 `qrMode`
+
+Enables QR scanning before authentication.
+
+#### 7.2.13 `videoFilename`
+
+Absolute path for recording capture video; the app must handle permissions.
+
+#### 7.2.14 `viewsContent`
+
+Custom XML layout string for widget views.
+
+#### 7.2.15 `showDiagnostic`
+
+Shows diagnostic screens at the end.
+
+#### 7.2.16 `logImages`
+
+Returns top 5 images when enabled.
+
+#### 7.2.17 `showPreviousTip`
+
+Shows a pre-capture tip screen with launch info.
+
+#### 7.2.18 `extractionDuration`
+
+Duration of the facial extraction process.
+
+#### 7.2.19 `cameraPreferred`
+
+Preferred camera (`FRONT` or `BACK`).
+
+#### 7.2.20 `vibrationEnabled`
+
+Enables vibration feedback at process end.
+
+#### 7.2.21 `moveSuccessfulAttempts`
+
+Number of retries for successful MOVE liveness (default 1).
+
+#### 7.2.22 `moveFailedAttempts`
+
+Number of retries for failed MOVE liveness (default 2).
+
+---
+
+## 8. Component Customization
+
+Beyond SDK-wide settings ([Advanced Settings](./Mobile_SDK_advanced)), this component allows:
+
+### 8.1 Texts
+
+Override default strings by providing an XML in your app:
 
 ```xml
-    <!-- Diagnostic -->
+<!-- Diagnostic -->
     <string name="selphid_component_timeout_title">Time exceeded</string>
     <string name="selphid_component_timeout_desc">Check that the document is inside the box and the data is visible.</string>
     <string name="selphid_component_internal_error_title">There was a technical problem</string>
@@ -431,18 +313,38 @@ each String to the desired one.
     <string name="selphid_component_tutorial_message_2_anim_pass_desc">Place your passport horizontally, and point your phone vertically.</string>
     <string name="selphid_component_tutorial_message_3_anim_pass_desc">Reflections appear on the document.</string>
     <string name="selphid_component_tutorial_close_button_alt">Back to previous tutorial</string>
-
-
 ```
 
-### 9.2. Animations
+### 8.2 Animations
 
-If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+Override Lottie animations by placing JSON files in `res/raw/`:
 
-```text
+```
 selphi_anim_prev_tip.json
 selphi_anim_prev_tip_move.json
 selphi_anim_tuto_m_1.json
 selphi_anim_tuto_m_2.json
 selphi_anim_tuto_m_3.json
 ```
+
+---
+
+## 9. Resources Zip Versions
+
+Table of SDK versions and associated resource versions (see **Resources** section):
+
+| **SDK Version** | **Selphi Resources Version** |
+| --------------- | ---------------------------- |
+| 2.0.2           | 5.13.1                       |
+| 2.0.3           | 5.13.4                       |
+| 2.1.0           | 5.14.1                       |
+| 2.1.1           | 5.14.2                       |
+| 2.1.2           | 5.15.0                       |
+| 2.2.0           | 5.16.1                       |
+| 2.2.1           | 5.16.2                       |
+| 2.2.2           | 5.16.2                       |
+| 2.2.3           | 5.17.1                       |
+| 2.3.1           | 5.17.2                       |
+| 2.3.2           | 5.17.3                       |
+| 2.3.3           | 5.17.5                       |
+

@@ -1,174 +1,78 @@
-# Video Call Component
-
-## 0. SDK Mobile baseline requirements
-
-**SDK Mobile** is a set of libraries (**Components**) that offer a series of
-functionalities and services, allowing their integration into a Mobile
-application in a simple and fully scalable way. Depending on the use
-case that is required, certain components must be installed. Its high
-level of modularity allows other new components to be added in the
-future without affecting those already integrated in the project.
-
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
-
----
+# Video Call
 
 ## 1. Introduction
 
-The component discussed in the current document is called VideoCall
-Component. It is in charge of managing the communication between a user
-and an agent remotely, through a communication channel. It is mainly
-oriented to video assistance use cases.
+Video calling is performed with the **VideoCall Component**.
+
+This component manages the communication between a user and an agent (video assistance). Its main processes are:
+
+- Internal camera, microphone, and permission management.
+- Connection to video services.
+
+Refer to the [Quickstart](./Mobile_SDK) section for basic SDK integration steps. This section adds information specific to launching this component.
 
 ---
 
-## 2. Integration of the component
+## 2. Dependency
 
-Before integrating this component, it is recommended to read the
-documentation related to:
-
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
-
-This section will explain step by step how to integrate the current
-component into an existing project.
-
-### 2.1. Dependencies required for integration
-
-To avoid conflicts and compatibility problems, in case you want to
-install the component in a project containing an old version of the
-Facephi libraries (_Widgets_), these must be completely removed before
-installing the **_SDKMobile_** components.
-
-- Currently FacePhi libraries are distributed remotely through
-  different dependency managers. **Mandatory** dependencies that must
-  be installed beforehand:
-
-  ```java
-  implementation "com.facephi.androidsdk:videocall_component:$sdk_videocall_component_version"
-  ```
-
----
-
-## 3. Start new operation
-
-When you want to perform a specific operation, in order to generate the
-associated information correctly in the platform, the **newOperation**
-command must first be executed.
-
-<div class="note">
-<span class="note">:information_source:</span>
-This command must have been executed **before launch**.
-To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
-</div>
-
----
-
-## 4. Available controllers
-
-| **Controller**          | **Description**              |
-| ----------------------- | ---------------------------- |
-| VideoCallController     | Videocall main controller    |
-| StopVideoCallController | Stop screen sharing and call |
-
-## 5. Component configuration
-
-To configure the current component, once it has been initialised, a
-_VideoCallConfigurationData_ object must be created and passed as a
-parameter to the SDKController when the component is launched.
-
-The following section will show the fields that are part of this class
-and what each of them is used for.
-
-### 5.1. Class VideoCallConfigurationData
-
-The fields included in the configuration, normally **do not need to be
-reported** as they are filled internally through the licence used.
-
-These fields are usually reported only when the server is **OnPremise**.
-
-#### 5.1.1. url
-
-Path to the video socket
-
-#### 5.1.2. apiKey
-
-ApiKey needed for connection to the video socket
-
-#### 5.1.3. tenantId
-
-Tenant identifier referring to the current client, required for the
-connection to the video service.
-
-#### 5.1.4. activateScreenSharing
-
-Activate the screen sharing option in the call
-
-#### 5.1.5. timeout
-
-Waiting time for an agent to pick up the call (ms)
-
----
-
-## 6. Component use
-
-Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
-to launch the component:
-
-- **\[WITH TRACKING\]** This call allows to launch the functionality
-  of the component normally, but internal events will be tracked to
-  the _tracking_ server:
+The component-specific dependency is:
 
 ```java
-val result = SDKController.launch(
-    VideoCallController(VideoCallConfigurationData())
+implementation "com.facephi.androidsdk:videocall_component:$version"
+```
+
+---
+
+## 3. Available Controllers
+
+| **Controller**          | **Description**                                        |
+| ----------------------- | ------------------------------------------------------ |
+| VideoCallController     | Main controller for video calls                        |
+| StopVideoCallController | Controller to stop screen sharing and the ongoing call |
+
+---
+
+## 4. Quick Launch
+
+Once the SDK is initialized and a new operation has been created, you can launch the component using either controller.
+
+```java
+val response = SDKController.launch(
+    VideoCallController(VideoCallConfigurationData(...))
 )
-when (result) {
-    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
+
+when (response) {
+    is SdkResult.Error   -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 ```
 
-- **\[WITHOUT TRACKING\]** This call allows to launch the
-  functionality of the component normally, but **no event will be
-  tracked** to the _tracking_ server:
+---
+
+## 5. Basic Configuration
+
+To launch the component, create a `VideoCallConfigurationData` object. No parameters are required for basic usage:
 
 ```java
-val result = SDKController.launchMethod(
-    VideoCallController(VideoCallConfigurationData())
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("VideoCall: ERROR - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
-}
+VideoCallConfigurationData()
 ```
-
-The **launch** method must be used by **default**. This method allows
-**_tracking_** to be used if your component is enabled, and will not use
-it when it is disabled (or the component is not installed).
-
-On the other hand, the **launchMethod** method covers a special case, in
-which the integrator has tracking installed and activated, but in a
-certain flow within the application does not want to track information.
-In this case, this method is used to prevent this information from being
-sent to the platform.
 
 ---
 
-## 7. Receipt of the result
+## 6. Receiving the Result
 
-The controllers will return the required information in SdkResult
-format. More information in the Android Mobile SDK's <a
-href="Mobile_SDK#6-result-return"
-rel="nofollow">6. Result return</a> section.
+The launch returns an `SdkResult`. Handle success and error as follows:
 
-### 7.1. Receipt of errors
+```java
+when (response) {
+    is SdkResult.Error   -> Napier.d("ERROR - ${response.error}")
+    is SdkResult.Success -> response.data
+}
+```
 
-On the error side, we will have the _VideoCallError_ class.
+### 6.1 Handling Errors
 
-Error list:
+Errors are returned as a `VideoCallError` object. Possible values include:
 
 - ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
 - APPLICATION_CONTEXT_ERROR: Required application context is null
@@ -191,47 +95,54 @@ Error list:
 - UNKNOWN_ERROR
 - VIDEO_RECORDING_ACTIVE: Cannot start because the video recording process is active.
 
-### 7.2. Receipt of correct execution - _data_
+### 6.2 Handling Success – `data`
 
-On successful execution, it simply reports that everything went well
-with the SdkResult.Success.
+On `SdkResult.Success`, you receive a `VideoCallResult` object. If the `sharingScreen` flag is active, screen sharing has been enabled.
 
 ---
 
-## 8. Screen sharing
+## 7. Advanced Information
 
-When the user activates the screen sharing functionality the result with ‘sharingScreen = true’ will be received in the controller. This indicates that the call is still in progress.
+### 7.1 Advanced Component Configuration
+
+Create a `VideoCallConfigurationData` object with the following optional fields. These are typically only needed for on-premise server setups, as they are populated automatically otherwise:
+
+- `url`: Video socket endpoint URL.
+- `apiKey`: API key for socket authentication.
+- `tenantId`: Tenant identifier for the current client.
+- `activateScreenSharing`: Enable screen sharing within the call.
+- `timeout`: Time in milliseconds to wait for an agent to answer.
+
+### 7.2 Screen Sharing
+
+When screen sharing is enabled, the `sharingScreen` property in the `VideoCallResult` will be `true`, indicating the call is still active:
 
 ```java
-val result = SDKController.launch(
-    VideoCallController(VideoCallConfigurationData(activateScreenSharing = true)))
+val response = SDKController.launch(
+    VideoCallController(
+        VideoCallConfigurationData(activateScreenSharing = true)
+    )
+)
 
-when (result) {
-    is SdkResult.Error -> {
-        Napier.d("VideoCall: ERROR - ${result.error.name}")
-    }
-
-    is SdkResult.Success -> {
-            Napier.d("VideoCall: OK - ScreenSharing: ${result.data.sharingScreen}")
-        }
-    }
+when (response) {
+    is SdkResult.Error   -> Napier.d("VideoCall: ERROR - ${response.error.name}")
+    is SdkResult.Success -> Napier.d("VideoCall: OK - ScreenSharing: ${response.data.sharingScreen}")
 }
 ```
 
-To stop the call, the StopVideoCallController shall be used.
+To stop the call, use the `StopVideoCallController`:
 
 ```java
-val controller = StopVideoCallController()
-
-controller.setOutput { state ->
-    Napier.d { "VIDEOCALL: SCREEN SHARING STATE: ${state.name}" }
+val stopController = StopVideoCallController()
+stopController.setOutput { state ->
+    Napier.d("VIDEOCALL: SCREEN SHARING STATE: ${state.name}")
 }
 viewModelScope.launch {
-    SDKController.launch(controller)
+    SDKController.launch(stopController)
 }
 ```
 
-The possible states are:
+Possible `state` values include:
 
 ```java
 AGENT_HANGUP,
@@ -243,56 +154,52 @@ CANCEL_BY_USER,
 FINISH
 ```
 
+The call is fully terminated when `state == FINISH`.
+
 ---
 
-## 9. Customizing the component
+## 8. Component Customization
 
-Apart from the changes that can be made at SDK level (which are
-explained in the [Getting Started](./Mobile_SDK)
-document), this particular component allows the modification of specific
-texts.
+Beyond SDK-level settings ([Advanced Settings](./Mobile_SDK_advanced)), this component allows UI customization.
 
-### 9.1. Texts
+### 8.1 Texts
 
-If you want to modify the SDK texts, you would have to include the
-following XML file in the client application, and modify the value of
-each String to the desired one.
+To override default strings, include an XML file in your app:
 
 ```xml
-    <!-- Waiting -->
-    <string name="video_call_component_text_waiting_agent_title">Connecting with an assistant…</string>
+<!-- Waiting -->
+    <string name="video_call_component_text_waiting_agent_title">Conectando con un asistente…</string>
     <!-- Process -->
-    <string name="video_call_component_local">You</string>
-    <string name="video_call_component_agent">Assistant</string>
-    <string name="video_call_component_exit">Exit</string>
-    <string name="video_call_component_text_finish">Video assistance is complete</string>
-    <string name="video_call_component_accesibility_phone">Phone</string>
-    <string name="video_call_component_accesibility_switch">Switch camera</string>
+    <string name="video_call_component_agent">Asistente</string>
+    <string name="video_call_component_local">Tú</string>
+    <string name="video_call_component_exit">Salir</string>
+    <string name="video_call_component_text_finish">La video asistencia ha finalizado</string>
+    <string name="video_call_component_accesibility_phone">Teléfono</string>
+    <string name="video_call_component_accesibility_switch">Cambiar cámara</string>
     <!-- Diagnostic -->
-    <string name="video_call_component_restart">Repeat call</string>
-    <string name="video_call_component_timeout_title">Time exceeded</string>
-    <string name="video_call_component_timeout_desc">An assistant could not be reached.</string>
-    <string name="video_call_component_internal_error_title">There was a technical problem</string>
-    <string name="video_call_component_internal_error_desc">An assistant could not be reached.</string>
-    
+    <string name="video_call_component_restart">Repetir llamada</string>
+    <string name="video_call_component_timeout_title">Tiempo superado</string>
+    <string name="video_call_component_timeout_desc">No se ha podido contactar con un asistente.</string>
+    <string name="video_call_component_internal_error_title">Hubo un problema técnico</string>
+    <string name="video_call_component_internal_error_desc">No se ha podido contactar con un asistente.</string>
 ```
 
-### 9.2. Colors
+### 8.2 Colors
 
 ```xml
 <color name="colorVideoCallActionsBackground">#30333d</color>
 <color name="colorVideoCallButtonBackground">#FF526080</color>
 ```
 
-### 9.3. Animations
+### 8.3 Animations
 
-If you want to modify the animations (lottie) of the SDK you would have to include the animations with the same name in the res/raw/ folder of the application.
+To override Lottie animations, place files with the same names in your `res/raw/` folder:
 
-```text
+```
 video_call_anim_waiting.json
 ```
 
-### 9.4 External custom views
+### 8.4 External Views
 
 It is possible to completely modify the component screens while maintaining their functionality and navigation. To do so, the following interfaces must be implemented:
 
@@ -313,8 +220,10 @@ interface IVideoCallErrorDiagnosticView {
 
 Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
 
+
 ---
 
-## 10. Logs
+## 9. Logs
 
-To display the logs of this component on the console, you can use the filter: "VIDEO_CALL:"
+Filter console logs for this component with: `"VIDEO_CALL:"`
+

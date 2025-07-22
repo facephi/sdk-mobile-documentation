@@ -1,86 +1,51 @@
-# Flow Component
-
-## 0. SDK Mobile baseline requirements
-
-**SDK Mobile** is a set of libraries (**Components**) that offer a series of
-functionalities and services, allowing their integration into a Mobile
-application in a simple and fully scalable way. Certain components must
-be installed depending on the use case required. Its high level of
-modularity allows other new components to be added in the future without
-affecting those already integrated into the project.
-
-For more information on the base configuration, go to the
-[Getting Started](./Mobile_SDK) section.
-
----
+# Flow - Continuous Launch
 
 ## 1. Introduction
 
-This Flow document is an **annex** to the common **SDK**, as this functionality is contained in the **SDK** component itself.functionality is contained in the SDK component itself.
+Flow is a feature that connects the **Design Studio** section of the **Platform** with the SDK and the client implementation. Using a Flow identifier, you can launch a flow designed on the web, which can contain from 1 to N steps using existing SDK components.
 
-Flow is a functionality that connects the **Design Studio** section of the **Platform** with the SDK and the implementation done by thethe **Platform** with the SDK and the client implementation.
-Through a Flow identifier, you will be able to launch a flow designed on the web, which can contain up to 1which can contain from 1 to N steps of the existing components in the SDK.
-in the SDK.
+Refer to the [Quickstart](./Mobile_SDK) section for basic SDK setup. This guide covers the specifics of enabling and using Flow.
 
 ---
 
-## 2. Integration of the component
+## 2. Required Dependencies for Integration
 
-Before integrating this component, it is recommended to read the
-documentation related to:
+No **additional dependencies** are needed to use Flow.
 
-[Getting Started](./Mobile_SDK)
-and follow the instructions in that document.
+You must include the dependencies for each component you plan to launch within a flow. For example:
 
-This section will explain step by step how to integrate the current
-component into an existing project.
-
-### 2.1. Dependencies required for integration
-
-No **any extra dependencies** are required to use Flow.
-
-You <u>must add the required dependencies of each component</u>
-that you want to launch within Flow. If you want to launch **facial recognition,** it should be **necessary** to install the **Selphi component**, and so on with the rest of the components.components.
+- For **facial recognition**, add the **Selphi component**.
+- For **document recognition**, add the **SelphID component**.
+- And so on for other components.
 
 ---
 
-## 3. Start a new operation
+## 3. Available Controllers
 
-When initiating the launch of a Flow operation, a new operation is generated internally in a fully transparent manner.
-internally, a new operation is generated in a completely transparent way.
+| **Controller**        | **Description**                                   |
+| --------------------- | ------------------------------------------------- |
+| FlowController        | Main controller to launch published flows.        |
+| FlowPreviewController | Controller for testing flows pending publication. |
 
-**<u>It is not necessary</u>** to perform a new operation beforehand.
-beforehand.
-
----
-
-## 4. Available controllers
-
-| **Controller**        | **Description**                                           |
-| --------------------- | --------------------------------------------------------- |
-| FlowController        | Flow main controller. Launch of published flows.          |
-| FlowPreviewController | Driver for the release of flows to be published (testing) |
-
-### 4.1. Available controllers for flow
+### 3.1 Flow Step Controllers
 
 | **Controller**             | **Description**       |
 | -------------------------- | --------------------- |
 | FSelphiController          | Facial recognition    |
 | FSelphIDController         | Document recognition  |
 | FVoiceController           | Voice capture         |
-| FPhingersController        | Fingerprint Capture   |
-| FNfcController             | NFC                   |
-| FQrReaderController        | QR Reader             |
+| FPhingersController        | Fingerprint capture   |
+| FNfcController             | NFC reading           |
+| FQrReaderController        | QR code reader        |
 | FPhacturasReaderController | Invoice capture       |
-| FVideoIdController         | Video Identification  |
-| FVideoCallController       | Video Call            |
+| FVideoIdController         | Video identification  |
+| FVideoCallController       | Video assistance call |
 
 ---
 
-## 5. SDK initialisation with flow
+## 4. SDK Initialization with Flow
 
-The SDK initialisation function has the _activateFlow_ parameter to manage its activation.
-parameter to manage its activation:
+Enable Flow support by setting the `activateFlow` parameter during SDK initialization:
 
 ```java
 val sdkConfig = SdkConfigurationData(
@@ -94,215 +59,120 @@ val result = SDKController.initSdk(sdkConfig)
 
 ---
 
-## 6. Using the component
+## 5. Using the Component
 
-#### 6.1 Launching a published stream
+### 5.1 Launching a Published Flow
 
-You will use the _FlowController_ to launch a flow that the client has
-published on the platform:
+Use `FlowController` to start a flow that has been published on the platform:
 
 ```java
-val flowController = FlowController (
-     FlowConfigurationData(
-            id = "flowId",
-            controllers = listOf(FSelphiController(), FSelphIDController()),
-            customerId = "customerId",
-        ))
+val flowController = FlowController(
+    FlowConfigurationData(
+        id = "flowId",
+        controllers = listOf(FSelphiController(), FSelphIDController()),
+        customerId = "customerId",
+    )
+)
 
-viewModelScope.launch {
-     flowController.stateFlow.collect { flowResult ->
-          Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
-
-          when (flowResult.step?.key) {
-          FlowKeys.EXTERNAL_STEP.name -> {
-               delay(DELAY_EXTERNAL_STEP)
-               flowController.launchNextStep()
-          }
-
-          FlowKeys.SELPHI_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
-
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphiResult()
-                         Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
-                    }
-               }
-          }
-
-          FlowKeys.SELPHID_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
-
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphIDResult()
-                         Napier.d("APP: SelphID OK ${result.documentCaptured}")
-                    }
-               }
-          }
-          }
-
-          if (flowResult.flowFinish) {
-          Napier.d("APP: FLOW FINISH")
-          }
-     }
-}
-viewModelScope.launch {
-     SDKController.launch(flowController)
-}
+SDKController.launch(flowController)
 ```
 
-#### 6.2 Launching a flow pending publication
+### 5.2 Launching a Pending Flow for Testing
 
-The _FlowPreviewController_ shall be used to test a flow that the customer
-has yet to publish to the platform:
+Use `FlowPreviewController` to test a flow that is not yet published:
 
 ```java
-val flowController = FlowPreviewController (
-     FlowConfigurationData(
-            id = "flowId",
-            controllers = listOf(FSelphiController(), FSelphIDController()),
-            customerId = "customerId",
-        ))
+val flowController = FlowPreviewController(
+    FlowConfigurationData(
+        id = "flowId",
+        controllers = listOf(FSelphiController(), FSelphIDController()),
+        customerId = "customerId",
+    )
+)
 
-viewModelScope.launch {
-     flowController.stateFlow.collect { flowResult ->
-          Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
+SDKController.launch(flowController)
+```
 
-          when (flowResult.step?.key) {
-          FlowKeys.EXTERNAL_STEP.name -> {
-               delay(DELAY_EXTERNAL_STEP)
-               flowController.launchNextStep()
-          }
+### 5.3 Collecting Results in Your App
 
-          FlowKeys.SELPHI_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
+By default, flow steps send results directly to the platform. To handle them in your app, collect state updates:
 
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphiResult()
-                         Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
-                    }
-               }
-          }
+```java
+flowController.stateFlow.collect { flowResult ->
+    Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
 
-          FlowKeys.SELPHID_COMPONENT.name -> {
-               when (val sdkResult = flowResult.result) {
-                    is SdkResult.Error -> {
-                         Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-                    }
+    when (flowResult.step?.key) {
+        FlowKeys.EXTERNAL_STEP.name -> {
+            delay(DELAY_EXTERNAL_STEP)
+            flowController.launchNextStep()
+        }
 
-                    is SdkResult.Success -> {
-                         val result = sdkResult.data.getSelphIDResult()
-                         Napier.d("APP: SelphID OK ${result.documentCaptured}")
-                    }
-               }
-          }
-          }
+        FlowKeys.SELPHI_COMPONENT.name -> {
+            when (val sdkResult = flowResult.result) {
+                is SdkResult.Error -> {
+                    Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+                }
+                is SdkResult.Success -> {
+                    val result = sdkResult.data.getSelphiResult()
+                    Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
+                }
+            }
+        }
 
-          if (flowResult.flowFinish) {
-          Napier.d("APP: FLOW FINISH")
-          }
-     }
+        FlowKeys.SELPHID_COMPONENT.name -> {
+            when (val sdkResult = flowResult.result) {
+                is SdkResult.Error -> {
+                    Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
+                }
+                is SdkResult.Success -> {
+                    val result = sdkResult.data.getSelphIDResult()
+                    Napier.d("APP: SelphID OK ${result.documentCaptured}")
+                }
+            }
+        }
+    }
+
+    if (flowResult.flowFinish) {
+        Napier.d("APP: FLOW FINISH")
+    }
 }
+
 viewModelScope.launch {
-     SDKController.launch(flowController)
+    SDKController.launch(flowController)
 }
 ```
 
 ---
 
-## 7. Receipt of the result
+## 6. Receiving the Result
 
-The flow result will have 3 fields:
+The flow result object contains three fields:
 
-- step: Information on the flow step that has been performed. With the
-  value of "key" it will be possible to identify the component executed in the step.
-  step.
+- **step**: Details of the executed flow step. The `key` identifies which component ran.
+- **result**: The step outcome as an `SdkResult`. See [Result return](Mobile_SDK#6-result-return) in the Android SDK docs for details.
+- **flowFinish**: A boolean indicating whether the entire flow has completed.
 
-- result: The controllers will return the required information in SdkResult format
-  -more details in the Android Mobile SDK's <a
-  href="Mobile_SDK#6-result-return"
-  rel="nofollow">6. Result return</a> section-.
+### 6.1 Handling Errors
 
-- flowFinish: Flag indicating whether the process has finished.
+If a step fails, `SdkResult.Error` will include:
 
-### 7.1. Receipt of errors
+- `flowResult.step.key` to identify the failed component.
+- `flowResult.result.error` with the error details.
 
-In the result, inside _SdkResult.Error_ we will have
-**_flowResult.step.key_** to identify which component has failed, and
-the **_flowResult.result.error_** containing the error that occurred.
+### 6.2 Handling Success - `data`
 
-### 7.2. Receiving successful execution - _data_
-
-On successful execution of a stream, the corresponding components shall be launched until completion of the stream or until a
-components shall be launched until completion or until an error occurs.
-error.
-
-If the result of a launched step is SdkResult.Success, the _data_ can be located on the one hand, and on the other hand, the _data_ of the flow.
-on the one hand, the _key_ that identifies the component and on the other hand, the _data_ with the _key_ that identifies the component.
-
-On the other hand, the _data_ with the result of the component, as it is a generic result, inside the SDK, the _data_ with the result of the component will be located
-generic, within the SDK, a converter has been created for each type of result.
-result. Ex:
+On success (`SdkResult.Success`), use the appropriate converter to extract component-specific results. For example:
 
 ```java
 flowController.stateFlow.collect { flowResult ->
-     Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
-
-     when (flowResult.step?.key) {
-     FlowKeys.EXTERNAL_STEP.name -> {
-          delay(DELAY_EXTERNAL_STEP)
-          flowController.launchNextStep()
-     }
-
-     FlowKeys.SELPHI_COMPONENT.name -> {
-          when (val sdkResult = flowResult.result) {
-               is SdkResult.Error -> {
-                    Napier.d("APP: Selphi FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-               }
-
-               is SdkResult.Success -> {
-                    val result = sdkResult.data.getSelphiResult()
-                    Napier.d("APP: Selphi OK ${result.bestImage?.bitmap?.byteCount}")
-               }
-          }
-     }
-
-     FlowKeys.SELPHID_COMPONENT.name -> {
-          when (val sdkResult = flowResult.result) {
-               is SdkResult.Error -> {
-                    Napier.d("APP: SelphID FLOW ERROR: ${sdkResult.error.getSelphiError().name}")
-               }
-
-               is SdkResult.Success -> {
-                    val result = sdkResult.data.getSelphIDResult()
-                    Napier.d("APP: SelphID OK ${result.documentCaptured}")
-               }
-          }
-     }
-     }
-
-     if (flowResult.flowFinish) {
-          Napier.d("APP: FLOW FINISH")
-     }
+    Napier.d("APP: FLOW STEP ID ${flowResult.step?.id}")
+    ...
 }
-```
 
-After checking the results, we should check whether the flow has been
-finished or there are still steps left, in order to be able to manage the next steps
-outside the SDK.
-
-```java
 if (flowResult.flowFinish) {
     Napier.d("APP: FLOW FINISH")
 }
 ```
 
 ---
+

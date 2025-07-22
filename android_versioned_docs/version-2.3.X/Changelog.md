@@ -2,6 +2,30 @@
 
 ## Versions
 
+### 2.3.4
+
+- General
+
+  - Accesibility improvements
+  - Horizontal screen improvements
+  - Refactor errors
+
+- Video ID
+
+  - Reader new version: 1.7.1
+
+- SelphID
+
+  - Widget new version: 1.33.6
+
+- Design KMP
+
+  - IOS improvements
+
+- NFC
+
+  - Reading improvements
+
 ### 2.3.3
 
 - General
@@ -22,7 +46,7 @@
 
 - Selphi
 
-  - Widget new version: 5.17.4
+  - Widget new version: 5.17.5
 
 - Tracking
 
@@ -172,7 +196,7 @@
 - License Checker
 
   - Widget new version: 0.4.0
-  
+
 ### 2.2.0
 
 - General
@@ -196,7 +220,7 @@
 
   - UX updates
   - Accesibility improvements
- 
+
 - SelphID
 
   - Widget new version: 1.29.0
@@ -222,7 +246,7 @@
 - General
 
   - UX updates
- 
+
 - SelphID
 
   - Widget new version: 1.28.1
