@@ -2,6 +2,25 @@
 
 ## Versions
 
+### 2.3.5
+
+- General
+
+  - Error codes
+
+- SelphID
+
+  - Widget new version: 1.34.1
+
+- Tracking
+
+  - Widget new version: 1.1.12
+
+- Video ID
+
+  - Reader new version: 1.8.0
+  - Helper new version: 3.27.0
+
 ### 2.3.4
 
 - General

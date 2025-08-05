@@ -1,11 +1,5 @@
 # Advanced settings
 
-## Latest available version
-
-```text
-2.3.3
-```
-
 ## 1. Introduction
 
 **SDK Mobile** is a set of libraries (**_Components_**) that offer a
