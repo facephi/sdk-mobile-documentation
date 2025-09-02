@@ -2,6 +2,42 @@
 
 ## Versiones
 
+
+### 2.3.6
+
+- General
+
+  - Mejoras en diseño
+  - Ampliación de información en los errores
+  - Nueva versión de Logger: 1.0.2
+  - Nueva versión de Security: 1.5.0
+
+- SelphID
+
+  - Nueva versión del widget: 1.34.4
+
+- Tracking
+
+  - Nueva versión del widget: 1.1.15
+
+- Selphi
+
+  - Nueva versión del widget: 5.18.1
+
+- Video recording
+
+  - Borrado de output
+  - Respuesta directa en las funciones start
+
+- NFC
+
+  - Actualización de dependencias
+
+- Phingers
+
+  - Mejoras en el proceso
+  - Actualización de dependencias
+  
 ### 2.3.5
 
 - General

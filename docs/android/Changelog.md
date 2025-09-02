@@ -2,6 +2,41 @@
 
 ## Versions
 
+### 2.3.6
+
+- General
+
+  - UX improvements
+  - Error data
+  - Logger new version: 1.0.2
+  - Security new version: 1.5.0
+
+- SelphID
+
+  - Widget new version: 1.34.4
+
+- Tracking
+
+  - Widget new version: 1.1.15
+
+- Selphi
+
+  - Widget new version: 5.18.1
+
+- Video recording
+
+  - Delete output
+  - Response in start function
+
+- NFC
+
+  - Update dependencies
+
+- Phingers
+
+  - Improve process
+  - Update dependencies
+
 ### 2.3.5
 
 - General
