@@ -33,53 +33,36 @@ Once the SDK is initialized and a new operation has been created, you can launch
 
 ### 4.1 Starting Recording
 
+Start screen recording:
+
 ```java
-val controller = VideoRecordingController(
-    VideoRecordingConfigurationData()
+val response = SDKController.launch(
+    VideoRecordingController(
+        VideoRecordingConfigurationData(...)
+    )
 )
 
-controller.setOutput {
-    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+when (response) {
+    is SdkResult.Error   -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 
-SDKController.launch(controller)
 ```
 
 ### 4.2 Stopping Recording
 
-```java
-val controller = StopVideoRecordingController()
+Stop screen recording:
 
-controller.setOutput {
-    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+```java
+val response = SDKController.launch(
+    StopVideoRecordingController()
+)
+
+when (response) {
+    is SdkResult.Error   -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
-
-SDKController.launch(controller)
 ```
-
-### 4.3 Receiving States
-
-The progression of the process is indicated through states. The recording controllers return the following states to signal progress:
-
-```java
-FINISH,
-SHARING,
-LICENSE_ERROR,
-INITIALIZATION_ERROR,
-OPERATION_NOT_CREATED,
-VIDEO_RECORDING_ACTIVE_ERROR,
-VIDEO_CALL_ACTIVE_ERROR,
-NETWORK_CONNECTION_ERROR,
-PERMISSION_ERROR,
-CANCEL_BY_USER,
-VIDEO_ERROR,
-SOCKET_ERROR,
-UNKNOWN_ERROR,
-```
-
-Where `SHARING` indicates that the screen is being recorded, and `FINISH` that the process has completed.
-
----
 
 ## 5. Advanced Information
 
