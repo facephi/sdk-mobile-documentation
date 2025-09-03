@@ -27,7 +27,16 @@
 
   - Borrado de output
   - Respuesta directa en las funciones start
+  - Actualización de dependencias
 
+- Video ID
+
+  - Actualización de dependencias
+
+- VideoCall
+
+  - Actualización de dependencias
+  
 - NFC
 
   - Actualización de dependencias

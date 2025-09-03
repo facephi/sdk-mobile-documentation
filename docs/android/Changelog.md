@@ -27,7 +27,16 @@
 
   - Delete output
   - Response in start function
+  - Update dependencies
 
+- Video ID
+
+  - Update dependencies
+
+- VideoCall
+
+  - Update dependencies
+  
 - NFC
 
   - Update dependencies
