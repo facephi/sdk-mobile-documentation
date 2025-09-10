@@ -21,7 +21,7 @@
 
 - Selphi
 
-  - Widget new version: 5.18.1
+  - Widget new version: 5.18.2
 
 - Video recording
 

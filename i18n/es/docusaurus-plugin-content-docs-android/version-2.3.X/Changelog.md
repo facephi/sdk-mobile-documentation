@@ -22,7 +22,7 @@
 
 - Selphi
 
-  - Nueva versión del widget: 5.18.1
+  - Nueva versión del widget: 5.18.2
 
 - Video recording
 
