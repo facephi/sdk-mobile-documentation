@@ -13,7 +13,7 @@
 
 - SelphID
 
-  - Nueva versión del widget: 1.34.4
+  - Nueva versión del widget: 1.34.5
 
 - Tracking
 
