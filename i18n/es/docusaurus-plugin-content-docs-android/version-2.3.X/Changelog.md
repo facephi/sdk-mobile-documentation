@@ -10,7 +10,7 @@
   - Mejoras en diseño
   - Ampliación de información en los errores
   - Nueva versión de Logger: 1.0.2
-  - Nueva versión de Security: 1.5.0
+  - Nueva versión de Security: 1.0.6
 
 - SelphID
 
@@ -18,7 +18,7 @@
 
 - Tracking
 
-  - Nueva versión del widget: 1.1.15
+  - Nueva versión del widget: 1.1.16
 
 - Selphi
 
