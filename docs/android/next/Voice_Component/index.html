@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Voice Capture | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Voice_Component"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="es"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-android-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-android-current"><meta data-rh="true" property="og:title" content="Voice Capture | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. Introduction"><meta data-rh="true" property="og:description" content="1. Introduction"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Voice_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Voice_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/android/next/Voice_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Voice_Component" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Voice Capture","item":"https://facephi.github.io/sdk-mobile-documentation/docs/android/next/Voice_Component"}]}</script><link rel="stylesheet" href="/sdk-mobile-documentation/assets/css/styles.8ca7b795.css">
-<script src="/sdk-mobile-documentation/assets/js/runtime~main.1ae43bda.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/assets/js/runtime~main.aeb7cb28.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/assets/js/main.e9d5a397.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -47,21 +47,21 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="61-handling-errors">6.1 Handling Errors<a href="#61-handling-errors" class="hash-link" aria-label="Direct link to 6.1 Handling Errors" title="Direct link to 6.1 Handling Errors">​</a></h3>
 <p>Errors are returned as a <code>VoiceError</code> object. Possible values include:</p>
 <ul>
-<li>ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.</li>
-<li>APPLICATION_CONTEXT_ERROR: Required application context is null.</li>
-<li>CANCEL_BY_USER: User has cancelled the process.</li>
-<li>CANCEL_LAUNCH: A general cancellation of the SDK has been done.</li>
-<li>COMPONENT_LICENSE_ERROR: The license of the component is not correct.</li>
-<li>EMPTY_LICENSE: License String is empty.</li>
-<li>FETCH_DATA_ERROR: Error in the result collection.</li>
-<li>FLOW_ERROR: Error in the flow process.</li>
-<li>INITIALIZATION_ERROR: Initialisation error.</li>
-<li>INTERNAL_LICENSE_ERROR: Internal error related to the component license</li>
-<li>MANAGER_NOT_INITIALIZED: Managers are nil.</li>
-<li>NO_DATA_ERROR: Input data is null.</li>
-<li>OPERATION_NOT_CREATED: No operation in progress.</li>
-<li>PERMISSION_DENIED: User has denied permissions.</li>
-<li>TIMEOUT: Timeout in the process.</li>
+<li>VOC_ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.</li>
+<li>VOC_APPLICATION_CONTEXT_ERROR: Required application context is null.</li>
+<li>VOC_CANCEL_BY_USER: User has cancelled the process.</li>
+<li>VOC_CANCEL_LAUNCH: A general cancellation of the SDK has been done.</li>
+<li>VOC_COMPONENT_LICENSE_ERROR: The license of the component is not correct.</li>
+<li>VOC_EMPTY_LICENSE: License String is empty.</li>
+<li>VOC_FETCH_DATA_ERROR: Error in the result collection.</li>
+<li>VOC_FLOW_ERROR: Error in the flow process.</li>
+<li>VOC_INITIALIZATION_ERROR: Initialisation error.</li>
+<li>VOC_INTERNAL_LICENSE_ERROR: Internal error related to the component license</li>
+<li>VOC_MANAGER_NOT_INITIALIZED: Managers are nil.</li>
+<li>VOC_NO_DATA_ERROR: Input data is null.</li>
+<li>VOC_OPERATION_NOT_CREATED: No operation in progress.</li>
+<li>VOC_PERMISSION_DENIED: User has denied permissions.</li>
+<li>VOC_TIMEOUT: Timeout in the process.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="62-handling-success--data">6.2 Handling Success – <code>data</code><a href="#62-handling-success--data" class="hash-link" aria-label="Direct link to 62-handling-success--data" title="Direct link to 62-handling-success--data">​</a></h3>
 <p>On success (<code>SdkResult.Success</code>), you receive a <code>VoiceResult</code> object. It contains:</p>
