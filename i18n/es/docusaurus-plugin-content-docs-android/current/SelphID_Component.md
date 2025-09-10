@@ -109,31 +109,31 @@ Los errores se devolverán como un objeto 'SelphIdError'.
 
 Listado de errores:
 
-- ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
-- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad recibido en el msg es incorrecto.
-- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-- BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Configuración del extractor incorrecta
-- CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
-- CANCEL_BY_USER: El usuario ha cancelado el proceso.
-- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-- CONTROL_NOT_INITIALIZATED_ERROR: Widget: Error de inicialización
-- EMPTY_LICENSE: El String de licencia está vacío.
-- EXTRACTION_LICENSE_ERROR: Widget: Error de licencia
-- FETCH_DATA_ERROR: Error en la recogida del resultado.
-- FLOW_ERROR: Error en el proceso de flow.
-- HARDWARE_ERROR: Widget: Error de hardware
-- INITIALIZATION_ERROR: Error de inicialización.
-- MANAGER_NOT_INITIALIZED: Los managers son nulos.
-- MOVE_FAIL: El usuario no se ha movido como se le ha especificado en el proceso.
-- NO_DATA_ERROR: Los datos de entrada son nulos.
-- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-- RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos
-- SETTINGS_PERMISSION_ERROR: Widget: Error de permisos
-- TIMEOUT: Timeout en el proceso.
-- UNEXPECTED_CAPTURE_ERROR: Widget: Error en la captura
-- UNKNOWN_ERROR: Error desconocido
-- WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget
+- SPD_ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
+- SPD_ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad recibido en el msg es incorrecto.
+- SPD_APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- SPD_BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Configuración del extractor incorrecta
+- SPD_CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
+- SPD_CANCEL_BY_USER: El usuario ha cancelado el proceso.
+- SPD_CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- SPD_COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+- SPD_CONTROL_NOT_INITIALIZATED_ERROR: Widget: Error de inicialización
+- SPD_EMPTY_LICENSE: El String de licencia está vacío.
+- SPD_EXTRACTION_LICENSE_ERROR: Widget: Error de licencia
+- SPD_FETCH_DATA_ERROR: Error en la recogida del resultado.
+- SPD_FLOW_ERROR: Error en el proceso de flow.
+- SPD_HARDWARE_ERROR: Widget: Error de hardware
+- SPD_INITIALIZATION_ERROR: Error de inicialización.
+- SPD_MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- SPD_MOVE_FAIL: El usuario no se ha movido como se le ha especificado en el proceso.
+- SPD_NO_DATA_ERROR: Los datos de entrada son nulos.
+- SPD_OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+- SPD_RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos
+- SPD_SETTINGS_PERMISSION_ERROR: Widget: Error de permisos
+- SPD_TIMEOUT: Timeout en el proceso.
+- SPD_UNEXPECTED_CAPTURE_ERROR: Widget: Error en la captura
+- SPD_UNKNOWN_ERROR: Error desconocido
+- SPD_WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget
 
 ### 6.2. Recepción del resultado correcto - _data_
 

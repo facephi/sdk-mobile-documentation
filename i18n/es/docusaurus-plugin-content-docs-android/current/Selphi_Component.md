@@ -99,31 +99,31 @@ Los errores se devolverán como un objeto 'SelphiError'.
 
 Listado de errores:
 
-- ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
-- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad recibido en el msg es incorrecto.
-- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-- BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Configuración del extractor incorrecta.
-- CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
-- CANCEL_BY_USER: El usuario ha cancelado el proceso.
-- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-- CONTROL_NOT_INITIALIZATED_ERROR: Widget: Error de inicialización.
-- EMPTY_LICENSE: El String de licencia está vacío.
-- EXTRACTION_LICENSE_ERROR: Widget: Error de licencia.
-- FETCH_DATA_ERROR: Error en la recogida del resultado.
-- FLOW_ERROR: Error en el proceso de flow.
-- HARDWARE_ERROR: Widget: Error de hardware.
-- INITIALIZATION_ERROR: Error de inicialización.
-- MANAGER_NOT_INITIALIZED: Los managers son nulos.
-- NO_DATA_ERROR: Los datos de entrada son nulos.
-- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-- RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos.
-- SETTINGS_PERMISSION_ERROR: Widget: Error de permisos.
-- TEMPLATE_ERROR:
-- TIMEOUT: Timeout en el proceso.
-- UNEXPECTED_CAPTURE_ERROR: Widget: Error en la captura.
-- UNKNOWN_ERROR: Error desconocido.
-- WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget.
+- SPI_ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
+- SPI_ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad recibido en el msg es incorrecto.
+- SPI_APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- SPI_BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Configuración del extractor incorrecta.
+- SPI_CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
+- SPI_CANCEL_BY_USER: El usuario ha cancelado el proceso.
+- SPI_CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- SPI_COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+- SPI_CONTROL_NOT_INITIALIZATED_ERROR: Widget: Error de inicialización.
+- SPI_EMPTY_LICENSE: El String de licencia está vacío.
+- SPI_EXTRACTION_LICENSE_ERROR: Widget: Error de licencia.
+- SPI_FETCH_DATA_ERROR: Error en la recogida del resultado.
+- SPI_FLOW_ERROR: Error en el proceso de flow.
+- SPI_HARDWARE_ERROR: Widget: Error de hardware.
+- SPI_INITIALIZATION_ERROR: Error de inicialización.
+- SPI_MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- SPI_NO_DATA_ERROR: Los datos de entrada son nulos.
+- SPI_OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+- SPI_RESOURCES_NOT_FOUND: No se ha encontrado el zip de recursos.
+- SPI_SETTINGS_PERMISSION_ERROR: Widget: Error de permisos.
+- SPI_TEMPLATE_ERROR:
+- SPI_TIMEOUT: Timeout en el proceso.
+- SPI_UNEXPECTED_CAPTURE_ERROR: Widget: Error en la captura.
+- SPI_UNKNOWN_ERROR: Error desconocido.
+- SPI_WIDGET_RESULT_DATA_ERROR: Error en los datos de salida del widget.
 
 ### 6.2. Recepción del resultado correcto - _data_
 

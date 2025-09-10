@@ -100,21 +100,21 @@ Los errores se devolverán como un objeto 'VoiceError'.
 
 Listado de errores:
 
-- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto
-- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo
-- CANCEL_BY_USER: El usuario ha cancelado el proceso
-- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK
-- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta
-- EMPTY_LICENSE: El String de licencia está vacío
-- FETCH_DATA_ERROR: Error en la recogida del resultado
-- FLOW_ERROR: Error en el proceso de flow
-- INITIALIZATION_ERROR: Error de inicialización
-- INTERNAL_LICENSE_ERROR: Error interno relacionado con la licencia
-- MANAGER_NOT_INITIALIZED: Los managers son nulos
-- NO_DATA_ERROR: Los datos de entrada son nulos
-- OPERATION_NOT_CREATED: No hay ninguna operación en curso
-- PERMISSION_DENIED: El usuario ha rechazado los permisos
-- TIMEOUT: Timeout en el proceso
+- VOC_ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto
+- VOC_APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo
+- VOC_CANCEL_BY_USER: El usuario ha cancelado el proceso
+- VOC_CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK
+- VOC_COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta
+- VOC_EMPTY_LICENSE: El String de licencia está vacío
+- VOC_FETCH_DATA_ERROR: Error en la recogida del resultado
+- VOC_FLOW_ERROR: Error en el proceso de flow
+- VOC_INITIALIZATION_ERROR: Error de inicialización
+- VOC_INTERNAL_LICENSE_ERROR: Error interno relacionado con la licencia
+- VOC_MANAGER_NOT_INITIALIZED: Los managers son nulos
+- VOC_NO_DATA_ERROR: Los datos de entrada son nulos
+- VOC_OPERATION_NOT_CREATED: No hay ninguna operación en curso
+- VOC_PERMISSION_DENIED: El usuario ha rechazado los permisos
+- VOC_TIMEOUT: Timeout en el proceso
 
 ### 6.2. Recepción del resultado correcto - _data_
 

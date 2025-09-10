@@ -95,32 +95,32 @@ when (response) {
 
 Errors are returned as a `PhingersError`. Possible values include:
 
-- ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
-- ACTIVITY_RESULT_MSG_ERROR: The result of the activity in the msg is incorrect.
-- APPLICATION_CONTEXT_ERROR: The required application context is null.
-- CANCEL_BY_USER: The user has cancelled the process.
-- CANCEL_LAUNCH: A general cancellation of the SDK has been made.
-- COMPONENT_LICENSE_ERROR: The component license is not correct.
-- EMPTY_LICENSE: The licence string is empty.
-- FETCH_DATA_ERROR: Error in the result retrieval.
-- FLOW_ERROR: Error in the flow process.
-- INITIALIZATION_ERROR: Initialisation error.
-- INTERNAL_ERROROR: Internal error.
-- LOW_QUALITY: Low image quality.
-- MANAGER_NOT_INITIALIZED: Managers are null.
-- OPERATION_NOT_CREATED: No operation is in progress.
-- PERMISSION_DENIED: User has denied permissions.
-- PHINGERS_AUTOFOCUS_FAILURE: Autofocus failure.
-- PHINGERS_CAMERA_FAILURE: Camera failure.
-- PHINGERS_CAPTURE_FAILURE: Image capture failure.
-- PHINGERS_CONFIGURATION_FAILURE: Configuration error.
-- PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.
-- PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: IO failure.
-- PHINGERS_LICENSING_FAILURE: Licensing Error
-- PHINGERS_LIVENESS_FAILURE: Life test error
-- PHINGERS_NO_FINGERS_DETECTED: Error in fingerprint detection
-- PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: User not specified.
-- TIMEOUT: Timeout in the process.
+- PHG_ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+- PHG_ACTIVITY_RESULT_MSG_ERROR: The result of the activity in the msg is incorrect.
+- PHG_APPLICATION_CONTEXT_ERROR: The required application context is null.
+- PHG_CANCEL_BY_USER: The user has cancelled the process.
+- PHG_CANCEL_LAUNCH: A general cancellation of the SDK has been made.
+- PHG_COMPONENT_LICENSE_ERROR: The component license is not correct.
+- PHG_EMPTY_LICENSE: The licence string is empty.
+- PHG_FETCH_DATA_ERROR: Error in the result retrieval.
+- PHG_FLOW_ERROR: Error in the flow process.
+- PHG_INITIALIZATION_ERROR: Initialisation error.
+- PHG_INTERNAL_ERROROR: Internal error.
+- PHG_LOW_QUALITY: Low image quality.
+- PHG_MANAGER_NOT_INITIALIZED: Managers are null.
+- PHG_OPERATION_NOT_CREATED: No operation is in progress.
+- PHG_PERMISSION_DENIED: User has denied permissions.
+- PHG_PHINGERS_AUTOFOCUS_FAILURE: Autofocus failure.
+- PHG_PHINGERS_CAMERA_FAILURE: Camera failure.
+- PHG_PHINGERS_CAPTURE_FAILURE: Image capture failure.
+- PHG_PHINGERS_CONFIGURATION_FAILURE: Configuration error.
+- PHG_PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.
+- PHG_PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: IO failure.
+- PHG_PHINGERS_LICENSING_FAILURE: Licensing Error
+- PHG_PHINGERS_LIVENESS_FAILURE: Life test error
+- PHG_PHINGERS_NO_FINGERS_DETECTED: Error in fingerprint detection
+- PHG_PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: User not specified.
+- PHG_TIMEOUT: Timeout in the process.
 
 ### 6.2 Handling Success – `data`
 
