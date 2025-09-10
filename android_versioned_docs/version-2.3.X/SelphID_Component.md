@@ -95,31 +95,31 @@ when (response) {
 
 Errors are returned as a `SelphIDError` object. Possible values include:
 
-- ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
-- ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
-- APPLICATION_CONTEXT_ERROR: The required application context is null.
-- BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration
-- CAMERA_PERMISSION_DENIED: User has rejected permissions.
-- CANCEL_BY_USER: The user has cancelled the process.
-- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
-- COMPONENT_LICENSE_ERROR: The component license is not correct.
-- CONTROL_NOT_INITIALIZATED_ERROROR: Widget: Initialisation error
-- EMPTY_LICENSE: The license string is empty.
-- EXTRACTION_LICENSE_ERROR: Widget: License error
-- FETCH_DATA_ERROR: Error in the collection of the result.
-- FLOW_ERROR: Error in the flow process.
-- HARDWARE_ERROR: Widget: Hardware error
-- INITIALIZATION_ERROR: Initialisation error.
-- MANAGER_NOT_INITIALIZED: Managers are null.
-- MOVE_FAIL: The user has not moved as specified in the process.
-- NO_DATA_ERROR: Input data is null.
-- OPERATION_NOT_CREATED: No operation is in progress.
-- RESOURCES_NOT_FOUND: Resource zip not found.
-- SETTINGS_PERMISSION_ERROR: Widget: Permission error
-- TIMEOUT: Timeout in process.
-- UNEXPECTED_CAPTURE_ERROR: Widget: Capture error
-- UNKNOWN_ERROR: Unknown Error
-- WIDGET_RESULT_DATA_ERROR: Error in widget output data
+- SPD_ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+- SPD_ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
+- SPD_APPLICATION_CONTEXT_ERROR: The required application context is null.
+- SPD_BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration
+- SPD_CAMERA_PERMISSION_DENIED: User has rejected permissions.
+- SPD_CANCEL_BY_USER: The user has cancelled the process.
+- SPD_CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- SPD_COMPONENT_LICENSE_ERROR: The component license is not correct.
+- SPD_CONTROL_NOT_INITIALIZATED_ERROROR: Widget: Initialisation error
+- SPD_EMPTY_LICENSE: The license string is empty.
+- SPD_EXTRACTION_LICENSE_ERROR: Widget: License error
+- SPD_FETCH_DATA_ERROR: Error in the collection of the result.
+- SPD_FLOW_ERROR: Error in the flow process.
+- SPD_HARDWARE_ERROR: Widget: Hardware error
+- SPD_INITIALIZATION_ERROR: Initialisation error.
+- SPD_MANAGER_NOT_INITIALIZED: Managers are null.
+- SPD_MOVE_FAIL: The user has not moved as specified in the process.
+- SPD_NO_DATA_ERROR: Input data is null.
+- SPD_OPERATION_NOT_CREATED: No operation is in progress.
+- SPD_RESOURCES_NOT_FOUND: Resource zip not found.
+- SPD_SETTINGS_PERMISSION_ERROR: Widget: Permission error
+- SPD_TIMEOUT: Timeout in process.
+- SPD_UNEXPECTED_CAPTURE_ERROR: Widget: Capture error
+- SPD_UNKNOWN_ERROR: Unknown Error
+- SPD_WIDGET_RESULT_DATA_ERROR: Error in widget output data
 
 ### 6.2 Handling Success – `data`
 
@@ -537,3 +537,4 @@ Table of SDK versions and associated resource versions (see **Resources** sectio
 | 2.3.3           | 1.33.4                        |
 | 2.3.4           | 1.33.6                        |
 | 2.3.5           | 1.34.1                        |
+| 2.3.6           | 1.34.5                        |

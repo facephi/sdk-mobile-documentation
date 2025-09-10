@@ -91,21 +91,21 @@ when (response) {
 
 Errors are returned as a `VoiceError` object. Possible values include:
 
-- ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
-- APPLICATION_CONTEXT_ERROR: Required application context is null.
-- CANCEL_BY_USER: User has cancelled the process.
-- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
-- COMPONENT_LICENSE_ERROR: The license of the component is not correct.
-- EMPTY_LICENSE: License String is empty.
-- FETCH_DATA_ERROR: Error in the result collection.
-- FLOW_ERROR: Error in the flow process.
-- INITIALIZATION_ERROR: Initialisation error.
-- INTERNAL_LICENSE_ERROR: Internal error related to the component license
-- MANAGER_NOT_INITIALIZED: Managers are nil.
-- NO_DATA_ERROR: Input data is null.
-- OPERATION_NOT_CREATED: No operation in progress.
-- PERMISSION_DENIED: User has denied permissions.
-- TIMEOUT: Timeout in the process.
+- VOC_ACTIVITY_RESULT_MSG_ERROR: The result of the activity is incorrect.
+- VOC_APPLICATION_CONTEXT_ERROR: Required application context is null.
+- VOC_CANCEL_BY_USER: User has cancelled the process.
+- VOC_CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- VOC_COMPONENT_LICENSE_ERROR: The license of the component is not correct.
+- VOC_EMPTY_LICENSE: License String is empty.
+- VOC_FETCH_DATA_ERROR: Error in the result collection.
+- VOC_FLOW_ERROR: Error in the flow process.
+- VOC_INITIALIZATION_ERROR: Initialisation error.
+- VOC_INTERNAL_LICENSE_ERROR: Internal error related to the component license
+- VOC_MANAGER_NOT_INITIALIZED: Managers are nil.
+- VOC_NO_DATA_ERROR: Input data is null.
+- VOC_OPERATION_NOT_CREATED: No operation in progress.
+- VOC_PERMISSION_DENIED: User has denied permissions.
+- VOC_TIMEOUT: Timeout in the process.
 
 ### 6.2 Handling Success – `data`
 

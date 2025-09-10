@@ -111,32 +111,32 @@ Los errores se devolverán como un objeto 'PhingersError'.
 
 Listado de errores:
 
-- ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
-- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad en el msg es incorrecto.
-- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-- CANCEL_BY_USER: El usuario ha cancelado el proceso.
-- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-- EMPTY_LICENSE: El String de licencia está vacío.
-- FETCH_DATA_ERROR: Error en la recogida del resultado.
-- FLOW_ERROR: Error en el proceso de flow.
-- INITIALIZATION_ERROR: Error de inicialización.
-- INTERNAL_ERROR: Error interno.
-- LOW_QUALITY: Baja calidad de la imagen.
-- MANAGER_NOT_INITIALIZED: Los managers son nulos.
-- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-- PERMISSION_DENIED: El usuario ha rechazado los permisos.
-- PHINGERS_AUTOFOCUS_FAILURE: Fallo del autofocus.
-- PHINGERS_CAMERA_FAILURE: Fallo de la cámara.
-- PHINGERS_CAPTURE_FAILURE: Fallo en la captura de la imagen.
-- PHINGERS_CONFIGURATION_FAILURE: Error de configuración.
-- PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fallo en la captura de huellas.
-- PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: Fallo IO
-- PHINGERS_LICENSING_FAILURE: Error de licencia
-- PHINGERS_LIVENESS_FAILURE: Error en la prueba de vida
-- PHINGERS_NO_FINGERS_DETECTED: Error en la detección de huellas
-- PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: Usuario no especificado.
-- TIMEOUT: Timeout en el proceso.
+- PHG_ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
+- PHG_ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad en el msg es incorrecto.
+- PHG_APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- PHG_CANCEL_BY_USER: El usuario ha cancelado el proceso.
+- PHG_CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- PHG_COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
+- PHG_EMPTY_LICENSE: El String de licencia está vacío.
+- PHG_FETCH_DATA_ERROR: Error en la recogida del resultado.
+- PHG_FLOW_ERROR: Error en el proceso de flow.
+- PHG_INITIALIZATION_ERROR: Error de inicialización.
+- PHG_INTERNAL_ERROR: Error interno.
+- PHG_LOW_QUALITY: Baja calidad de la imagen.
+- PHG_MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- PHG_OPERATION_NOT_CREATED: No hay ninguna operación en curso.
+- PHG_PERMISSION_DENIED: El usuario ha rechazado los permisos.
+- PHG_PHINGERS_AUTOFOCUS_FAILURE: Fallo del autofocus.
+- PHG_PHINGERS_CAMERA_FAILURE: Fallo de la cámara.
+- PHG_PHINGERS_CAPTURE_FAILURE: Fallo en la captura de la imagen.
+- PHG_PHINGERS_CONFIGURATION_FAILURE: Error de configuración.
+- PHG_PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fallo en la captura de huellas.
+- PHG_PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: Fallo IO
+- PHG_PHINGERS_LICENSING_FAILURE: Error de licencia
+- PHG_PHINGERS_LIVENESS_FAILURE: Error en la prueba de vida
+- PHG_PHINGERS_NO_FINGERS_DETECTED: Error en la detección de huellas
+- PHG_PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: Usuario no especificado.
+- PHG_TIMEOUT: Timeout en el proceso.
 
 ### 6.2. Recepción del resultado correcto - _data_
 

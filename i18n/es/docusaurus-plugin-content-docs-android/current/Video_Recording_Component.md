@@ -36,56 +36,37 @@ Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funciona
 
 ### 4.1. Lanzamiento de la captura
 
+Para iniciar la grabación de pantalla: 
+
 ```java
-val controller = VideoRecordingController(
-    VideoRecordingConfigurationData()
+val response = SDKController.launch(
+    VideoRecordingController(
+        VideoRecordingConfigurationData(...)
     )
+)
 
-controller.setOutput {
-    Napier.d("APP: VIDEO RECORDING STATE (start): ${it.name}")
+when (response) {
+    is SdkResult.Error   -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 
-SDKController.launch(controller)
-
 ```
 
-### 4.1. Detener la captura
+### 4.2. Detener la captura
+
+Para detener la grabación de pantalla:
 
 ```java
-val controller = StopVideoRecordingController()
+val response = SDKController.launch(
+    StopVideoRecordingController()
+)
 
-controller.setOutput {
-    Napier.d("APP: VIDEO RECORDING STATE (stop): ${it.name}")
+when (response) {
+    is SdkResult.Error   -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 
-SDKController.launch(controller)
-
 ```
-
-### 4.1. Recepción de los estados
-
-La evolución del proceso vendrá indicada a través de los estados:
-
-Los controladores de grabación devolverán estados para indicar la evolución del proceso:
-
-```java
-AGENT_HANGUP,
-FINISH,
-SHARING,
-LICENSE_ERROR,
-INITIALIZATION_ERROR,
-OPERATION_NOT_CREATED,
-VIDEO_RECORDING_ACTIVE_ERROR,
-VIDEO_CALL_ACTIVE_ERROR,
-NETWORK_CONNECTION_ERROR,
-PERMISSION_ERROR,
-CANCEL_BY_USER,
-VIDEO_ERROR,
-SOCKET_ERROR,
-UNKNOWN_ERROR,
-```
-
-Donde SHARING indica que se está grabando la pantalla y FINISH que ha finalizado el proceso.
 
 ---
 

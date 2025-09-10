@@ -88,31 +88,31 @@ when (response) {
 
 Errors are returned as a `SelphiError` object. Possible values include:
 
-- ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
-- ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
-- APPLICATION_CONTEXT_ERROR: The required application context is null.
-- BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration.
-- CAMERA_PERMISSION_DENIED: User has rejected permissions.
-- CANCEL_BY_USER: The user has cancelled the process.
-- CANCEL_LAUNCH: A general cancellation of the SDK has been done.
-- COMPONENT_LICENSE_ERROR: The component license is not correct.
-- CONTROL_NOT_INITIALIZATED_ERROR: Widget: Initialisation error.
-- EMPTY_LICENSE: The license string is empty.
-- EXTRACTION_LICENSE_ERROR: Widget: License error.
-- FETCH_DATA_ERROR: Error in the collection of the result.
-- FLOW_ERROR: Error in the flow process.
-- HARDWARE_ERROR: Widget: Hardware error.
-- INITIALIZATION_ERROR: Initialisation error.
-- MANAGER_NOT_INITIALIZED: Managers are null.
-- NO_DATA_ERROR: Input data is null.
-- OPERATION_NOT_CREATED: No operation is in progress.
-- RESOURCES_NOT_FOUND: Resource zip not found.
-- SETTINGS_PERMISSION_ERROR: Widget: Permission error.
-- TEMPLATE_ERROR:
-- TIMEOUT: Timeout in process.
-- UNEXPECTED_CAPTURE_ERROR: Widget: Capture error.
-- UNKNOWN_ERROR: Unknown error.
-- WIDGET_RESULT_DATA_ERROR: Error in widget output data.
+- SPI_ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
+- SPI_ACTIVITY_RESULT_MSG_ERROR: The result of the activity received in the msg is incorrect.
+- SPI_APPLICATION_CONTEXT_ERROR: The required application context is null.
+- SPI_BAD_EXTRACTOR_CONFIGURATION_ERROR: Widget: Incorrect extractor configuration.
+- SPI_CAMERA_PERMISSION_DENIED: User has rejected permissions.
+- SPI_CANCEL_BY_USER: The user has cancelled the process.
+- SPI_CANCEL_LAUNCH: A general cancellation of the SDK has been done.
+- SPI_COMPONENT_LICENSE_ERROR: The component license is not correct.
+- SPI_CONTROL_NOT_INITIALIZATED_ERROR: Widget: Initialisation error.
+- SPI_EMPTY_LICENSE: The license string is empty.
+- SPI_EXTRACTION_LICENSE_ERROR: Widget: License error.
+- SPI_FETCH_DATA_ERROR: Error in the collection of the result.
+- SPI_FLOW_ERROR: Error in the flow process.
+- SPI_HARDWARE_ERROR: Widget: Hardware error.
+- SPI_INITIALIZATION_ERROR: Initialisation error.
+- SPI_MANAGER_NOT_INITIALIZED: Managers are null.
+- SPI_NO_DATA_ERROR: Input data is null.
+- SPI_OPERATION_NOT_CREATED: No operation is in progress.
+- SPI_RESOURCES_NOT_FOUND: Resource zip not found.
+- SPI_SETTINGS_PERMISSION_ERROR: Widget: Permission error.
+- SPI_TEMPLATE_ERROR:
+- SPI_TIMEOUT: Timeout in process.
+- SPI_UNEXPECTED_CAPTURE_ERROR: Widget: Capture error.
+- SPI_UNKNOWN_ERROR: Unknown error.
+- SPI_WIDGET_RESULT_DATA_ERROR: Error in widget output data.
 
 ### 6.2 Handling Success – `data`
 
@@ -349,3 +349,4 @@ Table of SDK versions and associated resource versions (see **Resources** sectio
 | 2.3.3           | 5.17.5                       |
 | 2.3.4           | 5.17.5                       |
 | 2.3.5           | 5.17.5                       |
+| 2.3.6           | 5.18.2                       |
