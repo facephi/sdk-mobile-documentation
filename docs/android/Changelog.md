@@ -13,7 +13,8 @@
 
 - SelphID
 
-  - Widget new version: 1.34.5
+  - Widget new version: 1.34.6
+  - 16 KB page size compatibility
 
 - Tracking
 
@@ -36,10 +37,11 @@
 - VideoCall
 
   - Update dependencies
-  
+
 - NFC
 
   - Update dependencies
+  - 16 KB page size compatibility
 
 - Phingers
 
