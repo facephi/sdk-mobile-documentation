@@ -14,7 +14,8 @@
 
 - SelphID
 
-  - Nueva versión del widget: 1.34.5
+  - Nueva versión del widget: 1.34.6
+  - Compatible con páginas de 16 KB
 
 - Tracking
 
@@ -41,6 +42,7 @@
 - NFC
 
   - Actualización de dependencias
+  - Compatible con páginas de 16 KB
 
 - Phingers
 

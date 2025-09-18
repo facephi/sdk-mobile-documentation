@@ -13,7 +13,8 @@
 
 - SelphID
 
-  - Nueva versión del widget: 1.34.5
+  - Nueva versión del widget: 1.34.6
+  - Compatibilidad con tamaño de página de 16 KB
 
 - Tracking
 
@@ -36,10 +37,11 @@
 - VideoCall
 
   - Actualización de dependencias
-  
+
 - NFC
 
   - Actualización de dependencias
+  - Compatibilidad con tamaño de página de 16 KB
 
 - Phingers
 
@@ -283,7 +285,7 @@
 
   - Mejoras UX
   - Mejoras en la accesibilidad
- 
+
 - SelphID
 
   - Nueva versión del widget: 1.29.0
@@ -309,7 +311,7 @@
 - General
 
   - Mejoras UX
- 
+
 - SelphID
 
   - Nueva versión del widget: 1.28.1
@@ -325,7 +327,6 @@
 - Capture
 
   - Mejoras en la captura de documentos
-
 
 ### 2.1.0
 
