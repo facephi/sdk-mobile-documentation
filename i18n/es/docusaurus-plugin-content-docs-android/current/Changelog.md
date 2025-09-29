@@ -2,6 +2,28 @@
 
 ## Versiones
 
+### 2.3.7
+
+- General
+
+  - Mejoras en diseño
+  - Nueva versión de Tokenizer: 1.0.7
+  - Nueva versión de Security: 1.1.0
+  - Nueva versión de Logger: 1.1.0
+
+- SelphID
+
+  - Nueva versión del widget: 1.34.7
+
+- Tracking
+
+  - Nueva versión del widget: 1.1.18
+
+- Video ID
+
+  - Nueva versión del  Reader: 1.9.2
+  - Nueva versión del  Helper: 3.27.1
+
 ### 2.3.6
 
 - General
