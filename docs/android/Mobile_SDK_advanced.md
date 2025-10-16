@@ -465,10 +465,19 @@ when (result) {
     is SdkResult.Error -> Napier.d("Selphi: KO - ${result.error.name}")
 }
 ```
+---
+
+## 7. Security
+
+By default, the SDK will not allow operations to start on devices where emulation or rooting is detected. If you want to disable this security check:
+
+```java
+SDKController.securityMode(enable = false)
+```
 
 ---
 
-## 7. Close session / Logout
+## 8. Close session / Logout
 
 **Before the application is destroyed**, the SDK session must be closed
 to notify the platform of its completion. To do this, the following line
@@ -483,7 +492,7 @@ until a new operation is started again.
 
 ---
 
-## 8. Auxiliary controllers
+## 9. Auxiliary controllers
 
 This section includes other controllers and auxiliary operations, some
 of them optional, which may be necessary for the correct completion of
@@ -493,35 +502,35 @@ These fields are necessary for communication with the **Facephi**
 service, in the event of any **verification** and _tracking_ of a
 specific operation.
 
-### 8.1 Getting the OperationId
+### 9.1 Getting the OperationId
 
 ```java
 val result = SDKController.launch(GetOperationIdController())
 Napier.d("Operation ID ${result}")
 ```
 
-### 8.2 Getting the OperationType
+### 9.2 Getting the OperationType
 
 ```java
 val result = SDKController.launch(GetOperationTypeController())
 Napier.d("Operation type ${result}")
 ```
 
-### 8.3 Getting the SessionId
+### 9.3 Getting the SessionId
 
 ```java
 val result = SDKController.launch(GetSessionIdController())
 Napier.d("Session ID ${result}")
 ```
 
-### 8.4 Getting the CustomerID
+### 9.4 Getting the CustomerID
 
 ```java
 val result = SDKController.launch(GetCustomerIdController())
 Napier.d("Customer ID ${result}")
 ```
 
-### 8.5 Setting the CustomerID
+### 9.5 Setting the CustomerID
 
 ```java
 SDKController.launch(CustomerIdController("CustomerId"))
@@ -529,12 +538,12 @@ SDKController.launch(CustomerIdController("CustomerId"))
 
 ---
 
-## 9. Debugging and error-handling options
+## 10. Debugging and error-handling options
 
 Certain options in the SDK allow an increase in the debug logs in order
 to check that everything is working correctly.
 
-### 9.1. Error checking of Tracking connections to the platform
+### 10.1. Error checking of Tracking connections to the platform
 
 Once the SDK has started correctly, certain settings can be applied to
 have more information about possible tracking errors, which can be
@@ -546,7 +555,7 @@ SDKController.launch(TrackingErrorController {
 })
 ```
 
-### 9.2. Activation of General Debugging Logs
+### 10.2. Activation of General Debugging Logs
 
 ```java
  if (BuildConfig.DEBUG) {
@@ -556,7 +565,7 @@ SDKController.launch(TrackingErrorController {
 
 ---
 
-## 10. Application Event Tracking and Analysis
+## 11. Application Event Tracking and Analysis
 
 Event functionality allows key interactions within the application, such as screen changes and user actions, to be recorded and interpreted, facilitating real-time behavioural analysis. 
 

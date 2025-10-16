@@ -528,12 +528,22 @@ SDKController.launch(CustomerIdController("CustomerId"))
 
 ---
 
-## 7. Opciones de depuración y control de errores
+## 7. Segridad
+
+Por defecto el SDK no dejará iniciar operaciones a dispositivos en los que se detecte emulación o root. Si se quiere desactivar esta comprobación de seguridad:
+
+```java
+SDKController.securityMode(enable = false)
+```
+
+---
+
+## 8. Opciones de depuración y control de errores
 
 Existen ciertas opciones en el SDK que permiten un aumento en los logs
 de depuración para poder comprobar que todo funciona de manera correcta.
 
-### 7.1. Control de errores en las conexiones de Tracking con la plataforma
+### 8.1. Control de errores en las conexiones de Tracking con la plataforma
 
 Una vez el SDK se haya iniciado correctamente, se pueden aplicar ciertos
 ajustes para tener una mayor información acerca de los posibles errores
@@ -546,7 +556,7 @@ SDKController.launch(TrackingErrorController {
 })
 ```
 
-### 7.2. Activación de Logs de depuración general
+### 8.2. Activación de Logs de depuración general
 
 ```java
  if (BuildConfig.DEBUG) {
@@ -556,7 +566,7 @@ SDKController.launch(TrackingErrorController {
 
 ---
 
-## 8. Seguimiento y Análisis de Eventos en la Aplicación
+## 9. Seguimiento y Análisis de Eventos en la Aplicación
 
 La funcionalidad de eventos permite registrar e interpretar interacciones clave dentro de la aplicación, como cambios de pantalla y acciones del usuario, facilitando el análisis del comportamiento en tiempo real.
 

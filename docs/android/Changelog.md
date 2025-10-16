@@ -2,6 +2,34 @@
 
 ## Versions
 
+### 2.4.0
+
+- General
+
+  - UX improvements
+  - New security activation
+  - Tokenizer new version: 1.0.8
+  - Security new version: 1.1.1
+  - Logger new version: 1.1.1
+
+- SelphID
+
+  - Widget new version: 1.35.0
+  - New customization
+
+- Selphi
+
+  - Widget new version: 5.19.1
+  - New customization
+
+- Tracking
+
+  - Widget new version: 1.1.22
+
+- Video ID
+
+  - Reader new version: 1.9.5
+  
 ### 2.3.7
 
 - General

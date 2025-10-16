@@ -539,3 +539,4 @@ Table of SDK versions and associated resource versions (see **Resources** sectio
 | 2.3.5           | 1.34.1                        |
 | 2.3.6           | 1.34.6                        |
 | 2.3.7           | 1.34.7                        |
+| 2.4.0           | 1.35.0                        |
