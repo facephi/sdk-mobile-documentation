@@ -528,7 +528,7 @@ SDKController.launch(CustomerIdController("CustomerId"))
 
 ---
 
-## 7. Segridad
+## 7. Seguridad
 
 Por defecto el SDK no dejará iniciar operaciones a dispositivos en los que se detecte emulación o root. Si se quiere desactivar esta comprobación de seguridad:
 
