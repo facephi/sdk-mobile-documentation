@@ -139,7 +139,6 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   scanMode?: SelphIDScanMode;
   specificData?: string;
   fullscreen?: boolean;
-  locale?: string;
   tokenImageQuality?: number;
   documentType?: SelphIDDocumentType;
   timeout?: SelphIDTimeout;
@@ -227,22 +226,6 @@ Los valores permitidos son los siguientes:
 Establece si se desea que el componente se arranque en modo pantalla completa, ocultando el status bar.
 
 > fullscreen: true;
-
-### 3.7 locale
-
-**type:** *string*
-
-Es un string que permite cambiar la localización y el idioma del componente. Ejemplos de valores que pueden tener son los siguientes:
-
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
-
-En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del lenguaje que se desee seleccionar (strings-es.xml, strings-en.xml, strings-fr.xml).
-
-En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el componente.
-
-> locale: "es";
 
 ### 3.8 documentType
 

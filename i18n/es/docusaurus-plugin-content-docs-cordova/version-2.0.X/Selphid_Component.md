@@ -129,7 +129,6 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   specificData?: string;
   documentType?: string;
   videoFilename?: stirng;
-  locale?: string;
   documentModels?: string;
   generateRawImages?: boolean;
   translationsContent?: string;
@@ -204,21 +203,6 @@ Establece si se desea que el componente se arranque en modo pantalla completa, o
 ```
 fullscreen: true;
 ```
-### 3.6 locale
-
-**type:** *string*
-
-Es un string que permite cambiar la localización y el idioma del componente. Ejemplos de valores que pueden tener son los siguientes:
-
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
-
-En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del lenguaje que se desee seleccionar (strings-es.xml, strings-en.xml, strings-fr.xml).
-
-En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el componente.
-
-> locale: "es";
 
 ### 3.7 documentType
 

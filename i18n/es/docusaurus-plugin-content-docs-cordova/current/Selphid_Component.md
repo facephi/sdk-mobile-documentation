@@ -157,7 +157,6 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   documentType?: string;
   videoFilename?: string;
   fullscreen?: boolean;
-  locale?: string;
   documentModels?: string;
   enableWidgetEventListener?: boolean;
   generateRawImages?: boolean;
@@ -235,21 +234,6 @@ Establece si se desea que el widget se arranque en modo pantalla completa, ocult
 ```
 fullscreen: true;
 ```
-### 3.6 Locale
-
-**type:** *string*
-
-Es un string que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
-
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
-
-En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del lenguaje que se desee seleccionar (strings-es.xml, strings-en.xml, strings-fr.xml).
-
-En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el widget.
-
-> locale: "es";
 
 ### 3.7 DocumentType
 
@@ -386,7 +370,6 @@ const getSelphidConfiguration = () => {
       specificData: 'AR|<ALL>',
       documentType: SdkSelphidEnums.SdkDocumentType.IdCard,
       fullscreen: true,
-      locale: '',
       resourcesPath: "fphi-selphid-widget-resources-sdk.zip",
     };
     return config;
