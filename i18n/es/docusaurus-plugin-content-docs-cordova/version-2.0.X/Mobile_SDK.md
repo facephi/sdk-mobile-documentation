@@ -8,10 +8,12 @@
 ### 1.1 Requisitos mínimos
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
-- Versión mínima Android: **24 - JDK 17**
-- Versión mínima iOS: **13**
-- Versión mínima Android Cordova **12.0.0**
-- Versión mínima iOS Cordova **7.0.0**
+-   Versión mínima Android: **24 - JDK 17**
+-   Versión mínima iOS: **13**
+-   Versión mínima Build Tools version: **8.6.0**
+-   Versión mínima Kotlin Android version **2.1.0**
+-   Versión mínima Android Cordova **12.0.0**
+-   Versión mínima iOS Cordova **7.0.0**
 
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:

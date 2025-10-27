@@ -7,20 +7,6 @@ El Componente tratado en el documento actual recibe el nombre de ***NFC Componen
 - El documento no ha sido alterado.
 - El documento no es una copia o un documento clonado.
 
-### 1.1 Requisitos mínimos
-
-La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
-
--   Versión mínima Android: **24 - JDK 17**
--   Versión mínima Build Tools: **8.3.0**
--   Versión mínima Kotlin Android: **1.9.0**
--   Versión mínima iOS: **13**
--   Versión mínima ReactNative: **0.73.0**
-
-En cuanto a la arquitectura del dispositivo móvil:
-
-- armeabi-v7, x86, arm64 y x64
-
 <div class="warning">
 <span class="warning">:warning:</span>
 Este componente requiere una actualización a la versión ***React Native 0.72*** debido a dependencias internas, o actualizar ***Android Build Tools*** a la versión ***8.0*** o superior.
