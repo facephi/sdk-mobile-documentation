@@ -189,6 +189,22 @@ Esta es un String que permite cambiar la configuración regional y el idioma del
 - “en” for English.
 
 - “fr” for french.
+
+#### 2.2.6 enableDebugMode
+
+Este valor booleano se utiliza para habilitar o deshabilitar la visualización de logs en modo debug del SDK a través de la consola.
+
+```
+enableDebugMode: true
+```
+
+#### 2.2.7 enableSecurityMode
+
+Éste boleano sirve para habilitar o no el modo de seguridad. Éste es el encargado de impedir el uso en caso de que se detecten por ejemplo que se intenta usar el sdk a traves de dispositivos rooteados, o simuladores, entre varias mas validaciones. El valor por defecto será siempre true.
+
+```
+enableSecurityMode: true
+```
 ---
 
 ## 3. Inicialización de la operación

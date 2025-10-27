@@ -148,6 +148,22 @@ Esta es un String que permite cambiar la configuración regional y el idioma del
 
 - “fr” for french.
 
+#### 2.2.6 enableDebugMode
+
+Este valor booleano se utiliza para habilitar o deshabilitar la visualización de logs en modo debug del SDK a través de la consola.
+
+```
+enableDebugMode: true
+```
+
+#### 2.2.7 enableSecurityMode
+
+Éste boleano sirve para habilitar o no el modo de seguridad. Éste es el encargado de impedir el uso en caso de que se detecten por ejemplo que se intenta usar el sdk a traves de dispositivos rooteados, o simuladores, entre varias mas validaciones. El valor por defecto será siempre true.
+
+```
+enableSecurityMode: true
+```
+
 ## 3. Inicialización de la operación
 Cada vez que se desee iniciar el flujo de alguna operación nueva (ejemplos de operaciones serían: onboarding, authentication,…) es esencial indicarle al **SDKController** que ésta va a comenzar, y así la SDK sabrá que las próximas llamadas de **Componentes** (también llamados **Steps**) formarán parte de dicha operación. Esto es necesario para trackear a la plataforma la información global de esta operación de forma satisfactoria.
 

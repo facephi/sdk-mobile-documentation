@@ -175,6 +175,18 @@ the widget. Examples of values they can have are as follows:
 
 - “fr” for french.
 
+#### 2.2.6 enableDebugMode
+
+This boolean is used to enable or disable the display of SDK logs via the console.
+
+```
+enableDebugMode: true
+```
+
+#### 2.2.7 enableSecurityMode
+
+This boolean is used to enable or disable the security mode. This is responsible for preventing the use if, for example, attempts are detected to use the SDK through rooted devices or simulators, among other validations. The default value is always true.
+
 ---
 
 ## 3. Start a new operation
