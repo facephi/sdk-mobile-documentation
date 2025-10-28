@@ -7,19 +7,6 @@ El Componente tratado en el documento actual recibe el nombre de ***NFC Componen
 - El documento no ha sido alterado.
 - El documento no es una copia o un documento clonado.
 
-### 1.1 Requisitos mínimos
-La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
-
--   Versión mínima Android: **24 - JDK 17**
--   Versión mínima Build Tools: **8.3.0**
--   Versión mínima Kotlin Android: **1.9.0**
--   Versión mínima iOS: **13**
--   Versión mínima Flutter: **3.0**
-
-En cuanto a la arquitectura del dispositivo móvil:
-
-armeabi-v7, x86, arm64 y x64
-
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
 

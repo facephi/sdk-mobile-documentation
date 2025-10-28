@@ -9,20 +9,6 @@ El Componente tratado en el documento actual recibe el nombre de Selphi Componen
 
 Generación de las plantillas con las características faciales y de la imagen de la cara del usuario para el proceso de detección de vivacidad (Liveness)
 
-### 1.1 Minimum requirements
-
-The minimum native version (Android and iOS) of the SDK are as follows:
-
--   Versión mínima Android: **24 - JDK 17**
--   Versión mínima Build Tools: **8.1.4**
--   Versión mínima Kotlin Android: **1.9.0**
--   Versión mínima iOS: **13**
--   Versión mínima Flutter: **3.0**
-
-Regarding the architecture of the mobile device:
-
-- armeabi-v7, x86, arm64 y x64
-
 ### 1.2 Versión del plugin
 
 La versión del widget se puede consultar de la siguiente manera:

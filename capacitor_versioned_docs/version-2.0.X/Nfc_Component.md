@@ -19,7 +19,7 @@ The Component addressed in the current document is called the ***NFC Component**
 
 <div class="warning">
 <span class="warning">:warning:</span>
-This component needs to update to ***React Native 0.72 version*** due to internal dependencies, or at least to update ***Android Build Tools*** to ***8.0*** or more
+This component needs to update to ***React Native 0.77 version*** due to internal dependencies, or at least to update ***Android Build Tools*** to ***8.0*** or more
 </div>
 
 ### 1.2 Plugin version

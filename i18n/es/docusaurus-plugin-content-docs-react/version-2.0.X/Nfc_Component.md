@@ -9,7 +9,7 @@ El Componente tratado en el documento actual recibe el nombre de ***NFC Componen
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Este componente requiere una actualización a la versión ***React Native 0.72*** debido a dependencias internas, o actualizar ***Android Build Tools*** a la versión ***8.0*** o superior.
+Este componente requiere una actualización a la versión ***React Native 0.77*** debido a dependencias internas, o actualizar ***Android Build Tools*** a la versión ***8.0*** o superior.
 </div>
 
 

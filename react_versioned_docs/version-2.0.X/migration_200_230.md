@@ -31,7 +31,7 @@ buildscript {
         compileSdkVersion = 35
         targetSdkVersion = 35
         ndkVersion = "27.1.12297006"
-        kotlinVersion = "2.0.21" // THIS
+        kotlinVersion = "2.1.0" // THIS
     }
     repositories {
         google()
@@ -74,7 +74,7 @@ buildscript {
         compileSdkVersion = 35 // THIS
         targetSdkVersion = 34
         ndkVersion = "27.1.12297006"
-        kotlinVersion = "2.0.21"
+        kotlinVersion = "2.1.0"
     }
     repositories {
         google()
