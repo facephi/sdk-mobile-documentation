@@ -177,7 +177,6 @@ export interface SelphiConfiguration {
   fullscreen?: boolean;
   cropPercent?: number;
   crop?: boolean;
-  locale?: string;
   stabilizationMode?: boolean;
   templateRawOptimized?: boolean;
   resourcesPath?: string;
@@ -267,18 +266,6 @@ Property that allows activating or deactivating the stabilised mode before the f
 
 ```
 stabilizationMode: true
-```
-
-### 3.7. locale
-
-**type:** *string*
-
-Forces the sdk to use the language setting indicated by the locale parameter.
-
-This parameter accepts both a language code (for example, en) and a regional identification code (for example, en_US). If the component's resource file does not have a locale for the selected locale, its setting will revert to the default language of ES.
-
-```
-locale: 'ES'
 ```
 
 ### 3.8. fullScreen

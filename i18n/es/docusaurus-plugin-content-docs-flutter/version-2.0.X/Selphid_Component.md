@@ -15,19 +15,6 @@ El Componente tratado en el documento actual recibe el nombre de SelphID Compone
 
 - Alto nivel de configuración: diferentes países, idiomas, tipos de documentos...
 
-### 1.1 Requisitos mínimos
-La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
-
--   Versión mínima Android: **24 - JDK 17**
--   Versión mínima Build Tools: **8.1.4**
--   Versión mínima Kotlin Android: **1.9.0**
--   Versión mínima iOS: **13**
--   Versión mínima Flutter: **3.0**
-
-En cuanto a la arquitectura del dispositivo móvil:
-
-armeabi-v7, x86, arm64 y x64
-
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
 
@@ -143,7 +130,6 @@ class SelphIDConfiguration
   String mSpecificData;
   bool mFullscreen;
   double mTokenImageQuality;
-  String mLocale;
   SelphIDDocumentType mDocumentType;
   SelphIDTimeout mTimeout;
   bool mGenerateRawImages;
@@ -218,21 +204,6 @@ Establece si se desea que el widget se arranque en modo pantalla completa, ocult
 ```
 fullscreen: true;
 ```
-### 3.6 Locale
-
-**type:** *string*
-
-Es un string que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
-
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
-
-En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del lenguaje que se desee seleccionar (strings-es.xml, strings-en.xml, strings-fr.xml).
-
-En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el widget.
-
-> locale: "es";
 
 ### 3.7 SelphIDDocumentType
 

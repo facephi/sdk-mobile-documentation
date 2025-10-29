@@ -15,21 +15,6 @@ El Componente tratado en el documento actual recibe el nombre de SelphID Compone
 
 - Alto nivel de configuración: diferentes países, idiomas, tipos de documentos...
 
-### 1.1 Requisitos mínimos
-
-La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
-
--   Versión mínima Android: **24 - JDK 17**
--   Versión mínima Build Tools: **8.1.4**
--   Versión mínima Kotlin Android: **1.9.0**
--   Versión mínima iOS: **13**
--   Versión mínima Android Cordova **12.0.0**
--   Versión mínima iOS Cordova **7.0.0**
-
-En cuanto a la arquitectura del dispositivo móvil:
-
-armeabi-v7, x86, arm64 y x64
-
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
 
@@ -144,7 +129,6 @@ A continuación se muestra la clase *SelphidConfiguration*, que permite configur
   specificData?: string;
   documentType?: string;
   videoFilename?: stirng;
-  locale?: string;
   documentModels?: string;
   generateRawImages?: boolean;
   translationsContent?: string;
@@ -219,21 +203,6 @@ Establece si se desea que el componente se arranque en modo pantalla completa, o
 ```
 fullscreen: true;
 ```
-### 3.6 locale
-
-**type:** *string*
-
-Es un string que permite cambiar la localización y el idioma del componente. Ejemplos de valores que pueden tener son los siguientes:
-
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
-
-En definitiva, dependerá del nombre que aparezca en el fichero strings.xml del lenguaje que se desee seleccionar (strings-es.xml, strings-en.xml, strings-fr.xml).
-
-En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros strings-xx.xml correspondientes a cada localización que se requiere incorporar en el componente.
-
-> locale: "es";
 
 ### 3.7 documentType
 

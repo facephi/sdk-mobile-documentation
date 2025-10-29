@@ -31,18 +31,6 @@ main functionalities are the following:
 -   High level of configuration: different countries, languages, types
     of documents...
 
-### 1.1 Minimum requirements
-
-The minimum native version (Android and iOS) of the SDK are as follows:
-
--   Minimum Android version: **24 - JDK 11**
-
--   Minimum iOS version: **13**
-
-Regarding the architecture of the mobile device:
-
--   armeabi-v7, x86, arm64 and x64
-
 ### 1.2 Plugin version
 
 The current plugin version can be checked as follows:
@@ -84,7 +72,7 @@ plugin, the following steps must be adopted:
 
 ``` java
 yarn add @facephi/sdk-core-react-native
-yarn add @facephi/sdk-selphid-react-native
+yarn add @facephi/sdk-videoid-react-native
 yarn install
 ```
 
@@ -257,7 +245,6 @@ configure the **SelphID** component:
   documentType?: string;
   videoFilename?: string;
   fullscreen?: boolean;
-  locale?: string;
   documentModels?: string;
   enableWidgetEventListener?: boolean;
   generateRawImages?: boolean;
@@ -360,29 +347,6 @@ Determines whether you wish the widget to start in full screen mode,
 hiding the status bar.
 
     **fullscreen**: true;
-
-### 3.6 Locale
-
-**type:** *string*
-
-It is a string that allows the localisation and language of the widget
-to be changed. Examples of values ​​that they may have are the following:
-
--   “es” for Spanish.
-
--   “en” for English.
-
--   “fr” for French.
-
-Ultimately, it will depend on the name that appears in the strings.xml
-file of the language you want to select (strings-es.xml, strings-en.xml,
-strings-fr.xml).
-
-In the resource zip, which is located inside the strings folder, you can
-add the strings-xx.xml files corresponding to each location that needs
-to be incorporated into the widget.
-
-> **locale**: "es";
 
 ### 3.7 DocumentType
 
@@ -580,7 +544,6 @@ const getSelphidConfiguration = () => {
       specificData: 'AR|<ALL>',
       documentType: SdkSelphidEnums.SdkDocumentType.IdCard,
       fullscreen: true,
-      locale: '',
       resourcesPath: "fphi-selphid-widget-resources-sdk.zip",
     };
     return config;

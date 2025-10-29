@@ -11,20 +11,6 @@ The Component discussed in the current document is called ***Voice Component***.
 - Assistant in the capture processes.
 - Generation of templates with voice characteristics and scores.
 
-### 1.1 Minimum requirements
-The minimum native version (Android and iOS) of the SDK are as follows:
-
--   Minimum Android version: **24 - JDK 17**
--   Minimum Build Tools version: **8.1.4**
--   Minimum Kotlin Android version **(sdk {'<'}= 2.2.x)**: **1.9.0**
--   Minimum Kotlin Android version **(sdk >= 2.3.x)**: **2.1.0**
--   Minimum iOS version: **13**
--   Minimum Flutter version: **3.0**
-
-Regarding the architecture of the mobile device:
-
-armeabi-v7, x86, arm64 y x64
-
 ### 1.2 Plugin version
 The current plugin version can be checked as follows:
 

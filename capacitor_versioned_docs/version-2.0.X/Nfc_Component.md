@@ -17,24 +17,9 @@ The Component addressed in the current document is called the ***NFC Component**
 
 - Return of images when they are available for reading.
 
-### 1.1 Minimum requirements
-
-The minimum native version (Android and iOS) of the SDK are as follows:
-
--   Minimum Android version: **24 - JDK 17**
--   Minimum Build Tools version: **8.3.0**
--   Minimum Kotlin Android version **(sdk {'<'}= 2.2.x)**: **1.9.0**
--   Minimum Kotlin Android version **(sdk >= 2.3.x)**: **2.1.0**
--   Minimum iOS version: **13**
--   Minimum Capacitor version: **5**
-
-Regarding the architecture of the mobile device:
-
-- armeabi-v7, x86, arm64 y x64
-
 <div class="warning">
 <span class="warning">:warning:</span>
-This component needs to update to ***React Native 0.72 version*** due to internal dependencies, or at least to update ***Android Build Tools*** to ***8.0*** or more
+This component needs to update to ***React Native 0.77 version*** due to internal dependencies, or at least to update ***Android Build Tools*** to ***8.0*** or more
 </div>
 
 ### 1.2 Plugin version

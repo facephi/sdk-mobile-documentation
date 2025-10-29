@@ -9,8 +9,8 @@
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 -   Versión mínima Android: **24** y JAVA 17
--   Versión mínima Build Tools: **8.1.4**
--   Versión mínima Kotlin Android: **1.9.0**
+-   Versión mínima Build Tools version: **8.6.0**
+-   Versión mínima Kotlin Android version **2.1.0**
 -   Versión mínima iOS: **13**
 -   Versión mínima Capacitor **5**
 
