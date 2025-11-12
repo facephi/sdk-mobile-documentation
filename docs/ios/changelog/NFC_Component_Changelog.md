@@ -1,5 +1,19 @@
 # NFC Changelog
 
+## Version 2.12.X  
+**Last release: 2.12.0 – 28/10/2025**
+
+### Main Updates
+- Updated Core dependency to version v2.4.0.
+- Improved tracking data management for consistency and reliability.
+- Integrated accessibility improvements into tutorial and previous tip flows.
+
+### Fixes
+- Fixed animation names and transitions.
+- Corrected text colors in DescriptionTextView.
+- Fixed animations in the previous tip sequence.
+- Corrected literals displayed during NFC reading.
+
 ## Version 2.11.X  
 **Last release: 2.11.8 – 21/10/2025**
 

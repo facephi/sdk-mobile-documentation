@@ -1,5 +1,35 @@
 # Registro de Cambios del SDK
 
+## Version 2.4.X  
+**Última versión: 2.4.0 – 28/10/2025**
+
+### Actualizaciones Principales
+- Refactorizada la interfaz de ITrackingController para soportar IDV y nuevos eventos.
+- Refactorizado NO_OPERATION_CREATED_ERROR → OPERATION_NOT_CREATED.
+- Devuelto operationId en cada SdkFlowResult.
+- Actualizada dependencia Core a v2.4.0.
+- Eliminado FlowPreviewController no utilizado.
+- Eliminada la caché en GetFlowService.
+- Añadido integrationId para uso en VideoRecording.
+- Añadido evento finish flow change_step.
+- Creado método público para obtener los IDs y tipos de flujo.
+- Refactorizadas y movidas clases a la carpeta Data.
+- Eliminadas las banderas activateFlow e iaModels de initSdk().
+- Hechos públicos los IDs y operationType de FlowData.
+- Refactorizada la inicialización y métodos de SDKController relacionados con Flow.
+- Eliminado FlowLicense e introducido IdvLicense.
+- Copiada internamente la funcionalidad de LicensingComponent y eliminada su dependencia externa.
+- Añadido nuevo método público para personalización.
+
+### Nuevas Funcionalidades
+- IDV
+
+### Correcciones
+- Eliminado operationId antes de establecerlo.
+- Corregida la aplicación de customization.colors en lugar del objeto padre.
+- Actualizada dependencia de LicenseChecker v2.4.0 para fixear problema con Bundle IDs erróneos.
+- Corregida la lógica de referencia de paso — ahora tomada desde operation.start en lugar del primer elemento del array.
+
 ## Versión 2.3.X  
 **Última versión: 2.3.6 – 21/10/2025**
 

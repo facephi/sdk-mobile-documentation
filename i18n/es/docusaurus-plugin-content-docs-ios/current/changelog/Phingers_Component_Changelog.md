@@ -1,5 +1,20 @@
 # Registro de Cambios de Phingers
 
+## Versión 2.4.X  
+**Última versión: 2.4.2 – 03/11/2025**
+
+### Actualizaciones Principales
+- UI/UX Actualización de la Interfaz y Experiencia de usuario
+
+### Correcciones
+- Corregida asignación incorrecta de stepData.
+- Envío limitado únicamente a las correcciones finales hacia IDV (evitando actualizaciones intermedias o redundantes).
+- El permiso de cámara ahora se gestiona mediante la función de Core.
+- Corregido un fallo que provocaba un bloqueo al acceder o modificar la misma variable desde varios hilos simultáneamente.
+- Corregido error duplicado en el trackeo de los eventos.
+
+---
+
 ## Versión 2.3.X  
 **Última versión: 2.3.12 – 21/10/2025**
 

@@ -1,5 +1,25 @@
 # SelphID Changelog
 
+## Version 2.4.X  
+**Last release: 2.4.3 - 12/11/2025**
+
+### Main Updates
+- Updated SelphIDWidget dependency to version v1.35.2.
+- Added widget version with full customization functionality.
+- Added setParam for UseSdkCustomization in widget.
+- Adapted to resultData changes from trackingWidget v1.1.23.
+- Set generateRawImages default behavior to true.
+
+### Refactors
+- Forced initialization flag to always return true to ensure consistent setup flow.
+
+### Fixes
+- Fixed incorrect stepData assignment.
+- Fixed behavior when generateRawImages was received as null.
+- Fixed a crash when trying to read ARG document with MBSDR.
+
+---
+
 ## Version 2.3.X  
 **Last release: 2.3.23 – 21/10/2025**
 

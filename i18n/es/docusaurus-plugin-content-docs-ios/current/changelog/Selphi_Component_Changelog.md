@@ -1,5 +1,52 @@
 # Registro de Cambios de Selphi
 
+## Version 2.4.X  
+**Última versión: 2.4.1 - 30/10/2025**
+
+### Actualizaciones Principales
+- Añadida versión del widget con funcionalidad completa de personalización.
+- Añadido setParam para UseSdkCustomization en el widget.
+- Actualizado el widget a la versión v5.19.5.
+- Añadido nil output para escenarios específicos.
+- Actualizado y adaptado a los últimos cambios en trackingWidget.
+- Añadido authenticationId y preparada la estructura para futuras mejoras.
+- Añadido envío condicional de includeClip cuando sea necesario.
+- Eliminado SelphiError no utilizado e introducido ACTIVE_LIVENESS_ERROR.
+- Mejorada la lógica y manejo del ErrorParser.
+- Devuelto livenessDiagnostic en SELPHI_TIMEOUT.
+- Implementada versión IDV v2.4.0.
+- Usado el modelo SelfieData para tracking IDV.
+- Integrado LivenessDiagnostic en la librería Core.
+- Movidos los modelos de datos a carpetas estructuradas.
+- Añadido modelo IdvTracking (SelfieData).
+- Actualizada dependencia Core a v2.4.0.
+- Actualizadas dependencias del widget y SelphiKMP a las últimas versiones.
+- Eliminado parámetro cameraId (ya no se utiliza).
+- Eliminado evento único innecesario sendAdvanceTracking.
+- Añadido envío de selfie en capturas exitosas.
+- Unificados los errores enviados al módulo de Tracking.
+- Actualizada versión de SelphiKMP en Podspecs.
+- Actualizado selphiWidget KMP y adaptados cambios en SelphiFaceLiveness.
+- Adaptados cambios en SelphiConfigurationData.
+
+### Refactorizaciones
+- Refactorizada la lógica para evitar errores en tiempo de ejecución.
+- Refactorizado el manejo de errores para OPERATION_NOT_CREATED.
+- Limpieza y reorganización de la estructura de carpetas.
+- Refactorizado SelphiWidgetController.start() para devolver nil UIViewController cuando la licencia no es válida.
+- Limpieza general de código para mejorar legibilidad y consistencia.
+
+### Correcciones
+- Corregida asignación incorrecta de stepData.
+- Corregida la gestión de videoFilename en la configuración del flujo.
+- Corregido error por el cual liveness no se enviaba a Tracking.
+- Corregido comportamiento en modo MOVE — ahora devuelve KO cuando LivenessDiagnostic no es Detectado.
+- Ahora se envía bestImage en lugar de la imagen recortada.
+- Corregidos conflictos de actualización en dependencia Core.
+- Corregido error en la interfaz para iPhone 17
+
+---
+
 ## Versión 2.3.X  
 **Última versión: 2.3.7 – 03/07/2025**
 

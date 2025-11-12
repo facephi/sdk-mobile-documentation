@@ -1,5 +1,12 @@
 # Registro de Cambios de Status/Diagnóstico
 
+## Versión 2.4.X
+**Última versión: 2.4.0 – 28/10/2025**
+
+### Actualizaciones Principales
+- Primera release v2.4.0.
+- Eliminadas variables innecesarias tras actualización de Core.
+
 ## Versión 2.3.X  
 **Última versión: 2.3.4 – 21/10/2025**
 

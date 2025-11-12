@@ -1,6 +1,27 @@
 # Tracking Changelog
 
-## Version 2.3.X  
+## Version 2.4.X  
+**Last release: 2.4.0 – 28/10/2025**
+
+### Main Updates
+- Refactored several internal models.
+- Updated and adapted TrackingController events and asset calls.
+- Updated and adapted changes in trackingWidget.
+- Added authenticationId and prepared structure for future changes.
+- Updated trackingWidget to versions v1.1.23.
+- Adapted Core update across interfaces.
+- Avoided sending WSQ assets when using TrackingX.
+- Added integrationId to both configurationData and TrackingConfigurationData.
+- Removed unnecessary sendAdvanceTracking single event.
+- Added automatic country detection from dictionary in sendDocumentData.
+- Implemented full IDV tracking behavior.
+- Removed duplicated widgetError.
+- Refactored NO_OPERATION_CREATED_ERROR → OPERATION_NOT_CREATED.
+- Updated SDK version to v2.4.0.
+
+---
+
+## Versión 2.3.X    
 **Last release: 2.3.6 – 21/10/2025**
 
 ### Main Updates

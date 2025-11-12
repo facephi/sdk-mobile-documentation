@@ -1,6 +1,13 @@
 # Status/Diagnostic Changelog
 
-## Versión 2.3.X  
+## Version 2.4.X
+**Last release: 2.4.0 – 28/10/2025**
+
+### Main Updates
+- First release for v2.4.0.
+- Removed unnecessary variables after Core update.
+
+## Version 2.3.X  
 **Last release: 2.3.4 – 21/10/2025**
 
 ### Main Updates

@@ -1,6 +1,25 @@
 # VideoRecording Changelog
 
-## Version 2.3.X  
+## Version 2.4.X    
+**Last release: 2.4.1 – 28/10/2025**
+
+### Main Updates
+- Removed class parameter presenter.
+- Added return code VIDEO_RECORDING_ACTIVE when Agora throws an error and the active session cannot be stopped after 5 attempts.
+- Added call to output when StopVRController is launched.
+- Added integrationId to VideoRecording services.
+- Refactored Controller and created StopVideoRecordingController to implement IDV behavior.
+- Unified error handling sent to Tracking.
+- Updated Core dependency to v2.4.0.
+
+### Fixes
+- Fixed incorrect stepData assignment.
+- Fixed corner case where VideoRecording was launched while another instance was active.
+- Fixed error on VideoRecording permission modal with the language
+
+---
+
+## Version 2.3.X    
 **Last release: 2.3.9 – 21/10/2025**
 
 ### Main Updates

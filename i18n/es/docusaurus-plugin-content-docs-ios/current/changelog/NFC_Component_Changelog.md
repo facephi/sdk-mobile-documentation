@@ -1,5 +1,19 @@
 # Registro de Cambios de NFC
 
+## Versión 2.12.X  
+**Última versión: 2.12.0 – 28/10/2025**
+
+### Actualizaciones Principales
+- Actualizada la dependencia Core a la versión v2.4.0.
+- Mejorada la gestión de datos de tracking para mayor consistencia y fiabilidad.
+- Integradas mejoras de accesibilidad en los flujos de tutorial y consejo previo.
+
+### Correcciones
+- Corregidos los nombres y transiciones de las animaciones.
+- Corregidos los colores de texto en DescriptionTextView.
+- Corregidas las animaciones en la secuencia del consejo previo.
+- Corregidos los literales mostrados durante la lectura NFC.
+
 ## Versión 2.11.X  
 **Última versión: 2.11.8 – 21/10/2025**
 

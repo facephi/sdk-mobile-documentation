@@ -1,5 +1,16 @@
 # Registro de Cambios de Tokenizer
 
+## Versión 2.4.X  
+**Última versión: 2.4.0 – 28/10/2025**
+
+### Actualizaciones Principales
+- Primera versión publicada v2.4.0.
+
+### Correcciones
+- Configurado fpbtokenizer desde clienters para corregir el comportamiento de inicialización.
+
+---
+
 ## Versión 2.3.X  
 **Última versión: 2.3.4 – 21/10/2025**
 

@@ -1,5 +1,25 @@
 # Registro de Cambios de VideoRecording
 
+
+## Version 2.4.X    
+**Última versión: 2.4.1 – 28/10/2025**
+
+### Actualizaciones Principales
+- Eliminado el parámetro class presenter.
+- Añadido el código de retorno VIDEO_RECORDING_ACTIVE cuando Agora lanza un error y no se puede detener la sesión activa tras 5 intentos.
+- Añamada la llamada a output cuando se lanza STOPVRController.
+- Añadido integrationId a los servicios de VideoRecording.
+- Refactorizado el Controller y creado StopVideoRecordingController para implementar el comportamiento IDV.
+- Unificado el manejo de errores enviados a Tracking.
+- Actualizada la dependencia Core a la versión v2.4.0.
+
+### Correcciones
+- Corregida la asignación incorrecta de stepData.
+- Corregido el caso límite donde se lanzaba una grabación mientras otra instancia seguía activa.
+- Corregido error en el lenguaje del modal para dar permisos de videograbación.
+
+---
+
 ## Versión 2.3.X  
 **Última versión: 2.3.9 – 21/10/2025**
 

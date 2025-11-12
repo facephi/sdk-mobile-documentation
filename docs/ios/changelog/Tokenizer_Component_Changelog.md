@@ -1,5 +1,16 @@
 # Tokenizer Changelog
 
+## Version 2.4.X  
+**Last release: 2.4.0 – 28/10/2025**
+
+### Main Updates
+- First release of version v2.4.0.
+
+### Fixes
+- Set fpbtokenizer source from clienters to correct initialization behavior.
+
+---
+
 ## Version 2.3.X  
 **Last release: 2.3.4 – 21/10/2025**
 

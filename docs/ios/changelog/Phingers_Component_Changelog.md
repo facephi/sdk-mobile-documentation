@@ -1,6 +1,21 @@
 # Phingers Changelog
 
-## Version 2.3.X  
+## Version 2.4.X  
+**Last release: 2.4.2 – 03/11/2025**
+
+### Main Updates
+- UI/UX update
+
+### Fixes
+- Fixed incorrect stepData assignment.
+- Send only terminal fixes to IDV (avoid intermediate or noisy updates).
+- Camera permission is now handled through the Core function.
+- Fixed crash caused by concurrent access or modification of the same variable across multiple threads.
+- Removed duplicated error event in tracking.
+
+---
+
+## Versión 2.3.X    
 **Last release: 2.3.12 – 21/10/2025**
 
 ### Main Updates

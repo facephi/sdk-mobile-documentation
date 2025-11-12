@@ -1,6 +1,31 @@
 # VideoID Changelog
 
-## Version 2.3.X  
+## Version 2.4.X  
+**Last release: 2.4.1 – 04/11/2025**
+
+### Main Updates
+- Updated and adapted to latest trackingWidget changes.
+- Updated constants version to 2.4.0.
+- Updated SDR dependency to v1.8.0.
+- Added trackAssets support for IDV.
+- Integrated sendVideoIdData for improved tracking flow.
+- Renamed matchingSidesScore for clarity.
+- Removed duplicated OcrDiagnostic enum.
+- Removed local OCR_ERROR, now using the one from Core library.
+- Improved ErrorParser for better error granularity and clarity.
+
+### UX & Functional Improvements
+- Adjusted minimum face size threshold to ensure the face is correctly captured within the mask, avoiding unnecessary movement.
+
+### Fixes
+- Fixed IdvResultData to be sent only when a terminal error occurs.
+- Fixed incorrect stepData assignment.
+- Fixed general NETWORK ERROR handling.
+- Fixed tracking errors twice.
+
+---
+
+## Version 2.3.X    
 **Last release: 2.3.23 – 21/10/2025**
 
 ### Main Updates

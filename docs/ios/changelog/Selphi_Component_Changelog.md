@@ -1,5 +1,51 @@
 # Selphi Changelog
 
+## Version 2.4.X  
+**Last release: 2.4.1 - 30/10/2025**
+
+### Main Updates
+- Added widget version with full customization functionality.
+- Added setParam for UseSdkCustomization in widget.
+- Updated widget to version v5.19.5.
+- Added nil output for specific scenarios.
+- Updated and adapted to latest trackingWidget changes.
+- Added authenticationId and prepared structure for future improvements.
+- Added conditional sending of includeClip when required.
+- Removed unused SelphiError and introduced ACTIVE_LIVENESS_ERROR.
+- Improved ErrorParser logic and handling.
+- Returned livenessDiagnostic on SELPHI_TIMEOUT.
+- Implemented IDV release v2.4.0.
+- Used SelfieData model for IDV tracking.
+- Integrated LivenessDiagnostic into Core library.
+- Moved data models into structured folders.
+- Added IdvTracking model (SelfieData).
+- Updated widget and SelphiKMP dependencies to match latest versions.
+- Removed cameraId parameter (no longer in use).
+- Removed unnecessary sendAdvanceTracking single event.
+- Added sendSelfie trigger on successful capture.
+- Unified errors sent to Tracking module.
+- Updated SelphiKMP version in Podspecs.
+- Upgraded selphiWidget KMP version and adapted breaking changes to SelphiFaceLiveness.
+- Adapted breaking changes in SelphiConfigurationData.
+
+### Refactors
+- Refactored logic to avoid runtime errors.
+- Refactored error handling for OPERATION_NOT_CREATED.
+- Cleaned and reorganized folder structure.
+- Refactored SelphiWidgetController.start() to return nil UIViewController when license is invalid.
+- Performed general code cleanup for readability and consistency.
+
+### Fixes
+- Fixed incorrect stepData assignment.
+- Fixed videoFilename management in flow configuration.
+- Fixed issue where liveness was not being sent to Tracking.
+- Fixed MOVE mode behavior — now returns KO when LivenessDiagnostic is not Detected.
+- Now sending bestImage instead of cropped one.
+- Fixed Core dependency update conflicts.
+- Fixed UI error on iPhone 17.
+
+---
+
 ## Version 2.3.X  
 **Last release: 2.3.12 – 21/10/2025**
 

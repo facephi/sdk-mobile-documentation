@@ -1,5 +1,22 @@
 # Registro de Cambios de VoiceID
 
+## Version 2.4.X    
+**Última versión: 2.4.0 – 28/10/2025**
+
+### Actualizaciones Principales
+- Actualizada la versión del SDK a 5.3.0.
+- Añadido ErrorParser con un manejo de errores mejorado y diagnósticos más detallados.
+- Actualizada la dependencia Core a la versión v2.4.0.
+- Marcado el proceso de matching como obsoleto — el matching local ya no está soportado.
+
+### Mejoras de UX
+- Revisión general de la UX para mayor coherencia en el diseño y mejora de accesibilidad.
+
+### Correcciones
+- Corregida la asignación incorrecta de stepData.
+
+---
+
 ## Versión 2.3.X  
 **Última versión: 2.3.6 – 21/10/2025**
 

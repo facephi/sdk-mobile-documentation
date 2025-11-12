@@ -1,6 +1,23 @@
 # VideoCall Changelog
 
-## Version 2.3.X  
+## Version 2.4.X  
+**Last release: 2.4.0 – 28/10/2025**
+
+### Main Updates
+- Updated and adapted to latest trackingWidget changes.
+- Added ErrorParser with improved error handling and traceability.
+- Updated Core dependency to v2.4.0.
+
+### UX Improvements
+- General UX revision to align animations, literals, and user flow.
+
+### Fixes
+- Fixed incorrect stepData assignment.
+- Fixed names of literals and animations for better consistency.
+
+---
+
+## Versión 2.3.X    
 **Last release: 2.3.7 – 21/10/2025**
 
 **Main Updates**

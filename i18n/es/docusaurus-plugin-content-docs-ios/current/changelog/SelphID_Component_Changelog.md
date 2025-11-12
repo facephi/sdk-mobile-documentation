@@ -1,5 +1,23 @@
 # Registro de Cambios de SelphID
 
+## Versión 2.4.X  
+**Última versión: 2.4.3 - 12/11/2025**
+
+### Actualizaciones Principales
+- Actualizada la dependencia SelphIDWidget a la versión v1.35.2.
+- Añadida versión del widget con funcionalidad completa de personalización.
+- Añadido setParam para UseSdkCustomization en el widget.
+- Adaptado a los cambios en resultData introducidos por trackingWidget v1.1.23.
+- Configurado generateRawImages para que sea true por defecto.
+
+### Refactorizaciones
+- Forzada la bandera de inicialización para devolver siempre true, garantizando un flujo de configuración consistente.
+
+### Correcciones
+- Corregida asignación incorrecta de stepData.
+- Corregido el comportamiento cuando generateRawImages se recibía como null.
+- Corregido un crash mientras se hace una captura de documento ARG con MBSDR.
+
 ## Versión 2.3.X  
 **Última versión: 2.3.23 – 21/10/2025**
 

@@ -1,5 +1,30 @@
 # Registro de Cambios de VideoID
 
+## Versión 2.4.X  
+**Última versión: 2.4.1 – 04/11/2025**
+
+### Actualizaciones Principales
+- Actualizado y adaptado a los últimos cambios en trackingWidget.
+- Actualizada la versión de Core a 2.4.0.
+- Actualizada la dependencia SDR a v1.8.0.
+- Añadido soporte de trackAssets para IDV.
+- Integrado sendVideoIdData para mejorar el flujo de tracking.
+- Renombrado matchingSidesScore para mayor claridad.
+- Eliminado el enum OcrDiagnostic duplicado.
+- Eliminado OCR_ERROR local, ahora se usa el de la librería Core.
+- Mejorado el ErrorParser para una mayor precisión en los errores.
+
+### Mejoras de UX y Funcionalidad
+- Ajustado el umbral mínimo de tamaño facial para asegurar que la cara se capture correctamente dentro de la máscara, evitando movimientos innecesarios.
+
+### Correcciones
+- Corregido el envío de IdvResultData para que solo se realice cuando ocurre un error terminal.
+- Corregida la asignación incorrecta de stepData.
+- Corregido el manejo general del error NETWORK ERROR.
+- Corregido trackeo duplicado de errores.
+
+---
+
 ## Versión 2.3.X  
 **Última versión: 2.3.23 – 21/10/2025**
 

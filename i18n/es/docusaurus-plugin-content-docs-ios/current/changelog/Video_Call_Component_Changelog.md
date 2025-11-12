@@ -1,5 +1,22 @@
 # Registro de Cambios de VideoCall
 
+## Version 2.4.X  
+**Última versión: 2.4.0 – 28/10/2025**
+
+### Actualizaciones Principales
+- Actualizado y adaptado a los últimos cambios en trackingWidget.
+- Añadido ErrorParser con un manejo de errores mejorado y mayor trazabilidad.
+- Actualizada la dependencia Core a la versión v2.4.0.
+
+### Mejoras de UX
+- Revisión general de UX para alinear animaciones, literales y flujo de usuario.
+
+### Correcciones
+- Corregida la asignación incorrecta de stepData.
+- Corregidos los nombres de literales y animaciones para mayor consistencia.
+
+---
+
 ## Versión 2.3.X  
 **Última versión: 2.3.7 – 21/10/2025**
 
