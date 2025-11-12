@@ -198,7 +198,7 @@ Se indica la calidad del JPEG que se genera y luego se tokeniza, su valor por de
 
 ##### Locale
 
-A partir de la versión 2.4.X este parámetro deja de configurarse a nivel de Componente y se hará en el initSdk del apartado [Parámetros opcionales del initSdk](./Mobile_SDK#3-2-5-locale).
+A partir de la versión 2.4.X este parámetro deja de configurarse a nivel de Componente y se hará en el initSdk del apartado [Parámetros opcionales del initSdk](./Mobile_SDK#325-locale).
 
 Es un String que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
 

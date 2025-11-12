@@ -179,7 +179,7 @@ face.
 
 ##### locale
 
-Since version 2.4.X this parameter is no longer configured at component's level. Now it's being done in the initSdk. See [Optional parameters in the initSdk](./Mobile_SDK#3-2-5-locale).
+Since version 2.4.X this parameter is no longer configured at component's level. Now it's being done in the initSdk. See [Optional parameters in the initSdk](./Mobile_SDK#325-locale).
 
 Forces the widget to use the language setting indicated by the
 locale parameter. This parameter accepts both a language code (e.g. 'en') and a regional identification code (e.g. 'en_US').

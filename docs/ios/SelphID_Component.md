@@ -219,7 +219,7 @@ It indicates the quality of the JPEG that is generated and then tokenized, its d
 
 ##### Locale
 
-Since version 2.4.X this parameter is no longer configured at component's level. Now it's being done in the initSdk. See [Optional parameters in the initSdk](./Mobile_SDK#3-2-5-locale).
+Since version 2.4.X this parameter is no longer configured at component's level. Now it's being done in the initSdk. See [Optional parameters in the initSdk](./Mobile_SDK#325-locale).
 
 It is a String that allows to change the locale and language of the widget. Examples of values it can have are the following:
 

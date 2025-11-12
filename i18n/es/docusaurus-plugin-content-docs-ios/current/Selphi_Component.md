@@ -183,7 +183,7 @@ cara.
 
 ##### locale
 
-A partir de la versión 2.4.X este parámetro deja de configurarse a nivel de Componente y se hará en el initSdk del apartado [Parámetros opcionales del initSdk](./Mobile_SDK#3-2-5-locale).
+A partir de la versión 2.4.X este parámetro deja de configurarse a nivel de Componente y se hará en el initSdk del apartado [Parámetros opcionales del initSdk](./Mobile_SDK#325-locale).
 
 Fuerza al widget a utilizar la configuración de idioma indicado por el
 parámetro locale. Este parámetro acepta tanto un código de idioma (p.
