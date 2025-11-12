@@ -86,7 +86,7 @@ plugin 'cocoapods-art', :sources => [
 source 'https://cdn.cocoapods.org/'
 
 target 'Example' do
-  pod 'FPHISDKMainComponent',  '~> 2.3.0'
+  pod 'FPHISDKMainComponent',  '~> 2.4.0'
 
    post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -198,7 +198,8 @@ SDKController.shared.initSdk(license: SdkConfigurationManager.LICENSE, output: {
     } else {
         self.log("La licencia manual no es correcta")
     }
-}, trackingController: trackingController)
+}, trackingController: trackingController,
+   statusController: statusController)
 
 // AUTO License
 SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING, output: { sdkResult in
@@ -207,8 +208,8 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
     } else {
         self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
     }
-}, trackingController: trackingController)
-
+}, trackingController: trackingController,
+   statusController: statusController)
 
 ```
 
@@ -379,6 +380,25 @@ SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL
 }, statusController: statusController)
 ```
 
+#### 3.2.5 locale
+
+Este parámetro permite configurar el idioma, de este modo todo el SDK usará esta localización.
+
+Se añade en el initSDK:
+
+```java
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING,
+locale: "es",
+output: { sdkResult in
+    if sdkResult.finishStatus == .STATUS_OK {
+        self.log("Licencia automática seteada correctamente")
+    } else {
+        self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
+    }
+})
+```
+
 ---
 
 ## 4. Iniciar nueva operación
@@ -483,21 +503,39 @@ en la documentación de cada componente.
 Los posibles tipos de error son los siguientes:
 
 ```java
-public enum ErrorType: String, Error {
-     case NO_ERROR
-     case UNKNOWN_ERROR
-     case OTHER(String)
-     case COMPONENT_CONTROLLER_DATA_ERROR
-     case NO_OPERATION_CREATED_ERROR
-     case NETWORK_CONNECTION
-     case CAMERA_PERMISSION_DENIED
-     case MIC_PERMISSION_DENIED
-     case LOCATION_PERMISSION_DENIED
-     case STORAGE_PERMISSION_DENIED
-     case CANCEL_BY_USER
-     case TIMEOUT
-     case LICENSE_CHECKER_ERROR_INVALID_LICENSE
-     case LICENSE_CHECKER_ERROR_INVALID_COMPONENT_LICENSE
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    //SPECIFIC - SELPHID TIMEOUT ERROR
+    case SELPHID_TIMEOUT(UIImage?, UIImage?)
+    //SPECIFIC - SELPHI TIMEOUT ERROR
+    case SELPHI_TIMEOUT(LivenessDiagnostic?)
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
+    
+    //SPECIFIC - VIDEO ID ERROR
+    case OCR_ERROR([String: OcrDiagnostic])
 }
 ```
 
@@ -507,6 +545,16 @@ será **NO_ERROR**.
 ---
 
 ## 9. Personalización de la SDK
+
+### 9.1 Sobreescribiendo assets
+
+La personalización se puede realizar sobrescribiendo los assets del SDK.
+Cada componente utiliza assets comunes y específicos, como colores, imágenes, fuentes, animaciones, etc.
+Estos assets se recuperan utilizando una clave conocida. Estas claves se especifican en la sección de personalización de cada componente.
+
+Esto significa que si la aplicación en la que se integra el SDK tiene un asset de color llamado `sdkPrimaryColor`, el SDK lo utilizará como color principal en lugar del predeterminado.
+
+### 9.2 Usando Themes
 
 La personalización se realiza mediante una clase del componente llamada Theme**_Component_**Manager. Donde **_Component_** debe sustituirse por el componente deseado.
 

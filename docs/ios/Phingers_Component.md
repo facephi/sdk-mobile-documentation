@@ -70,14 +70,14 @@ the **_SDKMobile_** components.
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.3.0'.
+  pod 'FPHISDKMainComponent', '~> 2.4.0'.
 ```
 
 - To install the current component, the following entry must be included in the _Podfile_ of the project
   entry in the _Podfile_ of the application:
 
   ```java
-  pod 'FPHISDKPhingersTFComponent', '~> 2.3.0'.
+  pod 'FPHISDKPhingersTFComponent', '~> 2.4.0'.
   ```
 
 - Once the dependencies have been installed, you will be able to use the different
@@ -249,7 +249,7 @@ sent to the platform.
 
 The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receiving errors
+### 7.1. Error's management
 
 On the error side, we will have the common enum _ErrorType_.
 
@@ -278,6 +278,8 @@ public enum ErrorType: Equatable, Error {
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
 
@@ -289,6 +291,13 @@ The _String_ can have this values in the OTHER's case:
 ```java
 public enum PhingersError: String {
     case INITIALIZATION_ERROR
+    case NO_FINGER_DETECTED
+    case FINGERPRINT_TEMPLATE_IO_ERROR
+    case LOW_QUALITY
+    case CAMERA_FAILURE
+    case CAPTURE_FAILURE
+    case CONFIGURATION_FAILURE
+    case TEMPLATE_CREATION_ERROR
 }
 ```
 

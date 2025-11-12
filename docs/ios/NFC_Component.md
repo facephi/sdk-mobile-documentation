@@ -71,7 +71,7 @@ the **_SDKMobile_** components.
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.3.0'
+pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 To install the NFC component, the following entry must be included in the application's Podfile:
@@ -265,7 +265,7 @@ sent to the platform.
 
 The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receipt of errors
+### 7.1. Error's management
 
 On the error side, **internally** we have the **NfcError** class. This enumeration contains many specific errors that do not provide useful information if returned to the integrator, so they are transformed to a simpler type (**ErrorType**):
 
@@ -294,6 +294,8 @@ public enum ErrorType: Equatable, Error {
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
 

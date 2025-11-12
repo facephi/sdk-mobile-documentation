@@ -50,13 +50,13 @@ None
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them in the Podfile file of the project) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - To install the Status component, the following entry must be included in the application Podfile:
 
 ```java
-  pod 'FPHISDKStatusComponent', '~> 2.3.0'
+  pod 'FPHISDKStatusComponent', '~> 2.4.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.

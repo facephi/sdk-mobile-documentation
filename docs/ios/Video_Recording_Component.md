@@ -41,87 +41,12 @@ documentation related to [Initial Integration](./Mobile_SDK#2-initial-integratio
 This section will explain step by step how to integrate the current
 component into an existing project.
 
-### 2.1 Creating the extension
 
-For the documented example, an app with SwiftUI has been used, but the component and documentation are valid regardless of whether UIKit or SwiftUI is used.
-
-In our project we add a new target of type **_Broadcast Upload Extension:_**
-
-![Image](/ios/VideoRecording/videoRecording-001.png)
-
-We configure the name of the extension, in this example it will be VideoRecording:
-
-![Image](/ios/VideoRecording/videoRecording-002.png)
-
-If the following modal appears, click activate:
-
-![Image](/ios/VideoRecording/videoRecording-003.png)
-
-This generates the following structure:
-
-![Image](/ios/VideoRecording/videoRecording-004.png)
-
-By default, a file called `SampleHandler` is created. This file contains the main class of the extension.
-
-To make use of Facephi's screen sharing functionality we should modify the key `NSExtensionPrincipalClass` and set it to:
-
-```
-videoRecordingComponent.VideoRecordingHandler
-```
-
-![Image](/ios/VideoRecording/videoRecording-2.1.InfoPList.png)
-
-**NOTE: It is important to keep in mind that the version number (MARKETING_VERSION) and the project version number must always be the same in both targets:**
-
-![Image](/ios/VideoRecording/videoRecording-005.png)
-
-### 2.2 Setting the NSMicrophoneUsageDescription
-
-The Video Recording functionality can also share the microphone's input. For that reason, we need to add the key:
-
-```
-NSMicrophoneUsageDescription
-```
-
-To our target's Info.plist, detailing why do we use this functionality.
-
-### 2.3 Creating the shared App Group
-
-Now we need to create a new App Group's Capability.
-
-This will serve to create the shared container between our extension and the application target.
-
-![Image](/ios/VideoRecording/videoRecording-006.png)
-
-After clicking on the + icon.
-
-**It's important to set the app group's value to:**
-
-```
-group.com.facephi.videoRecording
-```
-
-![Image](/ios/VideoRecording/videoRecording-007.png)
-
-We select the same identifier in our extension. In this way both will have checked the App Group that we just created:
-
-![Image](/ios/VideoRecording/videoRecording-008.png)
-
-XCode will automatically generate or update the entitlement files involved to add the capability to each target:
-
-![Image](/ios/VideoRecording/videoRecording-009.png)
-
-### 2.4 Dependencies required for integration
-
-<blockquote>
-     <p>
-To avoid conflicts and compatibility problems, if you want to install the component in a project that contains an old version of the Facephi libraries (Widgets), these must be completely removed before installing the **_SDKMobile_** components.
-     </p>
-</blockquote>
+### 2.1 Dependencies required for integration
 
 Currently FacePhi libraries are distributed remotely through different dependency managers.
 
-#### 2.4.1 Cocoapods
+#### 2.1.1 Cocoapods
 
 The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
@@ -157,7 +82,7 @@ end
 
 NOTE: You have to be careful to put the extension target outside the application target. Failure to do so would cause the application pods to also be compiled into the extension, resulting in collateral problems.
 
-#### 2.4.2 SPM
+#### 2.1.2 SPM
 
 We add our dependency to the project and assign it to the VideoRecording target:
 
@@ -241,7 +166,26 @@ On the contrary, the **launchMethod** method covers a special case, in which the
 
 ## 5. Component customization
 
-Right now there are no resources to configure in the component.
+### 5.1 Colors
+
+- The only customizable color is:
+
+```java
+case sdkPrimaryColor
+```
+
+To modify it, you need to override the asset by creating a similar named asset in the Bundle.main of your application.
+
+### 5.2 Texts
+
+The literals used in the component are:
+
+```java
+"video_recording_component_title_message"="Allow screen capture in %@?";
+"video_recording_component_desc_message"="This application will capture your screen and you will not have a chance to review it.";
+"video_recording_component_cancel_message"="Don't allow";
+"video_recording_component_confirm_message"="Record screen";
+```
 
 ## 6. Common errors and problems
 

@@ -50,13 +50,13 @@ completely before the installation of the components of the **_SDKMobile_** comp
 - Currently the FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.3.0'
+pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - To install the VideoID component, the following entry must be included in the application's Podfile:
 
 ```java
-pod 'FPHISDKVideoIDComponent', '~> 2.3.0'
+pod 'FPHISDKVideoIDComponent', '~> 2.4.0'
 ```
 
 - Once the dependencies are installed, you can use the different functionalities of the component.
@@ -246,7 +246,7 @@ sent to the platform.
 
 The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receipt of errors
+### 7.1. Error's management
 
 On the error side, we will have the common _ErrorType_ enum:
 
@@ -275,8 +275,14 @@ public enum ErrorType: Equatable, Error {
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
+    //SPECIFIC - VIDEO ID ERROR
+    case OCR_ERROR([String: OcrDiagnostic])
 }
 ```
+
+**IMPORTANT: OCR_ERROR is a specific VideoIdComponent's error. It's used to inform the integrator of which OCR field's haven't passed the process validations.**
 
 The errors 'ErrorType.OTHER' and 'ErrorType.LICENSE_CHECKER_ERROR' are special because they also inform of
 the error's details.

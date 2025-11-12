@@ -67,13 +67,13 @@ completely before the installation of the components of the **_SDKMobile_** comp
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (adding them in the Podfile file of the project) are:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - To install the SelphID component, the following entry must be included in the application Podfile:
 
 ```
-  pod 'FPHISDKSelphIDComponent', '~> 2.3.0'
+  pod 'FPHISDKSelphIDComponent', '~> 2.4.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -219,6 +219,8 @@ It indicates the quality of the JPEG that is generated and then tokenized, its d
 
 ##### Locale
 
+Since version 2.4.X this parameter is no longer configured at component's level. Now it's being done in the initSdk. See [Optional parameters in the initSdk](./Mobile_SDK#3-2-5-locale).
+
 It is a String that allows to change the locale and language of the widget. Examples of values it can have are the following:
 
 - "es" for Spanish.
@@ -333,7 +335,7 @@ sent to the platform.
 
 The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receiving errors
+### 7.1. Error's management
 
 _finishStatus_: Which will tell us if the operation has finished successfully. Possible values:
 
@@ -344,7 +346,7 @@ FinishStatus.STATUS_ERROR
 
 _data_: It will have the response data of the executed component function. The fields included in this component are specified in section 7.2.
 
-_errorType_: Widget's own errors
+_errorType_: Specified in a common ErrorType enum:
 
 ```java
 public enum ErrorType: Equatable, Error {
@@ -366,21 +368,35 @@ public enum ErrorType: Equatable, Error {
     
     //COMMON - USER'S INTERACTION
     case CANCEL_BY_USER
-    case TIMEOUT
+    case SELPHID_TIMEOUT(UIImage?, UIImage?)
     
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
+
+**IMPORTANT: SelphIDComponent doesn't use the common ErrorType.TIMEOUT, it uses instead SELPHID_TIMEOUT. This error provides two optional UIImages. This images can contain the document's front and back and could be used to give further information to the integrator.**
 
 The OTHER case can contain these values:
 
 ```java
-public enum SelphIDError: String {
+public enum SelphIDError: String, Equatable {
     case RESOURCES_FILE_NOT_FOUND
-    case COULD_NOT_CREATE_WIDGET_INSTANCE
+    case INITIALIZATION_ERROR
     case CONSUMED_BY_LICENSE_ERROR
+    
+    //Widget Errors
+    case BAD_CONFIGURATION_ERROR
+    case WIDGET_RESULT_DATA_ERROR
+    case BAD_EXTRACTOR_CONFIGURATION_ERROR
+    case CONTROL_NOT_INITIALIZED_ERROR
+    case EXTRACTION_LICENSE_ERROR
+    case HARDWARE_ERROR
+    case SETTINGS_PERMISSION_ERROR
+    case UNEXPECTED_CAPTURE_ERROR
 }
 ```
 

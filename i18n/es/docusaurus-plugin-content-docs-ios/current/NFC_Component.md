@@ -72,7 +72,7 @@ Actualmente las librerías de FacePhi se distribuyen de forma remota a través d
 Las dependencias obligatorias que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.3.0'
+pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 Para instalar el componente de NFC deberá incluirse la siguiente entrada en el Podfile de la aplicación:
@@ -258,14 +258,47 @@ Los controllers devolverán la información necesaria en formato SdkResult. Más
 En la parte del error, **internamente** disponemos de la clase NFCPassportReaderError. Este enumerado contiene muchos errores específicos que no aportan información útil si son devueltos al integrador, por lo que son transformados a un tipo más simple (**ErrorType**):
 
 ```java
-    CANCEL_BY_USER
-    TIMEOUT
-    UNKNOWN_ERROR
-    NFC_INVALID_MRZ_KEY
-    NFC_NOT_SUPPORTED
-    TAG_CONNECTION_LOST
-    SECURITY_STATUS_NOT_SATISFIED
-    SYSTEM_RESOURCE_UNAVAILABLE
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case TIMEOUT
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
+}
+```
+
+Los errores 'ErrorType.OTHER' y 'ErrorType.LICENSE_CHECKER_ERROR' son especiales porque además pueden informar del detalle del error.
+
+El _String_ puede tener los siguientes valores en el caso del 'ErrorType.OTHER':
+
+```java
+public enum NfcError: String {
+    case NFC_INVALID_MRZ_KEY
+    case NFC_NOT_SUPPORTED
+    case TAG_CONNECTION_LOST
+    case SECURITY_STATUS_NOT_SATISFIED
+    case SYSTEM_RESOURCE_UNAVAILABLE
+}
 ```
 
 **NOTA**: `NFC_INVALID_MRZ_KEY` _implica que la conexión no se ha podido establecer por culpa de que los datos de entrada de la configuración (documentNumber, birthDate, expiryDate) no son correctos.

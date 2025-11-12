@@ -50,13 +50,13 @@ installing the **_SDKMobile_** components.
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - To install the VideoCall component, the following entry must be included in the application Podfile:
 
 ```java
-  pod 'FPHISDKVideoCallComponent', '~> 2.3.0'
+  pod 'FPHISDKVideoCallComponent', '~> 2.4.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -196,7 +196,7 @@ let videocallConfigurationData = VideoCallConfigurationData(
 
 The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receiving errors
+### 7.1. Error's management
 
 On the error side, we will have the common enum _ErrorType_.
 
@@ -225,6 +225,8 @@ public enum ErrorType: Equatable, Error {
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
 

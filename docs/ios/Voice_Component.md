@@ -65,13 +65,13 @@ installing the **_SDKMobile_** components.
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  	pod 'FPHISDKMainComponent', '~> 2.3.0'
+  	pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - To install the VoiceID component, the following entry must be included in the application's Podfile:
 
 ```
-  	pod 'FPHISDKVoiceIDComponent', '~> 2.3.0'
+  	pod 'FPHISDKVoiceIDComponent', '~> 2.4.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -188,7 +188,7 @@ sent to the platform.
 
 The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receipt of errors
+### 7.1. Error's management
 
 On the error side, we will have the common _ErrorType_ enum:
 
@@ -217,6 +217,8 @@ public enum ErrorType: Equatable, Error {
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
 
@@ -227,6 +229,11 @@ The _String_ can have this values in the OTHER's case:
 
 ```java
 enum VoiceError {
+    case INTERNAL_ERROR
+    case MIC_PERMISSION_DENIED
+    case TIMEOUT
+    case CANCEL_BY_USER
+    
     case VOICE_ENROLLMENT_PARSE_RESPONSE
     case VOICE_MATCHING_PARSE_RESPONSE
 }

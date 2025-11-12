@@ -53,13 +53,13 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - Para instalar el componente de VideoID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-	pod 'VideoIdController', '~> 2.3.0'
+	pod 'VideoIdController', '~> 2.4.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -279,8 +279,12 @@ public enum ErrorType: Equatable, Error {
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
+
+**IMPORTANTE: OCR_ERROR es un error específico de VideoIdComponent. Se utiliza para informar al integrador de qué campos OCR no han superado las validaciones del proceso.**
 
 Los errores 'ErrorType.OTHER' y 'ErrorType.LICENSE_CHECKER_ERROR' son especiales porque además pueden informar del detalle del error.
 
@@ -295,7 +299,7 @@ public enum VideoIdError: String {
 }
 ```
 
-## 8. Component customization
+## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
 se explican en el documento de [Personalización de la SDK](./Mobile_SDK#9-personalización-de-la-sdk)), este componente en concreto permite la modificación de animaciones, imágenes, fuentes, colores y textos específicos.

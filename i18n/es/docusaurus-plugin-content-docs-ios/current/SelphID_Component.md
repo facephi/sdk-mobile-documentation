@@ -47,13 +47,13 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - Para instalar el componente de SelphID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```
-  pod 'FPHISDKSelphIDComponent', '~> 2.3.0'
+  pod 'FPHISDKSelphIDComponent', '~> 2.4.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -198,6 +198,8 @@ Se indica la calidad del JPEG que se genera y luego se tokeniza, su valor por de
 
 ##### Locale
 
+A partir de la versión 2.4.X este parámetro deja de configurarse a nivel de Componente y se hará en el initSdk del apartado [Parámetros opcionales del initSdk](./Mobile_SDK#3-2-5-locale).
+
 Es un String que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
 
 - “es” para español.
@@ -318,15 +320,61 @@ FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
 
-_errorType_: Errores propios del widget.
-
-```
-case SELPHID_CANCEL_BY_USER
-case SELPHID_TIMEOUT
-case SELPHID_INTERNAL_ERROR
-```
-
 _data_: Tendrá los datos de respuesta de la función del componente ejecutado. En el apartado 7.2 se especifican los campos que se incluyen en este componente.
+
+_errorType_: Especificados en el enumerado común ErrorType:
+
+```java
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case SELPHID_TIMEOUT(UIImage?, UIImage?)
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
+}
+```
+
+**IMPORTANTE: SelphIDComponent no utiliza el ErrorType.TIMEOUT común, sino SELPHID_TIMEOUT. Este error proporciona dos UIImages opcionales. Estas imágenes pueden contener el anverso y el reverso del documento y pueden utilizarse para proporcionar más información al integrador.**
+
+Los casos OTHER contendrán uno de los siguientes valores:
+
+```java
+public enum SelphIDError: String, Equatable {
+    case RESOURCES_FILE_NOT_FOUND
+    case INITIALIZATION_ERROR
+    case CONSUMED_BY_LICENSE_ERROR
+    
+    //Widget Errors
+    case BAD_CONFIGURATION_ERROR
+    case WIDGET_RESULT_DATA_ERROR
+    case BAD_EXTRACTOR_CONFIGURATION_ERROR
+    case CONTROL_NOT_INITIALIZED_ERROR
+    case EXTRACTION_LICENSE_ERROR
+    case HARDWARE_ERROR
+    case SETTINGS_PERMISSION_ERROR
+    case UNEXPECTED_CAPTURE_ERROR
+}
+```
 
 ### 7.2. Recepción de ejecución correcta - data
 

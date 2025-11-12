@@ -62,11 +62,11 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero *Podfile* del proyecto) son:
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 - Para instalar el componente actual deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```java
-pod 'FPHISDKPhingersTFComponent', '~> 2.3.0'
+pod 'FPHISDKPhingersTFComponent', '~> 2.4.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
@@ -270,6 +270,8 @@ public enum ErrorType: Equatable, Error {
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
 
@@ -280,6 +282,13 @@ El _String_ puede tener los siguientes valores en el caso del 'ErrorType.OTHER':
 ```java
 public enum PhingersError: String {
     case INITIALIZATION_ERROR
+    case NO_FINGER_DETECTED
+    case FINGERPRINT_TEMPLATE_IO_ERROR
+    case LOW_QUALITY
+    case CAMERA_FAILURE
+    case CAPTURE_FAILURE
+    case CONFIGURATION_FAILURE
+    case TEMPLATE_CREATION_ERROR
 }
 ```
 

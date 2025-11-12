@@ -97,7 +97,7 @@ plugin 'cocoapods-art', :sources => [
 source 'https://cdn.cocoapods.org/'
 
 target 'Example' do
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 
    post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -227,7 +227,8 @@ SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output:
     } else {
         self.log("Ha ocurrido un error al intentar obtener la licencia: \(sdkResult.errorType)")
     }
-}, trackingController: trackingController)
+}, trackingController: trackingController,
+   statusController: statusController)
 ```
 
 #### b. Injecting the license as a String
@@ -242,7 +243,8 @@ SDKController.shared.initSdk(license: "LICENSE", output: { sdkResult in
     } else {
         self.log("La licencia manual no es correcta")
     }
-}, trackingController: trackingController)
+}, trackingController: trackingController,
+   statusController: statusController)
 ```
 
 ### 3.2 Optional
@@ -347,19 +349,19 @@ SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output:
 
 #### 3.2.4 StatusController
 
-Se añade el import:
+Added import:
 
 ```java
 import statusComponent
 ```
 
-Inicializamos:
+Initialise:
 
 ```java
 let statusController = StatusController()
 ```
 
-Se añade en el initSDK:
+We add in the initSDK:
 
 ```java
 // AUTO License
@@ -370,6 +372,21 @@ SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", output:
         self.log("An error occurred while trying to obtain the license: \(sdkResult.errorType)")
     }
 }, statusController: statusController)
+```
+
+#### 3.2.5 locale
+
+This parameter allows to configure the language, if injected, then the SDK will use that localization.
+
+Adding it in the initSdk:
+
+```java
+// AUTO License
+SDKController.shared.initSdk(licensingUrl: SdkConfigurationManager.LICENSING_URL, apiKey: SdkConfigurationManager.APIKEY_LICENSING,
+locale: "en",
+output: { sdkResult in
+...
+})
 ```
 
 ---
@@ -533,10 +550,19 @@ public enum ErrorType: Equatable, Error {
     //COMMON - USER'S INTERACTION
     case CANCEL_BY_USER
     case TIMEOUT
+    //SPECIFIC - SELPHID TIMEOUT ERROR
+    case SELPHID_TIMEOUT(UIImage?, UIImage?)
+    //SPECIFIC - SELPHI TIMEOUT ERROR
+    case SELPHI_TIMEOUT(LivenessDiagnostic?)
     
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
+    
+    //SPECIFIC - VIDEO ID ERROR
+    case OCR_ERROR([String: OcrDiagnostic])
 }
 ```
 
@@ -545,6 +571,16 @@ If there is no error and the result is returned correctly, the errorType would b
 ---
 
 ## 9. SDK Customization
+
+### 9.1 Overriding assets
+
+Customization can be made by overriding the SDK's assets.
+Each component uses common and specific assets such as colors, images, fonts, animations,...
+Those assets are retrieved using a known key. This keys are specified in each of the component's customization section.
+
+This means that if the App where the SDK is integrated has a color asset named `sdkPrimaryColor`, then the SDK will use it as its primary color instead of the default.
+
+### 9.2 Using Themes
 
 Customization is done using a component class called Theme**_Component_**Manager. Where **_Component_** must be replaced with the desired component.
 

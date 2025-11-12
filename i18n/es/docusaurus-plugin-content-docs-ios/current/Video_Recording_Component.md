@@ -41,68 +41,16 @@ Antes de integrar este componente se recomienda leer la documentación de [Integ
 En esta sección se explicará paso a paso cómo integrar el componente
 actual en un proyecto ya existente.
 
-### 2.1 Creando la extensión
-
-Para el ejemplo documentado se ha utilizado una app con SwiftUI pero el componente y la documentación son válidos independientemente de que se use UIKit o SwiftUI.
-
-En nuestro proyecto añadimos un nuevo target de tipo **_Broadcast Upload Extension:_**
-
-![Image](/ios/VideoRecording/videoRecording-001.png)
-
-Configuramos el nombre de la extensión, en este ejemplo será VideoRecording:
-
-![Image](/ios/VideoRecording/videoRecording-002.png)
-
-Si aparece el siguiente modal, pulsamos en activate:
-
-![Image](/ios/VideoRecording/videoRecording-003.png)
-
-Esto genera la siguiente estructura:
-
-![Image](/ios/VideoRecording/videoRecording-004.png)
-
-Donde SampleHandler es la clase principal de la extensión.
-
-**NOTA: Es importante tener en cuenta que el número de la version (MARKETING_VERSION) y el número de versión del proyecto debe ser siempre el mismo en ambos targets:**
-
-![Image](/ios/VideoRecording/videoRecording-005.png)
-
-### 2.2 Creando el App Group compartido
-
-Si no lo tenemos ya en nuestra app, podemos crear una nueva Capability de tipo App Group.
-
-Esto servirá para crear el contenedor compartido entre nuestra extensión y el target de la aplicación.
-
-![Image](/ios/VideoRecording/videoRecording-006.png)
-
-Asignamos un nombre al nuevo App Group después de hacer click sobre el icono +:
-
-![Image](/ios/VideoRecording/videoRecording-007.png)
-
-Seleccionamos el mismo identificador en nuestra extensión. De este modo ambos tendrán chequeado el App Group que acabamos de crear:
-
-![Image](/ios/VideoRecording/videoRecording-008.png)
-
-XCode generará o actualizará automáticamente los archivos de tipo entitlement implicados para añadir la capability a cada target:
-
-![Image](/ios/VideoRecording/videoRecording-009.png)
-
-### 2.3 Dependencias requeridas para la integración
-
-<blockquote>
-    <p>
-Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar el componente en un proyecto que contenga una versión antigua de las librerías de Facephi (Widgets), éstos deberán eliminarse por completo antes de la instalación de los componentes de la SDKMobile.
-    </p>
-</blockquote>
+### 2.1 Dependencias requeridas para la integración
 
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias.
 
-### 2.3.1 Cocoapods
+### 2.1.1 Cocoapods
 
 Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-pod 'FPHISDKMainComponent', '~> 2.3.0'
+pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - Se recomienda utilizar también el componente de VideoRecording con el de tracking (`FPHISDKTrackingComponent`).
@@ -133,7 +81,7 @@ end
 
 NOTA: Hay que tener cuidado de poner el target de la extensión fuera del target de la aplicación. De no hacerlo así, los pods de la aplicación se compilarían también en la extensión, dando como resultado problemas colaterales.
 
-#### 2.3.2 SPM
+#### 2.1.2 SPM
 
 Añadimos nuestra dependencia al proyecto y la asignamos al target de VideoRecording:
 
@@ -142,123 +90,6 @@ Añadimos nuestra dependencia al proyecto y la asignamos al target de VideoRecor
 Debemos luego añadirlo también al target de la app en General → Framework, Libraries and Embedded Content:
 
 ![Image](/ios/VideoRecording/videoRecording-011.png)
-
-### 2.4 Implementar la extensión
-
-En este punto se debe desarrollar la funcionalidad en nuestro recién creado SampleHandler.swift. Para ello, copiamos/sustituimos el siguiente código:
-
-```
-class SampleHandler: RPBroadcastSampleHandler {
-    var bufferCopy: CMSampleBuffer?
-    var lastSendTs = Int64(Date().timeIntervalSince1970 * 1000)
-    var timer: Timer?
-    // Shared info between app and extension
-    private let kAppGroupName = "group.com.facephi.sdk.demo" // SET YOUR APP_GROUP_NAME, you can get it from your entitlements' file
-    override func broadcastStarted(withSetupInfo setupInfo: [String: NSObject]?) {
-        // Load shared info from app
-        let sharedContainer = UserDefaults(suiteName: kAppGroupName)!
-        let uid = sharedContainer.string(forKey: "UID")!
-        let token = sharedContainer.string(forKey: "TOKEN")!
-        let channel = sharedContainer.string(forKey: "CHANNEL")!
-        // Passing data to app
-        sharedContainer.setValue(true, forKey: "BROADCASTSTARTED")
-        sharedContainer.synchronize()
-        print("uid: \(uid)")
-        print("token: \(token)")
-        print("channelName: \(channel)")
-        // In-App Screen Capture
-        AgoraUploader.startBroadcast(uid: uid, token: token, channel: channel)
-        AgoraUploader.sharedAgoraEngine.delegate = self
-        DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] (_: Timer) in
-                guard let weakSelf = self else { return }
-                let elapse = Int64(Date().timeIntervalSince1970 * 1000) - weakSelf.lastSendTs
-                print("elapse: \(elapse)")
-                // if frame stopped sending for too long time, resend the last frame
-                // to avoid stream being frozen when viewed from remote
-                if elapse > 300 {
-                    if let buffer = weakSelf.bufferCopy {
-                        weakSelf.processSampleBuffer(buffer, with: .video)
-                    }
-                }
-            }
-        }
-    }
-    override func broadcastPaused() {
-        // User has requested to pause the broadcast. Samples will stop being delivered.
-    }
-    override func broadcastResumed() {
-        // User has requested to resume the broadcast. Samples delivery will resume.
-    }
-    override func broadcastFinished() {
-        timer?.invalidate()
-        timer = nil
-        AgoraUploader.stopBroadcast()
-    }
-    override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
-        DispatchQueue.main.async { [weak self] in
-            switch sampleBufferType {
-            case .video:
-                if let weakSelf = self {
-                    weakSelf.bufferCopy = sampleBuffer
-                    weakSelf.lastSendTs = Int64(Date().timeIntervalSince1970 * 1000)
-                }
-                AgoraUploader.sendVideoBuffer(sampleBuffer)
-            @unknown default:
-                break
-            }
-        }
-    }
-}
-```
-
-**NOTA: Hay que asegurarse de introducir el App Group Name correcto en la linea 6. En nuestro ejemplo era group.com.facephi.demosdk-videoRecording.**
-
-Opcionalmente puedes escuchar los distintos eventos que ocurren cuando el usuario interacciona con la funcionalidad de grabación si haces que la clase SampleHandler extienda `AgoraRtcEngineDelegate`:
-
-```
-import AgoraRtcKit
-
-extension SampleHandler: AgoraRtcEngineDelegate {
-    /// callback when warning occured for agora sdk, warning can usually be ignored, still it's nice to check out
-    /// what is happening
-    /// Warning code description can be found at:
-    /// en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraWarningCode.html
-    /// cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraWarningCode.html
-    /// @param warningCode warning code of the problem
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurWarning warningCode: AgoraWarningCode) {}
-
-    /// callback when error occured for agora sdk, you are recommended to display the error descriptions on demand
-    /// to let user know something wrong is happening
-    /// Error code description can be found at:
-    /// en: https://docs.agora.io/en/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-    /// cn: https://docs.agora.io/cn/Voice/API%20Reference/oc/Constants/AgoraErrorCode.html
-    /// @param errorCode error code of the problem
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOccurError errorCode: AgoraErrorCode) {}
-
-    /// callback when the local user joins a specified channel.
-    /// @param channel
-    /// @param uid uid of local user
-    /// @param elapsed time elapse since current sdk instance join the channel in ms
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {}
-
-    /// callback when a remote user is joinning the channel, note audience in live broadcast mode will NOT trigger this event
-    /// @param uid uid of remote joined user
-    /// @param elapsed time elapse since current sdk instance join the channel in ms
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {}
-
-    /// callback when a remote user is leaving the channel, note audience in live broadcast mode will NOT trigger this event
-    /// @param uid uid of remote joined user
-    /// @param reason reason why this user left, note this event may be triggered when the remote user
-    /// become an audience in live broadcasting profile
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
-        // Replace domain's value with your Bundle Identifier
-        let error = NSError(domain: "com.facephi.demosdk-videoRecording", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Call ended", comment: "")])
-
-        finishBroadcastWithError(error)
-    }
-}
-```
 
 ---
 
@@ -281,14 +112,14 @@ Una vez iniciado el componente y creada una nueva operación (apartado 3) se pod
 - **[SIN TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero **no se trackeará** ningún evento al servidor de tracking:
 
 ```java
-let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), appGroupName: "group.com.facephi.demosdk-videoRecording", extensionName: "VideoRecording", output: { _ in })
+let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), output: { _ in })
 SDKController.shared.launchMethod(controller: controller)
 ```
 
 - **[CON TRACKING]** Esta llamada permite lanzar la funcionalidad del componente con normalidad, pero sí se trackearán los eventos internos al servidor de tracking:
 
 ```java
-let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), appGroupName: "group.com.facephi.demosdk-videoRecording", extensionName: "VideoRecording", output: { _ in })
+let controller = VideoRecordingController(data: VideoRecordingConfigurationData(), output: { _ in })
 SDKController.shared.launch(controller: controller)
 ```
 
@@ -313,7 +144,26 @@ En los datos de configuración (_VideoRecordingConfigurationData_) también se p
 
 ## 5. Personalización del componente
 
-Ahora mismo no existen recursos que configurar en el componente.
+### 5.1 Colores
+
+- El único color disponible para modificar en este componente es:
+
+```java
+case sdkPrimaryColor
+```
+
+Para modificarlo, se debe crear un asset con ese mismo nombre en el Bundle.main de la aplicación.
+
+### 5.2 Textos
+
+Los literales disponibles son:
+
+```java
+"video_recording_component_title_message"="¿Permitir captura de pantalla en %@?";
+"video_recording_component_desc_message"="Esta aplicación hará una captura de tu pantalla que no podrás revisar.";
+"video_recording_component_cancel_message"="No permitir";
+"video_recording_component_confirm_message"="Grabar pantalla";
+```
 
 ## 6. Errores y problemas frecuentes
 

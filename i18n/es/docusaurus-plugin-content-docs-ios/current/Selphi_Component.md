@@ -65,14 +65,14 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
   pod 'zipzap'
 ```
 
 - Para instalar el componente de Selphi deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-  pod 'FPHISDKSelphiComponent', '~> 2.3.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.4.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -182,6 +182,8 @@ sea el número mayor será el recorte del rectángulo con respecto a la
 cara.
 
 ##### locale
+
+A partir de la versión 2.4.X este parámetro deja de configurarse a nivel de Componente y se hará en el initSdk del apartado [Parámetros opcionales del initSdk](./Mobile_SDK#3-2-5-locale).
 
 Fuerza al widget a utilizar la configuración de idioma indicado por el
 parámetro locale. Este parámetro acepta tanto un código de idioma (p.
@@ -301,13 +303,59 @@ FinishStatus.STATUS_ERROR
 
 _errorType_: Errores propios del widget.
 
-```java 
-SELPHID_CANCEL_BY_USER
-SELPHID_TIMEOUT
-SELPHID_INTERNAL_ERROR
-EXTRACTION_FINISHED_WITH_NO_RESULTS
-COULD_NOT_CREATE_WIDGET_INSTANCE
-RESOURCES_FILE_NOT_FOUND
+```java
+public enum ErrorType: Equatable, Error {
+    //COMMON - BASIC
+    case NO_ERROR
+    case UNKNOWN_ERROR
+    case OTHER(String)
+    
+    //COMMON - REQUIREMENTS
+    case NO_DATA_ERROR
+    case NO_OPERATION_CREATED_ERROR
+    case NETWORK_CONNECTION
+    
+    //COMMON - PERMISSIONS
+    case CAMERA_PERMISSION_DENIED
+    case MIC_PERMISSION_DENIED
+    case LOCATION_PERMISSION_DENIED
+    case STORAGE_PERMISSION_DENIED
+    
+    //COMMON - USER'S INTERACTION
+    case CANCEL_BY_USER
+    case SELPHI_TIMEOUT(LivenessDiagnostic?)
+    
+    //COMMON - LICENSE ERROR
+    case LICENSE_CHECKER_ERROR(String)
+    case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
+}
+```
+
+**IMPORTANTE: SelphiComponent no utiliza el ErrorType.TIMEOUT común, sino SELPHI_TIMEOUT. Este error proporciona un LivenessDiagnostic opcional para ofrecer más información al integrador. Este diagnóstico proporciona información si se salta un evaluador de IAD.**
+
+Los errores 'ErrorType.OTHER' y 'ErrorType.LICENSE_CHECKER_ERROR' son especiales porque además pueden informar del detalle del error.
+
+El _String_ puede tener los siguientes valores en el caso del 'ErrorType.OTHER':
+
+```java
+public enum SelphiError: String {
+    case WIDGET_RESULT_DATA_ERROR
+    case INITIALIZATION_ERROR
+    case RESOURCES_FILE_NOT_FOUND
+    case ACTIVE_LIVENESS_ERROR
+    
+    //Widget ERRORS
+    case BAD_EXTRACTOR_CONFIGURATION_ERROR
+    case BAD_CONFIGURATION_ERROR
+    case CONTROL_NOT_INITIALIZED_ERROR
+    case EXTRACTION_LICENSE_ERROR
+    case HARDWARE_ERROR
+    case SETTINGS_PERMISSION_ERROR
+    case UNEXPECTED_CAPTURE_ERROR
+    case TEMPLATE_ERROR
+}
 ```
 
 ### 7.2. Recepción de ejecución correcta - _data_

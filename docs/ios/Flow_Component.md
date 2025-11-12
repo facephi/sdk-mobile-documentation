@@ -166,7 +166,7 @@ The flow result will have 3 fields:
 
 - flowFinish: Flag indicating whether the process has finished.
 
-### 7.1. Receipt of errors
+### 7.1. Error's management
 
 In the result, inside _sdkFlowResult_ we will have
 **_sdkFlowResult.step_** to identify which component has failed, and

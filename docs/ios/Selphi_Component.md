@@ -63,14 +63,14 @@ completely before the installation of the components of the **_SDKMobile_** comp
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.3.0'
+  pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
 - To install the current component, the following entry must be included in the _Podfile_ of the project
   entry in the _Podfile_ of the application:
 
 ```
-  pod 'FPHISDKSelphiComponent', '~> 2.3.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.4.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -178,6 +178,8 @@ the higher the number, the more the rectangle is cropped with respect to the fac
 face.
 
 ##### locale
+
+Since version 2.4.X this parameter is no longer configured at component's level. Now it's being done in the initSdk. See [Optional parameters in the initSdk](./Mobile_SDK#3-2-5-locale).
 
 Forces the widget to use the language setting indicated by the
 locale parameter. This parameter accepts both a language code (e.g. 'en') and a regional identification code (e.g. 'en_US').
@@ -288,7 +290,7 @@ sent to the platform.
 
 The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
 
-### 7.1. Receiving errors
+### 7.1. Error's management
 
 _finishStatus_: Which will tell us if the operation has finished successfully. Possible values:
 
@@ -297,7 +299,7 @@ FinishStatus.STATUS_OK
 FinishStatus.STATUS_ERROR
 ```
 
-_errorType_: Widget's own errors
+_errorType_: Specified in a common ErrorType enum:
 
 ```java
 public enum ErrorType: Equatable, Error {
@@ -319,21 +321,39 @@ public enum ErrorType: Equatable, Error {
     
     //COMMON - USER'S INTERACTION
     case CANCEL_BY_USER
-    case TIMEOUT
+    case SELPHI_TIMEOUT(LivenessDiagnostic?)
     
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)
     case MISSING_COMPONENT_LICENSE_DATA
+    case COMPONENT_LICENSE_ERROR
+    case EMPTY_LICENSE
 }
 ```
 
-The OTHER case can contain these values:
+**IMPORTANT: SelphiComponent doesn't use the common ErrorType.TIMEOUT, it uses instead SELPHI_TIMEOUT. This error provides an optional LivenessDiagnostic to give the integrator further information. This Diagnostic provides information if an IAD flag is launched.**
+
+The errors 'ErrorType.OTHER' and 'ErrorType.LICENSE_CHECKER_ERROR' are special because they also inform of
+the error's details.
+
+The _String_ can have this values in the OTHER's case:
 
 ```java
 public enum SelphiError: String {
-    case EXTRACTION_FINISHED_WITH_NO_RESULTS
-    case COULD_NOT_CREATE_WIDGET_INSTANCE
+    case WIDGET_RESULT_DATA_ERROR
+    case INITIALIZATION_ERROR
     case RESOURCES_FILE_NOT_FOUND
+    case ACTIVE_LIVENESS_ERROR
+    
+    //Widget ERRORS
+    case BAD_EXTRACTOR_CONFIGURATION_ERROR
+    case BAD_CONFIGURATION_ERROR
+    case CONTROL_NOT_INITIALIZED_ERROR
+    case EXTRACTION_LICENSE_ERROR
+    case HARDWARE_ERROR
+    case SETTINGS_PERMISSION_ERROR
+    case UNEXPECTED_CAPTURE_ERROR
+    case TEMPLATE_ERROR
 }
 ```
 
