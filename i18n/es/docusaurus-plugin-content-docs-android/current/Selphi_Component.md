@@ -263,31 +263,22 @@ mirando al frente y sin moverla.
 
 Indica si se activa el flash de la cámara del dispositivo.
 
-#### 7.2.9 _locale_
-
-Fuerza al widget a utilizar la configuración de idioma indicado por el
-parámetro locale. Este parámetro acepta tanto un código de idioma (p.
-ej. ‘en’) como un código de identificación regional (p. ej. ‘en_US’). Si
-el archivo de recursos del widget no tuviera una localización para el
-‘locale’ seleccionado su configuración pasaría a utilizar el idioma por
-defecto.
-
-#### 7.2.10 _fullscreen_
+#### 7.2.9 _fullscreen_
 
 Indica si la vista va a tener prioridad para mostrarse en pantalla
 completa, si el sistema lo permite.
 
-#### 7.2.11. _templateRawOptimized_
+#### 7.2.10. _templateRawOptimized_
 
 Indica si el template (templateRaw) generado tras el selfie debe
 optimizarse o no.
 
-#### 7.2.12. _qrMode_
+#### 7.2.11. _qrMode_
 
 Booleano que indica si se quiere o no activar la lectura de QR previo al
 proceso de autenticación.
 
-#### 7.2.13 _videoFilename_
+#### 7.2.12 _videoFilename_
 
 Establece la ruta absoluta del nombre del archivo en el que se grabará
 un video del proceso de captura. La aplicación es la responsable de
@@ -296,22 +287,22 @@ requiera de permisos adicionales. El widget, por defecto, no realizará
 ningún proceso de grabación a menos que se especifique una ruta de
 archivo mediante este método.
 
-#### 7.2.14 _viewsContent_
+#### 7.2.13 _viewsContent_
 
 Esta propiedad avanzada permite, mediante una cadena en formato xml,
 configurar las vistas del widget.
 
 Nota: Esta propiedad no altera el contenido del archivo de recursos.
 
-#### 7.2.15. _showDiagnostic_
+#### 7.2.14. _showDiagnostic_
 
 Mostrar pantallas de diagnóstico al final del proceso
 
-#### 7.2.16. _logImages_
+#### 7.2.15. _logImages_
 
 Al activarlo se devuelve una lista con las 5 mejores imágenes tomadas del usuario
 
-#### 7.2.17. _showPreviousTip_
+#### 7.2.16. _showPreviousTip_
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
 
@@ -319,19 +310,19 @@ Muestra una pantalla previa al lanzamiento de la captura con información sobre 
 
 Duración del proceso de extracción facial
 
-#### 7.2.19. _cameraPreferred_
+#### 7.2.18. _cameraPreferred_
 
 Cámara con la que se quiere realizar el proceso: FRONT, BACK
 
-#### 7.2.20. _vibrationEnabled_
+#### 7.2.19. _vibrationEnabled_
 
 Indica si se desea un feedback de vibración al acabar el proceso.
 
-#### 7.2.21. _moveSuccessfulAttempts_
+#### 7.2.20. _moveSuccessfulAttempts_
 
 Número de reintentos para la captura correcta en el proceso de movimiento (Por defecto 1)
 
-#### 7.2.22. _moveFailedAttempts_
+#### 7.2.21. _moveFailedAttempts_
 
 Número de reintentos para la captura incorrecta en el proceso de movimiento (Por defecto 2)
 
@@ -419,3 +410,4 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 | 2.3.5           | 5.17.5                         |
 | 2.3.6           | 5.18.2                         |
 | 2.4.0           | 5.19.1                         |
+| 2.4.1           | 5.19.5                         |

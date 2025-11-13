@@ -396,28 +396,7 @@ val selphIDConfiguration = SelphIDConfigurationData(
 )
 ```
 
-#### 7.1.8 _locale_
-
-Es un string que permite cambiar la localización y el idioma del widget.
-Ejemplos de valores que pueden tener son los siguientes:
-
-- ““ para el de sistema
-
-- “es” para español.
-
-- “en” para inglés.
-
-- “fr” para francés.
-
-En definitiva, dependerá del nombre que aparezca en el fichero
-`strings.xml` del lenguaje que se desee seleccionar (`strings-es.xml`,
-`strings-en.xml`, `strings-fr.xml`).
-
-En el zip de recursos, el cual se encuentra dentro de la carpeta
-strings, se pueden añadir los ficheros `strings-xx.xml` correspondientes
-a cada localización que se requiere incorporar en el widget.
-
-#### 7.1.9 _fullscreen_
+#### 7.1.8 _fullscreen_
 
 Indica si la vista va a tener prioridad para mostrarse en pantalla
 completa, si el sistema lo permite.
@@ -644,3 +623,4 @@ Tabla de versiones de sdk y versiones de recursos asociados (Se pueden encontrar
 | 2.3.6           | 1.34.6                         |
 | 2.3.7           | 1.34.7                         |
 | 2.4.0           | 1.35.0                         |
+| 2.4.1           | 1.35.2                         |

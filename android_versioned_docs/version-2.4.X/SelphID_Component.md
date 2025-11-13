@@ -302,28 +302,7 @@ val selphIDConfiguration = SelphIDConfigurationData(
 )
 ```
 
-#### 7.1.8 _locale_
-
-This is a string that allows you to change the locale and language of
-the widget. Examples of values they can have are as follows:
-
-- ““ for use the system language
-
-- “es” for Spanish.
-
-- “en” for English.
-
-- “fr” for french.
-
-Ultimately, it will depend on the name that appears in the file
-`strings.xml` of the language you want to choose (`strings-es.xml`,
-`strings-en.xml`, `strings-fr.xml`).
-
-In the resources zip, located inside the strings folder, you can add the
-files `strings-xx.xml` corresponding to each location you need to
-incorporate in the widget.
-
-#### 7.1.9 _fullscreen_
+#### 7.1.8 _fullscreen_
 
 Indicates whether the view will be prioritised for full-screen display
 if the system allows it.
@@ -540,3 +519,4 @@ Table of SDK versions and associated resource versions (see **Resources** sectio
 | 2.3.6           | 1.34.6                        |
 | 2.3.7           | 1.34.7                        |
 | 2.4.0           | 1.35.0                        |
+| 2.4.1           | 1.35.2                        |
