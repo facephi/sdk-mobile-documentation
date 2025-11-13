@@ -2,6 +2,38 @@
 
 ## Versiones
 
+### 2.4.1
+
+- General
+
+  - Mejoras en diseño
+  - Nueva versión de Security: 1.1.3
+
+- SelphID
+
+  - Nueva versión del widget: 1.35.2
+
+- Selphi
+
+  - Nueva versión del widget: 5.19.5
+
+- Tracking
+
+  - Nueva versión del widget: 1.1.25
+
+- Video ID
+
+  - Nueva versión del Reader: 1.9.6
+
+- NFC
+
+  - Actualización de dependencias
+  - Mejora de datos
+
+- Capture - File Uploader
+
+  - Nueva versión del widget: 1.0.1
+
 ### 2.4.0
 
 - General

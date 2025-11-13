@@ -220,59 +220,55 @@ Requires the user to hold head steady and forward before starting.
 
 Enables device camera flash.
 
-#### 7.2.9 `locale`
-
-Forces widget to use a specific locale (e.g. `en`, `en_US`).
-
-#### 7.2.10 `fullscreen`
+#### 7.2.9 `fullscreen`
 
 Displays the widget full-screen if supported.
 
-#### 7.2.11 `templateRawOptimized`
+#### 7.2.10 `templateRawOptimized`
 
 Optimizes `templateRaw` if true.
 
-#### 7.2.12 `qrMode`
+#### 7.2.11 `qrMode`
 
 Enables QR scanning before authentication.
 
-#### 7.2.13 `videoFilename`
+#### 7.2.12 `videoFilename`
 
 Absolute path for recording capture video; the app must handle permissions.
 
-#### 7.2.14 `viewsContent`
+#### 7.2.13 `viewsContent`
 
 Custom XML layout string for widget views.
 
-#### 7.2.15 `showDiagnostic`
+#### 7.2.14 `showDiagnostic`
 
 Shows diagnostic screens at the end.
 
-#### 7.2.16 `logImages`
+#### 7.2.15 `logImages`
 
 Returns top 5 images when enabled.
 
-#### 7.2.17 `showPreviousTip`
+#### 7.2.16 `showPreviousTip`
 
 Shows a pre-capture tip screen with launch info.
 
-#### 7.2.18 `extractionDuration`
+#### 7.2.17 `extractionDuration`
 
 Duration of the facial extraction process.
 
-#### 7.2.19 `cameraPreferred`
+#### 7.2.18 `cameraPreferred`
 
 Preferred camera (`FRONT` or `BACK`).
 
-#### 7.2.20 `vibrationEnabled`
+#### 7.2.19 `vibrationEnabled`
 
 Enables vibration feedback at process end.
 
-#### 7.2.21 `moveSuccessfulAttempts`
+#### 7.2.20 `moveSuccessfulAttempts`
 
 Number of retries for successful MOVE liveness (default 1).
 
-#### 7.2.22 `moveFailedAttempts`
+#### 7.2.21 `moveFailedAttempts`
 
 Number of retries for failed MOVE liveness (default 2).
 
@@ -351,3 +347,4 @@ Table of SDK versions and associated resource versions (see **Resources** sectio
 | 2.3.5           | 5.17.5                       |
 | 2.3.6           | 5.18.2                       |
 | 2.4.0           | 5.19.1                       |
+| 2.4.1           | 5.19.5                       |
