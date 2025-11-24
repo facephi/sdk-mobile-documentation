@@ -1,383 +1,285 @@
-# Capture Component
-
-## 0. Requisitos base de SDK Mobile
-
-**SDK Mobile** es un conjunto de librerías (**Componentes**) que ofrece
-una serie de funcionalidades y servicios, permitiendo a su vez su
-integración en una aplicación Mobile de forma sencilla y totalmente
-escalable. Dependiendo del caso de uso que se requiera, se deberá
-realizar la instalación de unos determinados componentes. Su alto nivel
-de modularidad permite que, en un futuro, se puedan añadir otros
-componentes nuevos sin afectar en absoluto a los ya integrados en el
-proyecto.
-
-Para más información sobre la configuración base, vaya a la sección de [Primeros Pasos](./Mobile_SDK).
-
----
+# Subida de ficheros y gestión de QR
 
 ## 1. Introducción
 
-El _Componente_ tratado en el documento actual recibe el nombre de
-**_Capture Component_**. Éste se encarga de realizar la captura de facturas y la captura y generación de QRs.
+La captura de documentos y la lectura y generación de QRs se realizan con el **_CaptureComponent_**. 
+
+Este componente permitirá la subida de documentos realizando una foto con la cámara del dispositivo
+o desde galeria.
 
 ---
 
-## 2. Integración del componente
+## 2. Dependencia
 
-Antes de integrar este componente se recomienda leer la documentación
-relativa a:
-
-[Primeros Pasos](./Mobile_SDK) y seguir las instrucciones indicadas en dicho
-documento.
-
-En esta sección se explicará paso a paso cómo integrar el componente
-actual en un proyecto ya existente.
-
-### 2.1. Dependencias requeridas para la integración
-
-Para evitar conflictos y problemas de compatibilidad, en caso de querer
-instalar el componente en un proyecto que contenga una versión antigua
-de las librerías de Facephi (_Widgets_), éstos deberán eliminarse por
-completo antes de la instalación de los componentes de la
-**_SDKMobile_**.
-
-- Actualmente las librerías de FacePhi se distribuyen de forma remota
-  a través de diferentes gestores de dependencias. Las dependencias
-  **obligatorias** que deberán haberse instalado previamente:
+La dependencia específica del componente es:
 
   ```java
-  implementation "com.facephi.androidsdk:capture_component:$sdk_capture_component_version"
+  implementation "com.facephi.androidsdk:capture_component:$version"
   ```
 
----
+--- 
 
-## 3. Iniciar nueva operación
+## 3. Controladores disponibles
 
-Cuando se desea realizar una determinada operación, para generar la
-información asociada correctamente en la plataforma deberá ejecutarse
-previamente el comando **newOperation**.
-
-Este comando debe haberse ejecutado **anteriormente al lanzamiento del
-componente**.
-
-Para saber más acerca de cómo iniciar una nueva operación, se recomienda
-consultar la documentación de [Primeros Pasos](./Mobile_SDK) , en el que se detalla y explica en qué consiste
-este proceso.
-
----
-
-## 4. Controladores disponibles
-
-| **Controlador**         | **Descripción**                         |
-| ----------------------- | --------------------------------------- |
-| InvoiceReaderController | Controlador para la captura de facturas |
+| **Controlador** | **Descripción**                         |
+| --------------- | --------------------------------------- |
+| FileUploaderController | Controlador para la captura de facturas |
 | QrReaderController      | Controlador para la captura de QRs      |
 | QrGeneratorController   | Controlador para la generación de QRs   |
 
----
+--- 
 
-## 5. Configuración del componente
+## 4. Lanzamiento simplificado
 
-Para configurar el componente actual, una vez inicializado, se deberá
-crear un objeto _CaptureConfigurationData_ y pasarlo como parámetro al SDKController durante el lanzamiento del componente para capturas.
+Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente. 
+Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funcionalidad.
 
-_QrGeneratorConfiguration_ y pasarlo como parámetro al SDKController
-durante el lanzamiento del componente para generación de QRs.
-
-En el siguiente apartado se mostrarán los campos que forman parte de
-estas clased y para qué se utiliza cada uno de ellos.
-
-### 5.1. Class QrCaptureConfigurationData
-
-#### 5.1.1. extractionTimeout
-
-Tiempo de extracción máximo
-
-#### 5.1.2. cameraPreferred
-
-Cámara seleccionada: FRONT, BACK
-
-#### 5.1.3. cameraShape
-
-Forma de la máscara que se quiere mostrar sobre la cámara:
-
-- SQUARE: Cuadrado
-- CIRCULAR: Círculo
-- RECTANGLE_TALL: Rectángulo
-
-#### 5.1.4. vibrationEnabled
-
-Habilitar vibración durante el proceso
-
-#### 5.1.5. showStroke
-
-Mostrar una línea como borde de la cámara
-
-#### 5.1.6. showDiagnostic
-
-Mostrar pantallas de diagnóstico al final del proceso
-
-#### 5.1.7. showTutorial
-
-Muestra la pantalla de tutorial al inicio del proceso (Sólo modo QR)
-
-#### 5.1.8. transparentBackground
-
-Máscara sobre la cámara semitransparente
-
-#### 5.1.9. showPreviousTip
-
-Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
-
-### 5.2. Class QrGeneratorConfiguration
-
-#### 5.2.1. source
-
-Texto que se va a incluir en el QR
-
-#### 5.2.2. width
-
-Ancho del QR generado
-
-#### 5.2.3. height
-
-Alto del QR generado
-
-### 5.3. Class InvoiceCaptureConfigurationData
-
-#### 5.3.1. extractionTimeout
-
-Tiempo de extracción máximo
-
-#### 5.3.2. vibrationEnabled
-
-Habilitar vibración durante el proceso
-
-#### 5.3.3. showDiagnostic
-
-Mostrar pantallas de diagnóstico al final del procesos
-
-#### 5.1.4. showPreviousTip
-
-Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
-
-#### 5.3.5. maxScannedDocs
-
-Numero máximo de documentos a escanear.
-
----
-
-## 6. Uso del componente
-
-### 6.1 Captura de factura
-
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
-
-- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+Lanzamiento de la captura de documentos:
 
 ```java
-val result = SDKController.launch(
-    InvoiceReaderController(InvoiceCaptureConfigurationData())
+val response = SDKController.launch(
+    FileUploaderController(FileUploaderConfigurationData(...))
 )
-when (result) {
-    is SdkResult.Error -> Napier.d("InvoiceReader: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("InvoiceReader OK: ${result.data}")
+when (response) {
+    is SdkResult.Error -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 ```
 
-- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **no se trackeará** ningún
-  evento al servidor de _tracking_:
+Lanzamiento de la captura de QR:
 
 ```java
-val result = SDKController.launchMethod(
-    InvoiceReaderController(InvoiceCaptureConfigurationData())
+val response = SDKController.launch(
+    QrReaderController(QrCaptureConfigurationData(...))
 )
-when (result) {
-    is SdkResult.Error -> Napier.d("InvoiceReader: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("InvoiceReader OK: ${result.data}")
+when (response) {
+    is SdkResult.Error -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 ```
 
-El método **launch** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
-
-Por el contrario, el método **launchMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
-
-### 6.2 Captura de QR
-
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
-
-- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
+Lanzamiento de la generación de QR:
 
 ```java
-val result = SDKController.launch(
-    QrReaderController(QrCaptureConfigurationData())
+val response = SDKController.launch(
+    QrGeneratorController(QrGeneratorConfiguration(...))
 )
-when (result) {
-    is SdkResult.Error -> Napier.d("QR: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("QR OK: ${result.data}")
+when (response) {
+    is SdkResult.Error -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Success -> response.data
 }
 ```
 
-- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **no se trackeará** ningún
-  evento al servidor de _tracking_:
+--- 
+
+## 5. Configuración básica
+
+Para los controladores de captura de componentes y captura de QR se puede generar la configuración con los parámetros por defecto. Para el caso de la geneación del QR se necesitará el texto que se va a utilizar:
 
 ```java
-val result = SDKController.launchMethod(
-    QrReaderController(QrCaptureConfigurationData())
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("QR: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("QR OK: ${result.data}")
+QrGeneratorConfiguration(source = "QR text")
+```
+
+--- 
+
+## 6. Recepción del resultado
+
+El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y uno incorrecto:
+
+```java
+when (response) {
+    is SdkResult.Error -> Napier.d("ERROR - ${response.error}")
+    is SdkResult.Success -> response.data
 }
 ```
 
-El método **launch** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
+### 6.1. Recepción de errores
 
-Por el contrario, el método **launchMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
-
-### 6.3 Generación de QR
-
-Una vez iniciado el componente y creada una nueva operación (**apartado
-3**) se podrán lanzar los componentes del SDK. Hay dos formas de lanzar
-el componente:
-
-- **\[CON TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero sí se trackearán los eventos
-  internos al servidor de _tracking_:
-
-```java
-val result = SDKController.launch(
-    QrGeneratorController(QrGeneratorConfiguration(""))
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("QrGenerator: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("QrGenerator OK: ${result.data}")
-}
-```
-
-- **\[SIN TRACKING\]** Esta llamada permite lanzar la funcionalidad
-  del componente con normalidad, pero **no se trackeará** ningún
-  evento al servidor de _tracking_:
-
-```java
-val result = SDKController.launchMethod(
-    QrGeneratorController(QrGeneratorConfiguration(""))
-)
-when (result) {
-    is SdkResult.Error -> Napier.d("QrGenerator: KO - ${result.error.name}")
-    is SdkResult.Success -> Napier.d("QrGenerator OK: ${result.data}")
-}
-```
-
-El método **launch** debe usarse **por defecto**. Este método permite
-utilizar **_tracking_** en caso de estar su componente activado, y no lo
-usará cuando esté desactivado (o no se encuentre el componente
-instalado).
-
-Por el contrario, el método **launchMethod** cubre un caso especial, en
-el cual el integrador tiene instalado y activado el tracking, pero en un
-flujo determinado dentro de la aplicación no desea trackear información.
-En ese caso se usa este método para evitar que se envíe esa información
-a la plataforma.
-
----
-
-## 7. Recepción del resultado
-
-Los controllers devolverán la información necesaria en formato
-SdkResult. Más información en la sección de <a
-  href="Mobile_SDK#6-retorno-de-resultado"
-  rel="nofollow">6. Retorno de resultado</a> del Android Mobile SDK
-
-### 7.1. Recepción de errores
-
-En la parte del error, dispondremos de la clase _CaptureError_.
+Los errores se devolverán como un objeto 'CaptureError'.
 
 Listado de errores:
 
-- ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad es incorrecto.
-- APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
-- CAMERA_ERROR: Error en el lanzamiento de la cámara.
-- CAMERA_PERMISSION_DENIED: El usuario ha rechazado los permisos.
-- CANCEL_BY_USER: El usuario ha cancelado el proceso.
-- CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
-- COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-- EMPTY_LICENSE: El String de licencia está vacío.
-- FETCH_DATA_ERROR: Error en la recogida del resultado.
-- FLOW_ERROR: Error en el proceso de flow.
-- INITIALIZATION_ERROR: Error de inicialización.
-- INVOICE_CAPTURE_ERROR: Error en la captura de facturas.
-- MANAGER_NOT_INITIALIZED: Los managers son nulos.
-- NO_DATA_ERROR: Los datos de entrada son nulos.
-- OPERATION_NOT_CREATED: No hay ninguna operación en curso.
-- QR_CAPTURE_ERROR: Error en la captura de QR
-- QR_GENERATION_ERROR: Error en la generación de código QR
-- TIMEOUT: Timeout en el proceso.
+- CAP_ACTIVITY_RESULT_MSG_ERROR: El resultado devuelto por la actividad es incorrecto o no contiene la información necesaria para continuar.
+- CAP_APPLICATION_CONTEXT_ERROR: El contexto de aplicación requerido es nulo o no válido, impidiendo inicializar correctamente el módulo de captura.
+- CAP_CAMERA_ERROR: Ha ocurrido un error interno relacionado con la cámara del dispositivo (fallo de apertura, inicialización o captura).
+- CAP_CAMERA_PERMISSION_DENIED: El usuario ha denegado los permisos necesarios para acceder a la cámara.
+- CAP_CANCEL_BY_USER: El usuario ha cancelado manualmente el proceso de captura.
+- CAP_CANCEL_LAUNCH: El proceso ha sido cancelado de forma general por el SDK o por una acción externa.
+- CAP_COMPONENT_LICENSE_ERROR: La licencia del componente no es válida, ha expirado o no coincide con la configuración requerida.
+- CAP_EMPTY_LICENSE: La cadena de licencia está vacía o no se ha proporcionado.
+- CAP_FETCH_DATA_ERROR: Se ha producido un error al obtener o procesar los datos necesarios para ejecutar el flujo.
+*(Incluye información adicional en el campo `error`.)*
+- CAP_FLOW_ERROR: Se ha producido un error interno durante la ejecución del flujo de captura.
+*(Incluye información adicional en el campo `error`.)*
+- CAP_INITIALIZATION_ERROR: Error al inicializar los componentes necesarios del SDK.
+*(Incluye información detallada en el campo `error`.)*
+- CAP_FILE_UPLOADER_CAPTURE_ERROR: Error durante el proceso de subida de los archivos generados en la captura.
+- CAP_MANAGER_NOT_INITIALIZED: Los managers necesarios para ejecutar el proceso no han sido inicializados correctamente.
+- CAP_NO_DATA_ERROR: Los datos de entrada requeridos son nulos, inexistentes o insuficientes para continuar el proceso.
+- CAP_OPERATION_NOT_CREATED: No se ha podido crear o recuperar una operación activa necesaria para continuar.
+*(Incluye información detallada en el campo `error`.)*
+- CAP_QR_CAPTURE_ERROR: Error durante la captura o lectura del código QR.
+- CAP_QR_GENERATION_ERROR: Error al generar el código QR solicitado.
+- CAP_TIMEOUT: Se ha alcanzado el tiempo máximo permitido en alguna de las fases del proceso.
+- CAP_FLOW_VIDEO_RECORDING_ERROR: Error durante la grabación de vídeo dentro del flujo establecido.
+- CAP_FLOW_TRACKING_ERROR: Error al realizar el tracking necesario para completar el flujo de captura.
 
-### 7.2. Recepción de ejecución correcta - _data_
+### 6.2. Recepción del resultado correcto - _data_
 
-En la ejecución correcta, simplemente se informa de que todo ha ido bien
-con el SdkResult.Success.
+#### 6.2.1 Recepción del resultado de la captura de documentos
+
+En la parte de SdkResult.Success - _data_, dispondremos de la clase  _FileUploaderResult_.
+
+Los campos devueltos en el resultado son los siguientes:
+
+##### 6.2.1.1 _capturedDocumentList_
+
+Listado de ficheros capturados. Pueden ser imágenes o PDFs. Los campos devueltos de cada uno son:
+
+- mimeType
+- timestampMillis
+- content: Contenido del documento. Será diferente si es una imagen o un documento PDF. Para diferenciarlo:
+
+```java
+capturedDocumentList.forEach { documentData ->
+                            when (val content = documentData.content) {
+                                is FileContent.UploaderImage -> {
+                                    // Uploader: New image found
+                                    // content.image
+                                }
+
+                                is FileContent.UploaderDocument -> {
+                                    // Uploader: New document found
+                                    // content.bytes
+                                }
+                            }
+                        }
+```
+
+#### 6.2.2 Recepción del resultado de la captura de QR
+
+En la parte de SdkResult.Success - _data_, dispondremos de la clase  _QrResult_.
+
+Los campos devueltos en el resultado son los siguientes:
+
+##### 6.2.2.1 _qrText_
+
+Texto obtenido del QR
+
+#### 6.2.3 Recepción del resultado de la generación de QR
+
+En la parte de SdkResult.Success - _data_, dispondremos de una SdkImage con el QR creado.
+
+--- 
+
+## 7. Información avanzada
+
+Este apartado amplía la información del componente.
+
+### 7.1  Configuración avanzada del componente
+
+#### 7.1.1 Configuración de la captura de documentos
+
+Para lanzar el componente actual, se deberá crear un objeto _FileUploaderConfigurationData_ 
+que será la configuración del controlador del componente.
+
+A continuación se detallan todos los campos que forman parte de esta clase.
+
+- `vibrationEnabled`: Indica la activación de la vibración cuando el widget termine satisfactoriamente.
+- `extractionTimeout`: Establece el tiempo máximo que se puede realizar la captura.
+- `showDiagnostic`: Mostrar pantallas de diagnóstico al final del proceso.
+- `showPreviousTip`: Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+- `maxScannedDocs`: Número máximo de documentos que se podrán capturar 
+- `allowGallery`: Se habilita el acceso a la galería para la obtención de imágenes o PDFs
+
+#### 7.1.2 Configuración de la captura de QR
+
+Para lanzar el componente actual, se deberá crear un objeto _QrCaptureConfigurationData_ 
+que será la configuración del controlador del componente.
+
+A continuación se detallan todos los campos que forman parte de esta clase.
+
+- `vibrationEnabled`: Indica la activación de la vibración cuando el widget termine satisfactoriamente.
+- `extractionTimeout`: Establece el tiempo máximo que se puede realizar la captura.
+- `showDiagnostic`: Mostrar pantallas de diagnóstico al final del proceso.
+- `showPreviousTip`: Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+- `showTutorial`: Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.
+- `cameraShape`: Permite elegir entre una máscara cuadrada y una redonda.
 
 ---
 
 ## 8. Personalización del componente
 
 Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Primeros Pasos](./Mobile_SDK)), este componente en concreto permite la
-modificación de textos específicos.
+se explican en el documento de [Ajustes avanzados](./Mobile_SDK_advanced)), este componente en concreto permite la
+modificación de su interfaz.
 
-### 8.1. Textos
+### 8.1 Textos
 
 Si se desea modificar los textos de la SDK habría que incluir el
 siguiente fichero XML en la aplicación del cliente, y modificar el valor
 de cada _String_ por el deseado.
 
 ```xml
+<resources>
     <!-- Previous Tip -->
     <string name="capture_component_qr_tip_title">Escanea el código QR</string>
     <string name="capture_component_qr_tip_message">&lt;b&gt; Enfoca &lt;/b&gt; el código QR &lt;b&gt; dentro del recuadro &lt;/b&gt;</string>
     <string name="capture_component_qr_tip_button">Comenzar</string>
-    <string name="capture_component_phactura_tip_title">Escanear documentos</string>
-    <string name="capture_component_phactura_tip_message">Haz una foto al documento, o sube una imagen.&lt;br&gt;&lt;br&gt; Puedes escanear varios documentos antes de finalizar.</string>
-    <string name="capture_component_phactura_tip_button">Comenzar</string>
+    <string name="capture_component_qr_tip_anim_desc">Animación de un teléfono móvil haciendo una foto a un código QR. En la pantalla del móvil aparece un recuadro. Cuando el código QR encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <string name="capture_component_qr_tutorial_1_anim_desc">Se muestra un código QR sobre un fondo blanco. Los bordes del código QR no se distinguen con claridad. Mediante una animación, el fondo cambia de color.</string>
+    <string name="capture_component_qr_tutorial_2_anim_desc">Un teléfono móvil hace una foto a un código QR. El código QR aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el código QR encaja dentro del recuadro, la aplicación hace una foto.</string>
     <!-- Tutorial -->
     <string name="capture_component_qr_tutorial_1">Asegúrate de que el código QR tiene &lt;b&gt; luz suficiente &lt;/b&gt; y &lt;b&gt; no hay reflejos &lt;/b&gt; o destellos sobre el código.</string>
     <string name="capture_component_qr_tutorial_2">Encaja los bordes del código QR dentro del recuadro.</string>
     <!-- Process -->
     <string name="capture_component_qr_camera_message">Mantén el QR en el centro</string>
-    <string name="capture_component_invoice_camera_message">Mantén la factura en el centro</string>
     <string name="capture_component_button_message">Capturar</string>
     <!-- Diagnostic -->
     <string name="capture_component_timeout_title">Tiempo superado</string>
     <string name="capture_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
     <string name="capture_component_internal_error_title">Hubo un problema técnico</string>
     <string name="capture_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    
+
+    <!-- WIDGET -->
+    <!-- Previous Tip -->
+    <string name="capture_widget_tip_title">Escanear documentos</string>
+    <string name="capture_widget_tip_message">Haz una foto al documento, o sube una imagen.&lt;br&gt;&lt;br&gt; Puedes escanear varios documentos antes de finalizar.</string>
+    <string name="capture_widget_tip_message_alt">Haz una foto al documento, o sube una imagen. Puedes escanear varios documentos antes de finalizar.</string>
+    <string name="capture_widget_tip_button">Comenzar</string>
+    <string name="capture_widget_tip_button_alt">Comenzar captura de documentos</string>
+    <string name="capture_widget_tip_close_button_alt">Volver</string>
+    <string name="capture_widget_tip_info_button_alt">Ver consejos</string>
+    <string name="capture_widget_tip_anim_desc">Animación de un teléfono móvil haciendo una foto a un documento. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <!-- Camera -->
+    <string name="capture_widget_document_camera_button_gallery">Galería</string>
+    <string name="capture_widget_document_camera_button_capture">Capturar</string>
+    <string name="capture_widget_document_camera_button_cancel">Cancelar captura</string>
+    <string name="capture_widget_document_camera_button_finish">Finalizar</string>
+    <!-- Gallery -->
+    <string name="capture_widget_gallery_images">Imágenes</string>
+    <string name="capture_widget_gallery_pdf">Seleccionar PDF</string>
+    <string name="capture_widget_gallery_cancel">Cancelar</string>
+    <!-- Confirmation -->
+    <string name="capture_widget_image_captured">Imagen capturada</string>
+    <string name="capture_widget_confirmation_message">¿Todos los datos se leen de forma clara y nítida?</string>
+    <string name="capture_widget_confirmation_retry">NO, QUIERO REPETIR LAS FOTOGRAFÍAS</string>
+    <string name="capture_widget_confirmation_continue">Sí, finalizar</string>
+    <string name="capture_widget_confirmation_delete">Borrar foto</string>
+    <string name="capture_widget_confirmation_image_unavailable">Vista previa no disponible</string>
+    <string name="capture_widget_confirmation_no_images">No hay capturas disponibles</string>
+    <string name="capture_widget_confirmation_delete_dialog_title">¿Quieres eliminar este documento?</string>
+    <string name="capture_widget_confirmation_delete_dialog_message">Al eliminar este documento no vas a poder recuperarlo. Deberás realizar una nueva fotografía.</string>
+    <string name="capture_widget_confirmation_delete_dialog_cancel">CANCELAR</string>
+    <string name="capture_widget_confirmation_delete_dialog_confirm">ELIMINAR DOCUMENTO</string>
+    <!-- Diagnostic -->
+    <string name="capture_widget_timeout_title">Tiempo superado</string>
+    <string name="capture_widget_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="capture_widget_internal_error_title">Hubo un problema técnico</string>
+    <string name="capture_widget_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+
+</resources>
+
 ```
 
 ### 8.2. Animaciones
@@ -385,13 +287,7 @@ de cada _String_ por el deseado.
 Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
 
 ```text
-phactura_anim_tip.json
 qr_anim_tip_1.json
 qr_anim_tip_2.json
+capture_anim_tip.json
 ```
-
----
-
-## 9. Logs
-
-Para visualizar en consola los logs de este componente se podrá usar el filtro: "CAPTURE:"

@@ -34,7 +34,7 @@ const sidebars = {
         "Video_Call_Component",
         "Video_Id_Component",
         "Video_Recording_Component",
-        //"Capture_Component",
+        "Capture_Component",
         "Flow_Component",
         "Customization",
          "Mobile_SDK_advanced",
