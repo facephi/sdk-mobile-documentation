@@ -31,7 +31,7 @@ implementation "com.facephi.androidsdk:capture_component:$version"
 
 ---
 
-## 4. SQuick Launch
+## 4. Quick Launch
 
 Once the SDK is initialized and a new operation has been created, the
 component can be launched.
