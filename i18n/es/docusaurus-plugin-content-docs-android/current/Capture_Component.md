@@ -23,7 +23,7 @@ La dependencia específica del componente es:
 
 | **Controlador** | **Descripción**                         |
 | --------------- | --------------------------------------- |
-| FileUploaderController | Controlador para la captura de facturas |
+| FileUploaderController | Controlador para la captura de documentos |
 | QrReaderController      | Controlador para la captura de QRs      |
 | QrGeneratorController   | Controlador para la generación de QRs   |
 

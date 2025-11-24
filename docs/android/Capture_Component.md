@@ -1,42 +1,45 @@
-# Subida de ficheros y gestión de QR
+# File Upload and QR Management
 
-## 1. Introducción
+## 1. Introduction
 
-La captura de documentos y la lectura y generación de QRs se realizan con el **_CaptureComponent_**. 
+Document capture, as well as QR reading and generation, are performed
+using the ***CaptureComponent***.
 
-Este componente permitirá la subida de documentos realizando una foto con la cámara del dispositivo
-o desde galeria.
+This component allows uploading documents either by taking a photo with
+the device camera or selecting them from the gallery.
 
 ---
 
-## 2. Dependencia
+## 2. Dependency
 
-La dependencia específica del componente es:
+The specific dependency for this component is:
 
-  ```java
-  implementation "com.facephi.androidsdk:capture_component:$version"
-  ```
+``` java
+implementation "com.facephi.androidsdk:capture_component:$version"
+```
 
---- 
+---
 
-## 3. Controladores disponibles
+## 3. Available Controllers
 
-| **Controlador** | **Descripción**                         |
+| **Controller** | **Description**                         |
 | --------------- | --------------------------------------- |
-| FileUploaderController | Controlador para la captura de facturas |
-| QrReaderController      | Controlador para la captura de QRs      |
-| QrGeneratorController   | Controlador para la generación de QRs   |
+| FileUploaderController | Controller for document capture |
+| QrReaderController      | Controller for QR capture     |
+| QrGeneratorController   | Controller for QR generation   |
 
---- 
 
-## 4. Lanzamiento simplificado
+---
 
-Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente. 
-Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funcionalidad.
+## 4. SQuick Launch
 
-Lanzamiento de la captura de documentos:
+Once the SDK is initialized and a new operation has been created, the
+component can be launched.
+You may use any of its controllers to execute their functionality.
 
-```java
+Launching document capture:
+
+``` java
 val response = SDKController.launch(
     FileUploaderController(FileUploaderConfigurationData(...))
 )
@@ -46,9 +49,9 @@ when (response) {
 }
 ```
 
-Lanzamiento de la captura de QR:
+Launching QR capture:
 
-```java
+``` java
 val response = SDKController.launch(
     QrReaderController(QrCaptureConfigurationData(...))
 )
@@ -58,9 +61,9 @@ when (response) {
 }
 ```
 
-Lanzamiento de la generación de QR:
+Launching QR generation:
 
-```java
+``` java
 val response = SDKController.launch(
     QrGeneratorController(QrGeneratorConfiguration(...))
 )
@@ -70,223 +73,255 @@ when (response) {
 }
 ```
 
---- 
+---
 
-## 5. Configuración básica
+## 5. Basic Configuration
 
-Para los controladores de captura de componentes y captura de QR se puede generar la configuración con los parámetros por defecto. Para el caso de la geneación del QR se necesitará el texto que se va a utilizar:
+For both the document capture controller and the QR capture controller,
+the configuration can be generated using default parameters.
+For QR generation, the text to encode in the QR is required:
 
-```java
+``` java
 QrGeneratorConfiguration(source = "QR text")
 ```
 
---- 
+---
 
-## 6. Recepción del resultado
+## 6. Receiving the Result
 
-El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y uno incorrecto:
+The launch will return the information in an SdkResult.
+A successful result can be differentiated from an error result as
+follows:
 
-```java
+``` java
 when (response) {
     is SdkResult.Error -> Napier.d("ERROR - ${response.error}")
     is SdkResult.Success -> response.data
 }
 ```
 
-### 6.1. Recepción de errores
+### 6.1. Handling Errors
 
-Los errores se devolverán como un objeto 'CaptureError'.
+Errors will be returned as a `CaptureError` object.
 
-Listado de errores:
+List of errors:
 
-- CAP_ACTIVITY_RESULT_MSG_ERROR: El resultado devuelto por la actividad es incorrecto o no contiene la información necesaria para continuar.
-- CAP_APPLICATION_CONTEXT_ERROR: El contexto de aplicación requerido es nulo o no válido, impidiendo inicializar correctamente el módulo de captura.
-- CAP_CAMERA_ERROR: Ha ocurrido un error interno relacionado con la cámara del dispositivo (fallo de apertura, inicialización o captura).
-- CAP_CAMERA_PERMISSION_DENIED: El usuario ha denegado los permisos necesarios para acceder a la cámara.
-- CAP_CANCEL_BY_USER: El usuario ha cancelado manualmente el proceso de captura.
-- CAP_CANCEL_LAUNCH: El proceso ha sido cancelado de forma general por el SDK o por una acción externa.
-- CAP_COMPONENT_LICENSE_ERROR: La licencia del componente no es válida, ha expirado o no coincide con la configuración requerida.
-- CAP_EMPTY_LICENSE: La cadena de licencia está vacía o no se ha proporcionado.
-- CAP_FETCH_DATA_ERROR: Se ha producido un error al obtener o procesar los datos necesarios para ejecutar el flujo.
-*(Incluye información adicional en el campo `error`.)*
-- CAP_FLOW_ERROR: Se ha producido un error interno durante la ejecución del flujo de captura.
-*(Incluye información adicional en el campo `error`.)*
-- CAP_INITIALIZATION_ERROR: Error al inicializar los componentes necesarios del SDK.
-*(Incluye información detallada en el campo `error`.)*
-- CAP_FILE_UPLOADER_CAPTURE_ERROR: Error durante el proceso de subida de los archivos generados en la captura.
-- CAP_MANAGER_NOT_INITIALIZED: Los managers necesarios para ejecutar el proceso no han sido inicializados correctamente.
-- CAP_NO_DATA_ERROR: Los datos de entrada requeridos son nulos, inexistentes o insuficientes para continuar el proceso.
-- CAP_OPERATION_NOT_CREATED: No se ha podido crear o recuperar una operación activa necesaria para continuar.
-*(Incluye información detallada en el campo `error`.)*
-- CAP_QR_CAPTURE_ERROR: Error durante la captura o lectura del código QR.
-- CAP_QR_GENERATION_ERROR: Error al generar el código QR solicitado.
-- CAP_TIMEOUT: Se ha alcanzado el tiempo máximo permitido en alguna de las fases del proceso.
-- CAP_FLOW_VIDEO_RECORDING_ERROR: Error durante la grabación de vídeo dentro del flujo establecido.
-- CAP_FLOW_TRACKING_ERROR: Error al realizar el tracking necesario para completar el flujo de captura.
+-   **CAP_ACTIVITY_RESULT_MSG_ERROR**: The result returned by the
+    activity is incorrect or does not contain the required information
+    to continue.
+-   **CAP_APPLICATION_CONTEXT_ERROR**: The application context is null
+    or invalid, preventing proper initialization of the capture module.
+-   **CAP_CAMERA_ERROR**: An internal camera-related error has occurred
+    (opening failure, initialization error, or capture issue).
+-   **CAP_CAMERA_PERMISSION_DENIED**: The user denied the necessary
+    camera permissions.
+-   **CAP_CANCEL_BY_USER**: The user manually canceled the capture
+    process.
+-   **CAP_CANCEL_LAUNCH**: The process was canceled globally by the SDK
+    or an external action.
+-   **CAP_COMPONENT_LICENSE_ERROR**: The component license is invalid,
+    expired, or does not match the required configuration.
+-   **CAP_EMPTY_LICENSE**: The license string is empty or missing.
+-   **CAP_FETCH_DATA_ERROR**: An error occurred while obtaining or
+    processing the data required to run the flow. *(Includes additional
+    information in the `error` field.)*
+-   **CAP_FLOW_ERROR**: An internal error occurred during the execution
+    of the capture flow. *(Includes additional information in the
+    `error` field.)*
+-   **CAP_INITIALIZATION_ERROR**: Error while initializing required SDK
+    components. *(Includes detailed information in the `error` field.)*
+-   **CAP_FILE_UPLOADER_CAPTURE_ERROR**: Error while uploading the files
+    generated during capture.
+-   **CAP_MANAGER_NOT_INITIALIZED**: The managers required to run the
+    process were not properly initialized.
+-   **CAP_NO_DATA_ERROR**: The input data is null, missing, or
+    insufficient to continue.
+-   **CAP_OPERATION_NOT_CREATED**: No active operation exists or it
+    could not be created. *(Includes detailed information in the `error`
+    field.)*
+-   **CAP_QR_CAPTURE_ERROR**: Error during QR capture or reading.
+-   **CAP_QR_GENERATION_ERROR**: Error generating the requested QR code.
+-   **CAP_TIMEOUT**: The maximum allowed time was exceeded during one of
+    the stages of the process.
+-   **CAP_FLOW_VIDEO_RECORDING_ERROR**: Error during video recording
+    within the configured flow.
+-   **CAP_FLOW_TRACKING_ERROR**: Error performing the required tracking
+    for the capture flow.
 
-### 6.2. Recepción del resultado correcto - _data_
+### 6.2. Handling Success – `data`
 
-#### 6.2.1 Recepción del resultado de la captura de documentos
+#### 6.2.1 Document Capture Result
 
-En la parte de SdkResult.Success - _data_, dispondremos de la clase  _FileUploaderResult_.
+In the SdkResult.Success - *data* section, you will receive an instance
+of ***FileUploaderResult***.
 
-Los campos devueltos en el resultado son los siguientes:
+The returned fields include:
 
-##### 6.2.1.1 _capturedDocumentList_
+##### 6.2.1.1 *capturedDocumentList*
 
-Listado de ficheros capturados. Pueden ser imágenes o PDFs. Los campos devueltos de cada uno son:
+List of captured files. These can be images or PDFs.
+Each document contains the following fields:
 
-- mimeType
-- timestampMillis
-- content: Contenido del documento. Será diferente si es una imagen o un documento PDF. Para diferenciarlo:
+-   mimeType
+-   timestampMillis
+-   content (varies depending on whether it is an image or a PDF)
 
-```java
+To differentiate the content:
+
+``` java
 capturedDocumentList.forEach { documentData ->
-                            when (val content = documentData.content) {
-                                is FileContent.UploaderImage -> {
-                                    // Uploader: New image found
-                                    // content.image
-                                }
+    when (val content = documentData.content) {
+        is FileContent.UploaderImage -> {
+            // Uploader: New image found
+            // content.image
+        }
 
-                                is FileContent.UploaderDocument -> {
-                                    // Uploader: New document found
-                                    // content.bytes
-                                }
-                            }
-                        }
+        is FileContent.UploaderDocument -> {
+            // Uploader: New document found
+            // content.bytes
+        }
+    }
+}
 ```
 
-#### 6.2.2 Recepción del resultado de la captura de QR
+#### 6.2.2 QR Capture Result
 
-En la parte de SdkResult.Success - _data_, dispondremos de la clase  _QrResult_.
+In the SdkResult.Success - *data* section, you will receive an instance
+of ***QrResult***.
 
-Los campos devueltos en el resultado son los siguientes:
+##### 6.2.2.1 *qrText*
 
-##### 6.2.2.1 _qrText_
+Text extracted from the QR code.
 
-Texto obtenido del QR
+#### 6.2.3 QR Generation Result
 
-#### 6.2.3 Recepción del resultado de la generación de QR
-
-En la parte de SdkResult.Success - _data_, dispondremos de una SdkImage con el QR creado.
-
---- 
-
-## 7. Información avanzada
-
-Este apartado amplía la información del componente.
-
-### 7.1  Configuración avanzada del componente
-
-#### 7.1.1 Configuración de la captura de documentos
-
-Para lanzar el componente actual, se deberá crear un objeto _FileUploaderConfigurationData_ 
-que será la configuración del controlador del componente.
-
-A continuación se detallan todos los campos que forman parte de esta clase.
-
-- `vibrationEnabled`: Indica la activación de la vibración cuando el widget termine satisfactoriamente.
-- `extractionTimeout`: Establece el tiempo máximo que se puede realizar la captura.
-- `showDiagnostic`: Mostrar pantallas de diagnóstico al final del proceso.
-- `showPreviousTip`: Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
-- `maxScannedDocs`: Número máximo de documentos que se podrán capturar 
-- `allowGallery`: Se habilita el acceso a la galería para la obtención de imágenes o PDFs
-
-#### 7.1.2 Configuración de la captura de QR
-
-Para lanzar el componente actual, se deberá crear un objeto _QrCaptureConfigurationData_ 
-que será la configuración del controlador del componente.
-
-A continuación se detallan todos los campos que forman parte de esta clase.
-
-- `vibrationEnabled`: Indica la activación de la vibración cuando el widget termine satisfactoriamente.
-- `extractionTimeout`: Establece el tiempo máximo que se puede realizar la captura.
-- `showDiagnostic`: Mostrar pantallas de diagnóstico al final del proceso.
-- `showPreviousTip`: Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
-- `showTutorial`: Indica si el componente activa la pantalla de tutorial. En esta vista se explica de forma intuitiva cómo se realiza la captura.
-- `cameraShape`: Permite elegir entre una máscara cuadrada y una redonda.
+In the SdkResult.Success - *data* section, a **SdkImage** containing the
+generated QR will be provided.
 
 ---
 
-## 8. Personalización del componente
+## 7. Advanced Information
 
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Ajustes avanzados](./Mobile_SDK_advanced)), este componente en concreto permite la
-modificación de su interfaz.
+This section expands on component functionality.
 
-### 8.1 Textos
+### 7.1 Advanced Component Configuration
 
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+#### 7.1.1 Document Capture Configuration
 
-```xml
+To launch the component, you must create a
+***FileUploaderConfigurationData*** object, which acts as the controller
+configuration.
+
+Below are all the fields included in this class:
+
+-   `vibrationEnabled`: Enables vibration when the widget finishes
+    successfully.
+-   `extractionTimeout`: Sets the maximum time allowed for capture.
+-   `showDiagnostic`: Displays diagnostic screens at the end of the
+    process.
+-   `showPreviousTip`: Shows a pre-capture screen with instructions and
+    a button to start the process.
+-   `maxScannedDocs`: Maximum number of documents that can be captured.
+-   `allowGallery`: Enables access to the gallery to select images or
+    PDFs.
+
+#### 7.1.2 QR Capture Configuration
+
+To launch the QR capture component, a ***QrCaptureConfigurationData***
+object must be created.
+
+Fields included in this class:
+
+-   `vibrationEnabled`: Enables vibration when the widget finishes
+    successfully.
+-   `extractionTimeout`: Sets the maximum capture time.
+-   `showDiagnostic`: Displays diagnostic screens at the end of the
+    process.
+-   `showPreviousTip`: Shows a pre-capture screen with instructions and
+    a button to start.
+-   `showTutorial`: Displays a tutorial screen explaining how to perform
+    the capture.
+-   `cameraShape`: Allows choosing between a square or circular mask.
+
+---
+
+## 8. Component Customization
+
+In addition to the customizable options at the SDK level\
+(detailed in the [Advanced Settings](./Mobile_SDK_advanced) document),
+this component allows UI customization.
+
+### 8.1 Texts
+
+To customize the SDK text strings, include the following XML file in the
+client application and modify each string value as needed:
+
+``` xml
 <resources>
     <!-- Previous Tip -->
-    <string name="capture_component_qr_tip_title">Escanea el código QR</string>
-    <string name="capture_component_qr_tip_message">&lt;b&gt; Enfoca &lt;/b&gt; el código QR &lt;b&gt; dentro del recuadro &lt;/b&gt;</string>
-    <string name="capture_component_qr_tip_button">Comenzar</string>
-    <string name="capture_component_qr_tip_anim_desc">Animación de un teléfono móvil haciendo una foto a un código QR. En la pantalla del móvil aparece un recuadro. Cuando el código QR encaja dentro del recuadro, la aplicación hace una foto.</string>
-    <string name="capture_component_qr_tutorial_1_anim_desc">Se muestra un código QR sobre un fondo blanco. Los bordes del código QR no se distinguen con claridad. Mediante una animación, el fondo cambia de color.</string>
-    <string name="capture_component_qr_tutorial_2_anim_desc">Un teléfono móvil hace una foto a un código QR. El código QR aparece en horizontal, y el móvil en posición vertical. En la pantalla del móvil aparece un recuadro. Cuando el código QR encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <string name="capture_component_qr_tip_title">Scan QR Code</string>
+    <string name="capture_component_qr_tip_message">&lt;b&gt; Focus &lt;/b&gt; the QR code &lt;b&gt; inside the box &lt;/b&gt;</string>
+    <string name="capture_component_qr_tip_button">Start</string>
+    <string name="capture_component_qr_tip_anim_desc">Animation of a mobile phone taking a photo of a QR code. A box appears on the phone screen. When the QR code fits inside the box, the application takes a photo.</string>
+    <string name="capture_component_qr_tutorial_1_anim_desc">A QR code is shown on a white background. The edges of the QR code are not clearly distinguishable. Through an animation, the background changes color.</string>
+    <string name="capture_component_qr_tutorial_2_anim_desc">A mobile phone takes a photo of a QR code. The QR code appears horizontally, and the phone vertically. A box appears on the phone screen. When the QR code fits inside the box, the application takes a photo.</string>
+  
     <!-- Tutorial -->
-    <string name="capture_component_qr_tutorial_1">Asegúrate de que el código QR tiene &lt;b&gt; luz suficiente &lt;/b&gt; y &lt;b&gt; no hay reflejos &lt;/b&gt; o destellos sobre el código.</string>
-    <string name="capture_component_qr_tutorial_2">Encaja los bordes del código QR dentro del recuadro.</string>
+    <string name="capture_component_qr_tutorial_1">Make sure the QR code has &lt;b&gt; enough light &lt;/b&gt; and there are &lt;b&gt; no reflections &lt;/b&gt; or glare on the code.</string>
+    <string name="capture_component_qr_tutorial_2">Fit the edges of the QR code inside the box.</string>
     <!-- Process -->
-    <string name="capture_component_qr_camera_message">Mantén el QR en el centro</string>
-    <string name="capture_component_button_message">Capturar</string>
+    <string name="capture_component_qr_camera_message">Keep the QR in the center</string>
     <!-- Diagnostic -->
-    <string name="capture_component_timeout_title">Tiempo superado</string>
-    <string name="capture_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="capture_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="capture_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+    <string name="capture_component_timeout_title">Time exceeded</string>
+    <string name="capture_component_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="capture_component_internal_error_title">There was a technical problem</string>
+    <string name="capture_component_internal_error_desc">We apologize. The capture could not be made</string>
 
     <!-- WIDGET -->
     <!-- Previous Tip -->
-    <string name="capture_widget_tip_title">Escanear documentos</string>
-    <string name="capture_widget_tip_message">Haz una foto al documento, o sube una imagen.&lt;br&gt;&lt;br&gt; Puedes escanear varios documentos antes de finalizar.</string>
-    <string name="capture_widget_tip_message_alt">Haz una foto al documento, o sube una imagen. Puedes escanear varios documentos antes de finalizar.</string>
-    <string name="capture_widget_tip_button">Comenzar</string>
-    <string name="capture_widget_tip_button_alt">Comenzar captura de documentos</string>
-    <string name="capture_widget_tip_close_button_alt">Volver</string>
-    <string name="capture_widget_tip_info_button_alt">Ver consejos</string>
-    <string name="capture_widget_tip_anim_desc">Animación de un teléfono móvil haciendo una foto a un documento. En la pantalla del móvil aparece un recuadro. Cuando el documento encaja dentro del recuadro, la aplicación hace una foto.</string>
+    <string name="capture_widget_tip_title">Scan Documents</string>
+    <string name="capture_widget_tip_message">Take a photo of the document, or upload an image.&lt;br&gt;&lt;br&gt; You can scan several documents before finishing.</string>
+    <string name="capture_widget_tip_message_alt">Take a photo of the document, or upload an image. You can scan multiple documents before finishing.</string>
+    <string name="capture_widget_tip_button">Start</string>
+    <string name="capture_widget_tip_button_alt">Start document capture</string>
+    <string name="capture_widget_tip_close_button_alt">Back</string>
+    <string name="capture_widget_tip_info_button_alt">Show tips</string>
+    <string name="capture_widget_tip_anim_desc">Animation of a mobile phone taking a photo of a document. A box appears on the phone screen. When the document fits inside the box, the application takes a photo.</string>
     <!-- Camera -->
-    <string name="capture_widget_document_camera_button_gallery">Galería</string>
-    <string name="capture_widget_document_camera_button_capture">Capturar</string>
-    <string name="capture_widget_document_camera_button_cancel">Cancelar captura</string>
-    <string name="capture_widget_document_camera_button_finish">Finalizar</string>
+    <string name="capture_widget_document_camera_button_gallery">Gallery</string>
+    <string name="capture_widget_document_camera_button_capture">Capture</string>
+    <string name="capture_widget_document_camera_button_cancel">Cancel capture</string>
+    <string name="capture_widget_document_camera_button_finish">Finish</string>
     <!-- Gallery -->
-    <string name="capture_widget_gallery_images">Imágenes</string>
-    <string name="capture_widget_gallery_pdf">Seleccionar PDF</string>
-    <string name="capture_widget_gallery_cancel">Cancelar</string>
+    <string name="capture_widget_gallery_images">Photo Library</string>
+    <string name="capture_widget_gallery_pdf">Import PDF</string>
+    <string name="capture_widget_gallery_cancel">Cancel</string>
     <!-- Confirmation -->
-    <string name="capture_widget_image_captured">Imagen capturada</string>
-    <string name="capture_widget_confirmation_message">¿Todos los datos se leen de forma clara y nítida?</string>
-    <string name="capture_widget_confirmation_retry">NO, QUIERO REPETIR LAS FOTOGRAFÍAS</string>
-    <string name="capture_widget_confirmation_continue">Sí, finalizar</string>
-    <string name="capture_widget_confirmation_delete">Borrar foto</string>
-    <string name="capture_widget_confirmation_image_unavailable">Vista previa no disponible</string>
-    <string name="capture_widget_confirmation_no_images">No hay capturas disponibles</string>
-    <string name="capture_widget_confirmation_delete_dialog_title">¿Quieres eliminar este documento?</string>
-    <string name="capture_widget_confirmation_delete_dialog_message">Al eliminar este documento no vas a poder recuperarlo. Deberás realizar una nueva fotografía.</string>
-    <string name="capture_widget_confirmation_delete_dialog_cancel">CANCELAR</string>
-    <string name="capture_widget_confirmation_delete_dialog_confirm">ELIMINAR DOCUMENTO</string>
+    <string name="capture_widget_image_captured">Image captured</string>
+    <string name="capture_widget_confirmation_message">Are all the data read clearly and sharply?</string>
+    <string name="capture_widget_confirmation_retry">NO, I WANT TO RETAKE THE PHOTOS</string>
+    <string name="capture_widget_confirmation_continue">Yes, finish</string>
+    <string name="capture_widget_confirmation_delete">Delete photo</string>
+    <string name="capture_widget_confirmation_image_unavailable">Preview not available</string>
+    <string name="capture_widget_confirmation_no_images">No captures available</string>
+    <string name="capture_widget_confirmation_delete_dialog_title">Do you want to delete this document?</string>
+    <string name="capture_widget_confirmation_delete_dialog_message">Once you delete this document, you will not be able to recover it. You will need to take a new photo.</string>
+    <string name="capture_widget_confirmation_delete_dialog_cancel">Cancel</string>
+    <string name="capture_widget_confirmation_delete_dialog_confirm">DELETE DOCUMENT</string>
     <!-- Diagnostic -->
-    <string name="capture_widget_timeout_title">Tiempo superado</string>
-    <string name="capture_widget_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="capture_widget_internal_error_title">Hubo un problema técnico</string>
+    <string name="capture_widget_timeout_title">Time exceeded</string>
+    <string name="capture_widget_timeout_desc">We apologize. The capture could not be made</string>
+    <string name="capture_widget_internal_error_title">There was a technical problem</string>
     <string name="capture_widget_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-
 </resources>
-
 ```
 
-### 8.2. Animaciones
+### 8.2 Animations
 
-Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+If you want to customize the SDK animations (lottie), include files with
+the same name in the app's **res/raw/** folder:
 
-```text
+``` text
 qr_anim_tip_1.json
 qr_anim_tip_2.json
 capture_anim_tip.json
