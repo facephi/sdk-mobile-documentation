@@ -50,7 +50,7 @@ const sidebars = {
             "changelog/Voice_Component_Changelog",
             "changelog/Tracking_Component_Changelog",
             "changelog/Tokenizer_Component_Changelog",
-            "changelog/Capture_Component_Changelog",
+            //"changelog/Capture_Component_Changelog",
             "changelog/Status_Component_Changelog",
           ],
         },
