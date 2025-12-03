@@ -43,7 +43,7 @@ SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 
-- To install the Selphid component, it must be included in the project modules:
+- To install the File Upload component, it must be included in the project modules:
 
 HTTPS  
 ```java

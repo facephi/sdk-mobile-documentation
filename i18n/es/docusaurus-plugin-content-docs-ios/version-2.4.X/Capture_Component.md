@@ -51,7 +51,7 @@ SSH
 git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 
-- Para instalar el componente de Selphid deberá incluirse en los módulos del proyecto:
+- Para instalar el componente de Subida de ficheros deberá incluirse en los módulos del proyecto:
 
 HTTPS  
 ```java
