@@ -55,6 +55,40 @@ SSH
 git@github.com:facephi-clienters/SDK-CapturePackage-SPM.git
 ```
 
+**IMPORTANT: If using the FileUploaderController with SPM. The resources and assets needed for this component to work in SPM require the run of a script on each launch.**
+
+To make automatic this process, the script should be added in Target -> Build Phases -> + Run Script
+
+```java
+set -euo pipefail
+BUNDLE_PATH="${TARGET_BUILD_DIR}/FPHICaptureWidget-SPM_FPHICaptureWidget-SPM.bundle/compose-resources"
+DESTINATION="${TARGET_BUILD_DIR}/${TARGET_NAME}.app/compose-resources"
+if [ -d "$BUNDLE_PATH" ]; then
+  rm -rf "$DESTINATION"
+  mkdir -p "$DESTINATION"
+  cp -R "$BUNDLE_PATH/" "$DESTINATION/"
+  echo "Copied FPHICaptureWidget Compose resources to ${DESTINATION}"
+else
+  echo "FPHICaptureWidget Compose resources not found at ${BUNDLE_PATH}. If your app is not using FPHICaptureWidget Component anymore, delete the script from your Build Phases -> Run Script section"
+  exit 1
+fi
+
+BUNDLE_PATH_DS="${TARGET_BUILD_DIR}/FPHIDesignSystemResources_FPHIDesignSystemResources.bundle/Resources/compose-resources"
+DESTINATION="${TARGET_BUILD_DIR}/${TARGET_NAME}.app/compose-resources"
+if [ -d "$BUNDLE_PATH_DS" ]; then
+  cp -R "$BUNDLE_PATH_DS/" "$DESTINATION/"
+  echo "Copied FPHIDesignSystemResources Compose resources to ${DESTINATION}"
+else
+  echo "FPHIDesignSystemResources Compose resources not found at ${BUNDLE_PATH_DS}. If your app is not using FacePhi Components anymore, delete the script from your Build Phases -> Run Script section"
+  exit 1
+fi
+```
+
+Make sure to uncheck the _For install builds only_ option.
+
+**If the script is not added, a crash on runtime is shown when the FileUploaderController is launched.**
+
+
 ## 3. Available Controllers
 
 ### Simplified Launch
