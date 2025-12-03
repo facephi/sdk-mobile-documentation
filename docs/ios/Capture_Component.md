@@ -1,441 +1,236 @@
-# Capture Component
+# File Upload and QR Management
 
-## 0. SDK Mobile base requirements
+## 0. SDK Mobile baseline requirements
 
-**SDK Mobile** is a set of libraries (**Components**) that offer a series of
-functionalities and services, allowing their integration into a Mobile
-application in a simple and fully scalable way. Depending on the use
-case that is required, certain components must be installed. Its high
-level of modularity allows other new components to be added in the
-future without affecting those already integrated in the project.
+**SDK Mobile** is a set of libraries (**Components**) that offers a series of functionalities and services, allowing their integration into a Mobile application in a simple and fully scalable way. Depending on the required use case, the installation of specific components will be necessary. Its high level of modularity allows new components to be added in the future without affecting those already integrated in the project.
 
-For more information on the base configuration, go to the [Getting Started](./Mobile_SDK#11-minimum-requirements) section.
+For more information about the base configuration, go to the [Getting Started](./Mobile_SDK#11-requisitos-mínimos) section.
 
 ---
 
 ## 1. Introduction
 
-The Component discussed in the current document is called **_Capture Component_**. It is responsible for the invoice capture and the capture and generation of QRs.
+Document capture and QR reading and generation are performed with the CaptureComponent.  
+This component allows uploading documents by taking a photo with the device’s camera or from the gallery.
 
-### 1.1 Minimum requirements
+## 2. Dependencies
 
-The minimum iOS SDK version required is as follows:
+To avoid conflicts and compatibility issues, if you want to install the component in a project that contains an old version of the Facephi (Widgets) libraries, they must be completely removed before installing the **SDKMobile** components.
 
-Minimum iOS version: **13**
+### Cocoapods
 
----
-
-## 2. Integration of the component
-
-<div class="warning">
-<span class="warning">:warning:</span>
-Before integrating this component, it is recommended to read the
-documentation related to [Initial Integration](./Mobile_SDK#2-initial-integration) and follow the instructions given in that document.
-</div>
-
-This section will explain step by step how to integrate the current
-component into an existing project.
-
-### 2.1. Dependencies required for integration
-
-To avoid conflicts and compatibility problems, in case you want to
-install the component in a project containing an old version of the
-Facephi libraries (_Widgets_), these must be completely removed before
-installing the **_SDKMobile_** components.
-
-#### Cocoapods
-
-- Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
+- Facephi libraries are currently distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (added to the project’s Podfile) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.4.0'
+pod 'FPHISDKMainComponent', '~> 2.4.0'
 ```
 
-- To install the Capture component, the following entry must be included in the Podfile of the application:
+- To install the Capture component, the following entry must be added to the application's Podfile:
 
 ```java
-  pod 'FPHISDKCaptureComponent', '~> 2.4.0'
+pod 'FPHISDKCaptureComponent', '~> 2.4.0'
 ```
 
-- Once the dependencies are installed, the different functionalities of the component can be used.
+### SPM
 
-- In case of development with **XCode15** a post-installation script must be included:
-
-![Image](/ios/fix_ldClassic.png)
-
-### 2.2 Permissions and configurations
-
-In the client application where the components are going to be integrated it is necessary to incorporate the following elements in the **Info.plist** file.
-
-It is necessary to allow the use of the camera (Privacy - Camera Usage Description).
-
----
-
-## 3. Start new operation
-
-In order to generate the associated information correctly in the platform, the **newOperation** command must be executed first.
-
-<div class="note">
-<span class="note">:information_source:</span>
-This command must have been executed **before launch**.
-
-To learn more about how to start a new operation, it is recommended to consult the [Start a new operation](./Mobile_SDK#4-start-a-new-operation) documentation, which details and explains what this process consists of.
-</div>
-
----
-
-## 4. Available controllers
-
-| **Controller**            | **Description**            |
-| ------------------------- | -------------------------- |
-| InvoiceReaderController   | Invoice capture controller |
-| QrReaderController        | QR capture controller      |
-| QrGeneratorController     | QR generator controller    |
-
----
-
-## 5. Component configuration
-
-The three controllers have independent functionalities so their configurations are also independent:
-
-- _InvoiceCaptureConfigurationData_ and pass it as a parameter to the SDKController during the launch of the Invoice component.
-- _QrCaptureConfigurationData_ and pass it as a parameter to the SDKController during the launch of the QR capture component.
-- _QrGeneratorConfiguration_ and pass it as a parameter to the SDKController during the launch of the QR generation component.
-
-The following section will show the fields that are part of these classes and what they are used for.
-
-### 5.1. Class InvoiceCaptureConfigurationData
-
-#### 5.1.1 vibrationEnabled
-Enable vibration during the process
-
-#### 5.1.2 showDiagnostic
-Show diagnostic screens at the end of the process and in case of error
-
-#### 5.1.3 showTutorial
-Indicates whether the component activates the tutorial screen. This view intuitively explains how the capture is performed.
-
-#### 5.1.4 timePreview
-Defines the time in milliseconds that the preview lasts after the capture, by default it is set to 2000.
-
-#### 5.1.6 previewAfterCapture
-Enables the preview after capture
-
-#### 5.1.7 maxScannedDocs
-Maximum number of captured documents
-
-#### 5.1.8 showPreviousTip
-Show the previous Tips screen
-
-#### 5.1.9 autoCapture
-Enable autoCapture
-
-### 5.2. Class QrCaptureConfigurationData
-
-#### 5.2.1. extractionTimeout
-Maximum extraction timeout
-
-#### 5.2.2. cameraSelected
-Camera selected: FRONT, BACK
-
-#### 5.2.3. cameraShape
-Shape of the mask to be displayed on the camera:
-- SQUARE: Square
-- CIRCULAR: Circle
-- RECTANGLE_TALL: Rectangle
-
-#### 5.2.4. vibrationEnabled
-Enable vibration during the process
-
-#### 5.2.5. showStroke
-Show a line as camera border
-
-#### 5.2.6. showDiagnostic
-Show diagnostic screens at the end of the process and in case of error
-
-#### 5.2.7. transparentBackground
-Mask on the camera semi-transparent
-
-### 5.3. Class QrGeneratorConfiguration
-
-#### 5.3.1. source
-Text to be included in the QR
-
-#### 5.3.2. width
-Width of the generated QR
-
-#### 5.3.3. height
-Height of the generated QR
-
-#### 5.3.4 showDiagnostic
-Display diagnostic screens at the end of the process and in case of error
-
----
-
-## 6. Use of the component
-
-### 6.1 Invoice capture
-
-Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
-to launch the component:
-
-- **\[WITH TRACKING\]** This call allows launching the functionality
-  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
-
+- The mandatory dependencies that must have been previously installed are:  
+HTTPS  
 ```java
-let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
-      // Do whatever with the result
-      ...
-  }, viewController: viewController)
-SDKController.shared.launch(controller: controller)
+https://github.com/facephi-clienters/SDK-SdkPackage-SPM.git
 ```
-- **\[WITHOUT TRACKING\]** This call allows launching the functionality
-  of the component normally, but events **will not be tracked** to the _tracking_ server:
-
+SSH  
 ```java
-let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
-      // Do whatever with the result
-      ...
-  }, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+git@github.com:facephi-clienters/SDK-SdkPackage-SPM.git
 ```
 
-The **launch** method must be used by **default**. This method allows
-**_tracking_** to be used if your component is enabled, and will not use
-it when it is disabled (or the component is not installed).
+- To install the File Upload component, it must be included in the project modules:
 
-On the other hand, the **launchMethod** method covers a special case, in
-which the integrator has tracking installed and activated, but in a
-certain flow within the application does not want to track information.
-In this case, this method is used to prevent this information from being
-sent to the platform.
-
-### 6.2 QR capture
-
-Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
-to launch the component:
-
-- **\[WITH TRACKING\]** This call allows launching the functionality
-  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
-
+HTTPS  
 ```java
-let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
-  // Do whatever with the result
-  ...
-  }, viewController: viewController)
-SDKController.shared.launch(controller: controller)
-```
-- **\[WITHOUT TRACKING\]** This call allows launching the functionality
-  of the component normally, but events **will not be tracked** to the _tracking_ server:
-
-```java
-let controller = QrReaderController(data: qrReaderConfigurationData, output: { sdkResult in
-  // Do whatever with the result
-  ...
-  }, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+https://github.com/facephi-clienters/SDK-CapturePackage-SPM.git
 ```
 
-The **launch** method must be used by **default**. This method allows
-**_tracking_** to be used if your component is enabled, and will not use
-it when it is disabled (or the component is not installed).
-
-On the other hand, the **launchMethod** method covers a special case, in
-which the integrator has tracking installed and activated, but in a
-certain flow within the application does not want to track information.
-In this case, this method is used to prevent this information from being
-sent to the platform.
-
-### 6.3 QR generation
-
-Once the component has been started and a new operation has been created
-(**section 3**), the SDK components can be launched. There are two ways
-to launch the component:
-
-- **\[WITH TRACKING\]** This call allows launching the functionality
-  of the component normally, and **the internal events will be tracked** to the _tracking_ server:
-
+SSH  
 ```java
-let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
-  // Do whatever with the result
-  ...
-  }, viewController: viewController)
-SDKController.shared.launch(controller: controller)
-```
-- **\[WITHOUT TRACKING\]** This call allows launching the functionality
-  of the component normally, but events **will not be tracked** to the _tracking_ server:
-
-```java
-let controller = QrGeneratorController(data: qrGeneratorConfigurationData, output: { sdkResult in
-  // Do whatever with the result
-  ...
-  }, viewController: viewController)
-SDKController.shared.launchMethod(controller: controller)
+git@github.com:facephi-clienters/SDK-CapturePackage-SPM.git
 ```
 
-The **launch** method must be used by **default**. This method allows
-**_tracking_** to be used if your component is enabled, and will not use
-it when it is disabled (or the component is not installed).
+**IMPORTANT: If using the FileUploaderController with SPM. The resources and assets needed for this component to work in SPM require the run of a script on each launch.**
 
-On the other hand, the **launchMethod** method covers a special case, in
-which the integrator has tracking installed and activated, but in a
-certain flow within the application does not want to track information.
-In this case, this method is used to prevent this information from being
-sent to the platform.
-
----
-
-## 7. Receipt of the result
-
-The controllers will return the required information in SdkResult format. More details in the [Result Return](./Mobile_SDK#6-result-return) section.
-
-### 7.1. Error reception
-
-On the error side, we will have the common enum _ErrorType_.
+To make automatic this process, the script should be added in Target -> Build Phases -> + Run Script
 
 ```java
-public enum ErrorType: Equatable, Error {
-    //COMMON - BASIC
-    case NO_ERROR
-    case UNKNOWN_ERROR
-    case OTHER(String)
-    
-    //COMMON - REQUIREMENTS
-    case NO_DATA_ERROR
-    case NO_OPERATION_CREATED_ERROR
-    case NETWORK_CONNECTION
-    
-    //COMMON - PERMISSIONS
-    case CAMERA_PERMISSION_DENIED
-    case MIC_PERMISSION_DENIED
-    case LOCATION_PERMISSION_DENIED
-    case STORAGE_PERMISSION_DENIED
-    
-    //COMMON - USER'S INTERACTION
-    case CANCEL_BY_USER
-    case TIMEOUT
-    
-    //COMMON - LICENSE ERROR
-    case LICENSE_CHECKER_ERROR(String)
-    case MISSING_COMPONENT_LICENSE_DATA
-    case COMPONENT_LICENSE_ERROR
-    case EMPTY_LICENSE
-}
+set -euo pipefail
+BUNDLE_PATH="${TARGET_BUILD_DIR}/FPHICaptureWidget-SPM_FPHICaptureWidget-SPM.bundle/compose-resources"
+DESTINATION="${TARGET_BUILD_DIR}/${TARGET_NAME}.app/compose-resources"
+if [ -d "$BUNDLE_PATH" ]; then
+  rm -rf "$DESTINATION"
+  mkdir -p "$DESTINATION"
+  cp -R "$BUNDLE_PATH/" "$DESTINATION/"
+  echo "Copied FPHICaptureWidget Compose resources to ${DESTINATION}"
+else
+  echo "FPHICaptureWidget Compose resources not found at ${BUNDLE_PATH}. If your app is not using FPHICaptureWidget Component anymore, delete the script from your Build Phases -> Run Script section"
+  exit 1
+fi
+
+BUNDLE_PATH_DS="${TARGET_BUILD_DIR}/FPHIDesignSystemResources_FPHIDesignSystemResources.bundle/Resources/compose-resources"
+DESTINATION="${TARGET_BUILD_DIR}/${TARGET_NAME}.app/compose-resources"
+if [ -d "$BUNDLE_PATH_DS" ]; then
+  cp -R "$BUNDLE_PATH_DS/" "$DESTINATION/"
+  echo "Copied FPHIDesignSystemResources Compose resources to ${DESTINATION}"
+else
+  echo "FPHIDesignSystemResources Compose resources not found at ${BUNDLE_PATH_DS}. If your app is not using FacePhi Components anymore, delete the script from your Build Phases -> Run Script section"
+  exit 1
+fi
 ```
 
-### 7.2. Successful execution reception - _data_
+Make sure to uncheck the _For install builds only_ option.
 
-On successful execution, it simply reports that everything went well
-with the SdkResult.Success.
+**If the script is not added, a crash on runtime is shown when the FileUploaderController is launched.**
 
----
 
-## 8. Component customization
+## 3. Available Controllers
 
-Apart from the changes that can be made at SDK level (which are
-explained in the [SDK Customization](./Mobile_SDK#9-sdk-customization)
-document), this particular component allows the modification of specific animations, images, colors, fonts and texts.
+### Simplified Launch
 
-To customise the component, ThemeCaptureReaderManager.setup(theme: CustomThemeCapture() ) must be called before launching a capture controller:
+Once the SDK is initialized and a new operation is created, the component can be launched. Any of its controllers can be used to execute the functionality.
 
-```java
-let controller = InvoiceReaderController(data: invoiceCaptureConfigurationData, output: { sdkResult in
-      // Do whatever with the result
-      ...
-  }, viewController: viewController)
-ThemeCaptureReaderManager.setup(theme: CustomThemeCapture())
+Launching document capture:
+```swift
+let controller = FileUploaderController(
+    data: fileUploaderConfigurationData,
+    output: { sdkResult in },
+    viewController: viewController
+)
 SDKController.shared.launch(controller: controller)
 ```
 
-An example of the CustomThemeCapture class would be this (must extend ThemeCaptureReaderProtocol):
-
-```java
-class CustomThemeCapture: ThemeCaptureReaderProtocol {
-    var images: [R.Image: UIImage?] = [R.Image.ic_sdk_close: UIImage(named: "closeIcon")!]
-
-    var colors: [R.Color: UIColor?] = [R.Color.sdkPrimaryColor: UIColor.red]
-
-    var animations: [R.Animation: String] = [:]
-
-    var name: String {
-        "custom"
-    }
-
-    var fonts: [R.Font: String] = [:]
-
-    var dimensions: [R.Dimension: CGFloat] {
-        [.fontBig: 8]
-    }
-}
+Launching QR capture:
+```swift
+let controller = QrReaderController(
+    data: qrReaderConfigurationData,
+    output: { sdkResult in },
+    viewController: viewController
+)
+SDKController.shared.launch(controller: controller)
 ```
 
-### 8.1 Images
-
-Images are initialised in the variable images, passing it a dictionary, the key being one of the enumerated ones representing the different images on the screen, and the value being the custom image to be displayed.
-
-```java
-case ic_capture_capture
-case ic_capture_pager_back
-case ic_capture_pager_forward
-case ic_capture_trash
-case ic_capture_upload
-case ic_sdk_close_arrow
-case ic_sdk_close
-case ic_sdk_logo
-case ic_sdk_info
+Launching QR generation:
+```swift
+let controller = QrGeneratorController(
+    data: qrGeneratorConfigurationData,
+    output: { sdkResult in },
+    viewController: viewController
+)
+SDKController.shared.launch(controller: controller)
 ```
 
-### 8.2 Colors
+## 4. Basic Configuration
 
-Colors are similarly initialised in the colours variable with a dictionary, with the value being a UIColor of your choice.
+For the document capture and QR capture controllers, the configuration can be generated using default parameters. For QR generation, the text to be used is required:
 
-```java
-// COMMON SDK Colors 
-case sdkPrimaryColor
-case sdkBackgroundColor
-case sdkSecondaryColor
-case sdkBodyTextColor
-case sdkTitleTextColor
-case sdkSuccessColor
-case sdkErrorColor
-case sdkNeutralColor
-case sdkAccentColor
-case sdkTopIconsColor
-
-// Capture Specific Colors
-case sdkCaptureButtonColor
-case sdkDisabledBackgroundColor
+```swift
+QrGeneratorConfiguration(source: "QR text")
 ```
 
-### 8.3 Fonts
+## 5. Receipt of the result
 
-Fonts are similarly initialized in the `fonts` variable with a dictionary, having as value a **String** with the name of the desired **UIFont**.
+The result is returned as an `SdkResult` that includes:
+- errorType  
+- finishStatus  
+- data  
 
-```java
-case regular
-case bold
+### Error's management
+
+Errors will be returned as a `CaptureError` object.
+
+List of errors:
+```swift
+CAP_ACTIVITY_RESULT_MSG_ERROR: The result returned by the activity is incorrect or does not contain the necessary information to continue.
+CAP_APPLICATION_CONTEXT_ERROR: The required application context is null or invalid, preventing proper initialization of the capture module.
+CAP_CAMERA_ERROR: An internal error related to the device camera has occurred (failure to open, initialize, or capture).
+CAP_CAMERA_PERMISSION_DENIED: The user has denied the permissions necessary to access the camera.
+CAP_CANCEL_BY_USER: The user has manually canceled the capture process.
+CAP_CANCEL_LAUNCH: The process has been canceled generally by the SDK or by an external action.
+CAP_COMPONENT_LICENSE_ERROR: The component license is invalid, expired, or does not match the required configuration.
+CAP_EMPTY_LICENSE: The license string is empty or has not been provided.
+CAP_FETCH_DATA_ERROR: An error occurred while obtaining or processing the data required to execute the flow. (Includes additional information in the error field.)
+CAP_FLOW_ERROR: An internal error occurred during the execution of the capture flow. (Includes additional information in the error field.)
+CAP_INITIALIZATION_ERROR: Error initializing the necessary SDK components. (Includes detailed information in the error field.)
+CAP_FILE_UPLOADER_CAPTURE_ERROR: Error during the upload process of the files generated in the capture.
+CAP_MANAGER_NOT_INITIALIZED: The managers required to execute the process have not been properly initialized.
+CAP_NO_DATA_ERROR: The required input data is null, nonexistent, or insufficient to continue the process.
+CAP_OPERATION_NOT_CREATED: An active operation needed to continue could not be created or retrieved. (Includes detailed information in the error field.)
+CAP_QR_CAPTURE_ERROR: Error during the capture or reading of the QR code.
+CAP_QR_GENERATION_ERROR: Error generating the requested QR code.
+CAP_TIMEOUT: The maximum allowed time has been reached in one of the phases of the process.
+CAP_FLOW_VIDEO_RECORDING_ERROR: Error during the video recording within the established flow.
+CAP_FLOW_TRACKING_ERROR: Error performing the tracking required to complete the capture flow.
 ```
+### Receiving successful execution - _data_
 
-- The size of the texts is similarly initialized in the dimensions variable with a dictionary, having as value a **CGFloat** with the desired size.
+**Document capture result reception**  
+In `SdkResult.Success - data`, the FileUploaderResult class is available.
 
-### 8.4 Animations
+The fields returned are:
 
-Animations are similarly initialized in the `animations` variable with a dictionary, having as value a **String** with the name of the desired **JSON Lottie**.
+_capturedDocumentList_
 
-```java
-case phactura_anim_tip
-case qr_anim_tip
-case qr_anim_tuto_1
-case qr_anim_tuto_2
-```
+List of captured files. They can be images or PDFs. The returned fields for each one are:
 
-### 8.5 Texts
+- mimeType  
+- timestampMillis  
+- content: Document content, different depending on whether it is an image or a PDF.
 
-The texts can be customized by overriding the value of these keys inside a **Localizable.strings**. The ones with an **_\_alt_** suffix are the accesibility label's needed for the **_voice over_** functionality to work.
+**QR capture result reception**  
+In `SdkResult.Success - data`, the QrResult class is available.
 
-```java
+Returned fields:
+
+_qrText_
+
+Text obtained from the QR.
+
+**QR generation result reception**  
+In `SdkResult.Success - data`, an SdkImage with the generated QR is available.
+
+## 6. Advanced Information
+
+This section expands the component information.
+
+### Advanced component configuration
+
+**Document capture configuration**  
+To launch this component, a FileUploaderConfigurationData object must be created.
+
+The fields included in this class are:
+
+- ```vibrationEnabled```: Activates vibration when the widget finishes successfully.
+- ```extractionTimeout```: Sets the maximum capture time.
+- ```showDiagnostic```: Shows diagnostic screens at the end of the process.
+- ```showPreviousTip```: Displays a pre-capture screen with information and a start button.
+- ```maxScannedDocs```: Maximum number of documents that can be captured.
+- ```allowGallery```: Enables access to the gallery for obtaining images or PDFs.
+
+**QR capture configuration**  
+To launch this component, a QrCaptureConfigurationData object must be created.
+
+Fields included:
+
+- ```vibrationEnabled```: Indicates the activation of vibration when the widget finishes successfully.
+- ```extractionTimeout```: Sets the maximum time allowed to perform the capture.
+- ```showDiagnostic```: Displays diagnostic screens at the end of the process.
+- ```showPreviousTip```: Shows a pre-capture screen with information about the process and a button to start it.
+- ```showTutorial```: Indicates whether the component activates the tutorial screen. This view explains intuitively how the capture is performed.
+- ```cameraShape```: Allows choosing between a square or circular mask.
+
+## 7. Component Customization
+
+Besides the changes that can be made at the SDK level (explained in the SDK Customization document), this component allows modifying its interface.
+
+### Texts
+
+```swift
 "capture_component_qr_camera_message" = "Keep the QR in the center";
 "capture_component_qr_tutorial_title" = "Scan QR Code";
 "capture_component_qr_tutorial_desc" = "Focus the QR code inside the box";
@@ -465,10 +260,52 @@ The texts can be customized by overriding the value of these keys inside a **Loc
 "capture_component_logo_alt" = "Logo";
 "capture_component_qr_generation_failed_alert_title" = "QR generation failed";
 "capture_component_qr_generation_failed_alert_message" = "Please try again";
+
+"capture_widget_tip_title" = "Document capture";
+"capture_widget_tip_message" = "Place your finger inside the mark";
+"capture_widget_tip_button" = "Start";
+"capture_widget_tip_button_alt" = "Start fingerprint capture";
+"capture_widget_tip_close_button_alt" = "Back";
+"capture_widget_tip_info_button_alt" = "Show tips";
+"capture_widget_tip_anim_desc" = "Instructional animation for fingerprint capture";
+"capture_widget_document_camera_preview_placeholder" = "Camera preview will appear once you start the capture.";
+
+"capture_widget_tip_title_document" = "Scan your documents";
+"capture_widget_tip_message_document" = "Take a photo of the document, or upload an image.\n\nYou can scan multiple documents before finishing.";
+"capture_widget_tip_message_document_alt" = "Take a photo of the document, or upload an image. You can scan multiple documents before finishing.";
+
+"capture_widget_document_camera_button_gallery" = "Gallery";
+"capture_widget_document_camera_button_capture" = "Capture";
+"capture_widget_document_camera_button_cancel" = "Cancel capture";
+"capture_widget_document_camera_button_finish" = "Finish";
+
+"capture_widget_tutorial_message_1" = "Place your face in the center and face the camera.";
+"capture_widget_tutorial_message_2" = "Remove any items covering your face.";
+"capture_widget_tutorial_message_3" = "Look for a well-lit environment with no shadows on your face.";
+"capture_widget_tutorial_message_1_anim_desc" = "The photo is taken when the person is in the centre.";
+"capture_widget_tutorial_message_2_anim_desc" = "A person takes off his sunglasses and removes his hair from his eyes.";
+"capture_widget_tutorial_message_3_anim_desc" = "The image appears dark and a person switches on the light.";
+"capture_widget_tutorial_close_button_alt" = "Back to previous tutorial";
+
+"capture_widget_image_captured" = "Image captured";
+"capture_widget_confirmation_message" = "Are all the data read clearly and sharply?";
+"capture_widget_confirmation_retry" = "NO, I WANT TO RETAKE THE PHOTO";
+"capture_widget_confirmation_continue" = "Yes, finish";
+"capture_widget_confirmation_delete" = "Delete photo";
+"capture_widget_confirmation_image_unavailable" = "Preview not available";
+"capture_widget_confirmation_no_images" = "No captures available";
+"capture_widget_confirmation_delete_dialog_title" = "Do you want to delete this document?";
+"capture_widget_confirmation_delete_dialog_message" = "Once you delete this document, you will not be able to recover it. You will need to take a new photo.";
+"capture_widget_confirmation_delete_dialog_cancel" = "Cancel";
+"capture_widget_confirmation_delete_dialog_confirm" = "DELETE DOCUMENT";
 ```
 
-Thus, if you want to modify for example the text "_Finish_" of the key `capture_component_invoice_finish_button_message` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
 
-`"capture_component_invoice_finish_button_message"="Complete";`.
+### Animations
 
-If a message is not specified in the language file, it will be filled with the default message.
+To modify the SDK animations (lottie), include the animations with the same name in the application's res/raw/ folder.
+```swift
+qr_anim_tip_1.json  
+qr_anim_tip_2.json  
+capture_anim_tip.json
+```
