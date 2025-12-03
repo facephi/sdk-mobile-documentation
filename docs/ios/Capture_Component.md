@@ -1,4 +1,4 @@
-# Capture Component
+# File Upload and QR Management
 
 ## 0. SDK Mobile baseline requirements
 

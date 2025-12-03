@@ -1,4 +1,4 @@
-# Capture Component
+# Subida de ficheros y gestión de QR
 
 ## 0. Requisitos base de SDK Mobile
 
