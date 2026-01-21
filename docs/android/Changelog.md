@@ -2,6 +2,48 @@
 
 ## Versions
 
+###  2.5.0
+
+- General
+
+  - Rotation/landscape support in SDK and widgets
+  - Dependency update: 
+    - API Version: 35 -> 36
+    - Gradle 8.13
+    - Android Gradle Plugin 8.9.3 -> 8.13.1
+    - Kotlin 2.1.21 -> 2.2.21
+    - Compose 1.9.5/1.9.3
+    - Lifecycle 2.10.0
+    - Ktor 3.3.2
+    - Serialization 1.9.0
+    - ZXing 3.5.4
+    - Datastore 1.2.0
+    - Kover 0.9.3
+  - Facephi Security 1.2.0
+  - Facephi Logger 1.2.0
+  - Facephi Tokenizer 1.1.0 
+
+- Tracking
+
+  - Widget new version: 1.2.2
+
+- Capture
+
+  - Widget new version: 1.1.0
+
+- Selphi
+
+  - Widget new version: 5.20.0
+
+- SelphID
+
+  - Widget new version: 1.36.1
+
+- NFC
+
+  - New reading progress view in percentage and configurable style
+  - Flow corrections and error handling in reading
+
 ### 2.4.1
 
 - General

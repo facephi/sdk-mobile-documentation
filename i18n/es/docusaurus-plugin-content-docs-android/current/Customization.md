@@ -108,6 +108,43 @@ de cada _String_ por el deseado.
     <string name="sdk_confirmation_retry">Reintentar</string>
     <string name="sdk_confirmation_continue">Continuar</string>
     <string name="sdk_skip">OMITIR</string>
+    <!-- Exit Alert -->
+    <string name="fphi_exit_alert_title">Finish the process</string>
+    <string name="fphi_exit_alert_question">Do you want to finish the process?</string>
+    <string name="fphi_exit_alert_finish">Finish</string>
+    <string name="fphi_exit_alert_cancel">Cancel</string>
+    <!-- Permissions -->
+    <string name="fphi_permissions_camera">In order to continue, &lt;b&gt;you need to allow access to the camera&lt;/b&gt;.</string>
+    <string name="fphi_permissions_camera_alt">In order to continue, you need to allow access to the camera.</string>
+    <string name="fphi_permissions_title">Permission denied</string>
+    <string name="fphi_permissions_general">In order to continue, &lt;b&gt;you need to allow access to the permission needed.&lt;/b&gt;</string>
+    <string name="fphi_permissions_general_alt">In order to continue, you need to allow access to the permission needed.</string>
+    <string name="fphi_permissions_microphone">In order to continue, &lt;b&gt;allow access to the microphone.&lt;/b&gt;</string>
+    <string name="fphi_permissions_microphone_alt">In order to continue, allow access to the microphone.</string>
+    <string name="fphi_permissions_confirm">Retry</string>
+    <string name="fphi_permissions_confirm_settings">Go to settings</string>
+    <!-- Messages -->
+    <string name="fphi_close">Close process</string>
+    <string name="fphi_info">Show tutorial</string>
+    <string name="fphi_finish">Finish</string>
+    <string name="fphi_retry">Retry</string>
+    <!-- Tutorial -->
+    <string name="fphi_tutorial_skip">SKIP</string>
+    <string name="fphi_tutorial_skip_alt">Skip advices</string>
+    <string name="fphi_tutorial_next">NEXT</string>
+    <string name="fphi_tutorial_next_alt">Next advice</string>
+    <string name="fphi_tutorial_previous">PREVIOUS</string>
+    <string name="fphi_tutorial_previous_alt">Previous advice</string>
+    <string name="fphi_tutorial_finish">FINISH</string>
+    <string name="fphi_tutorial_finish_alt">Finish advices</string>
+    <!-- Check Network -->
+    <string name="fphi_network_connection_error_title">Check your internet connection</string>
+    <string name="fphi_network_connection_error_desc">Check that your connection is stable and try again.</string>
+    <!-- Diagnostic -->
+    <string name="fphi_timeout_error_title">Time exceeded</string>
+    <string name="fphi_timeout_error_desc">We apologize. The capture could not be made</string>
+    <string name="fphi_internal_error_title">There was a technical problem</string>
+    <string name="fphi_internal_error_desc">We apologize. The capture could not be made</string>
 
 ```
 
@@ -140,5 +177,19 @@ ic_fphi_close_arrow
 ic_fphi_close
 ic_fphi_info
 ```
+
+## 7. Imágenes de las pantallas de solicitud de permisos y diagnósticos
+
+Para cambiar las imágenes de las pantallas de solicitud de permisos y diagnósticos se deben crear los siguientes recursos en la carpeta de ‘drawables’:
+
+```text
+ic_fphi_camera_permission
+ic_fphi_connection_error
+ic_fphi_mic_permission
+ic_fphi_timeout_error
+ic_fphi_error
+ic_fphi_support
+```
+
 
 ---
