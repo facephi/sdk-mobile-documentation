@@ -2,7 +2,7 @@
   "sidebar": [
     {
       "type": "category",
-      "label": "Flutter",
+      "label": "Capacitor",
       "items": [
         "Mobile_SDK",
         "Core_Component",
@@ -15,7 +15,7 @@
         "Voice_Component",
         "Sample_applications_use",
         {
-          "Migrations": ["migration_140_200", "migration_200_230"]
+          "Migrations": ["migration_140_200","migration_200_230","migration_230_250"]
         }
       ]
     }

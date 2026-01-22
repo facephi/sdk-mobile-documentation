@@ -37,23 +37,30 @@ Para esta sección, se considerarán los siguiente valores:
 ### 2.1. Instalación del plugin: Common
 El plugin permite la ejecución en platafoma Android y iOS. En esta sección se explicaLos pasos comunes a todas instalar el plugin se deben seguir los siguientes pasos:
 
+- Asegurarse de que ***Cordova*** esté instalado.
 - Acceda al **\<%APPLICATION_PATH%\>** en un terminal y ejecute:
 
 ```
-npm i @facephi/sdk-core-capacitor
-npm i @facephi/sdk-selphi-capacitor
-npm run build
-npx cap sync
-npx ionic capacitor build [android | ios]
+[ionic] cordova plugin add @facephi/sdk-core-cordova // SOLO EJECUTAR SI EL PLUGIN NO ESTA INSTALADO. YA QUE ÉSTE COMPONENTE ERA MANDATORIO.
+[ionic] cordova plugin add @facephi/sdk-selphi-cordova
 ```
 
-Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
+Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
+
+```
+"dependencies": {
+  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-selphi-cordova": <% PLUGIN_SELPHI_FACE_PATH %>
+}
+```
+
+Desde diferentes IDE's, Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
 
 ### 2.2 Instalación plugin: iOS
 #### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
 
-- Añadir los permisos de cámara: Para utilizar el componente, es necesario habilitar el permiso de la cámara en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
+Añadir los permisos de cámara: Para utilizar el componente, es necesario habilitar el permiso de la cámara en el archivo info.plist de la aplicación (incluido dentro del proyecto en la carpeta ios). Se deberá editar el archivo con un editor de texto y agregar el siguiente par clave/valor:
 
 ```
 <key>NSCameraUsageDescription</key>
@@ -105,7 +112,7 @@ buildscript {
 ---
 
 ## 3. Configuración del componente
-El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***definitions.d.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
+El componente actual contiene una serie de métodos e interfaces de Typescript incluidos dentro del archivo ***node_modules/@facephi/sdk-selphi-cordova/src/index.ts***. En este fichero se puede encontrar la API necesaria para la comunicación entre la aplicación y la funcionalidad nativa del componente. A continuación, se explica para qué sirve cada uno de los enumerados y las demás propiedades que afectan al funcionamiento del componente.
 
 A continuación se muestra la clase **SelphiConfiguration**, que permite configurar el componente de Selphi:
 
@@ -114,6 +121,7 @@ export interface SelphiConfiguration {
   debug?: boolean;
   fullscreen?: boolean;
   cropPercent?: number;
+  crop?: boolean;
   stabilizationMode?: boolean;
   templateRawOptimized?: boolean;
   resourcesPath?: string;
@@ -128,16 +136,13 @@ export interface SelphiConfiguration {
   qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
-  compressFormat?: SdkCompressFormat,
-  jpgQuality?: number
 }
 ```
 
 A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **SelphiConfiguration**:
-
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***definitions.ts*** del componente.
+Toda la configuración se podrá encontrar en el archivo sdk-selphi/www/SdkSelphiConfig.js del componente.
 </div>
 
 A la hora de realizar la llamada al componente existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
@@ -152,7 +157,18 @@ Establece el nombre del archivo de recursos que utilizará el componente para su
 resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
-### 3.2. cropPercent
+### 3.2. crop
+
+**type:** *boolean*
+
+Indica si las imágenes devueltas (en el parámetro images que se activa con *logImages = true*) en el evento de finalización contienen solo el área del rostro detectado, con una ampliación dada por *CropPercent* o si se devuelve la imagen completa.
+
+
+```
+crop: false
+```
+
+### 3.3. cropPercent
 
 **type:** *float*
 
@@ -163,7 +179,7 @@ cropPercent: 1.0
 ```
 
 
-### 3.3. debug
+### 3.4. debug
 
 **type:** *boolean*
 
@@ -173,7 +189,7 @@ Establece el modo de depuración del componente.
 debug: false
 ```
 
-### 3.4. livenessMode
+### 3.5. livenessMode
 
 **type:** *SdkLivenessMode*
 
@@ -189,7 +205,7 @@ debug: false
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 ```
 
-### 3.5. stabilizationMode
+### 3.6. stabilizationMode
 
 **type:** *boolean*
 
@@ -199,7 +215,7 @@ Propiedad que permite activar o desactivar el modo estabilizado antes del proces
 stabilizationMode: true
 ```
 
-### 3.7. fullScreen
+### 3.8. fullScreen
 
 **type:** *string*
 
@@ -209,9 +225,9 @@ Establece si desea que el sdk se inicie en modo de pantalla completa, ocultando 
 fullscreen: true
 ```
 
-### 3.8. logImages
+### 3.9. logImages
 
-**type:** *boolean*
+**type:** *string*
 
 Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la extracción o no. Cabe señalar que la devolución de imágenes puede resultar en un aumento considerable en el uso de recursos del dispositivo:
 
@@ -219,7 +235,7 @@ Indica si el sdk devuelve a la aplicación las imágenes utilizadas durante la e
 logImages: false
 ```
 
-### 3.9. templateRawOptimized
+### 3.10. templateRawOptimized
 
 **type:** *boolean*
 
@@ -229,7 +245,7 @@ Indica si el token del selfie obtenido debe estar optimizado o no.
 templateRawOptimized: false
 ```
 
-### 3.10. showDiagnostic
+### 3.11. showDiagnostic
 
 **type:** *boolean*
 
@@ -239,7 +255,7 @@ Muestra un pop-up con el diagnóstico en caso de que el proceso falle.
 showDiagnostic: true
 ```
 
-### 3.11 enableGenerateTemplateRaw
+### 3.12 enableGenerateTemplateRaw
 
 **type:** *boolean*
 
@@ -249,7 +265,8 @@ Parámetro opcional. Visible sólo si el parámetro *enableGenerateTemplateRaw* 
 enableGenerateTemplateRaw: true
 ```
 
-###  3.12 showResultAfterCapture
+
+###  3.13 showResultAfterCapture
 
 **type:** *boolean*
 
@@ -259,7 +276,8 @@ Indica si se debe mostrar o no la imagen capturada de la cara después del proce
 showResultAfterCapture: false
 ```
 
-###  3.13 showTutorial
+
+###  3.14 showTutorial
 
 **type:** *boolean*
 
@@ -269,31 +287,7 @@ Indica si se debe mostrar o no el tutorial antes de ejecutarse el proceso. Despu
 showTutorial: true
 ```
 
-###  3.14 compressFormat
-
-**type:** *SdkCompressFormat*
-
-Indica el formato de compresión de la imagen. Los valores posibles son:
-
-- PNG
-- JPG
-
-```
-compressFormat: "JPG“;
-```
-
-###  3.15 jpgQuality
-
-**type:** *number*
-
-Si la propiedad ***compressFormat*** está configurada como **JPG**, es posible establecer la calidad de compresión de la imagen. Este parámetro se ignorará si el valor de la propiedad ***compressFormat*** es **PNG**.   
-
-
-```
-jpgQuality: 95
-```
-
-###  3.16 videoFilename
+###  3.15 videoFilename
 
 **type:** *string*
 
@@ -308,7 +302,8 @@ Establece la ruta absoluta del nombre del archivo en el que se grabará un video
 videoFilename: “\<videofile-path\>“;
 ```
 
-###  3.17 translationsContent
+
+###  3.16 translationsContent
 
 **type:** *string*
 
@@ -322,7 +317,8 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar la locali
 translationsContent: “\<translation-content-string\>“;
 ```
 
-###  3.18 viewsContent
+
+###  3.17 viewsContent
 
 **type:** *string*
 
@@ -336,6 +332,12 @@ Esta propiedad permite, mediante una cadena en formato xml, configurar las vista
 ```
 viewsContent: “\<views-content-string\>“;
 ```
+
+#### 3.18. showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
 
 #### 3.19. showPreviousTip
 
@@ -362,6 +364,8 @@ Indica qué cámara realizará el proceso de captura. Los valores posibles son:
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
+---
+
 ## 4. Uso del componente
 A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
 
@@ -372,24 +376,18 @@ Se recuerda que para lanzar un componente determinado previamente habrá que ini
 
 Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
 
-``` java
-onLaunchSelphiProcess = async () => {
-    this.message = '';
-    await this.launchSelphiAuthentication()
-    .then((result: SelphiFaceResult) => this.onSuccessSelphiExtraction(result), (err: string) => this.onErrorSelphiExtraction(err));
-  }
-
-
+```
 launchSelphiAuthentication = async (): Promise<SelphiFaceResult> => {
-      console.log('Launching selphi widget...');
-      // SelphiFaceConfiguration
-      return SdkSelphi.startExtraction({
-        debug: false,
-        livenessMode: SelphiFaceLivenessMode.Passive,
-        resourcesPath: SELPHI_RESOURCES_PATH,
-        enableGenerateTemplateRaw: true,
-      });
+  console.log('Launching selphi widget...');
+  // SelphiFaceConfiguration
+  let config: SelphiFaceConfiguration = {
+    debug: false,
+    livenessMode: SelphiFaceLivenessMode.Passive,
+    resourcesPath: SELPHI_RESOURCES_PATH,
+    enableGenerateTemplateRaw: true
   }
+  return SdkSelphi.startExtraction(config);
+}
 ```
 
 ---
@@ -397,59 +395,54 @@ launchSelphiAuthentication = async (): Promise<SelphiFaceResult> => {
 ## 5. Retorno de resultado
 Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto JSON a través de Promises, ya sea una operación exitosa o un error:
 
-``` java
- onSuccessSelphiExtraction = (result: any) => {
-    console.log('Receiving selphi success event...');
-    if (result !== null && result) {
-      switch (result.finishStatus) {
-        case SdkFinishStatus.Ok: // OK
-          this.processSuccessResult(result); // Logging the info for debug purposes
-          this.bestImageCropped = this.URI_JPEG_HEADER + result.bestImageCropped;
-          this.bestImage        = result.bestImage;
-          break;
-
-        case SdkFinishStatus.Error: // Error
-          this.printError(result['errorType'])
-          break;
-      }
-      this.changeDetection.detectChanges();
-    }
-  }
+```
+return await SdkMobileSelphi.selphi(getSelphiConfiguration())
+.then((result: any) => 
+{
+    console.log("result", result);
+})
+.catch((error: any) => 
+{
+    console.log(error);
+})
+.finally(()=> {
+    console.log("End startSelphi...");
+});
 ```
 
 Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
 
-``` java
-export interface SelphiFaceResult {
-  finishStatus: string;
+```
+export interface SelphiResult {
+  finishStatus?: number;
+  errorType?: string;
   finishStatusDescription?: string;
-  errorType: string;
   errorMessage?: string;
-  templateRaw?: string;
-  qrData?: string;
   bestImage?: string;
   bestImageCropped?: string;
   bestImageTemplateRaw?: string;
+  qrData?: string;
+  templateRaw?: string;
   livenessDiagnostic?: string;
+  iad?: string;
 }
 ```
  
-<div class="note">
-<span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***SelphiResult***. A continuación se amplía información sobre esos campos.
-</div>
+
+El resultado será devuelto por medio de una Promise que contiene un objeto de la clase SelphiResult. A continuación se amplía información sobre esos campos. 
+Se podrá encontrar en el archivo www/SdkSephiResult.js 
+
 
 ### 5.1 finishStatus
 
   - **1**: La operación fue exitosa.
-  - **2**: Se ha producido un error, el cuál se indicará en el enumerado ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
+  - **2**: Se ha producido un error, el cuál se indicará en el string ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
 
 ### 5.2 finishStatusDescription
 
  Devuelve una descripción global de la operación. Parámetro opcional.
-
   - **STATUS_OK**: La operación fue exitosa.
-  - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el enumerado ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
+  - **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string ***`errorType`*** y, opcionalmente, se mostrará un mensaje de información extra en la propiedad ***`errorMessage`***.
 
 ### 5.3 errorMessage 
   
@@ -530,6 +523,11 @@ enum class LivenessDiagnostic {
     UnsuccessMovementBoundaries
 }
 ```
+
+### 5.11 iad
+
+Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. IMPORTANTE: Parametro visible solo para el componente selphid IAD.
+
 ---
 
 ## 6. Personalización de componente (Opcional)

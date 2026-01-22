@@ -15,12 +15,11 @@ integrated into the project.
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
--   Minimum Android version: **24 - JDK 11**
--   Minimum Build Tools version: **8.6.0**
--   Minimum Kotlin Android version **2.1.0**
+-   Minimum Android version: **24 - JDK 17**
+-   Minimum Build Tools version: **8.9.x**
+-   Minimum Kotlin Android version **2.2.x**
 -   Minimum iOS version: **13**
--   Minimum Cordova Android version: **12.0.0**
--   Minimum Cordova iOS version: **7.0.0** 
+-   Minimum Flutter version: **3.0**
 
 Regarding the architecture of the mobile device:
 
@@ -30,9 +29,9 @@ Regarding the architecture of the mobile device:
 
 The current plugin version can be checked as follows:
 
--   Look for the ***package.json*** file at the root of the plugin.
+Look for the *pubspec.yaml* file at the root of the plugin.
 
--   The KEY/TAG ***version*** indicates the version.
+The KEY/TAG **version** indicates the version.
   
   ---
 
@@ -51,37 +50,42 @@ For this section, the following values ​​will be considered:
 
 
 ### 2.1. Adding private repository
+
+<div class="warning">
+<span class="warning">:information_source:</span>
+Access to our private repositories (Cocoapods) is required if you want to access our iOS native libraries.
+</div>
+
 For security and maintenance reasons, the new ***SDKMobile*** components
 are stored in private repositories requiring specific credentials. Those
 credentials must be obtained from the support team of **Facephi**.
 
-To configure the application and thus download the components in the
-repository, you have to access **APPLICATION_PATH**. In that path,
-you have to create a file with the following name:
+- First of all, we launch the command to install cocoapods with Artifactory.
 
 
 ```java
-.npmrc
+sudo gem install cocoapods-art
 ```
 
-Inside that file you have to add the following information provided by
-Facephi (**Credentials**):
+- It is necessary to add the repository credentials in the file called netrc. For this task, from a Terminal, you have to execute:
 
 ```java
-registry=https://registry.npmjs.org/
-@facephi:registry=https://facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:_password=<token-en-base64>
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:username=<username>
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:email=<user_email@***.com>
-//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:always-auth=true
-save-prefix='~'
+$ nano ~/.netrc
 ```
+
+And the following code snippet must be copied in that file:
+
+```
+machine facephicorp.jfrog.io
+  login <USERNAME>
+  password <TOKEN>
+```
+
+
 
 <div class="warning">
 <span class="warning">:warning:</span>
-For the project to correctly retrieve the dependencies, the
-**<u>credentials</u>** (**password, userame** and **email**) must be
-configured correctly
+It is essential to copy the previous fragment *exactly*. There is an indentation before the ***login*** and ***password*** words formed by *two spaces*.
 </div>
 
 #### 2.1.1. Add private iOS repository
@@ -119,27 +123,6 @@ If the issues still appear, try to uninstall Cocoapods and all the
 dependencies entirely and start a new clean installation.
 </div>
 
--   It is necessary to add the repository credentials in the file called **netrc**. For this task, from a Terminal, you have to execute:
-
-```
-nano ~/.netrc
-```
-
-And the following code snippet must be copied in that file:
-
-```
-machine facephicorp.jfrog.io
-  login <USERNAME>
-  password <TOKEN>
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-It is essential to copy the previous fragment **exactly**. There is an
-indentation before the ***login*** and ***password*** words formed
-by <u>two spaces</u>.
-</div>
-
 - The repository with the private dependencies must be downloaded
     locally:
 
@@ -155,17 +138,14 @@ pod repo-art update cocoa-pro-fphi
 
 ### 2.2. Plugin installation: Common
 
-The plugin allows execution on **Android and iOS** platforms. This
-section explains the common steps to all platforms. To install the
-plugin, the following steps must be adopted:
+The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
+- Make sure **Flutter** framework is installed.
 
-- Make sure **Cordova** is installed.
-
-- Access **\<%APPLICATION_PATH%\>** at a terminal and run:
+- Access **APPLICATION_PATH** at a terminal and run:
 
 ```
-cordova plugin add @facephi/sdk-core-cordova
+dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
 ```
 
 <div class="warning">
@@ -179,30 +159,18 @@ It is recommended to launch every **pod** command with ***arch -x86_64 ***befor
 - **arch -x86_64 pod install**
 </div>
 
-- It is important to verify that the path to the plugin is correctly defined in **package.json**:
+- In addition, in **APPLICATION_PATH**, access the file *pubspec.yaml* and add:
 
 ```
-"dependencies": {
-  "@facephi/sdk-core-cordova": "^2.2.0",
-}
-```
-
-After running the above steps, you can start the app with the sdk/component installed.
-
-***From Terminal***
+fphi_sdkmobile_core:
+  hosted:
+    name: sdkcore
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.0.0
 
 ```
-cordova plugin ls
-```
-
-***From different IDEs***
-
-
- Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
 
 ### 2.3 Plugin installation: iOS
-
-#### 2.3.1 Project configuration
 
 For the iOS version, when adding our plugin to the final application,
 the following points must be previously taken into account:
@@ -232,7 +200,7 @@ source 'https://cdn.cocoapods.org/'
 ```
 
 #### 2.3.3 Possible issues
-
+#### 2.3.3.1 Cocoapods issues
 If environmental problems occur or the plugin is not updated after
 making new changes (for example, problems occurred due to the bundle not
 being generated correctly, or the libraries not being updated to the

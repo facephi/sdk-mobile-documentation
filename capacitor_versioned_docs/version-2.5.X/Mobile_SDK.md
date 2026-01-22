@@ -16,10 +16,10 @@ integrated into the project.
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
--   Minimum Build Tools version: **8.6.0**
--   Minimum Kotlin Android version **2.1.0**
+-   Minimum Build Tools version: **8.9.x**
+-   Minimum Kotlin Android version **2.2.x**
 -   Minimum iOS version: **13**
--   Minimum Flutter version: **3.0**
+-   Minimum Capacitor version: **5**
 
 Regarding the architecture of the mobile device:
 
@@ -29,9 +29,9 @@ Regarding the architecture of the mobile device:
 
 The current plugin version can be checked as follows:
 
-Look for the *pubspec.yaml* file at the root of the plugin.
+-   Look for the ***package.json*** file at the root of the plugin.
 
-The KEY/TAG **version** indicates the version.
+-   The KEY/TAG ***version*** indicates the version.
   
   ---
 
@@ -50,42 +50,37 @@ For this section, the following values ​​will be considered:
 
 
 ### 2.1. Adding private repository
-
-<div class="warning">
-<span class="warning">:information_source:</span>
-Access to our private repositories (Cocoapods) is required if you want to access our iOS native libraries.
-</div>
-
 For security and maintenance reasons, the new ***SDKMobile*** components
 are stored in private repositories requiring specific credentials. Those
 credentials must be obtained from the support team of **Facephi**.
 
-- First of all, we launch the command to install cocoapods with Artifactory.
+To configure the application and thus download the components in the
+repository, you have to access **APPLICATION_PATH**. In that path,
+you have to create a file with the following name:
 
 
 ```java
-sudo gem install cocoapods-art
+.npmrc
 ```
 
-- It is necessary to add the repository credentials in the file called netrc. For this task, from a Terminal, you have to execute:
+Inside that file you have to add the following information provided by
+Facephi (**Credentials**):
 
 ```java
-$ nano ~/.netrc
+registry=https://registry.npmjs.org/
+@facephi:registry=https://facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:_password=<token-en-base64>
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:username=<username>
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:email=<user_email@***.com>
+//facephicorp.jfrog.io/artifactory/api/npm/npm-pro-fphi/:always-auth=true
+save-prefix='~'
 ```
-
-And the following code snippet must be copied in that file:
-
-```
-machine facephicorp.jfrog.io
-  login <USERNAME>
-  password <TOKEN>
-```
-
-
 
 <div class="warning">
 <span class="warning">:warning:</span>
-It is essential to copy the previous fragment *exactly*. There is an indentation before the ***login*** and ***password*** words formed by *two spaces*.
+For the project to correctly retrieve the dependencies, the
+**<u>credentials</u>** (**password, userame** and **email**) must be
+configured correctly
 </div>
 
 #### 2.1.1. Add private iOS repository
@@ -123,6 +118,27 @@ If the issues still appear, try to uninstall Cocoapods and all the
 dependencies entirely and start a new clean installation.
 </div>
 
+-   It is necessary to add the repository credentials in the file called **netrc**. For this task, from a Terminal, you have to execute:
+
+```
+nano ~/.netrc
+```
+
+And the following code snippet must be copied in that file:
+
+```
+machine facephicorp.jfrog.io
+  login <USERNAME>
+  password <TOKEN>
+```
+
+<div class="warning">
+<span class="warning">:warning:</span>
+It is essential to copy the previous fragment **exactly**. There is an
+indentation before the ***login*** and ***password*** words formed
+by <u>two spaces</u>.
+</div>
+
 - The repository with the private dependencies must be downloaded
     locally:
 
@@ -138,44 +154,30 @@ pod repo-art update cocoa-pro-fphi
 
 ### 2.2. Plugin installation: Common
 
-The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
+The plugin allows execution on **Android and iOS** platforms. This
+section explains the common steps to all platforms. To install the
+plugin, the following steps must be adopted:
 
-- Make sure **Flutter** framework is installed.
-
-- Access **APPLICATION_PATH** at a terminal and run:
-
-```
-dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi"
-```
-
-<div class="warning">
-<span class="warning">:warning:</span>
-If executing a **pod** command occurs an error like the following:  
-*arch: Can't find any plists for install*
-
-It is recommended to launch every **pod** command with ***arch -x86_64 ***before them, for example:
-
-- **pod install**
-- **arch -x86_64 pod install**
-</div>
-
-- In addition, in **APPLICATION_PATH**, access the file *pubspec.yaml* and add:
+- Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ```
-fphi_sdkmobile_core:
-  hosted:
-    name: sdkcore
-    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
-
+npm i @facephi/sdk-core-capacitor
+npm run build
+npx cap sync
+npx ionic capacitor build [android | ios]
 ```
+
+After that, projects generated in the Android and iOS folders can be opened, compiled, and debugged using Android Studio and XCode, respectively.
+
 
 ### 2.3 Plugin installation: iOS
+
+#### 2.3.1 Project configuration
 
 For the iOS version, when adding our plugin to the final application,
 the following points must be previously taken into account:
 
--   ***Add camera permissions:*** To use the widget, you need to enable
+-   ***Add camera permissions:*** To use the component, you need to enable
     the camera permission in the application's ***info.plist*** file
     (included within the project in the ***ios*** folder). You will need
     to edit the file with a text editor and add the following
@@ -200,7 +202,7 @@ source 'https://cdn.cocoapods.org/'
 ```
 
 #### 2.3.3 Possible issues
-#### 2.3.3.1 Cocoapods issues
+
 If environmental problems occur or the plugin is not updated after
 making new changes (for example, problems occurred due to the bundle not
 being generated correctly, or the libraries not being updated to the
@@ -299,6 +301,7 @@ maven {
     }
 }
 ```
+
 
 
 #### 2.4.2 Set Android SDK version

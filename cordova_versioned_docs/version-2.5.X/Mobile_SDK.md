@@ -15,11 +15,12 @@ integrated into the project.
 
 The minimum native version (Android and iOS) of the SDK are as follows:
 
--   Minimum Android version: **24 - JDK 17**
--   Minimum Build Tools version: **8.6.0**
--   Minimum Kotlin Android version **2.1.0**
+-   Minimum Android version: **24 - JDK 11**
+-   Minimum Build Tools version: **8.9.x**
+-   Minimum Kotlin Android version **2.2.x**
 -   Minimum iOS version: **13**
--   Minimum ReactNative version: **0.77.0**
+-   Minimum Cordova Android version: **13.0.0**
+-   Minimum Cordova iOS version: **7.0.0** 
 
 Regarding the architecture of the mobile device:
 
@@ -159,12 +160,12 @@ section explains the common steps to all platforms. To install the
 plugin, the following steps must be adopted:
 
 
-- Make sure **react-native** is installed.
+- Make sure **Cordova** is installed.
 
 - Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ```
-yarn add @facephi/sdk-core-react-native
+cordova plugin add @facephi/sdk-core-cordova
 ```
 
 <div class="warning">
@@ -182,7 +183,7 @@ It is recommended to launch every **pod** command with ***arch -x86_64 ***befor
 
 ```
 "dependencies": {
-  "@facephi/sdk-core-react-native": "^2.0.0",
+  "@facephi/sdk-core-cordova": "^2.2.0",
 }
 ```
 
@@ -190,18 +191,8 @@ After running the above steps, you can start the app with the sdk/component inst
 
 ***From Terminal***
 
-For Android:
-
 ```
-npx react-native run-android 
-or 
-npx react-native run-android --active-arch-only
-```
-
-For iOS:
-
-```
-npx react-native run-ios
+cordova plugin ls
 ```
 
 ***From different IDEs***
@@ -216,7 +207,7 @@ npx react-native run-ios
 For the iOS version, when adding our plugin to the final application,
 the following points must be previously taken into account:
 
--   ***Add camera permissions:*** To use the component, you need to enable
+-   ***Add camera permissions:*** To use the widget, you need to enable
     the camera permission in the application's ***info.plist*** file
     (included within the project in the ***ios*** folder). You will need
     to edit the file with a text editor and add the following
@@ -313,7 +304,7 @@ or
 
 or
 
-Your *script shell* default file.
+> Your *script shell* default file.
 
 
 - Included in the ***local.properties*** file with the following structure:

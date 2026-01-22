@@ -420,7 +420,7 @@ export interface SelphiFaceResult {
   bestImage?: string;
   bestImageCropped?: string;
   bestImageTemplateRaw?: string;
-
+  iad?: string;
 }
 ```
  
@@ -486,6 +486,10 @@ Devuelve los datos del código QR capturado.
 ### 5.9 bestImageTemplateRaw
 
 Parámetro opcional. Solo visible si se setea el parámetro enableGenerateTemplateRaw en true. El componente devolverá el templateRaw en formato stringBase64.
+
+### 5.10 iad
+
+Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. IMPORTANTE: Parametro visible solo para el componente selphid IAD.
 
 ---
 
