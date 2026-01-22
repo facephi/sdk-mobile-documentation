@@ -479,6 +479,7 @@ class SelphiFaceResult {
   final String? bestImageCropped;
   final String? bestImageTemplateRaw;
   final String? livenessDiagnostic;
+  final String? iad;
 }
 ```
 
@@ -587,6 +588,11 @@ enum class LivenessDiagnostic {
     UnsuccessMovementBoundaries
 }
 ```
+
+### 5.10 iad
+
+Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. IMPORTANT: Parameter visible only to the selphid IAD component.
+
 ---
 
 ## 6. Component Customisation (Optional)

@@ -16,10 +16,10 @@ integrated into the project.
 The minimum native version (Android and iOS) of the SDK are as follows:
 
 -   Minimum Android version: **24 - JDK 17**
--   Minimum Build Tools version: **8.6.0**
--   Minimum Kotlin Android version **2.1.0**
+-   Minimum Build Tools version: **8.9.x**
+-   Minimum Kotlin Android version **2.2.x**
 -   Minimum iOS version: **13**
--   Minimum Capacitor version: **5**
+-   Minimum ReactNative version: **0.78.0**
 
 Regarding the architecture of the mobile device:
 
@@ -158,17 +158,56 @@ The plugin allows execution on **Android and iOS** platforms. This
 section explains the common steps to all platforms. To install the
 plugin, the following steps must be adopted:
 
+
+- Make sure **react-native** is installed.
+
 - Access **\<%APPLICATION_PATH%\>** at a terminal and run:
 
 ```
-npm i @facephi/sdk-core-capacitor
-npm run build
-npx cap sync
-npx ionic capacitor build [android | ios]
+yarn add @facephi/sdk-core-react-native
 ```
 
-After that, projects generated in the Android and iOS folders can be opened, compiled, and debugged using Android Studio and XCode, respectively.
+<div class="warning">
+<span class="warning">:warning:</span>
+If executing a **pod** command occurs an error like the following:  
+*arch: Can't find any plists for install*
 
+It is recommended to launch every **pod** command with ***arch -x86_64 ***before them, for example:
+
+- **pod install**
+- **arch -x86_64 pod install**
+</div>
+
+- It is important to verify that the path to the plugin is correctly defined in **package.json**:
+
+```
+"dependencies": {
+  "@facephi/sdk-core-react-native": "^2.0.0",
+}
+```
+
+After running the above steps, you can start the app with the sdk/component installed.
+
+***From Terminal***
+
+For Android:
+
+```
+npx react-native run-android 
+or 
+npx react-native run-android --active-arch-only
+```
+
+For iOS:
+
+```
+npx react-native run-ios
+```
+
+***From different IDEs***
+
+
+ Los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando Android Studio y XCode respectivamente.
 
 ### 2.3 Plugin installation: iOS
 
@@ -274,7 +313,7 @@ or
 
 or
 
-> Your *script shell* default file.
+Your *script shell* default file.
 
 
 - Included in the ***local.properties*** file with the following structure:
@@ -301,7 +340,6 @@ maven {
     }
 }
 ```
-
 
 
 #### 2.4.2 Set Android SDK version

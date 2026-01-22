@@ -452,6 +452,7 @@ export interface SelphiFaceResult {
   qrData?: string;
   templateRaw?: string;
   livenessDiagnostic?: string;
+  iad?: string;
 }
 ```
 
@@ -548,6 +549,11 @@ enum class LivenessDiagnostic {
     UnsuccessMovementBoundaries
 }
 ```
+
+### 5.11 iad
+
+Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. IMPORTANT: Parameter visible only to the selphid IAD component.
+
 ---
 
 ## 6. Component Customisation (Optional)

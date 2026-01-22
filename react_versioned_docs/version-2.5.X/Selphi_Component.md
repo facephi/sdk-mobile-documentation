@@ -38,28 +38,45 @@ For this section, the following values ​​will be considered:
 ### 2.1. Plugin installation: Common
 The plugin allows execution on **Android and iOS** platforms. This section explains the common steps to all platforms. To install the plugin, the following steps must be adopted:
 
-- Make sure **Cordova** is installed.
+- Make sure **react-native is** installed.
 
 - Access **APPLICATION_PATH** at a terminal and run:
 ```
-cordova plugin add @facephi/sdk-core-cordova
-cordova plugin add @facephi/sdk-selphi-cordova
+yarn add @facephi/sdk-core-react-native
+yarn add @facephi/sdk-selphi-react-native
+yarn install
 ```
 
-- It is important to verify that the path to the plugin is correctly defined in package.json:
+-   In addition, to install the plugin on iOS, the following must also
+    be executed:
 
+``` java
+cd ios
+pod install
 ```
+
+- It is important to verify that the path to the plugin is correctly defined in **package.json**:
+
+```java
 "dependencies": {
-  "@facephi/sdk-core-cordova": <% PLUGIN_CORE_PATH %>,
-  "@facephi/sdk-selphi-cordova": <% PLUGIN_SELPHI_FACE_PATH %>
+  "@facephi/sdk-core-react-native": <% PLUGIN_CORE_PATH %>,
+  "@facephi/sdk-selphi-react-native": <% PLUGIN_SELPHI_FACE_PATH %>
 }
 ```
 After running the above steps, you can start the app with the sdk/component installed.
 
 - Finally, to launch the projects, the following commands must be executed in two ways:
 
+***From Terminal (For Android):***
 ```
-cordova plugin ls
+npx react-native run-android 
+or 
+npx react-native run-android --active-arch-only
+```
+
+***From Terminal (For iOS):***
+```
+npx react-native run-ios
 ```
 
 ***From different IDEs***
@@ -71,9 +88,9 @@ Projects generated in the Android and iOS folders can be opened, compiled, and d
 
 For the iOS version, when adding our plugin to the final application, the following points must be previously taken into account:
 
-- ***Add camera permissions***: To use the widget, you need to enable the camera permission in the application's ***info.plist*** file (included within the project in the ios folder). You will need to edit the file with a text editor and add the following *key/value* pair:
+- ***Add camera permissions***: To use the component, you need to enable the camera permission in the application's ***info.plist*** file (included within the project in the ios folder). You will need to edit the file with a text editor and add the following *key/value* pair:
 
-```
+```java
 <key>NSCameraUsageDescription</key>
 <string>$(PRODUCT_NAME) uses the camera</string>
 ```
@@ -91,8 +108,8 @@ source 'https://cdn.cocoapods.org/'
 <span class="warning">:warning:</span>
 To know more about the configuration and use of **Cocoapods Artifactory**, it is necessary to access the following document of **Core Component**.
 </div>
-  
-#### 2.2.4 Possible issues
+
+#### 2.2.3 Possible issues
 If environment problems occur or the plugin is not updated after making new changes (for example, problems occurred due to the bundle not being generated correctly, or the libraries not being updated to the correct versions), it is recommended to execute the following sequence of instructions after launching the plugin:
 
 Open the application's ios folder at a terminal.
@@ -126,7 +143,7 @@ buildscript {
 ---
 
 ## 3. Component configuration
-The actual component contains a number of Typescript methods and interfaces contained within the  ***plugins/com.facephi.sdk.selphi/wwww/*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
+The actual component contains a number of Typescript methods and interfaces contained within the  ***node_modules/@facephi/sdk-selphi-react-native/src/index.ts*** file. In this file you can find the necessary API for the communication between the application and the native functionality of the component. It is then explained what each one of those listed is for and the other properties that affect the operation of the component.
 
 Below is the *SelphiConfiguration* class, which allows you to configure the Selphi component:
 
@@ -135,44 +152,52 @@ export interface SelphiConfiguration {
   debug?: boolean;
   fullscreen?: boolean;
   cropPercent?: number;
+  crop?: boolean;
   stabilizationMode?: boolean;
   templateRawOptimized?: boolean;
   resourcesPath?: string;
   enableGenerateTemplateRaw?: boolean;
   livenessMode?: SdkLivenessMode;
   showResultAfterCapture?: boolean;
-  cameraFlashEnabled?: boolean;
   translationsContent?: string;
   viewsContent?: string;
   showTutorial?: boolean;
-  cameraId?: number;
   videoFilename?: string;
-  params?: any;
-  qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
 }
 ```
 
-Then, all the properties that can be defined in the ***SdkTracking*** object will be commented on:
 <div class="note">
 <span class="note">:information_source:</span>
-All the configuration can be found in the component's *plugins/com.facephi.sdk.selphi/wwww/* file.
+All the configuration can be found in the component's *node_modules/@facephi/sdk-selphi-react-native/src/src/index.tsx* file.
 </div>
 
-When making the call to the widget there is a series of parameters that must be included. They will be briefly discussed below.
+When making the call to the component there is a series of parameters that must be included. They will be briefly discussed below.
 
 ### 3.1. resourcesPath 
 
 **type:** *string*
 
-Sets the name of the resource file that the widget will use for its graphical configuration. This file is customisable and is located in the plugin in the src/main/assets folder for Android and in the ios/Frameworks and Resources folder for iOS. Its installation is transparent to the user, it will simply be added to the respective platform's projects during plugin installation. More details about how this resource pack works and how to modify it are explained in section 6.
+Sets the name of the resource file that the component will use for its graphical configuration. This file is customisable and is located in the plugin in the src/main/assets folder for Android and in the ios/Frameworks and Resources folder for iOS. Its installation is transparent to the user, it will simply be added to the respective platform's projects during plugin installation. More details about how this resource pack works and how to modify it are explained in section 6.
 
 ```
 resourcesPath: "fphi-selphi-widget-resources-sdk.zip",
 ```
 
-### 3.2. cropPercent
+
+### 3.2. crop
+
+**type:** *boolean*
+
+Indicates whether the images returned (in the images parameter that is activated with enableImages = true) in the completion event contain only the area of ​​the detected face, at a magnification given by CropPercent, or whether the entire image is returned.
+
+
+```
+crop: false
+```
+
+### 3.3. cropPercent
 
 **type:** *float*
 
@@ -183,31 +208,33 @@ cropPercent: 1.0
 ```
 
 
-### 3.3. debug
+### 3.4. debug
 
 **type:** *boolean*
 
-Sets the debugging mode of the widget.
+Sets the debugging mode of the component.
 
 ```
 debug: false
 ```
 
-### 3.4. livenessMode
+### 3.5. livenessMode
 
-**type:** *string*
+**type:** *SdkLivenessMode*
 
 Sets the liveness mode of the component. The possible values are:
 
 - **NoneMode**: Indicates that the photodetection mode should not be enabled in authentication processes.
+
 - **PassiveMode**: Indicates that the passive life test is carried out on the server, sending the corresponding "BestImage" for this purpose
-- **MoveMode**: Indicates that the liveness test is active  by displaying instructions during the capture, and returning the corresponding result of the process.
+
+- **MoveMode**: Indicates that the liveness test is active by displaying instructions during the capture, and returning the corresponding result of the process.
 
 ```
 livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode
 ```
 
-### 3.5. stabilizationMode
+### 3.6. stabilizationMode
 
 **type:** *boolean*
 
@@ -217,7 +244,7 @@ Property that allows activating or deactivating the stabilised mode before the f
 stabilizationMode: true
 ```
 
-### 3.7. fullScreen
+### 3.8. fullScreen
 
 **type:** *string*
 
@@ -227,9 +254,9 @@ Sets whether you want the sdk to start in full screen mode, hiding the status ba
 fullscreen: true
 ```
 
-### 3.8. enableImages
+### 3.9. logImages
 
-**type:** *boolean*
+**type:** *string*
 
 Indicates whether the sdk returns to the application the images used during extraction or not. It should be noted that returning images can result in a significant increase in device resource usage:
 
@@ -237,7 +264,7 @@ Indicates whether the sdk returns to the application the images used during extr
 logImages: false
 ```
 
-### 3.9. templateRawOptimized
+### 3.10. templateRawOptimized
 
 **type:** *boolean*
 
@@ -247,7 +274,7 @@ Indicates whether if the selfie token generated must be optimized or not.
 templateRawOptimized: false
 ```
 
-### 3.10. showDiagnostic
+### 3.11. showDiagnostic
 
 **type:** *boolean*
 
@@ -257,7 +284,7 @@ Shows a pop-up with the component diagnostic if the process fails.
 showDiagnostic: true
 ```
 
-### 3.11 enableGenerateTemplateRaw
+### 3.12 enableGenerateTemplateRaw
 
 **type:** *boolean*
 
@@ -268,7 +295,7 @@ enableGenerateTemplateRaw: true
 ```
 
 
-###  3.12 showResultAfterCapture
+###  3.13 showResultAfterCapture
 
 **type:** *boolean*
 
@@ -278,8 +305,7 @@ Indicates whether or not to display a screen with the captured image of the docu
 showResultAfterCapture: false
 ```
 
-
-###  3.13 showTutorial
+###  3.14 showTutorial
 
 **type:** *boolean*
 
@@ -289,30 +315,7 @@ Indicates whether or not to display the tutorial before the process. After the t
 showTutorial: true
 ```
 
-###  3.14 compressFormat
-
-**type:** *SdkCompressFormat*
-
-Indicates the format compression of the image. The possible values are:
-
-- PNG
-- JPG
-
-```
-compressFormat: "JPG“;
-```
-
-###  3.15 jpgQuality
-
-**type:** *number*
-
-If the ***compressFormat*** property is configured as **JPG**, it is possible to set the image's *quality compression*. However, this parameter will be ignored if the ***compressFormat*** is **PNG**.
-
-```
-jpgQuality: 95
-```
-
-###  3.16 videoFilename
+###  3.15 videoFilename
 
 **type:** *string*
 
@@ -332,7 +335,8 @@ write processing unless a file path is specified using this method.
 videoFilename: “\<videofile-path\>“;
 ```
 
-###  3.17 translationsContent
+
+###  3.16 translationsContent
 
 **type:** *string*
 
@@ -353,7 +357,7 @@ replace the current location of the component at run time.
 translationsContent: “\<translation-content-string\>“;
 ```
 
-###  3.18 viewsContent
+###  3.17 viewsContent
 
 **type:** *string*
 
@@ -372,6 +376,12 @@ layout of the component's internal screens whilst running.
 ```
 viewsContent: “\<views-content-string\>“;
 ```
+
+#### 3.18. showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
 
 #### 3.19. showPreviousTip
 
@@ -472,7 +482,7 @@ return await SdkMobileSelphi.selphi(getSelphiConfiguration())
 
 Regardless of whether the result is correct/erroneous, the result will have the following format:
 
-```
+``` java
 export interface SelphiResult {
   finishStatus?: number;
   errorType?: string;
@@ -481,70 +491,93 @@ export interface SelphiResult {
   bestImage?: string;
   bestImageCropped?: string;
   bestImageTemplateRaw?: string;
-  bestImageTokenized?: string;
   qrData?: string;
   templateRaw?: string;
-  images?: string[];
   livenessDiagnostic?: string;
+  iad?: string;
 }
 ```
 
- 
 <div class="note">
 <span class="note">:information_source:</span>
-The result will be returned via a Promise containing an object of class SelphiResult. Information on these fields has been elaborated on below.
+The result will be returned via a Promise containing an object of class ***SelphiResult***. Information on these fields has been elaborated on below.
 </div>
 
-### 5.0 finishStatus
+### 5.1 finishStatus
 
 - **1**: The operation was successful.
 - **2**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.1 finishStatusDescription
+
+### 5.2 finishStatusDescription
 
 - **STATUS_OK**: The operation was successful.
 - **STATUS_ERROR**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.2 errorType
+### 5.3 errorMessage 
+  
+Indicates an additional error message if necessary. It is an optional value.
+
+
+### 5.4 errorType
 Returns the type of error that occurred (if there was one, which is indicated by the `finishStatus` parameter with the value `Error`). The values ​​it can have are the following:
 
 - **NoError**: No error has occurred. The process can continue.
+
 - **UnknownError**: Unhandled error. Possibly caused by a bug in the resource bundle.
+
 - **CameraPermissionDenied**: The exception that is thrown when the sdk does not have permission to access the camera.
-- **SettingsPermissionDenied**: The exception that is thrown when the widget does not have permission to access system settings (*deprecated*).
+
+- **SettingsPermissionDenied**: The exception that is thrown when the component does not have permission to access system settings (*deprecated*).
+
 - **HardwareError**: Exception that occurs when there is a hardware problem with the device, usually caused by very few available resources.
+
 - **ExtractionLicenceError**: Exception that occurs when there has been a licencing problem on the server.
+
 - **UnexpectedCaptureError**: Exception that occurs during the capture of frames by the camera.
-- **ControlNotInitialisedError**: The widget configurator has not been initialised.
-- **BadExtractorConfiguration**: Problem arose during widget configuration.
+
+- **ControlNotInitialisedError**: The component configurator has not been initialised.
+
+- **BadExtractorConfiguration**: Problem arose during component configuration.
+
 - **CancelByUser**: The exception that is thrown when the user stops the extraction manually.
+
 - **TimeOut**: Exception that is thrown when a maximum time elapses without successfully completing the extraction.
+
 - **InitProccessError**: Exception that is thrown when the sdk cannot process the captured images.
+
 - **NfcError**: The exception that is thrown when the sdk does not have permission to access the nfc.
+
 - **NetworkConnection**: The exception that is thrown when there are issues with the means the device uses to connect to the network.
+
 - **TokenError**: The exception that is thrown when an invalid token is passed as a parameter.
+
 - **InitSessionError**: The exception that is thrown when session cannot be initialised. The normal thing is that it happens because the `SdkCore` was not called when calling any other component.
+
 - **ComponentControllerError**: The exception that is thrown when the component cannot be instantiated.
 
-### 5.3 errorMessage
-Indicates an additional error message if necessary. It is an optional value.
 
-### 5.4 templateRaw
+### 5.5 templateRaw
+
 Returns the raw template that is generated after the extraction process.
 
-### 5.5 bestImage
+### 5.6 bestImage
+
 Returns the best image extracted from the registration or authentication process. This image is the original size image extracted from the camera.
 
-### 5.6 bestImageCropped
+### 5.7 bestImageCropped
+
 Returns a cropped image centered on the user's face. This image is obtained from the bestImage. This is the image that should be used as the characteristic image of the user who carried out the registration or authentication process as an 'avatar'.
 
-### 5.7 qrData
+### 5.8 qrData
+
 Returns the captured QR code data.
 
-### 5.8 bestImageTemplateRaw
-Optional parameter. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The widget will return the *bestImage* encrypted and in stringBase64 format.
+### 5.9 bestImageTemplateRaw
 
-### 5.9 livenessDiagnostic
+Optional output. Only visible if the parameter *enableGenerateTemplateRaw* is set to **true**. The component will return the *bestImage* encrypted and in stringBase64 format.
+
+### 5.10 livenessDiagnostic
 
 Optional output. Returns extra information of the scan face.
 Possible results:
@@ -576,6 +609,11 @@ enum class LivenessDiagnostic {
     UnsuccessMovementBoundaries
 }
 ```
+
+### 5.11 iad
+
+Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. IMPORTANT: Parameter visible only to the selphid IAD component.
+
 ---
 
 ## 6. Component Customisation (Optional)
@@ -583,7 +621,7 @@ enum class LivenessDiagnostic {
 This component allows the customisation of texts, images, fonts and
 colours. Customisation is done using the internally supplied **.zip
 file**. This zip is made up of a file called ***widget.xml*** that
-contains the definition of all the widget screens, each one of them with
+contains the definition of all the component screens, each one of them with
 a series of elements which allow customisation. The zip file also
 contains a folder with graphic resources and another folder with the
 translations of the texts.
@@ -603,7 +641,7 @@ translation files in the resource .zip.
 
 #### 6.1.2. Image customisation
 
-To customise the images used by the widget, you must add the images to
+To customise the images used by the component, you must add the images to
 the resource .zip. In the zip there are 3 folders:
 
 >     /resources/163dpi
@@ -617,7 +655,7 @@ create as many density folders as you want. These folders contain the
 versions of the images for each of the resolutions.
 
 It is necessary to add the images in all the folders, since once the
-optimal resolution for the device has been determined, the widget only
+optimal resolution for the device has been determined, the component only
 loads images from the folder with the chosen resolution.
 
 The images are referenced from the *widget.xml* file.
@@ -626,7 +664,7 @@ The images are referenced from the *widget.xml* file.
 
 Button colour customisation is carried out from the *widget.xml* file.
 In it you can customise any colour of any graphic element that appears
-in the widget. Simply modify the colour of the desired property.
+in the component. Simply modify the colour of the desired property.
 
 #### 6.1.4. Font type customisation
 
@@ -659,7 +697,7 @@ would be the Spanish translation, *strings.en.xml* the English
 translation, *strings.es_ES.xml* the Spanish of Spain or
 *strings.es_AR.xml* the Spanish of Argentina.
 
-You can force the language or let the widget choose it based on device
+You can force the language or let the component choose it based on device
 settings. When deciding which language to apply, the following order is
 followed:
 
@@ -679,7 +717,7 @@ to be used (for example, "es" or "es_ES").
 
 It contains the folders with all the necessary resources to be able to
 be modified, divided into densities. It is mandatory to generate the
-images in all densities as the widget expects to find them in the folder
+images in all densities as the component expects to find them in the folder
 corresponding to the density of the device. New folders with the desired
 density can also be created.
 
@@ -759,7 +797,7 @@ they are used:
 #### 6.2.6. TEXT element
 
 The *text* elements are used to define the graphic aspect of the texts
-of each of the widget's screens. These are the properties that can be
+of each of the component's screens. These are the properties that can be
 modified:
 
 -   **colour**: defines the colour of the text.

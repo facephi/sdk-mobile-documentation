@@ -9,8 +9,9 @@
 La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 
 -   Versión mínima Android: **24**
--   Versión mínima Build Tools version: **8.6.0**
--   Versión mínima Kotlin Android version **2.1.0**
+-   Versión mínima Build Tools version: **8.9.x**
+-   Versión mínima Kotlin Android version **2.2.x**
+-   Versión mínima React Nativr version **0.78.0**
 -   Versión mínima iOS: **13**
 
 ### 1.2 Versión del plugin

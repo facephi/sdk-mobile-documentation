@@ -319,6 +319,7 @@ export interface SelphiResult {
   qrData?: string;
   templateRaw?: string;
   images?: string[];
+  iad: string;
 }
 ```
  
@@ -372,6 +373,9 @@ Devuelve los datos del código QR capturado.
 
 - **bestImageTemplateRaw**
 Parámetro opcional. Solo visible si se setea el parámetro enableGenerateTemplateRaw en true. El widget devolverá el templateRaw en formato stringBase64.
+
+- **iad**
+Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. IMPORTANTE: Parametro visible solo para el componente selphid IAD.
 
 ## 6. Personalización de componente (Opcional)
 Este componente permite la personalización de textos, imágenes, fuentes de letra y colores. La personalización se realiza mediante el archivo .zip suministrado internamente. Este zip está compuesto de un fichero llamado widget.xml que contiene la definición de todas las pantallas del widget, cada una de ellas con una serie de elementos los cuales permiten realizar la personalización. El archivo zip también contiene una carpeta con recursos gráficos y otra carpeta con las traducciones de los textos.
