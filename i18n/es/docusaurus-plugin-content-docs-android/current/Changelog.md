@@ -2,7 +2,7 @@
 
 ## Versiones
 
-###  2.5.0
+###  2.5.0 (12/2025)
 
 - General
 
@@ -44,7 +44,7 @@
   - Nueva vista de progreso de lectura en porcentaje y estilo configurable
   - Correcciones de flujo y manejo de errores en lectura
 
-### 2.4.1
+### 2.4.1 (11/2025)
 
 - General
 
@@ -76,7 +76,7 @@
 
   - Nueva versión del widget: 1.0.1
 
-### 2.4.0
+### 2.4.0 (10/2025)
 
 - General
 
@@ -104,7 +104,7 @@
 
   - Nueva versión del Reader: 1.9.5
 
-### 2.3.7
+### 2.3.7 (09/2025)
 
 - General
 
@@ -126,7 +126,7 @@
   - Nueva versión del  Reader: 1.9.2
   - Nueva versión del  Helper: 3.27.1
 
-### 2.3.6
+### 2.3.6 (08/2025)
 
 - General
 
@@ -172,7 +172,7 @@
   - Mejoras en el proceso
   - Actualización de dependencias
 
-### 2.3.5
+### 2.3.5 (07/2025)
 
 - General
 
@@ -191,7 +191,7 @@
   - Nueva versión del Reader: 1.8.0
   - Nueva versión del Helper: 3.27.0
 
-### 2.3.4
+### 2.3.4 (07/2025)
 
 - General
 
@@ -215,7 +215,7 @@
 
   - Mejoras en la lectura
 
-### 2.3.3
+### 2.3.3 (07/2025)
 
 - General
 
@@ -241,7 +241,7 @@
 
   - Nueva versión del widget: 1.1.10
 
-### 2.3.2
+### 2.3.2 (06/2025)
 
 - General
 
