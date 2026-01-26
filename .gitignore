@@ -18,3 +18,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Search plugin temporary files
+docs/_search_temp/
+sidebarsDefault.js
