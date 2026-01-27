@@ -27,6 +27,7 @@ const sidebars = {
         "Changelog",
         "Tracking_Component",
         "Selphi_Component",
+        "Selphi_IAD_Component",
         "SelphID_Component",
         "Phingers_Component",
         "Voice_Component",

@@ -1,12 +1,13 @@
-# Facial Capture
+# Facial Capture with IAD
 
 ## 1. Introduction
 
-Facial capture is performed with the **Selphi Component**.
+Facial capture with video injection attack detection is performed with the **Selphi Component**.
 
-This component is responsible for capturing a user selfie and extracting the most important facial features. Its main processes are:
+This component is responsible for capturing a selfie of the user and extracting their most relevant facial features, incorporating a set of preventive security controls aimed at detecting untrustworthy environments. Its main processes are:
 
 - Internal camera and permission management.
+- Detection of impersonation attempts using manipulated videos or camera feeds.
 - Guided assistance during the user’s facial capture process.
 - Generation of facial templates and the user image.
 
@@ -19,7 +20,7 @@ Refer to the [Quickstart](./Mobile_SDK) section for the basic SDK integration st
 The component-specific dependency is:
 
 ```java
-implementation "com.facephi.androidsdk:selphi_component:$version"
+implementation "com.facephi.androidsdk:selphi_iad_component:$version"
 ```
 
 ---
@@ -75,7 +76,7 @@ Available `livenessMode` values:
 
 ## 6. Receiving the Result
 
-The launch returns an `SdkResult`. Differentiate between success and error:
+The launch returns an `SdkResult`. Differentiate between success and error (the result data will include the “iad” field with the information obtained; see section 6.2.):
 
 ```java
 when (response) {
@@ -151,6 +152,10 @@ Encrypted best image from the liveness process.
 #### 6.2.7 _livenessDiagnostic_
 
 Information about the verification process that confirms that the person is physically present and real.
+
+#### 6.2.8 _iad_
+
+Information obtained from the analysis of video injection attacks prepared for submission to the verification service.
 
 ---
 
