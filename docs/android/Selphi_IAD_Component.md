@@ -1,8 +1,20 @@
 # Facial Capture with IAD
 
+> **Differences with Selphi Component**
+>
+> The **Selphi IAD Component** is functionally equivalent to the standard **Selphi Component**, incorporating additional security controls aimed at detecting video injection attacks and untrusted capture environments.
+>
+> The integration, configuration, and usage flow of the component are the same. The main functional difference is the inclusion of the _iad_ field in the result (`SelphiResult`), which contains the anti-fraud analysis information prepared for server verification.
+>
+> To use it, a new licence is required and the standard component dependency must be replaced with:
+>
+> ```java
+> implementation ‘com.facephi.androidsdk:selphi_iad_component:$version’
+> ```
+
 ## 1. Introduction
 
-Facial capture with video injection attack detection is performed with the **Selphi Component**.
+Facial capture with video injection attack detection is performed with the **_Selphi IAD Component_**.
 
 This component is responsible for capturing a selfie of the user and extracting their most relevant facial features, incorporating a set of preventive security controls aimed at detecting untrustworthy environments. Its main processes are:
 
