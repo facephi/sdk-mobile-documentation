@@ -24,6 +24,7 @@ const sidebars = {
       items: [
         "Mobile_SDK",
         "Selphi_Component",
+        "Selphi_IAD_Component",
         "SelphID_Component",
         "Phingers_Component",
         "Voice_Component",
@@ -41,6 +42,7 @@ const sidebars = {
           items: [
             "changelog/SDK_Component_Changelog",
             "changelog/Selphi_Component_Changelog",
+            "changelog/Selphi_IAD_Component_Changelog",
             "changelog/SelphID_Component_Changelog",
             "changelog/Phingers_Component_Changelog",
             "changelog/NFC_Component_Changelog",
