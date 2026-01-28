@@ -18,7 +18,7 @@ Tools available in this widget are:
 
 ### 2.1. Required libraries and configuration
 
-In order to add the required libraries, from the “Build Phases” tab, you should add the following libraries in the “Embedded binaries” section:
+In order to add the required libraries, from the "Build Phases" tab, you should add the following libraries in the "Embedded binaries" section:
 
 - Extractor library: `FPBExtractoriOS.framework`
 - Selphi Widget library: `FPhiWidgetSelphi.framework`
@@ -26,7 +26,7 @@ In order to add the required libraries, from the “Build Phases” tab, you sho
 - ZipZap library: `ZipZap.xcframework`
 - Native library: `libc++.tbd`
 
-In the “Copy bundle resources” section it is required to add the widget resources file `fphi-widget-resources-SelphiLive-1.2.zip`.
+In the "Copy bundle resources" section it is required to add the widget resources file `fphi-widget-resources-SelphiLive-1.2.zip`.
 
 Since iOS 10.0, if the application uses the camera, it is required to add a usage description. To do that, the file info.plist must be modified adding the description as the value for the key NSCameraUsageDescription: 
 ```xml
@@ -38,7 +38,7 @@ Since iOS 10.0, if the application uses the camera, it is required to add a usag
 To integrate the widget into a controller, once you have available the required libraries, you just need to carry out the following actions:
 
 - Import the headers file: `#import "FPhiWidgetSelphi/FPhiWidgetSelphi.h"`
-- Declare a variable for the widget, type of “FPhiWidget”: `@property FPhiWidget *widget;`
+- Declare a variable for the widget, type of `FPhiWidget`: `@property FPhiWidget *widget;`
 
 **Instancing the widget:**
 ```objc
@@ -73,7 +73,7 @@ To integrate the widget into a controller, once you have available the required 
     // Show the widget view and hide the actual view. 
     [self presentViewController: widget animated:true completion:nil];
 ```
-During the constructor call, it is specified in its first parameter which camera is going to be used, being “true” the value to use the front camera and “false” the value to use the rear camera. The second parameter sets the class that implements the protocol events of the class. In the third parameter, “error” is used to indicate a problem during the widget creation, for example, a problem regarding camera permissions.
+During the constructor call, it is specified in its first parameter which camera is going to be used, being `true` the value to use the front camera and `false` the value to use the rear camera. The second parameter sets the class that implements the protocol events of the class. In the third parameter, `error` is used to indicate a problem during the widget creation, for example, a problem regarding camera permissions.
 
 ---
 
@@ -95,7 +95,7 @@ It sets the widget liveness mode. Permitted values are:
 
 - **LMLivenessNone**: Indicates that must not be activated the photo detection mode in the authentication processes.
 - **LMLivenessMove**: Indicates that active liveness movement mode must be activated in the authentication processes.
-- **LMLivenessPassive**: Indicates that the liveness will be performed at server side, sending the “BestImage” or the correspondant “tokenTemplateRaw”.
+- **LMLivenessPassive**: Indicates that the liveness will be performed at server side, sending the "BestImage" or the correspondant "tokenTemplateRaw".
 
 #### 3.2.2. stabilizationMode
 
@@ -111,11 +111,11 @@ It sets 4 bytes with data that may be configured by the main application and wil
 
 #### 3.2.5. locale
 
-It forces the widget to use the language configuration indicated by locale parameter. This parameter accepts a language code and local identification code. If the file of the widget resources doesn´t have a location for the “locale” selecting its configuration would use the language by default.
+It forces the widget to use the language configuration indicated by locale parameter. This parameter accepts a language code and local identification code. If the file of the widget resources doesn´t have a location for the "locale" selecting its configuration would use the language by default.
 
 #### 3.2.6. logImages
 
-Activate or not the return of the images list which have been captured during the execution of the extraction process. If the input parameter is “true” will return the list of processed images. In another case, it will get back an empty list.
+Activate or not the return of the images list which have been captured during the execution of the extraction process. If the input parameter is `true` will return the list of processed images. In another case, it will get back an empty list.
 
 #### 3.2.7. tutorialFlag
 
@@ -209,7 +209,7 @@ The customization of the colour of the buttons is done from the file `widget.xml
 #### 4.1.4. Font customization
 
 The customization of the font must be placed in the folder /resources/163dpi and it can be referenced from the file `widget.xml`.
-To change the font of text elements is enough modifying the “font” property and put the name of the file.
+To change the font of text elements is enough modifying the font property and put the name of the file.
 
 In the following section there is more information about the content of the resources bundle and the mode to modify.
 
@@ -233,7 +233,7 @@ Being (language) the language code. For example, `strings.es.xml` would be the t
 The language can be forced or let the widget select it based on the device configuration. When deciding the language to apply the following sequence is performed:
 
 - Searching by location code (for example, “es_AR”).
-- If there isn´t any coincidence, it is possible to search for the generical language (“es”).
+- If there isn´t any coincidence, it is possible to search for the generical language ("es").
 - If there isn´t any result, it is possible to use the language by default.
 
 #### 4.2.3. Resources folder 
@@ -296,13 +296,13 @@ The video elements only have the property that defines the file where the physic
 
 ## 5. Widget messages
 
-The communication from the widget to the application once the facial characteristics extraction is finished is done through events. In order to indicate which class will implement this method (implements the protocol), you should indicate it in the second parameter of the “init” method (in this example, “self”):
+The communication from the widget to the application once the facial characteristics extraction is finished is done through events. In order to indicate which class will implement this method (implements the protocol), you should indicate it in the second parameter of the init method (in this example, `self`):
 ```objc
     _widget = [[SelphiWidgetalloc] initWithFrontCameraIfAvailable:true 
                 resources:[bundlepathForResource:@"fphi-widget-resources-SelphiLive-1.2" ofType:@"zip"] 
                 delegate:self error:&error]; 
 ```
-In this case, “self” indicates that it will be implemented in the same class that the call is done.
+In this case, `self` indicates that it will be implemented in the same class that the call is done.
 
 ### 5.1. Protocol events
 
@@ -330,7 +330,7 @@ It is executed when an extraction process ends.
 the `results` object contains these fields
 
 - **templateRaw**: It retrieves the generated raw template after the extraction process.
-- **images**: If `logImages` flag is set, it retrieves the images obtained during the extraction process.The images are retrieved from highest to lowest by its “facial score” so the best of the image of the extraction process is found in the 0 position of array.
+- **images**: If `logImages` flag is set, it retrieves the images obtained during the extraction process.The images are retrieved from highest to lowest by its "facial score" so the best of the image of the extraction process is found in the 0 position of array.
 - **bestImage**: Returns the best image extracted from the authentication process. This image is the original size image taken from the camera.
 - **bestImageCropped**: Returns a cropped image centered on the user's face. This image is obtained from the "bestImage". This is the image that should be used as a characteristic image of the user who carried out the process as an ‘avatar’.
 - **livenessDiagnostic**: It retrieves the final diagnostic of the liveness process.

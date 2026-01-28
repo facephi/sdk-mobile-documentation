@@ -96,9 +96,9 @@ Dictionary with information of the previous captures, in order to improve the pr
 
 This is a string that enables to change the widget locale and language. Examples of possible values are as follows: 
 
-- “es” for Spanish.
-- “en” for English.
-- “fr” for French.
+- "es" for Spanish.
+- "en" for English.
+- "fr" for French.
 
 In short, it will depend on the name that appears in the `strings.xml` file of the language you want to select (`strings-es.xml`, `strings-en.xml`, `strings-fr.xml`).
 
@@ -183,11 +183,11 @@ There is a .zip file (added in the plug-in root folder) that contains all the re
 
 This contains the license for the SelphID libraries. The programming example shows a way to manage this license according to the platform used. If the license argument is not correctly used then we will have an exception when the widget is invoked, in which the following error messages can occur:
 
-1. “License not parsed properly”: The route where the license is stored has not been correctly obtained, or the license itself is not correctly formed.
-2. “License package name mismatch”: The application bundle identifier is not the same as that of the license.
-3. “License package name mismatch”: The date of the license has expired.
-4. “License content not valid”: The license is not correct, or it is not correctly formed.
-5. “Unknown”: Unknown cause.
+1. "License not parsed properly": The route where the license is stored has not been correctly obtained, or the license itself is not correctly formed.
+2. "License package name mismatch": The application bundle identifier is not the same as that of the license.
+3. "License package name mismatch": The date of the license has expired.
+4. "License content not valid": The license is not correct, or it is not correctly formed.
+5. "Unknown": Unknown cause.
 
 ### 4.2. Protocol FPhiSelphIDWidgetProtocol
 

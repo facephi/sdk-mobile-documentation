@@ -80,7 +80,7 @@ A configuration example that enables all documents of Spanish nationality to be 
 ```java
 	// Search mode definition
 	conf.setScanMode(WidgetSelphIdScanMode.SMSearch);
-	conf.setSpecificData(“ES|<ALL>”); // ISO code for Spain (ES)
+	conf.setSpecificData("ES|<ALL>"); // ISO code for Spain (ES)
 ```
 #### 3.5. WizardMode Property
 
@@ -100,9 +100,9 @@ In the case that the capture is done in a single step, this is not necessary sin
 
 This is a string that enables to change the widget locale and language. Examples of possible values are as follows:
 
-- “es” for Spanish.
-- “en” for English.
-- “fr” for French.
+- "es" for Spanish.
+- "en" for English.
+- "fr" for French.
 
 In short, it will depend on the name that appears in the `strings.xml` file of the language you want to select (`strings-es.xml`, `strings-en.xml`, `strings-fr.xml`).
 
@@ -184,7 +184,7 @@ With these events we can communicate important data to analyze user behavior whi
 
 After creating the class that implements this interface, the application will call the configuration object method:
 ```java
-	conf.setIFPhiWidgetSelphIDEventListener_classname(“name.class.interface”)
+	conf.setIFPhiWidgetSelphIDEventListener_classname("name.class.interface")
 ```
 Passing the name of the class that implements this interface.
 
