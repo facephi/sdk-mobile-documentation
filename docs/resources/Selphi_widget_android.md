@@ -1,3 +1,5 @@
+# Selphi Widget Android
+
 ## 1. Introduction
 
 This manual presents configuration and functioning of the FacePhi Selphi Android Widget for applications developed in Android operating system as well as its integration in Android projects. The following points are explained:

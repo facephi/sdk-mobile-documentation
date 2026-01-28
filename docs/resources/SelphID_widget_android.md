@@ -1,3 +1,5 @@
+# SelphID Widget Android
+
 ## 1. What is the widget?
 
 FacePhi SelphID Android Widget is a useful tool to perform document capture functions offered by FacePhi technology. The functions provided by this widget are:

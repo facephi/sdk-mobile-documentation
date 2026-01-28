@@ -1,3 +1,5 @@
+# Selphi Widget iOS
+
 ## 1. What is the widget?
 
 **FacePhi Selphi iOS Widget** is a tool designed using Objective C. With it, you will be able to carry out most of the functionalities that FacePhi offers. It is a tool designed to simplify the integration of face recognition applications technology.
