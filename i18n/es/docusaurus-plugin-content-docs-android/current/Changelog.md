@@ -34,6 +34,10 @@
 
   - Correcciones de flujo
 
+- NFC
+
+  - Nuevos datos cifrados a la salida
+
 ###  2.5.0 (12/2025)
 
 - General

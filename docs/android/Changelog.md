@@ -34,6 +34,10 @@
 
   - Flow corrections
 
+- NFC
+
+  - Return tokenized data
+
 ###  2.5.0 (12/2025)
 
 - General
