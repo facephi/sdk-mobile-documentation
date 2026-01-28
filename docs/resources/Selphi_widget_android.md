@@ -36,10 +36,6 @@ Passing boot arguments between the main class of the project and the widget is d
 
 When a new widget is created in an Android application, you can set up some properties which determine its functioning. This widget configuration is handled by `WidgetConfiguration` class. It contains several methods that allow you to set the following properties:
 
-#### 2.1.0. setLicense
-
-Sets the contents of the license that will be needed for some widget features.
-
 #### 2.1.1. ResourcesPath
 
 It sets the route of the resources file that the widget will use for its graphical configuration. The route of this file must be specified related to the `assets` folder of the main application.
@@ -47,6 +43,12 @@ It sets the route of the resources file that the widget will use for its graphic
 ### 2.2. Methods
 
 You have the following methods to configure the widget, at `WidgetConfiguration` class:
+
+#### 2.2.0. setLicense
+```java
+    public void setLicense(String license)
+```
+Sets the contents of the license that will be needed for some widget features.
 
 #### 2.2.1. setLivenessMode
 ```java

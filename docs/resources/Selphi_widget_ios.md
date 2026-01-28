@@ -234,7 +234,7 @@ Being (language) the language code. For example, `strings.es.xml` would be the t
 
 The language can be forced or let the widget select it based on the device configuration. When deciding the language to apply the following sequence is performed:
 
-- Searching by location code (for example, “es_AR”).
+- Searching by location code (for example, "es_AR").
 - If there isn´t any coincidence, it is possible to search for the generical language ("es").
 - If there isn´t any result, it is possible to use the language by default.
 

@@ -1,3 +1,5 @@
+# SelphID Widget iOS
+
 ## 1. ¿Qué es el widget?
 
 FacePhi SelphID iOS Widget es una utilidad con la que se podrán realizar las funciones de captura de documentos que ofrece la tecnología de FacePhi.
@@ -8,7 +10,7 @@ Las funciones que facilita este widget son:
 - Extracción de la información contenida en el documento.
 - Obtención de las imágenes de la parte frontal, trasera y otros datos relevantes.
 
-***
+---
 
 ## 2. ¿Cómo se integra el widget?
 
@@ -38,7 +40,7 @@ Incluir `FPhiSelphIDWidgetiOS.framework` y `Microblink.xcframework` en Embedded 
 
 Incluir `fphi-selphid-widget-resources-SelphID-1.0.zip` (sin descomprimir) en Copy bundle Resources, dentro de la sección Build Phases.
 
-***
+---
 
 ## 3. Configurar el widget
 
@@ -75,11 +77,11 @@ Indica el modo de escaneo OCR de los documentos. Dependiendo de la elección, se
 
 Esta propiedad permite definir qué documentos se escanearán durante el proceso, en caso de declarar el modo de escaneo (scanMode) a SMSearch o SMSpecific.
 Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:
-
+```objc
     // Search mode definition
     _selphidWidget.scanMode = SMSearch;
-    _selphidwidget.specificData = “ES|<ALL>”; // Código ISO de España (ES)
-
+    _selphidwidget.specificData = "ES|<ALL>"; // Código ISO de España (ES)
+```
 #### 3.5. Propiedad WizardMode
 
 Indica si el widget queda configurado para realizar la captura de ambas partes (frontal y trasera) del documento una a continuación de la otra. En este modo el widget solo se lanzaría una vez y al terminar de capturar el front, continuaría seguidamente con el back.
@@ -97,9 +99,9 @@ En el caso que la captura de ambas caras del documento se realice en una única 
 
 Es un string que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
 
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
+- "es" para español.
+- "en" para inglés.
+- "fr" para francés.
 
 En definitiva, dependerá del nombre que aparezca en el fichero `strings.xml` del lenguaje que se desee seleccionar (`strings-es.xml`, `strings-en.xml`, `strings-fr.xml`).
 En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pueden añadir los ficheros `strings-xx.xml` correspondientes a cada localización que se requiere incorporar en el widget.
@@ -130,7 +132,7 @@ Esta propiedad configura el widget para devolver la imagen completa de la cámar
 
 Este método devuelve la version actual del widget en formato cadena. Esta llamada es estática por lo que no requiere del lanzamiento del widget para realizar esta operación.
 
-***
+---
 
 ## 4. Crear el widget
 
@@ -138,7 +140,7 @@ Este método devuelve la version actual del widget en formato cadena. Esta llama
 
 `FPhiSelphIDWidget` es la clase que se encarga de la comunicación entre la aplicación y el widget. Para poder ejecutar el mismo deberá realizarse la llamada al método `StartExtraction`. 
 En el siguiente ejemplo de código Objective C se muestra la configuración e instancia del widget:
-
+```objc
     (IBAction)takeButtonTapped:(id)sender {
 
         NSLog(@"Widget - Capture Document Back");
@@ -173,22 +175,22 @@ En el siguiente ejemplo de código Objective C se muestra la configuración e in
         [_selphidWidget StartExtraction];
         [self presentViewController:_selphidWidget animated:true completion:nil];
     }
-
+```
 A continuación, se comentan los parámetros requeridos en la instanciación:
 
 #### 4.1.1. Argumento bundlePathForResouce (string)
 
-Existe un fichero .zip (añadida en la carpeta raíz del plugin) que contiene todos los recursos de la UI del widget para abstraerlos de la lógica y facilitar su personalización por parte del cliente. Simplemente habrá que modificar la variable “bundlePathForResource” con el nombre sin la extensión del fichero comprimido y el widget será capaz de localizarlo y aplicarlo. 
+Existe un fichero .zip (añadida en la carpeta raíz del plugin) que contiene todos los recursos de la UI del widget para abstraerlos de la lógica y facilitar su personalización por parte del cliente. Simplemente habrá que modificar la variable `bundlePathForResource` con el nombre sin la extensión del fichero comprimido y el widget será capaz de localizarlo y aplicarlo. 
 
 #### 4.1.2. Argumento license (string)
 
 Contiene la licencia de las librerías de SelphID. En el ejemplo de programación se muestra una forma de gestionar esta licencia según la plataforma utilizada. Si el argumento license no se usa de forma correcta, tendremos una excepción a la hora de invocar el widget, en la que se pueden dar los siguientes mensajes de error:
 
-1. **“License not parsed properly”**: No se ha obtenido bien la ruta donde se almacena la licencia, o la licencia en sí no está bien formada.
-2. **“License package name mismatch”**: El bundle identifier de la aplicación, no es el mismo que el de la licencia.
-3. **“License expired”**: La fecha de la licencia a expirado.
-4. **“License content not valid”**: La licencia no es correcta, o no esta bien formada.
-5. **“Unknown”**: Desconocido.
+1. **"License not parsed properly"**: No se ha obtenido bien la ruta donde se almacena la licencia, o la licencia en sí no está bien formada.
+2. **"License package name mismatch"**: El bundle identifier de la aplicación, no es el mismo que el de la licencia.
+3. **"License expired"**: La fecha de la licencia a expirado.
+4. **"License content not valid"**: La licencia no es correcta, o no esta bien formada.
+5. **"Unknown"**: Desconocido.
 
 ### 4.2. Protocolo FPhiSelphIDWidgetProtocol
 
@@ -220,16 +222,16 @@ Los eventos recibidos son principalmente de 3 tipos:
 - Eventos relacionados con los procesos de captura del documento que se están llevando acabo, como pueden ser errores por ausencia de información, por mala calidad de las imágenes, o no hacer caso a las indicaciones que se reciben, entre otros.
   
 Mediante estos eventos se comunica a la aplicación principal aquellos datos que puedan ser de interés a la hora de analizar el comportamiento de los usuarios cuando usan la tecnología.
-
+```objc
     (void)onEvent:(NSDate *)time type:(NSString *)type info:(NSString *)info {
     }
-
-***
+```
+---
 
 ## 5. Recepción del resultado.
 
 Al finalizar la llamada del plugin, es posible obtener toda la información obtenida de la captura del documento (ya sea la parte frontal, trasera o ambas a la vez). Para ello es necesario implementar el delegado `FPhiSelphIDWidgetProtocol` y la siguiente función:
-
+```
     (void)CaptureFinished {
 
         NSLog(@"Widget - Extraction finished");
@@ -245,7 +247,7 @@ Al finalizar la llamada del plugin, es posible obtener toda la información obte
         // Or
         [self getIndividualValues];    
     }
-
+```
 
 Es importante reseñar que la información obtenida en este objeto se devuelve duplicada, mostrándola a su vez en abierto (por ejemplo, `frontDocumentImage` para la imagen de la captura frontal del documento), como tokenizado y encriptado (por ejemplo, `tokenFrontDocumentImage` para la imagen de la captura frontal del documento). 
 
@@ -282,7 +284,7 @@ Si el cálculo devuelve -1.0 es que el documento no contiene campos comunes o a�
 #### 5.1.6. Propiedad captureProgress
 
 Esta propiedad devuelve el estado en el que se encontraba el proceso de captura cuando el widget terminó. Estos son los posibles valores:
-
+```
     Front_Detection_None = 0
     Front_Detection_Uncertain = 1
     Front_Detection_Completed = 2
@@ -291,7 +293,7 @@ Esta propiedad devuelve el estado en el que se encontraba el proceso de captura 
     Back_Detection_Uncertain = 5
     Back_Detection_Completed = 6
     Back_Document_Analyzed = 7
-
+```
 - **0**: En la lectura del Front, el widget terminó sin poder haber detectado nada. Generalmente cuando no se pone ningún documento.
 - **1**: En la lectura del Front, el widget terminó habiendo detectado parcialmente un documento. En este caso algunos de los elementos esperados se han conseguido detectar, pero no todos los necesarios.
 - **2**: En la lectura del Front, el widget terminó habiendo completado la detección de todos los elementos del documento. Si el widget acaba en este estado es porque el análisis de OCR no se ha podido completar con éxito

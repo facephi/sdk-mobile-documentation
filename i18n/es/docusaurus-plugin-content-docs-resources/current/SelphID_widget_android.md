@@ -1,3 +1,5 @@
+# SelphID Widget Android
+
 ## 1. ¿Qué es el widget?
 
 FacePhi SelphID Android Widget es una utilidad con la que se podrán realizar las funciones de captura de documentos que ofrece la tecnología de FacePhi. Las funciones que facilita este widget son:
@@ -7,7 +9,7 @@ FacePhi SelphID Android Widget es una utilidad con la que se podrán realizar la
 - Extracción de la información contenida en el documento.
 - Obtención de las imágenes de la parte frontal, trasera y otros datos relevantes.
 
-***
+---
 
 ## 2. ¿ Cómo se integra el widget?
 
@@ -39,7 +41,7 @@ Adicionalmente, se entrega un archivo zip que contiene la configuración gráfic
 
 Además, junto con la SDK se proporciona un ejemplo de programación para Android Studio que ayuda al integrador a consumir el widget en una aplicación Android.
 
-***
+---
 
 ## 3. Configurar el widget
 
@@ -77,11 +79,11 @@ Indica el modo de escaneo OCR de los documentos. Dependiendo de la elección, se
 Esta propiedad permite definir qué documentos se escanearán durante el proceso, en caso de declarar el modo de escaneo (scanMode) a SMSearch o SMSpecific.
 
 Un ejemplo de configuración que permita escanear todos los documentos de nacionalidad española sería el siguiente:
-
+```java
 	// Search mode definition
 	conf.setScanMode(WidgetSelphIdScanMode.SMSearch);
-	conf.setSpecificData(“ES|<ALL>”); // Código ISO de España (ES)
-
+	conf.setSpecificData("ES|<ALL>"); // Código ISO de España (ES)
+```
 #### 3.5. Propiedad WizardMode
 
 Indica si el widget queda configurado para realizar la captura de ambas partes (frontal y trasera) del documento una a continuación de la otra. En este modo el widget solo se lanzaría una vez y al terminar de capturar el front, continuaría seguidamente con el back.
@@ -100,9 +102,9 @@ En el caso que la captura de ambas caras del documento se realice en una única 
 
 Es un string que permite cambiar la localización y el idioma del widget. Ejemplos de valores que pueden tener son los siguientes:
 
-- “es” para español.
-- “en” para inglés.
-- “fr” para francés.
+- "es" para español.
+- "en" para inglés.
+- "fr" para francés.
 
 En definitiva, dependerá del nombre que aparezca en el fichero `strings.xml` del lenguaje que se desee seleccionar (`strings-es.xml`, `strings-en.xml`, `strings-fr.xml`).
 
@@ -135,14 +137,14 @@ Esta propiedad configura el widget para devolver la imagen completa de la cámar
 
 Este método devuelve la version actual del widget en formato cadena. Esta llamada es estática por lo que no requiere del lanzamiento del widget para realizar esta operación.
 
-***
+---
 
 ## 4. Crear el widget
 
 ### 4.1. Clase FPhiSelphIDWidget
 
 `FPhiSelphIDWidget` es la clase que se encarga de la comunicación entre la aplicación y el widget. Para poder ejecutar el mismo deberá utilizarse un Intent. En el siguiente ejemplo de código java se muestra la configuración e instancia del widget:
-
+```java
 	WidgetSelphIDConfiguration conf = new WidgetSelphIDConfiguration();
 	conf.setResourcesPath(RESOURCES_PATH);
 	conf.setFullscreen(true);
@@ -162,17 +164,17 @@ Este método devuelve la version actual del widget en formato cadena. Esta llama
 	Intent intent = new Intent(this, com.facephi.selphid.Widget.class);
 	intent.putExtra("configuration", conf);
 	this.startActivityForResult(intent, 1);
-
-La propiedad “License” contiene la licencia de las librerías de SelphID. En el ejemplo de programación se muestra una forma de gestionar esta licencia según la plataforma utilizada.
+```
+La propiedad `License` contiene la licencia de las librerías de SelphID. En el ejemplo de programación se muestra una forma de gestionar esta licencia según la plataforma utilizada.
 
 ### 4.2. Interfaz IFPhiWidgetSelphIDEventListener
 
 Este interfaz permite que el widget se comunique con la aplicación principal en tiempo real y notifique sobre eventos importantes que ocurran durante el transcurso de los procesos de registro y autenticación.
 
 Para esto será necesario que la aplicación cree una clase que implemente este interfaz el cual consta de un único método: 
-
+```java
 	public void onEvent(long time, @NonNull String type, @NonNull String info)
-
+```
 Esta función recibe como parámetros el tiempo en el que se lanzó el evento, codificado como UnixTime en milisegundos, el tipo de evento que se ha producido y la información adicional asociada a dicho evento.
 
 Los eventos recibidos son principalmente de 3 tipos:
@@ -184,17 +186,17 @@ Los eventos recibidos son principalmente de 3 tipos:
 Mediante estos eventos se comunica a la aplicación principal aquellos datos que puedan ser de interés a la hora de analizar el comportamiento de los usuarios cuando usan la tecnología.
 
 Una vez creada la clase que implementa este interfaz, la aplicación llamará al método del objeto de configuración: 
-
-	conf.setIFPhiWidgetSelphIDEventListener_classname(“nombre.clase.interfaz”)
-
+```java
+	conf.setIFPhiWidgetSelphIDEventListener_classname("nombre.clase.interfaz")
+```
 Pasándole el nombre de la clase que implementa dicho interfaz.
 
-***
+---
 
 ## 5. Recepción del resultado.
 
 Al finalizar la llamada del widget, es posible adquirir toda la información obtenida de la captura del documento (ya sea la parte frontal, trasera o ambas a la vez). Para ello es necesario utilizar la devolución de llamada `onActivityResult()`:
-
+```java
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 	
@@ -241,7 +243,7 @@ Al finalizar la llamada del widget, es posible adquirir toda la información obt
 				break;
 		}
 	}
-
+```
 Es importante reseñar que la información obtenida en este objeto se devuelve duplicada, mostrándola a su vez en abierto (por ejemplo, `frontDocumentImage` para la imagen de la captura frontal del documento), como tokenizado y encriptado (por ejemplo, `tokenFrontDocumentImage` para la imagen de la captura frontal del documento). 
 
 Dependiendo del tipo de licencia utilizada se podrán obtener un tipo de parámetros o ambos. Es recomendable utilizar la información tokenizada para enviarla de forma segura al servidor donde esté instalada la SDK de SelphID, mientras que los datos en abierto deben utilizarse únicamente en fases de desarrollo y test.
@@ -277,7 +279,7 @@ Si el cálculo devuelve -1.0 es que el documento no contiene campos comunes o a�
 #### 5.1.6. Propiedad captureProgress
 
 Esta propiedad devuelve el estado en el que se encontraba el proceso de captura cuando el widget terminó. Estos son los posibles valores:
-
+```
 	Front_Detection_None = 0
 	Front_Detection_Uncertain = 1
 	Front_Detection_Completed = 2
@@ -286,7 +288,7 @@ Esta propiedad devuelve el estado en el que se encontraba el proceso de captura 
 	Back_Detection_Uncertain = 5
 	Back_Detection_Completed = 6
 	Back_Document_Analyzed = 7
-
+```
 - **0**: En la lectura del Front, el widget terminó sin poder haber detectado nada. Generalmente cuando no se pone ningún documento.
 - **1**: En la lectura del Front, el widget terminó habiendo detectado parcialmente un documento. En este caso algunos de los elementos esperados se han conseguido detectar, pero no todos los necesarios.
 - **2**: En la lectura del Front, el widget terminó habiendo completado la detección de todos los elementos del documento. Si el widget acaba en este estado es porque el análisis de OCR no se ha podido completar con éxito

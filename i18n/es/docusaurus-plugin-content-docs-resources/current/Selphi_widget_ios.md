@@ -1,3 +1,5 @@
+# Selphi Widget iOS
+
 ## 1. ¿Qué es el widget?
 
 **FacePhi Selphi iOS Widget** es una utilidad diseñada mediante Objective C con la que poder realizar las funciones de reconocimiento facial que ofrece la tecnología de FacePhi. Se trata de una herramienta diseñada para facilitar a los desarrolladores la integración de esta tecnología en las aplicaciones de reconocimiento facial.
@@ -12,13 +14,13 @@ Las utilidades disponibles en este widget son:
 
 - iOS Deployment target: 13
 
-***
+---
 
 ## 2. ¿Cómo se integra el widget?
 
 ### 2.1. Librerías requeridas y configuración
 
-Para añadir las librerías necesarias, desde la pestaña “Build Phases”, añadir las siguientes librerías en el apartado “Embedded binaries”:
+Para añadir las librerías necesarias, desde la pestaña "Build Phases", añadir las siguientes librerías en el apartado "Embedded binaries":
 
 - Librería del extractor: `FPBExtractoriOS.framework`
 - Librería del widget selphi: `FPhiWidgetSelphi.framework`
@@ -26,22 +28,22 @@ Para añadir las librerías necesarias, desde la pestaña “Build Phases”, a�
 - Libreria ZipZap: `ZipZap.xcframework`
 - Librería nativa: `libc++.tbd`
 
-En el apartado “Copy bundle resources” hay que añadir los recursos del widget que se encuentran en el archivo `fphi-widget-resources-SelphiLive-1.2.zip`.
+En el apartado "Copy bundle resources" hay que añadir los recursos del widget que se encuentran en el archivo `fphi-widget-resources-SelphiLive-1.2.zip`.
  
 Desde la versión de iOS 10.0, si la aplicación hace uso de la cámara, es necesario añadir la descripción del motivo para el que se accede a ella. Para esto hay que modificar el archivo info.plist de la aplicación añadiendo la descripción a la clave NSCameraUsageDescription:
-
+```xml
     <key>NSCameraUsageDescription</key>
     <string>Description</string>
-
+```
 ### 2.2. Integración del widget
 
 Para integrar el widget desde un controlador, una vez están enlazadas las librerías necesarias, hay que realizar las siguientes acciones:
 
 - Importar el fichero de cabeceras: `#import "FPhiWidgetSelphi/FPhiWidgetSelphi.h"`
-- Declarar una variable para el widget, de tipo “FPhiWidget”: `@property FPhiWidget *widget;`
+- Declarar una variable para el widget, de tipo `FPhiWidget`: `@property FPhiWidget *widget;`
 
 **Instanciar el widget:**
-
+```objc
     // Reserva de memoria para la clase y llama al método init. (Constructor)
     NSError *error = nil;
     NSBundle *bundle = [NSBundle bundleForClass:[AddUserViewController class]];
@@ -66,10 +68,10 @@ Para integrar el widget desde un controlador, una vez están enlazadas las libre
 
     // Carga de la vista del Widget y oculta la vista actual.
     [self presentViewController:_widget animated:true completion:nil];
+```
+Durante la llamada al constructor se especifica en su primer parámetro la cámara a utilizar, siendo `true` el valor para usar la cámara delantera y `false` para la cámara trasera. El segundo parámetro contiene la clase que implementa los eventos del protocolo de la clase. El tercer parámetro `error` se utiliza para consultar posibles problemas en la creación del widget, como, por ejemplo, no disponer de los permisos de cámara requeridos.
 
-Durante la llamada al constructor se especifica en su primer parámetro la cámara a utilizar, siendo “true” el valor para usar la cámara delantera y “false” para la cámara trasera. El segundo parámetro contiene la clase que implementa los eventos del protocolo de la clase. El tercer parámetro “error” se utiliza para consultar posibles problemas en la creación del widget, como, por ejemplo, no disponer de los permisos de cámara requeridos. 
-
-***
+---
 
 ## 3. Configurar el widget
 
@@ -90,7 +92,7 @@ Los valores permitidos son:
 
 - **LMLivenessNone**: Indica que no debe activarse el modo detección de foto en los procesos de autenticación.
 - **LMLivenessMove**: Indica que debe activarse el modo de deteccion de movimiento activo.
-- **LMLivenessPassive**: Indica que la prueba de vida se realizará en el servidor, enviando la “BestImage” o el correspondiente “tokenTemplateRaw”
+- **LMLivenessPassive**: Indica que la prueba de vida se realizará en el servidor, enviando la "BestImage" o el correspondiente "tokenTemplateRaw"
 
 #### 3.2.2. stabilizationMode
 
@@ -111,7 +113,7 @@ Este parámetro acepta tanto un código de idioma (p. ej. ‘en’) como un cód
 
 #### 3.2.6. logImages
 
-Activa o no el retorno de la lista de imágenes que se han capturado durante la ejecución de proceso de extracción. Si el parámetro de entrada se encuentra a “true”, se devolverá la lista de imágenes procesadas. En caso contrario, devolverá una lista vacía.
+Activa o no el retorno de la lista de imágenes que se han capturado durante la ejecución de proceso de extracción. Si el parámetro de entrada se encuentra a `true`, se devolverá la lista de imágenes procesadas. En caso contrario, devolverá una lista vacía.
 
 #### 3.2.7. tutorialFlag
 
@@ -173,7 +175,7 @@ Genera un templateRaw a partir de un NSData. Este NSData debe contener la repres
 
 Devuelve la version actual del widget en formato cadena. Esta llamada es estática por lo que no requiere del lanzamiento del widget para realizar esta operación.
 
-***
+---
 
 ## 4. Personalización del Widget
 
@@ -184,18 +186,18 @@ El widget permite la personalización de textos, imágenes, fuentes de letra y c
 #### 4.1.1. Personalización de textos
 
 La personalización de textos se realiza editando los textos de los archivos de traducciones existentes en el .zip de recursos.
-
+```
     /strings/strings.es.xml
     /strings/strings.xml
-
+```
 #### 4.1.2. Personalización de imágenes
 
 Para personalizar las imágenes que usa el widget se deben añadir las imágenes en el .zip de recursos. En el zip vienen 3 carpetas: 
-
+```
     /resources/163dpi
     /resources/326dpi
     /resources/489dpi
-
+```
 Estas carpetas corresponden a las diferentes densidades de pantalla y se pueden crear tantas carpetas de densidad como se desee. En estas carpetas están las versiones de las imágenes para cada una de las resoluciones.
 
 Es necesario añadir las imágenes en todas las carpetas, ya que una vez determinada la resolución óptima para el dispositivo, el widget sólo carga imágenes de la carpeta con la resolución elegida. Las imágenes son referenciadas desde el archivo `widget.xml`.
@@ -219,18 +221,18 @@ Este fichero contiene la definición de todas las propiedades que son configurab
 #### 4.2.2. Carpeta strings
 
 Esta carpeta contiene un fichero `strings.xml` por cada traducción que se desee soportar. El nombre debe estar formado de la siguiente manera:
-
+```
     strings.(idioma).xml
-
+```
 Siendo (idioma) el código del idioma. Por ejemplo, `strings.es.xml` sería la traducción en castellano, `strings.en.xml` la traducción en inglés, `strings.es_ES.xml` el español de España o `strings.es_AR.xml` el español de Argentina.
 
 Se puede forzar el idioma o dejar que el widget lo escoja en función de la configuración del dispositivo. A la hora de decidir cuál es el idioma a aplicar se sigue el siguiente orden:
 
-- Buscar por código de localización (por ejemplo, “es_AR”).
-- Si no encuentra ninguna que coincida, buscaría uno para el idioma genérico (es decir, en este caso sería “es”).
+- Buscar por código de localización (por ejemplo, "es_AR").
+- Si no encuentra ninguna que coincida, buscaría uno para el idioma genérico (es decir, en este caso sería "es").
 - Si tampoco existiese ningún resultado, entonces usaría el idioma por defecto.
  
-A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, “es” o “es_ES”).
+A nivel de código es posible seleccionar la localización mediante la propiedad locale. Este parámetro acepta un string con el código de lenguaje que se desea utilizar (por ejemplo, "es" o "es_ES").
 
 #### 4.2.3. Carpeta resources
 
@@ -288,15 +290,15 @@ Los elementos image solo tienen la propiedad que define el archivo donde se encu
 
 Los elementos video solo tienen la propiedad que define el archivo donde se encuentra el video físicamente en el bundle de recursos.
 
-***
+---
 
 ## 5. Mensajes del widget
 
-La comunicación desde el widget hacia la aplicación una vez ha terminado la extracción de características faciales se realiza mediante eventos. Para indicar qué clase implementará estos eventos (implementación del protocolo), debe indicarlo en el segundo parámetro del método “init” (en este ejemplo, “self”):
-
+La comunicación desde el widget hacia la aplicación una vez ha terminado la extracción de características faciales se realiza mediante eventos. Para indicar qué clase implementará estos eventos (implementación del protocolo), debe indicarlo en el segundo parámetro del método `init` (en este ejemplo, `self`):
+```objc
     _widget = [[SelphiWidget alloc] initWithFrontCameraIfAvailable:true resources:[bundle pathForResource:@"fphi-widget-resources-SelphiLive-1.2" ofType:@"zip"] delegate:self error:&error];
-
-En este caso, al indicar “self” se indica que se implementará en la propia clase que realiza la llamada.
+```
+En este caso, al indicar `self` se indica que se implementará en la propia clase que realiza la llamada.
 
 ### 5.1. Eventos del protocolo
 
@@ -305,7 +307,7 @@ El widget iOS proporcionado por FacePhi es el responsable de realizar la extracc
 #### 5.1.1. Evento ExtractionFinished
 
 Se ejecuta al finalizar un proceso completo de extracción.
-
+```objc
     (void) ExtractionFinished {
 
         // Elementos disponibles de la extracción
@@ -321,13 +323,13 @@ Se ejecuta al finalizar un proceso completo de extracción.
         // Mejor Imagen del proceso recortada al tamaño de la cara
         UIImage *bestImageCropped = results.bestImageCropped.image;
     }
-
+```
 El objeto `results` contiene los siguientes campos:
 
 - **templateRaw**: Devuelve la plantilla en bruto que se genera después del proceso de extracción.
 - **images**: Si el flag `logImages` se activó, devuelve las imágenes que se obtienen durante el proceso de extracción. Las imágenes se devuelven ordenadas por el instante de tiempo en el que se obtubieron.
 - **bestImage**: Devuelve la mejor imagen extraída del proceso de autenticación. Esta imagen es la imagen con el tamaño original extraída de la cámara. 
-- **bestImageCropped**: Devuelve una imagen recortada centrada en la cara del usuario. Esta imagen se obtiene a partir de la “bestImage”. Ésta es la imagen que se deberá utilizar como imagen característica del usuario que realizó el proceso a modo de ‘avatar’
+- **bestImageCropped**: Devuelve una imagen recortada centrada en la cara del usuario. Esta imagen se obtiene a partir de la "bestImage". Ésta es la imagen que se deberá utilizar como imagen característica del usuario que realizó el proceso a modo de ‘avatar’
 - **livenessDiagnostic**: Devuelve el diagnóstico final de la ejecución del proceso de liveness.
 - **qrData**: Devuelve los datos del código QR capturado.
 - **iadBundle**: Devuelve los datos encriptados del analisis de deteccion de ataques de inyección de video.
@@ -335,24 +337,24 @@ El objeto `results` contiene los siguientes campos:
 #### 5.1.2. Evento ExtractionFailed
 
 Se ejecuta si ha existido algún problema en el proceso de extracción.
-  
+```objc
     (void) ExtractionFailed:(NSError *)error { 
     }
-
+```
 #### 5.1.3. Evento ExtractionCancelled
 
 Se ejecuta si el usuario pulsa sobre la opción de cancelar.
-  
+```objc
     (void)ExtractionCancelled {
     }
-
+```
 #### 5.1.4. Evento ExtractionTimeout
 
 Se ejecuta si el widget supera el tiempo máximo permitido sin detectar caras.
-  
+```objc
     (void)ExtractionTimeout {
     }
-
+```
 #### 5.1.5. Evento onEvent
 
 Se ejecuta cada vez que el widget tiene que comunicar eventos importantes que ocurren durante el transcurso de la ejecución.    
@@ -363,6 +365,7 @@ Esta función recibe como parámetros el tiempo en el que se lanzó el evento, c
 - Eventos relacionados con los procesos que se están llevando acabo, como pueden ser errores por ausencia de cara, por movimientos incorrectos, o no hacer caso a las indicaciones que se reciben, entre otros.
 
 Mediante estos eventos se comunica a la aplicación principal aquellos datos que puedan ser de interés a la hora de analizar el comportamiento de los usuarios cuando usan la tecnología.
-
+```objc
     (void)onEvent:(NSDate *)time type:(NSString *)type info:(NSString *)info {
     }
+```
