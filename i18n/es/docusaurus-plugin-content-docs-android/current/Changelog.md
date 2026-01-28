@@ -2,6 +2,42 @@
 
 ## Versiones
 
+###  2.6.0 (02/2026)
+
+- General
+
+  - Mejoras en diseño y accesibilidad
+
+- Tracking
+
+  - Nueva versión del widget: 1.2.4
+
+- Capture
+
+  - Nueva versión del widget: 1.1.2
+
+- Selphi
+
+  - Nueva versión del widget: 6.0.0
+
+- SelphID
+
+  - Nueva versión del widget: 1.36.3
+
+- Phingers
+
+  - Mejoras en diseño
+  - Nueva versión del widget: 1.1.0
+  - Mejoras en el proceso de captura
+
+- Voice
+
+  - Correcciones de flujo
+
+- NFC
+
+  - Nuevos datos cifrados a la salida
+
 ###  2.5.0 (12/2025)
 
 - General
