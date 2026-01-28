@@ -3,7 +3,7 @@
 ## Latest Available Version
 
 ```text
-2.5.0
+2.6.0
 ```
 
 ## 1. Introduction
@@ -15,9 +15,9 @@
 The minimum required Android SDK configuration is:
 
 - Minimum SDK (minSdk): **24**
-- API Version: **35**
-- Kotlin: **2.1.21**
-- Android Gradle Plugin: **8.9.3**
+- API Version: **36**
+- Kotlin: **2.2.21**
+- Android Gradle Plugin: **8.13.1**
 
 ---
 
