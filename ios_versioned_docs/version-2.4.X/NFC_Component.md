@@ -77,7 +77,7 @@ pod 'FPHISDKMainComponent', '~> 2.4.0'
 To install the NFC component, the following entry must be included in the application's Podfile:
 
 ```java
-pod 'FPHISDKNFCComponent', '~> 2.11.0'
+pod 'FPHISDKNFCComponent', '~> 2.12.0'
 ```
 
 #### SPM
