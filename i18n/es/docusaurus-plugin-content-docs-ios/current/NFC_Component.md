@@ -72,13 +72,13 @@ Actualmente las librerías de FacePhi se distribuyen de forma remota a través d
 Las dependencias obligatorias que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.4.0'
+pod 'FPHISDKMainComponent', '~> 2.5.0'
 ```
 
 Para instalar el componente de NFC deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-pod 'FPHISDKNFCComponent', '~> 2.11.0'
+pod 'FPHISDKNFCComponent', '~> 2.13.0'
 ```
 
 #### SPM

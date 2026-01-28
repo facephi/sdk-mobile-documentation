@@ -70,14 +70,14 @@ the **_SDKMobile_** components.
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.4.0'.
+  pod 'FPHISDKMainComponent', '~> 2.5.0'.
 ```
 
 - To install the current component, the following entry must be included in the _Podfile_ of the project
   entry in the _Podfile_ of the application:
 
   ```java
-  pod 'FPHISDKPhingersTFComponent', '~> 2.4.0'.
+  pod 'FPHISDKPhingersTFComponent', '~> 2.5.0'.
   ```
 
 - Once the dependencies have been installed, you will be able to use the different

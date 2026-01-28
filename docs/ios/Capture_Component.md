@@ -22,13 +22,13 @@ To avoid conflicts and compatibility issues, if you want to install the componen
 - Facephi libraries are currently distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (added to the project’s Podfile) are:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.4.0'
+pod 'FPHISDKMainComponent', '~> 2.5.0'
 ```
 
 - To install the Capture component, the following entry must be added to the application's Podfile:
 
 ```java
-pod 'FPHISDKCaptureComponent', '~> 2.4.0'
+pod 'FPHISDKCaptureComponent', '~> 2.5.0'
 ```
 
 ### SPM

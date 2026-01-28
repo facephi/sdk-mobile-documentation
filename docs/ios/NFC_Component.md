@@ -71,13 +71,13 @@ the **_SDKMobile_** components.
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.4.0'
+pod 'FPHISDKMainComponent', '~> 2.5.0'
 ```
 
 To install the NFC component, the following entry must be included in the application's Podfile:
 
 ```java
-pod 'FPHISDKNFCComponent', '~> 2.11.0'
+pod 'FPHISDKNFCComponent', '~> 2.13.0'
 ```
 
 #### SPM
