@@ -1,8 +1,3 @@
-
-[TOC]
-
-***
-
 ## 1. What is the widget?
 
 **FacePhi Selphi iOS Widget** is a tool designed using Objective C. With it, you will be able to carry out most of the functionalities that FacePhi offers. It is a tool designed to simplify the integration of face recognition applications technology.
@@ -17,7 +12,7 @@ Tools available in this widget are:
 
 - iOS Deployment target: 13
 
-***
+---
 
 ## 2. How to integrate the widget?
 
@@ -34,10 +29,10 @@ In order to add the required libraries, from the “Build Phases” tab, you sho
 In the “Copy bundle resources” section it is required to add the widget resources file `fphi-widget-resources-SelphiLive-1.2.zip`.
 
 Since iOS 10.0, if the application uses the camera, it is required to add a usage description. To do that, the file info.plist must be modified adding the description as the value for the key NSCameraUsageDescription: 
-
+```xml
     <key>NSCameraUsageDescription</key>
     <string>Description</string>
-
+```
 ### 2.2. Integration steps
 
 To integrate the widget into a controller, once you have available the required libraries, you just need to carry out the following actions:
@@ -46,7 +41,7 @@ To integrate the widget into a controller, once you have available the required 
 - Declare a variable for the widget, type of “FPhiWidget”: `@property FPhiWidget *widget;`
 
 **Instancing the widget:**
-
+```objc
     // Save memory for the class and call the init method. (Constructor)
     NSError *error = nil; 
 
@@ -77,10 +72,10 @@ To integrate the widget into a controller, once you have available the required 
 
     // Show the widget view and hide the actual view. 
     [self presentViewController: widget animated:true completion:nil];
-
+```
 During the constructor call, it is specified in its first parameter which camera is going to be used, being “true” the value to use the front camera and “false” the value to use the rear camera. The second parameter sets the class that implements the protocol events of the class. In the third parameter, “error” is used to indicate a problem during the widget creation, for example, a problem regarding camera permissions.
 
-***
+---
 
 ## 3. Set up the widget
 
@@ -180,7 +175,7 @@ Generates a templateRaw from a byte array. This array must contain the represent
 
 Returns the widget's actual version in string format. This method is static so it doesn´t require launching the widget to perform this operation.
 
-***
+---
 
 ## 4. Customize the widget
 
@@ -191,18 +186,18 @@ The widget allows you to customize texts, images, font and colours. The customiz
 #### 4.1.1. Text customization
 
 The customization of texts is done editing the texts of the translation files inside the resources folder.
-
+```
     /strings/strings.es.xml
     /strings/strings.xml
-
+```
 #### 4.1.2. Images customization
 
 The customization of images which the widget use it must be the images in the .zip of resources. In the zip there are 3 folders:
-
+```
     /resources/163dpi
     /resources/326dpi
     /resources/489dpi
-
+```
 These folders represent at different screen densities, it may be generated as many density folders as desired. In these folders are the versions of the images for each resolution.
 
 It is necessary to add the images in all folders, once determined the optimal resolution for the device, the widget only loads the images of the folder with the selected resolution. The images are referenced from the file `widget.xml`.
@@ -230,9 +225,9 @@ It is possible, via code, to select the location by the local property. This par
 
 This folder contains `string.xml` file for each translation that may support.
 The name must be formed as follows:
-
+```
     strings.(language).xml
-
+```
 Being (language) the language code. For example, `strings.es.xml` would be the translation in Spanish, `strings.en.xml` the translation in English, `strings.es_ES.xml` the Spanish from Spain or `strings.es_AR.xml` the Spanish from Argentina.
 
 The language can be forced or let the widget select it based on the device configuration. When deciding the language to apply the following sequence is performed:
@@ -297,14 +292,16 @@ The image elements only have the property that defines the file where the physic
 
 The video elements only have the property that defines the file where the physical video is located in the resources bundle.
 
-***
+---
 
 ## 5. Widget messages
 
 The communication from the widget to the application once the facial characteristics extraction is finished is done through events. In order to indicate which class will implement this method (implements the protocol), you should indicate it in the second parameter of the “init” method (in this example, “self”):
-
-    _widget = [[SelphiWidgetalloc] initWithFrontCameraIfAvailable:true resources:[bundlepathForResource:@"fphi-widget-resources-SelphiLive-1.2" ofType:@"zip"] delegate:self error:&error]; 
-
+```objc
+    _widget = [[SelphiWidgetalloc] initWithFrontCameraIfAvailable:true 
+                resources:[bundlepathForResource:@"fphi-widget-resources-SelphiLive-1.2" ofType:@"zip"] 
+                delegate:self error:&error]; 
+```
 In this case, “self” indicates that it will be implemented in the same class that the call is done.
 
 ### 5.1. Protocol events
@@ -314,7 +311,7 @@ The iOS Widget provided by FacePhi is responsible for performing the extraction 
 #### 5.1.1. ExtractionFinished event
 
 It is executed when an extraction process ends.
- 
+```objc
     (void) ExtractionFinished {
         // Elements available during the extraction
         FPhiWidgetExtractionData *results = _widget.results;
@@ -329,7 +326,7 @@ It is executed when an extraction process ends.
         // Best Image of the process cropped at the face coordinates
         UIImage *bestImageCropped = results.bestImageCropped.image;
     }
-
+```
 the `results` object contains these fields
 
 - **templateRaw**: It retrieves the generated raw template after the extraction process.
@@ -344,24 +341,24 @@ the `results` object contains these fields
 #### 5.1.2. ExtractionFailed event
 
 This event is executed when any problem happened while extracting.
-
+```objc
     (void)ExtractionFailed:(NSError *) error {
     }
-
+```
 #### 5.1.3. ExtractionCancelled event
 
 This event is executed when the user cancels the process manually by pressing on ‘Cancel’.
- 
+```objc
     (void)ExtractionCancelled {
     }
-
+```
 #### 5.1.4. ExtractionTimeout event
 
 This event is executed when a maximum allowed time is reached without detecting a face.
-
+```objc
     (void)ExtractionTimeout {
     }
-
+```
 
 #### 5.1.5. onEvent event
 
@@ -374,6 +371,7 @@ This method receives as parameters the time of the event, encoded as UnixTime in
 - Events about the process that is currently in progress. These events can be about errors not detecting a face, about wrong movements or even not following the indications about the current process.
 
 With these events we can comunicate important data to analyze user behavior while using our technology
-
+```objc
     (void)onEvent:(NSDate *)time type:(NSString *)type info:(NSString *)info {
     }
+```

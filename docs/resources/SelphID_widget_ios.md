@@ -7,7 +7,7 @@ FacePhi SelphID iOS Widget is a useful tool to perform document capture function
 - Extracting information from the document.
 - Obtaining images from the front, back sides and other relevant data.
 
-***
+---
 
 ## 2. How do I integrate the widget?
 
@@ -37,7 +37,7 @@ Include FPhiSelphIDWidgetiOS.framework and Microblink.xcframework in Embedded Bi
 
 Include `fphi-selphid-widget-resources-SelphID-1.0.zip` (without decompressing) in Copy bundle Resources, within the Build Phases section.
 
-***
+---
 
 ## 3. Widget Configuration
 
@@ -75,11 +75,11 @@ This indicates the OCR scan mode of documents. Depending on the choice, several 
 This property enables to define which documents will be scanned during the process, in case of setting the scanning mode (scanMode) to SMSearch or SMSpecific.
 
 A configuration example that enables all documents of Spanish nationality to be scanned would be as follows:
-
+```objc
     // Search mode definition
     _selphidWidget.scanMode = SMSearch;
-    _selphidwidget.specificData = “ES|<ALL>”; // ISO code for Spain (ES)
-
+    _selphidwidget.specificData = "ES|<ALL>"; // ISO code for Spain (ES)
+```
 #### 3.5. WizardMode Property
 
 The widget is configured to capture both sides (front and back side) of the document one after the other on the same widget call.
@@ -130,7 +130,7 @@ This property sets the widget to return the full camera image that was used to e
 
 Returns the widget's actual version in string format. This method is static so it doesn´t require launching the widget to perform this operation.
 
-***
+---
 
 ## 4. Widget Creation
 
@@ -139,7 +139,7 @@ Returns the widget's actual version in string format. This method is static so i
 `FPhiSelphIDWidget` is the class responsible for the communication between application and widget. To be able to execute it, the StartExtraction method must be called. 
 
 The following example, in Objective C, shows the widget configuration and instantiation:
-
+```objc
     (IBAction)takeButtonTapped:(id)sender {
 
         NSString *license = [self readLicense:LICENSE_PATH];
@@ -172,7 +172,7 @@ The following example, in Objective C, shows the widget configuration and instan
         [_selphidWidget StartExtraction];
         [self presentViewController:_selphidWidget animated:true completion:nil];
     }
-
+```
 The parameters required in the instantiation are discussed below:
 
 #### 4.1.1. BundlePathForResouce (string) Argument
@@ -216,16 +216,16 @@ This event allows our widget to send information to the main application about i
 - Events about the capturing process that is currently in progress. These events can be about errors such as not detecting the document, not having enough image quality or even not following the indications about the current process.
 
 With these events we can communicate important data to analyze user behavior while using our technology
-
+```objc
     (void)onEvent:(NSDate *)time type:(NSString *)type info:(NSString *)info {
     }
-
-***
+```
+---
 
 ## 5. Result Reception.
 
 At the end of the widget call, it is possible to retrieve all the information obtained from the capture of the document (either the front, back or both sides at the same time). This requires the implementation of the `FPhiSelphIDWidgetProtocol` delegate and the following function:
-
+```objc
     (void)CaptureFinished {
 
         if (_selphidWidget.wizardMode)
@@ -239,7 +239,7 @@ At the end of the widget call, it is possible to retrieve all the information ob
         // or
         [self getIndividualValues];    
     }
-
+```
 It is important to note that the information obtained in this object is returned duplicated, showing it unencrypted (for example, frontDocumentImage for the image of the front side of the document), and tokenized and encrypted (for example, tokenFrontDocumentImage for the image of the front side capture of the document). Depending on the type of license used, one or both types of parameters can be obtained. The tokenized information should be used to send the information securely to the server where the SelphID SDK is installed, while the open data should only be used in development and testing purposes.
 
 ### 5.1. Results Property
@@ -273,7 +273,7 @@ If the calculation returns -1.0, the document does not contain common fields or 
 #### 5.1.6. captureProgress Property
 
 This property returns the state in the capture process the widget was in when it finished. These are the possible values:
-
+```
     Front_Detection_None = 0
     Front_Detection_Uncertain = 1
     Front_Detection_Completed = 2
@@ -282,7 +282,7 @@ This property returns the state in the capture process the widget was in when it
     Back_Detection_Uncertain = 5
     Back_Detection_Completed = 6
     Back_Document_Analyzed = 7
-
+```
 - **0**: While reading the Front, the widget ended without being able to detect anything. Generally, when no document is placed.
 - **1**: While reading the Front, the widget ended up having partially detected a document. In this case, some of the expected elements have been detected, but not all the necessary ones.
 - **2**: While reading the Front, the widget ended up having completed the detection of all the elements of the document. If the widget ends in this state it is because the OCR analysis could not be completed successfully.

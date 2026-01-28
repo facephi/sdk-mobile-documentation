@@ -7,7 +7,7 @@ FacePhi SelphID Android Widget is a useful tool to perform document capture func
 - Extracting information from the document.
 - Obtaining images from the front, back sides and other relevant data.
 
-***
+---
 
 ## 2. How do I integrate the widget?
 
@@ -39,7 +39,7 @@ Additionally, a zip file containing the graphic and locale settings of the widge
 
 Also, along with the SDK, a programming example for Android Studio is provided which helps widget consumption by the integrator in an Android application.
 
-***
+---
 
 ## 3. Widget Configuration
 
@@ -77,11 +77,11 @@ This indicates the OCR scan mode of documents. Depending on the choice, several 
 This property enables to define which documents will be scanned during the process, in case of setting the scanning mode (scanMode) to SMSearch or SMSpecific.
 
 A configuration example that enables all documents of Spanish nationality to be scanned would be as follows:
-
+```java
 	// Search mode definition
 	conf.setScanMode(WidgetSelphIdScanMode.SMSearch);
 	conf.setSpecificData(“ES|<ALL>”); // ISO code for Spain (ES)
-
+```
 #### 3.5. WizardMode Property
 
 This indicates if the widget is configured to capture both sides (front and back side) of the document at the same time.
@@ -135,14 +135,14 @@ This property sets the widget to return the full camera image that was used to e
 
 Returns the widget's actual version in string format. This method is static so it doesn´t require launching the widget to perform this operation.
 
-***
+---
 
 ## 4. Widget Creation
 
 ### 4.1. FPhiSelphIDWidget Class
 
 `FPhiSelphIDWidget` is the class responsible for the communication between application and widget. In order to execute it, you have to use an Intent. The following java code example shows the configuration and instance of the widget:
-
+```java
 	WidgetSelphIDConfiguration conf = new WidgetSelphIDConfiguration();
 	conf.setResourcesPath(RESOURCES_PATH);
 	conf.setFullscreen(true);
@@ -162,16 +162,16 @@ Returns the widget's actual version in string format. This method is static so i
 	Intent intent = new Intent(this, com.facephi.selphid.Widget.class);
 	intent.putExtra("configuration", conf);
 	this.startActivityForResult(intent, 1);
-
+```
 The "License" property contains the license for the SelphID libraries. The programming example shows a way to manage this license according to the platform used.
 
 ### 4.2. IFPhiWidgetSelphIDEventListener interface
 
 This interface allows our widget to send information to the main application about important events that occur during document capture processes.
 To achieve this, you need to create a class that implements this interface, which only has one method:
-
+```java
 	public void onEvent(long time, @NonNull String type, @NonNull String info)
-
+```
 This method receives as parameters the time of the event, encoded as UnixTime in milliseconds, the type of event and the information of the event associated with this particular event.
 
 There are mainly 3 types of events:
@@ -183,17 +183,17 @@ There are mainly 3 types of events:
 With these events we can communicate important data to analyze user behavior while using our technology.
 
 After creating the class that implements this interface, the application will call the configuration object method:
-
+```java
 	conf.setIFPhiWidgetSelphIDEventListener_classname(“name.class.interface”)
-
+```
 Passing the name of the class that implements this interface.
 
-***
+---
 
 ## 5. Result Reception.
 
 At the end of the plug-in call, it is possible to acquire all the information obtained from the capture of the document (either the front, rear or both sides at the same time). This requires using the onActivityResult() callback:
-
+```java
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -238,7 +238,7 @@ At the end of the plug-in call, it is possible to acquire all the information ob
 	        break;
 	    }
 	}
-
+```
 It is important to note that the information obtained in this object is returned duplicated, showing it unencrypted (for example, frontDocumentImage for the image of the front side of the document), and tokenized and encrypted (for example, tokenFrontDocumentImage for the image of the front side capture of the document). Depending on the type of license used, one or both types of parameters can be obtained. The tokenized information should be used to send the information securely to the server where the SelphID SDK is installed, while the open data should only be used in development and testing purposes.
 
 ### 5.1. Results Property
@@ -272,7 +272,7 @@ If the calculation returns -1.0, the document does not contain common fields or 
 #### 5.1.6. captureProgress Property
 
 This property returns the state in the capture process the widget was in when it finished. These are the possible values:
-
+```
     Front_Detection_None = 0
     Front_Detection_Uncertain = 1
     Front_Detection_Completed = 2
@@ -281,7 +281,7 @@ This property returns the state in the capture process the widget was in when it
     Back_Detection_Uncertain = 5
     Back_Detection_Completed = 6
     Back_Document_Analyzed = 7
-
+```
 - **0**: While reading the Front, the widget ended without being able to detect anything. Generally, when no document is placed.
 - **1**: While reading the Front, the widget ended up having partially detected a document. In this case, some of the expected elements have been detected, but not all the necessary ones.
 - **2**: While reading the Front, the widget ended up having completed the detection of all the elements of the document. If the widget ends in this state it is because the OCR analysis could not be completed successfully.
