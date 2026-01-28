@@ -1,5 +1,17 @@
 # Selphi Changelog
 
+
+## Version 2.5.X  
+**Last release: 2.5.1 – 19/01/2026**
+
+### Main Updates
+- Updated core minor version 2.5.0
+
+### New Features
+- Created new `flavor` called FPHISDKSelphiIADComponent to prevent injection attacks.
+
+---
+
 ## Version 2.4.X  
 **Last release: 2.4.1 - 30/10/2025**
 

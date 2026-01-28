@@ -1,5 +1,14 @@
 # Registro de Cambios de Tokenizer
 
+
+## Versión 2.5.X
+**Última versión: 2.5.0 – 12/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+
+--
+
 ## Versión 2.4.X  
 **Última versión: 2.4.0 – 28/10/2025**
 

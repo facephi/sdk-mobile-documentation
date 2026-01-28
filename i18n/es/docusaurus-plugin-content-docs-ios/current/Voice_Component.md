@@ -218,7 +218,7 @@ public enum ErrorType: Equatable, Error {
     
     //COMMON - USER'S INTERACTION
     case CANCEL_BY_USER
-    case TIMEOUT
+    case SDK_TIMEOUT
     
     //COMMON - LICENSE ERROR
     case LICENSE_CHECKER_ERROR(String)

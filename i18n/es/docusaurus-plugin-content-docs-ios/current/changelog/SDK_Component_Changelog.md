@@ -1,5 +1,17 @@
 # Registro de Cambios del SDK
 
+
+## Versión 2.5.X  
+**Última versión: 2.5.0 – 12/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+
+### Nuevas Funcionalidades
+- Los flujos de IDV ahora pueden ser retomados usando los nuevos parámetros `resumeOperationId` y `resumeSessionId`.
+
+---
+
 ## Version 2.4.X  
 **Última versión: 2.4.0 – 28/10/2025**
 

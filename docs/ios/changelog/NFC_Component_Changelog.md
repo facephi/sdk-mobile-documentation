@@ -1,5 +1,23 @@
 # NFC Changelog
 
+## Version 2.13.X  
+**Last release: 2.13.4 – 27/01/2026**
+
+### Main Updates 
+- Added tokenized ocr and images to NfcResult
+- Added IDV support
+- Added Document's type management when using Flows
+- Add ReadingProgressStyle (DOTS, PERCENTAGE) to NfcConfigurationData
+- Updated core minor version 2.5.0
+- Improved tracking error management
+- Refactorized `ErrorType.TIMEOUT` to `ErrorType.SDK_TIMEOUT`
+
+### Fixes
+- Added new configuration param tagSessionTimeout to NfcConfigurationData. This param is an Int in miliseconds, by default 1500. It represents the time the tagReader session waits until it launches a tagConnectionLostTimer's error
+- Some documents (CHL, ESP,...) have unusually long response time for PACE's Step1 and BAC's Mutual Authentication (i.e. longest documented 23s). We have removed the TagConnectionLostTimer error from those instructions to avoid creating an artificial TagConnectionLost state
+
+---
+
 ## Version 2.12.X  
 **Last release: 2.12.0 – 28/10/2025**
 
@@ -13,6 +31,8 @@
 - Corrected text colors in DescriptionTextView.
 - Fixed animations in the previous tip sequence.
 - Corrected literals displayed during NFC reading.
+
+---
 
 ## Version 2.11.X  
 **Last release: 2.11.8 – 21/10/2025**

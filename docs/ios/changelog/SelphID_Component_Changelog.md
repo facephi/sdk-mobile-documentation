@@ -1,5 +1,14 @@
 # SelphID Changelog
 
+## Version 2.5.X  
+**Last release: 2.5.0 - 15/12/2025**
+
+### Main Updates
+- Updated SelphIDWidget dependency to version v1.36.3
+- Updated core minor version 2.5.0
+
+---
+
 ## Version 2.4.X  
 **Last release: 2.4.3 - 12/11/2025**
 

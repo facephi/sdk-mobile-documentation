@@ -1,6 +1,17 @@
 # SDK Changelog
 
 
+## Version 2.5.X  
+**Last release: 2.5.0 – 12/12/2025**
+
+### Main Updates
+- Updated core minor version 2.5.0
+
+### New Features
+- The IDV flows can be resumed by using the new params `resumeOperationId` and `resumeSessionId`.
+
+---
+
 ## Version 2.4.X  
 **Last release: 2.4.0 – 28/10/2025**
 

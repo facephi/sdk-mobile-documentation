@@ -1,5 +1,18 @@
 # Registro de Cambios de VideoCall
 
+
+## Versión 2.5.X  
+**Última versión: 2.5.0 – 12/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+- Refactorizado `ErrorType.TIMEOUT` a `ErrorType.SDK_TIMEOUT`
+
+### Correcciones
+- El evento de tracking que informaba sobre el diagnóstico de error estaba siendo duplicado.
+
+---
+
 ## Version 2.4.X  
 **Última versión: 2.4.0 – 28/10/2025**
 

@@ -1,5 +1,16 @@
 # Registro de Cambios de Selphi
 
+## Version 2.5.X  
+**Última versión: 2.5.1 - 19/01/2026**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+
+### Nuevas Funcionalidades
+- Creado nuevo componente `flavor` llamado FPHISDKSelphiIADComponent. Esta librería añade parámetros de seguridad que permiten prevenir ataques de inyección.
+
+---
+
 ## Version 2.4.X  
 **Última versión: 2.4.1 - 30/10/2025**
 

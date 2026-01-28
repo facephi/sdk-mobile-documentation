@@ -1,5 +1,14 @@
 # Registro de Cambios de Phingers
 
+## Versión 2.5.X  
+**Última versión: 2.5.0 – 15/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+- Refactorizado `ErrorType.TIMEOUT` a `ErrorType.SDK_TIMEOUT`
+
+---
+
 ## Versión 2.4.X  
 **Última versión: 2.4.2 – 03/11/2025**
 

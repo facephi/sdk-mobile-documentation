@@ -1,7 +1,17 @@
 # Registro de Cambios de VoiceID
 
+
+## Versión 2.5.X  
+**Última versión: 2.5.0 – 12/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+- Refactorizado `ErrorType.TIMEOUT` a `ErrorType.SDK_TIMEOUT`
+
+---
+
 ## Version 2.4.X    
-**Última versión: 2.4.0 – 28/10/2025**
+**Última versión: 2.4.0 – 24/11/2025**
 
 ### Actualizaciones Principales
 - Actualizada la versión del SDK a 5.3.0.
@@ -14,6 +24,7 @@
 
 ### Correcciones
 - Corregida la asignación incorrecta de stepData.
+- El evento de tracking que informaba sobre el diagnóstico de error estaba siendo duplicado.
 
 ---
 

@@ -331,7 +331,7 @@ public enum ErrorType: Equatable, Error {
 }
 ```
 
-**IMPORTANT: SelphiComponent doesn't use the common ErrorType.TIMEOUT, it uses instead SELPHI_TIMEOUT. This error provides an optional LivenessDiagnostic to give the integrator further information. This Diagnostic provides information if an IAD flag is launched.**
+**IMPORTANT: SelphiComponent doesn't use the common ErrorType.SDK_TIMEOUT, it uses instead SELPHI_TIMEOUT. This error provides an optional LivenessDiagnostic to give the integrator further information. This Diagnostic provides information if an IAD flag is launched.**
 
 The errors 'ErrorType.OTHER' and 'ErrorType.LICENSE_CHECKER_ERROR' are special because they also inform of
 the error's details.

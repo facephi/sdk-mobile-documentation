@@ -1,5 +1,19 @@
 # Registro de Cambios de VideoID
 
+
+## Versión 2.5.X  
+**Última versión: 2.5.0 – 12/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+- Actualizada versión major de SelphID Document's Reader (SDR) 2.0.0
+- Refactorizado `ErrorType.TIMEOUT` a `ErrorType.SDK_TIMEOUT`
+
+### Nuevas Funcionalidades
+- Nuevos modos (`VideoIdMode.DOCUMENT_FRONT` y `VideoIdMode.DOCUMENT_FRONT_BACK`) para procesos de captura de solo documento.
+
+---
+
 ## Versión 2.4.X  
 **Última versión: 2.4.1 – 04/11/2025**
 

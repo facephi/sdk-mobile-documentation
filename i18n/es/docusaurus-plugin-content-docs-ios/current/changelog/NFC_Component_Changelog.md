@@ -1,5 +1,23 @@
 # Registro de Cambios de NFC
 
+## Versión 2.13.X  
+**Última versión: 2.13.4 – 27/01/2026**
+
+### Actualizaciones Principales
+- Añadido OCR e imágenes tokenizadas a NfcResult
+- Añadido soporte IDV
+- Añadida gestión del tipo de documento al usar Flows
+- Añadido ReadingProgressStyle (DOTS, PERCENTAGE) a NfcConfigurationData
+- Actualizada versión minor de core a 2.5.0
+- Mejorada la gestión de errores de tracking
+- Refactorizado `ErrorType.TIMEOUT` a `ErrorType.SDK_TIMEOUT`
+
+### Correcciones
+- Añadido nuevo parámetro de configuración tagSessionTimeout a NfcConfigurationData. Este parámetro es un Int en milisegundos, por defecto 1500. Representa el tiempo que la sesión de tagReader espera hasta que lanza un error de tagConnectionLostTimer
+- Algunos documentos (CHL, ESP,...) tienen tiempos de respuesta inusualmente largos para el Paso 1 de PACE y la Autenticación Mutua de BAC (ej. el más largo documentado es de 23s). Hemos eliminado el error TagConnectionLostTimer de esas instrucciones para evitar crear un estado de TagConnectionLost artificial
+
+---
+
 ## Versión 2.12.X  
 **Última versión: 2.12.0 – 28/10/2025**
 
@@ -13,6 +31,8 @@
 - Corregidos los colores de texto en DescriptionTextView.
 - Corregidas las animaciones en la secuencia del consejo previo.
 - Corregidos los literales mostrados durante la lectura NFC.
+
+---
 
 ## Versión 2.11.X  
 **Última versión: 2.11.8 – 21/10/2025**

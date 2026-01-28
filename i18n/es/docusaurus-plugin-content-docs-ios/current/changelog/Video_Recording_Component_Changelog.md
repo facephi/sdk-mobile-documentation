@@ -1,6 +1,18 @@
 # Registro de Cambios de VideoRecording
 
 
+## Versión 2.5.X  
+**Última versión: 2.5.0 – 12/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión minor de core 2.5.0
+- Refactorizado `ErrorType.TIMEOUT` a `ErrorType.SDK_TIMEOUT`
+
+### Nuevas Funcionalidades
+- Añadido timestamp en la parte inferior de las videograbaciones.
+
+---
+
 ## Version 2.4.X    
 **Última versión: 2.4.1 – 28/10/2025**
 

@@ -1,5 +1,21 @@
 # Registro de Cambios de Tracking
 
+
+## Versión 2.5.X  
+**Última versión: 2.5.0 – 17/12/2025**
+
+### Actualizaciones Principales
+- Actualizada versión de la dependencia TrackingWidget v1.1.24
+- Actualizada versión minor de core 2.5.0
+
+### Nuevas Funcionalidades
+- Añadido soporte para el Proxy de IDV
+
+### Correcciones
+- El parámetro `steps` de la función `newOperation` no se estaba parseando correctamente en varios casos de uso.
+
+---
+
 ## Versión 2.4.X  
 **Última versión: 2.4.0 – 28/10/2025**
 

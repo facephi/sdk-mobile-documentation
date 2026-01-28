@@ -1,7 +1,17 @@
 # VoiceID Changelog
 
+
+## Version 2.5.X  
+**Last release: 2.5.0 - 12/12/2025**
+
+### Main Updates
+- Updated core minor version 2.5.0
+- Refactorized `ErrorType.TIMEOUT` to `ErrorType.SDK_TIMEOUT`
+
+---
+
 ## Version 2.4.X    
-**Last release: 2.4.0 – 28/10/2025**
+**Last release: 2.4.1 – 24/11/2025**
 
 ### Main Updates
 - Updated SDK version to 5.3.0.
@@ -14,6 +24,7 @@
 
 ### Fixes
 - Fixed incorrect stepData assignment.
+- The tracking event that informed that a diagnostic was being launched was duplicated.
 
 ---
 

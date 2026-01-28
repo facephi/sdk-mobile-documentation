@@ -1,5 +1,21 @@
 # Tracking Changelog
 
+
+## Version 2.5.X  
+**Last release: 2.5.0 - 17/12/2025**
+
+### Main Updates
+- Updated TrackingWidget dependency to version v1.1.24
+- Updated core minor version 2.5.0
+
+### New Features
+- Added support to IDV Proxy
+
+### Fixes
+- Parameter `steps` in the `newOperation` function weren't correctly parsed in some use cases.
+
+---
+
 ## Version 2.4.X  
 **Last release: 2.4.0 – 28/10/2025**
 
