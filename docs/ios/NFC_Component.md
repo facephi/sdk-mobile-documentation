@@ -217,6 +217,16 @@ Indicates the type of document to be read: - ID_CARD - PASSPORT - FOREIGN_CARD
 
 ##### readableTags
 
+An array that indicates which data group's should be read (i.e. if the face is not needed, you can skip DG2 in the array and the reading process will be a lot quicker). By default the controller tries to read every available data group.
+
+##### readingProgressStyle
+
+This enum changes the how the progress is shown in the nfc capture modal. Available options are `DOTS` (default) and `PERCENTAGE`.
+
+##### tagSessionTimeout
+
+The reading process is made with small data transfers between the device and the NFC chip. This comunication usually takes ~100ms, but there have been reports of "hangs". This parameter sets a timeout to avoid them. Default value is 1500ms, and if nil, there is no timeout.
+
 ---
 
 ## 6. Component use

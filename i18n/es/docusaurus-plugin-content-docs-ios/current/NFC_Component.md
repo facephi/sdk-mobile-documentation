@@ -217,6 +217,16 @@ Indica el tipo de documento que se va a leer: - ID_CARD - PASSPORT - FOREIGN_CAR
 
 ##### readableTags
 
+Se trata de un array que indica al controlador qué grupos de datos debe leer. Esto permite que, si por ejemplo, no necesitamos extraer el rostro, podríamos evitar declarar el DG2 y el tiempo de captura bajaría enormemente. Por defecto intenta leer todos los disponibles.
+
+##### readingProgressStyle
+
+Este enumerado cambia la forma en la que se muestra el progreso de captura en el modal nativo de NFC. Las opciones disponibles son `DOTS`(por defecto) y `PERCENTAGE`.
+
+##### tagSessionTimeout
+
+El proceso de lectura se realiza mediante pequeñas transferencias de datos entre el dispositivo y el chip NFC. Esta comunicación suele tardar ~100ms, pero se han reportado "bloqueos" (hangs). Este parámetro establece un tiempo de espera (timeout) para evitarlos. El valor por defecto es 1500ms y, si es nil, no hay timeout.
+
 ---
 
 ## 6. Uso del componente
