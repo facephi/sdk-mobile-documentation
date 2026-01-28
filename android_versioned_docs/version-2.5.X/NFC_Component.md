@@ -137,11 +137,11 @@ Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)
 
 The `NfcResult` includes the following fields:
 
-#### 6.2.1 `nfcRawData`
+#### 6.2.1 nfcRawData
 
 Raw NFC data obtained for each data type.
 
-#### 6.2.2 `nfcDocumentInformation`
+#### 6.2.2 nfcDocumentInformation
 
 Document information organized by:
 
@@ -151,7 +151,7 @@ Document information organized by:
 - mrzString
 - type
 
-#### 6.2.3 `nfcPersonalInformation`
+#### 6.2.3 nfcPersonalInformation
 
 Personal information organized by:
 
@@ -165,7 +165,7 @@ Personal information organized by:
 - placeOfBirth
 - surname
 
-#### 6.2.4 `nfcImages`
+#### 6.2.4 nfcImages
 
 Image data organized by:
 
@@ -173,7 +173,7 @@ Image data organized by:
 - fingerprintImage
 - signatureImage
 
-#### 6.2.5 `nfcSecurityData`
+#### 6.2.5 nfcSecurityData
 
 Security data organized by:
 
@@ -183,7 +183,7 @@ Security data organized by:
 - issuerSigningCertificateData
 - ldsVersion
 
-#### 6.2.6 `nfcValidations`
+#### 6.2.6 nfcValidations
 
 Validation results organized by:
 
@@ -194,10 +194,6 @@ Validation results organized by:
 - dataGroupsHashesValidation
 - documentSigningValidation
 - issuerSigningValidation
-
-#### 6.2.7 `nfcCertificateData`
-
-X.509 certificate information obtained from the document.
 
 ---
 
@@ -276,6 +272,10 @@ Field used to change the tutorial view to show the different documents.
 #### 7.1.14. showPreviousTip
 
 Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+#### 7.1.15. readingProgressStyle
+
+Modification of the capture process view. Progress shown as points or percentage.
 
 ---
 

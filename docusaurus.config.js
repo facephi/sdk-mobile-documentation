@@ -127,7 +127,7 @@ const config = {
           {
             type: "docsVersion",
             position: "left",
-            label: "Resources",
+            label: "Widgets Legacy",
             docsPluginId: "resources",
           },
           {

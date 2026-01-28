@@ -9,17 +9,11 @@ Este componente se encarga de realizar la lectura del NFC de los
 documentos de identidad y pasaportes. Sus principales procesos son:
 
 - Gestión interna del sensor de NFC.
-
 - Gestión de permisos.
-
 - Análisis de documento.
-
 - Análisis del progreso.
-
 - Asistente en los procesos de lectura.
-
 - Devolución de toda la información posible a leer
-
 - Devolución de imágenes cuando estén disponible para su lectura
 
 
@@ -164,87 +158,62 @@ Información obtenida por cada tipo de dato en formato crudo.
 
 #### 6.2.2. nfcDocumentInformation
 
-Información obtenida del documento ordenada por:
+Información obtenida del documento. Campos que se devuelven:
 
 - documentNumber
-
 - expirationDate
-
 - issuer
-
 - mrzString
-
 - type
 
 #### 6.2.3. nfcPersonalInformation
 
-Información obtenida del documento ordenada por:
+Información obtenida del documento. Campos que se devuelven:
 
 - address
-
 - birthdate
-
 - city
-
 - gender
-
 - name
-
 - nationality
-
 - personalNumber
-
 - placeOfBirth
-
 - surname
 
 #### 6.2.4. nfcImages
 
-Información de imágenes obtenida del documento ordenada por:
+Información de imágenes obtenidas del documento. Campos que se devuelven:
 
 - facialImage
-
-- fingerprintImage
-
 - signatureImage
+- tokenFacialImage
+- tokenSignatureImage
 
 #### 6.2.5 nfcSecurityData
 
-Información de datos de seguridad del documento ordenada por:
+Información de datos de seguridad del documento. Campos que se devuelven:
 
 - dataGroupsHashes
-
 - dataGroupsRead
-
 - documentSigningCertificateData
-
 - issuerSigningCertificateData
-
 - ldsVersion
 
 #### 6.2.6. nfcValidations
 
-Información de las validaciones del documento ordenada por:
+Información de las validaciones del documento. Campos que se devuelven:
 
 - accessType
-
 - activeAuthenticationSupported
-
 - activeAuthenticationValidation
-
 - chipAuthenticationValidation
-
 - dataGroupsHashesValidation
-
 - documentSigningValidation
-
 - issuerSigningValidation
 
-#### 6.2.7. nfcCertificateData
+#### 6.2.7 tokenOcr
 
-Información del certificado X509 obtenido del documento ordenada por.
-
-- X509Certificate
+Datos del OCR cifrados
 
 ---
 
@@ -328,6 +297,10 @@ Campo utilizado para cambiar la vista de tutorial y que muestre los diferentes d
 #### 7.1.14. showPreviousTip
 
 Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+
+#### 7.1.15. readingProgressStyle
+
+Modificación de la vista del proceso de captura. Progreso con puntos o con porcentaje.
 
 ---
 
@@ -481,6 +454,3 @@ Una vez creadas las clases que implementan los interfaces, en el lanzamiento del
 ## 9. Logs
 
 Para visualizar en consola los logs de este componente se podrá usar el filtro: "NFC:"
-
-
-### 5.1. Class 
