@@ -20,7 +20,7 @@ const sidebars = {
   sidebar: [
     {
       type: "category",
-      label: "Resources",
+      label: "Widgets Legacy",
       items: [
         "Selphi_resources",
         "SelphID_resources",

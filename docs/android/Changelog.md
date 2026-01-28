@@ -2,6 +2,38 @@
 
 ## Versions
 
+###  2.6.0 (02/2026)
+
+- General
+
+  - UX and accessibility improvements 
+
+- Tracking
+
+  - Widget new version: 1.2.4
+
+- Capture
+
+  - Widget new version: 1.1.2
+
+- Selphi
+
+  - Widget new version: 6.0.0
+
+- SelphID
+
+  - Widget new version: 1.36.3
+
+- Phingers
+
+  - UX improvements
+  - Widget new version: 1.1.0
+  - Improve capture process 
+
+- Voice
+
+  - Flow corrections
+
 ###  2.5.0 (12/2025)
 
 - General
