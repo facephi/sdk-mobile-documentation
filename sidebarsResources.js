@@ -23,7 +23,11 @@ const sidebars = {
       label: "Widgets Legacy",
       items: [
         "Selphi_resources",
+        "Selphi_widget_android",
+        "Selphi_widget_ios",
         "SelphID_resources",
+        "SelphID_widget_android",
+        "SelphID_widget_ios",
       ],
     },
   ],
