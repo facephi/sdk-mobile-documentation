@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">NFC Component | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/ios/next/NFC_Component"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-ios-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-ios-current"><meta data-rh="true" property="og:title" content="NFC Component | SDK Mobile Documentation"><meta data-rh="true" name="description" content="0. Requisitos base de SDK Mobile"><meta data-rh="true" property="og:description" content="0. Requisitos base de SDK Mobile"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/ios/next/NFC_Component"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/ios/next/NFC_Component" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/ios/next/NFC_Component" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/ios/next/NFC_Component" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"NFC Component","item":"https://facephi.github.io/sdk-mobile-documentation/es/docs/ios/next/NFC_Component"}]}</script><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.63f7bfbe.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.e8fceb50.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.0007f7cd.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.3b1eec06.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -203,6 +203,8 @@ Todos los lanzamientos de lectura para ese NFC fallarán mientras no se iniciali
 <li class="">facialImage</li>
 <li class="">fingerprintImage</li>
 <li class="">signatureImage</li>
+<li class="">tokenFacialImage: Solo se informa si el TokenizeController fue inyectado en el initSdk(...)</li>
+<li class="">tokenSignatureImage: Solo se informa si el TokenizeController fue inyectado en el initSdk(...)</li>
 </ul>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="725-nfcsecuritydata">7.2.5 nfcSecurityData<a href="#725-nfcsecuritydata" class="hash-link" aria-label="Enlace directo al 7.2.5 nfcSecurityData" title="Enlace directo al 7.2.5 nfcSecurityData" translate="no">​</a></h4>
 <p>Información de datos de seguridad del documento ordenada por:</p>
@@ -242,6 +244,9 @@ Todos los lanzamientos de lectura para ese NFC fallarán mientras no se iniciali
 <li class="">numSupport</li>
 <li class="">mrz</li>
 </ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="728-tokenocr">7.2.8 tokenOcr<a href="#728-tokenocr" class="hash-link" aria-label="Enlace directo al 7.2.8 tokenOcr" title="Enlace directo al 7.2.8 tokenOcr" translate="no">​</a></h4>
+<p>Una cadena tokenizada que contiene el diccionario clave-valor de <code>nfcPersonalInformation</code>, <code>nfcDocumentInformation</code> y <code>nfcValidations</code>.</p>
+<p><strong>Este parametro solo viene informado si se <a class="" href="/sdk-mobile-documentation/es/docs/ios/next/Mobile_SDK#322-tokenizecontroller">inyectó el TokenizeController en el initSdk(...)</a></strong></p>
 <hr>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="8-personalización-del-componente">8. Personalización del componente<a href="#8-personalización-del-componente" class="hash-link" aria-label="Enlace directo al 8. Personalización del componente" title="Enlace directo al 8. Personalización del componente" translate="no">​</a></h2>
 <p>Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
