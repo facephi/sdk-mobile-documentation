@@ -372,6 +372,8 @@ Información de imágenes obtenida del documento ordenada por:
 - facialImage
 - fingerprintImage
 - signatureImage
+- tokenFacialImage: Solo se informa si el TokenizeController fue inyectado en el initSdk(...)
+- tokenSignatureImage: Solo se informa si el TokenizeController fue inyectado en el initSdk(...)
 
 #### 7.2.5 nfcSecurityData
 
@@ -412,6 +414,12 @@ Información de las validaciones del documento ordenada por:
 - nfcKey
 - numSupport
 - mrz
+
+#### 7.2.8 tokenOcr
+
+Una cadena tokenizada que contiene el diccionario clave-valor de `nfcPersonalInformation`, `nfcDocumentInformation` y `nfcValidations`.
+
+**Este parametro solo viene informado si se [inyectó el TokenizeController en el initSdk(...)](Mobile_SDK.md#322-tokenizecontroller)**
 
 ---
 

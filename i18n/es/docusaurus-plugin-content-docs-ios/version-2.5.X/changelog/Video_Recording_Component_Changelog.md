@@ -2,7 +2,7 @@
 
 
 ## Versión 2.5.X  
-**Última versión: 2.5.0 – 12/12/2025**
+**Última versión: 2.5.3 - 28/01/2026**
 
 ### Actualizaciones Principales
 - Actualizada versión minor de core 2.5.0
@@ -10,6 +10,10 @@
 
 ### Nuevas Funcionalidades
 - Añadido timestamp en la parte inferior de las videograbaciones.
+
+### Correcciones
+- En un flujo de IDV con NFC, la videograbación se paraba al terminar el paso de captura de NFC.
+- Al usar el componente con una licencia sin contenido, crasheaba en lugar de devolver el error.
 
 ---
 
