@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunksdk_mobile_doc=globalThis.webpackChunksdk_mobile_doc||[]).push([[6827],{1742(s){s.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"capacitor"}')}}]);

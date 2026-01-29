@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunksdk_mobile_doc=globalThis.webpackChunksdk_mobile_doc||[]).push([[18574],{82602(o){o.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"cordova"}')}}]);
