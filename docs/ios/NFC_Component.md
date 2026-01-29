@@ -336,6 +336,7 @@ public class NfcResult {
     public let nfcImages: NfcImages?
     public let nfcSecurityData: NfcSecurityData
     public private(set) var nfcValidations: NfcValidations?
+    public private(set) var tokenOcr: String?
 }
 
 extension NfcResult {
@@ -382,6 +383,8 @@ Image information obtained from the document ordered by:
 - facialImage
 - fingerprintImage
 - signatureImage
+- tokenFacialImage: Only informed if the TokenizeController was injected in the initSdk(...)
+- tokenSignatureImage: Only informed if the TokenizeController was injected in the initSdk(...)
 
 #### 7.2.5 nfcSecurityData
 
@@ -422,6 +425,12 @@ Information of the document validations sorted by:
 - nfcKey
 - numSupport
 - mrz
+
+#### 7.2.8 tokenOcr
+
+A tokenized string containing a dictionary with the `nfcPersonalInformation`, `nfcDocumentInformation` and `nfcValidations`.
+
+**This parameter is only informed if the TokenizeController is [injected in the initSdk(...)](Mobile_SDK.md#322-tokenizecontroller)**
 
 ---
 

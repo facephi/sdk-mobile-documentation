@@ -2,7 +2,7 @@
 
 
 ## Version 2.5.X  
-**Last release: 2.5.0 - 12/12/2025**
+**Last release: 2.5.3 - 28/01/2026**
 
 ### Main Updates
 - Updated core minor version 2.5.0
@@ -10,6 +10,10 @@
 
 ### New Features
 - Added a timestamp at the bottom of the videorecordings.
+
+### Fixes
+- In an IDV Flow with NFC, the videorecording was being stopped after the NFC's reading finished.
+- If the component was used with a void license, it crashed instead of sending back an error.
 
 ---
 

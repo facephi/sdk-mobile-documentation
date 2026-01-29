@@ -1,11 +1,14 @@
 # Registro de Cambios de SelphID
 
 ## Version 2.5.X  
-**Última versión: 2.5.0 - 15/12/2025**
+**Última versión: 2.5.1 - 28/01/2026**
 
 ### Actualizaciones Principales
 - Actualizada versión de la dependencia SelphIDWidget v1.36.3
 - Actualizada versión minor de core 2.5.0
+
+### Nuevas Funcionalidades
+- Tras la captura correcta de documento, se persisten varios parámetros en el "Flow" para así poder usarlos de input en el lector de documentos de NFC.
 
 ---
 

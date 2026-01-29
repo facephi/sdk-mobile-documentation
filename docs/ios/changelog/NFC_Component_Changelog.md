@@ -4,7 +4,7 @@
 **Last release: 2.13.4 – 27/01/2026**
 
 ### Main Updates 
-- Added tokenized ocr and images to NfcResult
+- Added tokenized ocr and images to NfcResult. The new params are `tokenOcr`, `nfcImages.tokenFacialImage` and `nfcImages.tokenSignatureImage`. **They are only informed if the TokenizeController is [injected in the initSdk(...)](Mobile_SDK.md#322-tokenizecontroller)**
 - Added IDV support
 - Added Document's type management when using Flows
 - Add ReadingProgressStyle (DOTS, PERCENTAGE) to NfcConfigurationData

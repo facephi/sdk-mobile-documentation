@@ -2,17 +2,19 @@
 
 
 ## Version 2.5.X  
-**Last release: 2.5.0 - 17/12/2025**
+**Last release: 2.5.3 - 28/01/2026**
 
 ### Main Updates
-- Updated TrackingWidget dependency to version v1.1.24
+- Updated TrackingWidget dependency to version v1.1.25
 - Updated core minor version 2.5.0
 
 ### New Features
 - Added support to IDV Proxy
+- Added support for NFC's step with IDV
 
 ### Fixes
 - Parameter `steps` in the `newOperation` function weren't correctly parsed in some use cases.
+- Added Privacy Manifest to avoid ITMS error when uploading an app to Appstore.
 
 ---
 

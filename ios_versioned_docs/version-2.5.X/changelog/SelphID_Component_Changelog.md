@@ -1,11 +1,14 @@
 # SelphID Changelog
 
 ## Version 2.5.X  
-**Last release: 2.5.0 - 15/12/2025**
+**Last release: 2.5.1 - 28/01/2026**
 
 ### Main Updates
 - Updated SelphIDWidget dependency to version v1.36.3
 - Updated core minor version 2.5.0
+
+### New Features
+- Added captured parameters to "Flow" so we can use them as NFC document reader's input.
 
 ---
 
