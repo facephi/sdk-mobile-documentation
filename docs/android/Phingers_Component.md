@@ -10,6 +10,8 @@ Fingerprint capture is performed with the **Phingers Component**. This component
 - Guided assistance during capture
 - Generation of fingerprint templates, images, and quality scores
 
+**Important:** To generate fingerprint templates (the `template` field in `FingerResponse`), the device must have **3 GB of RAM or more**.
+
 Refer to the [Quickstart](./Mobile_SDK) section for basic SDK integration. This section provides details for launching this component.
 
 ---
@@ -19,16 +21,17 @@ Refer to the [Quickstart](./Mobile_SDK) section for basic SDK integration. This 
 Add the component-specific dependency:
 
 ```java
-implementation "com.facephi.androidsdk:phingers_component:$version"
+implementation "com.facephi.androidsdk:phingers_tf_component:$version"
 ```
 
 ---
 
 ## 3. Available Controllers
 
-| **Controller**     | **Description**                         |
-| ------------------ | --------------------------------------- |
-| PhingersController | Main controller for fingerprint capture |
+| **Controller**        | **Description**                                          |
+| --------------------- | -------------------------------------------------------- |
+| PhingersTFController  | Main controller for Phingers TF capture                  |
+| FPhingersTFController | Flow controller for Phingers TF (Flow integrations only) |
 
 ---
 
@@ -38,7 +41,7 @@ Once the SDK is initialized and a new operation has been created, launch the com
 
 ```java
 val response = SDKController.launch(
-    PhingersController(
+    PhingersTFController(
         PhingersConfigurationData(...)
     )
 )
@@ -58,7 +61,8 @@ Create a `PhingersConfigurationData` object with the following fields:
 ```java
 PhingersConfigurationData(
     reticleOrientation = CaptureOrientation.LEFT,
-    fingerFilter       = FingerFilter.SLAP
+    fingerFilter       = FingerFilter.SLAP,
+    templateType       = TemplateType.NIST_TEMPLATE
 )
 ```
 
@@ -66,6 +70,7 @@ PhingersConfigurationData(
 
 - `LEFT`
 - `RIGHT`
+- `BOTH`
 
 **FingerFilter** options:
 
@@ -77,6 +82,12 @@ PhingersConfigurationData(
 - `RING_FINGER`
 - `LITTLE_FINGER`
 - `THUMB_FINGER`
+
+**TemplateType** options:
+
+- `NIST_TEMPLATE`
+- `ISO_TEMPLATE`
+- `NIST_T5_TEMPLATE`
 
 ---
 
@@ -93,88 +104,72 @@ when (response) {
 
 ### 6.1 Handling Errors
 
-Errors are returned as a `PhingersError`. Possible values include:
+Errors are returned as a `PhingersError`. Possible reasons include:
 
-- PHG_ACTIVITY_RESULT_ERROR: The result of the activity is incorrect.
-- PHG_ACTIVITY_RESULT_MSG_ERROR: The result of the activity in the msg is incorrect.
-- PHG_APPLICATION_CONTEXT_ERROR: The required application context is null.
-- PHG_CANCEL_BY_USER: The user has cancelled the process.
-- PHG_CANCEL_LAUNCH: A general cancellation of the SDK has been made.
-- PHG_COMPONENT_LICENSE_ERROR: The component license is not correct.
-- PHG_EMPTY_LICENSE: The licence string is empty.
-- PHG_FETCH_DATA_ERROR: Error in the result retrieval.
-- PHG_FLOW_ERROR: Error in the flow process.
-- PHG_INITIALIZATION_ERROR: Initialisation error.
-- PHG_INTERNAL_ERROROR: Internal error.
+- PHG_ACTIVITY_RESULT_ERROR: The activity result is invalid.
+- PHG_ACTIVITY_RESULT_MSG_ERROR: The activity result message is invalid.
+- PHG_APPLICATION_CONTEXT_ERROR: The application context is null.
+- PHG_CANCEL_BY_USER: The user cancelled the process.
+- PHG_CANCEL_LAUNCH: The SDK cancelled the launch.
+- PHG_COMPONENT_LICENSE_ERROR: Invalid component license.
+- PHG_EMPTY_LICENSE: Empty license string.
+- PHG_FETCH_DATA_ERROR: Error retrieving the result.
+- FLOW_ERROR: Error in the flow process.
+- PHG_INITIALIZATION_ERROR: Initialization error.
+- PHG_INTERNAL_ERROR: Internal error.
 - PHG_LOW_QUALITY: Low image quality.
-- PHG_MANAGER_NOT_INITIALIZED: Managers are null.
+- PHG_MANAGER_NOT_INITIALIZED: Managers are null or not initialized.
+- PHG_NO_DATA_ERROR: No data received from the capture.
 - PHG_OPERATION_NOT_CREATED: No operation is in progress.
-- PHG_PERMISSION_DENIED: User has denied permissions.
-- PHG_PHINGERS_AUTOFOCUS_FAILURE: Autofocus failure.
-- PHG_PHINGERS_CAMERA_FAILURE: Camera failure.
-- PHG_PHINGERS_CAPTURE_FAILURE: Image capture failure.
-- PHG_PHINGERS_CONFIGURATION_FAILURE: Configuration error.
-- PHG_PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.
-- PHG_PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: IO failure.
-- PHG_PHINGERS_LICENSING_FAILURE: Licensing Error
-- PHG_PHINGERS_LIVENESS_FAILURE: Life test error
-- PHG_PHINGERS_NO_FINGERS_DETECTED: Error in fingerprint detection
-- PHG_PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: User not specified.
-- PHG_TIMEOUT: Timeout in the process.
+- PHG_PERMISSION_DENIED: User denied required permissions.
+- PHG_AUTOFOCUS_FAILURE: Autofocus failure.
+- PHG_CAMERA_FAILURE: Camera failure.
+- PHG_CAPTURE_FAILURE: Capture failure.
+- PHG_CONFIGURATION_FAILURE: Configuration error.
+- PHG_FINGERPRINT_CAPTURE_FAILURE: Fingerprint capture failure.
+- PHG_FINGERPRINT_TEMPLATE_IO_ERROR: Template IO failure.
+- PHG_LICENSING_FAILURE: Licensing error.
+- PHG_LIVENESS_FAILURE: Liveness check error.
+- PHG_NO_FINGERS_DETECTED: No fingers detected.
+- PHG_UNIQUE_USER_ID_NOT_SPECIFIED: User ID not specified.
+- PHG_TIMEOUT: Timeout during capture.
+- PHG_FLOW_VIDEO_RECORDING_ERROR: Flow video recording error.
+- PHG_FLOW_TRACKING_ERROR: Flow tracking error.
+- PHG_TRACKING_STEP_ERROR: Tracking step error.
 
-### 6.2 Handling Success – `data`
+### 6.2 Handling Success - `data`
 
-On success (`SdkResult.Success`), you receive a `PhingersResult` object. Images are returned as `SdkImage`; extract the bitmap via `image.bitmap`. To convert to Base64:
+On success (`SdkResult.Success`), you receive a `PhingersResult` object. Binary fields are returned as `ByteArray`. To convert to Base64:
 
 ```kotlin
-Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)
+Base64.encodeToString(byteArray, Base64.NO_WRAP)
 ```
 
 The `PhingersResult` includes the following fields:
 
-##### 6.2.1. rawFingerprintImage
+- **fingers**: List of `FingerResponse` (one entry per captured finger)
+- **slapImages**: List of `SlapResponse` (slap captures when applicable)
+- **livenessScore**: Average liveness score (nullable)
 
-Returns the raw, unmodified image of the current fingerprint.
+#### 6.2.1 `FingerResponse`
 
-##### 6.2.2. processedFingerprintImage
+- **position**: Finger position index
+- **wsq**: WSQ image (`ByteArray`)
+- **displayImage**: Display image (`ByteArray`, PNG)
+- **minutiaesNumber**: Number of minutiae detected
+- **quality**: Quality score
+- **nistQuality**: NIST quality score
+- **nist2Quality**: NIST2 quality score
+- **template**: Fingerprint template (`ByteArray`)
+- **proprietaryQuality**: Vendor-specific quality score
+- **templateType**: Template type identifier
+- **imageWidth**: Image width in pixels
+- **imageHeight**: Image height in pixels
 
-Returns the processed fingerprint image.
+#### 6.2.2 `SlapResponse`
 
-##### 6.2.3. wsq
-
-The fingerprint capture in WSQ format is returned.
-
-##### 6.2.4. fingerprintTemplate
-
-Returns the raw template generated after the extraction process. Valid
-for the AUTHENTICATION process.
-
-##### 6.2.5. nfiqMetrics
-
-These are the metrics of the capture. Currently the following value is
-returned:
-
-- nfiqMetric: This is an integer value, between 1 and 5 (inclusive),
-  indicating the quality of the fingerprint capture, with 1 indicating
-  the highest quality and 5 indicating the worst quality. Fingerprints
-  with the latter value are usually discarded for further validation.
-
-##### 6.2.6. fullFrameImage
-
-Returns a cropped image centred on the user's face in Base64 string
-format. This image is obtained from the bestImage. This is the image to
-be used as the characteristic image of the user who performed the
-process as avatar.
-
-##### 6.2.7. focusQuality
-
-Returns the best image extracted from the authentication process in
-Base64 string format. This image is the original size image extracted
-from the camera. Valid for the liveness process.
-
-##### 6.2.8. livenessConfidence
-
-Returns an indicator of the confidence level of the catch.
+- **position**: Slap position index
+- **image**: Slap image (`ByteArray`)
 
 ---
 
@@ -186,82 +181,82 @@ This section provides advanced configuration options for the Phingers Component.
 
 All fields of `PhingersConfigurationData`:
 
-#### 7.1.1. reticleOrientation
+#### 7.1.1 reticleOrientation
 
-Sets the fingerprint detection mode and indicates which fingers are to
-be detected during the process. The allowed values are:
+Defines the capture orientation:
 
-- **LEFT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+- **LEFT**: Capture left-hand fingers
+- **RIGHT**: Capture right-hand fingers
+- **BOTH**: Enable capture for both hands (depending on `fingerFilter`)
 
-- **RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+#### 7.1.2 fingerFilter
 
-#### 7.1.2. useFlash
+Selects the capture mode (slap or specific fingers).
 
-Enables or disables the camera flash during the fingerprint capture
-process. Default is set to **true**.
+#### 7.1.3 templateType
 
-#### 7.1.3. returnProcessedImage
+Defines the template format to be generated (NIST/ISO variants).
 
-If set to **true** it will return in the result the processed images.
+#### 7.1.4 useLiveness
 
-#### 7.1.4. returnRawImage
+Enables or disables liveness detection. Default is `true`.
 
-If set to **true** it will return in the result the images in the same
-form as they have been captured.
+#### 7.1.5 extractionTimeout
 
-#### 7.1.5. useLiveness
+Timeout for the extraction process in milliseconds. Default is `50000`.
 
-Enables or disables the liveness detector during the fingerprint capture
-process. Default is set to **true**.
+#### 7.1.6 showPreviousTip
 
-#### 7.1.6. returnFullFrameImage
+Shows a pre-launch information screen with a start button.
 
-Specifies whether to return the full image of the camera in which the
-fingers have been detected.
+#### 7.1.7 showTutorial
 
-#### 7.1.7. extractionTimeout
+Shows the tutorial screen explaining how to perform the capture.
 
-Set an extraction time.
+#### 7.1.8 showDiagnostic
 
-#### 7.1.8. showTutorial
+Shows diagnostic screens at the end of the process.
 
-Indicates whether the component activates the tutorial screen. This view
-intuitively explains how the capture is performed.
+#### 7.1.9 threshold
 
-#### 7.1.9. threshold
+Quality threshold for capture. The SDK clamps this value to the range `0.0-1.0`.
 
-The parameter configures a captureQualityThreshold, to define a quality
-threshold to perform the capture.
+#### 7.1.10 showEllipses
 
-#### 7.1.10. showSpinner
+Shows the ellipses overlay during capture.
 
-Indicates whether to show the load spinner.
+#### 7.1.11 cropWidth
 
-#### 7.1.11. cropWidth
+Crop width for segmented finger images (px). Values `<= 0` disable cropping; values are clamped to `64-2048`.
 
-Indicates a width to perform a cropping of the capture.
+#### 7.1.12 cropHeight
 
-#### 7.1.12. cropHeight
+Crop height for segmented finger images (px). Values `<= 0` disable cropping; values are clamped to `64-2048`.
 
-Indicates a height to perform a cropping of the capture.
+#### 7.1.13 vibrationEnabled
 
-#### 7.1.13. cropFactor
+Enables vibration feedback. Default is `true`.
 
-Indicates the relation to perform a cropping of the capture.
+#### 7.1.14 enableFlash
 
-#### 7.1.14. showDiagnostic
+Enables the camera flash. Default is `true`.
 
-Display diagnostic screens at the end of the process
+#### 7.1.15 reticle
 
-#### 7.1.15. showPreviousTip
+Optional reticle identifier. Default is `"R_S"`.
 
-Displays a pre-launch screen with information about the process to be performed and a launch button.
+#### 7.1.16 showPreviousFingerSelector
 
-#### 7.1.16. fingerFilter
+Shows the finger selector screen before capture.
 
-Filter to select the whole hand or a specific finger: SLAP, INDEX_FINGER, MIDDLE_FINGER, RING_FINGER, LITTLE_FINGER, THUMB_FINGER.
+#### 7.1.17 fingerSelectorHandOrientation
+
+Defines which hand(s) are available in the finger selector (`LEFT`, `RIGHT`, `BOTH`).
+
+#### 7.1.18 fingerSelectorOptions
+
+Defines the list of finger filters shown in the selector. If empty, the SDK uses:
+`ALL_4_FINGERS_ONE_BY_ONE`, `SLAP`, `INDEX_FINGER`.
 
 ---
 
@@ -274,23 +269,21 @@ Beyond SDK-level settings (see [Advanced Settings](./Mobile_SDK_advanced)), you 
 Override default texts by adding an XML file in your app:
 
 ```xml
- <!-- Previous Tip -->
-    <string name="phingers_component_tip_left_title">Left hand prints</string>
-    <string name="phingers_component_tip_right_title">Right hand prints</string>
-    <string name="phingers_component_tip_thumb_title">Thumbprint</string>
-    <string name="phingers_component_tip_message">Put your fingers together. Move your hand closer or further away until your fingerprints come into focus.</string>
-    <string name="phingers_component_tip_thumb_message">Focus your thumb inside the circle. Move your finger closer or further away until your print comes into focus.</string>
-    <string name="phingers_component_tip_button">Start</string>
-    <!-- Process -->
-    <string name="phingers_component_capture_phingers">Hold fingers steady</string>
-    <string name="phingers_component_capture_thumb">Hold finger steady</string>
-    <string name="phingers_component_capture_phingers_not_focus">Move fingers until in focus</string>
-    <string name="phingers_component_capture_thumb_not_focus">Move finger until in focus</string>
-    <!-- Diagnostic -->
-    <string name="phingers_component_timeout_title">Time exceeded</string>
-    <string name="phingers_component_timeout_desc">We apologize. The capture could not be made</string>
-    <string name="phingers_component_internal_error_title">There was a technical problem</string>
-    <string name="phingers_component_internal_error_desc">We apologize. The capture could not be made</string>
+<!-- Tutorial / Previous Tip -->
+<string name="phingers_tf_component_tutorial_left_title">Left hand prints</string>
+<string name="phingers_tf_component_tutorial_right_title">Right hand prints</string>
+<string name="phingers_tf_component_tutorial_thumb_title">Thumbprint</string>
+<string name="phingers_tf_component_tutorial_message_left_slap">Put your fingers together. Move your hand closer or further away until your fingerprints come into focus.</string>
+<string name="phingers_tf_component_tutorial_message_right_slap">Bring your fingers together. Move your hand closer or further until your fingerprints are in focus.</string>
+<string name="phingers_tf_component_tutorial_message_left_index_finger">Place the left hand index finger. Move the finger closer or further until your fingerprint is in focus.</string>
+<string name="phingers_tf_component_tutorial_message_right_index_finger">Place the right hand index finger. Move the finger closer or further until your fingerprint is in focus.</string>
+<string name="phingers_tf_component_tutorial_thumb_message">Focus your thumb inside the circle. Move your finger closer or further away until your print comes into focus.</string>
+<string name="phingers_tf_component_tutorial_button">Start</string>
+<!-- Diagnostic -->
+<string name="phingers_tf_component_timeout_title">Time exceeded</string>
+<string name="phingers_tf_component_timeout_desc">We apologize. The capture could not be made</string>
+<string name="phingers_tf_component_internal_error_title">There was a technical problem</string>
+<string name="phingers_tf_component_internal_error_desc">We apologize. The capture could not be made</string>
 ```
 
 ### 8.2 Animations
@@ -301,6 +294,8 @@ Override Lottie animations by placing files in `res/raw/`:
 phingers_anim_left.json
 phingers_anim_right.json
 phingers_anim_thumb.json
+phingers_anim_left_finger.json
+phingers_anim_right_finger.json
 ```
 
 ### 8.3 External Views
@@ -310,7 +305,6 @@ It is possible to completely modify the component screens while maintaining thei
 Previous tip screen:
 
 ```kotlin
-
 interface IPhingersPreviousTipView {
     @Composable
     fun Content(
@@ -318,13 +312,11 @@ interface IPhingersPreviousTipView {
         onClose: () -> Unit,
     )
 }
-
 ```
 
 Error diagnosis screen:
 
 ```kotlin
-
 interface IPhingersErrorDiagnosticView {
     @Composable
     fun Content(
@@ -333,14 +325,12 @@ interface IPhingersErrorDiagnosticView {
         onClose: () -> Unit,
     )
 }
-
 ```
 
-Once the classes that implement the interfaces have been created, the "customViews" parameter can be added at component launch to be used in the SDK.
+Once the classes that implement the interfaces have been created, the `customViews` parameter can be added at component launch to be used in the SDK.
 
 ---
 
 ## 9. Logs
 
-Filter console logs for this component by: `"PHINGERS:"`
-
+Filter console logs for this component by: `"PHINGERS_TF:"`

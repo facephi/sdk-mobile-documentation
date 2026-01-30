@@ -2,24 +2,15 @@
 
 ## 1. Introducción
 
-La captura de huellas se realiza con el **_Phingers Component_**. 
+La captura de huellas se realiza con el **Phingers Component**. Este componente se encarga de realizar la captura de las huellas del usuario y la posterior extracción de plantillas. Sus principales procesos son:
 
-Este componente se encarga de realizar la captura de las
-huellas de los dedos (fingerprints) del usuario y la posterior
-extracción de las plantillas. Sus principales procesos son:
+- Gestión interna de cámara y permisos
+- Diferentes modos de extracción (slap de cuatro dedos, solo pulgar, etc.)
+- Detección de vivacidad incorporada
+- Asistencia guiada durante la captura
+- Generación de plantillas, imágenes y puntuaciones de calidad
 
-- Gestión interna de cámara y permisos.
-
-- Diferentes modos de extracción: extracción de los cuatro dedos de la
-  mano (excepto el pulgar), extracción únicamente del pulgar, ...
-
-- Detección de vivacidad incorporada.
-
-- Asistente en los procesos de captura de las huellas.
-
-- Generación de las plantillas con las características de las huellas,
-  imágenes y puntuaciones.
-
+**Importante:** Para generar plantillas de huellas (campo `template` en `FingerResponse`), el dispositivo debe tener **3 GB de RAM o más**.
 
 En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
 
@@ -29,33 +20,34 @@ En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos
 
 La dependencia específica del componente es:
 
-  ```java
-  implementation "com.facephi.androidsdk:phingers_component:$version"
-  ```
+```java
+implementation "com.facephi.androidsdk:phingers_tf_component:$version"
+```
 
 ---
 
 ## 3. Controladores disponibles
 
-| **Controlador**    | **Descripción**                             |
-| ------------------ | ------------------------------------------- |
-| PhingersController | Controlador principal de captura de huellas |
+| **Controlador**        | **Descripción**                                         |
+| ---------------------- | ------------------------------------------------------- |
+| PhingersTFController   | Controlador principal de captura Phingers TF            |
+| FPhingersTFController  | Controlador de Flow para Phingers TF (solo Flow)        |
 
 ---
 
 ## 4. Lanzamiento simplificado
 
-Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente. 
-Se podrá hacer uso de cualquiera de sus controladores para ejecutar su funcionalidad.
-
-Lanzamiento de la captura:
+Una vez iniciado el SDK y creada una nueva operación se podrá lanzar el componente.
 
 ```java
 val response = SDKController.launch(
-    PhingersController(PhingersConfigurationData(...))
+    PhingersTFController(
+        PhingersConfigurationData(...)
+    )
 )
+
 when (response) {
-    is SdkResult.Error -> Napier.d("ERROR - ${response.error.name}")
+    is SdkResult.Error   -> Napier.d("PHINGERS: ERROR - ${response.error.name}")
     is SdkResult.Success -> response.data
 }
 ```
@@ -64,279 +56,255 @@ when (response) {
 
 ## 5. Configuración básica
 
-Para lanzar el componente actual, se deberá crear un objeto _PhingersConfigurationData_ 
-que será la configuración del controlador del componente.
-
-La configuración básica necesaria para es la siguiente:
+Para lanzar el componente actual, se deberá crear un objeto `PhingersConfigurationData`.
 
 ```java
 PhingersConfigurationData(
   reticleOrientation = CaptureOrientation.LEFT,
-  fingerFilter = FingerFilter.SLAP,
+  fingerFilter       = FingerFilter.SLAP,
+  templateType       = TemplateType.NIST_TEMPLATE
 )
 ```
 
-Las diferentes orientaciones son:
+**Opciones de ReticleOrientation**:
 
-- CaptureOrientation.LEFT
-- CaptureOrientation.RIGHT
+- `LEFT`
+- `RIGHT`
+- `BOTH`
 
-Los diferentes filtros son:
+**Opciones de FingerFilter**:
 
-- FingerFilter.SLAP,
-- FingerFilter.ALL_4_FINGERS_ONE_BY_ONE,
-- FingerFilter.ALL_5_FINGERS_ONE_BY_ONE,
-- FingerFilter.INDEX_FINGER,
-- FingerFilter.MIDDLE_FINGER,
-- FingerFilter.RING_FINGER,
-- FingerFilter.LITTLE_FINGER,
-- FingerFilter.THUMB_FINGER,
+- `SLAP`
+- `ALL_4_FINGERS_ONE_BY_ONE`
+- `ALL_5_FINGERS_ONE_BY_ONE`
+- `INDEX_FINGER`
+- `MIDDLE_FINGER`
+- `RING_FINGER`
+- `LITTLE_FINGER`
+- `THUMB_FINGER`
+
+**Opciones de TemplateType**:
+
+- `NIST_TEMPLATE`
+- `ISO_TEMPLATE`
+- `NIST_T5_TEMPLATE`
 
 ---
 
 ## 6. Recepción del resultado
 
-El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y uno incorrecto:
+El lanzamiento devolverá la información en formato `SdkResult`.
 
 ```java
 when (response) {
-    is SdkResult.Error -> Napier.d("ERROR - ${response.error}")
+    is SdkResult.Error   -> Napier.d("PHINGERS: ERROR - ${response.error}")
     is SdkResult.Success -> response.data
 }
 ```
 
 ### 6.1. Recepción de errores
 
-Los errores se devolverán como un objeto 'PhingersError'.
-
-Listado de errores:
+Los errores se devolverán como un objeto `PhingersError`. Posibles razones:
 
 - PHG_ACTIVITY_RESULT_ERROR: El resultado de la actividad es incorrecto.
-- PHG_ACTIVITY_RESULT_MSG_ERROR: El resultado de la actividad en el msg es incorrecto.
-- PHG_APPLICATION_CONTEXT_ERROR: El contexto de aplicación necesario es nulo.
+- PHG_ACTIVITY_RESULT_MSG_ERROR: El mensaje del resultado de la actividad es incorrecto.
+- PHG_APPLICATION_CONTEXT_ERROR: El contexto de aplicación es nulo.
 - PHG_CANCEL_BY_USER: El usuario ha cancelado el proceso.
-- PHG_CANCEL_LAUNCH: Se ha hecho una cancelación general del SDK.
+- PHG_CANCEL_LAUNCH: Cancelación general del SDK.
 - PHG_COMPONENT_LICENSE_ERROR: La licencia del componente no es correcta.
-- PHG_EMPTY_LICENSE: El String de licencia está vacío.
+- PHG_EMPTY_LICENSE: El string de licencia está vacío.
 - PHG_FETCH_DATA_ERROR: Error en la recogida del resultado.
-- PHG_FLOW_ERROR: Error en el proceso de flow.
+- FLOW_ERROR: Error en el proceso de flow.
 - PHG_INITIALIZATION_ERROR: Error de inicialización.
 - PHG_INTERNAL_ERROR: Error interno.
 - PHG_LOW_QUALITY: Baja calidad de la imagen.
-- PHG_MANAGER_NOT_INITIALIZED: Los managers son nulos.
+- PHG_MANAGER_NOT_INITIALIZED: Los managers son nulos o no están inicializados.
+- PHG_NO_DATA_ERROR: No se han recibido datos de la captura.
 - PHG_OPERATION_NOT_CREATED: No hay ninguna operación en curso.
 - PHG_PERMISSION_DENIED: El usuario ha rechazado los permisos.
-- PHG_PHINGERS_AUTOFOCUS_FAILURE: Fallo del autofocus.
-- PHG_PHINGERS_CAMERA_FAILURE: Fallo de la cámara.
-- PHG_PHINGERS_CAPTURE_FAILURE: Fallo en la captura de la imagen.
-- PHG_PHINGERS_CONFIGURATION_FAILURE: Error de configuración.
-- PHG_PHINGERS_FINGERPRINT_CAPTURE_FAILURE: Fallo en la captura de huellas.
-- PHG_PHINGERS_FINGERPRINT_TEMPLATE_IO_ERROR: Fallo IO
-- PHG_PHINGERS_LICENSING_FAILURE: Error de licencia
-- PHG_PHINGERS_LIVENESS_FAILURE: Error en la prueba de vida
-- PHG_PHINGERS_NO_FINGERS_DETECTED: Error en la detección de huellas
-- PHG_PHINGERS_UNIQUE_USER_ID_NOT_SPECIFIED: Usuario no especificado.
+- PHG_AUTOFOCUS_FAILURE: Fallo del autofocus.
+- PHG_CAMERA_FAILURE: Fallo de la cámara.
+- PHG_CAPTURE_FAILURE: Fallo en la captura.
+- PHG_CONFIGURATION_FAILURE: Error de configuración.
+- PHG_FINGERPRINT_CAPTURE_FAILURE: Fallo en la captura de huellas.
+- PHG_FINGERPRINT_TEMPLATE_IO_ERROR: Fallo IO de plantilla.
+- PHG_LICENSING_FAILURE: Error de licencia.
+- PHG_LIVENESS_FAILURE: Error en la prueba de vida.
+- PHG_NO_FINGERS_DETECTED: No se han detectado huellas.
+- PHG_UNIQUE_USER_ID_NOT_SPECIFIED: Usuario no especificado.
 - PHG_TIMEOUT: Timeout en el proceso.
+- PHG_FLOW_VIDEO_RECORDING_ERROR: Error en la grabación de vídeo del flow.
+- PHG_FLOW_TRACKING_ERROR: Error de tracking en el flow.
+- PHG_TRACKING_STEP_ERROR: Error en el paso de tracking.
 
-### 6.2. Recepción del resultado correcto - _data_
+### 6.2. Recepción del resultado correcto - `data`
 
-En la parte de _data_, dispondremos de la clase _PhingersResult_.
+En la parte de `data`, dispondremos de la clase `PhingersResult`. Los campos binarios se devuelven como `ByteArray`. Para convertir a Base64:
 
-El resultado devuelve las imágenes en formato **SdkImage**, es posible 
-extraer el bitmap accediendo a _image.bitmap_. Si se quisiera convertir a base64 
-se puede utilizar la función:
+```kotlin
+Base64.encodeToString(byteArray, Base64.NO_WRAP)
+```
 
-`Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)`
+El `PhingersResult` incluye los siguientes campos:
 
-Los campos devueltos en el resultado son los siguientes:
+- **fingers**: Lista de `FingerResponse` (una entrada por dedo capturado)
+- **slapImages**: Lista de `SlapResponse` (capturas slap cuando aplique)
+- **livenessScore**: Media del score de vivacidad (nullable)
 
-#### 6.2.1. _rawFingerprintImage_
+#### 6.2.1 `FingerResponse`
 
-Devuelve la imagen de la huella actual en crudo, sin modificar.
+- **position**: Índice de posición del dedo
+- **wsq**: Imagen WSQ (`ByteArray`)
+- **displayImage**: Imagen de visualización (`ByteArray`, PNG)
+- **minutiaesNumber**: Número de minutias detectadas
+- **quality**: Puntuación de calidad
+- **nistQuality**: Puntuación de calidad NIST
+- **nist2Quality**: Puntuación de calidad NIST2
+- **template**: Plantilla de huella (`ByteArray`)
+- **proprietaryQuality**: Calidad propietaria del proveedor
+- **templateType**: Identificador del tipo de plantilla
+- **imageWidth**: Ancho de la imagen en píxeles
+- **imageHeight**: Alto de la imagen en píxeles
 
-#### 6.2.2. _processedFingerprintImage_
+#### 6.2.2 `SlapResponse`
 
-Devuelve la imagen de la huella procesada.
-
-#### 6.2.3. _wsq_
-
-Se devuelve la captura de huella en formato WSQ.
-
-#### 6.2.4. _fingerprintTemplate_
-
-Devuelve la plantilla en bruto que se genera después del proceso de
-extracción. Válida para el proceso de AUTHENTICATION.
-
-#### 6.2.5. _nfiqMetrics_
-
-Son las métricas de la captura. Actualmente se devuelve el siguiente
-valor:
-
-- nfiqMetric: Es un valor entero, entre 1 y 5 (ambos inclusive), que
-  indica la calidad de la captura de huella, siendo 1 el valor que
-  indica la calidad más alta y 5 la peor calidad. Las huellas con este
-  último valor suelen ser descartadas para posteriores validaciones.
-
-#### 6.2.6 _fullFrameImage_
-
-Devuelve una imagen recortada centrada en la cara del usuarioen formato
-string Base64. Esta imagen se obtiene a partir de la _bestImage_. Ésta
-es la imagen que se deberá utilizar como imagen característica del
-usuario que realizó el proceso a modo de _avatar_.
-
-#### 6.2.7 _focusQuality_
-
-Devuelve la mejor imagen extraída del proceso de autenticación en
-formato string Base64. Esta imagen es la imagen con el tamaño original
-extraída de la cámara. Válido para el proceso de **liveness**.
-
-#### 6.2.8 _livenessConfidence_
-
-Devuelve un indicador del nivel de confianza de la captura.
+- **position**: Índice de posición del slap
+- **image**: Imagen slap (`ByteArray`)
 
 ---
 
 ## 7. Información avanzada
 
-Este apartado amplía la información del componente.
+Este apartado amplía la información del componente Phingers Component.
 
-### 7.1  Configuración avanzada del componente
+### 7.1 Configuración avanzada del componente
 
-Para lanzar el componente actual, se deberá crear un objeto _PhingersConfigurationData_ 
-que será la configuración del controlador del componente.
+Todos los campos de `PhingersConfigurationData`:
 
-A continuación se detallan todos los campos que forman parte de esta clase.
+#### 7.1.1 reticleOrientation
 
-#### 7.1.1. reticleOrientation
+Define la orientación de captura:
 
-Establece el modo de detección de huellas e indica qué dedos se van a
-detectar durante el proceso. Los valores permitidos son:
+- **LEFT**: Captura los dedos de la mano izquierda
+- **RIGHT**: Captura los dedos de la mano derecha
+- **BOTH**: Permite captura de ambas manos (según `fingerFilter`)
 
-- **LEFT**: Se activa la captura de los **cuatro dedos de la mano
-  izquierda**.
+#### 7.1.2 fingerFilter
 
-- **RIGHT**: Se activa la captura de los **cuatro dedos de la mano
-  izquierda**.
+Selecciona el modo de captura (slap o dedo específico).
 
-#### 7.1.2. useFlash
+#### 7.1.3 templateType
 
-Activa o desactiva el flash de la cámara durante el proceso de captura
-de huellas. Por defecto se encuentra a **true**.
+Define el formato de plantilla a generar (variantes NIST/ISO).
 
-#### 7.1.3. returnProcessedImage
+#### 7.1.4 useLiveness
 
-Si se establece a **true** se devolverá en el resultado las imágenes procesadas.
+Activa o desactiva la detección de vivacidad. Por defecto `true`.
 
-#### 7.1.4. returnRawImage
+#### 7.1.5 extractionTimeout
 
-Si se establece a **true** se devolverá en el resultado las imágenes de
-la misma forma en que se han capturado.
+Tiempo máximo de extracción en milisegundos. Por defecto `50000`.
 
-#### 7.1.5. useLiveness
+#### 7.1.6 showPreviousTip
 
-Activa o desactiva el detector de vivacidad durante el proceso de
-captura de huellas. Por defecto se encuentra a **true**.
+Muestra una pantalla previa con información y botón de inicio.
 
-#### 7.1.6. returnFullFrameImage
+#### 7.1.7 showTutorial
 
-Especifica si se debe devolver la imagen completa de la cámara en la que
-se han detectado los dedos.
+Muestra la pantalla de tutorial con instrucciones de captura.
 
-#### 7.1.7. extractionTimeout
+#### 7.1.8 showDiagnostic
 
-Establece un tiempo de extracción.
+Muestra pantallas de diagnóstico al final del proceso.
 
-#### 7.1.8. showTutorial
+#### 7.1.9 threshold
 
-Indica si el componente activa la pantalla de tutorial. En esta vista se
-explica de forma intuitiva cómo se realiza la captura.
+Umbral de calidad de captura. El SDK limita este valor al rango `0.0-1.0`.
 
-#### 7.1.9. threshold
+#### 7.1.10 showEllipses
 
-El parámetro configura un captureQualityThreshold, para definir un
-threshold de calidad para realizar la captura.
+Muestra las elipses durante la captura.
 
-#### 7.1.10. showSpinner
+#### 7.1.11 cropWidth
 
-Indica si se quiere mostrar el spinner de carga.
+Ancho de recorte de la imagen segmentada (px). Valores `<= 0` desactivan el recorte; se limitan a `64-2048`.
 
-#### 7.1.11. cropWidth
+#### 7.1.12 cropHeight
 
-Indica un ancho para realizar un recorte de la captura.
+Alto de recorte de la imagen segmentada (px). Valores `<= 0` desactivan el recorte; se limitan a `64-2048`.
 
-#### 7.1.12. cropHeight
+#### 7.1.13 vibrationEnabled
 
-Indica una altura para realizar un recorte de la captura.
+Activa la vibración. Por defecto `true`.
 
-#### 7.1.13. cropFactor
+#### 7.1.14 enableFlash
 
-Indica la relación para el recorte de la captura.
+Activa el flash de la cámara. Por defecto `true`.
 
-#### 7.1.14. showDiagnostic
+#### 7.1.15 reticle
 
-Mostrar pantallas de diagnóstico al final del proceso
+Identificador opcional del retículo. Por defecto `"R_S"`.
 
-#### 7.1.15. showPreviousTip
+#### 7.1.16 showPreviousFingerSelector
 
-Muestra una pantalla previa al lanzamiento de la captura con información sobre el proceso a realizar y un botón para el lanzamiento.
+Muestra el selector de dedos antes de la captura.
 
-#### 7.1.16. fingerFilter
+#### 7.1.17 fingerSelectorHandOrientation
 
-Filtro para elegir la mano entera o un dedo en concreto: SLAP, INDEX_FINGER, MIDDLE_FINGER, RING_FINGER, LITTLE_FINGER, THUMB_FINGER.
+Define qué mano(s) se muestran en el selector (`LEFT`, `RIGHT`, `BOTH`).
+
+#### 7.1.18 fingerSelectorOptions
+
+Define la lista de filtros que se muestran en el selector. Si está vacía, el SDK usa:
+`ALL_4_FINGERS_ONE_BY_ONE`, `SLAP`, `INDEX_FINGER`.
 
 ---
 
 ## 8. Personalización del componente
 
-Aparte de los cambios que se pueden realizar a nivel de SDK (los cuales
-se explican en el documento de [Ajustes avanzados](./Mobile_SDK_advanced)), este componente en concreto permite la
-modificación de su interfaz.
+Más allá de la configuración a nivel SDK (ver [Ajustes avanzados](./Mobile_SDK_advanced)), puedes modificar la UI.
 
 ### 8.1 Textos
 
-Si se desea modificar los textos de la SDK habría que incluir el
-siguiente fichero XML en la aplicación del cliente, y modificar el valor
-de cada _String_ por el deseado.
+Para sobrescribir los textos por defecto, añade un XML en tu app:
 
 ```xml
-    <!-- Previous Tip -->
-    <string name="phingers_component_tip_left_title">Huellas mano izquierda</string>
-    <string name="phingers_component_tip_right_title">Huellas mano derecha</string>
-    <string name="phingers_component_tip_thumb_title">Huella pulgar</string>
-    <string name="phingers_component_tip_message">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
-    <string name="phingers_component_tip_thumb_message">Enfoca el pulgar dentro del círculo. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
-    <string name="phingers_component_tip_button">Comenzar</string>
-    <!-- Process -->
-    <string name="phingers_component_capture_phingers">Mantenga los dedos firmes</string>
-    <string name="phingers_component_capture_thumb">Mantenga el dedo firme</string>
-    <string name="phingers_component_capture_phingers_not_focus">Mueva los dedos hasta que estén enfocados</string>
-    <string name="phingers_component_capture_thumb_not_focus">Mueva el dedo hasta que esté enfocado</string>
-    <!-- Diagnostic -->
-    <string name="phingers_component_timeout_title">Tiempo superado</string>
-    <string name="phingers_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-    <string name="phingers_component_internal_error_title">Hubo un problema técnico</string>
-    <string name="phingers_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-
+<!-- Tutorial / Previous Tip -->
+<string name="phingers_tf_component_tutorial_left_title">Huellas mano izquierda</string>
+<string name="phingers_tf_component_tutorial_right_title">Huellas mano derecha</string>
+<string name="phingers_tf_component_tutorial_thumb_title">Huella pulgar</string>
+<string name="phingers_tf_component_tutorial_message_left_slap">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
+<string name="phingers_tf_component_tutorial_message_right_slap">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
+<string name="phingers_tf_component_tutorial_message_left_index_finger">Coloca el dedo índice de la mano izquierda. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
+<string name="phingers_tf_component_tutorial_message_right_index_finger">Coloca el dedo índice de la mano derecha. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
+<string name="phingers_tf_component_tutorial_thumb_message">Enfoca el pulgar dentro del círculo. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
+<string name="phingers_tf_component_tutorial_button">Comenzar</string>
+<!-- Diagnostic -->
+<string name="phingers_tf_component_timeout_title">Tiempo superado</string>
+<string name="phingers_tf_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+<string name="phingers_tf_component_internal_error_title">Hubo un problema técnico</string>
+<string name="phingers_tf_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
 ```
 
-### 8.2. Animaciones
+### 8.2 Animaciones
 
-Si se desea modificar las animaciones (lottie) de la SDK habría que incluir las animaciones con el mismo nombre en la carpeta res/raw/ de la aplicación.
+Si se desea modificar las animaciones (Lottie), incluir los ficheros en `res/raw/`:
 
 ```text
 phingers_anim_left.json
 phingers_anim_right.json
 phingers_anim_thumb.json
+phingers_anim_left_finger.json
+phingers_anim_right_finger.json
 ```
 
 ### 8.3 Vistas externas
 
-Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse los interfaces siguientes:
+Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse las interfaces siguientes:
 
 Pantalla de tip previo:
 
 ```kotlin
-
 interface IPhingersPreviousTipView {
     @Composable
     fun Content(
@@ -344,13 +312,11 @@ interface IPhingersPreviousTipView {
         onClose: () -> Unit,
     )
 }
-
 ```
 
 Pantalla de diagnóstico de error:
 
 ```kotlin
-
 interface IPhingersErrorDiagnosticView {
     @Composable
     fun Content(
@@ -359,16 +325,12 @@ interface IPhingersErrorDiagnosticView {
         onClose: () -> Unit,
     )
 }
-
 ```
 
-Una vez creadas las clases que implementan los interfaces, en el lanzamiento del componente se podrá añadir el parámetro "customViews" para que se utilicen en el SDK.
+Una vez creadas las clases que implementan las interfaces, en el lanzamiento del componente se podrá añadir el parámetro `customViews` para que se utilicen en el SDK.
 
 ---
 
 ## 9. Logs
 
-Para visualizar en consola los logs de este componente se podrá usar el filtro: "PHINGERS:"
-
----
-
+Para visualizar en consola los logs de este componente se podrá usar el filtro: `"PHINGERS_TF:"`
