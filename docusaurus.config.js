@@ -169,6 +169,10 @@ const config = {
           {
             type: "localeDropdown",
             position: "right",
+          },
+          {
+            type: "search",
+            position: "right",
           }
         ],
       },
@@ -182,18 +186,25 @@ const config = {
       },
     }),
   plugins: [
-    /*
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        hashed: true,
+        language: ["en", "es"],
+        indexDocs: true,
+        indexPages: true,
+        indexBlog: false
+      }
+    ],
     [
       "@docusaurus/plugin-content-docs",
       {
-        // id: 'product', // omitted => default instance
-        path: "android",
-        routeBasePath: "android",
-        sidebarPath: "./sidebarsAndroid.js",
-        // ... other options
-      },
+        id: "default",
+        path: "docs/_search_temp",
+        routeBasePath: "search-docs",
+        sidebarPath: "./sidebarsDefault.js"
+      }
     ],
-    */
     [
       "@docusaurus/plugin-content-docs",
       {
