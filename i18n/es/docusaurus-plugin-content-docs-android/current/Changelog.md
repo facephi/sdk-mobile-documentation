@@ -18,7 +18,7 @@
 
 - Selphi
 
-  - Nueva versión del widget: 6.0.0
+  - Nueva versión del widget: 6.0.1
 
 - SelphID
 
