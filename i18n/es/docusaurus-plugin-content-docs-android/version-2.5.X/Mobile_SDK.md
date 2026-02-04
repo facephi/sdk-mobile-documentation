@@ -132,6 +132,17 @@ when (result) {
 }
 ```
 
+> Si la creación de una nueva operación devuelve un error del tipo **INTERNAL_ERROR** se debe 
+> principalmente a un problema de seguridad. Para poder investigar la causa, es posible recuperar 
+> el token asociado al error, el cual proporciona información adicional para su análisis.
+>
+> ```java
+> if (result.error is SdkError.INTERNAL_ERROR){
+>  val token = (result.error as SdkError.INTERNAL_ERROR).error
+> }
+> ```
+
+
 ### 2.4. Lanzamiento de los componentes
 
 La funcionalidad del SDK nace de la combinación de los diferentes componentes. Cada componente tiene sus propios controladores que se “lanzarán” desde el
@@ -174,4 +185,14 @@ Antes de finalizar la aplicación se debe cerrar la sesión del SDK:
 
 ```java
 SDKController.closeSession()
+```
+
+### 2.6 Seguridad
+
+El SDK de Android incorpora un sistema de seguridad destinado a detectar y bloquear entornos potencialmente poco fiables o que puedan indicar intentos de ataque.
+
+Este mecanismo está habilitado por defecto, permite identificar situaciones que podrían comprometer la seguridad y previene la ejecución del SDK en contextos que no se consideran seguros:
+
+​```java
+SDKController.securityMode(enable: Boolean)
 ```

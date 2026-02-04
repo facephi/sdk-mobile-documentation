@@ -390,6 +390,17 @@ Below is a table showing the relationship between operations and steps:
 This list will be expanded in future SDK updates as new components and
 use cases are released.
 
+
+> If creating a new operation returns an **INTERNAL_ERROR**, it is 
+> mainly due to a security issue. To investigate the cause, you can retrieve 
+> the token associated with the error, which provides additional information for analysis.
+>
+> ```java
+> if (result.error is SdkError.INTERNAL_ERROR){
+>  val token = (result.error as SdkError.INTERNAL_ERROR).error
+> }
+> ```
+
 ---
 
 ## 5. Launch of components

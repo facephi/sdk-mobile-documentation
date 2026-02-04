@@ -70,7 +70,6 @@ PhingersConfigurationData(
 
 - `LEFT`
 - `RIGHT`
-- `BOTH`
 
 **Opciones de FingerFilter**:
 
@@ -187,7 +186,6 @@ Define la orientación de captura:
 
 - **LEFT**: Captura los dedos de la mano izquierda
 - **RIGHT**: Captura los dedos de la mano derecha
-- **BOTH**: Permite captura de ambas manos (según `fingerFilter`)
 
 #### 7.1.2 fingerFilter
 

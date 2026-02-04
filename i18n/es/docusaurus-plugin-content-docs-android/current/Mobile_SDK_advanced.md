@@ -354,6 +354,17 @@ y _steps_:
 Esta lista se irá ampliando en próximas actualizaciones de la SDK, según
 vayan apareciendo nuevos componentes y casos de uso.
 
+
+> Si la creación de una nueva operación devuelve un error del tipo **INTERNAL_ERROR** se debe 
+> principalmente a un problema de seguridad. Para poder investigar la causa, es posible recuperar 
+> el token asociado al error, el cual proporciona información adicional para su análisis.
+>
+> ```java
+> if (result.error is SdkError.INTERNAL_ERROR){
+>  val token = (result.error as SdkError.INTERNAL_ERROR).error
+> }
+> ```
+
 ---
 
 ## 4. Lanzamiento de componentes
