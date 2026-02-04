@@ -28,10 +28,10 @@ implementation "com.facephi.androidsdk:phingers_tf_component:$version"
 
 ## 3. Controladores disponibles
 
-| **Controlador**        | **Descripción**                                         |
-| ---------------------- | ------------------------------------------------------- |
-| PhingersTFController   | Controlador principal de captura Phingers TF            |
-| FPhingersTFController  | Controlador de Flow para Phingers TF (solo Flow)        |
+| **Controlador**       | **Descripción**                                  |
+| --------------------- | ------------------------------------------------ |
+| PhingersTFController  | Controlador principal de captura Phingers TF     |
+| FPhingersTFController | Controlador de Flow para Phingers TF (solo Flow) |
 
 ---
 
@@ -60,7 +60,7 @@ Para lanzar el componente actual, se deberá crear un objeto `PhingersConfigurat
 
 ```java
 PhingersConfigurationData(
-  reticleOrientation = CaptureOrientation.LEFT,
+  reticleOrientation = ReticleOrientation.LEFT,
   fingerFilter       = FingerFilter.SLAP,
   templateType       = TemplateType.NIST_TEMPLATE
 )
@@ -267,21 +267,84 @@ Más allá de la configuración a nivel SDK (ver [Ajustes avanzados](./Mobile_SD
 Para sobrescribir los textos por defecto, añade un XML en tu app:
 
 ```xml
-<!-- Tutorial / Previous Tip -->
-<string name="phingers_tf_component_tutorial_left_title">Huellas mano izquierda</string>
-<string name="phingers_tf_component_tutorial_right_title">Huellas mano derecha</string>
-<string name="phingers_tf_component_tutorial_thumb_title">Huella pulgar</string>
-<string name="phingers_tf_component_tutorial_message_left_slap">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
-<string name="phingers_tf_component_tutorial_message_right_slap">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
-<string name="phingers_tf_component_tutorial_message_left_index_finger">Coloca el dedo índice de la mano izquierda. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
-<string name="phingers_tf_component_tutorial_message_right_index_finger">Coloca el dedo índice de la mano derecha. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
-<string name="phingers_tf_component_tutorial_thumb_message">Enfoca el pulgar dentro del círculo. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
-<string name="phingers_tf_component_tutorial_button">Comenzar</string>
-<!-- Diagnostic -->
-<string name="phingers_tf_component_timeout_title">Tiempo superado</string>
-<string name="phingers_tf_component_timeout_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
-<string name="phingers_tf_component_internal_error_title">Hubo un problema técnico</string>
-<string name="phingers_tf_component_internal_error_desc">Pedimos disculpas. No se ha podido hacer la captura</string>
+<!-- Previous Tip -->
+<string name="phingers_widget_tip_title">Captura de huellas</string>
+<string name="phingers_widget_tip_message">Coloca tu dedo dentro de la marca</string>
+<string name="phingers_widget_tip_message_alt">Coloca tu dedo dentro de la marca</string>
+<string name="phingers_widget_tip_button">Comenzar</string>
+<string name="phingers_widget_tip_button_alt">Comenzar captura de huellas</string>
+<string name="phingers_widget_tip_close_button_alt">Volver</string>
+<string name="phingers_widget_tip_info_button_alt">Ver consejos</string>
+<string name="phingers_widget_tip_anim_desc">Animación de instrucciones para la captura de huella</string>
+<!-- Previous Tip (tipos específicos) -->
+<string name="phingers_widget_tip_title_left_slap">Huellas mano izquierda</string>
+<string name="phingers_widget_tip_message_left_slap">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
+<string name="phingers_widget_tip_title_right_slap">Huellas mano derecha</string>
+<string name="phingers_widget_tip_message_right_slap">Junta tus dedos. Acerca o aleja la mano hasta que se enfoquen tus huellas.</string>
+<string name="phingers_widget_tip_title_left_finger">Huellas mano izquierda</string>
+<string name="phingers_widget_tip_message_left_finger">Enfoca el dedo índice en el recuadro. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
+<string name="phingers_widget_tip_title_right_finger">Huellas mano derecha</string>
+<string name="phingers_widget_tip_message_right_finger">Enfoca el dedo índice en el recuadro. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
+<string name="phingers_widget_tip_title_thumb">Huella dedo pulgar</string>
+<string name="phingers_widget_tip_message_thumb">Enfoca el dedo pulgar en el recuadro. Acerca o aleja el dedo hasta que se enfoque tu huella.</string>
+<!-- Selector de dedos -->
+<string name="phingers_widget_selector_hand_question">¿Qué mano utilizarás?</string>
+<string name="phingers_widget_selector_hand_left">Izquierda</string>
+<string name="phingers_widget_selector_hand_right">Derecha</string>
+<string name="phingers_widget_selector_secondary_question">¿Qué huellas quieres escanear?</string>
+<string name="phingers_widget_selector_option_index">Dedo índice</string>
+<string name="phingers_widget_selector_option_middle">Dedo corazón</string>
+<string name="phingers_widget_selector_option_ring">Dedo anular</string>
+<string name="phingers_widget_selector_option_little">Dedo meñique</string>
+<string name="phingers_widget_selector_option_thumb">Dedo pulgar</string>
+<string name="phingers_widget_selector_option_all4">4 dedos (índice, corazón, anular y meñique)</string>
+<string name="phingers_widget_selector_option_all4_sequence">4 dedos (uno a uno)</string>
+<string name="phingers_widget_selector_option_all5_sequence">5 dedos (uno a uno)</string>
+<string name="phingers_widget_selector_primary_button">Continuar</string>
+<!-- Capture -->
+<string name="phingers_widget_capture_close_button_alt">Volver</string>
+<!-- Tutorial -->
+<string name="phingers_widget_tutorial_message_1">Coloca tu cara en el centro y mira de frente a la cámara.</string>
+<string name="phingers_widget_tutorial_message_2">Retira cualquier elemento que cubra tu cara.</string>
+<string name="phingers_widget_tutorial_message_3">Busca un entorno bien iluminado, sin sombras sobre tu rostro.</string>
+<string name="phingers_widget_tutorial_message_1_anim_desc">La foto se realiza cuando la persona está en el centro.</string>
+<string name="phingers_widget_tutorial_message_2_anim_desc">Una persona se quita las gafas de sol y se retira el pelo de los ojos.</string>
+<string name="phingers_widget_tutorial_message_3_anim_desc">La imagen aparece oscura y una persona enciende la luz.</string>
+<string name="phingers_widget_tutorial_close_button_alt">Volver al tutorial previo</string>
+<!-- Confirmation -->
+<string name="phingers_widget_image_captured">Imagen capturada</string>
+<string name="phingers_widget_confirmation_message">¿Tu foto se ve de forma clara y nítida?</string>
+<string name="phingers_widget_confirmation_retry">Reintentar</string>
+<string name="phingers_widget_confirmation_continue">Continuar</string>
+
+<!-- Camera status (ES) -->
+<string name="phingers_widget_camera_status_position_fingers">Coloca tus dedos dentro de la marca</string>
+<string name="phingers_widget_camera_status_processing">Procesando…</string>
+<string name="phingers_widget_camera_status_too_far">Acerca la mano</string>
+<string name="phingers_widget_camera_status_too_close">Aleja la mano</string>
+<string name="phingers_widget_camera_status_low_focus">Mueve el dedo para enfocar</string>
+<string name="phingers_widget_camera_status_good_focus">Mantén el dedo quieto</string>
+<string name="phingers_widget_camera_status_wrong_angle">Coloca el dedo en vertical</string>
+<string name="phingers_widget_camera_status_too_few">No se ha detectado el dedo</string>
+<string name="phingers_widget_camera_status_too_many">Varios dedos detectados</string>
+<string name="phingers_widget_camera_status_wrong_hand_left">Debes poner el dedo de la mano izquierda</string>
+<string name="phingers_widget_camera_status_wrong_hand_right">Debes poner el dedo de la mano derecha</string>
+<string name="phingers_widget_camera_status_error">Error en la captura</string>
+<string name="phingers_widget_camera_status_timeout">Tiempo de captura agotado</string>
+<string name="phingers_widget_camera_status_success">¡Huella capturada!</string>
+<string name="phingers_widget_camera_status_keep_hand_steady">Mantén tu mano firme</string>
+<string name="phingers_widget_timeout_desc">La captura ha superado el tiempo. Inténtalo de nuevo.</string>
+
+<!-- Dynamic finger hint (ES) -->
+<!-- %1$s = lado (izquierdo/derecho), %2$s = dedo (índice/medio/anular/meñique/pulgar) -->
+<string name="phingers_widget_hint_place_finger_mark">Coloca tu %2$s %1$s dentro de la marca</string>
+<string name="phingers_widget_side_left">izquierdo</string>
+<string name="phingers_widget_side_right">derecho</string>
+<string name="phingers_widget_finger_index">índice</string>
+<string name="phingers_widget_finger_middle">medio</string>
+<string name="phingers_widget_finger_ring">anular</string>
+<string name="phingers_widget_finger_little">meñique</string>
+<string name="phingers_widget_finger_thumb">pulgar</string>
 ```
 
 ### 8.2 Animaciones
@@ -290,42 +353,15 @@ Si se desea modificar las animaciones (Lottie), incluir los ficheros en `res/raw
 
 ```text
 phingers_anim_left.json
-phingers_anim_right.json
-phingers_anim_thumb.json
 phingers_anim_left_finger.json
+phingers_anim_right.json
 phingers_anim_right_finger.json
+phingers_anim_success.json
+phingers_anim_thumb.json
+phingers_anim_thumb_left.json
+phingers_anim_thumb_right.json
+phingers_anim_thumbs.json
 ```
-
-### 8.3 Vistas externas
-
-Es posible modificar completamente las pantallas del componente manteniendo su funcionalidad y navegación. Para ello deben implementarse las interfaces siguientes:
-
-Pantalla de tip previo:
-
-```kotlin
-interface IPhingersPreviousTipView {
-    @Composable
-    fun Content(
-        onContinue: () -> Unit,
-        onClose: () -> Unit,
-    )
-}
-```
-
-Pantalla de diagnóstico de error:
-
-```kotlin
-interface IPhingersErrorDiagnosticView {
-    @Composable
-    fun Content(
-        error: PhingersError,
-        onRetry: () -> Unit,
-        onClose: () -> Unit,
-    )
-}
-```
-
-Una vez creadas las clases que implementan las interfaces, en el lanzamiento del componente se podrá añadir el parámetro `customViews` para que se utilicen en el SDK.
 
 ---
 
