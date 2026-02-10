@@ -193,6 +193,6 @@ El SDK de Android incorpora un sistema de seguridad destinado a detectar y bloqu
 
 Este mecanismo está habilitado por defecto, permite identificar situaciones que podrían comprometer la seguridad y previene la ejecución del SDK en contextos que no se consideran seguros:
 
-​```java
+```java
 SDKController.securityMode(enable: Boolean)
 ```
