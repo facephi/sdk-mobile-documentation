@@ -6,6 +6,7 @@
 
 - General
   - UX and accessibility improvements
+  - API Version: 35
 
 - Tracking
   - Widget new version: 1.2.4

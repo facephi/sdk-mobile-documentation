@@ -6,6 +6,7 @@
 
 - General
   - Mejoras en diseño y accesibilidad
+  - API Version: 35
 
 - Tracking
   - Nueva versión del widget: 1.2.4

@@ -166,6 +166,6 @@ The Android SDK incorporates a security system designed to detect and block pote
 
 This mechanism is enabled by default, allowing situations that could compromise security to be identified and preventing the SDK from running in contexts that are not considered secure:
 
-​```java
+```java
 SDKController.securityMode(enable: Boolean)
 ```
