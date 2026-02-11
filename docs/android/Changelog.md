@@ -7,26 +7,32 @@
 - General
   - UX and accessibility improvements
   - API Version: 35
+  - Facephi Security 1.2.3
+  - Facephi Logger 1.2.2
+  - Facephi Tokenizer 1.1.2
 
 - Tracking
-  - Widget new version: 1.2.4
+  - Widget new version: 1.2.8
 
 - Capture
-  - Widget new version: 1.1.2
+  - Widget new version: 1.1.6
 
 - Selphi
-  - Widget new version: 6.0.1
+  - Widget new version: 6.0.3
+  - **IMPORTANT: A new licence is required to use this version.**
 
 - SelphID
-  - Widget new version: 1.36.3
+  - Widget new version: 1.37.1
 
 - Phingers
   - UX improvements
-  - Widget new version: 1.1.0
+  - Widget new version: 1.1.5
   - Improve capture process
+  - **IMPORTANT: A new licence is required to use this version.**
 
 - Voice
   - Flow corrections
+  - Accessibility improvements
 
 - NFC
   - Return tokenized data
