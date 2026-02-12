@@ -10,13 +10,13 @@ Se describen:
 
 ### 1.1. Versión del widget
 
-La versión del widget se puede consultar, incluso estando ya integrado en una aplicación, de la siguiente manera:
+Recupera la version con el metodo estático 'getWidgetVersion()'
 
-- Buscamos el fichero `fphi-core-widget-android.aar`.
-- Extraemos su contenido o accedemos a él como si fuera un archivo .zip.
-- En el interior encontraremos el fichero `AndroidManifest.xml`.
-- Lo abrimos como si fuera un documento de texto.
-- En el interior, en una de las primeras líneas, encontramos el nombre de versión (android:versionName=”x.x.x.x”). El número de versión del widget será el que se indica en esa línea `android:versionName=”x.x.x.x”`.
+```java
+    public static String getWidgetVersion()
+```
+Devuelve la versión actual en formato string. Este metodo es estático, no es necesario lanzar el widget
+para realizar esta operación.
 
 ### 1.2. Requerimientos mínimos
 
@@ -198,6 +198,18 @@ Los posibles valores son:
 - **LANDSCAPE_SENSOR**: Landscape izquierda y derecha permitidas.
 - **LOCKED**: Todas las orientaciones permitidas pero el widget no cambiará de orientación dinámicamente.
 
+#### 2.2.21 setCameraFlash
+```java
+    public void setCameraFlash(bool value)
+```
+Activa/Desactiva el flash de la cámara.
+
+#### 2.2.22 setJPGQuality
+```java
+    void setJPGQuality(float value)
+```
+Configura la calidad de compresión jpeg. Valor por defecto: 0.92f.
+
 ### 2.3. Integración del widget Android
 
 El siguiente ejemplo de código ilustra la forma de integrar el widget en una aplicación Android:
@@ -223,8 +235,7 @@ Para poder ejecutar un `Activity` desde nuestra aplicación principal, en nuestr
 ```xml
     <activity
     android:name="com.facephi.selphi.Widget"
-    android:label="Your app name"
-    android:screenOrientation="portrait">
+    android:label="Your app name" >
     </activity>
 ```
 Se le deben conceder permisos a la cámara para poder hacer uso de ella:

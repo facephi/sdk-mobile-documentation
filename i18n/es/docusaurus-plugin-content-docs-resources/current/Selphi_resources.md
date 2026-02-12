@@ -30,6 +30,13 @@ El fichero de recursos se puede obtener de los siguientes enlaces:
 | 5.18.2                | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.18.2/fphi-selphi-widget-resources-selphi-live-5.18.2.zip" rel="nofollow"> Resources v.5.18.2</a> |
 | 5.19.1                | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.19.1/fphi-selphi-widget-resources-selphi-live-5.19.1.zip" rel="nofollow"> Resources v.5.19.1</a> |
 | 5.19.5                | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.19.5/fphi-selphi-widget-resources-selphi-live-5.19.5.zip" rel="nofollow"> Resources v.5.19.5</a> |
+| 5.20.0             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.20.0/fphi-selphi-widget-resources-selphi-live-5.20.0.zip" rel="nofollow"> Resources v.5.20.0</a> |
+| 5.20.1             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.20.1/fphi-selphi-widget-resources-selphi-live-5.20.1.zip" rel="nofollow"> Resources v.5.20.1</a> |
+| 5.20.2             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.20.2/fphi-selphi-widget-resources-selphi-live-5.20.2.zip" rel="nofollow"> Resources v.5.20.2</a> |
+| 5.20.3             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.20.3/fphi-selphi-widget-resources-selphi-live-5.20.3.zip" rel="nofollow"> Resources v.5.20.3</a> |
+| 5.20.4             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.20.4/fphi-selphi-widget-resources-selphi-live-5.20.4.zip" rel="nofollow"> Resources v.5.20.4</a> |
+| 5.21.0             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.21.0/fphi-selphi-widget-resources-selphi-live-5.21.0.zip" rel="nofollow"> Resources v.5.21.0</a> |
+| 5.21.1             | <a href="https://facephicorp.jfrog.io/artifactory/resources-public-fphi/selphi-resources/5.21.1/fphi-selphi-widget-resources-selphi-live-5.21.1.zip" rel="nofollow"> Resources v.5.21.1</a> |
 
 
 ---

@@ -15,7 +15,7 @@ FacePhi SelphID Android Widget es una utilidad con la que se podrán realizar la
 
 ### 2.1. Librerías Requeridas
 
-FacePhi distribuye las librerías necesarias para integrar el widget en un proyecto de Android. Se distribuyen tanto librerías .aar, como recursos y licencias para el componente, las cuales se encuentran en el directorio lib.
+FacePhi distribuye las librerías necesarias para integrar el widget en un proyecto de Android. Se distribuyen tanto librerías .aar, como recursos para el componente, las cuales se encuentran en el directorio lib.
 
 Librerías:
 
@@ -27,7 +27,8 @@ Librerías:
 Recursos:
 
 - `fphi-selphid-widget-resources-selphid-X.X.zip`
-- `license.lic`
+
+* Solicitud de licencias al departamento de soporte.
 
 ### 2.2. Instalación del plugin SelphID Android
 

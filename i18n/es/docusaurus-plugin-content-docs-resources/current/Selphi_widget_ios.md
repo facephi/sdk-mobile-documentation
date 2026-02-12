@@ -28,6 +28,9 @@ Para añadir las librerías necesarias, desde la pestaña "Build Phases", añadi
 - Libreria ZipZap: `ZipZap.xcframework`
 - Librería nativa: `libc++.tbd`
 
+* Versión IAD: Añadir tambien las siguientes librerias:
+`FPHILicenseManager.XCFramework`, `IDLiveFaceCamera.XCFramework`, `IDLiveFaceDetection.XCFramework` and `IDLiveFaceIAD.XCFramework`.
+
 En el apartado "Copy bundle resources" hay que añadir los recursos del widget que se encuentran en el archivo `fphi-widget-resources-SelphiLive-1.2.zip`.
  
 Desde la versión de iOS 10.0, si la aplicación hace uso de la cámara, es necesario añadir la descripción del motivo para el que se accede a ella. Para esto hay que modificar el archivo info.plist de la aplicación añadiendo la descripción a la clave NSCameraUsageDescription:
@@ -140,7 +143,7 @@ Los valores posibles son:
 - **FPhiWidgetExtractionDurationMedium**: Duración de la extracción de 2 segundos.
 - **FPhiWidgetExtractionDurationLong**: Duración de la extracción de 3 segundos.
 
-#### 3.2.11 preferredOrientation
+#### 3.2.12 preferredOrientation
 
 Configura las orientaciones que el widget permitirá en la ejecución.
 
@@ -154,6 +157,14 @@ Los posibles valores son:
 - **FPhiWidgetOrientationPortraitSensor**: Portrait y portrait invertido permitidas.
 - **FPhiWidgetOrientationLandscapeSensor**: Landscape izquierda y derecha permitidas.
 - **FPhiWidgetOrientationLocked**: Todas las orientaciones permitidas pero el widget no cambiará de orientación dinámicamente.
+
+#### 3.2.13 cameraFlash
+
+Activa/Desactiva el flash de la cámara.
+
+#### 3.2.14 jpgQuality
+
+Configura la calidad de compresión jpeg. Valor por defecto: 0.92f.
 
 ### 3.3. Métodos
 

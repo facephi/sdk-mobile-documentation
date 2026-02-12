@@ -16,7 +16,7 @@ Las funciones que facilita este widget son:
 
 ### 2.1. Librerías Requeridas
 
-FacePhi distribuye las librerías necesarias para integrar el widget en un proyecto de iOS. Se distribuyen tanto librerías (frameworks), como recursos y licencias para el componente, las cuales se encuentran en el directorio lib.
+FacePhi distribuye las librerías necesarias para integrar el widget en un proyecto de iOS. Se distribuyen tanto librerías (frameworks), como recursos para el componente, las cuales se encuentran en el directorio lib.
 
 Frameworks:
 
@@ -26,7 +26,8 @@ Frameworks:
 Recursos:
 
 - `fphi-selphid-widget-resources-SelphID-1.0.zip`
-- `license.lic`
+
+* Solicitud de licencias al departamento de soporte.
 
 ### 2.2. Instalación del plugin SelphID iOS Widget
 
@@ -113,6 +114,7 @@ Es un enumerado que define el timeout de la captura de un lado del documento. Ti
 - TShort: 15 segundos.
 - TMedium: 20 segundos.
 - TLong: 25 segundos.
+- TVeryLong: 60 segundos.
 
 #### 3.10 Propiedad VideoFilename
 
