@@ -15,18 +15,17 @@
   - Nueva versión del widget: 1.2.8
 
 - Capture
-  - Nueva versión del widget: 1.1.6
+  - Nueva versión del widget: 1.1.7
 
 - Selphi
-  - Nueva versión del widget: 6.0.3
-  - **IIMPORTANTE: Se necesita una nueva licencia para utilizar esta versión.**
+  - Nueva versión del widget: 6.0.4
 
 - SelphID
   - Nueva versión del widget: 1.37.1
 
 - Phingers
   - Mejoras en diseño
-  - Nueva versión del widget: 1.1.5
+  - Nueva versión del widget: 1.1.6
   - Mejoras en el proceso de captura
   - **IIMPORTANTE: Se necesita una nueva licencia para utilizar esta versión.**
 

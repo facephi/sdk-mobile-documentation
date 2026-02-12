@@ -12,7 +12,7 @@
 > implementation ‘com.facephi.androidsdk:selphi_iad_component:$version’
 > ```
 > 
-> **This component has two important restrictions:**
+> **This component requires a new licence and has two important restrictions:**
 >   - Devices with a minimum of **3 GB of RAM**.
 >   - **Front camera** with **1920x1080 or higher** preview.
 

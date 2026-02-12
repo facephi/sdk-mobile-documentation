@@ -15,18 +15,17 @@
   - Widget new version: 1.2.8
 
 - Capture
-  - Widget new version: 1.1.6
+  - Widget new version: 1.1.7
 
 - Selphi
-  - Widget new version: 6.0.3
-  - **IMPORTANT: A new licence is required to use this version.**
+  - Widget new version: 6.0.4
 
 - SelphID
   - Widget new version: 1.37.1
 
 - Phingers
   - UX improvements
-  - Widget new version: 1.1.5
+  - Widget new version: 1.1.6
   - Improve capture process
   - **IMPORTANT: A new licence is required to use this version.**
 
