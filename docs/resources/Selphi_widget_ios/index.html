@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Selphi Widget iOS | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/docs/resources/Selphi_widget_ios"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="es"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-resources-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-resources-current"><meta data-rh="true" property="og:title" content="Selphi Widget iOS | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. What is the widget?"><meta data-rh="true" property="og:description" content="1. What is the widget?"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/docs/resources/Selphi_widget_ios"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/resources/Selphi_widget_ios" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/Selphi_widget_ios" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/resources/Selphi_widget_ios" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Selphi Widget iOS","item":"https://facephi.github.io/sdk-mobile-documentation/docs/resources/Selphi_widget_ios"}]}</script><link rel="stylesheet" href="/sdk-mobile-documentation/assets/css/styles.63f7bfbe.css">
-<script src="/sdk-mobile-documentation/assets/js/runtime~main.27adfe7b.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/assets/js/runtime~main.660e32eb.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/assets/js/main.65092cf2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -34,6 +34,10 @@
 <li class="">Core Widget library: <code>FPhiWidgetCore.framework</code></li>
 <li class="">ZipZap library: <code>ZipZap.xcframework</code></li>
 <li class="">Native library: <code>libc++.tbd</code></li>
+</ul>
+<ul>
+<li class="">IAD version: Add additional IAD libraries
+<code>FPHILicenseManager.XCFramework</code>, <code>IDLiveFaceCamera.XCFramework</code>, <code>IDLiveFaceDetection.XCFramework</code> and <code>IDLiveFaceIAD.XCFramework</code>.</li>
 </ul>
 <p>In the &quot;Copy bundle resources&quot; section it is required to add the widget resources file <code>fphi-widget-resources-SelphiLive-1.2.zip</code>.</p>
 <p>Since iOS 10.0, if the application uses the camera, it is required to add a usage description. To do that, the file info.plist must be modified adding the description as the value for the key NSCameraUsageDescription:</p>
@@ -100,6 +104,10 @@
 <li class=""><strong>FPhiWidgetOrientationLandscapeSensor</strong>: Landscape left and landscape right allowed.</li>
 <li class=""><strong>FPhiWidgetOrientationLocked</strong>: All orientations allowed but the widget won&#x27;t rotate dynamically.</li>
 </ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="3213-cameraflash">3.2.13 cameraFlash<a href="#3213-cameraflash" class="hash-link" aria-label="Direct link to 3.2.13 cameraFlash" title="Direct link to 3.2.13 cameraFlash" translate="no">​</a></h4>
+<p>Enable/disable camera flash if available.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="3214-jpgquality">3.2.14 jpgQuality<a href="#3214-jpgquality" class="hash-link" aria-label="Direct link to 3.2.14 jpgQuality" title="Direct link to 3.2.14 jpgQuality" translate="no">​</a></h4>
+<p>Set jpg compression. Default value: 0.92f.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-methods">3.3. Methods<a href="#33-methods" class="hash-link" aria-label="Direct link to 3.3. Methods" title="Direct link to 3.3. Methods" translate="no">​</a></h3>
 <p>The following methods are available in the widget:</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="330-setlicense">3.3.0. setLicense<a href="#330-setlicense" class="hash-link" aria-label="Direct link to 3.3.0. setLicense" title="Direct link to 3.3.0. setLicense" translate="no">​</a></h4>
