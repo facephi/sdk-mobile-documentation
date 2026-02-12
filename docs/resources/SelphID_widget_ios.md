@@ -15,7 +15,7 @@ FacePhi SelphID iOS Widget is a useful tool to perform document capture function
 
 ### 2.1. Required Libraries
 
-FacePhi distributes the required libraries to integrate the widget into an iOS project. Both libraries (frameworks) and resources & licenses for the component are distributed and can be found in the .lib directory:
+FacePhi distributes the required libraries to integrate the widget into an iOS project. Both libraries (frameworks) and resources for the component are distributed and can be found in the .lib directory:
 
 Frameworks:
 
@@ -25,7 +25,8 @@ Frameworks:
 Resources:
 
 - `fphi-selphid-widget-resources-SelphID-1.0.zip`
-- `license.lic`
+
+* Licenses needed by product must be requested to support department.
 
 ### 2.2. SelphID iOS Widget plug-in installation
 
@@ -113,6 +114,7 @@ This enum defines the time the widget is going to try to capture one side of the
 - TShort: 15 seconds.
 - TMedium: 20 seconds.
 - TLong: 25 seconds.
+- TVeryLong: 60 seconds.
 
 #### 3.10. VideoFilename Property
 

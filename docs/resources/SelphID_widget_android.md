@@ -15,7 +15,7 @@ FacePhi SelphID Android Widget is a useful tool to perform document capture func
 
 ### 2.1. Required Libraries
 
-FacePhi distributes the required libraries to integrate the widget into an Android project. Both .aar libraries, and resources & licenses for the component are distributed and can be found in the lib directory:
+FacePhi distributes the required libraries to integrate the widget into an Android project. Both .aar libraries, and resources for the component are distributed and can be found in the lib directory:
 
 Libraries:
 
@@ -27,7 +27,8 @@ Libraries:
 Resources:
 
 - `fphi-selphid-widget-resources-selphid-X.X.zip`
-- `license.lic`
+
+* Licenses needed by product must be requested to support department.
 
 ### 2.2. SelphID Android plug-in installation
 

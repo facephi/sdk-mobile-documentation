@@ -28,6 +28,9 @@ In order to add the required libraries, from the "Build Phases" tab, you should 
 - ZipZap library: `ZipZap.xcframework`
 - Native library: `libc++.tbd`
 
+* IAD version: Add additional IAD libraries
+`FPHILicenseManager.XCFramework`, `IDLiveFaceCamera.XCFramework`, `IDLiveFaceDetection.XCFramework` and `IDLiveFaceIAD.XCFramework`.
+
 In the "Copy bundle resources" section it is required to add the widget resources file `fphi-widget-resources-SelphiLive-1.2.zip`.
 
 Since iOS 10.0, if the application uses the camera, it is required to add a usage description. To do that, the file info.plist must be modified adding the description as the value for the key NSCameraUsageDescription: 
@@ -156,6 +159,15 @@ The allowed values are:
 - **FPhiWidgetOrientationPortraitSensor**: Portrait and reverse portrait allowed.
 - **FPhiWidgetOrientationLandscapeSensor**: Landscape left and landscape right allowed.
 - **FPhiWidgetOrientationLocked**: All orientations allowed but the widget won't rotate dynamically.
+
+#### 3.2.13 cameraFlash
+
+Enable/disable camera flash if available.
+
+#### 3.2.14 jpgQuality
+
+Set jpg compression. Default value: 0.92f.
+
 
 ### 3.3. Methods
 

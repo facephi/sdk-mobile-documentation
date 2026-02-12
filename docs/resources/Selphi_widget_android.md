@@ -9,11 +9,13 @@ This manual presents configuration and functioning of the FacePhi Selphi Android
 
 ### 1.1. Widget version
 
-The widget version could be retrieved, even if the widget is already integrated into your application. You could do it by this way:
+Retrieve version via static method 'getWidgetVersion()'
 
-- Find the file `fphi-core-widget-android.aar`.
-- Extract the content like a .zip file.
-- Inside we will find a file called `AndroidManifest.xml`. Please open it like a text file. Inside this file we will see a line with this information: (`android:versionName=”x.x.x.x”`). The version number could be retrieved from this line. `android:versionName=”x.x.x.x”`
+```java
+    public static String getWidgetVersion()
+```
+Returns the widget's actual version in string format. This method is static so it doesn´t require launching the widget to perform this operation.
+
 
 ### 1.2. Minimum requirements
 
@@ -191,6 +193,19 @@ The allowed values are:
 - **LANDSCAPE_SENSOR**: Landscape left and landscape right allowed.
 - **LOCKED**: All orientations allowed but the widget won't rotate dynamically.
 
+#### 2.2.21 setCameraFlash
+```java
+    public void setCameraFlash(bool value)
+```
+Enable/disable camera flash if available.
+
+#### 2.2.22 setJPGQuality
+```java
+    void setJPGQuality(float value)
+```
+Sets jpeg compression quality. Default value = 0.92f.
+
+
 ### 2.3. Android widget integration
 
 The following sample code shows how to integrate a widget in an Android application:
@@ -216,8 +231,7 @@ In order to run an `Activity` from our main application, we have to declare our 
 ```xml
 	<activity
 	android:name="com.facephi.selphi.Widget"
-	android:label="Your app name"
-	android:ScreenOrientation="portrait" >
+	android:label="Your app name" >
 	</activity>
 ```
 It is necessary to grant permits to the camera for using it.
@@ -517,6 +531,9 @@ Regarding mobile device architectures:
 SDK components provided for integration of the widget are the following:
 
 - Android Studio: Libraries Android Archive Library (Android Archive Library) called `fphi-core-widget-android.aar` and `fphi-selphi-widget-android.aar`.
+
+* IAD version: Add additional IAD libraries
+`license_manager-X.X.X.aar` and `iad-X.X.X.-release.aar`.
 
 This distribution contains the necessary libraries and resources already packed and ready for its use. Additionally, a .zip file is delivered that contains the graphical configuration and location of the widget, by which it can be personalized the physical appareance of the widget for a better integration with the final application.
 
