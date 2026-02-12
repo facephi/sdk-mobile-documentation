@@ -65,13 +65,13 @@ installing the **_SDKMobile_** components.
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  	pod 'FPHISDKMainComponent', '~> 2.5.0'
+  	pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 - To install the VoiceID component, the following entry must be included in the application's Podfile:
 
 ```
-  	pod 'FPHISDKVoiceIDComponent', '~> 2.5.0'
+  	pod 'FPHISDKVoiceIDComponent', '~> 2.6.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.
@@ -360,22 +360,21 @@ The texts can be customized by overriding the value of these keys inside a **Loc
 "voice_component_speech_message" = "Speak clearly and close to the microphone";
 "voice_component_speech_noisy_message" = "There is too much noise. Try to be in a quiet environment.";
 "voice_component_success_message" = "Recording registred";
-"voice_component_phrase_generic_error_feedback" = "Please, repeat the sentence.";
-"voice_component_phrase_long_silence_feedback" = "Talk for 2 seconds or more.";
-"voice_component_phrase_long_reverberation_feedback" = "Too much echo. Try in another environment.";
+"voice_component_phrase_generic_error_message" = "Please, repeat the sentence.";
+"voice_component_phrase_long_silence_message" = "Talk for 2 seconds or more.";
+"voice_component_phrase_long_reverberation_message" = "Too much echo. Try in another environment.";
 "voice_component_tip_title" = "Voice Recognition";
-"voice_component_tip_desc" = "Speak clearly and aloud\n\nMake sure your surroundings are silent";
-"voice_component_tip_button_message" = "START";
+"voice_component_tip_message" = "Speak clearly and aloud\n\nMake sure your surroundings are silent";
+"voice_component_tip_button" = "START";
 "voice_component_exit_alert_question" = "Are you sure you will finish the process?";
 "voice_component_exit_alert_accept" = "Accept";
 "voice_component_exit_alert_cancel" = "Cancel";
-"voice_component_multiple_speakers_error_feedback" = "There are several voices in background. Try to be in a quiet environment";
-"voice_component_short_recorded_speech_feedback" = "The recording is too short.";
-"voice_component_quality_check_error_feedback" = "The audio quality is very low.";
-"voice_component_back_alt" = "Back";
-"voice_component_close_alt" = "Close";
+"voice_component_multiple_speakers_error_message" = "There are several voices in background. Try to be in a quiet environment";
+"voice_component_short_recorded_speech_message" = "The recording is too short.";
+"voice_component_quality_check_error_message" = "The audio quality is very low.";
+"voice_component_close_button_alt" = "Close";
 "voice_component_logo_alt" = "Logo";
-"voice_component_tip_alt"="";
+"voice_component_tip_anim_alt"="Animation in which a person appears holding the phone in front of their face and speaking directly to it. Before you begin, if you are using a screen reader, use headphones.";
 "voice_component_timeout_title"="Time exceeded";
 "voice_component_timeout_desc"="We have not been able to identify you. Try again.";
 ```

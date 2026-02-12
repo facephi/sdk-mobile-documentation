@@ -1,5 +1,20 @@
 # Registro de Cambios de SelphID
 
+## Version 2.6.X
+
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Novedades principales
+
+- Actualizada la dependencia de Core y refactorizado `SDK_TIMEOUT`.
+- Añadido `DOC_TYPE` a `extraData` de `FlowController`.
+- Actualizado `SelphIDWidget` a la versión `1.37.0`.
+
+### Correcciones
+
+- Eliminada la referencia a un archivo inexistente.
+---
+
 ## Version 2.5.X  
 **Última versión: 2.5.1 - 28/01/2026**
 

@@ -1,5 +1,18 @@
 # Tracking Changelog
 
+## Version 2.6.X
+
+**Last release: 2.6.0 - 12/02/2026**
+
+### Main Updates
+
+- Configured CD to run on iOS-SDK.
+
+### Fixes
+
+- Fixed parsing of Steps map.
+
+---
 
 ## Version 2.5.X  
 **Last release: 2.5.3 - 28/01/2026**

@@ -1,5 +1,27 @@
 # Registro de Cambios de NFC
 
+## Version 2.14.X
+
+**Última versión: 2.14.0 - 12/02/2026**
+
+### Novedades principales
+
+- Añadido `activeAuthenticationChallenge` a `NfcConfigurationData`. Permite inyectar un test personalizado para validarlo posteriormente y proteger contra ataques de repetición.
+- Añadido el parámetro `onlyPACE` a `NfcConfigurationData`. Cuando está habilitado, solo se detectan documentos PACE/SAC. Disponible a partir de iOS ≥ 16 y requiere la cadena PACE en los *entitlements*.
+- Mejorada la gestión de `tagConnectionLostTimer`. Anteriormente un único temporizador podía abarcar varias peticiones cuando las respuestas eran grandes.
+- Mejorado el manejo de ChipAuthentication y la gestión de `skipCA`.
+- Añadido soporte para PACE Paso 2 con Integrated Mapping para documentos de identidad peruanos.
+- Mejorado el manejo de grandes bloques de información durante el procesamiento.
+
+### Correcciones
+
+- Corregido el error *Wrong Length* en documentos peruanos durante la validación de Active Authentication.
+- Limpiado `secureMessaging` cuando falla PACE para evitar interferencias con procesos BAC.
+- Mejorada la gestión y el mecanismo de reintento para el error `0x69,0x85` (“Conditions of use not satisfied”).
+
+---
+
+
 ## Versión 2.13.X  
 **Última versión: 2.13.4 – 27/01/2026**
 

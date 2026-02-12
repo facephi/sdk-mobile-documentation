@@ -1,5 +1,15 @@
 # Selphi Changelog
 
+## Version 2.6.X
+
+**Last release: 2.6.0 - 12/02/2026**
+
+### Main Updates
+
+- Updated Selphi dependency to resolve blank navigation issue on IAD.
+- Updated widget to version v6.0.2.
+
+---
 
 ## Version 2.5.X  
 **Last release: 2.5.1 – 19/01/2026**

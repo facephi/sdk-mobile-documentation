@@ -71,13 +71,13 @@ the **_SDKMobile_** components.
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.5.0'
+pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 To install the NFC component, the following entry must be included in the application's Podfile:
 
 ```java
-pod 'FPHISDKNFCComponent', '~> 2.13.0'
+pod 'FPHISDKNFCComponent', '~> 2.14.0'
 ```
 
 #### SPM
@@ -189,7 +189,6 @@ variety of documents.
 ##### documentNumber
 
 Indicates the document number or media number depending on the document to be read.
-document to be read.
 
 This field is mandatory.
 
@@ -226,6 +225,18 @@ This enum changes the how the progress is shown in the nfc capture modal. Availa
 ##### tagSessionTimeout
 
 The reading process is made with small data transfers between the device and the NFC chip. This comunication usually takes ~100ms, but there have been reports of "hangs". This parameter sets a timeout to avoid them. Default value is 1500ms, and if nil, there is no timeout.
+
+##### activeAuthenticationChallenge
+
+This parameter allows to inject a custom challenge that can be checked later to guard of Replay Attacks.
+
+##### onlyPACE
+
+If true it will only detect PACE/SAC documents. Only available from >=iOS16. Needs PACE string in the entitlement's file.
+
+#####  tagConnectionLostTimer
+
+Before we had a single timer that spanned more than one request if the response was big.
 
 ---
 

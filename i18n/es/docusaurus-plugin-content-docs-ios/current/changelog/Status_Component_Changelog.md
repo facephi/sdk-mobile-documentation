@@ -1,5 +1,14 @@
 # Registro de Cambios de Status/Diagnóstico
 
+## Version 2.6.X
+
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Correcciones
+
+- Corregido el texto de VoiceOver en la pantalla Previous Tip.
+
+--
 
 ## Versión 2.5.X
 **Última versión: 2.5.0 – 12/12/2025**

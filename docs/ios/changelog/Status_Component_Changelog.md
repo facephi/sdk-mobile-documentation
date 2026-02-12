@@ -1,5 +1,14 @@
 # Status/Diagnostic Changelog
 
+## Version 2.6.X
+
+**Last release: 2.6.0 - 12/02/2026**
+
+### Fixes
+
+- Fixed VoiceOver text on the Previous Tip screen.
+
+--
 
 ## Version 2.5.X
 **Last release: 2.5.0 – 12/12/2025**

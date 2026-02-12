@@ -1,5 +1,18 @@
 # Registro de Cambios de Tracking
 
+## Version 2.6.X
+
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Novedades principales
+
+- Configurado CD para ejecutarse en iOS-SDK.
+
+### Correcciones
+
+- Corregido el parseo del mapa de Steps.
+
+---
 
 ## Versión 2.5.X  
 **Última versión: 2.5.3 - 28/01/2026**

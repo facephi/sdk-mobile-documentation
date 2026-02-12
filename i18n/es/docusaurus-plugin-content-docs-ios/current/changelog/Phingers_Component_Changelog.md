@@ -1,5 +1,23 @@
 # Registro de Cambios de Phingers
 
+## Version 2.6.X
+
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Novedades principales
+
+- Mejorado el comportamiento del selector de cámara.
+- Mejorado el renderizado y la alineación de la máscara de pulgar.
+
+### Correcciones
+
+- Corregido el error del botón de atrás en `PreviousFingerSelectorView`.
+- Corregido el flujo cuando no hay tip previo disponible.
+- Solucionado un problema por el cual `UITableViewDelegate` no reconocía los eventos de toque.
+- Corregido un cierre inesperado causado por un índice fuera de rango en `livenessScores`.
+
+---
+
 ## Versión 2.5.X  
 **Última versión: 2.5.0 – 15/12/2025**
 

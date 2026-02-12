@@ -50,7 +50,7 @@ Actualmente las librerías de FacePhi se distribuyen de forma remota a través d
 Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-pod 'FPHISDKMainComponent', '~> 2.5.0'
+pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 - Se recomienda utilizar también el componente de VideoRecording con el de tracking (`FPHISDKTrackingComponent`).
@@ -58,7 +58,7 @@ pod 'FPHISDKMainComponent', '~> 2.5.0'
 - Para instalar el componente actual deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```
-pod 'FPHISDKVideoRecordingComponent'
+pod 'FPHISDKVideoRecordingComponent', '~> 2.6.0'
 ```
 
 - Se debe declarar esta dependencia dentro del target de la app y de la extensión (esto último se explicará a continuación)

@@ -1,5 +1,26 @@
 # NFC Changelog
 
+## Version 2.14.X
+
+**Last release: 2.14.0 - 12/02/2026**
+
+### Main Updates
+
+- Added `activeAuthenticationChallenge` to `NfcConfigurationData`. Allows injecting a custom challenge to validate later and protect against replay attacks.
+- Added `onlyPACE` parameter to `NfcConfigurationData`. When enabled, only PACE/SAC documents are detected. Available from iOS ≥ 16 and requires PACE string in entitlements.
+- Improved `tagConnectionLostTimer` management. Previously a single timer could span multiple requests when responses were large.
+- Improved ChipAuthentication handling and `skipCA` management.
+- Added PACE Step 2 with Integrated Mapping support for Peruvian ID cards.
+- Improved handling of large data chunks during processing.
+
+### Fixes
+
+- Fixed Wrong Length error on Peruvian documents during Active Authentication validation.
+- Cleared `secureMessaging` when PACE fails to prevent interference with BAC processes.
+- Improved management and retry mechanism for error `0x69,0x85` (“Conditions of use not satisfied”).
+
+---
+
 ## Version 2.13.X  
 **Last release: 2.13.4 – 27/01/2026**
 

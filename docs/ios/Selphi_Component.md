@@ -63,14 +63,14 @@ completely before the installation of the components of the **_SDKMobile_** comp
 - Currently FacePhi libraries are distributed remotely through different dependency managers, in this case Cocoapods. The **mandatory** dependencies that must have been previously installed (by adding them in the Podfile file of the project) are:
 
 ```
-  pod 'FPHISDKMainComponent', '~> 2.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 - To install the current component, the following entry must be included in the _Podfile_ of the project
   entry in the _Podfile_ of the application:
 
 ```
-  pod 'FPHISDKSelphiComponent', '~> 2.5.0'
+  pod 'FPHISDKSelphiComponent', '~> 2.6.0'
 ```
 
 - Once the dependencies are installed, the different functionalities of the component can be used.

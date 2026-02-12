@@ -70,14 +70,14 @@ the **_SDKMobile_** components.
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.5.0'.
+  pod 'FPHISDKMainComponent', '~> 2.6.0'.
 ```
 
 - To install the current component, the following entry must be included in the _Podfile_ of the project
   entry in the _Podfile_ of the application:
 
   ```java
-  pod 'FPHISDKPhingersTFComponent', '~> 2.5.0'.
+  pod 'FPHISDKPhingersTFComponent', '~> 2.6.0'.
   ```
 
 - Once the dependencies have been installed, you will be able to use the different
@@ -203,6 +203,18 @@ Draw an ellipse in the capture screen on detected fingerprint.
 #### 5.1.11 cropWidth & cropHeight
 
 Sets the width and height of the cropped capture photo.
+
+#### 5.1.12 showPreviousFingerSelector
+
+Indicates whether or not the "showPreviousFingerSelector" screen is displayed.
+
+#### 5.1.13 fingerSelectorHandOrientation
+
+indicate which hand options will be displayed on the PreviousFingerSelectorView screen.
+
+#### 5.1.14 fingerSelectorOptions
+
+indicate which fingers options will be displayed on the PreviousFingerSelectorView screen.
 
 ---
 
@@ -509,8 +521,27 @@ The texts can be customized by overriding the value of these keys inside a **Loc
 "phingers_tf_component_exit_alert_cancel"="Cancel";
 "phingers_tf_component_exit_alert_finish" = "Finish";
 "phingers_tf_component_exit_alert_accept" = "Accept";
+"phingers_tf_component_capture_no_slap" = "Place your fingers inside the mark";
+"phingers_tf_component_capture_no_finger" = "Place your finger %d inside the mark";
+"phingers_tf_component_close_alt" = "Close";
+"phingers_tf_component_right_handpalm_alt" = "";
+"phingers_tf_component_left_handpalm_alt" = "";
+"phingers_tf_component_selector_hand_question" = "Which hand will you use?";
+"phingers_tf_component_selector_hand_left" = "Left";
+"phingers_tf_component_selector_hand_right" = "Right";
+"phingers_tf_componentt_selector_secondary_question" = "Which fingerprints do you want to scan?";
+"phingers_tf_component_selector_option_index" = "Index finger";
+"phingers_tf_component_selector_option_middle" = "Middle finger";
+"phingers_tf_component_selector_option_ring" = "Ring finger";
+"phingers_tf_component_selector_option_little" = "Little finger";
+"phingers_tf_component_selector_option_thumb" = "Thumb";
+"phingers_tf_component_selector_option_all4" = "4 fingers (index, middle, ring and little)";
+"phingers_tf_component_selector_option_all4_sequence" = "4 fingers (one by one)";
+"phingers_tf_component_selector_option_all5_sequence" = "5 fingers (one by one)";
+"phingers_tf_component_selector_primary_button" = "Continue";
+"phingers_tf_component_selector_select_button" = "SELECT";
 
-// WIDGET
+// Originally from TF
 "phingers_tf_component_label_frame" = "Keep your fingers steady";
 "phingers_tf_component_label_morethan_expected_fingers" = "More than %d %@";
 "phingers_tf_component_label_fingers" = "Fingers";
@@ -543,6 +574,7 @@ The texts can be customized by overriding the value of these keys inside a **Loc
 "phingers_tf_component_label_hand" = "Hand";
 "phingers_tf_component_label_wronghand" = "Wrong hand detected\nPlease present %@";
 "phingers_tf_component_label_too_few_fingers_detected" = "Too few fingers detected";
+
 ```
 
 Thus, if you want to modify for example the text "_START_" of the key `phingers_tf_component_tip_button_message` for the language **en-EN**, you must go to the file **Localizable.strings** in the folder **en-EN.lproj** if it exists (if not, you must create it) and there, add:
