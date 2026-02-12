@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">SelphID Widget iOS | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/SelphID_widget_ios"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-resources-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-resources-current"><meta data-rh="true" property="og:title" content="SelphID Widget iOS | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. ¿Qué es el widget?"><meta data-rh="true" property="og:description" content="1. ¿Qué es el widget?"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/SelphID_widget_ios"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/resources/SelphID_widget_ios" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/SelphID_widget_ios" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/resources/SelphID_widget_ios" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"SelphID Widget iOS","item":"https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/SelphID_widget_ios"}]}</script><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.63f7bfbe.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.3d014d70.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.deaf9a6d.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.eb299d9d.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -24,7 +24,7 @@ Las funciones que facilita este widget son:</p>
 <hr>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-cómo-se-integra-el-widget">2. ¿Cómo se integra el widget?<a href="#2-cómo-se-integra-el-widget" class="hash-link" aria-label="Enlace directo al 2. ¿Cómo se integra el widget?" title="Enlace directo al 2. ¿Cómo se integra el widget?" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-librerías-requeridas">2.1. Librerías Requeridas<a href="#21-librerías-requeridas" class="hash-link" aria-label="Enlace directo al 2.1. Librerías Requeridas" title="Enlace directo al 2.1. Librerías Requeridas" translate="no">​</a></h3>
-<p>FacePhi distribuye las librerías necesarias para integrar el widget en un proyecto de iOS. Se distribuyen tanto librerías (frameworks), como recursos y licencias para el componente, las cuales se encuentran en el directorio lib.</p>
+<p>FacePhi distribuye las librerías necesarias para integrar el widget en un proyecto de iOS. Se distribuyen tanto librerías (frameworks), como recursos para el componente, las cuales se encuentran en el directorio lib.</p>
 <p>Frameworks:</p>
 <ul>
 <li class=""><code>FPhiSelphIDWidgetiOS.framework</code></li>
@@ -33,7 +33,9 @@ Las funciones que facilita este widget son:</p>
 <p>Recursos:</p>
 <ul>
 <li class=""><code>fphi-selphid-widget-resources-SelphID-1.0.zip</code></li>
-<li class=""><code>license.lic</code></li>
+</ul>
+<ul>
+<li class="">Solicitud de licencias al departamento de soporte.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-instalación-del-plugin-selphid-ios-widget">2.2. Instalación del plugin SelphID iOS Widget<a href="#22-instalación-del-plugin-selphid-ios-widget" class="hash-link" aria-label="Enlace directo al 2.2. Instalación del plugin SelphID iOS Widget" title="Enlace directo al 2.2. Instalación del plugin SelphID iOS Widget" translate="no">​</a></h3>
 <p>La instalación del plugin se realizará una vez se completen las siguientes acciones en su IDE XCode:</p>
@@ -94,6 +96,7 @@ En el zip de recursos, el cual se encuentra dentro de la carpeta strings, se pue
 <li class="">TShort: 15 segundos.</li>
 <li class="">TMedium: 20 segundos.</li>
 <li class="">TLong: 25 segundos.</li>
+<li class="">TVeryLong: 60 segundos.</li>
 </ul>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="310-propiedad-videofilename">3.10 Propiedad VideoFilename<a href="#310-propiedad-videofilename" class="hash-link" aria-label="Enlace directo al 3.10 Propiedad VideoFilename" title="Enlace directo al 3.10 Propiedad VideoFilename" translate="no">​</a></h4>
 <p>Establece la ruta absoluta del nombre del archivo en el que se grabará un video del proceso de captura. La aplicación es la responsable de solicitar los permisos necesarios al teléfono en caso de que esa ruta requiera de permisos adicionales. El widget, por defecto, no realizará ningún proceso de grabación a menos que se especifique una ruta de archivo mediante este método.</p>
@@ -161,7 +164,7 @@ Esta función recibe como parámetros el tiempo en el que se lanzó el evento, c
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="515-propiedades-matchingsidesscore-matchingfrontscore-y-matchingbackscore">5.1.5. Propiedades matchingSidesScore, matchingFrontScore y matchingBackScore<a href="#515-propiedades-matchingsidesscore-matchingfrontscore-y-matchingbackscore" class="hash-link" aria-label="Enlace directo al 5.1.5. Propiedades matchingSidesScore, matchingFrontScore y matchingBackScore" title="Enlace directo al 5.1.5. Propiedades matchingSidesScore, matchingFrontScore y matchingBackScore" translate="no">​</a></h4>
 <ul>
 <li class="">La propiedad &#x27;matchingSidesScore&#x27; devuelve un cálculo de la similitud de los datos leídos entre el front y el back del documento. El cálculo se realiza comprobando la similitud entre los campos comunes leídos en ambas caras. El resultado del cálculo será un valor entre 0.0 y 1.0 para el caso de que existan campos comunes en el documento. Cuanto mayor es el valor, más similares son los datos comparados.</li>
-<li class="">La propiedad &#x27;matchingFrontScore&#x27; devuelve un cálculo de la similitud de los datos leídos del front del documento. El cálculo se realiza comprobando la similitud entre los campos comunes le ídos en el frontal del document. El resultado del cálculo será un valor entre 0.0 y 1.0 para el caso de que existan campos comunes en el frontal. Cuanto mayor es el valor, más similares son los datos comparados.</li>
+<li class="">La propiedad &#x27;matchingFrontScore&#x27; devuelve un cálculo de la similitud de los datos leídos del front del documento. El cálculo se realiza comprobando la similitud entre los campos comunes leídos en el frontal del document. El resultado del cálculo será un valor entre 0.0 y 1.0 para el caso de que existan campos comunes en el frontal. Cuanto mayor es el valor, más similares son los datos comparados.</li>
 <li class="">La propiedad &#x27;matchingBackScore&#x27; devuelve un cálculo de la similitud de los datos leídos del back del documento. El cálculo se realiza comprobando la similitud entre los campos comunes leídos en el dorsal del document. El resultado del cálculo será un valor entre 0.0 y 1.0 para el caso de que existan campos comunes en el dorsal. Cuanto mayor es el valor, más similares son los datos comparados.</li>
 </ul>
 <p>Si el cálculo devuelve -1.0 es que el documento no contiene campos comunes o aún no se tiene información de las dos caras.</p>

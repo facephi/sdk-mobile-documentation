@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Selphi Widget iOS | SDK Mobile Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://facephi.github.io/sdk-mobile-documentation/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/Selphi_widget_ios"><meta data-rh="true" property="og:locale" content="es"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-resources-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-resources-current"><meta data-rh="true" property="og:title" content="Selphi Widget iOS | SDK Mobile Documentation"><meta data-rh="true" name="description" content="1. ¿Qué es el widget?"><meta data-rh="true" property="og:description" content="1. ¿Qué es el widget?"><link data-rh="true" rel="icon" href="/sdk-mobile-documentation/es/img/icon.png"><link data-rh="true" rel="canonical" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/Selphi_widget_ios"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/resources/Selphi_widget_ios" hreflang="en"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/Selphi_widget_ios" hreflang="es"><link data-rh="true" rel="alternate" href="https://facephi.github.io/sdk-mobile-documentation/docs/resources/Selphi_widget_ios" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Selphi Widget iOS","item":"https://facephi.github.io/sdk-mobile-documentation/es/docs/resources/Selphi_widget_ios"}]}</script><link rel="stylesheet" href="/sdk-mobile-documentation/es/assets/css/styles.63f7bfbe.css">
-<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.3d014d70.js" defer="defer"></script>
+<script src="/sdk-mobile-documentation/es/assets/js/runtime~main.deaf9a6d.js" defer="defer"></script>
 <script src="/sdk-mobile-documentation/es/assets/js/main.eb299d9d.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -34,6 +34,10 @@
 <li class="">Librería del widget core: <code>FPhiWidgetCore.framework</code></li>
 <li class="">Libreria ZipZap: <code>ZipZap.xcframework</code></li>
 <li class="">Librería nativa: <code>libc++.tbd</code></li>
+</ul>
+<ul>
+<li class="">Versión IAD: Añadir tambien las siguientes librerias:
+<code>FPHILicenseManager.XCFramework</code>, <code>IDLiveFaceCamera.XCFramework</code>, <code>IDLiveFaceDetection.XCFramework</code> and <code>IDLiveFaceIAD.XCFramework</code>.</li>
 </ul>
 <p>En el apartado &quot;Copy bundle resources&quot; hay que añadir los recursos del widget que se encuentran en el archivo <code>fphi-widget-resources-SelphiLive-1.2.zip</code>.</p>
 <p>Desde la versión de iOS 10.0, si la aplicación hace uso de la cámara, es necesario añadir la descripción del motivo para el que se accede a ella. Para esto hay que modificar el archivo info.plist de la aplicación añadiendo la descripción a la clave NSCameraUsageDescription:</p>
@@ -71,7 +75,7 @@ Los valores permitidos son:</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="325-locale">3.2.5. locale<a href="#325-locale" class="hash-link" aria-label="Enlace directo al 3.2.5. locale" title="Enlace directo al 3.2.5. locale" translate="no">​</a></h4>
 <p>Fuerza al widget a utilizar la configuración de idioma indicado por el parámetro locale.
 Este parámetro acepta tanto un código de idioma (p. ej. ‘en’) como un código de identificación regional (p. ej. ‘en_US’). Si el archivo de recursos del widget no tuviera una localización para el ‘locale’ seleccionado su configuración pasaría a utilizar el idioma por defecto.</p>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="326-logimages">3.2.6. logImages<a href="#326-logimages" class="hash-link" aria-label="Enlace directo al 3.2.6. logImages" title="Enlace directo al 3.2.6. logImages" translate="no">  ​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="326-logimages">3.2.6. logImages<a href="#326-logimages" class="hash-link" aria-label="Enlace directo al 3.2.6. logImages" title="Enlace directo al 3.2.6. logImages" translate="no">​</a></h4>
 <p>Activa o no el retorno de la lista de imágenes que se han capturado durante la ejecución de proceso de extracción. Si el parámetro de entrada se encuentra a <code>true</code>, se devolverá la lista de imágenes procesadas. En caso contrario, devolverá una lista vacía.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="327-tutorialflag">3.2.7. tutorialFlag<a href="#327-tutorialflag" class="hash-link" aria-label="Enlace directo al 3.2.7. tutorialFlag" title="Enlace directo al 3.2.7. tutorialFlag" translate="no">​</a></h4>
 <p>Establece la opción de mostrar un tutorial del proceso que se va a realizar a continuación. Una vez concluya el tutorial, el widget continuará con el proceso configurado.</p>
@@ -89,7 +93,7 @@ Este parámetro acepta tanto un código de idioma (p. ej. ‘en’) como un cód
 <li class=""><strong>FPhiWidgetExtractionDurationMedium</strong>: Duración de la extracción de 2 segundos.</li>
 <li class=""><strong>FPhiWidgetExtractionDurationLong</strong>: Duración de la extracción de 3 segundos.</li>
 </ul>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="3211-preferredorientation">3.2.11 preferredOrientation<a href="#3211-preferredorientation" class="hash-link" aria-label="Enlace directo al 3.2.11 preferredOrientation" title="Enlace directo al 3.2.11 preferredOrientation" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="3212-preferredorientation">3.2.12 preferredOrientation<a href="#3212-preferredorientation" class="hash-link" aria-label="Enlace directo al 3.2.12 preferredOrientation" title="Enlace directo al 3.2.12 preferredOrientation" translate="no">​</a></h4>
 <p>Configura las orientaciones que el widget permitirá en la ejecución.</p>
 <p>Los posibles valores son:</p>
 <ul>
@@ -103,6 +107,10 @@ Este parámetro acepta tanto un código de idioma (p. ej. ‘en’) como un cód
 <li class=""><strong>FPhiWidgetOrientationLandscapeSensor</strong>: Landscape izquierda y derecha permitidas.</li>
 <li class=""><strong>FPhiWidgetOrientationLocked</strong>: Todas las orientaciones permitidas pero el widget no cambiará de orientación dinámicamente.</li>
 </ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="3213-cameraflash">3.2.13 cameraFlash<a href="#3213-cameraflash" class="hash-link" aria-label="Enlace directo al 3.2.13 cameraFlash" title="Enlace directo al 3.2.13 cameraFlash" translate="no">​</a></h4>
+<p>Activa/Desactiva el flash de la cámara.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="3214-jpgquality">3.2.14 jpgQuality<a href="#3214-jpgquality" class="hash-link" aria-label="Enlace directo al 3.2.14 jpgQuality" title="Enlace directo al 3.2.14 jpgQuality" translate="no">​</a></h4>
+<p>Configura la calidad de compresión jpeg. Valor por defecto: 0.92f.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-métodos">3.3. Métodos<a href="#33-métodos" class="hash-link" aria-label="Enlace directo al 3.3. Métodos" title="Enlace directo al 3.3. Métodos" translate="no">​</a></h3>
 <p>El widget dispone de los siguientes métodos:</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="330-setlicense">3.3.0. setLicense<a href="#330-setlicense" class="hash-link" aria-label="Enlace directo al 3.3.0. setLicense" title="Enlace directo al 3.3.0. setLicense" translate="no">​</a></h4>
