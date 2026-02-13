@@ -162,7 +162,7 @@ Los valores permitidos son:
   **left** **hand**.
 
 - **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+  **right** **hand**.
 
 ```
 reticleOrientation: PhingersReticleOrientation.DT_LEFT
