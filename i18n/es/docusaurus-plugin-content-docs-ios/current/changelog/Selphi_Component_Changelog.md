@@ -1,5 +1,13 @@
 # Registro de Cambios de Selphi
 
+## Version 2.6.X
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Novedades principales
+- Actualizado y adaptado el widget a la versión mayor v6.0.4.
+
+---
+
 ## Version 2.5.X  
 **Última versión: 2.5.1 - 19/01/2026**
 

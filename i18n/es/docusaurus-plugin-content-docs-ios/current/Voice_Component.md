@@ -68,13 +68,13 @@ completo antes de la instalación de los componentes de la
 - Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```
-  	pod 'FPHISDKMainComponent', '~> 2.5.0'
+  	pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 - Para instalar el componente de VoiceID deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```
-  	pod 'FPHISDKVoiceIDComponent', '~> 2.5.0'
+  	pod 'FPHISDKVoiceIDComponent', '~> 2.6.0'
 ```
 
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
@@ -397,24 +397,24 @@ Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en l
 "voice_component_speech_message" = "Habla claro y cercano al micrófono";
 "voice_component_speech_noisy_message" = "Hay demasiado ruido. Intenta estar en un entorno silencioso.";
 "voice_component_success_message" = "Grabación registrada";
-"voice_component_phrase_generic_error_feedback" = "Por favor, repite la frase.";
-"voice_component_phrase_long_silence_feedback" = "Habla durante 2 segundos o más.";
-"voice_component_phrase_long_reverberation_feedback" = "Demasiado eco. Prueba en otro entorno.";
+"voice_component_phrase_generic_error_message" = "Por favor, repite la frase.";
+"voice_component_phrase_long_silence_message" = "Habla durante 2 segundos o más.";
+"voice_component_phrase_long_reverberation_message" = "Demasiado eco. Prueba en otro entorno.";
 "voice_component_tip_title" = "Reconocimiento de voz";
-"voice_component_tip_desc" = "Habla claro y en voz alta.\n\nAsegúrate de estar en un entorno silencioso";
-"voice_component_tip_button_message" = "COMENZAR";
+"voice_component_tip_message" = "Habla claro y en voz alta.\n\nAsegúrate de estar en un entorno silencioso";
+"voice_component_tip_button" = "COMENZAR";
 "voice_component_exit_alert_accept"="Aceptar";
-"voice_component_exit_alert_cancel"="Cancel";
-"voice_component_exit_alert_question" = "¿Seguro que finalizar el proceso?";
-"voice_component_multiple_speakers_error_feedback" = "Se ha detectado voces de fondo. Asegúrate de estar en un entorno silencioso";
-"voice_component_short_recorded_speech_feedback" = "La grabación ha sido muy corta.";
-"voice_component_quality_check_error_feedback" = "La calidad del audio es insuficiente.";
-"voice_component_back_alt" = "Atrás";
-"voice_component_close_alt" = "Cerrar";
+"voice_component_exit_alert_cancel"="Cancelar";
+"voice_component_exit_alert_question" = "¿Seguro que quiere finalizar el proceso?";
+"voice_component_multiple_speakers_error_message" = "Se ha detectado voces de fondo. Asegúrate de estar en un entorno silencioso";
+"voice_component_short_recorded_speech_message" = "La grabación ha sido muy corta.";
+"voice_component_quality_check_error_message" = "La calidad del audio es insuficiente.";
+"voice_component_close_button_alt" = "Cerrar";
 "voice_component_logo_alt" = "Logo";
-"voice_component_tip_alt"="";
+"voice_component_tip_anim_alt"="Animación en la que aparece una persona que sujeta el teléfono delante de su cara y habla directamente dirigiéndose a él. Antes de empezar, si usas lector de pantalla, utiliza auriculares.";
 "voice_component_timeout_title"="Tiempo superado";
 "voice_component_timeout_desc"="No hemos podido identificarte. Inténtalo de nuevo.";
+
 ```
 
 De este modo, si se desea modificar por ejemplo el texto “_COMENZAR_” de la clave `voice_component_tip_button_message` para el idioma **es-MX**, se deberá ir al archivo **Localizable.strings** de la carpeta **es-MX.lproj** si es que existe (si no, se deberá crear) y ahí, añadir:

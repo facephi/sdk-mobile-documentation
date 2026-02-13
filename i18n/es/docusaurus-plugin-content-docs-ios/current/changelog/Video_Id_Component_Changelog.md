@@ -1,5 +1,18 @@
 # Registro de Cambios de VideoID
 
+## Version 2.6.X
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Novedades principales
+- Añadido soporte para detección múltiple de rostros.
+- Refactorizado `DetectFaceServiceProtocol` para admitir soluciones tanto nativas como basadas en helper.
+
+
+### Correcciones
+- Corregido el literal en portugués para “Cancel”.
+- Revertido el uso del servicio Reader y restaurada la implementación legacy con funcionalidades nativas.
+
+---
 
 ## Versión 2.5.X  
 **Última versión: 2.5.0 – 12/12/2025**

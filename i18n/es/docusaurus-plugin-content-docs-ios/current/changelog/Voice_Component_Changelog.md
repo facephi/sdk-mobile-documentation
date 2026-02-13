@@ -1,5 +1,13 @@
 # Registro de Cambios de VoiceID
 
+## Version 2.6.X
+
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Novedades principales
+- Modificados los literales de VoiceOver de accesibilidad en la pantalla de grabación para mejorar la experiencia de usuario.
+
+---
 
 ## Versión 2.5.X  
 **Última versión: 2.5.0 – 12/12/2025**

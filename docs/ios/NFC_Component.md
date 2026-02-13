@@ -71,13 +71,13 @@ the **_SDKMobile_** components.
 The mandatory dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.5.0'
+pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 To install the NFC component, the following entry must be included in the application's Podfile:
 
 ```java
-pod 'FPHISDKNFCComponent', '~> 2.13.0'
+pod 'FPHISDKNFCComponent', '~> 2.14.0'
 ```
 
 #### SPM
@@ -170,26 +170,16 @@ If set to true, if an error or lack of permissions occurs, the sdk will display 
 
 ##### extractionTimeout
 
-Sets the maximum time the readout can be performed.
+Sets the maximum time the readout can be performed. This affects the time the app will wait from the moment the NFC's reading modal appears until it stops.
+NOTE: There is also an internal timeout in iOS15 and inferior. If a tag is detected, the reading must be done before 20 seconds have passed. This value can't be changed as it's forced by the SO.
 
-#### 5.1.2. Advanced Documentation
+#### 5.1.2 MRZ Key parameters
 
-##### enableDebugMode
-
-Enable debug mode for the component.
-
-##### skipPace
-
-Indicates that only NFC BAC reading is desired. This is a simpler and faster
-simpler and faster information that allows reading of a wider variety of documents.
-variety of documents.
-
-#### 5.1.3 Other parameters
+If one of this parameters' value is not correct, the authentication step of the communication process with the chip will fail with `ErrorType.OTHER(NfcError.NFC_INVALID_MRZ_KEY.rawValue)`.
 
 ##### documentNumber
 
 Indicates the document number or media number depending on the document to be read.
-document to be read.
 
 This field is mandatory.
 
@@ -207,6 +197,22 @@ Indicates the expiry date as it appears in the document
 
 This field is mandatory.
 
+#### 5.1.3. Advanced Documentation
+
+##### enableDebugMode
+
+Enable debug mode for the component.
+
+##### skipPace
+
+Indicates that only NFC BAC reading is desired. This is a simpler and faster communication protocol that allows reading a wider variety of documents.
+
+##### onlyPace
+
+Indicates that only NFC Chips that support PACE are desired. This is a more secure and modern communication protocol that adds a layer of security. Only available from >=iOS16. Needs PACE string in the entitlement's file of the app.
+
+#### 5.1.4 Other parameters
+
 ##### issuer
 
 Indicates the country of origin of the document to be read.
@@ -217,15 +223,31 @@ Indicates the type of document to be read: - ID_CARD - PASSPORT - FOREIGN_CARD
 
 ##### readableTags
 
-An array that indicates which data group's should be read (i.e. if the face is not needed, you can skip DG2 in the array and the reading process will be a lot quicker). By default the controller tries to read every available data group.
+An array that indicates which data group's should be read (i.e. if the face is not needed, you can skip DG2 in the array and the reading process will be a lot quicker). Its value is null by default, in this case, it will try to read every DG (while skipping the signature or image if configured as false `extractSignatureImage` and `extractFacialImage`).
 
 ##### readingProgressStyle
 
-This enum changes the how the progress is shown in the nfc capture modal. Available options are `DOTS` (default) and `PERCENTAGE`.
+This enum changes how the progress is shown in the nfc capture modal. Available options are `DOTS` (default) and `PERCENTAGE`.
 
 ##### tagSessionTimeout
 
 The reading process is made with small data transfers between the device and the NFC chip. This comunication usually takes ~100ms, but there have been reports of "hangs". This parameter sets a timeout to avoid them. Default value is 1500ms, and if nil, there is no timeout.
+
+##### activeAuthenticationChallenge
+
+This parameter allows to inject a custom challenge that can be checked later to guard of Replay Attacks.
+
+#####  tagConnectionLostTimer
+
+Before we had a single timer that spanned more than one request if the response was big.
+
+#####  extractFacialImage
+
+Default is true. If false, the reading process will skip DG2 which contains the facial image.
+
+#####  extractSignatureImage
+
+Default is false. If false, the reading process will skip DG7 which contains the signature image.
 
 ---
 
@@ -403,6 +425,7 @@ Information of the document validations sorted by:
 - accessProtocol
 - activeAuthenticationSupported
 - activeAuthenticationValidation
+- activeAuthenticationSignature
 - chipAuthenticationValidation
 - dataGroupsHashesValidation
 - documentSigningValidation

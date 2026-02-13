@@ -72,13 +72,13 @@ Actualmente las librerías de FacePhi se distribuyen de forma remota a través d
 Las dependencias obligatorias que deberán haberse instalado previamente (añadiéndolas en el fichero Podfile del proyecto) son:
 
 ```java
-pod 'FPHISDKMainComponent', '~> 2.5.0'
+pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 Para instalar el componente de NFC deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 
 ```java
-pod 'FPHISDKNFCComponent', '~> 2.13.0'
+pod 'FPHISDKNFCComponent', '~> 2.14.0'
 ```
 
 #### SPM
@@ -226,6 +226,19 @@ Este enumerado cambia la forma en la que se muestra el progreso de captura en el
 ##### tagSessionTimeout
 
 El proceso de lectura se realiza mediante pequeñas transferencias de datos entre el dispositivo y el chip NFC. Esta comunicación suele tardar ~100ms, pero se han reportado "bloqueos" (hangs). Este parámetro establece un tiempo de espera (timeout) para evitarlos. El valor por defecto es 1500ms y, si es nil, no hay timeout.
+
+##### activeAuthenticationChallenge
+
+Este parámetro permite inyectar un desafío personalizado que puede comprobarse posteriormente para proteger contra ataques de repetición.
+
+##### onlyPACE
+
+Si es verdadero, solo detectará documentos PACE/SAC. Disponible únicamente a partir de iOS ≥ 16. Requiere la cadena PACE en el archivo de *entitlements*.
+
+##### tagConnectionLostTimer
+
+Antes existía un único temporizador que podía abarcar más de una petición cuando la respuesta era grande.
+
 
 ---
 

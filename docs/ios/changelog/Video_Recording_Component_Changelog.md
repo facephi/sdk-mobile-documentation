@@ -1,5 +1,19 @@
 # VideoRecording Changelog
 
+## Version 2.6.X
+**Last release: 2.6.0 - 12/02/2026**
+
+### Main Updates
+- Refactored error management in `start` method.
+- Improved error handling and tracking reporting.
+- Added support for using `integrationId` from `TrackingConfigurationData`.
+
+### Fixes
+- Made `sharedContainer` an optional class parameter instead of implicitly unwrapped.
+- Fixed DEMOS feature not supporting integrationId injection in VideoRecording.
+- Fixed issue where VideoRecording stopped after NFC completion when iOS native modal closed during IDV flow.
+
+---
 
 ## Version 2.5.X  
 **Last release: 2.5.3 - 28/01/2026**

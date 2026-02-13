@@ -50,16 +50,16 @@ Currently FacePhi libraries are distributed remotely through different dependenc
 
 The **mandatory** dependencies that must have been previously installed (adding them to the project's Podfile file) are:
 
-```
-pod 'FPHISDKMainComponent'
+```java
+pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 
 - It is recommended to also use the VideoRecording component with the tracking component (`FPHISDKTrackingComponent`).
 
 - To install the current component, the following entry must be included in the application's Podfile:
 
-```
-pod 'FPHISDKVideoRecordingComponent'
+```java
+pod 'FPHISDKVideoRecordingComponent', '~> 2.6.0'
 ```
 
 - This dependency must be declared within the target of the app and the extension (the latter will be explained below)

@@ -62,11 +62,11 @@ Para evitar conflictos y problemas de compatibilidad, en caso de querer instalar
 
 Actualmente las librerías de FacePhi se distribuyen de forma remota a través de diferentes gestores de dependencias, en este caso Cocoapods. Las dependencias **obligatorias** que deberán haberse instalado previamente (añadiéndolas en el fichero *Podfile* del proyecto) son:
 ```java
-  pod 'FPHISDKMainComponent', '~> 2.5.0'
+  pod 'FPHISDKMainComponent', '~> 2.6.0'
 ```
 - Para instalar el componente actual deberá incluirse la siguiente entrada en el Podfile de la aplicación:
 ```java
-pod 'FPHISDKPhingersTFComponent', '~> 2.5.0'
+pod 'FPHISDKPhingersTFComponent', '~> 2.6.0'
 ```
 - Una vez instaladas las dependencias, se podrá hacer uso de las diferentes funcionalidades del componente.
 
@@ -192,6 +192,19 @@ Dibuja una elipsa durante la captura cuando se detecta una posible huella.
 #### 5.1.11 cropWidth & cropHeight
 
 Indica un ancho y alto para realizar un recorte de la captura.
+
+#### 5.1.12 showPreviousFingerSelector
+
+Indica si se muestra o no la pantalla "showPreviousFingerSelector".
+
+#### 5.1.13 fingerSelectorHandOrientation
+
+Indica qué opciones de mano se mostrarán en la pantalla `PreviousFingerSelectorView`.
+
+#### 5.1.14 fingerSelectorOptions
+
+Indica qué opciones de dedos se mostrarán en la pantalla `PreviousFingerSelectorView`.
+
 
 ---
 
@@ -489,14 +502,33 @@ Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en l
 "phingers_tf_component_capture_thumb" = "Mantenga el dedo firme";
 "phingers_tf_component_capture_phingers_not_focus" = "Mueva los dedos hasta que estén enfocados";
 "phingers_tf_component_capture_thumb_not_focus" = "Mueva el dedo hasta que esté enfocado";
-"phingers_tf_component_timeout_title"="Tiempo superado";
-"phingers_tf_component_timeout_desc"="Pedimos disculpas. No se ha podido hacer la captura.";
-"phingers_tf_component_exit_alert_cancel"="Cancel";
-"phingers_tf_component_exit_alert_question" = "¿Seguro que finalizar el proceso?";
+"phingers_tf_component_timeout_title" = "Tiempo superado";
+"phingers_tf_component_timeout_desc" = "Pedimos disculpas. No se ha podido hacer la captura.";
+"phingers_tf_component_exit_alert_cancel" = "Cancelar";
+"phingers_tf_component_exit_alert_question" = "¿Seguro que quiere finalizar el proceso?";
 "phingers_tf_component_exit_alert_finish" = "Finalizar";
 "phingers_tf_component_exit_alert_accept" = "Aceptar";
+"phingers_tf_component_capture_no_slap" = "Coloca tus dedos dentro de la marca";
+"phingers_tf_component_capture_no_finger" = "Coloca tu dedo %d dentro de la marca";
+"phingers_tf_component_close_alt" = "Cerrar";
+"phingers_tf_component_right_handpalm_alt" = "";
+"phingers_tf_component_left_handpalm_alt" = "";
+"phingers_tf_component_selector_hand_question" = "¿Qué mano utilizarás?";
+"phingers_tf_component_selector_hand_left" = "Izquierda";
+"phingers_tf_component_selector_hand_right" = "Derecha";
+"phingers_tf_componentt_selector_secondary_question" = "¿Qué huellas quieres escanear?";
+"phingers_tf_component_selector_option_index" = "Dedo índice";
+"phingers_tf_component_selector_option_middle" = "Dedo corazón";
+"phingers_tf_component_selector_option_ring" = "Dedo anular";
+"phingers_tf_component_selector_option_little" = "Dedo meñique";
+"phingers_tf_component_selector_option_thumb" = "Dedo pulgar";
+"phingers_tf_component_selector_option_all4" = "4 dedos (índice, corazón, anular y meñique)";
+"phingers_tf_component_selector_option_all4_sequence" = "4 dedos (uno a uno)";
+"phingers_tf_component_selector_option_all5_sequence" = "5 dedos (uno a uno)";
+"phingers_tf_component_selector_primary_button" = "Continuar";
+"phingers_tf_component_selector_select_button" = "SELECCIONAR";
 
-// WIDGET
+// Originally from TF
 "phingers_tf_component_label_frame" = "Mantenga los dedos firmes";
 "phingers_tf_component_label_morethan_expected_fingers" = "Más de %d %@";
 "phingers_tf_component_label_fingers" = "Dedos";
@@ -529,6 +561,7 @@ Las claves que contienen el sufijo **_\_alt_** son los literales utilizados en l
 "phingers_tf_component_label_hand" = "Mano";
 "phingers_tf_component_label_wronghand" = "Se ha detectado la mano incorrecta\nPor favor, presenta %@";
 "phingers_tf_component_label_too_few_fingers_detected" = "Se han detectado muy pocos dedos";
+
 
 ```
 

@@ -1,5 +1,14 @@
 # Registro de Cambios de SelphID
 
+## Versión 2.6.X
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Actualizaciones principales
+- Actualizada la dependencia Core y refactorizado TIMEOUT a SELPHID_TIMEOUT(UIImage?, UIImage?). Esas dos imágenes no serían nulas si se detecta un ataque de inyección.
+- Actualizado `SelphIDWidget` a la versión `1.37.0`.
+
+---
+
 ## Version 2.5.X  
 **Última versión: 2.5.1 - 28/01/2026**
 

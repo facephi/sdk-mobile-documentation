@@ -1,5 +1,15 @@
 # Registro de Cambios de Tracking
 
+## Versión 2.6.X
+**Última versión: 2.6.0 - 12/02/2026**
+
+### Correcciones
+- Corregido un problema por el cual `setCustomerId` no funcionaba. Actualizada la versión del widget a v1.2.6 para resolverlo.
+
+### Funcionalidades
+- Añadido el parámetro `integrationId` a `TrackingConfigurationData`.
+
+---
 
 ## Versión 2.5.X  
 **Última versión: 2.5.3 - 28/01/2026**
