@@ -114,18 +114,18 @@ The current component contains a series of Typescript methods and interfaces inc
 Below is the *SdkPhingersConfig* class, which allows you to configure the **Phingers** component:
 
 ```java
-SdkPhingersConfig = function () {
-    this.reticleOrientation     = "left";
-    this.returnFullFrameImage   = true;
-    this.returnProcessedImage   = true;
-    this.returnRawImage         = true;
-    this.useFlash               = true;
-    this.useLiveness            = true;
-    this.showTutorial           = false;
-    this.extractionTimeout      = 30000;
-    this.vibration              = false;
-    this.showDiagnostic         = true;
-    this.threshold              = 0.8;
+export interface PhingersConfiguration 
+{
+  reticleOrientation?: PhingersReticleOrientation;
+  fingersFilter?: FingersFilter;
+  showEllipses?: boolean;
+  useLiveness?: boolean;
+  showTutorial?: boolean;
+  vibration?: boolean;
+  extractionTimeout?: number;
+  showDiagnostic?: boolean;
+  threshold?: number;
+  showPreviousTip?: boolean;
 }
 ```
 
@@ -138,14 +138,12 @@ All configuration can be found in the component's ***sdk-phingers/www/SdkPhinger
 
 When calling the component, there are a series of parameters that must be included. They will be briefly discussed below.
 
-
-### 3.1 reticleOrientation
+### 3.0 ReticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
-
-Sets the fingerprint detection mode and indicates which fingers are to
-be detected during the process. The allowed values are:
+Sets the fingerprint detection mode and indicates which hand will be detected during the process. 
+Allowed values ​​are:
 
 - **DT_LEFT**: Enables the capture of the **four** **fingers** of the
   **left** **hand**.
@@ -153,130 +151,114 @@ be detected during the process. The allowed values are:
 - **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
   **left** **hand**.
 
-- **DT_THUMB**: The capture of a **thumb** is activated.
-
-
 ```
-reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
+reticleOrientation: PhingersReticleOrientation.DT_LEFT
 ```
 
-### 3.2 returnFullFrameImage
+### 3.1 FingersFilter
+
+It allows you to define which fingers are captured during the process:
+
+**type:** *FingersFilter*
+
+The allowed values are:
+
+- **DT_RING_FINGER**
+- **DT_THUMB_FINGER**
+- **DT_INDEX_FINGER**
+- **DT_LITTLE_FINGER**
+- **DT_MIDDLE_FINGER**
+- **DT_SLAP**
+- **DT_ALL_4_FINGERS_ONE_BY_ONE**
+- **DT_ALL_5_FINGERS_ONE_BY_ONE**
+
+```
+fingersFilter: FingersFilter.DT_ALL_5_FINGERS_ONE_BY_ONE
+```
+
+### 3.2 ShowEllipses
 
 **type:** *boolean*
 
-Specifies whether to return the full image of the camera in which the
-fingers have been detected.
+Draw an ellipse in the capture screen on detected fingerprint.
 
 ```
-returnFullFrameImage: true,
+showEllipses: true
 ```
 
-### 3.3 returnProcessedImage
+### 3.3 UseLiveness
 
 **type:** *boolean*
 
-If set to **true** it will return in the result the images in the same
-form as they have been captured.
+Enables or disables the liveness detector during the fingerprint capture process. 
+Default is set to **true**.
 
 ```
-returnProcessedImage: true;
+useLiveness: true;
 ```
 
-### 3.4 returnRawImage
+### 3.4 ShowTutorial
 
 **type:** *boolean*
 
-
-If set to **true** it will return in the result the images in the same
-form as they have been captured.
+If set to **true**. Indicates whether the component activates the tutorial screen. This view intuitively explains how the capture is performed.
 
 ```
-mReturnRawImage: true;
+showTutorial: true;
 ```
 
-### 3.5 useFlash
+### 3.5 Vibration
 
 **type:** *boolean*
 
-Enables or disables the camera flash during the fingerprint capture
-process. Default is set to **true**.
-
+If set to **true**. Indicates whether vibration feedback is desired at the end of the process.
 
 ```
-useFlash: false;
+vibration: false
 ```
 
-### 3.6 useLiveness
+### 3.6 ExtractionTimeout
 
-**type:** *boolean*
+**type:** *number*
 
-Enables or disables the liveness detector during the fingerprint capture
-process. Default is set to **true**.
-
-```
-useLiveness: false;
-```
-
-### 3.7 showTutorial
-
-**type:** *boolean*
-
-Indicates whether the component activates the tutorial screen. This view
-intuitively explains how the capture is performed.
+Sets the maximum time the reading can be done.
+Value expressed in milliseconds.
 
 ```
-showTutorial: false;
+extractionTimeout: 30000
 ```
 
-### 3.8 vibration
+### 3.8 Threshold
 
-**type:** *boolean*
+**type:** *number*
 
-Enables the vibration during the process.
-
-```
-vibration: false;
-```
-
-### 3.9 extractionTimeout
-
-**type:** *int*
-
-Sets a stabilisation mode prior to any authentication process in the
-widget. This mode forces the widget not to start any process if the user
-is not facing forward and not moving his head.
-
+The parameter configures a captureQualityThreshold, to define a quality
+threshold to perform the capture.
+Default value 0.9f.
 
 ```
-extractionTimeout: false;
+threshold: 0.90
 ```
 
-### 3.10 showDiagnostic
+### 3.9 ShowDiagnostic
 
 **type:** *boolean*
 
 Display diagnostic screens at the end of the process
 
 ```
-showDiagnostic: false;
-```
-### 3.11 threshold
-
-**type:** *double*
-
-The parameter configures a captureQualityThreshold, to define a quality
-threshold to perform the capture.
-
-```
-threshold: 0.8;
+showDiagnostic: false
 ```
 
-#### 3.12. showPreviousTip
+#### 3.10. ShowPreviousTip
 
 **type:** *boolean*
 
 It shows a pre-launch screen with information about the process to be carried out and a start button.
 
+```
+showPreviousTip: false
+```
 ---
 
 ## 4. Use of the component

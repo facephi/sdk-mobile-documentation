@@ -114,18 +114,18 @@ El componente actual contiene una serie de métodos e interfaces de Typescript i
 A continuación se muestra la clase *SdkPhingersConfig*, que permite configurar el componente de **Phingers**:
 
 ```java
-SdkPhingersConfig = function () {
-    this.reticleOrientation     = "left";
-    this.returnFullFrameImage   = true;
-    this.returnProcessedImage   = true;
-    this.returnRawImage         = true;
-    this.useFlash               = true;
-    this.useLiveness            = true;
-    this.showTutorial           = false;
-    this.extractionTimeout      = 30000;
-    this.vibration;
-    this.showDiagnostic;
-    this.threshold;
+export interface PhingersConfiguration 
+{
+  reticleOrientation?: PhingersReticleOrientation;
+  fingersFilter?: FingersFilter;
+  showEllipses?: boolean;
+  useLiveness?: boolean;
+  showTutorial?: boolean;
+  vibration?: boolean;
+  extractionTimeout?: number;
+  showDiagnostic?: boolean;
+  threshold?: number;
+  showPreviousTip?: boolean;
 }
 ```
 

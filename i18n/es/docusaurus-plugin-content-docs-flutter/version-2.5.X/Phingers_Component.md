@@ -42,9 +42,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_phingers:
   hosted:
-    name: sdkphingers
+    name: fphi_sdkmobile_phingers
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.5.0
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
@@ -116,172 +116,160 @@ A continuación se muestra la clase *PhingersConfiguration*, que permite configu
 class PhingersConfiguration
 {
   PhingersReticleOrientation mReticleOrientation;
-  bool mReturnFullFrameImage;
-  bool mReturnProcessedImage;
-  bool mReturnRawImage;
-  bool mUseFlash;
+  FingersFilter mFingersFilter;
+  bool mShowEllipses;
   bool mUseLiveness;
   bool mShowTutorial;
   bool mVibration;
   int mExtractionTimeout;
   bool? mShowDiagnostic;
   double? mThreshold;
+  bool? mShowPreviousTip;
 }
 ```
 
-A continuación, se comentarán todas las propiedades que se pueden definir en el objeto **PhingersConfiguration**:
+A continuación, se discutirán todas las propiedades que se pueden definir en el objeto **PhingersConfiguration**:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_voice/fphi_sdkmobile_phingers_configuration.dart.*** del componente.
+Toda la configuración se puede encontrar en el archivo ***fphi_sdkmobile_voice/fphi_sdkmobile_phingers_configuration.dart.*** del componente.
 </div>
 
-A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
+Al llamar al componente, se deben incluir una serie de parámetros. Se explicarán brevemente a continuación.
 
-### 3.0 reticleOrientation
+### 3.0 ReticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
-Establece el modo de detección de huellas dactilares e indica qué dedos deben
-ser detectado durante el proceso. Los valores permitidos son:
+Establece el modo de detección de huellas e indica qué mano se detectará durante el proceso. 
+Los valores permitidos son:
 
-- **LEFT**: Permite la captura de los **cuatro** **dedos** del
-  **mano izquierda**.
+- **DT_LEFT**: Enables the capture of the **four** **fingers** of the
+  **left** **hand**.
 
-- **RIGHT**: Permite la captura de los **cuatro** **dedos** del
-  **mano derecha**.
-
-- **THUMB**: Se activa la captura de un **pulgar**.
+- **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
+  **left** **hand**.
 
 ```
-reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
+mReticleOrientation = PhingersReticleOrientation.DT_LEFT
 ```
 
-### 3.1 returnFullFrameImage
+### 3.1 FingersFilter
+
+Permite definir qué dedos se capturan durante el proceso:
+
+**type:** *FingersFilter*
+
+Los valores permitidos son:
+
+- **DT_RING_FINGER**
+- **DT_THUMB_FINGER**
+- **DT_INDEX_FINGER**
+- **DT_LITTLE_FINGER**
+- **DT_MIDDLE_FINGER**
+- **DT_SLAP**
+- **DT_ALL_4_FINGERS_ONE_BY_ONE**
+- **DT_ALL_5_FINGERS_ONE_BY_ONE**
+
+```
+mFingersFilter = FingersFilter.DT_ALL_5_FINGERS_ONE_BY_ONE
+```
+
+### 3.2 ShowEllipses
 
 **type:** *boolean*
 
-Especifica si se debe devolver la imagen completa de la cámara en la que se
-Se han detectado dedos.
+Dibuja una elipse en la pantalla de captura sobre la huella dactilar detectada.
 
 ```
-returnFullFrameImage: true,
+mShowEllipses = true,
 ```
 
-### 3.2 returnProcessedImage
+### 3.3 UseLiveness
 
 **type:** *boolean*
 
-Si se establece en **true** devolverá en el resultado las imágenes del mismo
-forma tal como han sido capturados.
+Habilita o deshabilita el detector de vida durante la captura de huellas dactilares. 
+El valor predeterminado es **verdadero**.
 
 ```
-returnProcessedImage: true;
+mUseLiveness = true;
 ```
 
-### 3.3 returnRawImage
+### 3.4 ShowTutorial
 
 **type:** *boolean*
 
-Si se establece en **true** devolverá en el resultado las imágenes del mismo
-forma tal como han sido capturados.
+Si se establece en **true**, indica si el componente activa la pantalla del tutorial. Esta vista explica intuitivamente cómo se realiza la captura.
 
 ```
-mReturnRawImage: true;
+mShowTutorial = true;
 ```
 
-### 3.4 useFlash
+### 3.5 Vibration
 
 **type:** *boolean*
 
-Activa o desactiva el flash de la cámara durante la captura de huellas dactilares.
-proceso. El valor predeterminado está establecido en **true**.
+Si se establece en **verdadero**, indica si se desea retroalimentación de vibración al final del proceso.
 
 ```
-useFlash: false;
+mVibration = false;
 ```
 
-### 3.5 useLiveness
+### 3.6 ExtractionTimeout
 
-**type:** *boolean*
-
-Activa o desactiva el detector de vida durante la captura de huellas dactilares.
-proceso. El valor predeterminado está establecido en **true**.
-
-```
-useLiveness: false;
-```
-
-### 3.6 showTutorial
-
-**type:** *boolean*
-
-Indica si el componente activa la pantalla del tutorial. Esta vista
-Explica intuitivamente cómo se realiza la captura.
-
-```
-showTutorial: false;
-```
-
-### 3.7 vibration
-
-**type:** *boolean*
-
-Indica si se desea feedback de vibración al final del
-proceso.
-
-```
-vibration: false;
-```
-
-### 3.8 extractionTimeout
-
-**type:** *int*
+**type:** *number*
 
 Establece el tiempo máximo que se puede realizar la lectura.
+Valor expresado en milisegundos.
 
 ```
-extractionTimeout: false;
+mExtractionTimeout = 30000;
 ```
 
-### 3.9 showDiagnostic
+### 3.8 Threshold
+
+**type:** *float*
+
+El parámetro configura un captureQualityThreshold, para definir un umbral de calidad para realizar la captura. 
+Valor por defecto 0.9f.
+
+```
+mThreshold = 0.90;
+```
+
+### 3.9 ShowDiagnostic
 
 **type:** *boolean*
 
 Mostrar pantallas de diagnóstico al final del proceso.
 
 ```
-showDiagnostic: false;
-```
-### 3.10 threshold
-
-**type:** *double*
-
-El parámetro configura un captureQualityThreshold, para definir una calidad
-umbral para realizar la captura.
-
-```
-threshold: 0.8;
+mShowDiagnostic = false;
 ```
 
-#### 3.11. showPreviousTip
+#### 3.10. ShowPreviousTip
 
 **type:** *boolean*
 
-Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
+Muestra una pantalla de pre-lanzamiento con información del proceso a realizar y un botón de inicio.
+
+```
+mShowPreviousTip = false;
+```
 
 ---
 
 ## 4. Uso del componente
 
-A continuación se mostrará la manera de ejecutar la funcionalidad del componente actual.
+A continuación se mostrará cómo ejecutar la funcionalidad del componente actual.
 
 <div class="warning">
 <span class="warning">:warning:</span>
-Se recuerda que para lanzar un componente determinado previamente habrá que inicializar el SDK con su respectiva licencia, y después iniciar una nueva operación. Para más información consulte la documentación del Componente Core.
+Recuerde que para ejecutar un componente previamente determinado, deberá inicializar el SDK con su licencia correspondiente y luego iniciar una nueva operación. Para más información, consulte la documentación del componente principal.
 </div>
 
-Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguiente código:
+Una vez configurado el componente, para lanzarlo se debe ejecutar el siguiente código:
 
 ```
   Future<Either<Exception, PhingersResult>> launchPhingers() async {
@@ -305,23 +293,20 @@ Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguient
   PhingersConfiguration createStandardConfiguration() {
     PhingersConfiguration configurationWidget;
     configurationWidget = PhingersConfiguration();
-    configurationWidget.mReticleOrientation   = PhingersReticleOrientation.DT_LEFT; // LEFT, RIGHT or THUMB
-    configurationWidget.mReturnFullFrameImage = true;
-    configurationWidget.mReturnProcessedImage = true;
-    configurationWidget.mReturnRawImage       = true;
-    configurationWidget.mUseFlash             = true;
+    configurationWidget.mReticleOrientation   = PhingersReticleOrientation.DT_LEFT; // LEFT or RIGHT
     configurationWidget.mUseLiveness          = true;
-    configurationWidget.mExtractionTimeout    = 5000;
+    configurationWidget.mExtractionTimeout    = 50000;
     configurationWidget.mShowTutorial         = false;
+    configurationWidget.mFingersFilter        = FingersFilter.DT_ALL_5_FINGERS_ONE_BY_ONE;
     return configurationWidget;
   }
 ```
 
 ---
 
-## 5. Retorno de resultado
+## 5. Resultado Obtenido
+Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de un objeto **PhingersResult** a través de ***Promises***, ya sea una operación exitosa o un error:
 
-Como se muestra en el ejemplo anterior, el resultado se devuelve en forma de objeto **JSON** a través de ***Promises***, ya sea una operación exitosa o un error:
 ```
 FphiSdkmobilePhingers phingers = FphiSdkmobilePhingers();
 Map? resultJson = await phingers.startPhingersComponent(widgetConfigurationJSON: configuration);
@@ -329,85 +314,63 @@ Map? resultJson = await phingers.startPhingersComponent(widgetConfigurationJSON:
 return Right(PhingersResult.fromMap(resultJson));
 ```
 
-Independientemente de si el resultado es correcto/erróneo el resultado tendrá el siguiente formato:
+Independientemente de si el resultado es correcto o incorrecto, el resultado tendrá el siguiente formato:
 
 ```
-class CaptureResult
+class PhingersResult
 {
   final SdkFinishStatus finishStatus;
-  final String? finishStatusDescription;
+  final String finishStatusDescription;
   final String errorDiagnostic;
-  final String errorMessage;
-  final String data;
+  final String? errorMessage;
+  final dynamic fingers;
+  final dynamic slapImages;
 }
 ```
 <div class="note">
 <span class="note">:information_source:</span>
-El resultado será devuelto por medio de una Promise que contiene un objeto de la clase ***PhingersResult***. A continuación se amplía información sobre esos campos.
+El resultado se devolverá mediante una promesa que contiene un objeto de la clase ***PhingersResult***. A continuación, encontrará más información sobre estos campos.
 </div>
 
 ### 5.0 finishStatus
-- **1**: La operación fue exitosa.
-- **2**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
+
+- **1**: La operación se realizó correctamente.
+- **2**: Se produjo un error, que se indicará en la cadena errorType y, opcionalmente, se mostrará un mensaje de información adicional en la propiedad errorMessage.
 
 ### 5.1 finishStatusDescription
-- **STATUS_OK**: La operación fue exitosa.
-- **STATUS_ERROR**: Se ha producido un error, el cuál se indicará en el string `errorDiagnostic` y, opcionalmente, se mostrará un mensaje de información extra en la propiedad `errorMessage`.
 
-### 5.2 errorDiagnostic
- Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno, lo cual se indica en el parámetro finishStatus con el valor Error). Los valores que puede tener son los siguientes:
+- **STATUS_OK**: La operación se realizó correctamente.
+- **STATUS_ERROR**: Se ha producido un error, que se indicará en la cadena errorType y, opcionalmente, se mostrará un mensaje de información adicional en la propiedad errorMessage.
 
-- **NoError**: No ha ocurrido ningún error. El proceso puede continuar.
-- **UnknownError**: Error no gestionado. Posiblemente causado por un error en el bundle de recursos.
-- **CameraPermissionDenied**: Excepción que se produce cuando el sdk no tiene permiso de acceso a la cámara.
-- **SettingsPermissionDenied**: Excepción que se produce cuando el widget no tiene permiso de acceso a la configuración del sistema (*deprecated*).
-- **HardwareError**: Excepción que surge cuando existe algún problema de hardware del dispositivo, normalmente causado porque los recursos disponibles son muy escasos.
-- **ExtractionLicenseError**: Excepción que ocurre cuando ha habido un problema de licencias en el servidor.
-- **UnexpectedCaptureError**: Excepción que ocurre durante la captura de frames por parte de la cámara.
-- **ControlNotInitializedError**: El configurador del widget no ha sido inicializado.
-- **BadExtractorConfiguration**: Problema surgido durante la configuración del widget.
-- **CancelByUser**:  Excepción que se produce cuando el usuario para la extracción de forma manual.
-- **TimeOut**: Excepción que se produce cuando transcurre un tiempo máximo sin conseguir finalizar la extracción con éxito.
-- **InitProccessError**: Excepción que se produce cuando el sdk no puede procesar las imagenes capturadas.
-- **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
-- **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
-- **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
-- **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
+### 5.2 errorType
 
-### 5.3 errorMessage
-Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+Devuelve el tipo de error que se ha producido.
 
-### 5.4 fullFrameImage
+### 5.3 errorMessage 
+  
+Indica un mensaje de error adicional si es necesario. Es un valor opcional.
 
-Devuelve la imagen completa capturada por la cámara. No se ha aplicado todavía ningún proceso sobre ella.
+### 5.4 fingers
 
-### 5.5 focusQuality
+Devuelve los dedos procesados. Y sus propiedades:
 
-Devuelve el nivel de calidad focal. Un valor bajo puede afectar al proceso de captura.
+- **livenessScore**
+- **position**
+- **quality**
+- **wsq**
+- **displayImage**
+- **minutiaesNumber**
+- **nist2Quality**
+- **nistQuality**
+- **template**
+- **proprietaryQuality**
+- **imageWidth**
+- **imageHeight**
 
-### 5.6 livenessConfidence
+### 5.5 slapImages
 
-Devuelve un indicador del nivel de confianza de la captura.
+Devuelve las imágenes slapImage procesadas y sus propiedades:
 
-### 5.7 processedFingers
-
-Devuelve la imagen de la huella digital procesada.
-
-### 5.8 rawImages
-
-Devuelve la imagen sin editar y sin modificar de la huella digital actual.
-
-### 5.9 wsq
-
-Se devuelve la captura de huellas en formato WSQ.
-
-### 5.10 nfiqMetrics
-
-Estas son las métricas de la captura. Actualmente el siguiente valor es
-devuelto:
-
-- nfiqMetric: Este es un valor entero, entre 1 y 5 (inclusive),
-  indica la calidad de la captura de huellas dactilares, donde 1 indica
-  la de mayor calidad y 5 la de peor calidad. Huellas dactilares
-  con este último valor generalmente se descartan para una mayor validación.
+- **image**
+- **position**
+- **livenessScore**
