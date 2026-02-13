@@ -1,29 +1,12 @@
-# Facial Capture with IAD
-
-> **Differences with Selphi Component**
->
-> The **Selphi IAD Component** is functionally equivalent to the standard **Selphi Component**, incorporating additional security controls aimed at detecting video injection attacks and untrusted capture environments.
->
-> The integration, configuration, and usage flow of the component are the same. The main functional difference is the inclusion of the _iad_ field in the result (`SelphiResult`), which contains the anti-fraud analysis information prepared for server verification.
->
-> To use it, a new licence is required and the standard component dependency must be replaced with:
->
-> ```java
-> implementation ‘com.facephi.androidsdk:selphi_iad_component:$version’
-> ```
-> 
-> **This component requires a new licence and has two important restrictions:**
->   - Devices with a minimum of **3 GB of RAM**.
->   - **Front camera** with **1920x1080 or higher** preview.
+# Facial Capture
 
 ## 1. Introduction
 
-Facial capture with video injection attack detection is performed with the **_Selphi IAD Component_**.
+Facial capture is performed with the **Selphi Component**.
 
-This component is responsible for capturing a selfie of the user and extracting their most relevant facial features, incorporating a set of preventive security controls aimed at detecting untrustworthy environments. Its main processes are:
+This component is responsible for capturing a user selfie and extracting the most important facial features. Its main processes are:
 
 - Internal camera and permission management.
-- Detection of impersonation attempts using manipulated videos or camera feeds.
 - Guided assistance during the user’s facial capture process.
 - Generation of facial templates and the user image.
 
@@ -36,7 +19,7 @@ Refer to the [Quickstart](./Mobile_SDK) section for the basic SDK integration st
 The component-specific dependency is:
 
 ```java
-implementation "com.facephi.androidsdk:selphi_iad_component:$version"
+implementation "com.facephi.androidsdk:selphi_component:$version"
 ```
 
 ---
@@ -92,7 +75,7 @@ Available `livenessMode` values:
 
 ## 6. Receiving the Result
 
-The launch returns an `SdkResult`. Differentiate between success and error (the result data will include the “iad” field with the information obtained; see section 6.2.):
+The launch returns an `SdkResult`. Differentiate between success and error:
 
 ```java
 when (response) {
@@ -168,10 +151,6 @@ Encrypted best image from the liveness process.
 #### 6.2.7 _livenessDiagnostic_
 
 Information about the verification process that confirms that the person is physically present and real.
-
-#### 6.2.8 _iad_
-
-Information obtained from the analysis of video injection attacks prepared for submission to the verification service.
 
 ---
 
@@ -353,4 +332,3 @@ selphi_anim_tuto_m_3.json
 ```
 
 ---
-
