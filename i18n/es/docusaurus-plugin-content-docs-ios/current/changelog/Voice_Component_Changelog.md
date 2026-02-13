@@ -5,7 +5,7 @@
 **Última versión: 2.6.0 - 12/02/2026**
 
 ### Novedades principales
-- Modificados los literales de VoiceOver.
+- Modificados los literales de VoiceOver de accesibilidad en la pantalla de grabación para mejorar la experiencia de usuario.
 
 ---
 

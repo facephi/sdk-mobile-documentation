@@ -5,7 +5,6 @@
 **Last release: 2.6.0 - 12/02/2026**
 
 ### Main Updates
-
 - Updated core minor version 2.6.0
 
 ---

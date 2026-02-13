@@ -4,7 +4,6 @@
 **Last release: 2.6.0 - 12/02/2026**
 
 ### Fixes
-
 - Fixed VoiceOver text on the Previous Tip screen.
 
 ---

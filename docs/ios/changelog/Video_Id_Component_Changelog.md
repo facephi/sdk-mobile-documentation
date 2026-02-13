@@ -4,12 +4,10 @@
 **Last release: 2.6.0 - 12/02/2026**
 
 ### Main Updates
-
 - Added multi-face detection support.
 - Refactored `DetectFaceServiceProtocol` to support both native and helper-based solutions.
 
 ### Fixes
-
 - Fixed Portuguese literal for “Cancel”.
 
 ---

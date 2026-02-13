@@ -4,7 +4,6 @@
 **Last release: 2.6.0 - 12/02/2026**
 
 ### Main Updates
-
 - Updated Core dependency and refactored TIMEOUT to SELPHID_TIMEOUT(UIImage?, UIImage?). Those two images wouldn't be null if an injection attack is detected.
 - Upgraded `SelphIDWidget` to version `1.37.0`.
 

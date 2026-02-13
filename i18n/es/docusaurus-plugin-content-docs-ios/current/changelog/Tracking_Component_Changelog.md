@@ -1,16 +1,13 @@
 # Registro de Cambios de Tracking
 
-## Version 2.6.X
-
+## Versión 2.6.X
 **Última versión: 2.6.0 - 12/02/2026**
 
-### Novedades principales
-
-- Configurado CD para ejecutarse en iOS-SDK.
-
 ### Correcciones
+- Corregido un problema por el cual `setCustomerId` no funcionaba. Actualizada la versión del widget a v1.2.6 para resolverlo.
 
-- Corregido el parseo del mapa de Steps.
+### Funcionalidades
+- Añadido el parámetro `integrationId` a `TrackingConfigurationData`.
 
 ---
 

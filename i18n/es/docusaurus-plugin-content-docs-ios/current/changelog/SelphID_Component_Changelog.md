@@ -1,18 +1,12 @@
 # Registro de Cambios de SelphID
 
-## Version 2.6.X
-
+## Versión 2.6.X
 **Última versión: 2.6.0 - 12/02/2026**
 
-### Novedades principales
-
-- Actualizada la dependencia de Core y refactorizado `SDK_TIMEOUT`.
-- Añadido `DOC_TYPE` a `extraData` de `FlowController`.
+### Actualizaciones principales
+- Actualizada la dependencia Core y refactorizado TIMEOUT a SELPHID_TIMEOUT(UIImage?, UIImage?). Esas dos imágenes no serían nulas si se detecta un ataque de inyección.
 - Actualizado `SelphIDWidget` a la versión `1.37.0`.
 
-### Correcciones
-
-- Eliminada la referencia a un archivo inexistente.
 ---
 
 ## Version 2.5.X  

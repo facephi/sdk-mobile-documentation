@@ -4,12 +4,10 @@
 **Last release: 2.6.0 - 12/02/2026**
 
 ### Main Updates
-
 - Improved camera selector behavior.
 - Improved thumb mask rendering and alignment.
 
 ### Fixes
-
 - Fixed back button error in `PreviousFingerSelectorView`.
 - Fixed flow when no Previous tip is available.
 - Fixed issue where `UITableViewDelegate` did not recognize tap events.
