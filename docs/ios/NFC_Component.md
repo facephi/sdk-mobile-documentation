@@ -171,7 +171,7 @@ If set to true, if an error or lack of permissions occurs, the sdk will display 
 ##### extractionTimeout
 
 Sets the maximum time the readout can be performed. This affects the time the app will wait from the moment the NFC's reading modal appears until it stops.
-NOTE: There is also an internal timeout in <iOS16. If a tag is detected, the reading must be done before 20 seconds have passed. This value can't be changed as it's forced by the SO.
+NOTE: There is also an internal timeout in iOS15 and inferior. If a tag is detected, the reading must be done before 20 seconds have passed. This value can't be changed as it's forced by the SO.
 
 #### 5.1.2 MRZ Key parameters
 
