@@ -148,7 +148,7 @@ Allowed values ​​are:
   **left** **hand**.
 
 - **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+  **right** **hand**.
 
 ```
 mReticleOrientation = PhingersReticleOrientation.DT_LEFT
@@ -342,11 +342,16 @@ The result will be returned through a Promise that contains an object of the cla
 - **STATUS_OK**: The operation was successful.
 - **STATUS_ERROR**: An error has occurred, which will be indicated in the errorType string and, optionally, an extra information message will be displayed in the errorMessage property.
 
-### 5.2 errorMessage 
+### 5.3 errorDiagnostic
+
+Returns the type of error that occurred (if there was one, which is
+indicated in the *finishStatus* parameter with the value *Error*).
+
+### 5.4 errorMessage 
   
 Indicates an additional error message if necessary. It is an optional value.
 
-### 5.3 fingers
+### 5.5 fingers
 
 Returns the processed fingers. And its properties:
 
@@ -363,7 +368,7 @@ Returns the processed fingers. And its properties:
 - **imageWidth**
 - **imageHeight**
 
-### 5.4 slapImages
+### 5.6 slapImages
 
 Returns the processed slapImages. And its properties:
 

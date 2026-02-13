@@ -137,7 +137,7 @@ Toda la configuración se podrá encontrar en el archivo ***definitions.ts*** de
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-_### 3.0 ReticleOrientation
+### 3.0 ReticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
@@ -148,7 +148,7 @@ Los valores permitidos son:
   **left** **hand**.
 
 - **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+  **right** **hand**.
 
 ```
 reticleOrientation: PhingersReticleOrientation.DT_LEFT

@@ -147,7 +147,7 @@ Allowed values ​​are:
   **left** **hand**.
 
 - **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+  **right** **hand**.
 
 ```
 reticleOrientation: PhingersReticleOrientation.DT_LEFT
@@ -330,7 +330,11 @@ The result will be returned through a Promise that contains an object of the cla
   
 Indicates an additional error message if necessary. It is an optional value.
 
-### 5.3 fingers
+### 5.3 errorType
+
+Returns the type of error that occurred
+
+### 5.4 fingers
 
 Returns the processed fingers. And its properties:
 
@@ -347,7 +351,7 @@ Returns the processed fingers. And its properties:
 - **imageWidth**
 - **imageHeight**
 
-### 5.4 slapImages
+### 5.5 slapImages
 
 Returns the processed slapImages. And its properties:
 
