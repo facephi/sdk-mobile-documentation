@@ -10,7 +10,7 @@ Buscamos el archivo ***pubspec.yaml*** en la raíz del plugin.
 
 En el ***KEY/TAG*** version se indica la versión.
 
---
+---
 
 ## 2. Integración del componente 
 Antes de integrar este componente **se recomienda** leer la documentación relativa a **Core Component** y seguir las instrucciones indicadas en dicho documento.

@@ -6,7 +6,7 @@
 
 ### Main Updates
 
-- Added `activeAuthenticationChallenge` to `NfcConfigurationData`. Allows injecting a custom challenge to validate later and protect against replay attacks.
+- Added `activeAuthenticationChallenge` to `NfcConfigurationData`. Allows injecting a custom challenge to validate later and protect against replay attacks. Added `activeAuthenticationSignature` to `NfcResult.NfcValidations`.
 - Added `onlyPACE` parameter to `NfcConfigurationData`. When enabled, only PACE/SAC documents are detected. Available from iOS ≥ 16 and requires PACE string in entitlements.
 - Improved `tagConnectionLostTimer` management. Previously a single timer could span multiple requests when responses were large.
 - Improved ChipAuthentication handling and `skipCA` management.

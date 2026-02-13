@@ -1,15 +1,13 @@
 # Tracking Changelog
 
 ## Version 2.6.X
-
 **Last release: 2.6.0 - 12/02/2026**
 
 ### Fixes
-- Fixed issue where `setCustomerId` was not working.
-- Upgraded widget version to **v1.2.6** to resolve the problem.
+- Fixed issue where `setCustomerId` was not working. Upgraded widget version to **v1.2.6** to resolve the problem.
 
 ### Features
-- Added `integrationId` support to `TrackingConfigurationData`.
+- Added `integrationId` parameter to `TrackingConfigurationData`.
 
 ---
 

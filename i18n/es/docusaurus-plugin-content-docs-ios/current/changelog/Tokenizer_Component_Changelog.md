@@ -7,7 +7,7 @@
 ### Actualizaciones Principales
 - Actualizada versión minor de core 2.5.0
 
---
+---
 
 ## Versión 2.4.X  
 **Última versión: 2.4.0 – 28/10/2025**

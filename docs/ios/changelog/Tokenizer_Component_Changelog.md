@@ -1,5 +1,12 @@
 # Tokenizer Changelog
 
+## Version 2.6.X
+**Last release: 2.6.0 – 12/02/2026**
+
+### Main Updates
+- Updated core minor version 2.6.0
+
+---
 
 ## Version 2.5.X
 **Last release: 2.5.0 – 12/12/2025**
@@ -7,7 +14,7 @@
 ### Main Updates
 - Updated core minor version 2.5.0
 
---
+---
 
 ## Version 2.4.X  
 **Last release: 2.4.0 – 28/10/2025**

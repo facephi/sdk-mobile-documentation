@@ -1,22 +1,16 @@
 # VideoID Changelog
 
 ## Version 2.6.X
-
 **Last release: 2.6.0 - 12/02/2026**
 
 ### Main Updates
 
-- Upgraded `FPHISelphidDocumentReaderBundle` version to fix a memory leak.
 - Added multi-face detection support.
 - Refactored `DetectFaceServiceProtocol` to support both native and helper-based solutions.
-- Moved `RecognitionHelper` logic into its own service instead of being inside SDR.
-- Refactored `Agora` GlobalSettings file.
-- Refactored `ReaderHelper` initialization.
 
 ### Fixes
 
 - Fixed Portuguese literal for “Cancel”.
-- Reverted Reader service usage and restored legacy implementation with native functionalities.
 
 ---
 

@@ -8,7 +8,7 @@
 
 - Corregido el texto de VoiceOver en la pantalla Previous Tip.
 
---
+---
 
 ## Versión 2.5.X
 **Última versión: 2.5.0 – 12/12/2025**
@@ -16,7 +16,7 @@
 ### Actualizaciones Principales
 - Actualizada versión minor de core 2.5.0
 
---
+---
 
 ## Versión 2.4.X
 **Última versión: 2.4.0 – 28/10/2025**
@@ -25,7 +25,7 @@
 - Primera release v2.4.0.
 - Eliminadas variables innecesarias tras actualización de Core.
 
---
+---
 
 ## Versión 2.3.X  
 **Última versión: 2.3.4 – 21/10/2025**
@@ -48,7 +48,7 @@
 - Si `closeAction == nil`, se realiza dismiss por defecto.
 - Mejorado layout en pantallas grandes para Permission y Diagnostic.
 
---
+---
 
 ## Versión 2.2.X
 
@@ -58,7 +58,7 @@
 - Eliminado código obsoleto.
 - Mejorado `setBold()` y estilos.
 
---
+---
 
 ## Versión 2.1.X
 
@@ -68,7 +68,7 @@
 - Bloqueada orientación horizontal.
 - Añadido `themeFlow` y CommonCustomization.
 
---
+---
 
 ## Versión 2.0.X
 
@@ -77,7 +77,7 @@
 - Estandarización visual alineada con Android.
 - Constantes actualizadas a v2.0.0.
 
---
+---
 
 ## Versión 1.5.X
 
