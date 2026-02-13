@@ -283,10 +283,6 @@ function callPhingers()
     var config          = new SdkPhingersConfig();
     // SdkPhingersCaptureOrientation capture orientation.
     config.setReticleOrientation(facephi.plugins.sdkphingers.captureorientation.SdkPhingersCaptureOrientation.left)
-    config.setReturnFullFrameImage(true);
-    config.setReturnProcessedImage(true);
-    config.setReturnRawImage(true);
-    config.setUseFlash(true);
     config.setUseLiveness(true);
 
     facephi.plugins.sdkphingers.launchPhingers(config)
@@ -326,12 +322,8 @@ PhingersResult {
     finishStatusDescription?: string;
     errorType: string;
     errorMessage?: string;
-    processedFingers?: any;
-    rawFingers?: any;
-    wsq?: any;
-    focusQuality?: any;
-    livenessConfidence?: any;
-    fullFrameImage?: any;
+    fingers?: any;
+    slapImages?: any;
 }
 ```
 <div class="note">
@@ -353,36 +345,31 @@ The result will be returned through a Promise that contains an object of the cla
   
 Indicates an additional error message if necessary. It is an optional value.
 
-### 5.3 fullFrameImage
+### 5.3 errorType
 
-Returns the full image captured by the camera. No processes are applied to this image yet.
+Returns the type of error that occurred
 
-### 5.4 focusQuality
+### 5.4 fingers
 
-Returns the camera focus quality. A low value can affect the capture process.
+Returns the processed fingers. And its properties:
 
-### 5.6 livenessConfidence
+- **livenessScore**
+- **position**
+- **quality**
+- **wsq**
+- **displayImage**
+- **minutiaesNumber**
+- **nist2Quality**
+- **nistQuality**
+- **template**
+- **proprietaryQuality**
+- **imageWidth**
+- **imageHeight**
 
-Returns an indicator of the confidence of the capture's level.
+### 5.5 slapImages
 
-### 5.7 processedFingers
+Returns the processed slapImages. And its properties:
 
-Returns the processed fingerprint image.
-
-### 5.8 rawImages
-
-Returns the raw, unmodified image of the current fingerprint.
-
-### 5.9 wsq
-
-The fingerprint capture in WSQ format is returned.
-
-### 5.10 nfiqMetrics
-
-These are the metrics of the capture. Currently the following value is
-returned:
-
-- nfiqMetric: This is an integer value, between 1 and 5 (inclusive),
-  indicating the quality of the fingerprint capture, with 1 indicating
-  the highest quality and 5 indicating the worst quality. Fingerprints
-  with the worst value are usually discarded for further validation.
+- **image**
+- **position**
+- **livenessScore**
