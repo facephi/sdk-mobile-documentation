@@ -4,13 +4,12 @@
 
 **Last release: 2.6.0 - 12/02/2026**
 
-### Main Updates
-
-- Configured CD to run on iOS-SDK.
-
 ### Fixes
+- Fixed issue where `setCustomerId` was not working.
+- Upgraded widget version to **v1.2.6** to resolve the problem.
 
-- Fixed parsing of Steps map.
+### Features
+- Added `integrationId` support to `TrackingConfigurationData`.
 
 ---
 

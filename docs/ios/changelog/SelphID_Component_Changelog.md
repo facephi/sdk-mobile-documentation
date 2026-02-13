@@ -6,8 +6,7 @@
 
 ### Main Updates
 
-- Updated Core dependency and refactored `SDK_TIMEOUT`.
-- Added `DOC_TYPE` to `FlowController` extraData.
+- Updated Core dependency and refactored TIMEOUT to SELPHID_TIMEOUT(UIImage?, UIImage?). Those two images wouldn't be null if an IAD attack is detected.
 - Upgraded `SelphIDWidget` to version `1.37.0`.
 
 ### Fixes

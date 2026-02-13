@@ -6,8 +6,7 @@
 
 ### Main Updates
 
-- Updated Selphi dependency to resolve blank navigation issue on IAD.
-- Updated widget to version v6.0.2.
+- Updated widget to version v6.0.4.
 
 ---
 
