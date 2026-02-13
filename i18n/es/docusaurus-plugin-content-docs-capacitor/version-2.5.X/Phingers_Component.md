@@ -115,16 +115,16 @@ A continuación se muestra la clase *PhingersConfiguration*, que permite configu
 ``` java
 export interface PhingersConfiguration 
 {
-  reticleOrientation: PhingersCaptureOrientation;
-  returnFullFrameImage: boolean;
-  returnProcessedImage: boolean;
-  returnRawImage: boolean;
-  useFlash: boolean;
-  useLiveness: boolean;
-  extractionTimeout?: number;
+  reticleOrientation?: PhingersReticleOrientation;
+  fingersFilter?: FingersFilter;
+  showEllipses?: boolean;
+  useLiveness?: boolean;
   showTutorial?: boolean;
+  vibration?: boolean;
+  extractionTimeout?: number;
   showDiagnostic?: boolean;
   threshold?: number;
+  showPreviousTip?: boolean;
 }
 ```
 
@@ -137,113 +137,108 @@ Toda la configuración se podrá encontrar en el archivo ***definitions.ts*** de
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.0 reticleOrientation
+_### 3.0 ReticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
-Establece el modo de detección de huellas dactilares e indica qué dedos deben
-ser detectado durante el proceso. Los valores permitidos son:
+Establece el modo de detección de huellas e indica qué mano se detectará durante el proceso. 
+Los valores permitidos son:
 
-- **LEFT**: Permite la captura de los **cuatro** **dedos** del
-  **mano izquierda**.
+- **DT_LEFT**: Enables the capture of the **four** **fingers** of the
+  **left** **hand**.
 
-- **RIGHT**: Permite la captura de los **cuatro** **dedos** del
-  **mano derecha**.
-
-- **THUMB**: Se activa la captura de un **pulgar**.
+- **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
+  **left** **hand**.
 
 ```
-reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
+reticleOrientation: PhingersReticleOrientation.DT_LEFT
 ```
 
-### 3.1 returnFullFrameImage
+### 3.1 FingersFilter
+
+Permite definir qué dedos se capturan durante el proceso:
+
+**type:** *FingersFilter*
+
+Los valores permitidos son:
+
+- **DT_RING_FINGER**
+- **DT_THUMB_FINGER**
+- **DT_INDEX_FINGER**
+- **DT_LITTLE_FINGER**
+- **DT_MIDDLE_FINGER**
+- **DT_SLAP**
+- **DT_ALL_4_FINGERS_ONE_BY_ONE**
+- **DT_ALL_5_FINGERS_ONE_BY_ONE**
+
+```
+fingersFilter: FingersFilter.DT_ALL_5_FINGERS_ONE_BY_ONE
+```
+
+### 3.2 ShowEllipses
 
 **type:** *boolean*
 
-Especifica si se debe devolver la imagen completa de la cámara en la que se
-Se han detectado dedos.
+Dibuja una elipse en la pantalla de captura sobre la huella dactilar detectada.
 
 ```
-returnFullFrameImage: true,
+showEllipses: true,
 ```
 
-### 3.2 returnProcessedImage
+### 3.3 UseLiveness
 
 **type:** *boolean*
 
-Si se establece en **true** devolverá en el resultado las imágenes del mismo
-forma tal como han sido capturados.
+Habilita o deshabilita el detector de vida durante la captura de huellas dactilares. 
+El valor predeterminado es **verdadero**.
 
 ```
-returnProcessedImage: true;
+useLiveness: true;
 ```
 
-### 3.3 returnRawImage
+### 3.4 ShowTutorial
 
 **type:** *boolean*
 
-Si se establece en **true** devolverá en el resultado las imágenes del mismo
-forma tal como han sido capturados.
+Si se establece en **true**, indica si el componente activa la pantalla del tutorial. Esta vista explica intuitivamente cómo se realiza la captura.
 
 ```
-mReturnRawImage: true;
+showTutorial: true;
 ```
 
-### 3.4 useFlash
+### 3.5 Vibration
 
 **type:** *boolean*
 
-Activa o desactiva el flash de la cámara durante la captura de huellas dactilares.
-proceso. El valor predeterminado está establecido en **true**.
-
-```
-useFlash: false;
-```
-
-### 3.5 useLiveness
-
-**type:** *boolean*
-
-Activa o desactiva el detector de vida durante la captura de huellas dactilares.
-proceso. El valor predeterminado está establecido en **true**.
-
-```
-useLiveness: false;
-```
-
-### 3.6 showTutorial
-
-**type:** *boolean*
-
-Indica si el componente activa la pantalla del tutorial. Esta vista
-Explica intuitivamente cómo se realiza la captura.
-
-```
-showTutorial: false;
-```
-
-### 3.7 vibration
-
-**type:** *boolean*
-
-Indica si se desea feedback de vibración al final del
-proceso.
+Si se establece en **verdadero**, indica si se desea retroalimentación de vibración al final del proceso.
 
 ```
 vibration: false;
 ```
 
-### 3.8 extractionTimeout
+### 3.6 ExtractionTimeout
 
-**type:** *int*
+**type:** *number*
 
 Establece el tiempo máximo que se puede realizar la lectura.
+Valor expresado en milisegundos.
 
 ```
-extractionTimeout: false;
+extractionTimeout: 30000;
 ```
 
-### 3.9 showDiagnostic
+### 3.8 Threshold
+
+**type:** *float*
+
+El parámetro configura un captureQualityThreshold, para definir un umbral de calidad para realizar la captura. 
+Valor por defecto 0.9f.
+
+```
+threshold: 0.90;
+```
+
+### 3.9 ShowDiagnostic
 
 **type:** *boolean*
 
@@ -252,23 +247,16 @@ Mostrar pantallas de diagnóstico al final del proceso.
 ```
 showDiagnostic: false;
 ```
-### 3.10 threshold
 
-**type:** *double*
-
-El parámetro configura un captureQualityThreshold, para definir una calidad
-umbral para realizar la captura.
-
-```
-threshold: 0.8;
-```
-
-#### 3.11. showPreviousTip
+#### 3.10. ShowPreviousTip
 
 **type:** *boolean*
 
-Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de inicio.
+Muestra una pantalla de pre-lanzamiento con información del proceso a realizar y un botón de inicio.
 
+```
+showPreviousTip: false;
+```
 ---
 
 ## 4. Uso del componente
@@ -294,10 +282,6 @@ getPhingersConfiguration()
 {
   let config: PhingersConfiguration = {
     reticleOrientation: PhingersCaptureOrientation.LEFT,
-    returnFullFrameImage: true,
-    returnProcessedImage: true,
-    returnRawImage: true,
-    useFlash: true,
     useLiveness: true,
   };
   return config;
@@ -371,36 +355,27 @@ Devuelve la descripción de finishStatus.
 ### 5.3 errorMessage 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 
-### 5.4 fullFrameImage
+### 5.3 fingers
 
-Devuelve la imagen completa capturada por la cámara. No se ha aplicado todavía ningún proceso sobre ella.
+Devuelve los dedos procesados. Y sus propiedades:
 
-### 5.5 focusQuality
+- **livenessScore**
+- **position**
+- **quality**
+- **wsq**
+- **displayImage**
+- **minutiaesNumber**
+- **nist2Quality**
+- **nistQuality**
+- **template**
+- **proprietaryQuality**
+- **imageWidth**
+- **imageHeight**
 
-Devuelve el nivel de calidad focal. Un valor bajo puede afectar al proceso de captura.
+### 5.4 slapImages
 
-### 5.6 livenessConfidence
+Devuelve las imágenes slapImage procesadas y sus propiedades:
 
-Devuelve un indicador del nivel de confianza de la captura.
-
-### 5.7 processedFingers
-
-Devuelve la imagen de la huella digital procesada.
-
-### 5.8 rawImages
-
-Devuelve la imagen sin editar y sin modificar de la huella digital actual.
-
-### 5.9 wsq
-
-Se devuelve la captura de huellas en formato WSQ.
-
-### 5.10 nfiqMetrics
-
-Estas son las métricas de la captura. Actualmente el siguiente valor es
-devuelto:
-
-- nfiqMetric: Este es un valor entero, entre 1 y 5 (inclusive),
-  indica la calidad de la captura de huellas dactilares, donde 1 indica
-  la de mayor calidad y 5 la de peor calidad. Huellas dactilares
-  con este último valor generalmente se descartan para una mayor validación.
+- **image**
+- **position**
+- **livenessScore**

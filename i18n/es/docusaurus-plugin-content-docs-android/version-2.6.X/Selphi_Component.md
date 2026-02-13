@@ -1,33 +1,19 @@
-# Captura facial con IAD
-
-> **Diferencias con Selphi Component**
->
-> El **Selphi IAD Component** es funcionalmente equivalente al **Selphi Component** estándar, incorporando controles adicionales de seguridad orientados a la detección de ataques de inyección de vídeo y entornos de captura no confiables.
->
-> La integración, configuración y flujo de uso del componente son los mismos. La principal diferencia funcional es la inclusión del campo _iad_ en el resultado (`SelphiResult`), que contiene la información del análisis antifraude preparada para su verificación en servidor.
->
-> Para su uso es necesaria una nueva licencia y sustituir la dependencia del componente estándar por:
->
-> ```java
-> implementation "com.facephi.androidsdk:selphi_iad_component:$version"
-> ```
->
-> **Este componente necesita una nueva licencia y tiene dos restricciones importantes:**
->   - Dispositivos con mínimo **3 GB de RAM**.
->   - **Cámara delantera** con preview de **1920x1080 o superior**.
+# Captura facial
 
 ## 1. Introducción
 
-La captura facial con detección de ataques de inyección de vídeo se realiza con el **_Selphi IAD Component_**. 
+La captura facial se realiza con el **_Selphi Component_**. 
 
-Este componente se encarga de capturar un selfie del usuario y extraer sus características faciales más 
-relevantes incorporando un conjunto de controles de seguridad preventivos orientados a detectar entornos 
-no confiables. Durante el proceso se realizan, entre otros, los siguientes pasos:
+Este componente se encarga de realizar la captura de un
+selfie del usuario y de la posterior extracción de las características
+faciales más importantes. Sus principales procesos son:
 
 - Gestión interna de cámaras y permisos.
-- Detección de intentos de suplantación mediante vídeos o fuentes de cámara manipuladas.
+
 - Asistente en los procesos de captura de la cara del usuario.
-- Generación de las plantillas con las características faciales y de la imagen del usuario.
+
+- Generación de las plantillas con las características faciales y de
+  la imagen del usuario.
 
 En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos necesarios para la integración básica del SDK. En esta sección se añade la información para el lanzamiento de este componente.
 
@@ -38,7 +24,7 @@ En el apartado de [Lanzamiento simplificado](./Mobile_SDK) se detallan los pasos
 La dependencia específica del componente es:
 
   ```java
-  implementation "com.facephi.androidsdk:selphi_iad_component:$version"
+  implementation "com.facephi.androidsdk:selphi_component:$version"
   ```
 
 ---
@@ -98,8 +84,7 @@ Los diferentes modos de lanzamiento son:
 
 ## 6. Recepción del resultado
 
-El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y un error
-(en los datos del resultado vendrá el campo "iad" con la información obtenida, ver apartado 6.2):
+El lanzamiento devolverá la información en formato SdkResult. Pudiendo diferenciarse entre un lanzamiento correcto y uno incorrecto:
 
 ```java
 when (response) {
@@ -184,10 +169,6 @@ Devuelve la mejor imagen extraída en el proceso cifrada. Válida para el proces
 #### 6.2.7 _livenessDiagnostic_
 
 Información del proceso de verificación que confirma que la persona está físicamente presente y es real.
-
-#### 6.2.8 _iad_
-
-Información obtenida en el análisis de ataques de inyección de vídeo preparada para su envío al servicio de verificación.
 
 ---
 
@@ -410,3 +391,4 @@ selphi_anim_tuto_m_3.json
 ```
 
 ---
+
