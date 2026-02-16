@@ -1,0 +1,43 @@
+{
+  "sidebar": [
+    {
+      "type": "category",
+      "label": "iOS",
+      "items": [
+        "Mobile_SDK",
+        "Selphi_Component",
+        "Selphi_IAD_Component",
+        "SelphID_Component",
+        "Phingers_Component",
+        "Voice_Component",
+        "NFC_Component",
+        "Video_Call_Component",
+        "Video_Id_Component",
+        "Video_Recording_Component",
+        "Capture_Component",
+        "Flow_Component",
+        "Status_Component",
+        "Sample_applications_use",
+        {
+          "type": "category",
+          "label": "CHANGELOG",
+          "items": [
+            "changelog/SDK_Component_Changelog",
+            "changelog/Selphi_Component_Changelog",
+            "changelog/Selphi_IAD_Component_Changelog",
+            "changelog/SelphID_Component_Changelog",
+            "changelog/Phingers_Component_Changelog",
+            "changelog/NFC_Component_Changelog",
+            "changelog/Video_Id_Component_Changelog",
+            "changelog/Video_Recording_Component_Changelog",
+            "changelog/Video_Call_Component_Changelog",
+            "changelog/Voice_Component_Changelog",
+            "changelog/Tracking_Component_Changelog",
+            "changelog/Tokenizer_Component_Changelog",
+            "changelog/Status_Component_Changelog"
+          ]
+        }
+      ]
+    }
+  ]
+}
