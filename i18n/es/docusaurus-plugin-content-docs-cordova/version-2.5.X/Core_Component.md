@@ -57,8 +57,8 @@ initSession = async (): Promise<CoreResult> =>
 {
   console.log('Launching initSession...');
 
-  let licenseByString: string = (Capacitor.getPlatform() === 'ios') ? "<enter_your_string_lic_here>" : "<enter_your_string_lic_here>";
-  let licenseApiKey: string   = (Capacitor.getPlatform() === 'ios') ? "<enter_your_apikey_here>" : "<enter_your_apikey_here>";
+  let licenseByString: string = (getPlatform() === 'ios') ? "<enter_your_string_lic_here>" : "<enter_your_string_lic_here>";
+  let licenseApiKey: string   = (getPlatform() === 'ios') ? "<enter_your_apikey_here>" : "<enter_your_apikey_here>";
 
   const widgetConfig: InitSessionConfiguration = {
     license: licenseByString,
@@ -79,8 +79,8 @@ initSession = async (): Promise<CoreResult> =>
 {
   console.log('Launching initSession...');
 
-  let licenseByString: string = (Capacitor.getPlatform() === 'ios') ? "<enter_your_string_lic_here>" : "<enter_your_string_lic_here>";
-  let licenseApiKey: string   = (Capacitor.getPlatform() === 'ios') ? "<enter_your_apikey_here>" : "<enter_your_apikey_here>";
+  let licenseByString: string = (getPlatform() === 'ios') ? "<enter_your_string_lic_here>" : "<enter_your_string_lic_here>";
+  let licenseApiKey: string   = (getPlatform() === 'ios') ? "<enter_your_apikey_here>" : "<enter_your_apikey_here>";
 
   const widgetConfig: InitSessionConfiguration = {
     licenseUrl: "https://***.***.pro",

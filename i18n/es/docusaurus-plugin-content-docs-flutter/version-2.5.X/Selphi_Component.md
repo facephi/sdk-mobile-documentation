@@ -53,9 +53,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_selphi:
   hosted:
-    name: sdkselphi
+    name: fphi_sdkmobile_selphi
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 
 ```
 
@@ -143,6 +143,7 @@ class SelphiFaceConfiguration {
   bool mLogImages;
   double mJPGQuality;
   SelphiCompressFormat mCompressFormat;
+  String? license;
 }
 
 ```
@@ -260,7 +261,6 @@ Parámetro opcional. Visible sólo si el parámetro *enableGenerateTemplateRaw* 
 enableGenerateTemplateRaw: true
 ```
 
-
 ###  3.12 showResultAfterCapture
 
 **type:** *boolean*
@@ -373,6 +373,15 @@ Indica qué cámara realizará el proceso de captura. Los valores posibles son:
 
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
+
+
+#### 3.22. license (string)
+
+Establece la licencia de los widgets. Esta licencia la proporciona Facephi. Este parámetro solo es necesario para Selphi IA.
+
+```
+license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
+```
 
 ---
 
@@ -557,7 +566,8 @@ enum class LivenessDiagnostic {
 
 ### 5.11 iad
 
-Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. IMPORTANTE: Parametro visible solo para el componente selphid IAD.
+Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. 
+IMPORTANTE: Parametro visible solo para el componente selphid IAD.
 
 ---
 

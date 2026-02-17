@@ -133,7 +133,8 @@ export interface SelphiConfiguration {
   showDiagnostic?: boolean;
   logImages?: boolean;
   compressFormat?: SdkCompressFormat,
-  jpgQuality?: number
+  jpgQuality?: number,
+  license?: string
 }
 ```
 
@@ -380,6 +381,14 @@ Indicates which camera will carry out the capture process. The possible values a
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
+#### 3.22. license (string)
+
+Sets the widgets *license*. This license is provided by Facephi. This parameter is only necesary for selphi IA.
+
+```
+license: JSON.stringify(Capacitor.getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
+```
+
 ---
 
 ## 4. Component Usage
@@ -552,7 +561,8 @@ enum class LivenessDiagnostic {
 
 ### 5.11 iad
 
-Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. IMPORTANT: Parameter visible only to the selphid IAD component.
+Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. 
+IMPORTANT: Parameter visible only to the selphid IAD component.
 
 ---
 

@@ -136,6 +136,7 @@ export interface SelphiConfiguration {
   qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
+  license?: string;
 }
 ```
 
@@ -364,6 +365,13 @@ Indica qué cámara realizará el proceso de captura. Los valores posibles son:
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
+#### 3.22. license (string)
+
+Establece la licencia de los widgets. Esta licencia la proporciona Facephi. Este parámetro solo es necesario para Selphi IA.
+
+```
+license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
+```
 ---
 
 ## 4. Uso del componente
@@ -526,7 +534,8 @@ enum class LivenessDiagnostic {
 
 ### 5.11 iad
 
-Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. IMPORTANTE: Parametro visible solo para el componente selphid IAD.
+Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. 
+IMPORTANTE: Parametro visible solo para el componente selphid IAD.
 
 ---
 
