@@ -15,7 +15,7 @@
 The minimum required Android SDK configuration is:
 
 - Minimum SDK (minSdk): **24**
-- API Version: **36**
+- API Version: **35**
 - Kotlin: **2.2.21**
 - Android Gradle Plugin: **8.13.1**
 
@@ -27,7 +27,7 @@ Below are the 5 steps required to start using the SDK.
 
 ### 2.1 Configure the Repository and Base Dependency
 
-For security and maintenance, the new components of the ***SDKMobile*** are hosted in private repositories that require specific credentials. Obtain these credentials from the **Facephi** support team.
+For security and maintenance, the new components of the **_SDKMobile_** are hosted in private repositories that require specific credentials. Obtain these credentials from the **Facephi** support team.
 
 Include the following in your **settings.gradle** file:
 
@@ -48,7 +48,7 @@ maven {
 }
 ```
 
-Add the credentials to your *local.properties* as follows:
+Add the credentials to your _local.properties_ as follows:
 
 ```properties
 artifactory.user=YOUR_CREDENTIALS_USERNAME
@@ -109,9 +109,8 @@ when (result) {
 }
 ```
 
-
-> If creating a new operation returns an **INTERNAL_ERROR**, it is 
-> mainly due to a security issue. To investigate the cause, you can retrieve 
+> If creating a new operation returns an **INTERNAL_ERROR**, it is
+> mainly due to a security issue. To investigate the cause, you can retrieve
 > the token associated with the error, which provides additional information for analysis.
 >
 > ```java
@@ -119,7 +118,6 @@ when (result) {
 >  val token = (result.error as SdkError.INTERNAL_ERROR).error
 > }
 > ```
-
 
 ### 2.4 Launch Components
 

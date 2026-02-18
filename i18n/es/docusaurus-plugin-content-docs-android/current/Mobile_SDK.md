@@ -16,7 +16,7 @@ la posibilidad de hacer un producto a medida para cada cliente.
 La versión mínima de la SDK de Android requerida es la siguiente:
 
 - SDK mínima (minSdk): **24**
-- API Version: **36**
+- API Version: **35**
 - Kotlin: **2.2.21**
 - Android Gradle Plugin: **8.13.1**
 

@@ -16,7 +16,7 @@ la posibilidad de hacer un producto a medida para cada cliente.
 La versión mínima de la SDK de Android requerida es la siguiente:
 
 - SDK mínima (minSdk): **24**
-- API Version: **36**
+- API Version: **35**
 - Kotlin: **2.2.21**
 - Android Gradle Plugin: **8.13.1**
 
@@ -55,12 +55,12 @@ maven {
 ```
 
 Las credenciales se incluirán en el fichero _local.properties_ con la siguiente
-  estructura:
+estructura:
 
 ```java
 artifactory.user=YOUR_CREDENTIALS_USERNAME
 artifactory.token=YOUR_CREDENTIALS_TOKEN
- ```
+```
 
 La dependencia base **obligatoria** para el uso del SDK es:
 
@@ -68,14 +68,14 @@ La dependencia base **obligatoria** para el uso del SDK es:
 implementation "com.facephi.androidsdk:sdk:$version"
 ```
 
-Para completar la funcionalidad se añadirán las dependendencias de los componentes 
+Para completar la funcionalidad se añadirán las dependendencias de los componentes
 que se vayan a utilizar.
 
 ### 2.2. Inicializar el SDK
 
 El SDK funciona a través de un controlador principal (SDKController) que
 debe inicializarse correctamente para poder hacer uso del resto de
-funcionalidad. El equipo de Facephi facilitará el apiKey de la licencia 
+funcionalidad. El equipo de Facephi facilitará el apiKey de la licencia
 para poder incluirlo en el proyecto.
 
 Código de inicialización:
@@ -102,7 +102,7 @@ if (BuildConfig.DEBUG) {
 }
 ```
 
-### 2.3. Iniciar operación 
+### 2.3. Iniciar operación
 
 Siempre se debe iniciar una operación para que se pueda lanzar el proceso.
 
@@ -132,8 +132,8 @@ when (result) {
 }
 ```
 
-> Si la creación de una nueva operación devuelve un error del tipo **INTERNAL_ERROR** se debe 
-> principalmente a un problema de seguridad. Para poder investigar la causa, es posible recuperar 
+> Si la creación de una nueva operación devuelve un error del tipo **INTERNAL_ERROR** se debe
+> principalmente a un problema de seguridad. Para poder investigar la causa, es posible recuperar
 > el token asociado al error, el cual proporciona información adicional para su análisis.
 >
 > ```java
@@ -176,7 +176,6 @@ Se detalla el lanzamiento de cada funcionalidad en su apartado de la documentaci
 Para el caso del lanzamiento continuo o "flow":
 
 - [Flow](./Flow_Component)
-
 
 ### 2.5. Cierre de sesión
 
