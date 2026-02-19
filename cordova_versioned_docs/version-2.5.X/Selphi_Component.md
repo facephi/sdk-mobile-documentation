@@ -42,8 +42,9 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 
 - Access **APPLICATION_PATH** at a terminal and run:
 ```
-cordova plugin add @facephi/sdk-core-cordova
-cordova plugin add @facephi/sdk-selphi-cordova
+[ionic] cordova plugin add @facephi/sdk-core-cordova
+[ionic] cordova plugin add @facephi/sdk-selphi-cordova
+[ionic] cordova plugin add @facephi/sdk-selphi-iad-cordova(only if you use Selphi IAD)
 ```
 
 - It is important to verify that the path to the plugin is correctly defined in package.json:

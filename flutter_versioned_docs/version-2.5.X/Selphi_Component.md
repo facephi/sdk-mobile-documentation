@@ -49,9 +49,16 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_selphi:
   hosted:
-    name: sdkselphi
+    name: fphi_sdkmobile_selphi
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
+
+(Only if you use Selphi IAD)
+fphi_sdkmobile_selphi_iad:
+  hosted:
+    name: fphi_sdkmobile_selphi_iad
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.6.0
 ```
 
 ### 2.2 Plugin installation: iOS

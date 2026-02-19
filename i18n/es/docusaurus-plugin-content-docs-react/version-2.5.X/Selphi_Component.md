@@ -43,6 +43,7 @@ El plugin permite la ejecución en platafoma Android y iOS. En esta sección se 
 ```
 yarn add @facephi/sdk-core-react-native // SOLO EJECUTAR SI EL PLUGIN NO ESTA INSTALADO. YA QUE ÉSTE COMPONENTE ERA MANDATORIO.
 yarn add @facephi/sdk-selphi-react-native
+yarn add @facephi/sdk-selphi-iad-react-native(sólo para Selphi IAD)
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:

@@ -42,6 +42,7 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 ```
 npm i @facephi/sdk-core-capacitor
 npm i @facephi/sdk-selphi-capacitor
+npm i @facephi/sdk-selphi-iad-capacitor(only if you use Selphi IAD)
 npm run build
 npx cap sync
 npx ionic capacitor build [android | ios]

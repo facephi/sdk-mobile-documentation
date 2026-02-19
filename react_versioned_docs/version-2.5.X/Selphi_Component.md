@@ -44,7 +44,7 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 ```
 yarn add @facephi/sdk-core-react-native
 yarn add @facephi/sdk-selphi-react-native
-yarn install
+yarn add @facephi/sdk-selphi-iad-react-native(Only if you use Selphi IAD)
 ```
 
 -   In addition, to install the plugin on iOS, the following must also

@@ -43,6 +43,7 @@ El plugin permite la ejecución en platafoma Android y iOS. En esta sección se 
 ```
 [ionic] cordova plugin add @facephi/sdk-core-cordova // SOLO EJECUTAR SI EL PLUGIN NO ESTA INSTALADO. YA QUE ÉSTE COMPONENTE ERA MANDATORIO.
 [ionic] cordova plugin add @facephi/sdk-selphi-cordova
+[ionic] cordova plugin add @facephi/sdk-selphi-iad-cordova(sólo para la version IAD de Selphi)
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:

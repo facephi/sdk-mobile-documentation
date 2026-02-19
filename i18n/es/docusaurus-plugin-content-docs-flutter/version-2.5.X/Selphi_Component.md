@@ -57,6 +57,13 @@ fphi_sdkmobile_selphi:
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
   version: ^2.6.0
 
+(Sólo para la versión de Selphi IAD)
+fphi_sdkmobile_selphi_iad:
+  hosted:
+    name: fphi_sdkmobile_selphi_iad
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.6.0
+
 ```
 
 ### 2.2 Instalación plugin: iOS
