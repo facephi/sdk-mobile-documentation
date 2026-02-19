@@ -8,6 +8,12 @@ The Component addressed in the current document is called the Selphi Component. 
 - Assists the processes of capturing the user's face.
 - Generation of templates with the facial characteristics and the image of the user's face for the Liveness detection process
 
+### 1.1 Minimum requirements
+
+- If the Injection Attack Detection (IAD) feature is used, then:
+  **API level 24**
+  **RAM: 3 GB**
+  
 ### 1.2 Plugin version
 
 The current plugin version can be checked as follows:
@@ -44,7 +50,7 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 ```
 yarn add @facephi/sdk-core-react-native
 yarn add @facephi/sdk-selphi-react-native
-yarn install
+yarn add @facephi/sdk-selphi-iad-react-native(Only if you use Selphi IAD)
 ```
 
 -   In addition, to install the plugin on iOS, the following must also
@@ -165,6 +171,7 @@ export interface SelphiConfiguration {
   videoFilename?: string;
   showDiagnostic?: boolean;
   logImages?: boolean;
+  license?: string;
 }
 ```
 
@@ -408,6 +415,14 @@ Indicates which camera will carry out the capture process. The possible values a
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
+#### 3.22. license (string)
+
+Sets the widgets *license*. This license is provided by Facephi. This parameter is only necesary for selphi IA.
+
+```
+license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
+```
+
 ---
 
 ## 4. Component Usage
@@ -612,7 +627,8 @@ enum class LivenessDiagnostic {
 
 ### 5.11 iad
 
-Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. IMPORTANT: Parameter visible only to the selphid IAD component.
+Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. 
+IMPORTANT: Parameter visible only to the selphid IAD component.
 
 ---
 

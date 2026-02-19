@@ -46,8 +46,8 @@ initSession = async (): Promise<CoreResult> =>
   {
     console.log('Launching initSession...');
 
-    let pluginLicense: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
-    let pluginLicenseApiKey: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
+    let pluginLicense: string = (getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
+    let pluginLicenseApiKey: string = (getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
 
     const widgetConfig: InitSessionConfiguration = {
       license: pluginLicense,
@@ -66,8 +66,8 @@ initSession = async (): Promise<CoreResult> =>
   {
     console.log('Launching initSession...');
 
-    let pluginLicense: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
-    let pluginLicenseApiKey: string = (Capacitor.getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
+    let pluginLicense: string = (getPlatform() === 'ios') ? LICENSE_STRING_IOS : LICENSE_STRING_ANDROID;
+    let pluginLicenseApiKey: string = (getPlatform() === 'ios') ? LICENSE_APIKEY_IOS : LICENSE_APIKEY_ANDROID;
 
     const widgetConfig: InitSessionConfiguration = {
       licenseUrl: LICENSE_URL,

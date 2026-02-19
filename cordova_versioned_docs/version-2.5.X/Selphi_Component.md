@@ -8,6 +8,12 @@ The Component addressed in the current document is called the Selphi Component. 
 - Assists the processes of capturing the user's face.
 - Generation of templates with the facial characteristics and the image of the user's face for the Liveness detection process
 
+### 1.1 Minimum requirements
+
+- If the Injection Attack Detection (IAD) feature is used, then:
+  **API level 24**
+  **RAM: 3 GB**
+  
 ### 1.2 Plugin version
 
 The current plugin version can be checked as follows:
@@ -42,8 +48,9 @@ The plugin allows execution on **Android and iOS** platforms. This section expla
 
 - Access **APPLICATION_PATH** at a terminal and run:
 ```
-cordova plugin add @facephi/sdk-core-cordova
-cordova plugin add @facephi/sdk-selphi-cordova
+[ionic] cordova plugin add @facephi/sdk-core-cordova
+[ionic] cordova plugin add @facephi/sdk-selphi-cordova
+[ionic] cordova plugin add @facephi/sdk-selphi-iad-cordova(only if you use Selphi IAD)
 ```
 
 - It is important to verify that the path to the plugin is correctly defined in package.json:
@@ -151,6 +158,7 @@ export interface SelphiConfiguration {
   qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
+  license?: string;
 }
 ```
 
@@ -398,6 +406,13 @@ Indicates which camera will carry out the capture process. The possible values a
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
+#### 3.22. license (string)
+
+Sets the widgets *license*. This license is provided by Facephi. This parameter is only necesary for selphi IA.
+
+```
+license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
+```
 ---
 
 ## 4. Component Usage
@@ -580,7 +595,8 @@ enum class LivenessDiagnostic {
 
 ### 5.10 iad
 
-Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. IMPORTANT: Parameter visible only to the selphid IAD component.
+Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. 
+IMPORTANT: Parameter visible only to the selphid IAD component.
 
 ---
 

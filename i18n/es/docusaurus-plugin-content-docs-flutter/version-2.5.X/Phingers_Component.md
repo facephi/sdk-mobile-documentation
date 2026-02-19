@@ -148,7 +148,7 @@ Los valores permitidos son:
   **left** **hand**.
 
 - **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
+  **right** **hand**.
 
 ```
 mReticleOrientation = PhingersReticleOrientation.DT_LEFT
@@ -342,15 +342,20 @@ El resultado se devolverá mediante una promesa que contiene un objeto de la cla
 - **STATUS_OK**: La operación se realizó correctamente.
 - **STATUS_ERROR**: Se ha producido un error, que se indicará en la cadena errorType y, opcionalmente, se mostrará un mensaje de información adicional en la propiedad errorMessage.
 
-### 5.2 errorType
+### 5.2 errorDiagnostic
+
+Returns the type of error that occurred (if there was one, which is
+indicated in the *finishStatus* parameter with the value *Error*).
+
+### 5.3 errorType
 
 Devuelve el tipo de error que se ha producido.
 
-### 5.3 errorMessage 
+### 5.4 errorMessage 
   
 Indica un mensaje de error adicional si es necesario. Es un valor opcional.
 
-### 5.4 fingers
+### 5.5 fingers
 
 Devuelve los dedos procesados. Y sus propiedades:
 
@@ -367,7 +372,7 @@ Devuelve los dedos procesados. Y sus propiedades:
 - **imageWidth**
 - **imageHeight**
 
-### 5.5 slapImages
+### 5.6 slapImages
 
 Devuelve las imágenes slapImage procesadas y sus propiedades:
 

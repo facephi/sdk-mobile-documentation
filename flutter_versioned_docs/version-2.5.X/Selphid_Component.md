@@ -69,9 +69,9 @@ It is possible that you have to type the *credential token* after the previous c
 ``` java
 fphi_sdkmobile_selphid:
   hosted:
-    name: sdkselphid
+    name: fphi_sdkmobile_selphi
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 After running the above steps, projects generated in the Android and iOS folders can be opened,

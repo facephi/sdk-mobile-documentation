@@ -8,6 +8,12 @@ The Component addressed in the current document is called the Selphi Component. 
 - Assists the processes of capturing the user's face.
 - Generation of templates with the facial characteristics and the image of the user's face for the Liveness detection process
 
+### 1.1 Minimum requirements
+
+- If the Injection Attack Detection (IAD) feature is used, then:
+  **API level 24**
+  **RAM: 3 GB**
+  
 ### 1.2 Plugin version
 
 The current plugin version can be checked as follows:
@@ -49,9 +55,16 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_selphi:
   hosted:
-    name: sdkselphi
+    name: fphi_sdkmobile_selphi
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
+
+(Only if you use Selphi IAD)
+fphi_sdkmobile_selphi_iad:
+  hosted:
+    name: fphi_sdkmobile_selphi_iad
+    url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
+  version: ^2.6.0
 ```
 
 ### 2.2 Plugin installation: iOS
@@ -147,6 +160,7 @@ class SelphiFaceConfiguration {
   bool? mShowPreviousTip;
   SelphiFaceExtractionDuration? mExtractionDuration;
   SelphiCamera mCameraPreferred;
+  String? license;
 }
 ```
 
@@ -274,7 +288,6 @@ Optional parameter. Only visible if the parameter enableGenerateTemplateRaw is s
 enableGenerateTemplateRaw: true
 ```
 
-
 ###  3.13 showResultAfterCapture
 
 **type:** *boolean*
@@ -393,6 +406,13 @@ Indicates which camera will carry out the capture process. The possible values a
 
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
+
+#### 3.22. license (string)
+Sets the widgets *license*. This license is provided by Facephi. This parameter is only necesary for selphi IA.
+
+```
+license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
+```
 
 ---
 
@@ -591,7 +611,8 @@ enum class LivenessDiagnostic {
 
 ### 5.10 iad
 
-Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. IMPORTANT: Parameter visible only to the selphid IAD component.
+Returns a token/hash that must be used to call a validation service. Adds a layer of defense against sophisticated attacks using digital injection or advanced spoofing. 
+IMPORTANT: Parameter visible only to the selphid IAD component.
 
 ---
 

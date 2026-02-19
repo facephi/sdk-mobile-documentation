@@ -9,6 +9,12 @@ El Componente tratado en el documento actual recibe el nombre de Selphi Componen
 
 Generación de las plantillas con las características faciales y de la imagen de la cara del usuario para el proceso de detección de vivacidad (Liveness)
 
+### 1.1 Requerimientos Minimos
+
+- Si se usa el componente Injection Attack Detection (IAD) tener en cuenta la siguiente limitación:
+  **API level 24**
+  **RAM: 3 GB**
+  
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
 
@@ -43,6 +49,7 @@ El plugin permite la ejecución en platafoma Android y iOS. En esta sección se 
 ```
 [ionic] cordova plugin add @facephi/sdk-core-cordova // SOLO EJECUTAR SI EL PLUGIN NO ESTA INSTALADO. YA QUE ÉSTE COMPONENTE ERA MANDATORIO.
 [ionic] cordova plugin add @facephi/sdk-selphi-cordova
+[ionic] cordova plugin add @facephi/sdk-selphi-iad-cordova(sólo para la version IAD de Selphi)
 ```
 
 Es importante verificar que la ruta al complemento esté correctamente definida en package.json:
@@ -136,6 +143,7 @@ export interface SelphiConfiguration {
   qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
+  license?: string;
 }
 ```
 
@@ -364,6 +372,13 @@ Indica qué cámara realizará el proceso de captura. Los valores posibles son:
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
+#### 3.22. license (string)
+
+Establece la licencia de los widgets. Esta licencia la proporciona Facephi. Este parámetro solo es necesario para Selphi IA.
+
+```
+license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
+```
 ---
 
 ## 4. Uso del componente
@@ -526,7 +541,8 @@ enum class LivenessDiagnostic {
 
 ### 5.11 iad
 
-Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. IMPORTANTE: Parametro visible solo para el componente selphid IAD.
+Devuelve un token/hash que deberá ser utilizado para llamar un servicio de validación. Añade una capa de defensa contra ataques sofisticados que usan inyección digital o suplantaciones avanzadas. 
+IMPORTANTE: Parametro visible solo para el componente selphid IAD.
 
 ---
 

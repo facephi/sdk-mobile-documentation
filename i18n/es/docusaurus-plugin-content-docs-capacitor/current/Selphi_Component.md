@@ -41,6 +41,7 @@ El plugin permite la ejecución en platafoma Android y iOS. En esta sección se 
 
 ```
 npm i @facephi/sdk-selphi-capacitor
+npm i @facephi/sdk-selphi-iad-capacitor(sólo para la version IAD de Selphi)
 npm run build
 npx cap sync
 npx ionic capacitor build [android | ios]

@@ -127,17 +127,16 @@ Below is the *PhingersConfiguration* class, which allows you to configure the **
 ```java
 export interface PhingersConfiguration 
 {
-  reticleOrientation: ReticleOrientation;
-  returnFullFrameImage?: boolean;
-  returnProcessedImage?: boolean;
-  returnRawImage?: boolean;
-  useFlash?: boolean;
+  reticleOrientation?: PhingersReticleOrientation;
+  fingersFilter?: FingersFilter;
+  showEllipses?: boolean;
   useLiveness?: boolean;
   showTutorial?: boolean;
-  extractionTimeout?: number;
   vibration?: boolean;
+  extractionTimeout?: number;
   showDiagnostic?: boolean;
   threshold?: number;
+  showPreviousTip?: boolean;
 }
 ```
 
@@ -150,141 +149,127 @@ All configuration can be found in the component's ***src/index.tsx*** file.
 
 When calling the component, there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1 reticleOrientation
+### 3.0 ReticleOrientation
 
 **type:** *PhingersReticleOrientation*
 
-
-Sets the fingerprint detection mode and indicates which fingers are to
-be detected during the process. The allowed values are:
+Sets the fingerprint detection mode and indicates which hand will be detected during the process. 
+Allowed values ​​are:
 
 - **DT_LEFT**: Enables the capture of the **four** **fingers** of the
   **left** **hand**.
 
 - **DT_RIGHT**: Enables the capture of the **four** **fingers** of the
-  **left** **hand**.
-
-- **DT_THUMB**: The capture of a **thumb** is activated.
+  **right** **hand**.
 
 ```
-reticleOrientation: PhingersReticleOrientation.DT_LEFT;,
+reticleOrientation: PhingersReticleOrientation.DT_LEFT
 ```
 
-### 3.2 returnFullFrameImage
+### 3.1 FingersFilter
+
+It allows you to define which fingers are captured during the process:
+
+**type:** *FingersFilter*
+
+The allowed values are:
+
+- **DT_RING_FINGER**
+- **DT_THUMB_FINGER**
+- **DT_INDEX_FINGER**
+- **DT_LITTLE_FINGER**
+- **DT_MIDDLE_FINGER**
+- **DT_SLAP**
+- **DT_ALL_4_FINGERS_ONE_BY_ONE**
+- **DT_ALL_5_FINGERS_ONE_BY_ONE**
+
+```
+fingersFilter: FingersFilter.DT_ALL_5_FINGERS_ONE_BY_ONE
+```
+
+### 3.2 ShowEllipses
 
 **type:** *boolean*
 
-Specifies whether to return the full image of the camera in which the
-fingers have been detected.
+Draw an ellipse in the capture screen on detected fingerprint.
 
 ```
-returnFullFrameImage: true,
+showEllipses: true
 ```
 
-### 3.3 returnProcessedImage
+### 3.3 UseLiveness
 
 **type:** *boolean*
 
-If set to **true** it will return in the result the images in the same
-form as they have been captured.
+Enables or disables the liveness detector during the fingerprint capture process. 
+Default is set to **true**.
 
 ```
-returnProcessedImage: true;
+useLiveness: true;
 ```
 
-### 3.4 returnRawImage
+### 3.4 ShowTutorial
 
 **type:** *boolean*
 
-
-If set to **true** it will return in the result the images in the same
-form as they have been captured.
+If set to **true**. Indicates whether the component activates the tutorial screen. This view intuitively explains how the capture is performed.
 
 ```
-mReturnRawImage: true;
+showTutorial: true;
 ```
 
-### 3.5 useFlash
+### 3.5 Vibration
 
 **type:** *boolean*
 
-Enables or disables the camera flash during the fingerprint capture
-process. Default is set to **true**.
+If set to **true**. Indicates whether vibration feedback is desired at the end of the process.
 
 ```
-useFlash: false;
+vibration: false
 ```
 
-### 3.6 useLiveness
+### 3.6 ExtractionTimeout
 
-**type:** *boolean*
+**type:** *number*
 
-Enables or disables the liveness detector during the fingerprint capture
-process. Default is set to **true**.
-
-```
-useLiveness: false;
-```
-
-### 3.7 showTutorial
-
-**type:** *boolean*
-
-Indicates whether the component activates the tutorial screen. This view
-intuitively explains how the capture is performed.
+Sets the maximum time the reading can be done.
+Value expressed in milliseconds.
 
 ```
-showTutorial: false;
+extractionTimeout: 30000
 ```
 
-### 3.8 vibration
+### 3.8 Threshold
 
-**type:** *boolean*
+**type:** *number*
 
-Enables the vibration during the process.
-
-```
-vibration: false;
-```
-
-### 3.9 extractionTimeout
-
-**type:** *int*
-
-Sets a stabilisation mode prior to any authentication process in the
-widget. This mode forces the widget not to start any process if the user
-is not facing forward and not moving his head.
+The parameter configures a captureQualityThreshold, to define a quality
+threshold to perform the capture.
+Default value 0.9f.
 
 ```
-extractionTimeout: false;
+threshold: 0.90
 ```
 
-### 3.10 showDiagnostic
+### 3.9 ShowDiagnostic
 
 **type:** *boolean*
 
 Display diagnostic screens at the end of the process
 
 ```
-showDiagnostic: false;
-```
-### 3.11 threshold
-
-**type:** *double*
-
-The parameter configures a captureQualityThreshold, to define a quality
-threshold to perform the capture.
-
-```
-threshold: 0.8;
+showDiagnostic: false
 ```
 
-#### 3.12. showPreviousTip
+#### 3.10. ShowPreviousTip
 
 **type:** *boolean*
 
 It shows a pre-launch screen with information about the process to be carried out and a start button.
 
+```
+showPreviousTip: false
+```
 ---
 
 ## 4. Use of the component
@@ -331,10 +316,6 @@ const getPhingersConfiguration = () =>
   let config: PhingersConfiguration = 
   {
     reticleOrientation: ReticleOrientation.Left,
-    returnFullFrameImage: true,
-    returnProcessedImage: true,
-    returnRawImage: true,
-    useFlash: true,
     useLiveness: true,
   };
 
@@ -374,13 +355,8 @@ export interface PhingersResult
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  processedFingers?: any;
-  rawFingers?: any;
-  wsq?: any;
-  focusQuality?: any;
-  nfiqMetrics?: any;
-  livenessConfidence?: any;
-  fullFrameImage?: any;
+  fingers?: any;
+  slapFingers?: any;
 }
 ```
 <div class="note">
@@ -402,36 +378,31 @@ The result will be returned through a Promise that contains an object of the cla
   
 Indicates an additional error message if necessary. It is an optional value.
 
-### 5.3 fullFrameImage
+### 5.3 errorType
 
-Returns the full image captured by the camera. No processes are applied to this image yet.
+Returns the type of error that occurred
 
-### 5.4 focusQuality
+### 5.4 fingers
 
-Returns the camera focus quality. A low value can affect the capture process.
+Returns the processed fingers. And its properties:
 
-### 5.6 livenessConfidence
+- **livenessScore**
+- **position**
+- **quality**
+- **wsq**
+- **displayImage**
+- **minutiaesNumber**
+- **nist2Quality**
+- **nistQuality**
+- **template**
+- **proprietaryQuality**
+- **imageWidth**
+- **imageHeight**
 
-Returns an indicator of the confidence of the capture's level.
+### 5.5 slapImages
 
-### 5.7 processedFingers
+Returns the processed slapImages. And its properties:
 
-Returns the processed fingerprint image.
-
-### 5.8 rawImages
-
-Returns the raw, unmodified image of the current fingerprint.
-
-### 5.9 wsq
-
-The fingerprint capture in WSQ format is returned.
-
-### 5.10 nfiqMetrics
-
-These are the metrics of the capture. Currently the following value is
-returned:
-
-- nfiqMetric: This is an integer value, between 1 and 5 (inclusive),
-  indicating the quality of the fingerprint capture, with 1 indicating
-  the highest quality and 5 indicating the worst quality. Fingerprints
-  with the worst value are usually discarded for further validation.
+- **image**
+- **position**
+- **livenessScore**
