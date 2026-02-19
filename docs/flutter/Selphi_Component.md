@@ -17,6 +17,10 @@ The minimum native version (Android and iOS) of the SDK are as follows:
 
 - Minimum iOS version: **13**
 
+- If the Injection Attack Detection (IAD) feature is used, then:
+  **API level 24**
+  **RAM: 3 GB**
+
 Regarding the architecture of the mobile device:
 
 - armeabi-v7, x86, arm64 y x64
@@ -64,9 +68,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_selphi:
   hosted:
-    name: sdkselphi
+    name: fphi_sdkmobile_selphi
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 ### 2.2 Plugin installation: iOS

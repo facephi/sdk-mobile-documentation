@@ -8,6 +8,12 @@ The Component addressed in the current document is called the Selphi Component. 
 - Assists the processes of capturing the user's face.
 - Generation of templates with the facial characteristics and the image of the user's face for the Liveness detection process
 
+### 1.1 Minimum requirements
+
+- If the Injection Attack Detection (IAD) feature is used, then:
+  **API level 24**
+  **RAM: 3 GB**
+
 ### 1.2 Plugin version
 
 The current plugin version can be checked as follows:

@@ -9,6 +9,12 @@ El Componente tratado en el documento actual recibe el nombre de Selphi Componen
 
 Generación de las plantillas con las características faciales y de la imagen de la cara del usuario para el proceso de detección de vivacidad (Liveness)
 
+### 1.1 Requerimientos Minimos
+
+- Si se usa el componente Injection Attack Detection (IAD) tener en cuenta la siguiente limitación:
+  **API level 24**
+  **RAM: 3 GB**
+  
 ### 1.2 Versión del plugin
 
 La versión del widget se puede consultar de la siguiente manera:
