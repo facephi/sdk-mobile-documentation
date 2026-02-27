@@ -115,16 +115,19 @@ Below is the *PhingersConfiguration* class, which allows you to configure the **
 ```java
 class PhingersConfiguration
 {
+  PhingerSelectorHandOrientation mFingerSelectorHandOrientation;
   PhingersReticleOrientation mReticleOrientation;
   FingersFilter mFingersFilter;
+  dynamic mFingerSelectorOptions;
+  int mExtractionTimeout;
+  double? mThreshold;
   bool mShowEllipses;
   bool mUseLiveness;
   bool mShowTutorial;
   bool mVibration;
-  int mExtractionTimeout;
   bool? mShowDiagnostic;
-  double? mThreshold;
   bool? mShowPreviousTip;
+  bool? mShowPreviousFingerSelector;
 }
 ```
 
@@ -257,6 +260,37 @@ It shows a pre-launch screen with information about the process to be carried ou
 
 ```
 mShowPreviousTip = false;
+```
+
+#### 3.11. showPreviousFingerSelector
+
+**type:** *boolean*
+
+Shows the finger selector screen before capture.
+
+```
+mShowPreviousFingerSelector: true
+```
+
+#### 3.12. fingerSelectorHandOrientation
+
+**type:** *PhingerSelectorHandOrientation*
+
+Defines which hand(s) are available in the finger selector (`LEFT`, `RIGHT`, `BOTH`).
+
+```
+mFingerSelectorHandOrientation: PhingerSelectorHandOrientation.BOTH
+```
+
+#### 3.13. fingerSelectorOptions
+
+**type:** *string[]*
+
+Defines the list of finger filters shown in the selector. If empty, the SDK uses:
+`ALL_4_FINGERS_ONE_BY_ONE`, `ALL_5_FINGERS_ONE_BY_ONE`, `SLAP`, `INDEX_FINGER`, `RING_FINGER`, `THUMB_FINGER`, `LITTLE_FINGER`, `MIDDLE_FINGER`.
+
+```
+mFingerSelectorOptions: [PhingerSelectorOptions.SLAP.toString(), PhingerSelectorOptions.ALL_4_FINGERS_ONE_BY_ONE.toString()];
 ```
 
 ---
