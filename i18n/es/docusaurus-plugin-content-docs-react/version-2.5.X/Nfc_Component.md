@@ -387,8 +387,10 @@ export interface NfcResult
   nfcPersonalInformation?: any;
   nfcValidations?: any;
   facialImage?: string;
-  fingerprintImage?: string;
   signatureImage?: string;
+  tokenFacialImage?: string;
+  tokenSignatureImage?: string;
+  tokenOCR?: string;
 }
 ```
 <div class="note">
@@ -494,10 +496,18 @@ Información de las validaciones del documento ordenada por:
 
 Información de la imagen de la cara obtenida del documento.
 
-### 5.9 fingerprintImage
+### 5.9 signatureImage
 
-Información de la imagen de la huella dactilar obtenida del documento.
+La imagen de la firma obtenida durante la captura.
 
-### 5.10 signatureImage
+### 5.10 tokenFacialImage
 
-Información de la imagen de la firma obtenida del documento.
+La imagen del rostro obtenida durante la captura. Tokenizada.
+
+### 5.11 tokenSignatureImage
+
+La imagen de la firma obtenida durante la captura. Tokenizada.
+
+### 5.12 tokenOCR
+
+Datos de OCR obtenidos durante la captura de documentos. La información contenida en este objeto varía según el tipo y el país del documento. Tokenizado.
