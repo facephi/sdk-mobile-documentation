@@ -115,12 +115,18 @@ Below is the *VideoIdConfiguration* class, which allows you to configure the **V
 ``` java
 export interface VideoIdConfiguration {
     mode?: VideoMode;
-    time?: number;
-    showTutorial?: boolean;
+    timeoutServerConnection?: number;
     url?: string;
     apiKey?: string;
     tenantId?: string;
-    vibrationEnabled?: boolean;
+    autoFaceDetection?: boolean;
+    sectionTime?: number;
+    ocrValidations?: string[];
+    countryFilter?: string[];
+    documentFilter?: string[];
+    sectionTimeout?: number;
+    maxRetries?: number;
+    speechText?: string;
 }
 ```
 
@@ -137,19 +143,19 @@ When calling the component, there are a series of parameters that must be includ
 
 **type:** *VideoMode*
 
-.
+This enumeration is defined in the **VideoMode**. Mode to be applied for recording. The possible VideoIdMode values ​​will be:
 
-### 3.2 time
+- ***FACE_DOCUMENT_FRONT***: You have to show the face and the front of the document.
+- ***ONLY_FACE***: You only have to show the face during the process.
+- ***FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+- ***DOCUMENT_FRONT_BACK***: You have to show front and back of the document.
+- ***DOCUMENT_FRONT***: You have to show the front of the document.
+
+### 3.2 timeoutServerConnection
 
 **type:** *number*
 
-.
-
-### 3.3 showTutorial
-
-**type:** *boolean*
-
-.
+Timeout in ms for server response.
 
 ### 3.3 url
 
@@ -180,15 +186,75 @@ Tenant identifier that refers to the current client, necessary for the connectio
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.6 vibrationEnabled
+### 3.6 autoFaceDetection
 
 **type:** *boolean*
 
-.
+Enable/Disable auto face detection
 
-```
-vibrationEnabled: false;
-```
+### 3.7 sectionTime
+
+**type:** *number*
+
+Indicates the duration of each of the sections in which the recording
+message is displayed.
+
+### 3.8 ocrValidations
+
+**type:** *string[]*
+
+Dictionary with the OCR validations to be performed. The keys are the fields to be validated and the values are instances of OcrValidationValue.
+
+OcrValidationValue has the following fields:
+
+- value: The value to be validated.
+- tolerance: The tolerance level for the validation.
+  - STRICT: Strict validation.
+  - LOW_TOLERANCE: Low tolerance validation.
+  - MEDIUM_TOLERANCE: Medium tolerance validation.
+  - HIGH_TOLERANCE: High tolerance validation.
+- validationType: The type of validation to be performed.
+  - OPTIONAL: Optional validation.
+  - REQUIRED: Required validation.
+
+### 3.9 countryFilter
+
+**type:** *string[]*
+
+It allows to restrict processing to a specific set of countries by accepting an array of strings representing the aliases in ISO3 format (3-letter code according to ISO 3166-1 standard).
+
+### 3.10 documentFilter
+
+**type:** *string[]*
+
+Allows to restrict the types of documents accepted during capture. Possible values are:
+
+- "IDC": ID Card
+- "PSP": Passport
+- "DLI": Driver License
+- "VIS": Visa
+- "FOC": Foreign Card
+- "INV": Invoice
+- "CUS": Custom Document
+
+### 3.11 sectionTimeout
+
+**type:** *number*
+
+Maximum time allowed to complete a section (in ms).
+
+### 3.12 maxRetries
+
+**type:** *number*
+
+Maximum number of retries allowed for the OCR validation. 3 is the default value.
+
+### 3.13 speechText
+
+**type:** *string*
+
+Text the user must speak during the video recording.
+
 ---
 
 ## 4. Use of the component

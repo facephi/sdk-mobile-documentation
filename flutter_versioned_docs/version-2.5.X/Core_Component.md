@@ -237,9 +237,6 @@ class CoreResult {
   final String? errorMessage;
   final String? flow;
   final int timeoutStatus;
-  final String? operationId;
-  final String? sessionId;
-  final String? tokenized;
   final String? data;
 }
 ```
@@ -319,22 +316,16 @@ Returns the type of error that occurred (if there was one, which is indicated by
 -   **ComponentControllerError**: The exception that is thrown when the
     component cannot be instantiated.
 
-### 5.5 tokenized
-Optional parameter. Only visible if the *Tokenized* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
+### 5.8 data
 
-### 5.6 data
-
-Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
-
-### 5.7 sessionId
-Returns the current session's identifier. Each time ***initSession*** method is executed, a new *sessionId* will be generated.
-
-### 5.8 operationId
-Returns the current operation's identifier. Each time ***initOperation*** method is executed, a new *operationId* will be generated.
+Optional parameter. The plugin will return a value in ***string*** format when the methods returns OK responses.
+For the *getOperationId* method it will return the operationId info.
+For the *getSessionId* method it will return the sessionId info.
+For the *getExtraData* method. See **section 7**.
 
 ---
 
-## 6. Close Session
+## 6. closeSession method
 **Before the application is destroyed**, the SDK session must be closed to notify the platform of its termination. To do this, the following line of code is executed:
 
 
@@ -353,7 +344,7 @@ Future<Either<Exception, CoreResult>> closeSession(SdkOperationEvent event) asyn
 ``` 
 ---
 
-## 7. ExtraData method
+## 7. getExtraData method
 
 The *getExtraData* method generates the identifiers related to a specific operation. These identifiers are tokenized and prepared to be sent to the *Facephi Validation Service* (Backend). That Service needs these identifiers to know which operation the client is currently executing. Thus, all the process information generated in the client and server can be successfully gathered in the different services. 
 
@@ -372,22 +363,3 @@ The *getExtraData* method generates the identifiers related to a specific operat
   }
 ```
 ---
-
-## 8. Tokenize Method
-
-The Tokenize method tokenizes and encrypts the images obtained from the different components of the SDK Mobile. Thus, these images can be sent to the *Facephi Validation Service* (Backend) securely. 
-
-```dart
-  Future<Either<Exception, CoreResult>> tokenize() async
-  {
-    try
-    {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
-      final Map resultJson = await core.tokenize(widgetConfigurationJSON: TokenizeConfiguration(mStringToTokenize: "Something to tokenize ..."));
-      return Right(CoreResult.fromMap(resultJson));
-    }
-    on Exception catch (e) {
-      return (Left(e));
-    }
-  }
-```

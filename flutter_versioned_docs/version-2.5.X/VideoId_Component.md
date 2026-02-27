@@ -116,12 +116,18 @@ Below is the *VideoIdConfiguration* class, which allows you to configure the **V
 class VideoIdConfiguration
 {
   VideoMode mMode;
-  int mTime;
-  bool mShowTutorial;
   String? mUrl;
   String? mApiKey;
   String? mTenantId;
-  bool? mShowDiagnostic;
+  String? mSpeechText;
+  List<String>? mDocumentFilter;
+  List<String>? mCountryFilter;
+  bool? mAutoFaceDetection;
+  int mSectionTime;
+  int? mSectionTimeout;
+  int? mTimeoutServerConnection;
+  int? mTimeoutFaceDetection;
+  int? mMaxRetries;
 }
 ```
 
@@ -134,78 +140,122 @@ All configuration can be found in the component's ***fphi_sdkmobile_videoid/fphi
 
 When calling the widget there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1 mTime
-
-**type:** *number*
-
-Time that will remain on each screen of the process in ms.
-
-```
-mTime: 5000
-```
-
-### 3.2 mode
+### 3.1 mMode
 
 **type:** *VideoMode*
 
-This enumeration is defined in the **VideoMode** class in ***fphi_sdkmobile_videoid_mode.dart***. Mode to be applied for recording. The possible VideoIdMode values ​​will be:
+This enumeration is defined in the **VideoMode**. Mode to be applied for recording. The possible VideoIdMode values ​​will be:
 
-- ***VideoMode.FACE_DOCUMENT_FRONT***: You have to show the face and the front of the document.
-- ***VideoMode.ONLY_FACE***: You only have to show the face during the process.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+- ***FACE_DOCUMENT_FRONT***: You have to show the face and the front of the document.
+- ***ONLY_FACE***: You only have to show the face during the process.
+- ***FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+- ***DOCUMENT_FRONT_BACK***: You have to show front and back of the document.
+- ***DOCUMENT_FRONT***: You have to show the front of the document.
 
-```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
-```
+### 3.2 mTimeoutServerConnection
 
-### 3.4 mShowTutorial
+**type:** *number*
 
-**type:** *boolean*
+Timeout in ms for server response.
 
-Indicates whether you want to show the complete tutorial of the process or just the simplified version.
-
-```
-mShowTutorial: true;
-```
-
-### 3.5 mUrl
+### 3.3 mUrl
 
 **type:** *string*
 
 Path to the video socket.
 
 ```
-mUrl: url_provided_by_Facephi
+url: url_provided_by_Facephi
 ```
 
-### 3.6 mApiKey
+### 3.4 mApiKey
 
 **type:** *string*
 
 ApiKey required for connection to the video socket.
 
 ```
-mApiKey: "apiKey_provided_by_Facephi";
+apiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 mTenantId
+### 3.5 mTenantId
 
 **type:** *string*
 
 Tenant identifier that refers to the current client, necessary for the connection to the video service.
 
 ```
-mTenantId: "TenantId_provided_by_Facephi";
+tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.8 mShowDiagnostic
+### 3.6 mAutoFaceDetection
 
 **type:** *boolean*
 
-Indicates whether you want to show a diagnosis in case of failure.
+Enable/Disable auto face detection
 
-```
-mShowDiagnostic: false;
-```
+### 3.7 mSectionTime
+
+**type:** *number*
+
+Indicates the duration of each of the sections in which the recording
+message is displayed.
+
+### 3.8 mOcrValidations
+
+**type:** *string[]*
+
+Dictionary with the OCR validations to be performed. The keys are the fields to be validated and the values are instances of OcrValidationValue.
+
+OcrValidationValue has the following fields:
+
+- value: The value to be validated.
+- tolerance: The tolerance level for the validation.
+  - STRICT: Strict validation.
+  - LOW_TOLERANCE: Low tolerance validation.
+  - MEDIUM_TOLERANCE: Medium tolerance validation.
+  - HIGH_TOLERANCE: High tolerance validation.
+- validationType: The type of validation to be performed.
+  - OPTIONAL: Optional validation.
+  - REQUIRED: Required validation.
+
+### 3.9 mCountryFilter
+
+**type:** *string[]*
+
+It allows to restrict processing to a specific set of countries by accepting an array of strings representing the aliases in ISO3 format (3-letter code according to ISO 3166-1 standard).
+
+### 3.10 mDocumentFilter
+
+**type:** *string[]*
+
+Allows to restrict the types of documents accepted during capture. Possible values are:
+
+- "IDC": ID Card
+- "PSP": Passport
+- "DLI": Driver License
+- "VIS": Visa
+- "FOC": Foreign Card
+- "INV": Invoice
+- "CUS": Custom Document
+
+### 3.11 mSectionTimeout
+
+**type:** *number*
+
+Maximum time allowed to complete a section (in ms).
+
+### 3.12 mMaxRetries
+
+**type:** *number*
+
+Maximum number of retries allowed for the OCR validation. 3 is the default value.
+
+### 3.13 mSpeechText
+
+**type:** *string*
+
+Text the user must speak during the video recording.
+
 ---
 
 ## 4. Use of the component

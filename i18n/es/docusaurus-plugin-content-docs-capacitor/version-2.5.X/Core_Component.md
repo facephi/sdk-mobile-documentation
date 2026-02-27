@@ -215,9 +215,6 @@ export interface CoreResult {
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  tokenized?: string;
-  operationId?: string;
-  sessionId?: string;
   data?: string;
   flow?: string;
 }
@@ -284,11 +281,12 @@ Devuelve el identificador de la sesión actual. Cada vez que se ejecute un ***in
 ### 5.6 operationId
 Devuelve el identificador de la operación actual. Cada vez que se ejecute un ***initOperation*** se generará un nuevo *operationId*.
 
-### 5.7 tokenized
-Parámetro opcional. Sólo se devuelve si se llama al método *Tokenized*. El plugin devolverá un valor de tipo ***string*** format. Más información en el **apartado 8.**
-
 ### 5.8 data
-Parámetro opcional. Sólo se devuelve si se llama al método *GetExtraData*. El plugin devolverá un valor de tipo ***string*** format. Más información en e **section 7.**
+
+Optional parameter. The plugin will return a value in ***string*** format when the methods returns OK responses.
+For the *getOperationId* method it will return the operationId info.
+For the *getSessionId* method it will return the sessionId info.
+For the *getExtraData* method. See **section 7**.
 
 ---
 
@@ -306,7 +304,7 @@ Parámetro opcional. Sólo se devuelve si se llama al método *GetExtraData*. El
 
 El resultado se devolverá por medio de una Promise, la cual contiene un objeto de la clase **CoreResult**. Para saber más sobre cómo funciona esta clase consultar el apartado 5.
 
-## 7. Método ExtraData
+## 7. Método getExtraData
 El método getExtraData permite generar los identificadores necesarios para una operación que deba continuar en el *Servicio de Validaciones de Facephi* (Backend). Esta situación suele darse en casos en los que, una vez obtenida la información necesaria en la aplicación del cliente, se deba enviar esa información a un determinado servicio para su posterior validación o análisis. En caso de que deban trackearse los resultados de esos procesos en la Plataforma, ésta deberá ser capaz de unificar la primera parte del proceso realizada en cliente con la última realizada en el servicio, ya que al final forman parte de la misma operación.
 
 Es por ello que a la hora de enviar la información capturada en una determinada operación al backend, deberá enviarse también un campo llamado extraData. Dicho campo se genera llamando al siguiente método:
@@ -318,22 +316,4 @@ Es por ello que a la hora de enviar la información capturada en una determinada
 
     return SdkCore.getExtraData();
   }
-```
-
-## 8. Método Tokenize
-
-El método tratado en el documento actual recibe el nombre de Tokenize. Éste se encarga de codificar y tokenizar las imágenes obtenidas en cualquiera de los demás componentes, en caso de que sea necesario, para su posterior envío al *Servicio de Validaciones de Facephi* (Backend). En el este servicio se podrá descodificar y validar de forma segura.
-
-```
-  tokenize = async (): Promise<CoreResult> => 
-  {
-    console.log('Launching tokenize...');
-
-    const widgetConfig: TokenizeConfiguration = {
-      stringToTokenize: "something to tokenize...",
-    };
-
-    return SdkCore.tokenize(widgetConfig);
-  }
-
 ```

@@ -113,14 +113,20 @@ The current component contains a series of Typescript methods and interfaces inc
 Below is the *VideoIdConfiguration* class, which allows you to configure the **VideoId** component:
 
 ```java
-SdkVideoIdConfig = function () {
-    this.mode = "face_document_front";
-    this.time = 5000;
-    this.showTutorial = false;
-    this.url;
-    this.apiKey;
-    this.tenantId;
-    this.showDiagnostic;
+export interface VideoIdConfiguration {
+    mode?: VideoMode;
+    timeoutServerConnection?: number;
+    url?: string;
+    apiKey?: string;
+    tenantId?: string;
+    autoFaceDetection?: boolean;
+    sectionTime?: number;
+    ocrValidations?: string[];
+    countryFilter?: string[];
+    documentFilter?: string[];
+    sectionTimeout?: number;
+    maxRetries?: number;
+    speechText?: string;
 }
 ```
 
@@ -133,51 +139,25 @@ All configuration can be found in the component's ***sdk-videoid/www/SdkVideoIdC
 
 When calling the component, there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1 time
-
-**type:** *number*
-
-Time that will remain on each screen of the process in ms.
-
-```
-time: 5000
-```
-
-### 3.2 mode
+### 3.1 mode
 
 **type:** *VideoMode*
 
-This enumeration is defined in the **VideoMode** class in ***definitions.ts***. Mode to be applied for recording. The possible VideoIdMode values ​​will be:
+This enumeration is defined in the **VideoMode**. Mode to be applied for recording. The possible VideoIdMode values ​​will be:
 
-- ***VideoMode.FACE_DOCUMENT_FRONT***: You have to show the face and the front of the document.
-- ***VideoMode.ONLY_FACE***: You only have to show the face during the process.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+- ***FACE_DOCUMENT_FRONT***: You have to show the face and the front of the document.
+- ***ONLY_FACE***: You only have to show the face during the process.
+- ***FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+- ***DOCUMENT_FRONT_BACK***: You have to show front and back of the document.
+- ***DOCUMENT_FRONT***: You have to show the front of the document.
 
-```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
-```
-
-### 3.3 extractionTimeout
+### 3.2 timeoutServerConnection
 
 **type:** *number*
 
-The plugin timeout is set.
+Timeout in ms for server response.
 
-```
-extractionTimeout: 10000;
-```
-
-### 3.4 showTutorial
-
-**type:** *boolean*
-
-Indicates whether you want to show the complete tutorial of the process or just the simplified version.
-
-```
-showTutorial: true;
-```
-
-### 3.5 Url
+### 3.3 url
 
 **type:** *string*
 
@@ -187,7 +167,7 @@ Path to the video socket.
 url: url_provided_by_Facephi
 ```
 
-### 3.6 ApiKey
+### 3.4 apiKey
 
 **type:** *string*
 
@@ -196,7 +176,7 @@ ApiKey required for connection to the video socket.
 ```
 apiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 TenantId
+### 3.5 tenantId
 
 **type:** *string*
 
@@ -206,25 +186,75 @@ Tenant identifier that refers to the current client, necessary for the connectio
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.8 showDiagnostic
+### 3.6 autoFaceDetection
 
 **type:** *boolean*
 
-Indicates whether you want to show a diagnosis in case of failure.
+Enable/Disable auto face detection
 
-```
-showDiagnostic: false;
-```
+### 3.7 sectionTime
 
-### 3.9 vibrationEnabled
+**type:** *number*
 
-**type:** *boolean*
+Indicates the duration of each of the sections in which the recording
+message is displayed.
 
-Indicates whether or not you want to enable vibration.
+### 3.8 ocrValidations
 
-```
-vibrationEnabled: false;
-```
+**type:** *string[]*
+
+Dictionary with the OCR validations to be performed. The keys are the fields to be validated and the values are instances of OcrValidationValue.
+
+OcrValidationValue has the following fields:
+
+- value: The value to be validated.
+- tolerance: The tolerance level for the validation.
+  - STRICT: Strict validation.
+  - LOW_TOLERANCE: Low tolerance validation.
+  - MEDIUM_TOLERANCE: Medium tolerance validation.
+  - HIGH_TOLERANCE: High tolerance validation.
+- validationType: The type of validation to be performed.
+  - OPTIONAL: Optional validation.
+  - REQUIRED: Required validation.
+
+### 3.9 countryFilter
+
+**type:** *string[]*
+
+It allows to restrict processing to a specific set of countries by accepting an array of strings representing the aliases in ISO3 format (3-letter code according to ISO 3166-1 standard).
+
+### 3.10 documentFilter
+
+**type:** *string[]*
+
+Allows to restrict the types of documents accepted during capture. Possible values are:
+
+- "IDC": ID Card
+- "PSP": Passport
+- "DLI": Driver License
+- "VIS": Visa
+- "FOC": Foreign Card
+- "INV": Invoice
+- "CUS": Custom Document
+
+### 3.11 sectionTimeout
+
+**type:** *number*
+
+Maximum time allowed to complete a section (in ms).
+
+### 3.12 maxRetries
+
+**type:** *number*
+
+Maximum number of retries allowed for the OCR validation. 3 is the default value.
+
+### 3.13 speechText
+
+**type:** *string*
+
+Text the user must speak during the video recording.
+
 ---
 
 ## 4. Use of the component

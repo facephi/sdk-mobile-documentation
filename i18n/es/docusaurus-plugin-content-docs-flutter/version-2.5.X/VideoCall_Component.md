@@ -35,9 +35,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_videocall:
   hosted:
-    name: sdkvideocall
+    name: fphi_sdkmobile_videocall
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
