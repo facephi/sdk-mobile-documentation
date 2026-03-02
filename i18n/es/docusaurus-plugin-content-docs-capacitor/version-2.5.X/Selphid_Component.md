@@ -578,7 +578,7 @@ Devuelve la descripción de finishStatus. Es un valor opcional.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.4 errorMessage: 

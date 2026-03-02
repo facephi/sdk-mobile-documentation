@@ -315,7 +315,17 @@ class VideoIdResult
   final String finishStatusDescription;
   final String errorDiagnostic;
   final String? errorMessage;
-  final String data;
+  final String? faceImage;
+  final String? faceImageTokenized;
+  final String? documentFaceImageTokenized;
+  final String? speechText;
+  final String? documentType;
+  final int? matchingSidesScore;
+  final dynamic personalData;
+  final dynamic frontDocumentData;
+  final dynamic backDocumentData;
+  final dynamic ocrMap;
+  final dynamic ocrDiagnostic;
 }
 ```
 

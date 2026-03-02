@@ -27,7 +27,7 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/src/index.tsx* del componente.
+Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/index.tsx* del componente.
 </div>
 
 Antes de poder utilizar cualquier componente, se deberá inicializar la sesión de la SDK. Esta inicialización se debe hacer lo más pronto posible, preferentemente al inicio de la aplicación. Al mismo tiempo, una vez terminadas todas las operaciones con la SDK Mobile, deberá cerrarse igualmente la sesión (***apartado 6***)
@@ -317,7 +317,7 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
 
-  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 
   - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 

@@ -52,17 +52,13 @@ npx ionic capacitor build [android | ios]
 
 Tras ejecutar los comandos anteriores, automáticamente se abrirá el IDE correspondiente de cada una de las plataformas (XCode para iOS, Android Studio para Android), y solo quedaría compilarlo (y depurarlo en caso de ser necesario) como si fuera un proyecto nativo estándar.
 
+#### 2.1.1 Añadir permisos de micrófono
+
+Para usar el componente, es necesario habilitar el permiso de micrófono en ambas plataformas.
 
 ## 2.2 Instalación plugin: iOS
 ### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
-
-- **Añadir los permisos de cámara**: Para utilizar el component, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
-
-```
-<key>NSCameraUsageDescription</key>
-<string>$(PRODUCT_NAME) uses the camera</string>
-```
 
 ### 2.2.2 Actualizar el Podfile
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
@@ -119,10 +115,11 @@ export interface VoiceConfiguration {
   vibrationEnabled: boolean;
   showTutorial: boolean;
   phrases: string;
-  timeout?: number;
+  extractionTimeout?: number;
   showDiagnostic?: boolean;
   returnAudios?: boolean;
   returnTokenizedAudios?: boolean;
+  showPreviousTips?: boolean;
 }
 ```
 
@@ -145,14 +142,14 @@ Indica la(s) frase(s) requerida(s) para capturar. Si se utiliza más de una fras
 phrases: 'hola mundo|hola voice component|hola Facephi',
 ```
 
-### 3.2 timeout
+### 3.2 extractionTimeout
 
 **type:** *number*
 
 Se setea el timeout del plugin.
 
 ```
-timeout: 10000;
+extractionTimeout: 30000;
 ```
 
 ### 3.3 showTutorial
@@ -165,7 +162,7 @@ Indica si se desea mostrar el tutorial completo del proceso o sólo la versión 
 showTutorial: true;
 ```
 
-### 3.4 vibration
+### 3.4 vibrationEnabled
 
 **type:** *boolean*
 
@@ -195,6 +192,16 @@ Indica si se desea o no retornar los audios tokenizados grabados al final del pr
 
 ```
 returnTokenizedAudios: false;
+```
+
+### 3.8 showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+```
+showPreviousTip: false;
 ```
 ---
 
@@ -293,7 +300,7 @@ Devuelve la descripción de finishStatus.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.4 errorMessage: 

@@ -35,9 +35,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_videocall:
   hosted:
-    name: sdkvideocall
+    name: fphi_sdkmobile_videocall
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
@@ -114,6 +114,8 @@ class VideoCallConfiguration
   String? mTenantId;
   String? mExtensionName;
   bool? mShowDiagnostic;
+  bool? mActivateScreenSharing;
+  number mTimeout;
 }
 ```
 
@@ -126,12 +128,12 @@ All configuration can be found in the component's ***fphi_sdkmobile_videoid/fphi
 
 When calling the widget there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1 screenSharing
+### 3.1 activateScreenSharing
 
 **type:** *bool*
 
 It is responsible for activating the device's screenshot in the background. It is mainly oriented for recording the onboarding process.
-If you activate the screenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
+If you activate the activateScreenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
 
 https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
 
@@ -148,7 +150,7 @@ You must make sure to enter the bundle identifier of the Broadcast Upload Extens
 Ruta al socket de video.
 
 ```
-mUrl: url_provided_by_Facephi
+mUrl = url_provided_by_Facephi
 ```
 
 ### 3.4 apiKey
@@ -158,7 +160,7 @@ mUrl: url_provided_by_Facephi
 ApiKey necesaria para la conexión con el socket de video.
 
 ```
-mApiKey: "apiKey_provided_by_Facephi";
+mApiKey = "apiKey_provided_by_Facephi";
 ```
 ### 3.5 tenantId
 
@@ -167,17 +169,17 @@ mApiKey: "apiKey_provided_by_Facephi";
 Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
 
 ```
-mTenantId: "TenantId_provided_by_Facephi";
+mTenantId = "TenantId_provided_by_Facephi";
 ```
 
-### 3.6 mShowDiagnostic
+### 3.6 timeout
 
-**type:** *boolean*
+**type:** *number*
 
-Indica si se desea mostrar un diagnostico en caso de falla.
+Sets the maximum time allowed for capture.
 
 ```
-mShowDiagnostic: false;
+mTimeout = 60000;
 ```
 ---
 

@@ -77,23 +77,14 @@ npx react-native run-ios
 Projects generated in the Android and iOS folders can be opened,
 compiled, and debugged using *Android Studio* and *XCode* respectively.
 
+#### 2.1.1 Add microphone permissions 
+
+To use the component, it is necessary to enable the microphone permission in both platforms.
 
 ## 2.2 Plugin Instalation: iOS
 ### 2.2.1 Proyect Configuration
 
-For the iOS version, when adding our plugin to the final application,
-the following points must be previously taken into account:
-
--   ***Add camera permissions:*** To use the component, you need to enable
-    the camera permission in the application's ***info.plist*** file
-    (included within the project in the ***ios*** folder). You will need
-    to edit the file with a text editor and add the following
-    *key/value* pair:
-
-``` java
-<key> NSCameraUsageDescription </key>
-<string>$(PRODUCT_NAME) uses the camera</string>
-```
+For the iOS version, when adding our plugin to the final application, the following points must be previously taken into account:
 
 ### 2.2.2 Update Podfile
 In the project podfile it will be necessary to add the information of the private repository (see section 2.1). To do this, the following lines must be added to the beginning of the file:
@@ -150,10 +141,11 @@ export interface VoiceConfiguration {
   vibrationEnabled: boolean;
   showTutorial: boolean;
   phrases: string;
-  timeout?: number;
+  extractionTimeout?: number;
   showDiagnostic?: boolean;
   returnAudios?: boolean;
   returnTokenizedAudios?: boolean;
+  showPreviousTips?: boolean;
 }
 ```
 
@@ -196,14 +188,14 @@ Indicates the phrase(s) required to capture. If more than one phrase is used, it
 phrases: 'hola mundo|hola voice component|hola Facephi',
 ```
 
-### 3.4 timeout
+### 3.4 extractionTimeout
 
 **type:** *number*
 
 Indicates the time that the component finishes due to inactivity.
 
 ```
-timeout: 10000
+extractionTimeout: 10000
 ```
 
 ### 3.5 showDiagnostic
@@ -234,6 +226,16 @@ Enable or disable the option to return tokenized recorded audios.
 
 ```
 returnTokenizedAudios: false;
+```
+
+### 3.8 showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+```
+showPreviousTip: false;
 ```
 ---
 

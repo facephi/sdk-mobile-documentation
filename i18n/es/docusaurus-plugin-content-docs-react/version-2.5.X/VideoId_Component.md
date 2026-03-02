@@ -308,7 +308,7 @@ const launchVideoId = async () =>
 const getVideoIdConfiguration = () => 
 {
   let config: VideoIdConfiguration = {
-    sectionTime: 5000,
+    sectionTimeout: 5000,
     mode: VideoMode.FACE_DOCUMENT_FRONT,
   };
   return config;
@@ -344,7 +344,18 @@ export interface VideoIdResult
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  data?: string;
+  faceImage?: string;
+  faceImageTokenized?: string;
+  documentFaceImageTokenized?: string;
+  speechText?: string;
+  documentType?: string;
+  matchingSidesScore?: number;
+  personalData?: any;
+  frontDocumentData?: any;
+  backDocumentData?: any;
+  ocrMap?: any;
+  ocrDiagnostic?: any;
+}
 }
 ```
 <div class="note">
@@ -386,7 +397,7 @@ Devuelve el diagnóstico global de la operación.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.4 errorMessage: 

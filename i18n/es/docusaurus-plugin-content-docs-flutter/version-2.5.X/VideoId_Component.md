@@ -287,9 +287,9 @@ VideoIdConfiguration createStandardConfiguration()
 {
   VideoIdConfiguration configurationWidget;
   configurationWidget = VideoIdConfiguration();
-  configurationWidget.mTime         = 5000;
-  configurationWidget.mMode         = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
-  configurationWidget.mShowTutorial = false;
+  configurationWidget.mSessionTimeout = 30000;
+  configurationWidget.mMode           = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
+  configurationWidget.mShowTutorial   = false;
   return configurationWidget;
 }
 ```
@@ -314,7 +314,17 @@ class VideoIdResult
   final String finishStatusDescription;
   final String errorDiagnostic;
   final String? errorMessage;
-  final String data;
+  final String? faceImage;
+  final String? faceImageTokenized;
+  final String? documentFaceImageTokenized;
+  final String? speechText;
+  final String? documentType;
+  final int? matchingSidesScore;
+  final dynamic personalData;
+  final dynamic frontDocumentData;
+  final dynamic backDocumentData;
+  final dynamic ocrMap;
+  final dynamic ocrDiagnostic;
 }
 ```
 <div class="note">
@@ -348,7 +358,7 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.3 errorMessage: 

@@ -126,8 +126,8 @@ export interface VideoCallConfiguration {
   apiKey?: string;
   tenantId?: string;
   extensionName?: string;
-  showDiagnostic?: boolean;
-  screenSharing?: boolean;
+  timeout?: number;
+  activateScreenSharing?: boolean;
 }
 ```
 
@@ -169,31 +169,31 @@ Identificador del tenant que hace referencia al cliente actual, necesario para l
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.4 showDiagnostic
-
-**type:** *boolean*
-
-Indica si se desea mostrar un diagnostico en caso de falla.
-
-```
-showDiagnostic: false;
-```
-
-### 3.5 screenSharing
+### 3.4 activateScreenSharing
 
 **type:** *bool*
 
 Se encarga de activar la captura de la pantalla del dispositivo en segundo plano. Está orientado principalmente para la grabación del proceso de onboarding.
-En caso de activar la funcion de screenSharing, para iOS se requiere una serie de pasos adicionales a nivel nativo. Por favor seguir la siguiente documentación:
+En caso de activar la funcion de activateScreenSharing, para iOS se requiere una serie de pasos adicionales a nivel nativo. Por favor seguir la siguiente documentación:
 
 https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
 
-### 3.6 extensionName(sólo iOS)
+### 3.5 extensionName(sólo iOS)
 
 **type:** *string*
 
 Hay que asegurarse de introducir aqui el bundle identifier del Broadcast Upload Extension creado. En nuestro ejemplo es com.facephi.sdk.demo.videoRecording.
 
+
+### 3.6 timeout
+
+**type:** *number*
+
+Sets the maximum time allowed for capture.
+
+```
+timeout: 60000;
+```
 ---
 
 ## 4. Uso del componente
@@ -316,7 +316,7 @@ Devuelve el diagnóstico global de la operación.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.4 errorMessage: 

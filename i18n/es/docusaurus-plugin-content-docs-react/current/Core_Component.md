@@ -16,7 +16,7 @@ La versión del plugin actual se puede consultar de la siguiente forma:
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/src/index.tsx* del componente.
+Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/index.tsx* del componente.
 </div>
 
 Antes de poder utilizar cualquier componente, se deberá inicializar la sesión de la SDK. Esta inicialización se debe hacer lo más pronto posible, preferentemente al inicio de la aplicación. Al mismo tiempo, una vez terminadas todas las operaciones con la SDK Mobile, deberá cerrarse igualmente la sesión (***apartado 6***)
@@ -282,20 +282,11 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
 
-  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 
   - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-### 5.5 sessionId
-Devuelve el identificador de la sesión actual. Cada vez que se ejecute un ***initSession*** se generará un nuevo *sessionId*.
-
-### 5.6 operationId
-Devuelve el identificador de la operación actual. Cada vez que se ejecute un ***initOperation*** se generará un nuevo *operationId*.
-
-### 5.7 tokenized
-Parámetro opcional. Sólo se devuelve si se llama al método *Tokenized*. El plugin devolverá un valor de tipo ***string*** format. Más información en el **apartado 8.**
-
-### 5.8 data
+### 5.5 data
 Parámetro opcional. Sólo se devuelve si se llama al método *GetExtraData*. El plugin devolverá un valor de tipo ***string*** format. Más información en e **section 7.**
 
 ---

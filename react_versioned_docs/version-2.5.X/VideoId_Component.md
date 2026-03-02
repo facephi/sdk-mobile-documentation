@@ -395,7 +395,18 @@ export interface VideoIdResult
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  data?: string;
+  faceImage?: string;
+  faceImageTokenized?: string;
+  documentFaceImageTokenized?: string;
+  speechText?: string;
+  documentType?: string;
+  matchingSidesScore?: number;
+  personalData?: any;
+  frontDocumentData?: any;
+  backDocumentData?: any;
+  ocrMap?: any;
+  ocrDiagnostic?: any;
+}
 }
 ```
 <div class="note">

@@ -271,17 +271,11 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
 
-  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 
   - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-### 5.5 sessionId
-Devuelve el identificador de la sesión actual. Cada vez que se ejecute un ***initSession*** se generará un nuevo *sessionId*.
-
-### 5.6 operationId
-Devuelve el identificador de la operación actual. Cada vez que se ejecute un ***initOperation*** se generará un nuevo *operationId*.
-
-### 5.8 data
+### 5.5 data
 
 Optional parameter. The plugin will return a value in ***string*** format when the methods returns OK responses.
 For the *getOperationId* method it will return the operationId info.

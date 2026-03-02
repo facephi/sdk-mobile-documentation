@@ -109,9 +109,8 @@ SdkVideoCallConfig = function () {
     this.url;
     this.apiKey;
     this.tenantId;
-    this.showDiagnostic;
-    this.screenSharing;
-    this.vibration;
+    this.activateScreenSharing;
+    this.timeout;
 }
 ```
 
@@ -124,12 +123,12 @@ All configuration can be found in the component's ***sdk-videocall/www/SdkVideoC
 
 When calling the component, there are a series of parameters that must be included. They will be briefly discussed below.
 
-### 3.1 screenSharing
+### 3.1 activateScreenSharing
 
 **type:** *bool*
 
 It is responsible for activating the device's screenshot in the background. It is mainly oriented for recording the onboarding process.
-If you activate the screenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
+If you activate the activateScreenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
 
 https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
 
@@ -172,24 +171,14 @@ Tenant identifier that refers to the current client, necessary for the connectio
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.6 showDiagnostic
+### 3.6 timeout
 
-**type:** *boolean*
+**type:** *number*
 
-Indicates whether you want to show a diagnosis in case of failure.
-
-```
-showDiagnostic: false;
-```
-
-### 3.7 vibration
-
-**type:** *boolean*
-
-Indicates whether or not you want to enable vibration.
+Sets the maximum time allowed for capture.
 
 ```
-vibration: false;
+timeout: 60000;
 ```
 ---
 
