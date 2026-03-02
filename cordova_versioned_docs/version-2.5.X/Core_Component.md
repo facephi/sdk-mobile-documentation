@@ -260,9 +260,6 @@ export interface CoreResult {
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  tokenized?: string;
-  operationId?: string;
-  sessionId?: string;
   data?: string;
   flow?: string;
 }
@@ -341,16 +338,17 @@ Returns the type of error that occurred (if there was one, which is indicated by
 -   **ComponentControllerError**: The exception that is thrown when the
     component cannot be instantiated.
 
-### 5.5 tokenized
-Optional parameter. Only visible if the *Tokenized* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
-
 ### 5.6 data
 
-Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 8.**
+Optional parameter. The plugin will return a value in ***string*** format when the methods returns OK responses.
+For the *getOperationId* method it will return the operationId info.
+For the *getSessionId* method it will return the sessionId info.
+For the *getExtraData* method. See point **section 7**.
 
 ---
 
-## 6. Close Session
+## 6. closeSession method
+
 **Before the application is destroyed**, the SDK session must be closed to notify the platform of its termination. To do this, the following line of code is executed:
 
 
@@ -380,7 +378,7 @@ const launchCloseSession = async () =>
 ``` 
 ---
 
-## 7. ExtraData method
+## 7. getExtraData method
 The *getExtraData* method generates the identifiers related to a specific operation. These identifiers are tokenized and prepared to be sent to the *Facephi Validation Service* (Backend). That Service needs these identifiers to know which operation the client is currently executing. Thus, all the process information generated in the client and server can be successfully gathered in the different services. 
 
 ```
@@ -416,41 +414,5 @@ const getExtraData = async () =>
     catch (error) {
       setMessage(JSON.stringify(error));
     }
-};
-```
-
-## 8. Tokenize Method
-
-The Tokenize method tokenizes and encrypts the images obtained from the different components of the SDK Mobile. Thus, these images can be sent to the *Facephi Validation Service* (Backend) securely. 
-
-```
-const getTokenize = async () => 
-{ 
-  try 
-  {
-    console.log("Starting getTokenize...", getTokenizeConfiguration());
-    return await SdkMobileCore.tokenize(getTokenizeConfiguration())
-    .then((result: CoreResult) => 
-    {
-      console.log("result", result);
-    })
-    .catch((error: any) => 
-    {
-      console.log(error);
-    })
-    .finally(()=> {
-      console.log("End getTokenize...");
-    });
-  } 
-  catch (error) {
-    setMessage(JSON.stringify(error));
-  }
-};
-const getTokenizeConfiguration = () => 
-{
-  const sdkConfiguration: TokenizeConfiguration = {
-    stringToTokenize: "String to Tokenize ..."
-  };
-  return sdkConfiguration;
 };
 ```

@@ -43,24 +43,22 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_voice:
   hosted:
-    name: sdkvoice
+    name: fphi_sdkmobile_voice
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
 Desde diferentes IDE's, los proyectos generados en las carpetas de Android e iOS se pueden abrir, compilar y depurar usando **Android Studio** y **XCode** respectivamente.
 
+
+#### 2.1.1 Añadir permisos de micrófono
+
+Para usar el componente, es necesario habilitar el permiso de micrófono en ambas plataformas.
+
 ## 2.2 Instalación plugin: iOS
 ### 2.2.1 Configuración del proyecto
 Para la versión de iOS, a la hora de añadir nuestro plugin a la aplicación final, previamente se deben tener en cuenta los siguientes puntos:
-
-- **Añadir los permisos de cámara**: Para utilizar el widget, es necesario habilitar el permiso de la cámara en el archivo ***info.plist*** de la aplicación (incluido dentro del proyecto en la carpeta ***ios***). Se deberá editar el archivo con un editor de texto y agregar el siguiente par *clave/valor*:
-
-```
-<key>NSCameraUsageDescription</key>
-<string>$(PRODUCT_NAME) uses the camera</string>
-```
 
 ### 2.2.2 Actualizar el Podfile
 En el podfile del proyecto será necesario añadir la información del repositorio privado (ver apartado 2.1). Para ello, se deberá agregar las siguientes lineas al inicio del fichero:
@@ -117,12 +115,13 @@ A continuación se muestra la clase *VoiceConfiguration*, que permite configurar
 class VoiceConfiguration
 {
   String mPhrases;
-  int? mTimeout;
+  int? mExtractionTimeout;
   bool? mShowDiagnostic;
   bool? mShowTutorial;
   bool? mVibrationEnabled;
   bool? mReturnAudios;
   bool? mReturnTokenizedAudios;
+  bool? mShowPreviousTips;
 }
 ```
 
@@ -142,17 +141,17 @@ A la hora de realizar la llamada al widget existe una serie de parámetros que s
 Indica la(s) frase(s) requerida(s) para capturar. Si se utiliza más de una frase, estará separada por el símbolo de barra vertical (|).
 
 ```
-phrases: 'hola mundo|hola voice component|hola Facephi',
+mPhrases = 'hola mundo|hola voice component|hola Facephi',
 ```
 
-### 3.2 timeout
+### 3.2 extractionTimeout
 
 **type:** *number*
 
 Se setea el timeout del plugin.
 
 ```
-timeout: 10000;
+mExtractionTimeout = 30000;
 ```
 
 ### 3.3 showTutorial
@@ -162,7 +161,7 @@ timeout: 10000;
 Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
 
 ```
-showTutorial: true;
+mShowTutorial = true;
 ```
 
 ### 3.4 vibration
@@ -184,7 +183,7 @@ Indica si se desea o no mostrar la pantalla de errores del plugin.
 Indica si se desea o no retornar los audios grabados al final del proceso.
 
 ```
-returnAudios: false;
+mReturnAudios = false;
 ```
 
 ### 3.7 returnTokenizedAudios
@@ -194,7 +193,17 @@ returnAudios: false;
 Indica si se desea o no retornar los audios tokenizados grabados al final del proceso.
 
 ```
-returnTokenizedAudios: false;
+mReturnTokenizedAudios = false;
+```
+
+### 3.8 showPreviousTip
+
+**type:** *boolean*
+
+Muestra una pantalla de prelanzamiento con información sobre el proceso a realizar y un botón de lanzamiento.
+
+```
+mShowPreviousTip = false;
 ```
 ---
 
@@ -296,7 +305,7 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.3 errorMessage: 

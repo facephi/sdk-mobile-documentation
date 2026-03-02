@@ -43,24 +43,23 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_voice:
   hosted:
-    name: sdkvoice
+    name: fphi_sdkmobile_voice
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 After executing the above steps, you can launch the application with the sdk/component installed.
 From different IDE's, projects generated in the Android and iOS folders can be opened, compiled and debugged using **Android Studio** and **XCode** respectively.
+
+#### 2.1.1 Add microphone permissions 
+
+To use the component, it is necessary to enable the microphone permission in both platforms.
 
 ## 2.2 Plugin installation: iOS
 ### 2.2.1 Project configuration
 For the iOS version, when adding our plugin to the final application, the following points must be taken into account beforehand:
 
 - **Add camera permissions**: To use the widget, you need to enable the camera permission in the ***info.plist*** file of the application (included within the project in the *** folder ios***). You must edit the file with a text editor and add the following *key/value* pair:
-
-```
-<key>NSCameraUsageDescription</key>
-<string>$(PRODUCT_NAME) uses the camera</string>
-```
 
 ### 2.2.2 Update the Podfile
 In the project podfile it will be necessary to add the information of the private repository (see section 2.1). To do this, the following lines must be added to the beginning of the file:
@@ -117,12 +116,13 @@ Below is the *VoiceConfiguration* class, which allows you to configure the **Voi
 class VoiceConfiguration
 {
   String mPhrases;
-  int? mTimeout;
+  int? mExtractionTimeout;
   bool? mShowDiagnostic;
   bool? mShowTutorial;
   bool? mVibrationEnabled;
   bool? mReturnAudios;
   bool? mReturnTokenizedAudios;
+  bool? mShowPreviousTips;
 }
 ```
 
@@ -142,7 +142,7 @@ When calling the widget there are a series of parameters that must be included. 
 Enable or disable the plugin's vibration option.
 
 ```
-vibrationEnabled: true
+mVibrationEnabled = true
 ```
 
 ### 3.2 showTutorial
@@ -152,7 +152,7 @@ vibrationEnabled: true
 Indicates whether you want to show the complete tutorial of the process or just the simplified version.
 
 ```
-showTutorial: true;
+mShowTutorial = true;
 ```
 
 ### 3.3 phrases
@@ -165,14 +165,14 @@ Indicates the phrase(s) required to capture. If more than one phrase is used, it
 phrases: 'hola mundo|hola voice component|hola Facephi',
 ```
 
-### 3.4 timeout
+### 3.4 extractionTimeout
 
 **type:** *number*
 
 Indicates the time that the component finishes due to inactivity.
 
 ```
-timeout: 10000
+mExtractionTimeout = 10000
 ```
 
 ### 3.5 showDiagnostic
@@ -182,7 +182,7 @@ timeout: 10000
 Indicates whether you want to show a diagnosis in case of failure.
 
 ```
-showDiagnostic: false;
+mShowDiagnostic = false;
 ```
 
 ### 3.6 returnAudios
@@ -192,7 +192,7 @@ showDiagnostic: false;
 Enable or disable the option to return recorded audios.
 
 ```
-returnAudios: false;
+mReturnAudios = false;
 ```
 
 ### 3.7 returnTokenizedAudios
@@ -202,7 +202,17 @@ returnAudios: false;
 Enable or disable the option to return tokenized recorded audios.
 
 ```
-returnTokenizedAudios: false;
+mReturnTokenizedAudios = false;
+```
+
+### 3.8 showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+```
+mShowPreviousTip = false;
 ```
 ---
 

@@ -116,8 +116,10 @@ Below is the *SdkPhingersConfig* class, which allows you to configure the **Phin
 ```java
 export interface PhingersConfiguration 
 {
+  fingerSelectorHandOrientation?: PhingerSelectorHandOrientation;
   reticleOrientation?: PhingersReticleOrientation;
   fingersFilter?: FingersFilter;
+  fingerSelectorOptions?: string[];
   showEllipses?: boolean;
   useLiveness?: boolean;
   showTutorial?: boolean;
@@ -126,6 +128,7 @@ export interface PhingersConfiguration
   showDiagnostic?: boolean;
   threshold?: number;
   showPreviousTip?: boolean;
+  showPreviousFingerSelector?: boolean;
 }
 ```
 
@@ -259,6 +262,39 @@ It shows a pre-launch screen with information about the process to be carried ou
 ```
 showPreviousTip: false
 ```
+
+
+#### 3.11. showPreviousFingerSelector
+
+**type:** *boolean*
+
+Shows the finger selector screen before capture.
+
+```
+showPreviousFingerSelector: true
+```
+
+#### 3.12. fingerSelectorHandOrientation
+
+**type:** *PhingerSelectorHandOrientation*
+
+Defines which hand(s) are available in the finger selector (`LEFT`, `RIGHT`, `BOTH`).
+
+```
+fingerSelectorHandOrientation: PhingerSelectorHandOrientation.BOTH
+```
+
+#### 3.13. fingerSelectorOptions
+
+**type:** *string[]*
+
+Defines the list of finger filters shown in the selector. If empty, the SDK uses:
+`ALL_4_FINGERS_ONE_BY_ONE`, `ALL_5_FINGERS_ONE_BY_ONE`, `SLAP`, `INDEX_FINGER`, `RING_FINGER`, `THUMB_FINGER`, `LITTLE_FINGER`, `MIDDLE_FINGER`.
+
+```
+fingerSelectorOptions: ['ALL_4_FINGERS_ONE_BY_ONE', 'SLAP', 'INDEX_FINGER']
+```
+
 ---
 
 ## 4. Use of the component

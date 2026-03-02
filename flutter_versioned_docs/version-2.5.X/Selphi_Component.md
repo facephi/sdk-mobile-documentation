@@ -160,7 +160,7 @@ class SelphiFaceConfiguration {
   bool? mShowPreviousTip;
   SelphiFaceExtractionDuration? mExtractionDuration;
   SelphiCamera mCameraPreferred;
-  String? license;
+  String? mLicense;
 }
 ```
 

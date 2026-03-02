@@ -338,8 +338,10 @@ NfcResult {
     nfcPersonalInformation?: any;
     nfcValidations?: any;
     facialImage?: string;
-    fingerprintImage?: string;
     signatureImage?: string;
+    tokenFacialImage?: string;
+    tokenSignatureImage?: string;
+    tokenOCR?: string;
 }
 ```
 <div class="note">
@@ -440,10 +442,18 @@ Document validation information sorted by:
 
 The image of the face obtained during the capture.
 
-### 5.9 fingerprintImage
-
-The image of the fingeprint obtained during the capture.
-
-### 5.10 signatureImage
+### 5.9 signatureImage
 
 The image of the signature obtained during the capture.
+
+### 5.10 tokenFacialImage
+
+The image of the face obtained during the capture. Tokenized.
+
+### 5.11 tokenSignatureImage
+
+The image of the signature obtained during the capture. Tokenized.
+
+### 5.12 tokenOCR
+
+The OCR data obtained during document capture. The information contained in this object will vary depending on the type of document and the country of the document. Tokenized.

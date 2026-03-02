@@ -376,8 +376,10 @@ NfcResult {
     nfcPersonalInformation?: any;
     nfcValidations?: any;
     facialImage?: string;
-    fingerprintImage?: string;
     signatureImage?: string;
+    tokenFacialImage?: string;
+    tokenSignatureImage?: string;
+    tokenOCR?: string;
 }
 ```
 <div class="note">
@@ -416,11 +418,12 @@ Devuelve la descripción de finishStatus.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.4 errorMessage: 
 Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
+
 ### 5.5 nfcDocumentInformation
 
 Información obtenida del documento ordenada por:
@@ -479,10 +482,18 @@ Información de las validaciones del documento ordenada por:
 
 La imagen del rostro obtenida durante la captura.
 
-### 5.9 fingerprintImage
-
-La imagen de la huella dactilar obtenida durante la captura.
-
-### 5.10 signatureImage
+### 5.9 signatureImage
 
 La imagen de la firma obtenida durante la captura.
+
+### 5.10 tokenFacialImage
+
+La imagen del rostro obtenida durante la captura. Tokenizada.
+
+### 5.11 tokenSignatureImage
+
+La imagen de la firma obtenida durante la captura. Tokenizada.
+
+### 5.12 tokenOCR
+
+Datos de OCR obtenidos durante la captura de documentos. La información contenida en este objeto varía según el tipo y el país del documento. Tokenizado.

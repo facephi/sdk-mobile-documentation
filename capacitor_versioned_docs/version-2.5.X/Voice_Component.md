@@ -15,7 +15,6 @@ The Component discussed in the current document is called ***Voice Component***.
 The current plugin version can be checked as follows:
 
 We look for the file ***package.json*** in the root of the plugin.
-
 The version is indicated in the ***KEY/TAG*** version.
 
 ---
@@ -52,16 +51,15 @@ npx ionic capacitor build [android | ios]
 
 After executing the previous commands, the corresponding IDE for each of the platforms will automatically open (XCode for iOS, Android Studio for Android), and all that remains is to compile it (and debug it if necessary) as if it were a standard native project.
 
+#### 2.1.1 Add microphone permissions 
+
+To use the component, it is necessary to enable the microphone permission in both platforms.
+
 ## 2.2 Plugin installation: iOS
+
 ### 2.2.1 Project configuration
 For the iOS version, when adding our plugin to the final application, the following points must be taken into account beforehand:
 
-- **Add camera permissions**: To use the component, it is necessary to enable the camera permission in the ***info.plist*** file of the application (included within the project in the *** folder ios***). You must edit the file with a text editor and add the following *key/value* pair:
-
-```
-<key>NSCameraUsageDescription</key>
-<string>$(PRODUCT_NAME) uses the camera</string>
-```
 
 ### 2.2.2 Update the Podfile
 In the project podfile it will be necessary to add the information of the private repository (see section 2.1). To do this, the following lines must be added to the beginning of the file:
@@ -95,6 +93,7 @@ pod install --repo-update
 ```
 
 ## 2.3 Plugin installation: Android
+
 ### 2.3.1 Set Android SDK version
 For Android, the minimum SDK version required by our native libraries is **24**, so if your app has a *minimum SDK* defined lower than this, it will need to be modified to avoid a build error. To do this, access the application's ***build.gradle*** file (located in the ***android*** folder) and modify the following parameter:
 
@@ -115,13 +114,14 @@ Below is the *VoiceConfiguration* class, which allows you to configure the **Voi
 
 ``` java
 export interface VoiceConfiguration {
-  vibrationEnabled: boolean;
-  showTutorial: boolean;
-  phrases: string;
-  timeout?: number;
-  showDiagnostic?: boolean;
   returnAudios?: boolean;
   returnTokenizedAudios?: boolean;
+  phrases: string;
+  vibrationEnabled: boolean;
+  showTutorial: boolean;
+  extractionTimeout?: number;
+  showDiagnostic?: boolean;
+  showPreviousTip?: boolean;
 }
 ```
 
@@ -164,14 +164,14 @@ Indicates the phrase(s) required to capture. If more than one phrase is used, it
 phrases: 'hola mundo|hola voice component|hola Facephi',
 ```
 
-### 3.4 timeout
+### 3.4 extractionTimeout
 
 **type:** *number*
 
 Indicates the time that the component finishes due to inactivity.
 
 ```
-timeout: 10000
+extractionTimeout: 30000
 ```
 
 ### 3.5 showDiagnostic
@@ -202,6 +202,16 @@ Enable or disable the option to return tokenized recorded audios.
 
 ```
 returnTokenizedAudios: false;
+```
+
+### 3.8 showPreviousTip
+
+**type:** *boolean*
+
+Displays a pre-launch screen with information about the process to be performed and a launch button.
+
+```
+showPreviousTip: false;
 ```
 ---
 

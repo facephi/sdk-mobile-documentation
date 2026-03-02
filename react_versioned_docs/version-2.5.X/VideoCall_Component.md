@@ -126,8 +126,8 @@ export interface VideoCallConfiguration {
   apiKey?: string;
   tenantId?: string;
   extensionName?: string;
-  showDiagnostic?: boolean;
-  screenSharing?: boolean;
+  timeout?: number;
+  activateScreenSharing?: boolean;
 }
 ```
 
@@ -169,24 +169,24 @@ Tenant identifier that refers to the current client, necessary for the connectio
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.4 showDiagnostic
-
-**type:** *boolean*
-
-Indicates whether you want to show a diagnosis in case of failure.
-
-```
-showDiagnostic: false;
-```
-
-### 3.5 screenSharing
+### 3.4 activateScreenSharing
 
 **type:** *bool*
 
 It is responsible for activating the device's screenshot in the background. It is mainly oriented for recording the onboarding process.
-If you activate the screenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
+If you activate the activateScreenSharing function, for iOS a series of additional steps are required at the native level. Please follow the following documentation:
 
 https://facephi.github.io/sdk-mobile-documentation/docs/ios/Video_Recording_Component
+
+### 3.5 timeout
+
+**type:** *number*
+
+Sets the maximum time allowed for capture.
+
+```
+timeout: 60000;
+```
 
 ### 3.6 extensionName(sólo iOS)
 

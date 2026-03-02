@@ -17,7 +17,7 @@ La versión mínima nativa (Android y iOS) de la SDK son las siguientes:
 ### 1.2 Versión del plugin
 La versión del plugin actual se puede consultar de la siguiente forma:
 
-- Buscamos el archivo **package.json** en la raíz del plugin.
+- Buscamos el archivo **pubspec.yaml** en la raíz del plugin.
 
 - En el KEY/TAG ***version*** se indica la versión. 
 

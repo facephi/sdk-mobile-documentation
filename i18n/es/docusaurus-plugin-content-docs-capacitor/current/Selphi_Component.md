@@ -464,7 +464,7 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
     - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
     - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
     - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-    - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+    - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
     - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
     - **errorMessage**: Indica un mensaje de error adicional en caso de ser necesario. Es un valor opcional.
 

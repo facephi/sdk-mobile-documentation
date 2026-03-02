@@ -115,8 +115,10 @@ A continuación se muestra la clase *PhingersConfiguration*, que permite configu
 ``` java
 export interface PhingersConfiguration 
 {
+  fingerSelectorHandOrientation?: PhingerSelectorHandOrientation;
   reticleOrientation?: PhingersReticleOrientation;
   fingersFilter?: FingersFilter;
+  fingerSelectorOptions?: string[];
   showEllipses?: boolean;
   useLiveness?: boolean;
   showTutorial?: boolean;
@@ -125,6 +127,7 @@ export interface PhingersConfiguration
   showDiagnostic?: boolean;
   threshold?: number;
   showPreviousTip?: boolean;
+  showPreviousFingerSelector?: boolean;
 }
 ```
 
@@ -257,6 +260,37 @@ Muestra una pantalla de pre-lanzamiento con información del proceso a realizar 
 ```
 showPreviousTip: false;
 ```
+
+#### 3.11. showPreviousFingerSelector
+
+**type:** *boolean*
+
+Muestra la pantalla de selección de dedo antes de la captura.
+
+```
+showPreviousFingerSelector: true
+```
+
+#### 3.12. fingerSelectorHandOrientation
+
+**type:** *PhingerSelectorHandOrientation*
+
+Define qué mano(s) están disponibles en el selector de dedos (`LEFT`, `RIGHT`, `BOTH`).
+
+```
+fingerSelectorHandOrientation: PhingerSelectorHandOrientation.BOTH
+```
+
+#### 3.13. fingerSelectorOptions
+
+**type:** *string[]*
+
+Define la lista de filtros de dedo que se muestran en el selector. Si está vacía, el SDK utiliza:
+`ALL_4_FINGERS_ONE_BY_ONE`, `ALL_5_FINGERS_ONE_BY_ONE`, `SLAP`, `INDEX_FINGER`, `RING_FINGER`, `THUMB_FINGER`, `LITTLE_FINGER`, `MIDDLE_FINGER`.
+
+```
+fingerSelectorOptions: ['SLAP', 'ALL_4_FINGERS_ONE_BY_ONE'];
+```
 ---
 
 ## 4. Uso del componente
@@ -349,7 +383,7 @@ Devuelve la descripción de finishStatus.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.3 errorMessage 

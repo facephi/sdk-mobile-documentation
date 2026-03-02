@@ -25,9 +25,9 @@ Además, en APPLICATION_PATH, acceder al fichero pubspec.yaml y añadir:
 ```
 fphi_sdkmobile_core:
   hosted:
-    name: sdkcore
+    name: fphi_sdkmobile_core
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 ### 1.3 Instalación plugin: Android
@@ -47,7 +47,7 @@ Debido a que el componente de **Tracking** tiene opciones de geolocalización, e
 
 <div class="note">
 <span class="note">:information_source:</span>
-Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/src/index.tsx* del componente.
+Toda la configuración se podrá encontrar en el archivo *node_modules/@facephi/sdk-core-react-native/src/index.tsx* del componente.
 </div>
 
 Antes de poder utilizar cualquier componente, se deberá inicializar la sesión de la SDK. Esta inicialización se debe hacer lo más pronto posible, preferentemente al inicio de la aplicación. Al mismo tiempo, una vez terminadas todas las operaciones con la SDK Mobile, deberá cerrarse igualmente la sesión (***apartado 6***)
@@ -251,9 +251,6 @@ class CoreResult {
   final String? errorMessage;
   final String? flow;
   final int timeoutStatus;
-  final String? operationId;
-  final String? sessionId;
-  final String? tokenized;
   final String? data;
 }
 ```
@@ -309,22 +306,16 @@ Devuelve el tipo de error que se ha producido (en el caso de que haya habido uno
 
   - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
 
-  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+  - **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 
   - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
-
-### 5.5 tokenized
-Parámetro opcional. Sólo se devuelve si se llama al método *Tokenized*. El plugin devolverá un valor de tipo ***string*** format. Más información en el **apartado 8.**
-
 ### 5.6 data: 
-Optional parameter. Only visible if the *GetExtraData* method is called. The plugin will return a value in ***string*** format. More information in **section 7.**
 
-### 5.7 sessionId
-Devuelve el identificador de la sesión actual. Cada vez que se ejecute un ***initSession*** se generará un nuevo *sessionId*.
-
-### 5.8 operationId
-Devuelve el identificador de la operación actual. Cada vez que se ejecute un ***initOperation*** se generará un nuevo *operationId*.
+Optional parameter. The plugin will return a value in ***string*** format when the methods returns OK responses.
+For the *getOperationId* method it will return the operationId info.
+For the *getSessionId* method it will return the sessionId info.
+For the *getExtraData* method. See **section 7**.
 
 ---
 
@@ -349,7 +340,7 @@ El resultado se devolverá por medio de una Promise, la cual contiene un objeto 
 
 ---
 
-## 7. Método ExtraData
+## 7. Método getExtraData
 
 El método getExtraData permite generar los identificadores necesarios para una operación que deba continuar en el *Servicio de Validaciones de Facephi* (Backend). Esta situación suele darse en casos en los que, una vez obtenida la información necesaria en la aplicación del cliente, se deba enviar esa información a un determinado servicio para su posterior validación o análisis. En caso de que deban trackearse los resultados de esos procesos en la Plataforma, ésta deberá ser capaz de unificar la primera parte del proceso realizada en cliente con la última realizada en el servicio, ya que al final forman parte de la misma operación.
 
@@ -371,22 +362,3 @@ Es por ello que a la hora de enviar la información capturada en una determinada
 ```
 
 ---
-
-## 8. Método Tokenize
-
-El método tratado en el documento actual recibe el nombre de Tokenize. Éste se encarga de codificar y tokenizar las imágenes obtenidas en cualquiera de los demás componentes, en caso de que sea necesario, para su posterior envío al *Servicio de Validaciones de Facephi* (Backend). En el este servicio se podrá descodificar y validar de forma segura.
-
-```dart
-  Future<Either<Exception, CoreResult>> tokenize() async
-  {
-    try
-    {
-      FphiSdkmobileCore core = FphiSdkmobileCore();
-      final Map resultJson = await core.tokenize(widgetConfigurationJSON: TokenizeConfiguration(mStringToTokenize: "Something to tokenize ..."));
-      return Right(CoreResult.fromMap(resultJson));
-    }
-    on Exception catch (e) {
-      return (Left(e));
-    }
-  }
-```

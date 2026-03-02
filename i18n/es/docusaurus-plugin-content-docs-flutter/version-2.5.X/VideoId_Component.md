@@ -37,9 +37,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_videoid:
   hosted:
-    name: sdkvideoid
+    name: fphi_sdkmobile_videoid
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.6.0
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.
@@ -117,12 +117,18 @@ A continuación se muestra la clase *VideoIdConfiguration*, que permite configur
 class VideoIdConfiguration
 {
   VideoMode mMode;
-  int mTime;
-  bool mShowTutorial;
   String? mUrl;
   String? mApiKey;
   String? mTenantId;
-  bool? mShowDiagnostic;
+  String? mSpeechText;
+  List<String>? mDocumentFilter;
+  List<String>? mCountryFilter;
+  bool? mAutoFaceDetection;
+  int mSectionTime;
+  int? mSectionTimeout;
+  int? mTimeoutServerConnection;
+  int? mTimeoutFaceDetection;
+  int? mMaxRetries;
 }
 ```
 
@@ -135,78 +141,120 @@ Toda la configuración se podrá encontrar en el archivo ***fphi_sdkmobile_video
 
 A la hora de realizar la llamada al widget existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 mTime
-
-**type:** *number*
-
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
-
-```
-mTime: 5000
-```
-
-### 3.2 mode
+### 3.1 mMode
 
 **type:** *VideoMode*
 
-Este enumerado se define en la clase **VideoMode** en ***fphi_sdkmobile_videoid_mode.dart***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
+Esta enumeración se define en **VideoMode**. Modo que se aplicará a la grabación. Los posibles valores de VideoIdMode serán:
 
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
+- ***FACE_DOCUMENT_FRONT***: You have to show the face and the front of the document.
+- ***ONLY_FACE***: You only have to show the face during the process.
+- ***FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+- ***DOCUMENT_FRONT_BACK***: You have to show front and back of the document.
+- ***DOCUMENT_FRONT***: You have to show the front of the document.
+
+### 3.2 mTimeoutServerConnection
+
+**type:** *number*
+
+Tiempo de espera en ms para la respuesta del servidor.
+
+### 3.3 mUrl
+
+**type:** *string*
+
+Ruta al conector de vídeo.
 
 ```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
+url: url_provided_by_Facephi
 ```
 
-### 3.4 mShowTutorial
+### 3.4 mApiKey
+
+**type:** *string*
+
+Se requiere ApiKey para la conexión al conector de vídeo.
+
+```
+apiKey: "apiKey_provided_by_Facephi";
+```
+### 3.5 mTenantId
+
+**type:** *string*
+
+Identificador de inquilino que hace referencia al cliente actual, necesario para la conexión al servicio de vídeo.
+
+```
+tenantId: "TenantId_provided_by_Facephi";
+```
+
+### 3.6 mAutoFaceDetection
 
 **type:** *boolean*
 
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
+Enable/Disable la auto detección del rostro.
 
-```
-mShowTutorial: true;
-```
+### 3.7 mSectionTime
 
-### 3.5 mUrl
+**type:** *number*
+
+Indica la duración de cada una de las secciones en las que se muestra el mensaje de grabación.
+
+### 3.8 mOcrValidations
+
+**type:** *string[]*
+
+Diccionario con las validaciones de OCR que se realizarán. Las claves son los campos que se validarán y los valores son instancias de OcrValidationValue.
+OcrValidationValue contiene los siguientes campos:
+
+- value: The value to be validated.
+- tolerance: The tolerance level for the validation.
+  - STRICT: Strict validation.
+  - LOW_TOLERANCE: Low tolerance validation.
+  - MEDIUM_TOLERANCE: Medium tolerance validation.
+  - HIGH_TOLERANCE: High tolerance validation.
+- validationType: The type of validation to be performed.
+  - OPTIONAL: Optional validation.
+  - REQUIRED: Required validation.
+
+### 3.9 mCountryFilter
+
+**type:** *string[]*
+
+Permite restringir el procesamiento a un conjunto específico de países aceptando una matriz de cadenas que representan los alias en formato ISO3 (código de 3 letras según el estándar ISO 3166-1).
+
+### 3.10 mDocumentFilter
+
+**type:** *string[]*
+
+Permite restringir los tipos de documentos aceptados durante la captura. Los valores posibles son:
+
+- "IDC": ID Card
+- "PSP": Passport
+- "DLI": Driver License
+- "VIS": Visa
+- "FOC": Foreign Card
+- "INV": Invoice
+- "CUS": Custom Document
+
+### 3.11 mSectionTimeout
+
+**type:** *number*
+
+Tiempo máximo permitido para completar una sección (en ms).
+
+### 3.12 mMaxRetries
+
+**type:** *number*
+
+Número máximo de reintentos permitidos para la validación de OCR. 3 es el valor predeterminado.
+
+### 3.13 mSpeechText
 
 **type:** *string*
 
-Ruta al socket de video.
+Texto que el usuario debe decir durante la grabación del vídeo.
 
-```
-mUrl: url_provided_by_Facephi
-```
-
-### 3.6 mApiKey
-
-**type:** *string*
-
-ApiKey necesaria para la conexión con el socket de video.
-
-```
-mApiKey: "apiKey_provided_by_Facephi";
-```
-### 3.7 mTenantId
-
-**type:** *string*
-
-Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
-
-```
-mTenantId: "TenantId_provided_by_Facephi";
-```
-
-### 3.8 mShowDiagnostic
-
-**type:** *boolean*
-
-Indica si se desea mostrar un diagnostico en caso de falla.
-
-```
-mShowDiagnostic: false;
-```
 ---
 
 ## 4. Uso del componente
@@ -239,9 +287,9 @@ VideoIdConfiguration createStandardConfiguration()
 {
   VideoIdConfiguration configurationWidget;
   configurationWidget = VideoIdConfiguration();
-  configurationWidget.mTime         = 5000;
-  configurationWidget.mMode         = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
-  configurationWidget.mShowTutorial = false;
+  configurationWidget.mSessionTimeout = 30000;
+  configurationWidget.mMode           = VideoMode.DT_FACE_DOCUMENT_FRONT_BACK;
+  configurationWidget.mShowTutorial   = false;
   return configurationWidget;
 }
 ```
@@ -266,7 +314,17 @@ class VideoIdResult
   final String finishStatusDescription;
   final String errorDiagnostic;
   final String? errorMessage;
-  final String data;
+  final String? faceImage;
+  final String? faceImageTokenized;
+  final String? documentFaceImageTokenized;
+  final String? speechText;
+  final String? documentType;
+  final int? matchingSidesScore;
+  final dynamic personalData;
+  final dynamic frontDocumentData;
+  final dynamic backDocumentData;
+  final dynamic ocrMap;
+  final dynamic ocrDiagnostic;
 }
 ```
 <div class="note">
@@ -300,7 +358,7 @@ El resultado será devuelto por medio de una Promise que contiene un objeto de l
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.3 errorMessage: 

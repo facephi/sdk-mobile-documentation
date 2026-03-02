@@ -129,15 +129,19 @@ A continuación se muestra la clase *VideoIdConfiguration*, que permite configur
 
 ```java
 export interface VideoIdConfiguration {
-  sectionTime?: number;
-  timeout?: number;
   mode?: VideoMode;
-  showTutorial?: boolean;
+  timeoutServerConnection?: number;
   url?: string;
   apiKey?: string;
   tenantId?: string;
-  showDiagnostic?: boolean;
-  vibration?: boolean;
+  autoFaceDetection?: boolean;
+  sectionTime?: number;
+  ocrValidations?: string[];
+  countryFilter?: string[];
+  documentFilter?: string[];
+  sectionTimeout?: number;
+  maxRetries?: number;
+  speechText?: string;
 }
 ```
 
@@ -150,98 +154,120 @@ Toda la configuración se podrá encontrar en el archivo ***src/index.tsx*** del
 
 A la hora de realizar la llamada al component existe una serie de parámetros que se deben incluir. A continuación se comentarán brevemente.
 
-### 3.1 sectionTime
-
-**type:** *number*
-
-Tiempo que se permanecerá en cada pantalla del proceso en ms.
-
-```
-sectionTime: 5000
-```
-
-### 3.2 timeout
-
-**type:** *number*
-
-Indica el tiempo que el componente se cierra por inactividad.
-
-```
-timeout: 10000
-```
-
-### 3.3 mode
+### 3.1 mode
 
 **type:** *VideoMode*
 
-Este enumerado se define en la clase ***SdkVideoIdEnum.tsx***. Modo que se aplicará para la grabación. Los posibles valores de VideoIdMode serán:
+Esta enumeración se define en **VideoMode**. Modo que se aplicará a la grabación. Los posibles valores de VideoIdMode serán:
 
-- ***VideoMode.FACE_DOCUMENT_FRONT***: Tienes que mostrar la cara y la parte frontal del documento.
-- ***VideoMode.ONLY_FACE***: Sólo tienes que mostrar la cara durante el proceso.
-- ***VideoMode.FACE_DOCUMENT_FRONT_BACK***: Tienes que mostrar la cara, la parte frontal y el dorso del documento.
+- ***FACE_DOCUMENT_FRONT***: You have to show the face and the front of the document.
+- ***ONLY_FACE***: You only have to show the face during the process.
+- ***FACE_DOCUMENT_FRONT_BACK***: You have to show the face, front and back of the document.
+- ***DOCUMENT_FRONT_BACK***: You have to show front and back of the document.
+- ***DOCUMENT_FRONT***: You have to show the front of the document.
 
-```
-mode: VideoMode.FACE_DOCUMENT_FRONT_BACK;
-```
+### 3.2 timeoutServerConnection
 
-### 3.4 showTutorial
+**type:** *number*
 
-**type:** *boolean*
+Tiempo de espera en ms para la respuesta del servidor.
 
-Indica si se desea mostrar el tutorial completo del proceso o sólo la versión simplificada.
-
-```
-showTutorial: true;
-```
-
-### 3.5 url
+### 3.3 url
 
 **type:** *string*
 
-Ruta al socket de video.
+Ruta al conector de vídeo.
 
 ```
 url: url_provided_by_Facephi
 ```
 
-### 3.6 apiKey
+### 3.4 apiKey
 
 **type:** *string*
 
-ApiKey necesaria para la conexión con el socket de video.
+Se requiere ApiKey para la conexión al conector de vídeo.
 
 ```
 apiKey: "apiKey_provided_by_Facephi";
 ```
-### 3.7 tenantId
+### 3.5 tenantId
 
 **type:** *string*
 
-Identificador del tenant que hace referencia al cliente actual, necesario para la conexión con el servicio de video.
+Identificador de inquilino que hace referencia al cliente actual, necesario para la conexión al servicio de vídeo.
 
 ```
 tenantId: "TenantId_provided_by_Facephi";
 ```
 
-### 3.8 showDiagnostic
+### 3.6 autoFaceDetection
 
 **type:** *boolean*
 
-Indica si se desea mostrar un diagnostico en caso de falla.
+Enable/Disable la auto detección del rostro.
 
-```
-showDiagnostic: false;
-```
+### 3.7 mSectionTime
 
-### 3.9 vibration
+**type:** *number*
 
-**type:** *boolean*
+Indica la duración de cada una de las secciones en las que se muestra el mensaje de grabación.
 
-Indica si se desea habilitar o no la vibración.
+### 3.8 ocrValidations
 
-```
- vibration: true;
-```
+**type:** *string[]*
+
+Diccionario con las validaciones de OCR que se realizarán. Las claves son los campos que se validarán y los valores son instancias de OcrValidationValue.
+OcrValidationValue contiene los siguientes campos:
+
+- value: The value to be validated.
+- tolerance: The tolerance level for the validation.
+  - STRICT: Strict validation.
+  - LOW_TOLERANCE: Low tolerance validation.
+  - MEDIUM_TOLERANCE: Medium tolerance validation.
+  - HIGH_TOLERANCE: High tolerance validation.
+- validationType: The type of validation to be performed.
+  - OPTIONAL: Optional validation.
+  - REQUIRED: Required validation.
+
+### 3.9 countryFilter
+
+**type:** *string[]*
+
+Permite restringir el procesamiento a un conjunto específico de países aceptando una matriz de cadenas que representan los alias en formato ISO3 (código de 3 letras según el estándar ISO 3166-1).
+
+### 3.10 documentFilter
+
+**type:** *string[]*
+
+Permite restringir los tipos de documentos aceptados durante la captura. Los valores posibles son:
+
+- "IDC": ID Card
+- "PSP": Passport
+- "DLI": Driver License
+- "VIS": Visa
+- "FOC": Foreign Card
+- "INV": Invoice
+- "CUS": Custom Document
+
+### 3.11 sectionTimeout
+
+**type:** *number*
+
+Tiempo máximo permitido para completar una sección (en ms).
+
+### 3.12 maxRetries
+
+**type:** *number*
+
+Número máximo de reintentos permitidos para la validación de OCR. 3 es el valor predeterminado.
+
+### 3.13 speechText
+
+**type:** *string*
+
+Texto que el usuario debe decir durante la grabación del vídeo.
+
 ---
 
 ## 4. Uso del componente
@@ -282,7 +308,7 @@ const launchVideoId = async () =>
 const getVideoIdConfiguration = () => 
 {
   let config: VideoIdConfiguration = {
-    sectionTime: 5000,
+    sectionTimeout: 5000,
     mode: VideoMode.FACE_DOCUMENT_FRONT,
   };
   return config;
@@ -318,7 +344,18 @@ export interface VideoIdResult
   finishStatusDescription?: string;
   errorType: string;
   errorMessage?: string;
-  data?: string;
+  faceImage?: string;
+  faceImageTokenized?: string;
+  documentFaceImageTokenized?: string;
+  speechText?: string;
+  documentType?: string;
+  matchingSidesScore?: number;
+  personalData?: any;
+  frontDocumentData?: any;
+  backDocumentData?: any;
+  ocrMap?: any;
+  ocrDiagnostic?: any;
+}
 }
 ```
 <div class="note">
@@ -360,7 +397,7 @@ Devuelve el diagnóstico global de la operación.
 - **NfcError**: Excepción que se produce cuando el sdk no tiene permiso de acceso al nfc.
 - **NetworkConnection**: Excepción que se produce cuando hay inconvenientes con los medios que usa el dispositivo para conectarse a la red.
 - **TokenError**: Excepción que se produce cuando se pasa por parámetro un token no válido.
-- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al ppio de llamar a cualquier otro componente.
+- **InitSessionError**: Excepción que se produce cuando no se puede inicializar session. Lo normal es que ocurra porque no se llamo al `SdkCore` al principio de llamar a cualquier otro componente.
 - **ComponentControllerError**: Excepción que se produce cuando no se puede instanciar el componente.
 
 ### 5.4 errorMessage: 
