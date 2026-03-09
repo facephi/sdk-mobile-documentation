@@ -481,11 +481,7 @@ when (result) {
 
 ## 7. Security
 
-By default, the SDK will not allow operations to start on devices where emulation or rooting is detected. If you want to disable this security check:
-
-```java
-SDKController.securityMode(enable = false)
-```
+By default, the SDK will not allow operations to start on devices where emulation or rooting is detected. If you want to disable this security check contact Facephi support team.
 
 ---
 
