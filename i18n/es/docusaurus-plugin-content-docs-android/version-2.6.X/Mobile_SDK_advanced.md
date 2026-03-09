@@ -541,11 +541,7 @@ SDKController.launch(CustomerIdController("CustomerId"))
 
 ## 7. Seguridad
 
-Por defecto el SDK no dejará iniciar operaciones a dispositivos en los que se detecte emulación o root. Si se quiere desactivar esta comprobación de seguridad:
-
-```java
-SDKController.securityMode(enable = false)
-```
+Por defecto el SDK no dejará iniciar operaciones a dispositivos en los que se detecte emulación o root. Para desactivar esta comprobación de seguridad contacte con el equipo de soporte de Facephi.
 
 ---
 

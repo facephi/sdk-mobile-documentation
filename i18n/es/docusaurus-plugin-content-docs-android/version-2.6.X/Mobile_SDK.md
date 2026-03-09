@@ -189,8 +189,6 @@ SDKController.closeSession()
 
 El SDK de Android incorpora un sistema de seguridad destinado a detectar y bloquear entornos potencialmente poco fiables o que puedan indicar intentos de ataque.
 
-Este mecanismo está habilitado por defecto, permite identificar situaciones que podrían comprometer la seguridad y previene la ejecución del SDK en contextos que no se consideran seguros:
+Este mecanismo está habilitado por defecto, permite identificar situaciones que podrían comprometer la seguridad y previene la ejecución del SDK en contextos que no se consideran seguros. 
 
-```java
-SDKController.securityMode(enable: Boolean)
-```
+Para desactivar esta comprobación de seguridad contacte con el equipo de soporte de Facephi.
