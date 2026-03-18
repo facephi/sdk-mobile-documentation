@@ -118,10 +118,10 @@ El componente actual contiene una serie de métodos e interfaces de Typescript i
 A continuación se muestra la clase *SelphidConfiguration*, que permite configurar el componente de **SelphID**:
 
 ``` java
- export interface SelphidConfiguration {
+ export interface SelphidConfiguration 
+ {
   documentSide?: SelphIDDocumentSide;
   resourcesPath: string;
-  debug?: boolean;
   showResultAfterCapture?: boolean;
   showTutorial?: boolean;
   tutorialOnly?: boolean;
@@ -291,16 +291,6 @@ Establece si se desea lanzar el componente en modo Tutorial. Esto permite mostra
 
 ```
 tutorialOnly: true;
-```
-
-###  3.13 debug
-
-**type:** *boolean*
-
-Establece el modo debug del componente.
-
-```
-debug: false;
 ```
 
 ###  3.14 showTutorial
@@ -489,7 +479,7 @@ onSuccessSelphIDCapture = (result: any) => {
       {
         case SdkFinishStatus.Ok: // OK
           console.log(result.documentData);
-          this.processSuccessResultSelphID(result); // Logging the info for debug purposes
+          this.processSuccessResultSelphID(result);
           break;
 
         case SdkFinishStatus.Error: // Error

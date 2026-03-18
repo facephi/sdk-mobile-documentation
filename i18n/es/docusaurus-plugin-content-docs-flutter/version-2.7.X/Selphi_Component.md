@@ -138,8 +138,8 @@ El componente actual contiene una serie de métodos e interfaces de Dart incluid
 A continuación se muestra la clase **SelphiFaceConfiguration**, que permite configurar el componente de Selphi:
 
 ```dart
-class SelphiFaceConfiguration {
-  bool mDebug;
+class SelphiFaceConfiguration 
+{
   bool mFullscreen;
   double mCropPercent;
   bool mStabilizationMode;
@@ -156,7 +156,6 @@ class SelphiFaceConfiguration {
   bool mLogImages;
   double mJPGQuality;
   SelphiCompressFormat mCompressFormat;
-  String? license;
 }
 
 ```
@@ -187,17 +186,6 @@ Especifica el porcentaje de ampliación del área del rostro detectado para comp
 
 ```
 cropPercent: 1.0
-```
-
-
-### 3.3. debug
-
-**type:** *boolean*
-
-Establece el modo de depuración del widget.
-
-```
-debug: false
 ```
 
 ### 3.4. livenessMode
@@ -386,15 +374,6 @@ Indica qué cámara realizará el proceso de captura. Los valores posibles son:
 
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
-
-
-#### 3.22. license (string)
-
-Establece la licencia de los widgets. Esta licencia la proporciona Facephi. Este parámetro solo es necesario para Selphi IA.
-
-```
-license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
-```
 
 ---
 

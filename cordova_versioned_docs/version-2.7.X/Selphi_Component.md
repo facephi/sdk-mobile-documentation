@@ -139,7 +139,6 @@ Below is the *SelphiConfiguration* class, which allows you to configure the Selp
 
 ```
 export interface SelphiConfiguration {
-  debug?: boolean;
   fullscreen?: boolean;
   cropPercent?: number;
   stabilizationMode?: boolean;
@@ -158,7 +157,6 @@ export interface SelphiConfiguration {
   qrMode?: boolean;
   showDiagnostic?: boolean;
   logImages?: boolean;
-  license?: string;
 }
 ```
 
@@ -188,17 +186,6 @@ Specifies the magnification percentage of the detected face area to compose the 
 
 ```
 cropPercent: 1.0
-```
-
-
-### 3.3. debug
-
-**type:** *boolean*
-
-Sets the debugging mode of the widget.
-
-```
-debug: false
 ```
 
 ### 3.4. livenessMode
@@ -406,13 +393,6 @@ Indicates which camera will carry out the capture process. The possible values a
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
-#### 3.22. license (string)
-
-Sets the widgets *license*. This license is provided by Facephi. This parameter is only necesary for selphi IA.
-
-```
-license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
-```
 ---
 
 ## 4. Component Usage
@@ -428,7 +408,6 @@ Once the component has been configured, to launch it, the following code must be
 ```
 const getSelphiConfiguration = () => {
     let config: SelphiConfiguration = {
-      debug: false,
       fullscreen: true,
       livenessMode: SdkSelphiEnums.SdkLivenessMode.PassiveMode,
       resourcesPath: "fphi-selphi-widget-resources-sdk.zip",

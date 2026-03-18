@@ -175,7 +175,6 @@ configure the **SelphID** component:
  export interface SelphidConfiguration {
   documentSide?: SelphIDDocumentSide;
   resourcesPath: string;
-  debug?: boolean;
   showResultAfterCapture?: boolean;
   showTutorial?: boolean;
   tutorialOnly?: boolean;
@@ -391,16 +390,6 @@ isolation.
 
 ```
 tutorialOnly: true;
-```
-
-###  3.13 debug
-
-**type:** *boolean*
-
-Sets the debugging mode of the component.
-
-```
-debug: false
 ```
 
 ###  3.14 showTutorial

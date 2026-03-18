@@ -121,7 +121,6 @@ A continuación se muestra la clase *SelphIDConfiguration*, que permite configur
 class SelphIDConfiguration
 {
   bool mWizardMode;
-  bool mDebug;
   bool mShowResultAfterCapture;
   bool mShowTutorial;
   bool mTutorialOnly;

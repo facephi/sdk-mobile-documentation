@@ -139,7 +139,6 @@ Below is the *SelphiFaceConfiguration* class, which allows you to configure the 
 
 ``` dart
 class SelphiFaceConfiguration {
-  bool mDebug;
   bool mFullscreen;
   bool mLogImages;
   bool mStabilizationMode;
@@ -160,7 +159,6 @@ class SelphiFaceConfiguration {
   bool? mShowPreviousTip;
   SelphiFaceExtractionDuration? mExtractionDuration;
   SelphiCamera mCameraPreferred;
-  String? mLicense;
 }
 ```
 
@@ -201,17 +199,6 @@ Specifies the magnification percentage of the detected face area to compose the 
 
 ```
 cropPercent: 1.0
-```
-
-
-### 3.4. debug
-
-**type:** *boolean*
-
-Sets the debugging mode of the widget.
-
-```
-debug: false
 ```
 
 ### 3.5. livenessMode
@@ -406,13 +393,6 @@ Indicates which camera will carry out the capture process. The possible values a
 
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
-
-#### 3.22. license (string)
-Sets the widgets *license*. This license is provided by Facephi. This parameter is only necesary for selphi IA.
-
-```
-license: JSON.stringify(getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
-```
 
 ---
 

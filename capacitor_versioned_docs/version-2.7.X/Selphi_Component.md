@@ -122,7 +122,6 @@ Below is the *SelphiConfiguration* class, which allows you to configure the Selp
 
 ```
 export interface SelphiConfiguration {
-  debug?: boolean;
   fullscreen?: boolean;
   cropPercent?: number;
   stabilizationMode?: boolean;
@@ -140,8 +139,7 @@ export interface SelphiConfiguration {
   showDiagnostic?: boolean;
   logImages?: boolean;
   compressFormat?: SdkCompressFormat,
-  jpgQuality?: number,
-  license?: string
+  jpgQuality?: number
 }
 ```
 
@@ -170,16 +168,6 @@ Specifies the magnification percentage of the detected face area to compose the 
 
 ```
 cropPercent: 1.0
-```
-
-### 3.3. debug
-
-**type:** *boolean*
-
-Sets the debugging mode of the component.
-
-```
-debug: false
 ```
 
 ### 3.4. livenessMode
@@ -388,14 +376,6 @@ Indicates which camera will carry out the capture process. The possible values a
 - SelphiCamera.BACK
 - SelphiCamera.FRONT
 
-#### 3.22. license (string)
-
-Sets the widgets *license*. This license is provided by Facephi. This parameter is only necesary for selphi IA.
-
-```
-license: JSON.stringify(Capacitor.getPlatform() === 'android' ? lIC_ANDROID : lIC_IOS);
-```
-
 ---
 
 ## 4. Component Usage
@@ -421,7 +401,6 @@ launchSelphiAuthentication = async (): Promise<SelphiFaceResult> => {
       console.log('Launching selphi widget...');
       // SelphiFaceConfiguration
       return SdkSelphi.startExtraction({
-        debug: false,
         livenessMode: SelphiFaceLivenessMode.Passive,
         resourcesPath: SELPHI_RESOURCES_PATH,
         enableGenerateTemplateRaw: true,
@@ -440,7 +419,7 @@ As shown in the example above, the result is returned in the form of a JSON obje
     if (result !== null && result) {
       switch (result.finishStatus) {
         case SdkFinishStatus.Ok: // OK
-          this.processSuccessResult(result); // Logging the info for debug purposes
+          this.processSuccessResult(result);
           this.bestImageCropped = this.URI_JPEG_HEADER + result.bestImageCropped;
           this.bestImage        = result.bestImage;
           break;

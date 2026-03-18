@@ -222,8 +222,8 @@ The following is the *SelphIDConfiguration* class, which allows you to
 configure the **SelphID** component:
 
 ``` java
- export interface SelphidConfiguration {
-  debug?: boolean;
+ export interface SelphidConfiguration 
+ {
   fullScreen?: boolean;
   frontalCameraPreferred?: boolean;
   tokenImageQuality?: number;
@@ -528,7 +528,6 @@ must be executed:
 ``` java
 const getSelphidConfiguration = () => {
     let config: SelphidConfiguration = {
-      debug: false,
       showResultAfterCapture: true,
       showTutorial: false,
       scanMode: SdkSelphidEnums.SdkScanMode.Search,

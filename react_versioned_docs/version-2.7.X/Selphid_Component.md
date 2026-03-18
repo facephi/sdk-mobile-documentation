@@ -217,8 +217,8 @@ The following is the *SelphIDConfiguration* class, which allows you to
 configure the **SelphID** component:
 
 ``` java
- export interface SelphidConfiguration {
-  debug?: boolean;
+ export interface SelphidConfiguration 
+ {
   fullScreen?: boolean;
   tokenImageQuality?: number;
   timeout?: SelphIDTimeout;
@@ -395,7 +395,6 @@ camera that was used to capture the document:
 
 > generateRawImages: true
 
-
 ###  3.11 timeout
 
 **type:** *number*
@@ -419,17 +418,7 @@ allows you to show the previous component tutorial, but WITHOUT performing
 the post capture process. Useful if you wish to show the tutorial in
 isolation.
 
->     **tutorialOnly**: true;
-
-
-
-###  3.13 debug
-
-**type:** *boolean*
-
-Sets the debugging mode of the component.
-
-> debug: false
+> tutorialOnly: true;
 
 ###  3.14 showTutorial
 
@@ -476,7 +465,7 @@ Indicates the format compression of the image. The possible values are:
 - PNG
 - JPG
 
->     **compressFormat**: "JPG“;
+> compressFormat: "JPG“;
 
 
 ###  3.19 imageQuality
@@ -485,9 +474,7 @@ Indicates the format compression of the image. The possible values are:
 
 If the ***compressFormat*** property is configured as **JPG**, it is possible to set the image's *quality compression*. However, this parameter will be ignored if the ***compressFormat*** is **PNG**.
 
->     **imageQuality**: 95
-
-
+> imageQuality: 95
 
 ###  3.20 videoFilename
 
@@ -505,7 +492,7 @@ the necessary permissions to the phone in case that route requires
 additional permissions. The component, by default, will not perform any
 write processing unless a file path is specified using this method.
 
->     **videoFilename**: “\<videofile-path\>“;
+> videoFilename: “\<videofile-path\>“;
 
 ###  3.21 documentModels
 
@@ -524,7 +511,7 @@ within the resources .zip. With this property an application is allowed
 to update and replace, in execution, the models of the current documents
 of the component.
 
->     **documentModels**: “\<document-models-content-string\>“;
+> documentModels: “\<document-models-content-string\>“;
 
 ###  3.22 translationsContent
 
@@ -542,7 +529,7 @@ found, by default, in an internal translations folder within the
 resources .zip. This property allows an application to update and
 replace the current location of the component at run time.
 
->     **translationsContent**: “\<translation-content-string\>“;
+> translationsContent: “\<translation-content-string\>“;
 
 ###  3.23 viewsContent
 
@@ -561,7 +548,7 @@ found, by default, in a file called **widget.xml** inside the resources
 .zip. This property allows an application to update and override the
 layout of the component's internal screens whilst running.
 
->     **viewsContent**: “\<views-content-string\>“;
+> viewsContent: “\<views-content-string\>“;
 
 #### 3.24. showPreviousTip
 

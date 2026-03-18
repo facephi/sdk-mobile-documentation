@@ -71,7 +71,7 @@ fphi_sdkmobile_selphid:
   hosted:
     name: fphi_sdkmobile_selphi
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.6.0
+  version: ^2.7.0
 ```
 
 After running the above steps, projects generated in the Android and iOS folders can be opened,
@@ -174,7 +174,6 @@ configure the **SelphID** component:
  class SelphIDConfiguration
 {
   bool mWizardMode;
-  bool mDebug;
   bool mShowResultAfterCapture;
   bool mShowTutorial;
   bool mTutorialOnly;
@@ -371,15 +370,6 @@ the post capture process. Useful if you wish to show the tutorial in
 isolation.
 
 > **tutorialOnly**: true;
-
-
-###  3.13 debug
-
-**type:** *boolean*
-
-Sets the debugging mode of the component.
-
-> debug: false
 
 ###  3.14 showTutorial
 

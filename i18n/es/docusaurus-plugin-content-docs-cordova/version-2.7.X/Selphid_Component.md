@@ -117,8 +117,8 @@ El componente actual contiene una serie de métodos e interfaces de Typescript i
 A continuación se muestra la clase *SelphidConfiguration*, que permite configurar el componente de **SelphID**:
 
 ```java
- export interface SelphidConfiguration {
-  debug?: boolean;
+ export interface SelphidConfiguration 
+ {
   fullScreen?: boolean;
   tokenImageQuality?: number;
   timeout?: SelphIDTimeout;
