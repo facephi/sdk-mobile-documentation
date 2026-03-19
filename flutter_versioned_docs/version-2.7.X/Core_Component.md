@@ -153,6 +153,8 @@ mEnableTracking: true
 
 #### 2.2.5 locale
 
+**type:** *string*
+
 This is a string that allows you to change the locale and language of
 the widget. Examples of values they can have are as follows:
 

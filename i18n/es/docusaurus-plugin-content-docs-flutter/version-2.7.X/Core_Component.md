@@ -27,7 +27,7 @@ fphi_sdkmobile_core:
   hosted:
     name: fphi_sdkmobile_core
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.6.0
+  version: ^2.7.0
 ```
 
 ### 1.3 Instalación plugin: Android
