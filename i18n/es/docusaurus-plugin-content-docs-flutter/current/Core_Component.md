@@ -51,7 +51,6 @@ initSession = async (): Promise<CoreResult> =>
 
     const widgetConfig: InitSessionConfiguration = {
       license: pluginLicense,
-      enableFlow: false,
       enableTracking: true
     };
 ```
@@ -72,7 +71,6 @@ initSession = async (): Promise<CoreResult> =>
     const widgetConfig: InitSessionConfiguration = {
       licenseUrl: LICENSE_URL,
       licenseApiKey: pluginLicenseApiKey,
-      enableFlow: false,
       enableTracking: true
     };
 ```
