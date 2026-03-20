@@ -306,16 +306,6 @@ Establece si se desea lanzar el componente en modo Tutorial. Esto permite mostra
 tutorialOnly: true;
 ```
 
-###  3.13 debug
-
-**type:** *boolean*
-
-Establece el modo debug del componente.
-
-```
-debug: false
-```
-
 ###  3.14 showTutorial
 
 **type:** *boolean*
@@ -464,7 +454,6 @@ Una vez configurado el componente, para lanzarlo se deberá ejecutar el siguient
 ``` java
 const getSelphidConfiguration = () => {
     let config: SelphidConfiguration = {
-      debug: false,
       showResultAfterCapture: true,
       showTutorial: false,
       scanMode: SdkSelphidEnums.SdkScanMode.Search,

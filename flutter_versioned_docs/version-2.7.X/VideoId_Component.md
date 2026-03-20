@@ -35,9 +35,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_videoid:
   hosted:
-    name: sdkvideoid
+    name: fphi_sdkmobile_videoid
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.7.0
 ```
 
 After executing the above steps, you can launch the application with the sdk/component installed.
