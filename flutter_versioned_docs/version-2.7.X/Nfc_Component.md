@@ -60,9 +60,9 @@ dart pub token add "https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fph
 ```
 fphi_sdkmobile_nfc:
   hosted:
-    name: sdknfc
+    name: fphi_sdkmobile_nfc
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.0.0
+  version: ^2.7.0
 ```
 
 ### 2.2 Plugin installation: iOS

@@ -263,17 +263,6 @@ Establece si se desea lanzar el componente en modo Tutorial. Esto permite mostra
 
 >     **tutorialOnly**: true;
 
-
-###  3.12 debug
-
-**type:** *boolean*
-
-Establece el modo debug del componente.
-
-```
-debug: false
-```
-
 ###  3.13 showTutorial
 
 **type:** *boolean*

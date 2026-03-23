@@ -44,7 +44,7 @@ fphi_sdkmobile_phingers:
   hosted:
     name: fphi_sdkmobile_phingers
     url: https://facephicorp.jfrog.io/artifactory/api/pub/pub-pro-fphi/
-  version: ^2.6.0
+  version: ^2.7.0
 ```
 
 Después de ejecutar los pasos anteriores, puede iniciar la aplicación con el sdk/componente instalado.

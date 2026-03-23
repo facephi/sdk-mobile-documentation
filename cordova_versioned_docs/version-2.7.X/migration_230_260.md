@@ -1,10 +1,22 @@
-# Migrate from 2.3.X to 2.5.X
+# Migrate from 2.3.X to 2.6.X
 ## 1. Introduction
 
 <div class="warning">
 <span class="warning">:warning:</span>
 The following document contains different issues that can appear during the migration from SDK Mobile ***2.2.X version*** to the SDK Mobile ***2.3.X version***. Depending on the developer application and its configuration. 
 </div>
+
+### 1.1 Upgrade AGP.
+
+New AGP version is: 8.9.1.
+
+### 1.2 Upgrade Kotlin.
+
+New Kotlin version is: 2.2.x.
+
+### 1.3 Android Sdk.
+
+New Android SDK version is: 35.
 
 ## 2. Possible issues
 
@@ -30,7 +42,7 @@ Change in your cdv-gradle-config.json the kotlinVersion:
   "COMPILE_SDK_VERSION": 35,
   "GRADLE_VERSION": "8.13",
   "MIN_BUILD_TOOLS_VERSION": "35.0.0",
-  "AGP_VERSION": "8.6.0",
+  "AGP_VERSION": "8.9.3",
   "KOTLIN_VERSION": "2.1.0", // THIS
   "ANDROIDX_APP_COMPAT_VERSION": "1.7.0",
   "ANDROIDX_WEBKIT_VERSION": "1.12.1",
