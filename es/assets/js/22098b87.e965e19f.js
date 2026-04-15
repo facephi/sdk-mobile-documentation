@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksdk_mobile_doc=self.webpackChunksdk_mobile_doc||[]).push([[17630],{23473:s=>{s.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"capacitor"}')}}]);
