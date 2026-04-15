@@ -399,6 +399,22 @@ output: { sdkResult in
 })
 ```
 
+#### 3.2.6 analyticsOutput
+
+El SDK Mobile permite obtener los eventos que cada uno de sus componentes va lanzando a lo largo de sus flujos. Para ello, debe enviarse el parámetro analyticsOutput con el initSdk(...):
+
+```
+SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", ..., analyticsOutput: { time, component, type, info  in
+    print("\(time) - Analytics: \(component) - \(type) - \(info)"
+}, ...)
+```
+
+- time: el primer parámetro es la representación numérica del intervalo de tiempo que ha pasado entre la fecha actual y las 00:00:00 UTC del 1 de Enero de 1970.
+- component: el componente del SDK Mobile donde transcurre el evento, su valor es el identificador del STEP. Por ejemplo SELPHID_COMPONENT o SELPHI_COMPONENT.
+- type: describe el tipo de evento. Solo puede tener uno de los siguientes 4 valores: SCREEN_VIEW, BUTTON_CLICK, COMPONENT_STARTED y COMPONENT_STOPPED.
+- info: un String que identifica el elemento asociado al evento. Por ejemplo CAPTURE_BUTTON, CONFIRMATION_SCREEN, ...
+
+
 ---
 
 ## 4. Iniciar nueva operación

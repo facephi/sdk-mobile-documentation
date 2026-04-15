@@ -389,6 +389,22 @@ output: { sdkResult in
 })
 ```
 
+#### 3.2.6 analyticsOutput
+
+The Mobile SDK can return events happening in each of its components. To listen to those events, the integrator should inject "analyticsOutput" in the initSdk's call:
+
+```
+SDKController.shared.initSdk(licensingUrl: "https://...", apiKey: "...", ..., analyticsOutput: { time, component, type, info  in
+    print("\(time) - Analytics: \(component) - \(type) - \(info)"
+}, ...)
+```
+
+- time: the first parameter is the numeric representation of the time interval between the current date and 1970's January 1st UTC.
+- component: the SDK's component in which the event is being launched, its value is the STEP's identifier. For example SELPHID_COMPONENT o SELPHI_COMPONENT.
+- type: describes the event's type. It can only have one of these 4 values: SCREEN_VIEW, BUTTON_CLICK, COMPONENT_STARTED & COMPONENT_STOPPED.
+- info: a String that identifies the element associated to the event. For example CAPTURE_BUTTON, CONFIRMATION_SCREEN, ...
+
+
 ---
 
 ## 4. Start a new operation
